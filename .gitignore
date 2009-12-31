@@ -1,0 +1,7 @@
+*.swp
+bin
+gen
+local.properties
+tools/proguard.jar
+tools/scala-compiler.jar
+tools/scala-library.jar
