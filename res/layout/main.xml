@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+android:id="@+id/widget28"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<TextView
+android:id="@+id/widget29"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="APRSdroid early beta"
+>
+</TextView>
+<TextView
+android:id="@+id/lat"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="lat"
+>
+</TextView>
+<TextView
+android:id="@+id/lon"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="lon"
+>
+</TextView>
+</LinearLayout>
