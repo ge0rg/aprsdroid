@@ -11,25 +11,30 @@ import _root_.android.widget.Button
 import _root_.android.widget.TextView
 
 class APRSdroid extends Activity with LocationListener with OnClickListener {
+	val TAG = "APRSdroid"
+
 	val UPDATE_TIME = 10000 // 10k ms = 10s
 	val UPDATE_DIST = 10 // 10m
-	var locMan : LocationManager = null
-        lazy val lat : TextView = findViewById(R.id.lat).asInstanceOf[TextView]
-        lazy val lon : TextView = findViewById(R.id.lon).asInstanceOf[TextView]
-        lazy val status : TextView = findViewById(R.id.status).asInstanceOf[TextView]
 
-	val TAG = "APRSdroid"
+	lazy val locMan = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
+	lazy val lat = findViewById(R.id.lat).asInstanceOf[TextView]
+	lazy val lon = findViewById(R.id.lon).asInstanceOf[TextView]
+	lazy val status = findViewById(R.id.status).asInstanceOf[TextView]
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.main)
-		locMan = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
+
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			UPDATE_TIME, UPDATE_DIST, this)
 
-                findViewById(R.id.startbtn).asInstanceOf[Button].setOnClickListener(this);
-                findViewById(R.id.stopbtn).asInstanceOf[Button].setOnClickListener(this);
-                findViewById(R.id.singlebtn).asInstanceOf[Button].setOnClickListener(this);
+		findViewById(R.id.startbtn).asInstanceOf[Button].setOnClickListener(this);
+		findViewById(R.id.stopbtn).asInstanceOf[Button].setOnClickListener(this);
+		findViewById(R.id.singlebtn).asInstanceOf[Button].setOnClickListener(this);
+	}
+
+	override def onDestroy() {
+		locMan.removeUpdates(this);
 	}
 
 	override def onLocationChanged(location : Location) {
@@ -51,7 +56,7 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 	}
 	override def onClick(view : View) {
 		Log.d(TAG, "onClick: " + view + "/" + view.getId)
-                status.setText(view.asInstanceOf[Button].getText)
+		status.setText(view.asInstanceOf[Button].getText)
 	}
 
 }
