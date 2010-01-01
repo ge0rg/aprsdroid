@@ -192,6 +192,7 @@
 	    destdir="${out-classes}">
 	    <classpath>
 		<pathelement location="${android-jar}"/>
+		<pathelement location="${out-classes}"/>
 		<fileset dir="tools" includes="*.jar"/>
 	    </classpath>
 	</scalac>

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">APRSdroid</string>
+<string name="singlelog">Single Shot</string>
+<string name="startlog">Start Logging</string>
+<string name="app_name">APRSdroid</string>
+<string name="stoplog">Stop Logging</string>
 </resources>
