@@ -14,9 +14,9 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 	val UPDATE_TIME = 10000 // 10k ms = 10s
 	val UPDATE_DIST = 10 // 10m
 	var locMan : LocationManager = null
-        var lat : TextView = null
-        var lon : TextView = null
-        var status : TextView = null
+        lazy val lat : TextView = findViewById(R.id.lat).asInstanceOf[TextView]
+        lazy val lon : TextView = findViewById(R.id.lon).asInstanceOf[TextView]
+        lazy val status : TextView = findViewById(R.id.status).asInstanceOf[TextView]
 
 	val TAG = "APRSdroid"
 
@@ -27,9 +27,6 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			UPDATE_TIME, UPDATE_DIST, this)
 
-                lat = findViewById(R.id.lat).asInstanceOf[TextView]
-                lon = findViewById(R.id.lon).asInstanceOf[TextView]
-                status = findViewById(R.id.status).asInstanceOf[TextView]
                 findViewById(R.id.startbtn).asInstanceOf[Button].setOnClickListener(this);
                 findViewById(R.id.stopbtn).asInstanceOf[Button].setOnClickListener(this);
                 findViewById(R.id.singlebtn).asInstanceOf[Button].setOnClickListener(this);
