@@ -258,7 +258,6 @@
 	    signed="${sign.package}"
 	    verbose="true">
 	    <file path="${intermediate-dex}" />
-	    <sourcefolder path="${source-folder}" />
 	    <jarfolder path="${external-libs-folder}" />
 	    <nativefolder path="${native-libs-folder}" />
 	</apkbuilder>
