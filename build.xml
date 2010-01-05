@@ -214,6 +214,7 @@
 	    -dontobfuscate
 	    -printusage ${out-folder}/proguard.usage
 	    -keep public class * extends android.app.Activity
+	    -keep public class * extends android.app.Service
 	    -keep public interface scala.ScalaObject
 	    -dontskipnonpubliclibraryclasses
 	    -dontskipnonpubliclibraryclassmembers
