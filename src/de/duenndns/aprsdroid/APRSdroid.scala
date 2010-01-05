@@ -1,7 +1,7 @@
 package de.duenndns.aprsdroid
 
 import _root_.android.app.Activity
-import _root_.android.content.Context
+import _root_.android.content._
 import _root_.android.location._
 import _root_.android.os.Bundle
 import _root_.android.util.Log
@@ -13,28 +13,32 @@ import _root_.android.widget.TextView
 class APRSdroid extends Activity with LocationListener with OnClickListener {
 	val TAG = "APRSdroid"
 
-	val UPDATE_TIME = 10000 // 10k ms = 10s
-	val UPDATE_DIST = 10 // 10m
-
-	lazy val locMan = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 	lazy val lat = findViewById(R.id.lat).asInstanceOf[TextView]
 	lazy val lon = findViewById(R.id.lon).asInstanceOf[TextView]
 	lazy val status = findViewById(R.id.status).asInstanceOf[TextView]
+
+	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
+	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
+
+	var serviceRunning = false
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.main)
 
-		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-			UPDATE_TIME, UPDATE_DIST, this)
+		singleBtn.setOnClickListener(this);
+		startstopBtn.setOnClickListener(this);
 
-		findViewById(R.id.startbtn).asInstanceOf[Button].setOnClickListener(this);
-		findViewById(R.id.stopbtn).asInstanceOf[Button].setOnClickListener(this);
-		findViewById(R.id.singlebtn).asInstanceOf[Button].setOnClickListener(this);
+		registerReceiver(new BroadcastReceiver() {
+			override def onReceive(ctx : Context, i : Intent) {
+				val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
+				onLocationChanged(l)
+			}
+		}, new IntentFilter(AprsService.UPDATE))
 	}
 
 	override def onDestroy() {
-		locMan.removeUpdates(this);
+		super.onDestroy()
 	}
 
 	override def onLocationChanged(location : Location) {
@@ -54,9 +58,36 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 		Log.d(TAG, "onStatusChanged: " + provider)
 		status.setText("status: " + provider + "/" + st);
 	}
+
+	def serviceIntent(action : String) : Intent = {
+		new Intent(action, null, this, classOf[AprsService])
+	}
+
+	def setupButtons() {
+		singleBtn.setEnabled(!serviceRunning)
+		if (serviceRunning) {
+			startstopBtn.setText(R.string.stoplog)
+		} else {
+			startstopBtn.setText(R.string.startlog)
+		}
+	}
+
 	override def onClick(view : View) {
 		Log.d(TAG, "onClick: " + view + "/" + view.getId)
-		status.setText(view.asInstanceOf[Button].getText)
+		view.getId match {
+		case R.id.singlebtn =>
+			startService(serviceIntent(AprsService.SERVICE_ONCE))
+		case R.id.startstopbtn =>
+			serviceRunning = !serviceRunning
+			if (serviceRunning) {
+				startService(serviceIntent(AprsService.SERVICE))
+			} else {
+				stopService(serviceIntent(AprsService.SERVICE))
+			}
+			setupButtons()
+		case _ =>
+			status.setText(view.asInstanceOf[Button].getText)
+		}
 	}
 
 }
