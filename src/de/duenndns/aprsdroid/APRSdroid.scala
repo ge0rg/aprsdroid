@@ -33,8 +33,6 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 		}
 	}
 
-	var serviceRunning = false
-
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.main)
@@ -55,6 +53,7 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 				return
 			}
 		}
+		setupButtons(AprsService.running)
 	}
 
 	override def onDestroy() {
@@ -84,9 +83,9 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 		new Intent(action, null, this, classOf[AprsService])
 	}
 
-	def setupButtons() {
-		singleBtn.setEnabled(!serviceRunning)
-		if (serviceRunning) {
+	def setupButtons(running : Boolean) {
+		singleBtn.setEnabled(!running)
+		if (running) {
 			startstopBtn.setText(R.string.stoplog)
 		} else {
 			startstopBtn.setText(R.string.startlog)
@@ -95,17 +94,20 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 
 	override def onClick(view : View) {
 		Log.d(TAG, "onClick: " + view + "/" + view.getId)
+
 		view.getId match {
 		case R.id.singlebtn =>
 			startService(serviceIntent(AprsService.SERVICE_ONCE))
 		case R.id.startstopbtn =>
-			serviceRunning = !serviceRunning
-			if (serviceRunning) {
+			val is_running = AprsService.running
+			if (!is_running) {
 				startService(serviceIntent(AprsService.SERVICE))
 			} else {
 				stopService(serviceIntent(AprsService.SERVICE))
 			}
-			setupButtons()
+			setupButtons(!is_running)
+		case R.id.preferencebtn =>
+			startActivity(new Intent(this, classOf[PrefsAct]));
 		case _ =>
 			status.setText(view.asInstanceOf[Button].getText)
 		}

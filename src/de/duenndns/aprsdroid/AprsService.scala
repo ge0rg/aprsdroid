@@ -13,6 +13,9 @@ object AprsService {
 	val SERVICE_ONCE = "de.duenndns.aprsdroid.ONCE"
 	val UPDATE = "de.duenndns.aprsdroid.UPDATE"
 	val LOCATION = "de.duenndns.aprsdroid.LOCATION"
+	val PACKET = "de.duenndns.aprsdroid.PACKET"
+
+	var running = false
 }
 
 class AprsService extends Service with LocationListener {
@@ -33,6 +36,7 @@ class AprsService extends Service with LocationListener {
 			val upd_dist = prefs.getInt("distance", 10)
 			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				upd_int * 60000, upd_dist * 1000, this)
+			running = true
 		case SERVICE_ONCE =>
 			stopSelf()
 		}
@@ -49,6 +53,7 @@ class AprsService extends Service with LocationListener {
 	override def onDestroy() {
 		showToast("APRS Service stopped.")
 		locMan.removeUpdates(this);
+		running = false
 	}
 
 	// LocationListener interface
