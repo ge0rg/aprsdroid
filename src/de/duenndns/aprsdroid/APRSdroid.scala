@@ -20,6 +20,14 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
 	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
 
+	lazy val locReceiver = new BroadcastReceiver() {
+		override def onReceive(ctx : Context, i : Intent) {
+			val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
+			onLocationChanged(l)
+			//status.setText(i.getParcelableExtra(AprsService.PACKET).asInstanceOf[String])
+		}
+	}
+
 	var serviceRunning = false
 
 	override def onCreate(savedInstanceState: Bundle) {
@@ -29,16 +37,12 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 		singleBtn.setOnClickListener(this);
 		startstopBtn.setOnClickListener(this);
 
-		registerReceiver(new BroadcastReceiver() {
-			override def onReceive(ctx : Context, i : Intent) {
-				val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
-				onLocationChanged(l)
-			}
-		}, new IntentFilter(AprsService.UPDATE))
+		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 	}
 
 	override def onDestroy() {
 		super.onDestroy()
+		unregisterReceiver(locReceiver)
 	}
 
 	override def onLocationChanged(location : Location) {
