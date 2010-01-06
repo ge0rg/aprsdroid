@@ -4,14 +4,18 @@ import _root_.android.app.Activity
 import _root_.android.content._
 import _root_.android.location._
 import _root_.android.os.Bundle
+import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.android.view.View
 import _root_.android.view.View.OnClickListener
 import _root_.android.widget.Button
 import _root_.android.widget.TextView
+import _root_.android.widget.Toast
 
 class APRSdroid extends Activity with LocationListener with OnClickListener {
 	val TAG = "APRSdroid"
+
+	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
 	lazy val lat = findViewById(R.id.lat).asInstanceOf[TextView]
 	lazy val lon = findViewById(R.id.lon).asInstanceOf[TextView]
@@ -38,6 +42,17 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 		startstopBtn.setOnClickListener(this);
 
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
+	}
+
+	override def onResume() {
+		super.onResume()
+		List("callsign", "passcode", "host").foreach { p =>
+			if (!prefs.contains(p)) {
+				startActivity(new Intent(this, classOf[PrefsAct]));
+				Toast.makeText(this, R.string.firstrun, Toast.LENGTH_SHORT).show()
+				return
+			}
+		}
 	}
 
 	override def onDestroy() {

@@ -4,6 +4,7 @@ import _root_.android.app.Service
 import _root_.android.content.{Context, Intent}
 import _root_.android.location._
 import _root_.android.os.{Bundle, IBinder}
+import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.android.widget.Toast
 
@@ -18,8 +19,7 @@ class AprsService extends Service with LocationListener {
 	import AprsService._
 	val TAG = "AprsService"
 
-	val UPDATE_TIME = 10000 // 10k ms = 10s
-	val UPDATE_DIST = 10 // 10m
+	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
 	lazy val locMan = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
@@ -29,8 +29,10 @@ class AprsService extends Service with LocationListener {
 		showToast("Service started: " + i.getAction)
 		i.getAction match {
 		case SERVICE =>
+			val upd_int = prefs.getInt("interval", 10)
+			val upd_dist = prefs.getInt("distance", 10)
 			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				UPDATE_TIME, UPDATE_DIST, this)
+				upd_int * 60000, upd_dist * 1000, this)
 		case SERVICE_ONCE =>
 			stopSelf()
 		}
