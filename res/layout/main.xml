@@ -60,5 +60,13 @@ android:text="@string/startlog"
 android:layout_below="@+id/singlebtn"
 >
 </Button>
+<Button
+android:id="@+id/preferencebtn"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="@string/preferences"
+android:layout_below="@+id/startstopbtn"
+>
+</Button>
 </RelativeLayout>
 </LinearLayout>

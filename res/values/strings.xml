@@ -5,6 +5,7 @@
 <string name="singlelog">Single Shot</string>
 <string name="startlog">Start Logging</string>
 <string name="stoplog">Stop Logging</string>
+<string name="preferences">Preferences</string>
 <string name="p__ham">Amateur Radio</string>
 <string name="p_callsign">Callsign</string>
 <string name="p_callsign_summary">Your HAM radio callsign</string>

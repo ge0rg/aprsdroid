@@ -23,6 +23,7 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
 	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
+	lazy val prefsBtn = findViewById(R.id.preferencebtn).asInstanceOf[Button]
 
 	lazy val locReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
@@ -38,15 +39,16 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.main)
 
-		singleBtn.setOnClickListener(this);
-		startstopBtn.setOnClickListener(this);
+		for (btn <- List(singleBtn, startstopBtn, prefsBtn)) {
+			btn.setOnClickListener(this);
+		}
 
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 	}
 
 	override def onResume() {
 		super.onResume()
-		List("callsign", "passcode", "host").foreach { p =>
+		for (p <- List("callsign", "passcode", "host")) {
 			if (!prefs.contains(p)) {
 				startActivity(new Intent(this, classOf[PrefsAct]));
 				Toast.makeText(this, R.string.firstrun, Toast.LENGTH_SHORT).show()
