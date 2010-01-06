@@ -227,6 +227,7 @@
 	<echo>Converting compiled files and external libraries into ${out-folder}/${dex-file}...</echo>
 	<apply executable="${dx}" failonerror="true" parallel="true">
 	    <arg value="--dex" />
+	    <arg value="--no-locals" />
 	    <arg value="--output=${intermediate-dex-location}" />
 	    <fileset dir="${out-folder}" includes="*.min.jar"/>
 	</apply>
