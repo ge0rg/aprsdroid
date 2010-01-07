@@ -61,8 +61,16 @@ class AprsService extends Service with LocationListener {
 		Log.d(TAG, "onLocationChanged: " + location)
 		val i = new Intent(UPDATE)
 		i.putExtra(LOCATION, location)
+		val packet = AprsPacket.formatLoc(prefs.getString("callsign", null), location)
+		try {
+			new AprsHttpPost(prefs).update(packet)
+			i.putExtra(PACKET, packet)
+		} catch {
+			case e : Exception => i.putExtra(PACKET, e.getMessage())
+		}
 		sendBroadcast(i)
 	}
+
 	override def onProviderDisabled(provider : String) {
 		Log.d(TAG, "onProviderDisabled: " + provider)
 	}

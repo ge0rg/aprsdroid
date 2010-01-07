@@ -29,7 +29,7 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 		override def onReceive(ctx : Context, i : Intent) {
 			val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
 			onLocationChanged(l)
-			//status.setText(i.getParcelableExtra(AprsService.PACKET).asInstanceOf[String])
+			status.setText(i.getStringExtra(AprsService.PACKET))
 		}
 	}
 
