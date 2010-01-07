@@ -17,7 +17,12 @@ class AprsHttpPost(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 		val url = new URL(urlString)
 		val con = url.openConnection().asInstanceOf[HttpURLConnection]
 		con.setRequestMethod("POST")
+		con.setRequestProperty("Content-Type", "application/octet-stream");
+		con.setRequestProperty("Accept-Type", "text/plain");
+		con.setRequestProperty("Connection", "close");
 		con.setDoOutput(true)
+		con.setConnectTimeout(30000)
+		con.setReadTimeout(30000)
 		//con.setDoInput(true)
 		con.connect()
 		val out = con.getOutputStream()
