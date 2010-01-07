@@ -41,6 +41,7 @@ class AprsService extends Service with LocationListener {
 			singleShot = true
 		}
 		showToast("Service started: " + i.getAction)
+		sendBroadcast(new Intent(UPDATE).putExtra(PACKET, "started"))
 	}
 
 	override def onBind(i : Intent) : IBinder = null
@@ -55,6 +56,7 @@ class AprsService extends Service with LocationListener {
 		showToast("APRS Service stopped.")
 		locMan.removeUpdates(this);
 		running = false
+		sendBroadcast(new Intent(UPDATE).putExtra(PACKET, "shutdown."))
 	}
 
 	// LocationListener interface

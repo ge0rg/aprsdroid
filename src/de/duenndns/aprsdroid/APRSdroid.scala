@@ -28,8 +28,10 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 	lazy val locReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
 			val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
-			onLocationChanged(l)
+			if (l != null)
+				onLocationChanged(l)
 			status.setText(i.getStringExtra(AprsService.PACKET))
+			setupButtons(AprsService.running)
 		}
 	}
 
