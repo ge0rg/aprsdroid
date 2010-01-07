@@ -26,20 +26,21 @@ class AprsService extends Service with LocationListener {
 
 	lazy val locMan = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
+	var singleShot = false
+
 	override def onStart(i : Intent, startId : Int) {
 		super.onStart(i, startId)
+		running = true
 
-		showToast("Service started: " + i.getAction)
-		i.getAction match {
-		case SERVICE =>
-			val upd_int = prefs.getInt("interval", 10)
-			val upd_dist = prefs.getInt("distance", 10)
-			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-				upd_int * 60000, upd_dist * 1000, this)
-			running = true
-		case SERVICE_ONCE =>
-			stopSelf()
+		val upd_int = prefs.getInt("interval", 10)
+		val upd_dist = prefs.getInt("distance", 10)
+		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+			upd_int * 60000, upd_dist * 1000, this)
+
+		if (i.getAction() == SERVICE_ONCE) {
+			singleShot = true
 		}
+		showToast("Service started: " + i.getAction)
 	}
 
 	override def onBind(i : Intent) : IBinder = null
@@ -69,6 +70,10 @@ class AprsService extends Service with LocationListener {
 			case e : Exception => i.putExtra(PACKET, e.getMessage())
 		}
 		sendBroadcast(i)
+		if (singleShot) {
+			singleShot = false
+			stopSelf()
+		}
 	}
 
 	override def onProviderDisabled(provider : String) {
