@@ -64,7 +64,10 @@ class AprsService extends Service with LocationListener {
 		i.putExtra(LOCATION, location)
 		val packet = AprsPacket.formatLoc(prefs.getString("callsign", null), location)
 		try {
-			new AprsHttpPost(prefs).update(packet)
+			if (prefs.getString("conntype", "udp") == "udp")
+				new AprsUdp(prefs).update(packet)
+			else
+				new AprsHttpPost(prefs).update(packet)
 			i.putExtra(PACKET, packet)
 		} catch {
 			case e : Exception => i.putExtra(PACKET, e.getMessage())

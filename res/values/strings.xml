@@ -14,6 +14,9 @@
 <string name="p_passcode_summary">APRS-IS validation passcode</string>
 <string name="p_passcode_entry">Enter the passcode for your call</string>
 <string name="p__network">Networking</string>
+<string name="p_conntype">Connection Protocol</string>
+<string name="p_conntype_summary">Choose UDP (port 8080) or HTTP POST (URL)</string>
+<string name="p_conntype_entry">Choose the connection protocol</string>
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>

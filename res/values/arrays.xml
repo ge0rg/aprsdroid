@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="p_conntype_e">
+        <item>UDP port 8080</item>
+        <item>HTTP POST</item>
+    </string-array>
+    
+    <string-array name="p_conntype_ev">
+        <item>udp</item>
+        <item>http</item>
+    </string-array>
+
+</resources>
