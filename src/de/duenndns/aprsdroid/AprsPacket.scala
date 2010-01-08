@@ -3,6 +3,18 @@ package de.duenndns.aprsdroid
 import _root_.android.location.Location
 
 object AprsPacket {
+
+	def passcode(callssid : String) : Int = {
+		// remove ssid, uppercase, add \0 for odd-length calls
+		val call = callssid.split("-")(0).toUpperCase() + "\0"
+		var hash = 0x73e2
+		for (i <- 0 to call.length-2 by 2) {
+			hash ^= call(i) << 8
+			hash ^= call(i+1)
+		}
+		hash & 0x7fff
+	}
+
 	def splitCoord(c : Double) : (Int, Double, Int) = {
 		var deg = c.asInstanceOf[Int]
 		val min = (c - deg)*60

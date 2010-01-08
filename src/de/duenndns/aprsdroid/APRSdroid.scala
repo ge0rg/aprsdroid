@@ -55,6 +55,11 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 				return
 			}
 		}
+		val genpasscode = AprsPacket.passcode(prefs.getString("callsign", null))
+		if (prefs.getString("passcode", null) != genpasscode.toString()) {
+			startActivity(new Intent(this, classOf[PrefsAct]));
+			Toast.makeText(this, R.string.wrongpasscode, Toast.LENGTH_SHORT).show()
+		}
 		setupButtons(AprsService.running)
 	}
 

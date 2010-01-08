@@ -2,6 +2,7 @@
 <resources>
 <string name="app_name">APRSdroid</string>
 <string name="firstrun">You need to configure APRSdroid first!</string>
+<string name="wrongpasscode">Your passcode does not match your callsign!</string>
 <string name="singlelog">Single Shot</string>
 <string name="startlog">Start Logging</string>
 <string name="stoplog">Stop Logging</string>
