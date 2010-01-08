@@ -32,8 +32,8 @@ class AprsService extends Service with LocationListener {
 		super.onStart(i, startId)
 		running = true
 
-		val upd_int = prefs.getInt("interval", 10)
-		val upd_dist = prefs.getInt("distance", 10)
+		val upd_int = prefs.getString("interval", "10").toInt
+		val upd_dist = prefs.getString("distance", "10").toInt
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			upd_int * 60000, upd_dist * 1000, this)
 
