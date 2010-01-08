@@ -30,6 +30,7 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 			val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
 			if (l != null)
 				onLocationChanged(l)
+			Log.d(TAG, "received " + i.getStringExtra(AprsService.PACKET))
 			status.setText(i.getStringExtra(AprsService.PACKET))
 			setupButtons(AprsService.running)
 		}
