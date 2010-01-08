@@ -4,8 +4,10 @@ import _root_.android.content.SharedPreferences
 import _root_.android.location.Location
 import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
-import _root_.java.io.InputStream
-import _root_.java.net.{URL, HttpURLConnection}
+import _root_.org.apache.http._
+import _root_.org.apache.http.entity.StringEntity
+import _root_.org.apache.http.impl.client.DefaultHttpClient
+import _root_.org.apache.http.client.methods.HttpPost
 
 class AprsHttpPost(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	val TAG = "AprsHttpPost"
@@ -14,25 +16,13 @@ class AprsHttpPost(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	}
 
 	def doPost(urlString : String, content : String) {
-		val url = new URL(urlString)
-		val con = url.openConnection().asInstanceOf[HttpURLConnection]
-		con.setRequestMethod("POST")
-		con.setRequestProperty("Content-Type", "application/octet-stream");
-		con.setRequestProperty("Accept-Type", "text/plain");
-		con.setRequestProperty("Connection", "close");
-		con.setDoOutput(true)
-		con.setConnectTimeout(30000)
-		con.setReadTimeout(30000)
-		//con.setDoInput(true)
-		con.connect()
-		val out = con.getOutputStream()
-		val buff = content.getBytes("UTF8")
-		out.write(buff)
-		out.flush()
-		out.close()
-
-		Log.d(TAG, "doPost(): " + con.getResponseCode() + " - " + con.getResponseMessage())
-		con.disconnect()
+		val client = new DefaultHttpClient()
+		val post = new HttpPost(urlString)
+		post.setEntity(new StringEntity(content))
+		post.addHeader("Content-Type", "application/octet-stream");
+		post.addHeader("Accept-Type", "text/plain");
+		val response = client.execute(post)
+		Log.d(TAG, "doPost(): " + response.getStatusLine())
 		//return con.getInputStream()
 	} 
 
