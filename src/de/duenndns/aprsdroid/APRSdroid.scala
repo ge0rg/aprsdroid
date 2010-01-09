@@ -12,7 +12,7 @@ import _root_.android.widget.Button
 import _root_.android.widget.TextView
 import _root_.android.widget.Toast
 
-class APRSdroid extends Activity with LocationListener with OnClickListener {
+class APRSdroid extends Activity with OnClickListener {
 	val TAG = "APRSdroid"
 
 	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
@@ -76,23 +76,10 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 		unregisterReceiver(locReceiver)
 	}
 
-	override def onLocationChanged(location : Location) {
+	def onLocationChanged(location : Location) {
 		Log.d(TAG, "onLocationChanged: " + location)
 		latlon.setText("lat: %1.4f  lon: %1.4f".format(location.getLatitude, location.getLongitude))
 	}
-	override def onProviderDisabled(provider : String) {
-		Log.d(TAG, "onProviderDisabled: " + provider)
-		status.setText(provider + " disabled")
-	}
-	override def onProviderEnabled(provider : String) {
-		Log.d(TAG, "onProviderEnabled: " + provider)
-		status.setText(provider + " enabled")
-	}
-	override def onStatusChanged(provider : String, st: Int, extras : Bundle) {
-		Log.d(TAG, "onStatusChanged: " + provider)
-		status.setText("status: " + provider + "/" + st);
-	}
-
 	def serviceIntent(action : String) : Intent = {
 		new Intent(action, null, this, classOf[AprsService])
 	}
