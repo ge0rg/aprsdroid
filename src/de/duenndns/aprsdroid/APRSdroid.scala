@@ -50,7 +50,7 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 	override def onResume() {
 		super.onResume()
 		for (p <- List("callsign", "passcode", "host")) {
-			if (!prefs.contains(p)) {
+			if (!prefs.contains(p) || prefs.getString(p, null) == "") {
 				startActivity(new Intent(this, classOf[PrefsAct]));
 				Toast.makeText(this, R.string.firstrun, Toast.LENGTH_SHORT).show()
 				return
