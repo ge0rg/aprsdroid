@@ -37,6 +37,6 @@ object AprsPacket {
 
 	def formatLoc(callsign : String, location : Location) : String = {
 		callsign + ">APAND1,TCPIP*:!" + formatLat(location.getLatitude) + "/" +
-			formatLon(location.getLongitude) + "$"
+			formatLon(location.getLongitude) + "$ http://github.com/ge0rg/aprsdroid"
 	}
 }
