@@ -13,6 +13,7 @@ object AprsService {
 	val SERVICE_ONCE = "de.duenndns.aprsdroid.ONCE"
 	val UPDATE = "de.duenndns.aprsdroid.UPDATE"
 	val LOCATION = "de.duenndns.aprsdroid.LOCATION"
+	val STATUS = "de.duenndns.aprsdroid.STATUS"
 	val PACKET = "de.duenndns.aprsdroid.PACKET"
 
 	var running = false
@@ -39,9 +40,10 @@ class AprsService extends Service with LocationListener {
 
 		if (i.getAction() == SERVICE_ONCE) {
 			singleShot = true
-		}
-		showToast("Service started: " + i.getAction)
-		sendBroadcast(new Intent(UPDATE).putExtra(PACKET, "started"))
+			showToast("APRS Service single shot.")
+		} else
+			showToast("APRS Service started. Updates every " + upd_int + " minutes, " + upd_dist + " km.")
+		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, "service started"))
 	}
 
 	override def onBind(i : Intent) : IBinder = null
@@ -56,7 +58,7 @@ class AprsService extends Service with LocationListener {
 		showToast("APRS Service stopped.")
 		locMan.removeUpdates(this);
 		running = false
-		sendBroadcast(new Intent(UPDATE).putExtra(PACKET, "shutdown."))
+		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, "service stopped."))
 	}
 
 	// LocationListener interface

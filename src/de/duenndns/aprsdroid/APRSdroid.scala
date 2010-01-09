@@ -17,8 +17,8 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 
 	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
-	lazy val lat = findViewById(R.id.lat).asInstanceOf[TextView]
-	lazy val lon = findViewById(R.id.lon).asInstanceOf[TextView]
+	lazy val latlon = findViewById(R.id.latlon).asInstanceOf[TextView]
+	lazy val packet = findViewById(R.id.packet).asInstanceOf[TextView]
 	lazy val status = findViewById(R.id.status).asInstanceOf[TextView]
 
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
@@ -30,8 +30,15 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 			val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
 			if (l != null)
 				onLocationChanged(l)
-			Log.d(TAG, "received " + i.getStringExtra(AprsService.PACKET))
-			status.setText(i.getStringExtra(AprsService.PACKET))
+			val s = i.getStringExtra(AprsService.STATUS)
+			if (s != null) {
+				status.setText(s)
+			}
+			val p = i.getStringExtra(AprsService.PACKET)
+			if (p != null) {
+				Log.d(TAG, "received " + p)
+				packet.setText(p)
+			}
 			setupButtons(AprsService.running)
 		}
 	}
@@ -71,8 +78,7 @@ class APRSdroid extends Activity with LocationListener with OnClickListener {
 
 	override def onLocationChanged(location : Location) {
 		Log.d(TAG, "onLocationChanged: " + location)
-		lat.setText("lat: " + location.getLatitude)
-		lon.setText("lon: " + location.getLongitude)
+		latlon.setText("lat: %1.4f  lon: %1.4f".format(location.getLatitude, location.getLongitude))
 	}
 	override def onProviderDisabled(provider : String) {
 		Log.d(TAG, "onProviderDisabled: " + provider)
