@@ -14,8 +14,7 @@ class AprsUdp(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	}
 
 	def update(packet : String) {
-		val login = "user " + prefs.getString("callsign", null) +
-			" pass " + prefs.getString("passcode", null) + " vers APRSdroid beta"
+		val login = AprsPacket.formatLogin(prefs.getString("callsign", null), prefs.getString("passcode", null))
 		var hostname = prefs.getString("host", null)
 		val addr = InetAddress.getByName(hostname)
 		val pbytes = (login + "\r\n" + packet + "\r\n").getBytes()

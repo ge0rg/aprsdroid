@@ -39,4 +39,8 @@ object AprsPacket {
 		callsign + ">APAND1,TCPIP*:!" + formatLat(location.getLatitude) + "/" +
 			formatLon(location.getLongitude) + "$ http://github.com/ge0rg/aprsdroid"
 	}
+
+	def formatLogin(callsign : String, passcode : String) : String = {
+		"user " + callsign.split("-")(0) + " pass " + passcode + " vers APRSdroid 0.1"
+	}
 }

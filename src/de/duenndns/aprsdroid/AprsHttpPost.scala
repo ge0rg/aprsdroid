@@ -27,8 +27,7 @@ class AprsHttpPost(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	} 
 
 	def update(packet : String) {
-		val login = "user " + prefs.getString("callsign", null) +
-			" pass " + prefs.getString("passcode", null) + " vers APRSdroid beta"
+		val login = AprsPacket.formatLogin(prefs.getString("callsign", null), prefs.getString("passcode", null))
 		var hostname = prefs.getString("host", null)
 		if (hostname.indexOf(":") == -1) {
 			hostname = "http://" + hostname + ":8080/"
