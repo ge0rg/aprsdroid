@@ -5,12 +5,14 @@ import _root_.android.content._
 import _root_.android.location._
 import _root_.android.os.Bundle
 import _root_.android.preference.PreferenceManager
+import _root_.android.text.format.DateFormat
 import _root_.android.util.Log
 import _root_.android.view.View
 import _root_.android.view.View.OnClickListener
 import _root_.android.widget.Button
 import _root_.android.widget.TextView
 import _root_.android.widget.Toast
+import _root_.java.util.Date
 
 class APRSdroid extends Activity with OnClickListener {
 	val TAG = "APRSdroid"
@@ -32,7 +34,8 @@ class APRSdroid extends Activity with OnClickListener {
 				onLocationChanged(l)
 			val s = i.getStringExtra(AprsService.STATUS)
 			if (s != null) {
-				status.setText(s)
+				val timestamp = DateFormat.format("hh:mm:ss", new Date())
+				status.setText(timestamp + " " + s)
 			}
 			val p = i.getStringExtra(AprsService.PACKET)
 			if (p != null) {

@@ -40,10 +40,9 @@ class AprsService extends Service with LocationListener {
 
 		if (i.getAction() == SERVICE_ONCE) {
 			singleShot = true
-			showToast("APRS Service single shot.")
+			showToast(getString(R.string.service_once))
 		} else
-			showToast("APRS Service started. Updates every " + upd_int + " minutes, " + upd_dist + " km.")
-		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, "service started"))
+			showToast(getString(R.string.service_start).format(upd_int, upd_dist))
 	}
 
 	override def onBind(i : Intent) : IBinder = null
@@ -52,13 +51,13 @@ class AprsService extends Service with LocationListener {
 		
 	def showToast(msg : String) {
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, msg))
 	}
 
 	override def onDestroy() {
-		showToast("APRS Service stopped.")
 		locMan.removeUpdates(this);
 		running = false
-		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, "service stopped."))
+		showToast(getString(R.string.service_stop))
 	}
 
 	// LocationListener interface
