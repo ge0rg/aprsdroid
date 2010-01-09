@@ -19,6 +19,12 @@
 <string name="p_passcode">Passcode</string>
 <string name="p_passcode_summary">APRS-IS validation passcode</string>
 <string name="p_passcode_entry">Enter the passcode for your call</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Enter the SSID for your station</string>
+<string name="p_status">Status message</string>
+<string name="p_status_summary">The text after your coordinates</string>
+<string name="p_status_entry">Enter your status message</string>
 <string name="p__network">Networking</string>
 <string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_summary">Choose UDP (port 8080) or HTTP POST (URL)</string>

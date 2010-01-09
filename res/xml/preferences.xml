@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	    android:title="@string/p__ham">
+            
+        <EditTextPreference
+                android:key="callsign"
+		android:inputType="textCapCharacters"
+		android:title="@string/p_callsign"
+		android:summary="@string/p_callsign_summary"
+		android:dialogTitle="@string/p_callsign_entry" />
+
+        <EditTextPreference
+                android:key="passcode"
+		android:inputType="number"
+		android:title="@string/p_passcode"
+		android:summary="@string/p_passcode_summary"
+		android:dialogTitle="@string/p_passcode_entry" />
+            
+        <EditTextPreference
+                android:key="ssid"
+		android:inputType="number"
+		android:title="@string/p_ssid"
+		android:summary="@string/p_ssid_summary"
+		android:dialogTitle="@string/p_ssid_entry" />
+
+        <EditTextPreference
+                android:key="status"
+		android:title="@string/p_status"
+		android:summary="@string/p_status_summary"
+		android:dialogTitle="@string/p_status_entry" />
+
+    </PreferenceCategory>
+                
+    <PreferenceCategory
+	android:title="@string/p__network">
+
+        <ListPreference
+                android:key="conntype"
+		android:title="@string/p_conntype"
+		android:summary="@string/p_conntype_summary"
+                android:entries="@array/p_conntype_e"
+                android:entryValues="@array/p_conntype_ev"
+		android:dialogTitle="@string/p_conntype_entry" />
+
+        <EditTextPreference
+                android:key="host"
+		android:inputType="textUri"
+		android:title="@string/p_host"
+		android:summary="@string/p_host_summary"
+		android:dialogTitle="@string/p_host_entry" />
+                
+        <EditTextPreference
+                android:key="interval"
+		android:inputType="number"
+		android:title="@string/p_interval"
+		android:summary="@string/p_interval_summary"
+		android:dialogTitle="@string/p_interval_entry" />
+                
+        <EditTextPreference
+                android:key="distance"
+		android:inputType="number"
+		android:title="@string/p_distance"
+		android:summary="@string/p_distance_summary"
+		android:dialogTitle="@string/p_distance_entry" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -35,9 +35,16 @@ object AprsPacket {
 		"%03d%05.2f%c".format(deg, min, "EW"(letter))
 	}
 
-	def formatLoc(callsign : String, location : Location) : String = {
-		callsign + ">APAND1,TCPIP*:!" + formatLat(location.getLatitude) + "/" +
-			formatLon(location.getLongitude) + "$ http://github.com/ge0rg/aprsdroid"
+	def formatCallSsid(callsign : String, ssid : String) : String = {
+		if (ssid != "")
+			return callsign + "-" + ssid
+		else
+			return callsign
+	}
+
+	def formatLoc(callssid : String, status : String, location : Location) : String = {
+		callssid + ">APAND1,TCPIP*:!" + formatLat(location.getLatitude) + "/" +
+			formatLon(location.getLongitude) + "$ " + status
 	}
 
 	def formatLogin(callsign : String, passcode : String) : String = {
