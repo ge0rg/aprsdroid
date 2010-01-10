@@ -47,7 +47,7 @@ object AprsPacket {
 			formatLon(location.getLongitude) + "$ " + status
 	}
 
-	def formatLogin(callsign : String, passcode : String) : String = {
-		"user " + callsign.split("-")(0) + " pass " + passcode + " vers APRSdroid 0.1"
+	def formatLogin(callsign : String, ssid : String, passcode : String) : String = {
+		"user " + formatCallSsid(callsign, ssid) + " pass " + passcode + " vers APRSdroid 0.1"
 	}
 }

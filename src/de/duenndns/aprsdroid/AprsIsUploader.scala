@@ -6,7 +6,7 @@ import _root_.android.content.SharedPreferences
 abstract class AprsIsUploader(prefs : SharedPreferences) {
 	def start()
 
-	def update(packet : String)
+	def update(packet : String) : String
 
 	def stop()
 }

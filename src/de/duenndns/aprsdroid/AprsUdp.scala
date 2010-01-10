@@ -13,13 +13,15 @@ class AprsUdp(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	def start() {
 	}
 
-	def update(packet : String) {
-		val login = AprsPacket.formatLogin(prefs.getString("callsign", null), prefs.getString("passcode", null))
+	def update(packet : String) : String = {
+		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
+			prefs.getString("ssid", null), prefs.getString("passcode", null))
 		var hostname = prefs.getString("host", null)
 		val addr = InetAddress.getByName(hostname)
 		val pbytes = (login + "\r\n" + packet + "\r\n").getBytes()
 		socket.send(new DatagramPacket(pbytes, pbytes.length, addr, 8080))
 		Log.d(TAG, "update(): sent " + packet + " to " + hostname)
+		"packet sent"
 	}
 
 	def stop() {

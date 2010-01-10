@@ -71,10 +71,13 @@ class AprsService extends Service with LocationListener {
 		val packet = AprsPacket.formatLoc(callssid, status, location)
 		Log.d(TAG, "packet: " + packet)
 		try {
+			var poster : AprsIsUploader = null
 			if (prefs.getString("conntype", "udp") == "udp")
-				new AprsUdp(prefs).update(packet)
+				poster = new AprsUdp(prefs)
 			else
-				new AprsHttpPost(prefs).update(packet)
+				poster = new AprsHttpPost(prefs)
+			val status = poster.update(packet)
+			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet)
 		} catch {
 			case e : Exception => i.putExtra(PACKET, e.getMessage())

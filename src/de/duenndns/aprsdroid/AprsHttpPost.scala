@@ -15,7 +15,7 @@ class AprsHttpPost(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	def start() {
 	}
 
-	def doPost(urlString : String, content : String) {
+	def doPost(urlString : String, content : String) : String = {
 		val client = new DefaultHttpClient()
 		val post = new HttpPost(urlString)
 		post.setEntity(new StringEntity(content))
@@ -23,11 +23,12 @@ class AprsHttpPost(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 		post.addHeader("Accept-Type", "text/plain");
 		val response = client.execute(post)
 		Log.d(TAG, "doPost(): " + response.getStatusLine())
-		//return con.getInputStream()
-	} 
+		response.getStatusLine().toString()
+	}
 
-	def update(packet : String) {
-		val login = AprsPacket.formatLogin(prefs.getString("callsign", null), prefs.getString("passcode", null))
+	def update(packet : String) : String = {
+		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
+			prefs.getString("ssid", null), prefs.getString("passcode", null))
 		var hostname = prefs.getString("host", null)
 		if (hostname.indexOf(":") == -1) {
 			hostname = "http://" + hostname + ":8080/"
