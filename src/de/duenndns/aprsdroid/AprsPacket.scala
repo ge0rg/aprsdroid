@@ -15,7 +15,7 @@ object AprsPacket {
 		hash & 0x7fff
 	}
 
-	def splitCoord(c : Double) : (Int, Double, Int) = {
+	def splitCoord(c : Double) : (Int, Int, Int, Int) = {
 		val minDec = (c*6000).asInstanceOf[Int]
 		var deg = minDec / 6000
 		val min = (minDec / 100) % 60
