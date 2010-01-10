@@ -16,23 +16,25 @@ object AprsPacket {
 	}
 
 	def splitCoord(c : Double) : (Int, Double, Int) = {
-		var deg = c.asInstanceOf[Int]
-		val min = (c - deg)*60
+		val minDec = (c*6000).asInstanceOf[Int]
+		var deg = minDec / 6000
+		val min = (minDec / 100) % 60
+		val minFrac = minDec % 100
 		var letter = 0
 		if (deg < 0) {
 			deg = -deg
 			letter = 1
 		}
-		(deg, min, letter)
+		(deg, min, minFrac, letter)
 	}
 		
 	def formatLat(c : Double) : String = {
-		val (deg, min, letter) = splitCoord(c)
-		"%02d%05.2f%c".format(deg, min, "NS"(letter))
+		val (deg, min, minFrac, letter) = splitCoord(c)
+		"%02d%02d.%02d%c".format(deg, min, minFrac, "NS"(letter))
 	}
 	def formatLon(c : Double) : String = {
-		val (deg, min, letter) = splitCoord(c)
-		"%03d%05.2f%c".format(deg, min, "EW"(letter))
+		val (deg, min, minFrac, letter) = splitCoord(c)
+		"%03d%02d.%02d%c".format(deg, min, minFrac, "EW"(letter))
 	}
 
 	def formatCallSsid(callsign : String, ssid : String) : String = {
