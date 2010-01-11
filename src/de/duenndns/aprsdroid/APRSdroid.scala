@@ -80,7 +80,6 @@ class APRSdroid extends Activity with OnClickListener {
 	}
 
 	def onLocationChanged(location : Location) {
-		Log.d(TAG, "onLocationChanged: " + location)
 		latlon.setText("lat: %1.4f  lon: %1.4f".format(location.getLatitude, location.getLongitude))
 	}
 	def serviceIntent(action : String) : Intent = {
