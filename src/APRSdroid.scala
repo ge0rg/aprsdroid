@@ -25,7 +25,6 @@ class APRSdroid extends Activity with OnClickListener {
 
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
 	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
-	lazy val prefsBtn = findViewById(R.id.preferencebtn).asInstanceOf[Button]
 
 	lazy val locReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
@@ -50,7 +49,7 @@ class APRSdroid extends Activity with OnClickListener {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.main)
 
-		for (btn <- List(singleBtn, startstopBtn, prefsBtn)) {
+		for (btn <- List(singleBtn, startstopBtn)) {
 			btn.setOnClickListener(this);
 		}
 
@@ -127,8 +126,6 @@ class APRSdroid extends Activity with OnClickListener {
 				stopService(serviceIntent(AprsService.SERVICE))
 			}
 			setupButtons(!is_running)
-		case R.id.preferencebtn =>
-			startActivity(new Intent(this, classOf[PrefsAct]));
 		case _ =>
 			status.setText(view.asInstanceOf[Button].getText)
 		}
