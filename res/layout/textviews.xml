@@ -4,7 +4,7 @@ android:id="@+id/title"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:text="APRSdroid early beta"
-android:textSize="12pt"
+android:textSize="11pt"
 android:textStyle="bold"
 android:gravity="center"
 >

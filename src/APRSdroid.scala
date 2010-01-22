@@ -19,6 +19,7 @@ class APRSdroid extends Activity with OnClickListener {
 
 	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
+	lazy val title = findViewById(R.id.title).asInstanceOf[TextView]
 	lazy val latlon = findViewById(R.id.latlon).asInstanceOf[TextView]
 	lazy val packet = findViewById(R.id.packet).asInstanceOf[TextView]
 	lazy val status = findViewById(R.id.status).asInstanceOf[TextView]
@@ -58,18 +59,20 @@ class APRSdroid extends Activity with OnClickListener {
 
 	override def onResume() {
 		super.onResume()
-		for (p <- List("callsign", "passcode")) {
-			if (!prefs.contains(p) || prefs.getString(p, null) == "") {
-				startActivity(new Intent(this, classOf[PrefsAct]));
-				Toast.makeText(this, R.string.firstrun, Toast.LENGTH_SHORT).show()
-				return
-			}
+		val callsign = prefs.getString("callsign", "")
+		val passcode = prefs.getString("passcode", "")
+		if (callsign == "" || passcode == "") {
+			startActivity(new Intent(this, classOf[PrefsAct]));
+			Toast.makeText(this, R.string.firstrun, Toast.LENGTH_SHORT).show()
+			return
 		}
-		val genpasscode = AprsPacket.passcode(prefs.getString("callsign", null))
-		if (prefs.getString("passcode", null) != genpasscode.toString()) {
+		val genpasscode = AprsPacket.passcode(callsign)
+		if (passcode != genpasscode.toString()) {
 			startActivity(new Intent(this, classOf[PrefsAct]));
 			Toast.makeText(this, R.string.wrongpasscode, Toast.LENGTH_SHORT).show()
 		}
+		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
+		title.setText(getString(R.string.app_name) + ": " + callssid)
 		setupButtons(AprsService.running)
 	}
 
