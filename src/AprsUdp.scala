@@ -1,26 +1,22 @@
 package de.duenndns.aprsdroid
 
-import _root_.android.content.SharedPreferences
 import _root_.android.location.Location
 import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 
-class AprsUdp(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
+class AprsUdp extends AprsIsUploader {
 	val TAG = "AprsUdp"
 	lazy val socket = new DatagramSocket()
 
 	def start() {
 	}
 
-	def update(packet : String) : String = {
-		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
-			prefs.getString("ssid", null), prefs.getString("passcode", null))
-		var hostname = prefs.getString("host", null)
-		val addr = InetAddress.getByName(hostname)
+	def update(host : String, login : String, packet : String) : String = {
+		val addr = InetAddress.getByName(host)
 		val pbytes = (login + "\r\n" + packet + "\r\n").getBytes()
 		socket.send(new DatagramPacket(pbytes, pbytes.length, addr, 8080))
-		Log.d(TAG, "update(): sent " + packet + " to " + hostname)
+		Log.d(TAG, "update(): sent " + packet + " to " + host)
 		"packet sent"
 	}
 

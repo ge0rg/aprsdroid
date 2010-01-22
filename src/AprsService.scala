@@ -76,18 +76,27 @@ class AprsService extends Service with LocationListener {
 
 		val i = new Intent(UPDATE)
 		i.putExtra(LOCATION, location)
+
 		val callsign = prefs.getString("callsign", null)
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
 		val status = prefs.getString("status", "http://github.com/ge0rg/aprsdroid")
+
+		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
+			prefs.getString("ssid", null), prefs.getString("passcode", null))
 		val packet = AprsPacket.formatLoc(callssid, status, location)
+
+		var hostname = prefs.getString("host", null)
+		if (hostname == null || hostname == "")
+			hostname = getString(R.string.aprs_server);
+
 		Log.d(TAG, "packet: " + packet)
 		try {
 			var poster : AprsIsUploader = null
-			if (prefs.getString("conntype", "udp") == "udp")
-				poster = new AprsUdp(prefs)
+			if (prefs.getString("conntype", "http") == "udp")
+				poster = new AprsUdp()
 			else
-				poster = new AprsHttpPost(prefs)
-			val status = poster.update(packet)
+				poster = new AprsHttpPost()
+			val status = poster.update(hostname, login, packet)
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet)
 		} catch {

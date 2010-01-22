@@ -2,14 +2,13 @@ package de.duenndns.aprsdroid
 
 import _root_.android.content.SharedPreferences
 import _root_.android.location.Location
-import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.org.apache.http._
 import _root_.org.apache.http.entity.StringEntity
 import _root_.org.apache.http.impl.client.DefaultHttpClient
 import _root_.org.apache.http.client.methods.HttpPost
 
-class AprsHttpPost(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
+class AprsHttpPost extends AprsIsUploader {
 	val TAG = "AprsHttpPost"
 
 	def start() {
@@ -26,10 +25,8 @@ class AprsHttpPost(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 		response.getStatusLine().toString()
 	}
 
-	def update(packet : String) : String = {
-		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
-			prefs.getString("ssid", null), prefs.getString("passcode", null))
-		var hostname = prefs.getString("host", null)
+	def update(host : String, login : String, packet : String) : String = {
+		var hostname = host
 		if (hostname.indexOf(":") == -1) {
 			hostname = "http://" + hostname + ":8080/"
 		}

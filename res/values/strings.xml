@@ -7,6 +7,8 @@
 <string name="startlog">Start Logging</string>
 <string name="stoplog">Stop Logging</string>
 
+<string name="aprs_server">srvr.aprs-is.net</string>
+
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS Service started. Updates every %d minutes, %d km.</string>
 <string name="service_stop">APRS Service stopped.</string>
@@ -19,6 +21,7 @@
 <string name="p_passcode">Passcode</string>
 <string name="p_passcode_summary">APRS-IS validation passcode</string>
 <string name="p_passcode_entry">Enter the passcode for your call</string>
+<string name="p__aprs">APRS Settings</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
 <string name="p_ssid_entry">Enter the SSID for your station</string>

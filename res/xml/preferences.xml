@@ -47,6 +47,7 @@
 
         <EditTextPreference
                 android:key="host"
+		android:hint="@string/aprs_server"
 		android:inputType="textUri"
 		android:title="@string/p_host"
 		android:summary="@string/p_host_summary"
