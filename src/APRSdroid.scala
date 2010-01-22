@@ -50,9 +50,8 @@ class APRSdroid extends Activity with OnClickListener {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.main)
 
-		for (btn <- List(singleBtn, startstopBtn)) {
-			btn.setOnClickListener(this);
-		}
+		singleBtn.setOnClickListener(this);
+		startstopBtn.setOnClickListener(this);
 
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 	}
