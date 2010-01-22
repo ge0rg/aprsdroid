@@ -9,6 +9,8 @@
 
 <string name="aprs_server">srvr.aprs-is.net</string>
 
+<string name="default_status">http://github.com/ge0rg/aprsdroid</string>
+
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS Service started. Updates every %d minutes, %d km.</string>
 <string name="service_stop">APRS Service stopped.</string>

@@ -34,6 +34,7 @@
 
         <EditTextPreference
                 android:key="status"
+		android:hint="@string/default_status"
 		android:title="@string/p_status"
 		android:summary="@string/p_status_summary"
 		android:dialogTitle="@string/p_status_entry" />
