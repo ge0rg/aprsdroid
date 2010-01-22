@@ -7,7 +7,7 @@ import _root_.android.os.Bundle
 import _root_.android.preference.PreferenceManager
 import _root_.java.text.SimpleDateFormat
 import _root_.android.util.Log
-import _root_.android.view.View
+import _root_.android.view.{Menu, MenuItem, View}
 import _root_.android.view.View.OnClickListener
 import _root_.android.widget.Button
 import _root_.android.widget.TextView
@@ -86,12 +86,30 @@ class APRSdroid extends Activity with OnClickListener {
 		new Intent(action, null, this, classOf[AprsService])
 	}
 
+	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
+		getMenuInflater().inflate(R.menu.options, menu);
+		true
+	}
+
 	def setupButtons(running : Boolean) {
 		singleBtn.setEnabled(!running)
 		if (running) {
 			startstopBtn.setText(R.string.stoplog)
 		} else {
 			startstopBtn.setText(R.string.startlog)
+		}
+	}
+
+	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
+		mi.getItemId match {
+		case R.id.preferences =>
+			startActivity(new Intent(this, classOf[PrefsAct]));
+			true
+		case R.id.quit =>
+			stopService(serviceIntent(AprsService.SERVICE))
+			finish();
+			true
+		case _ => false
 		}
 	}
 
