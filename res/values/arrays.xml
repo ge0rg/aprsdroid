@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="p_conntype_e">
-        <item>UDP port 8080</item>
-        <item>HTTP POST</item>
-    </string-array>
-    
-    <string-array name="p_conntype_ev">
-        <item>udp</item>
-        <item>http</item>
-    </string-array>
+	<string-array name="p_conntype_e">
+		<item>UDP port 8080</item>
+		<item>HTTP POST</item>
+	</string-array>
 
+	<string-array name="p_conntype_ev">
+		<item>udp</item>
+		<item>http</item>
+	</string-array>
+
+	<string-array name="p_ssid_e">
+		<item>(none)</item>
+		<item>1: Stationary</item>
+		<item>2: Stationary</item>
+		<item>3: Stationary</item>
+		<item>4: Stationary</item>
+		<item>5: Sailing boat</item>
+		<item>6: Weather station</item>
+		<item>7: Used by Kenwood</item>
+		<item>8: Powerboat</item>
+		<item>9: Mobile station</item>
+		<item>10: APRS-IS</item>
+		<item>11: ...</item>
+		<item>12: ...</item>
+		<item>13: ...</item>
+		<item>14: Freight vehicle</item>
+		<item>15: HF</item>
+	</string-array>
+
+	<string-array name="p_ssid_ev">
+		<item></item> <item>1</item> <item>2</item> <item>3</item>
+		<item>4</item> <item>5</item> <item>6</item> <item>7</item>
+		<item>8</item> <item>9</item> <item>10</item> <item>11</item>
+		<item>12</item> <item>13</item> <item>14</item> <item>15</item>
+	</string-array>
 </resources>

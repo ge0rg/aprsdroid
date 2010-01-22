@@ -19,11 +19,17 @@
 		android:summary="@string/p_passcode_summary"
 		android:dialogTitle="@string/p_passcode_entry" />
             
-        <EditTextPreference
+    </PreferenceCategory>
+
+    <PreferenceCategory
+	android:title="@string/p__aprs">
+
+        <ListPreference
                 android:key="ssid"
-		android:inputType="number"
 		android:title="@string/p_ssid"
 		android:summary="@string/p_ssid_summary"
+                android:entries="@array/p_ssid_e"
+                android:entryValues="@array/p_ssid_ev"
 		android:dialogTitle="@string/p_ssid_entry" />
 
         <EditTextPreference
@@ -31,6 +37,20 @@
 		android:title="@string/p_status"
 		android:summary="@string/p_status_summary"
 		android:dialogTitle="@string/p_status_entry" />
+
+        <EditTextPreference
+                android:key="interval"
+		android:inputType="number"
+		android:title="@string/p_interval"
+		android:summary="@string/p_interval_summary"
+		android:dialogTitle="@string/p_interval_entry" />
+                
+        <EditTextPreference
+                android:key="distance"
+		android:inputType="number"
+		android:title="@string/p_distance"
+		android:summary="@string/p_distance_summary"
+		android:dialogTitle="@string/p_distance_entry" />
 
     </PreferenceCategory>
                 
@@ -53,20 +73,6 @@
 		android:summary="@string/p_host_summary"
 		android:dialogTitle="@string/p_host_entry" />
                 
-        <EditTextPreference
-                android:key="interval"
-		android:inputType="number"
-		android:title="@string/p_interval"
-		android:summary="@string/p_interval_summary"
-		android:dialogTitle="@string/p_interval_entry" />
-                
-        <EditTextPreference
-                android:key="distance"
-		android:inputType="number"
-		android:title="@string/p_distance"
-		android:summary="@string/p_distance_summary"
-		android:dialogTitle="@string/p_distance_entry" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>
