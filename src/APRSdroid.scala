@@ -35,11 +35,13 @@ class APRSdroid extends Activity with OnClickListener {
 			val s = i.getStringExtra(AprsService.STATUS)
 			if (s != null) {
 				val timestamp = new SimpleDateFormat("HH:mm:ss").format(new Date())
-				status.setText(timestamp + " " + s)
+				lastPost.status = timestamp + " " + s
+				status.setText(lastPost.status)
 			}
 			val p = i.getStringExtra(AprsService.PACKET)
 			if (p != null) {
 				Log.d(TAG, "received " + p)
+				lastPost.packet = p
 				packet.setText(p)
 			}
 			setupButtons(AprsService.running)
@@ -72,6 +74,9 @@ class APRSdroid extends Activity with OnClickListener {
 		}
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
 		title.setText(getString(R.string.app_name) + ": " + callssid)
+		latlon.setText(lastPost.latlon)
+		status.setText(lastPost.status)
+		packet.setText(lastPost.packet)
 		setupButtons(AprsService.running)
 	}
 
@@ -81,7 +86,8 @@ class APRSdroid extends Activity with OnClickListener {
 	}
 
 	def onLocationChanged(location : Location) {
-		latlon.setText("lat: %1.4f  lon: %1.4f".format(location.getLatitude, location.getLongitude))
+		lastPost.latlon = "lat: %1.4f  lon: %1.4f".format(location.getLatitude, location.getLongitude)
+		latlon.setText(lastPost.latlon)
 	}
 	def serviceIntent(action : String) : Intent = {
 		new Intent(action, null, this, classOf[AprsService])
@@ -133,5 +139,11 @@ class APRSdroid extends Activity with OnClickListener {
 		}
 	}
 
+}
+
+object lastPost {
+	var latlon = "<Coordinates>"
+	var status = "No events in the log"
+	var packet = ""
 }
 
