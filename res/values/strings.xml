@@ -43,4 +43,6 @@
 <string name="p_distance">Update distance</string>
 <string name="p_distance_summary">Kilometers before beacon transmission</string>
 <string name="p_distance_entry">Enter the update distance [km]</string>
+<string name="p_netloc">Use network location</string>
+<string name="p_netloc_summary">Acquire position from the cellular network</string>
 </resources>

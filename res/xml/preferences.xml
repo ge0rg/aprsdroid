@@ -53,6 +53,11 @@
 		android:summary="@string/p_distance_summary"
 		android:dialogTitle="@string/p_distance_entry" />
 
+        <CheckBoxPreference
+                android:key="netloc"
+		android:title="@string/p_netloc"
+		android:summary="@string/p_netloc_summary" />
+
     </PreferenceCategory>
                 
     <PreferenceCategory

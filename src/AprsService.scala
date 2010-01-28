@@ -36,8 +36,10 @@ class AprsService extends Service with LocationListener {
 
 		val upd_int = prefs.getString("interval", "10").toInt
 		val upd_dist = prefs.getString("distance", "10").toInt
-		locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-			upd_int * 60000, upd_dist * 1000, this)
+		if (prefs.getBoolean("netloc", false)) {
+			locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+				upd_int * 60000, upd_dist * 1000, this)
+		}
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			upd_int * 60000, upd_dist * 1000, this)
 
