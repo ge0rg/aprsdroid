@@ -1,6 +1,7 @@
 package de.duenndns.aprsdroid
 
 import _root_.android.app.Activity
+import _root_.android.app.AlertDialog
 import _root_.android.content._
 import _root_.android.location._
 import _root_.android.os.Bundle
@@ -14,7 +15,8 @@ import _root_.android.widget.TextView
 import _root_.android.widget.Toast
 import _root_.java.util.Date
 
-class APRSdroid extends Activity with OnClickListener {
+class APRSdroid extends Activity with OnClickListener
+		with DialogInterface.OnClickListener {
 	val TAG = "APRSdroid"
 
 	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
@@ -60,18 +62,18 @@ class APRSdroid extends Activity with OnClickListener {
 
 	override def onResume() {
 		super.onResume()
-		val callsign = prefs.getString("callsign", "")
-		val passcode = prefs.getString("passcode", "")
-		if (callsign == "" || passcode == "") {
-			startActivity(new Intent(this, classOf[PrefsAct]));
-			Toast.makeText(this, R.string.firstrun, Toast.LENGTH_SHORT).show()
+		if (prefs.getBoolean("firstrun", true)) {
+			new AlertDialog.Builder(this).setTitle(getString(R.string.fr_title))
+				.setMessage(getString(R.string.fr_text))
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setPositiveButton(android.R.string.ok, this)
+				.setNegativeButton(android.R.string.cancel, this)
+				.create.show
 			return
 		}
-		val genpasscode = AprsPacket.passcode(callsign)
-		if (passcode != genpasscode.toString()) {
-			startActivity(new Intent(this, classOf[PrefsAct]));
-			Toast.makeText(this, R.string.wrongpasscode, Toast.LENGTH_SHORT).show()
-		}
+		if (!checkConfig())
+			return
+		val callsign = prefs.getString("callsign", "")
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
 		title.setText(getString(R.string.app_name) + ": " + callssid)
 		latlon.setText(lastPost.latlon)
@@ -98,6 +100,23 @@ class APRSdroid extends Activity with OnClickListener {
 		true
 	}
 
+	def checkConfig() : Boolean = {
+		val callsign = prefs.getString("callsign", "")
+		val passcode = prefs.getString("passcode", "")
+		if (callsign == "" || passcode == "") {
+			startActivity(new Intent(this, classOf[PrefsAct]));
+			Toast.makeText(this, R.string.firstrun, Toast.LENGTH_SHORT).show()
+			return false
+		}
+		val genpasscode = AprsPacket.passcode(callsign)
+		if (passcode != genpasscode.toString()) {
+			startActivity(new Intent(this, classOf[PrefsAct]));
+			Toast.makeText(this, R.string.wrongpasscode, Toast.LENGTH_SHORT).show()
+			return false
+		}
+		true
+	}
+
 	def setupButtons(running : Boolean) {
 		singleBtn.setEnabled(!running)
 		if (running) {
@@ -117,6 +136,16 @@ class APRSdroid extends Activity with OnClickListener {
 			finish();
 			true
 		case _ => false
+		}
+	}
+
+	override def onClick(d : DialogInterface, which : Int) {
+		which match {
+		case DialogInterface.BUTTON_POSITIVE =>
+			prefs.edit().putBoolean("firstrun", false).commit();
+			checkConfig()
+		case _ =>
+			finish()
 		}
 	}
 

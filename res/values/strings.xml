@@ -15,6 +15,11 @@
 <string name="service_start">APRS Service started. Updates every %d minutes, %d km.</string>
 <string name="service_stop">APRS Service stopped.</string>
 
+<string name="fr_title">Welcome to APRSdroid!</string>
+<string name="fr_text">This software may only be used by licensed HAM radio
+	operators!\n\n
+	If you operate without a license, you might be criminally prosecuted!</string>
+
 <string name="preferences">Preferences</string>
 <string name="p__ham">Amateur Radio</string>
 <string name="p_callsign">Callsign</string>
