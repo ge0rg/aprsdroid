@@ -33,6 +33,13 @@
 		android:dialogTitle="@string/p_ssid_entry" />
 
         <EditTextPreference
+                android:key="symbol"
+		android:hint="@string/default_symbol"
+		android:title="@string/p_symbol"
+		android:summary="@string/p_symbol_summary"
+		android:dialogTitle="@string/p_symbol_entry" />
+
+        <EditTextPreference
                 android:key="status"
 		android:hint="@string/default_status"
 		android:title="@string/p_status"

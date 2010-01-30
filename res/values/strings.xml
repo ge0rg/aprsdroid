@@ -10,6 +10,7 @@
 <string name="aprs_server">srvr.aprs-is.net</string>
 
 <string name="default_status">http://github.com/ge0rg/aprsdroid</string>
+<string name="default_symbol">/$</string>
 
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS Service started. Updates every %d minutes, %d km.</string>
@@ -32,6 +33,9 @@
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
 <string name="p_ssid_entry">Enter the SSID for your station</string>
+<string name="p_symbol">APRS smybol</string>
+<string name="p_symbol_summary">Your symbol for map display</string>
+<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
 <string name="p_status">Status message</string>
 <string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your status message</string>

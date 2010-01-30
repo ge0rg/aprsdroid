@@ -65,9 +65,10 @@ object AprsPacket {
 			""
 	}
 
-	def formatLoc(callssid : String, status : String, location : Location) : String = {
-		callssid + ">APAND1,TCPIP*:!" + formatLat(location.getLatitude) + "/" +
-			formatLon(location.getLongitude) + "$" +
+	def formatLoc(callssid : String, symbol : String,
+			status : String, location : Location) : String = {
+		callssid + ">APAND1,TCPIP*:!" + formatLat(location.getLatitude) +
+			symbol(0) + formatLon(location.getLongitude) + symbol(1) +
 			formatCourseSpeed(location) + formatAltitude(location) +
 			" " + status
 	}

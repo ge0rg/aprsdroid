@@ -84,11 +84,12 @@ class AprsService extends Service with LocationListener {
 
 		val callsign = prefs.getString("callsign", null)
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
+		val symbol = prefs.getString("symbol", getString(R.string.default_symbol))
 		val status = prefs.getString("status", getString(R.string.default_status))
 
 		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
 			prefs.getString("ssid", null), prefs.getString("passcode", null))
-		val packet = AprsPacket.formatLoc(callssid, status, location)
+		val packet = AprsPacket.formatLoc(callssid, symbol, status, location)
 
 		var hostname = prefs.getString("host", null)
 		if (hostname == null || hostname == "")
