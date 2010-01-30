@@ -28,7 +28,7 @@ class AprsService extends Service with LocationListener {
 	lazy val locMan = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
 	var singleShot = false
-	var lastTime : Long = 0
+	var lastLoc : Location = null
 
 	override def onStart(i : Intent, startId : Int) {
 		super.onStart(i, startId)
@@ -45,7 +45,7 @@ class AprsService extends Service with LocationListener {
 
 		if (i.getAction() == SERVICE_ONCE) {
 			singleShot = true
-			lastTime = 0 // for singleshot mode, ignore last post
+			lastLoc = null // for singleshot mode, ignore last post
 			showToast(getString(R.string.service_once))
 		} else
 			showToast(getString(R.string.service_start).format(upd_int, upd_dist))
@@ -69,12 +69,15 @@ class AprsService extends Service with LocationListener {
 	// LocationListener interface
 	override def onLocationChanged(location : Location) {
 		Log.d(TAG, "onLocationChanged: " + location)
-		val upd_int = (prefs.getString("interval", "10").toInt) * 60000
-		if (location.getTime < lastTime + upd_int) {
+		val upd_int = prefs.getString("interval", "10").toInt * 60000
+		val upd_dist = prefs.getString("distance", "10").toInt * 1000
+		if (lastLoc != null &&
+		    location.getTime - lastLoc.getTime < upd_int &&
+		    location.distanceTo(lastLoc) < upd_dist) {
 			Log.d(TAG, "onLocationChanged: ignoring premature location")
 			return
 		}
-		lastTime = location.getTime
+		lastLoc = location
 
 		val i = new Intent(UPDATE)
 		i.putExtra(LOCATION, location)
