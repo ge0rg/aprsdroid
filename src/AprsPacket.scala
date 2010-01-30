@@ -44,9 +44,32 @@ object AprsPacket {
 			return callsign
 	}
 
+	def m2ft(meter : Double) : Int = (meter*3.2808399).asInstanceOf[Int]
+
+	def mps2kt(mps : Double) : Int = (mps*1.94384449).asInstanceOf[Int]
+
+	def formatAltitude(location : Location) : String = {
+		if (location.hasAltitude)
+			"/A=%06d".format(m2ft(location.getAltitude))
+		else
+			""
+	}
+
+	def formatCourseSpeed(location : Location) : String = {
+		// only report speeds above 2m/s (7.2km/h)
+		if (location.hasSpeed && location.hasBearing)
+		   // && location.getSpeed > 2)
+			"%03d/%03d".format(location.getBearing,
+				mps2kt(location.getSpeed))
+		else
+			""
+	}
+
 	def formatLoc(callssid : String, status : String, location : Location) : String = {
 		callssid + ">APAND1,TCPIP*:!" + formatLat(location.getLatitude) + "/" +
-			formatLon(location.getLongitude) + "$ " + status
+			formatLon(location.getLongitude) + "$" +
+			formatCourseSpeed(location) + formatAltitude(location) +
+			" " + status
 	}
 
 	def formatLogin(callsign : String, ssid : String, passcode : String) : String = {
