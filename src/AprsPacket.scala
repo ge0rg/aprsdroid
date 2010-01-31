@@ -59,7 +59,7 @@ object AprsPacket {
 		// only report speeds above 2m/s (7.2km/h)
 		if (location.hasSpeed && location.hasBearing)
 		   // && location.getSpeed > 2)
-			"%03d/%03d".format(location.getBearing,
+			"%03d/%03d".format(location.getBearing.asInstanceOf[Int],
 				mps2kt(location.getSpeed))
 		else
 			""
