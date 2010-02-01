@@ -77,6 +77,10 @@ class AprsService extends Service with LocationListener {
 			Log.d(TAG, "onLocationChanged: ignoring premature location")
 			return
 		}
+		postLocation(location)
+	}
+
+	def postLocation(location : Location) {
 		lastLoc = location
 
 		val i = new Intent(UPDATE)
