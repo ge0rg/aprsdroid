@@ -3,7 +3,7 @@ package de.duenndns.aprsdroid
 import _root_.android.app.Service
 import _root_.android.content.{Context, Intent}
 import _root_.android.location._
-import _root_.android.os.{Bundle, IBinder}
+import _root_.android.os.{Bundle, IBinder, Handler}
 import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.android.widget.Toast
@@ -27,8 +27,11 @@ class AprsService extends Service with LocationListener {
 
 	lazy val locMan = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
+	lazy val handler = new Handler()
+
 	var singleShot = false
 	var lastLoc : Location = null
+	var awaitingSpdCourse : Location = null
 
 	override def onStart(i : Intent, startId : Int) {
 		super.onStart(i, startId)
@@ -43,9 +46,10 @@ class AprsService extends Service with LocationListener {
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			upd_int * 60000, upd_dist * 1000, this)
 
+		lastLoc = null // for singleshot mode, ignore last post
+		awaitingSpdCourse = null
 		if (i.getAction() == SERVICE_ONCE) {
 			singleShot = true
-			lastLoc = null // for singleshot mode, ignore last post
 			showToast(getString(R.string.service_once))
 		} else
 			showToast(getString(R.string.service_start).format(upd_int, upd_dist))
@@ -66,6 +70,43 @@ class AprsService extends Service with LocationListener {
 		showToast(getString(R.string.service_stop))
 	}
 
+	def speedBearingStart() {
+		Log.d(TAG, "switching to fast lane");
+		// request fast update rate
+		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+			0, 0, this)
+		handler.postDelayed(new Runnable() {
+			def run() { speedBearingEnd(true) }
+		}, 30000)
+	}
+
+	def speedBearingEnd(post : Boolean) {
+		Log.d(TAG, "switching to slow lane");
+		if (post && awaitingSpdCourse != null) {
+			Log.d(TAG, "speedBearingEnd: posting " + awaitingSpdCourse);
+			postLocation(awaitingSpdCourse)
+		}
+		awaitingSpdCourse = null
+		// reset update speed
+		val upd_int = prefs.getString("interval", "10").toInt
+		val upd_dist = prefs.getString("distance", "10").toInt
+		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+			upd_int, upd_dist, this)
+	}
+
+	def checkSpeedBearing(location : Location) : Boolean = {
+		val hasSpdBrg = (location.hasBearing && location.hasSpeed)
+		if (!hasSpdBrg) {
+			if (awaitingSpdCourse == null)
+				speedBearingStart()
+			awaitingSpdCourse = location
+			false
+		} else if (awaitingSpdCourse != null && hasSpdBrg) {
+			speedBearingEnd(false)
+		}
+		true
+	}
+
 	// LocationListener interface
 	override def onLocationChanged(location : Location) {
 		Log.d(TAG, "onLocationChanged: " + location)
@@ -76,6 +117,12 @@ class AprsService extends Service with LocationListener {
 		    location.distanceTo(lastLoc) < upd_dist) {
 			Log.d(TAG, "onLocationChanged: ignoring premature location")
 			return
+		}
+		// check if we have speed and course
+		val speedbrg = prefs.getBoolean("speedbrg", false)
+		if (speedbrg && location.getProvider == LocationManager.GPS_PROVIDER) {
+			if (!checkSpeedBearing(location))
+				return
 		}
 		postLocation(location)
 	}

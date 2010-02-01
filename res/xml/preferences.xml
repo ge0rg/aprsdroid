@@ -61,6 +61,11 @@
 		android:dialogTitle="@string/p_distance_entry" />
 
         <CheckBoxPreference
+                android:key="speedbrg"
+		android:title="@string/p_speedbrg"
+		android:summary="@string/p_speedbrg_summary" />
+
+        <CheckBoxPreference
                 android:key="netloc"
 		android:title="@string/p_netloc"
 		android:summary="@string/p_netloc_summary" />
