@@ -16,7 +16,7 @@ class AprsUdp extends AprsIsUploader {
 		val addr = InetAddress.getByName(host)
 		val pbytes = (login + "\r\n" + packet + "\r\n").getBytes()
 		socket.send(new DatagramPacket(pbytes, pbytes.length, addr, 8080))
-		Log.d(TAG, "update(): sent " + packet + " to " + host)
+		Log.d(TAG, "update(): sent '" + packet + "' to " + host)
 		"packet sent"
 	}
 
