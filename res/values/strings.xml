@@ -33,7 +33,7 @@
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
 <string name="p_ssid_entry">Enter the SSID for your station</string>
-<string name="p_symbol">APRS smybol</string>
+<string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Your symbol for map display</string>
 <string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
 <string name="p_status">Status message</string>
