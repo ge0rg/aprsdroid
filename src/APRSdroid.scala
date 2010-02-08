@@ -89,7 +89,8 @@ class APRSdroid extends Activity with OnClickListener
 	}
 
 	def onLocationChanged(location : Location) {
-		lastPost.latlon = "lat: %1.4f  lon: %1.4f".format(location.getLatitude, location.getLongitude)
+		lastPost.latlon = getString(R.string.latlon_format).format(location.getLatitude,
+			location.getLongitude, location.getAccuracy.asInstanceOf[Int])
 		latlon.setText(lastPost.latlon)
 	}
 	def serviceIntent(action : String) : Intent = {

@@ -8,6 +8,8 @@
 <string name="startlog">Start Logging</string>
 <string name="stoplog">Stop Logging</string>
 
+<string name="latlon_format">lat: %1.4f  lon: %1.4f (±%dm)</string>
+
 <!-- AprsService -->
 <string name="aprs_server">srvr.aprs-is.net</string>
 
