@@ -3,6 +3,7 @@ package de.duenndns.aprsdroid
 import _root_.android.app.Activity
 import _root_.android.app.AlertDialog
 import _root_.android.content._
+import _root_.android.content.pm.PackageInfo;
 import _root_.android.location._
 import _root_.android.os.Bundle
 import _root_.android.preference.PreferenceManager
@@ -126,10 +127,23 @@ class APRSdroid extends Activity with OnClickListener
 		}
 	}
 
+	def aboutDialog() {
+		val pi = getPackageManager().getPackageInfo(getPackageName(), 0)
+		val title = getString(R.string.ad_title, pi.versionName);
+		new AlertDialog.Builder(this).setTitle(title)
+			.setMessage(getString(R.string.ad_text))
+			.setIcon(android.R.drawable.ic_dialog_info)
+			.setPositiveButton(android.R.string.ok, null)
+			.create.show
+	}
+
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
 		case R.id.preferences =>
 			startActivity(new Intent(this, classOf[PrefsAct]));
+			true
+		case R.id.about =>
+			aboutDialog()
 			true
 		case R.id.quit =>
 			stopService(serviceIntent(AprsService.SERVICE))
