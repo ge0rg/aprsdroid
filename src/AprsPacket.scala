@@ -16,15 +16,15 @@ object AprsPacket {
 	}
 
 	def splitCoord(c : Double) : (Int, Int, Int, Int) = {
-		val minDec = (c*6000).asInstanceOf[Int]
+		var letter = 0
+		var minDec = (c*6000).asInstanceOf[Int]
+		if (minDec < 0) {
+			minDec = -minDec
+			letter = 1
+		}
 		var deg = minDec / 6000
 		val min = (minDec / 100) % 60
 		val minFrac = minDec % 100
-		var letter = 0
-		if (deg < 0) {
-			deg = -deg
-			letter = 1
-		}
 		(deg, min, minFrac, letter)
 	}
 		
