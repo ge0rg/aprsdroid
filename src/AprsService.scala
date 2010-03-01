@@ -113,8 +113,8 @@ class AprsService extends Service with LocationListener {
 		val upd_int = prefs.getString("interval", "10").toInt * 60000
 		val upd_dist = prefs.getString("distance", "10").toInt * 1000
 		if (lastLoc != null &&
-		    location.getTime - lastLoc.getTime < upd_int &&
-		    location.distanceTo(lastLoc) < upd_dist) {
+		    (location.getTime - lastLoc.getTime < upd_int ||
+		     location.distanceTo(lastLoc) < upd_dist)) {
 			Log.d(TAG, "onLocationChanged: ignoring premature location")
 			return
 		}
