@@ -13,7 +13,7 @@
 <!-- AprsService -->
 <string name="aprs_server">srvr.aprs-is.net</string>
 
-<string name="default_status">http://github.com/ge0rg/aprsdroid</string>
+<string name="default_status">http://aprsdroid.org/</string>
 <string name="default_symbol">/$</string>
 
 <string name="service_once">APRS Service single shot.</string>
