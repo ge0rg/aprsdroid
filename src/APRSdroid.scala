@@ -102,18 +102,26 @@ class APRSdroid extends Activity with OnClickListener
 		true
 	}
 
+	def openPrefs(toastId : Int) {
+		startActivity(new Intent(this, classOf[PrefsAct]));
+		Toast.makeText(this, toastId, Toast.LENGTH_SHORT).show()
+	}
+
 	def checkConfig() : Boolean = {
 		val callsign = prefs.getString("callsign", "")
 		val passcode = prefs.getString("passcode", "")
 		if (callsign == "" || passcode == "") {
-			startActivity(new Intent(this, classOf[PrefsAct]));
-			Toast.makeText(this, R.string.firstrun, Toast.LENGTH_SHORT).show()
+			openPrefs(R.string.firstrun)
 			return false
 		}
 		val genpasscode = AprsPacket.passcode(callsign)
 		if (passcode != genpasscode.toString()) {
-			startActivity(new Intent(this, classOf[PrefsAct]));
-			Toast.makeText(this, R.string.wrongpasscode, Toast.LENGTH_SHORT).show()
+			openPrefs(R.string.wrongpasscode)
+			return false
+		}
+		val intval = prefs.getString("interval", "10")
+		if (intval == "" || intval.toInt < 1) {
+			openPrefs(R.string.mininterval)
 			return false
 		}
 		true
