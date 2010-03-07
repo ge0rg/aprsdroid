@@ -34,6 +34,7 @@ class AprsService extends Service with LocationListener {
 	var awaitingSpdCourse : Location = null
 
 	override def onStart(i : Intent, startId : Int) {
+		Log.d(TAG, "onStart: " + i + ", " + startId);
 		super.onStart(i, startId)
 		running = true
 
@@ -46,9 +47,9 @@ class AprsService extends Service with LocationListener {
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			upd_int * 60000, upd_dist * 1000, this)
 
-		lastLoc = null // for singleshot mode, ignore last post
 		awaitingSpdCourse = null
 		if (i.getAction() == SERVICE_ONCE) {
+			lastLoc = null // for singleshot mode, ignore last post
 			singleShot = true
 			showToast(getString(R.string.service_once))
 		} else
@@ -73,6 +74,7 @@ class AprsService extends Service with LocationListener {
 	def speedBearingStart() {
 		Log.d(TAG, "switching to fast lane");
 		// request fast update rate
+		locMan.removeUpdates(this);
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			0, 0, this)
 		handler.postDelayed(new Runnable() {
@@ -81,6 +83,8 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def speedBearingEnd(post : Boolean) {
+		if (!running)
+			return;
 		Log.d(TAG, "switching to slow lane");
 		if (post && awaitingSpdCourse != null) {
 			Log.d(TAG, "speedBearingEnd: posting " + awaitingSpdCourse);
@@ -88,6 +92,7 @@ class AprsService extends Service with LocationListener {
 		}
 		awaitingSpdCourse = null
 		// reset update speed
+		locMan.removeUpdates(this);
 		val upd_int = prefs.getString("interval", "10").toInt
 		val upd_dist = prefs.getString("distance", "10").toInt
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
