@@ -29,7 +29,7 @@
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>
 <string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n
-	http://op-co.de/ &lt;georg@op-co.de&gt;
+	http://aprsdroid.org/
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 	\n\n
