@@ -80,11 +80,11 @@
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>
 <string name="p__location">Location Settings</string>
-<string name="p_interval">Update interval</string>
+<string name="p_interval">Minimum update time</string>
 <string name="p_interval_summary">Minutes between beacon transmissions</string>
 <string name="p_interval_entry">Enter the update interval [min]</string>
-<string name="p_distance">Update distance</string>
-<string name="p_distance_summary">Kilometers before beacon transmission</string>
+<string name="p_distance">Minimum update distance</string>
+<string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
 <string name="p_distance_entry">Enter the update distance [km]</string>
 <string name="p_speedbrg">Await speed &amp; bearing</string>
 <string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
