@@ -79,6 +79,7 @@
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>
+<string name="p__location">Location Settings</string>
 <string name="p_interval">Update interval</string>
 <string name="p_interval_summary">Minutes between beacon transmissions</string>
 <string name="p_interval_entry">Enter the update interval [min]</string>

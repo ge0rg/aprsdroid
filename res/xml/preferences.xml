@@ -46,6 +46,11 @@
 		android:summary="@string/p_status_summary"
 		android:dialogTitle="@string/p_status_entry" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+	android:title="@string/p__location">
+
         <EditTextPreference
                 android:key="interval"
 		android:inputType="number"
