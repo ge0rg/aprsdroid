@@ -25,6 +25,7 @@ android:id="@+id/status"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="status"
+android:textSize="8pt"
 >
 </TextView>
 <TextView
@@ -33,7 +34,8 @@ android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:layout_weight="1"
 android:text="packet"
-android:textColor="#20a020"
+android:textColor="#30b030"
+android:textSize="8pt"
 android:typeface="monospace"
 >
 </TextView>
