@@ -1,32 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="p_conntype_e">
-		<item>UDP port 8080</item>
-		<item>HTTP POST</item>
-	</string-array>
-
 	<string-array name="p_conntype_ev">
 		<item>udp</item>
 		<item>http</item>
-	</string-array>
-
-	<string-array name="p_ssid_e">
-		<item>(none)</item>
-		<item>1: Digipeater (home/WX)</item>
-		<item>2: Digipeater 70cm</item>
-		<item>3: Digipeater</item>
-		<item>4: HF to VHF gateway</item>
-		<item>5: IGate (not home station)</item>
-		<item>6: Satellite</item>
-		<item>7: Handheld radio</item>
-		<item>8: Boat / ship</item>
-		<item>9: Mobile station</item>
-		<item>10: APRS-IS (no radio)</item>
-		<item>11: Balloon / APRStouch-tone</item>
-		<item>12: Portable (laptop/camp site)</item>
-		<item>13: ...</item>
-		<item>14: Freight vehicle</item>
-		<item>15: HF Station</item>
 	</string-array>
 
 	<string-array name="p_ssid_ev">

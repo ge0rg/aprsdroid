@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
 <!-- APRSdroid activity -->
@@ -12,11 +13,6 @@
 <string name="latlon_format">lat: %1.4f  lon: %1.4f (±%dm)</string>
 
 <!-- AprsService -->
-<string name="aprs_server">srvr.aprs-is.net</string>
-
-<string name="default_status">http://aprsdroid.org/</string>
-<string name="default_symbol">/$</string>
-
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS Service started. Updates every %d minutes, %d km.</string>
 <string name="service_stop">APRS Service stopped.</string>
@@ -67,6 +63,25 @@
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
 <string name="p_ssid_entry">Enter the SSID for your station</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(none)</item>
+	<item>1: Digipeater (home/WX)</item>
+	<item>2: Digipeater 70cm</item>
+	<item>3: Digipeater</item>
+	<item>4: HF to VHF gateway</item>
+	<item>5: IGate (not home station)</item>
+	<item>6: Satellite</item>
+	<item>7: Handheld radio</item>
+	<item>8: Boat / ship</item>
+	<item>9: Mobile station</item>
+	<item>10: APRS-IS (no radio)</item>
+	<item>11: Balloon / APRStouch-tone</item>
+	<item>12: Portable (laptop/camp site)</item>
+	<item>13: ...</item>
+	<item>14: Freight vehicle</item>
+	<item>15: HF Station</item>
+</string-array>
 <string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Your symbol for map display</string>
 <string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
@@ -77,6 +92,11 @@
 <string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_summary">Choose UDP (port 8080) or HTTP POST (URL)</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
+<!-- array of connection types -->
+<string-array name="p_conntype_e">
+	<item>UDP port 8080</item>
+	<item>HTTP POST</item>
+</string-array>
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid notrans.xml - strings which will not be translated only -->
+<resources>
+<string name="aprs_server">srvr.aprs-is.net</string>
+
+<string name="default_status">http://aprsdroid.org/</string>
+<string name="default_symbol">/$</string>
+
+</resources>
