@@ -6,8 +6,8 @@
 <string name="wrongpasscode">Your passcode does not match your callsign!</string>
 <string name="mininterval">Minimum update time is 1 minute!</string>
 <string name="singlelog">Single Shot</string>
-<string name="startlog">Start Logging</string>
-<string name="stoplog">Stop Logging</string>
+<string name="startlog">Start Tracking</string>
+<string name="stoplog">Stop Tracking</string>
 
 <string name="latlon_format">lat: %1.4f  lon: %1.4f (±%dm)</string>
 
