@@ -46,6 +46,7 @@
 	\n\n
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
+<string name="ad_trans">\n\nTranslation:</string>
 
 <!-- options menu -->
 <string name="about">About</string>

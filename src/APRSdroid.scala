@@ -139,8 +139,10 @@ class APRSdroid extends Activity with OnClickListener
 	def aboutDialog() {
 		val pi = getPackageManager().getPackageInfo(getPackageName(), 0)
 		val title = getString(R.string.ad_title, pi.versionName);
+		val translators = getString(R.string.ad_trans) +
+				  getString(R.string.translation_credits)
 		new AlertDialog.Builder(this).setTitle(title)
-			.setMessage(getString(R.string.ad_text))
+			.setMessage(getString(R.string.ad_text) + translators)
 			.setIcon(android.R.drawable.ic_dialog_info)
 			.setPositiveButton(android.R.string.ok, null)
 			.create.show
