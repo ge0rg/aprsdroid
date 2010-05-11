@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Sie müssen Ihr Rufzeichen und das dazugehörige Passwort eingeben!</string>
+<string name="wrongpasscode">Das Passwort für Ihr Rufzeichen ist nicht korrekt!</string>
+<string name="mininterval">Minimale Update-Zeit ist 1 Minute!</string>
+<string name="singlelog">Position senden</string>
+<string name="startlog">Tracking starten</string>
+<string name="stoplog">Tracking beenden</string>
+
+<string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
+
+<!-- AprsService -->
+<string name="service_once">APRS -Dienst Einzelmeldung.</string>
+<string name="service_start">APRS-Dienst gestartet. Aktualisierung alle %d Minuten, %d km.</string>
+<string name="service_stop">APRS-Dienst beendet.</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Willkommen zu APRSdroid!</string>
+<string name="fr_text">Diese Software darf nur von lizensierten Funkamateuren verwendet werden!\n\n
+Eine Nutzung ohne Amateurfunklizenz kann strafrechtliche Konsequenzen haben!</string>
+
+<!-- about dialog -->
+<string name="ad_title">Über APRSdroid v%s</string>
+<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org/
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+	\n\n
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_trans">\n\nTranslation:</string>
+
+<!-- options menu -->
+<string name="about">Über...</string>
+<string name="quit">Beenden</string>
+<string name="preferences">Einstellungen</string>
+<!-- preferences -->
+<string name="p__ham">Amateurfunk</string>
+<string name="p_callsign">Rufzeichen</string>
+<string name="p_callsign_summary">Ihr Amateurfunk-Rufzeichen</string>
+<string name="p_callsign_entry">Geben Sie Ihr Rufzeichen ein</string>
+<string name="p_passcode">Passwort</string>
+<string name="p_passcode_summary">APRS-IS-Passwort</string>
+<string name="p_passcode_entry">Geben Sie das Passwort zu Ihrem Rufzeichen ein</string>
+<string name="p__aprs">APRS-Einstellungen</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Stationstyp (1..15; 9=Mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Geben Sie Ihre SSID an</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(keine)</item>
+	<item>1: Digipeater (home/WX)</item>
+	<item>2: Digipeater 70cm</item>
+	<item>3: Digipeater</item>
+	<item>4: HF-VHF-Gateway</item>
+	<item>5: IGate (not home station)</item>
+	<item>6: Satellit</item>
+	<item>7: Handfunkgerät</item>
+	<item>8: Boot / Schiff</item>
+	<item>9: Mobilstation</item>
+	<item>10: APRS-IS (ohne Funkmodul)</item>
+	<item>11: Ballon / APRStouch-tone</item>
+	<item>12: Portabel (Laptop/Camp)</item>
+	<item>13: ...</item>
+	<item>14: Lastkraftwagen</item>
+	<item>15: HF-Station</item>
+</string-array>
+<string name="p_symbol">APRS-Symbol</string>
+<string name="p_symbol_summary">Symbol für die Kartenanzeige</string>
+<string name="p_symbol_entry">Geben Sie das APRS-Symbol an (zwei Zeichen)</string>
+<string name="p_status">Statusmeldung</string>
+<string name="p_status_summary">Nachrichtenteil in der Bake</string>
+<string name="p_status_entry">Geben Sie die Statusnachricht ein</string>
+<string name="p__network">Netzwerk</string>
+<string name="p_conntype">Verbindungsprotokoll</string>
+<string name="p_conntype_summary">Wählen Sie UDP (Port 8080) oder HTTP POST (URL)</string>
+<string name="p_conntype_entry">Wählen Sie das Verbindungsprotokoll</string>
+<!-- array of connection types -->
+<string-array name="p_conntype_e">
+	<item>UDP Port 8080</item>
+	<item>HTTP POST</item>
+</string-array>
+<string name="p_host">Server</string>
+<string name="p_host_summary">APRS-IS Zielserver (Port 8080)</string>
+<string name="p_host_entry">Geben Sie den APRS-IS-Servernamen ein</string>
+<string name="p__location">Standorteinstellungen</string>
+<string name="p_interval">Minimale Updatezeit</string>
+<string name="p_interval_summary">Minuten zwischen Baken</string>
+<string name="p_interval_entry">Geben Sie das Update-Intervall ein [min]</string>
+<string name="p_distance">Minimaler Update-Abstand</string>
+<string name="p_distance_summary">Kilometer zwischen Baken (0 für zeitbasierte Updates)</string>
+<string name="p_distance_entry">Geben Sie den Update-Abstand ein [km]</string>
+<string name="p_speedbrg">Auf Geschwindigkeit &amp; Richtung warten</string>
+<string name="p_speedbrg_summary">GPS für präzisere Daten länger aktivieren</string>
+<string name="p_netloc">Netzwerk-Lokalisierung</string>
+<string name="p_netloc_summary">Position über drahtloses Netzwerk beziehen</string>
+</resources>

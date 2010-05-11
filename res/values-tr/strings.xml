@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">APRSdroid programını çağrı işaretiniz  ve şifrenizle konfigüre etmeniz gerekiyor!</string>
+<string name="wrongpasscode">Şifreniz çağrı işaretinizle eşleşmiyor!</string>
+<string name="mininterval">En sık güncelleme aralığı 1 dakikadır!</string>
+<string name="singlelog">Tek atım</string>
+<string name="startlog">İzlemeyi başlat</string>
+<string name="stoplog">İzlemeyi durdur</string>
+
+<string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
+
+<!-- AprsService -->
+<string name="service_once">APRS Servis tek atım</string>
+<string name="service_start">APRS servisi başlatıldı. Güncelleme her %d dakika, %d km.</string>
+<string name="service_stop">APRS servisi durduruldu.</string>
+
+<!-- first run dialog -->
+<string name="fr_title">APRSdroid'e hoşgeldiniz!</string>
+<string name="fr_text">Bu yazılım sadece geçerli bir lisansa sahip olan Amatör Telsiz Operatörleri tarafından kullanılabilir!\n\n Geçerli bir lisansa sahip olmaksızın kullanım durumunda hakkınızda kanuni soruşturma açılabilir!</string>
+
+<!-- about dialog -->
+<string name="ad_title">APRSdroid hakkında v%s</string>
+<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org/
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+	\n\n
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_trans">\n\nTranslation:</string>
+
+<!-- options menu -->
+<string name="about">Hakkında</string>
+<string name="quit">Çık</string>
+<string name="preferences">Ayarlar</string>
+<!-- preferences -->
+<string name="p__ham">Amatör Radyo</string>
+<string name="p_callsign">Çağrı İşareti</string>
+<string name="p_callsign_summary">Amatör çağrı işaretiniz</string>
+<string name="p_callsign_entry">Çağrı işaretinizi girin</string>
+<string name="p_passcode">Şifre</string>
+<string name="p_passcode_summary">APRS-IS onay numaranız</string>
+<string name="p_passcode_entry">Çağrı işaretiniz için şifre giriniz</string>
+<string name="p__aprs">APRS ayarları</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">İstasyon türü (1..15; 9=mobil, 10=APRS-IS)</string>
+<string name="p_ssid_entry">İstasyonunuz için SSID giriniz</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(yok)</item>
+	<item>1: Digipeater (home/WX)</item>
+	<item>2: Digipeater 70cm</item>
+	<item>Digipeater</item>
+	<item>HF veya VHF Gateway</item>
+	<item>IGate (sabit istasyon değil)</item>
+	<item>6: Uydu</item>
+	<item>El telsizi</item>
+	<item>Tekne/gemi</item>
+	<item>Mobil istasyon</item>
+	<item>APRS-IS (telsiz yok)</item>
+	<item>Balon / APRStouch-tone</item>
+	<item>Taşınabilir (laptop/kamp)</item>
+	<item>13: ...</item>
+	<item>14: Kamyon</item>
+	<item>15: HF İstasyonu</item>
+</string-array>
+<string name="p_symbol">APRS sembolü</string>
+<string name="p_symbol_summary">Harita gösterimi için sembolünüz</string>
+<string name="p_symbol_entry">İki karakter halinde kodlanmış sembolü giriniz</string>
+<string name="p_status">Durum mesajı</string>
+<string name="p_status_summary">Koordinatlarınızdan sonra gönderilecek metin</string>
+<string name="p_status_entry">Durum mesajınızı giriniz</string>
+<string name="p__network">Ağ Oluşturma</string>
+<string name="p_conntype">Bağlantı Protokolü</string>
+<string name="p_conntype_summary">UDP (port 8080) ya da HTTP POST (URL) seçiniz</string>
+<string name="p_conntype_entry">Bağlantı protokolünü seçiniz</string>
+<!-- array of connection types -->
+<string-array name="p_conntype_e">
+	<item>UDP port 8080</item>
+	<item>HTTP POST</item>
+</string-array>
+<string name="p_host">Sunucu</string>
+<string name="p_host_summary">Beacon gönderilecek APRS-IS sunucusu (port 8080)</string>
+<string name="p_host_entry">APRS-IS sunucu ismini girin</string>
+<string name="p__location">Konum Ayarları</string>
+<string name="p_interval">Asgari güncelleme zamanı</string>
+<string name="p_interval_summary">Beacon gönderileri arasındaki zaman (dk)</string>
+<string name="p_interval_entry">Güncelleme aralığını girin [dk]</string>
+<string name="p_distance">Asgari güncelleme mesafesi</string>
+<string name="p_distance_summary">Beacon göndermeden önce katedilecek yol (km, sadece zamana bağlı gönderi için 0 girin)</string>
+<string name="p_distance_entry">Güncelleme mesafesini girin [km]</string>
+<string name="p_speedbrg">Await speed &amp; bearing</string>
+<string name="p_speedbrg_summary">Daha hassas konum bilgisi almak için GPS'i daha uzun süre açık tut</string>
+<string name="p_netloc">Ağ konum bilgisi kullan</string>
+<string name="p_netloc_summary">Konum bilgisini hücresel ağdan al</string>
+</resources>

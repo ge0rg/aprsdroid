@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">APRSdroid skal konfigureres med Amatør kaldesignal og adgangskode!</string>
+<string name="wrongpasscode">Din adgangskode matcher ikke dit kaldesignal!</string>
+<string name="mininterval">Minimum opdaterings tid er 1 minut!</string>
+<string name="singlelog">Send engangs Sporing.</string>
+<string name="startlog">Start Sporing</string>
+<string name="stoplog">Stop Sporing</string>
+
+<string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
+
+<!-- AprsService -->
+<string name="service_once">APRS Service enkelt Track.</string>
+<string name="service_start">APRS Service startet. Updateres hver %d minut, %d km.</string>
+<string name="service_stop">APRS Service stoppet.</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Velkommen til APRSdroid!</string>
+<string name="fr_text">Denne software må kun bruges af licenserede Radioamatører! \ N \ n Hvis du bruger den uden licens, kan du blive retsforfulgt!</string>
+
+<!-- about dialog -->
+<string name="ad_title">Om APRSdroid v%s</string>
+<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n http://aprsdroid.org/ \n\n APRS® er et registreret varemærke af Bob Bruninga (WB4APR) \n\n Dette program er gratis software; Du må redistribuerer det , eller modificerer det, ifølge reglerne for GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. \n\n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \n\n You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_trans">\n\nTranslation:</string>
+
+<!-- options menu -->
+<string name="about">Om...</string>
+<string name="quit">Afslut</string>
+<string name="preferences">Indstillinger</string>
+<!-- preferences -->
+<string name="p__ham">Amatørradio</string>
+<string name="p_callsign">Kaldesignal</string>
+<string name="p_callsign_summary">Dit Radioamatør Kaldesignal</string>
+<string name="p_callsign_entry">Indtast dit kaldesignal</string>
+<string name="p_passcode">adgangskode</string>
+<string name="p_passcode_summary">APRS-IS validering af adgangskode</string>
+<string name="p_passcode_entry">Indtast adgangskoden for dit kaldesignal</string>
+<string name="p__aprs">APRS Indstillinger</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Stations type (1 .. 15; 9 = Mobil, 10 = APRS-IS)</string>
+<string name="p_ssid_entry">Indtast SSID for din station</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(ingen)</item>
+	<item>1: Digipeater (home/WX)</item>
+	<item>2: Digipeater 70cm</item>
+	<item>3: Digipeater</item>
+	<item>HF til VHF gateway</item>
+	<item>5: Igate (ikke hjemme station)</item>
+	<item>6: Satellite</item>
+	<item>Håndholdt radio</item>
+	<item>8: Båd/Skib</item>
+	<item>9: Mobil station</item>
+	<item>10: APRS-IS (ingen radio)</item>
+	<item>11: Ballon / APRS touch-tone</item>
+	<item>12: Bærbar (laptop / campingplads)</item>
+	<item>13: ...</item>
+	<item>14: Fragtbil/Lastvogn</item>
+	<item>15: HF Station</item>
+</string-array>
+<string name="p_symbol">APRS symbol</string>
+<string name="p_symbol_summary">Din symbol for kortvisning</string>
+<string name="p_symbol_entry">Indtast symbol kode med to karakterer</string>
+<string name="p_status">Statusmeddelelse</string>
+<string name="p_status_summary">Tekst som kommer efter dine koordinater</string>
+<string name="p_status_entry">Indtast din statusmeddelelse</string>
+<string name="p__network">Netværk</string>
+<string name="p_conntype">Forbindelses-protokol</string>
+<string name="p_conntype_summary">Vælg UDP (port 8080) eller HTTP POST (URL)</string>
+<string name="p_conntype_entry">Vælg forbindelses-protokol</string>
+<!-- array of connection types -->
+<string-array name="p_conntype_e">
+	<item>UDP port 8080</item>
+	<item>HTTP POST</item>
+</string-array>
+<string name="p_host">Server</string>
+<string name="p_host_summary">APRS-IS server (port 8080) til at sende beacons</string>
+<string name="p_host_entry">Indtast APRS-IS server hostname</string>
+<string name="p__location">Lokations indstillinger</string>
+<string name="p_interval">Minimum opdaterings tid</string>
+<string name="p_interval_summary">Minutter mellem beacon transmissioner</string>
+<string name="p_interval_entry">Indtast opdateringen intervallet [min]</string>
+<string name="p_distance">Mindste afstands opdatering</string>
+<string name="p_distance_summary">Antal kørte kilometer før beacon transmission (sættes til 0 for tid-alene)</string>
+<string name="p_distance_entry">Indtast afstands opdatering [km]</string>
+<string name="p_speedbrg">Afventer hastighed og retning</string>
+<string name="p_speedbrg_summary">Holder GPS tændt længere for at få mere præcise data</string>
+<string name="p_netloc">Brug Mobil netværksplacering</string>
+<string name="p_netloc_summary">Modtage position fra det mobile netværk</string>
+</resources>

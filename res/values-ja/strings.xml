@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">APRSdroidの使用前にコールサインとパスコードの設定が必要です</string>
+<string name="wrongpasscode">コールサインとパスコードが一致しません！</string>
+<string name="mininterval">最小更新間隔は１分以下に設定できません！</string>
+<string name="singlelog">１回のみ送信</string>
+<string name="startlog">連続送信開始</string>
+<string name="stoplog">連続送信停止</string>
+
+<string name="latlon_format">緯度: %1.4f 経度: %1.4f (±%dm)</string>
+
+<!-- AprsService -->
+<string name="service_once">ARPSサービス １回送信</string>
+<string name="service_start">ARPSサービス開始。%d分、%dkmごとに更新します。</string>
+<string name="service_stop">APRSサービス停止</string>
+
+<!-- first run dialog -->
+<string name="fr_title">ようこそAPRSdroidへ！</string>
+<string name="fr_text">このソフトは免許を受けたアマチュア無線家のみ使用可能です。\n\n無免許での使用は罰せられる可能性があります。</string>
+
+<!-- about dialog -->
+<string name="ad_title">APRSdroidについて v%s</string>
+<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org/
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+	\n\n
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_trans">\n\nTranslation:</string>
+
+<!-- options menu -->
+<string name="about">ソフトウェア情報</string>
+<string name="quit">終了</string>
+<string name="preferences">設定</string>
+<!-- preferences -->
+<string name="p__ham">無線局情報設定</string>
+<string name="p_callsign">コールサイン</string>
+<string name="p_callsign_summary">あなたのアマチュア無線コールサイン</string>
+<string name="p_callsign_entry">コールサインを入力</string>
+<string name="p_passcode">パスコード</string>
+<string name="p_passcode_summary">APRS-IS認証パスコード</string>
+<string name="p_passcode_entry">パスコードを入力</string>
+<string name="p__aprs">APRS設定</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">局の種別 (1..15; 9=モービル局, 10=APRS-IS)</string>
+<string name="p_ssid_entry">SSIDを入力</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(指定なし)</item>
+	<item>1: デジピータ (home/WX)</item>
+	<item>2: デジピータ 430MHz</item>
+	<item>3: デジピータ</item>
+	<item>4: HFからVHFへのゲートウェイ</item>
+	<item>5: IGate (非home局)</item>
+	<item>6: 衛星</item>
+	<item>7: ハンディー機</item>
+	<item>8: ボード/船</item>
+	<item>9: モービル</item>
+	<item>10: APRS-IS (非無線局)</item>
+	<item>11: バルーン / APRStouch-tone</item>
+	<item>12: 移動 (ノートPC/キャンプ場)</item>
+	<item>13: その他</item>
+	<item>14: 貨物トラック</item>
+	<item>15: HF局</item>
+</string-array>
+<string name="p_symbol">APRSシンボル</string>
+<string name="p_symbol_summary">地図上に表示するシンボル</string>
+<string name="p_symbol_entry">表示シンボル（2文字)を入力</string>
+<string name="p_status">ステータスメッセージ</string>
+<string name="p_status_summary">位置情報と共に送信するメッセージ</string>
+<string name="p_status_entry">ステータスメッセージを入力</string>
+<string name="p__network">ネットワークの設定</string>
+<string name="p_conntype">使用するプロトコル</string>
+<string name="p_conntype_summary">UDP (ポート8080) か HTTP POST (URL)を選択</string>
+<string name="p_conntype_entry">使用するプロトコルを選択</string>
+<!-- array of connection types -->
+<string-array name="p_conntype_e">
+	<item>UDP ポート8080</item>
+	<item>HTTP POST</item>
+</string-array>
+<string name="p_host">送信サーバ</string>
+<string name="p_host_summary">ビーコンを送信するAPRS-ISサーバ (ポート8080)</string>
+<string name="p_host_entry">送信先のAPRS-ISサーバホストを入力</string>
+<string name="p__location">位置情報設定</string>
+<string name="p_interval">最小更新時間</string>
+<string name="p_interval_summary">ビーコンを送信する間隔</string>
+<string name="p_interval_entry">更新する間隔（分）を入力</string>
+<string name="p_distance">最小更新距離</string>
+<string name="p_distance_summary">ビーコンを送信する距離 (0で時間更新のみ)</string>
+<string name="p_distance_entry">更新距離[km]を入力</string>
+<string name="p_speedbrg">速度と進路の取得</string>
+<string name="p_speedbrg_summary">GPSの情報をより長時間かけて取得する</string>
+<string name="p_netloc">ネットワーク位置情報を使用</string>
+<string name="p_netloc_summary">携帯電話網から取得した位置情報を使用する</string>
+</resources>
