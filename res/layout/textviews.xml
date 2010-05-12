@@ -4,7 +4,7 @@ android:id="@+id/title"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:text="APRSdroid early beta"
-android:textSize="11pt"
+android:textSize="24dp"
 android:textStyle="bold"
 android:gravity="center"
 >
@@ -13,10 +13,10 @@ android:gravity="center"
 android:id="@+id/latlon"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
-android:layout_marginTop="5pt"
-android:layout_marginBottom="5pt"
+android:layout_marginTop="10dp"
+android:layout_marginBottom="10dp"
 android:text="Coordinates"
-android:textSize="10pt"
+android:textSize="22dp"
 android:gravity="center"
 >
 </TextView>
@@ -25,7 +25,7 @@ android:id="@+id/status"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="status"
-android:textSize="8pt"
+android:textSize="18dp"
 >
 </TextView>
 <TextView
@@ -35,7 +35,7 @@ android:layout_height="wrap_content"
 android:layout_weight="1"
 android:text="packet"
 android:textColor="#30b030"
-android:textSize="8pt"
+android:textSize="18dp"
 android:typeface="monospace"
 >
 </TextView>
