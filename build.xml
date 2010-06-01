@@ -6,6 +6,12 @@
 	 Control Systems. -->
     <property file="local.properties"/>
 
+    <!-- if sdk.dir is set, use that for sdk-location -->
+    <condition property="sdk-location"
+	    value="${sdk.dir}">
+	<isset property="sdk.dir" />
+    </condition>
+
     <!-- The build.properties file can be created by you and is never touched
 	 by the 'android' tool. This is the place to change some of the default property values
 	 used by the Ant rules.
