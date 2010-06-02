@@ -6,7 +6,8 @@ PACKAGE=$(basename $PWD)
 TRAN=translations
 RES=res/values
 POT=$TRAN/$PACKAGE.pot
-PO=translations/$PACKAGE/$PACKAGE-
+PODIR=translations/$PACKAGE
+PO=$PODIR/$PACKAGE-
 
 translate_xml2pot() {
 	if [ -f $POT ] ; then
@@ -17,6 +18,12 @@ translate_xml2pot() {
 }
 
 translate_po2xml() {
+	if [ ! -d "translations/" ] ; then
+		echo "You need to download the translations package from launchpad first."
+		echo "Get it from https://translations.launchpad.net/$PACKAGE and store"
+		echo "the .po files as $PO##.po"
+		exit 1
+	fi
 	for po in $PO*.po; do
 		lang=${po##$PO}
 		lang=${lang%%.po}
