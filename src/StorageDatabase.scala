@@ -44,11 +44,18 @@ class StorageDatabase(context : Context) extends
 		throw new IllegalStateException("StorageDatabase.onUpgrade(%d, %d)".format(from, to))
 	}
 
+	def trimPosts(ts : Long) {
+		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Post.TABLE, Post.TS),
+			Array(long2Long(ts)))
+	}
+
 	def addPost(ts : Long, message : String) {
 		val cv = new ContentValues()
 		cv.put(Post.TS, ts.asInstanceOf[java.lang.Long])
 		cv.put(Post.MESSAGE, message)
 		getWritableDatabase().insertOrThrow(Post.TABLE, null, cv)
+		// filter against db bloat: 31 days in [ms]
+		trimPosts(ts - 31 * 24 * 3600 * 1000)
 	}
 
 	def getPosts(limit : String) : Cursor = {
