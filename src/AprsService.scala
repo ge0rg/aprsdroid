@@ -29,6 +29,8 @@ class AprsService extends Service with LocationListener {
 
 	lazy val handler = new Handler()
 
+	lazy val db = StorageDatabase.open(this)
+
 	var singleShot = false
 	var lastLoc : Location = null
 	var awaitingSpdCourse : Location = null
@@ -163,8 +165,11 @@ class AprsService extends Service with LocationListener {
 			val status = poster.update(hostname, login, packet)
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet)
+			db.addPost(System.currentTimeMillis(), status, packet)
 		} catch {
-			case e : Exception => i.putExtra(PACKET, e.getMessage())
+			case e : Exception =>
+				i.putExtra(PACKET, e.getMessage())
+				db.addPost(System.currentTimeMillis(), "Error", e.getMessage())
 		}
 		sendBroadcast(i)
 		if (singleShot) {
