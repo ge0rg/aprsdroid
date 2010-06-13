@@ -15,16 +15,17 @@ object StorageDatabase {
 		val TABLE = "posts"
 		val _ID = "_id"
 		val TS = "ts"
+		val STATUS = "status"
 		val MESSAGE = "message"
-		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s TEXT)"
-					.format(TABLE, _ID, TS, MESSAGE);
-		lazy val COLUMNS = Array(_ID, TS, "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS", MESSAGE);
+		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s TEXT, %s TEXT)"
+					.format(TABLE, _ID, TS, STATUS, MESSAGE);
+		lazy val COLUMNS = Array(_ID, TS, "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS", STATUS, MESSAGE);
 	}
 
 	var singleton : StorageDatabase = null
 	def open(context : Context) : StorageDatabase = {
 		if (singleton == null) {
-			Log.d(TAG, "open(): creating new StorageDatabase")
+			Log.d(TAG, "open(): instanciating StorageDatabase")
 			singleton = new StorageDatabase(context.getApplicationContext())
 		}
 		singleton
@@ -37,7 +38,7 @@ class StorageDatabase(context : Context) extends
 	import StorageDatabase._
 
 	override def onCreate(db: SQLiteDatabase) {
-		Log.d(TAG, "onCreate()");
+		Log.d(TAG, "onCreate(): creating new database " + DB_NAME);
 		db.execSQL(Post.TABLE_CREATE);
 	}
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
@@ -45,17 +46,20 @@ class StorageDatabase(context : Context) extends
 	}
 
 	def trimPosts(ts : Long) {
+		Log.d(TAG, "StorageDatabase.trimPosts")
 		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Post.TABLE, Post.TS),
 			Array(long2Long(ts)))
 	}
 
-	def addPost(ts : Long, message : String) {
+	def addPost(ts : Long, status : String, message : String) {
 		val cv = new ContentValues()
 		cv.put(Post.TS, ts.asInstanceOf[java.lang.Long])
+		cv.put(Post.STATUS, status)
 		cv.put(Post.MESSAGE, message)
-		getWritableDatabase().insertOrThrow(Post.TABLE, null, cv)
+		Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
+		getWritableDatabase().insertOrThrow(Post.TABLE, Post.MESSAGE, cv)
 		// filter against db bloat: 31 days in [ms]
-		trimPosts(ts - 31 * 24 * 3600 * 1000)
+		trimPosts(ts - 31L * 24 * 3600 * 1000)
 	}
 
 	def getPosts(limit : String) : Cursor = {
@@ -64,15 +68,16 @@ class StorageDatabase(context : Context) extends
 
 	def getPosts() : Cursor = getPosts(null)
 
-	def getLastPost() : (Long, String) = {
+	def getLastPost() : (Long, String, String) = {
 		val c = getPosts("1")
 		c.moveToFirst()
 		if (c.isAfterLast()) {
-			return (0, "")
+			return (0, "", "")
 		} else {
 			val tsidx = c.getColumnIndexOrThrow(Post.TS)
+			val statidx = c.getColumnIndexOrThrow(Post.STATUS)
 			val msgidx = c.getColumnIndexOrThrow(Post.MESSAGE)
-			return (c.getLong(tsidx), c.getString(msgidx))
+			return (c.getLong(tsidx), c.getString(statidx), c.getString(msgidx))
 		}
 	}
 }
