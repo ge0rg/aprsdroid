@@ -12,6 +12,7 @@ import _root_.android.util.Log
 import _root_.android.view.{Menu, MenuItem, View}
 import _root_.android.view.View.OnClickListener
 import _root_.android.widget.Button
+import _root_.android.widget.{ListView,SimpleCursorAdapter}
 import _root_.android.widget.TextView
 import _root_.android.widget.Toast
 import _root_.java.util.Date
@@ -21,11 +22,12 @@ class APRSdroid extends Activity with OnClickListener
 	val TAG = "APRSdroid"
 
 	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+	lazy val storage = StorageDatabase.open(this)
+	lazy val postcursor = storage.getPosts("10")
 
-	lazy val title = findViewById(R.id.title).asInstanceOf[TextView]
 	lazy val latlon = findViewById(R.id.latlon).asInstanceOf[TextView]
-	lazy val packet = findViewById(R.id.packet).asInstanceOf[TextView]
 	lazy val status = findViewById(R.id.status).asInstanceOf[TextView]
+	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
 
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
 	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
@@ -45,7 +47,8 @@ class APRSdroid extends Activity with OnClickListener
 			if (p != null) {
 				Log.d(TAG, "received " + p)
 				lastPost.packet = p
-				packet.setText(p)
+				postcursor.requery()
+				postlist.setSelection(0)
 			}
 			setupButtons(AprsService.running)
 		}
@@ -59,6 +62,13 @@ class APRSdroid extends Activity with OnClickListener
 		startstopBtn.setOnClickListener(this);
 
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
+
+		startManagingCursor(postcursor)
+		val la = new SimpleCursorAdapter(this, R.layout.listitem, 
+				postcursor,
+				Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
+				Array(R.id.listts, R.id.liststatus, R.id.listmessage))
+		postlist.setAdapter(la)
 	}
 
 	override def onResume() {
@@ -76,10 +86,9 @@ class APRSdroid extends Activity with OnClickListener
 			return
 		val callsign = prefs.getString("callsign", "")
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
-		title.setText(getString(R.string.app_name) + ": " + callssid)
+		setTitle(getString(R.string.app_name) + ": " + callssid)
 		latlon.setText(lastPost.latlon)
 		status.setText(lastPost.status)
-		packet.setText(lastPost.packet)
 		setupButtons(AprsService.running)
 	}
 
