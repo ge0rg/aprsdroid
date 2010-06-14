@@ -30,7 +30,7 @@ translate_po2xml() {
 		echo $lang:
 		dir=$RES-$lang
 		mkdir -p $dir
-		xml2po -a -l $lang -p $po $RES/strings.xml > $dir/strings.xml
+		xml2po -a -l $lang -p $po $RES/strings.xml | sed "s/'/\\\\'/g" > $dir/strings.xml
 	done
 	{
 		cat <<EOF
