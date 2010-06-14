@@ -18,7 +18,7 @@
 <string name="service_stop">APRS servisi durduruldu.</string>
 
 <!-- first run dialog -->
-<string name="fr_title">APRSdroid'e hoşgeldiniz!</string>
+<string name="fr_title">APRSdroid\'e hoşgeldiniz!</string>
 <string name="fr_text">Bu yazılım sadece geçerli bir lisansa sahip olan Amatör Telsiz Operatörleri tarafından kullanılabilir!\n\n Geçerli bir lisansa sahip olmaksızın kullanım durumunda hakkınızda kanuni soruşturma açılabilir!</string>
 
 <!-- about dialog -->
@@ -107,7 +107,7 @@
 <string name="p_distance_summary">Beacon göndermeden önce katedilecek yol (km, sadece zamana bağlı gönderi için 0 girin)</string>
 <string name="p_distance_entry">Güncelleme mesafesini girin [km]</string>
 <string name="p_speedbrg">Await speed &amp; bearing</string>
-<string name="p_speedbrg_summary">Daha hassas konum bilgisi almak için GPS'i daha uzun süre açık tut</string>
+<string name="p_speedbrg_summary">Daha hassas konum bilgisi almak için GPS\'i daha uzun süre açık tut</string>
 <string name="p_netloc">Ağ konum bilgisi kullan</string>
 <string name="p_netloc_summary">Konum bilgisini hücresel ağdan al</string>
 </resources>

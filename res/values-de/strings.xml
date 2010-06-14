@@ -13,7 +13,7 @@
 <string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
 
 <!-- AprsService -->
-<string name="service_once">APRS -Dienst Einzelmeldung.</string>
+<string name="service_once">APRS-Dienst Einzelmeldung.</string>
 <string name="service_start">APRS-Dienst gestartet. Aktualisierung alle %d Minuten, %d km.</string>
 <string name="service_stop">APRS-Dienst beendet.</string>
 
