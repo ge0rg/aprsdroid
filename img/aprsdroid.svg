@@ -15,10 +15,10 @@
    id="svg4844"
    version="1.1"
    inkscape:version="0.47 r22583"
-   sodipodi:docname="new.svg"
-   inkscape:export-filename="aprsdroid.png"
-   inkscape:export-xdpi="60"
-   inkscape:export-ydpi="60">
+   sodipodi:docname="aprsdroid.svg"
+   inkscape:export-filename="aprsdroid64.png"
+   inkscape:export-xdpi="80"
+   inkscape:export-ydpi="80">
   <defs
      id="defs4846">
     <linearGradient
@@ -245,13 +245,13 @@
        patternTransform="matrix(0.94117647,0,0,0.94117647,15,25)"
        id="pattern7285">
       <image
-         y="0"
-         x="0"
-         id="image7238"
-         height="34"
-         width="34"
          xlink:href="greyblue.png"
-         style="display:inline" />
+         style="display:inline"
+         width="34"
+         height="34"
+         id="image7238"
+         x="0"
+         y="0" />
     </pattern>
   </defs>
   <sodipodi:namedview
@@ -262,8 +262,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="10.083333"
-     inkscape:cx="36"
-     inkscape:cy="36"
+     inkscape:cx="35.126765"
+     inkscape:cy="35.801653"
      inkscape:current-layer="layer2"
      showgrid="true"
      inkscape:grid-bbox="true"
@@ -330,12 +330,12 @@
      style="display:inline">
     <path
        id="path3883-2-6-2"
-       style="fill:none;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;filter:url(#filter6960)"
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;filter:url(#filter6960)"
        d="m 57.805405,40.983784 -2.821621,0 m -47.967568,0 -2.8216214,0 M 31,67.789189 31,66.378378 M 31,17 31,14.178378 m 22.572973,26.805406 c 0,12.466709 -10.106264,22.572976 -22.572975,22.572976 -12.466708,0 -22.5729726,-10.106267 -22.5729726,-22.572976 0,-12.466708 10.1062646,-22.572972 22.5729726,-22.572972 12.466711,0 22.572975,10.106264 22.572975,22.572972 z"
        inkscape:export-xdpi="70.358307"
        inkscape:export-ydpi="70.358307" />
     <path
-       transform="matrix(1.1440155,0,0,1.1440155,-6.7525121,-3.6328204)"
+       transform="matrix(1.2131274,0,0,1.2131274,-9.033206,-6.3281859)"
        sodipodi:type="arc"
        style="fill:#000000;fill-opacity:1;stroke:none;display:inline;filter:url(#filter6964)"
        id="path6611-3"
@@ -392,7 +392,7 @@
        sodipodi:rx="29"
        sodipodi:ry="29"
        d="M 40.918583,13.748914 A 29,29 0 0 1 58.251086,31.081417"
-       transform="translate(0,-24)"
+       transform="translate(0.10041668,-24.100417)"
        sodipodi:start="5.0614548"
        sodipodi:end="5.9341195"
        sodipodi:open="true" />
