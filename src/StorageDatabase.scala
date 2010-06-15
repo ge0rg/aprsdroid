@@ -9,17 +9,22 @@ import _root_.android.util.Log
 
 object StorageDatabase {
 	val TAG = "StorageDatabase"
-	val DB_VERSION = 1
+	val DB_VERSION = 2
 	val DB_NAME = "storage.db"
 	object Post {
 		val TABLE = "posts"
 		val _ID = "_id"
 		val TS = "ts"
+		val TYPE = "type"
 		val STATUS = "status"
 		val MESSAGE = "message"
-		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s TEXT, %s TEXT)"
-					.format(TABLE, _ID, TS, STATUS, MESSAGE);
-		lazy val COLUMNS = Array(_ID, TS, "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS", STATUS, MESSAGE);
+		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s INTEGER, %s TEXT, %s TEXT)"
+					.format(TABLE, _ID, TS, TYPE, STATUS, MESSAGE);
+		lazy val COLUMNS = Array(_ID, TS, "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS", TYPE, STATUS, MESSAGE);
+
+		val TYPE_POST	= 0
+		val TYPE_INFO	= 1
+		val TYPE_ERROR	= 2
 	}
 
 	var singleton : StorageDatabase = null
@@ -42,7 +47,10 @@ class StorageDatabase(context : Context) extends
 		db.execSQL(Post.TABLE_CREATE);
 	}
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
-		throw new IllegalStateException("StorageDatabase.onUpgrade(%d, %d)".format(from, to))
+		if (from == 1 && to == 2) {
+			db.execSQL("ALTER TABLE %s ADD COLUMN %s".format(Post.TABLE, "TYPE INTEGER DEFAULT 0"))
+		} else
+			throw new IllegalStateException("StorageDatabase.onUpgrade(%d, %d)".format(from, to))
 	}
 
 	def trimPosts(ts : Long) {
@@ -51,9 +59,10 @@ class StorageDatabase(context : Context) extends
 			Array(long2Long(ts)))
 	}
 
-	def addPost(ts : Long, status : String, message : String) {
+	def addPost(ts : Long, posttype : Int, status : String, message : String) {
 		val cv = new ContentValues()
 		cv.put(Post.TS, ts.asInstanceOf[java.lang.Long])
+		cv.put(Post.TYPE, posttype.asInstanceOf[java.lang.Integer])
 		cv.put(Post.STATUS, status)
 		cv.put(Post.MESSAGE, message)
 		Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)

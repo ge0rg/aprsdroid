@@ -64,6 +64,7 @@ class AprsService extends Service with LocationListener {
 		
 	def showToast(msg : String) {
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+		db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_INFO, null, msg)
 		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, msg))
 	}
 
@@ -165,11 +166,11 @@ class AprsService extends Service with LocationListener {
 			val status = poster.update(hostname, login, packet)
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet)
-			db.addPost(System.currentTimeMillis(), status, packet)
+			db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_POST, status, packet)
 		} catch {
 			case e : Exception =>
 				i.putExtra(PACKET, e.getMessage())
-				db.addPost(System.currentTimeMillis(), "Error", e.getMessage())
+				db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
 		}
 		sendBroadcast(i)
 		if (singleShot) {
