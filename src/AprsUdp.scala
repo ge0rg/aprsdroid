@@ -17,7 +17,7 @@ class AprsUdp extends AprsIsUploader {
 		val pbytes = (login + "\r\n" + packet + "\r\n").getBytes()
 		socket.send(new DatagramPacket(pbytes, pbytes.length, addr, 8080))
 		Log.d(TAG, "update(): sent '" + packet + "' to " + host)
-		"packet sent"
+		"UDP OK"
 	}
 
 	def stop() {

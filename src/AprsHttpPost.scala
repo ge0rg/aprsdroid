@@ -22,7 +22,7 @@ class AprsHttpPost extends AprsIsUploader {
 		post.addHeader("Accept-Type", "text/plain");
 		val response = client.execute(post)
 		Log.d(TAG, "doPost(): " + response.getStatusLine())
-		response.getStatusLine().toString()
+		"HTTP " + response.getStatusLine().getReasonPhrase()
 	}
 
 	def update(host : String, login : String, packet : String) : String = {
