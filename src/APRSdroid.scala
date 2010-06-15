@@ -23,7 +23,7 @@ class APRSdroid extends Activity with OnClickListener
 
 	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 	lazy val storage = StorageDatabase.open(this)
-	lazy val postcursor = storage.getPosts("10")
+	lazy val postcursor = storage.getPosts("100")
 
 	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
 
