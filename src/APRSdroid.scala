@@ -25,8 +25,6 @@ class APRSdroid extends Activity with OnClickListener
 	lazy val storage = StorageDatabase.open(this)
 	lazy val postcursor = storage.getPosts("10")
 
-	lazy val latlon = findViewById(R.id.latlon).asInstanceOf[TextView]
-	lazy val status = findViewById(R.id.status).asInstanceOf[TextView]
 	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
 
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
@@ -35,21 +33,8 @@ class APRSdroid extends Activity with OnClickListener
 	lazy val locReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
 			val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
-			if (l != null)
-				onLocationChanged(l)
-			val s = i.getStringExtra(AprsService.STATUS)
-			if (s != null) {
-				val timestamp = new SimpleDateFormat("HH:mm:ss").format(new Date())
-				lastPost.status = timestamp + " " + s
-				status.setText(lastPost.status)
-			}
-			val p = i.getStringExtra(AprsService.PACKET)
-			if (p != null) {
-				Log.d(TAG, "received " + p)
-				lastPost.packet = p
-				postcursor.requery()
-				postlist.setSelection(0)
-			}
+			postcursor.requery()
+			postlist.setSelection(0)
 			setupButtons(AprsService.running)
 		}
 	}
@@ -68,6 +53,7 @@ class APRSdroid extends Activity with OnClickListener
 				postcursor,
 				Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
 				Array(R.id.listts, R.id.liststatus, R.id.listmessage))
+		la.setViewBinder(new PostViewBinder())
 		postlist.setAdapter(la)
 	}
 
@@ -87,8 +73,6 @@ class APRSdroid extends Activity with OnClickListener
 		val callsign = prefs.getString("callsign", "")
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
 		setTitle(getString(R.string.app_name) + ": " + callssid)
-		latlon.setText(lastPost.latlon)
-		status.setText(lastPost.status)
 		setupButtons(AprsService.running)
 	}
 
@@ -97,11 +81,6 @@ class APRSdroid extends Activity with OnClickListener
 		unregisterReceiver(locReceiver)
 	}
 
-	def onLocationChanged(location : Location) {
-		lastPost.latlon = getString(R.string.latlon_format).format(location.getLatitude,
-			location.getLongitude, location.getAccuracy.asInstanceOf[Int])
-		latlon.setText(lastPost.latlon)
-	}
 	def serviceIntent(action : String) : Intent = {
 		new Intent(action, null, this, classOf[AprsService])
 	}
@@ -198,15 +177,9 @@ class APRSdroid extends Activity with OnClickListener
 			}
 			setupButtons(!is_running)
 		case _ =>
-			status.setText(view.asInstanceOf[Button].getText)
+			//status.setText(view.asInstanceOf[Button].getText)
 		}
 	}
 
-}
-
-object lastPost {
-	var latlon = "<Coordinates>"
-	var status = "No events in the log"
-	var packet = ""
 }
 

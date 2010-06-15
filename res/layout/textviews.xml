@@ -1,23 +1,4 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android" >
-<TextView
-android:id="@+id/latlon"
-android:layout_width="fill_parent"
-android:layout_height="wrap_content"
-android:layout_marginTop="5dp"
-android:layout_marginBottom="5dp"
-android:text="Coordinates"
-android:textSize="22dp"
-android:gravity="center"
->
-</TextView>
-<TextView
-android:id="@+id/status"
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:text="status"
-android:textSize="18dp"
->
-</TextView>
 <ListView
 android:id="@+id/postlist"
 android:layout_width="fill_parent"
