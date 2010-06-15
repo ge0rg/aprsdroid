@@ -160,9 +160,9 @@ class AprsService extends Service with LocationListener {
 		try {
 			var poster : AprsIsUploader = null
 			if (prefs.getString("conntype", "http") == "udp")
-				poster = new AprsUdp()
+				poster = new UdpUploader()
 			else
-				poster = new AprsHttpPost()
+				poster = new HttpPostUploader()
 			val status = poster.update(hostname, login, packet)
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet)

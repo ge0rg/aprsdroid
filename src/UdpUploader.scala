@@ -5,7 +5,7 @@ import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 
-class AprsUdp extends AprsIsUploader {
+class UdpUploader extends AprsIsUploader {
 	val TAG = "AprsUdp"
 	lazy val socket = new DatagramSocket()
 

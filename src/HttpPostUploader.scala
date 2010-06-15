@@ -8,7 +8,7 @@ import _root_.org.apache.http.entity.StringEntity
 import _root_.org.apache.http.impl.client.DefaultHttpClient
 import _root_.org.apache.http.client.methods.HttpPost
 
-class AprsHttpPost extends AprsIsUploader {
+class HttpPostUploader extends AprsIsUploader {
 	val TAG = "AprsHttpPost"
 
 	def start() {
