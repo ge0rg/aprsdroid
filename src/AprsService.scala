@@ -27,7 +27,7 @@ class AprsService extends Service with LocationListener {
 
 	lazy val locMan = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
-	lazy val handler = new Handler()
+	val handler = new Handler()
 
 	lazy val db = StorageDatabase.open(this)
 
@@ -52,6 +52,8 @@ class AprsService extends Service with LocationListener {
 			poster = new UdpUploader(hostname, login)
 		case "http" =>
 			poster = new HttpPostUploader(hostname, login)
+		case "tcp" =>
+			poster = new TcpUploader(this, hostname, login)
 		case _ =>
 			stopSelf()
 		}
@@ -198,6 +200,12 @@ class AprsService extends Service with LocationListener {
 	def addPost(t : Int, status : String, message : String) {
 		db.addPost(System.currentTimeMillis(), t, status, message)
 		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, message))
+	}
+
+	def postSubmit(post : String) {
+		handler.post(new Runnable() {
+			def run() { addPost(StorageDatabase.Post.TYPE_INCMG, "incoming", post) }
+		})
 	}
 }
 

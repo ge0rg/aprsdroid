@@ -3,6 +3,7 @@
 	<string-array name="p_conntype_ev">
 		<item>udp</item>
 		<item>http</item>
+		<item>tcp</item>
 	</string-array>
 
 	<string-array name="p_ssid_ev">
