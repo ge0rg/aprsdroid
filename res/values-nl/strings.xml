@@ -45,6 +45,7 @@
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
 <string name="ad_trans">\n\nVertaling:</string>
+<string name="ad_homepage">Home Page</string>
 
 <!-- options menu -->
 <string name="about">Meer info</string>

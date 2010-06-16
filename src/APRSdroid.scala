@@ -5,6 +5,7 @@ import _root_.android.app.AlertDialog
 import _root_.android.content._
 import _root_.android.content.pm.PackageInfo;
 import _root_.android.location._
+import _root_.android.net.Uri
 import _root_.android.os.Bundle
 import _root_.android.preference.PreferenceManager
 import _root_.java.text.SimpleDateFormat
@@ -133,7 +134,15 @@ class APRSdroid extends Activity with OnClickListener
 			.setMessage(getString(R.string.ad_text) + translators)
 			.setIcon(android.R.drawable.ic_dialog_info)
 			.setPositiveButton(android.R.string.ok, null)
+			.setNeutralButton(R.string.ad_homepage, new HomePageOpener())
 			.create.show
+	}
+
+	class HomePageOpener extends DialogInterface.OnClickListener {
+		override def onClick(d : DialogInterface, which : Int) {
+			startActivity(new Intent(Intent.ACTION_VIEW,
+				Uri.parse("http://aprsdroid.org/")))
+		}
 	}
 
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {

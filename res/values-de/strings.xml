@@ -37,6 +37,7 @@ Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Prog
 \n\n
 http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="ad_trans">\n\nÜbersetzung:</string>
+<string name="ad_homepage">Home Page</string>
 
 <!-- options menu -->
 <string name="about">Über...</string>
