@@ -31,6 +31,8 @@ class AprsService extends Service with LocationListener {
 
 	lazy val db = StorageDatabase.open(this)
 
+	var poster : AprsIsUploader = null
+
 	var singleShot = false
 	var lastLoc : Location = null
 	var awaitingSpdCourse : Location = null
@@ -39,6 +41,21 @@ class AprsService extends Service with LocationListener {
 		Log.d(TAG, "onStart: " + i + ", " + startId);
 		super.onStart(i, startId)
 		running = true
+
+		var hostname = prefs.getString("host", null)
+		if (hostname == null || hostname == "")
+			hostname = getString(R.string.aprs_server);
+		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
+			prefs.getString("ssid", null), prefs.getString("passcode", null))
+		prefs.getString("conntype", "http") match {
+		case "udp" =>
+			poster = new UdpUploader(hostname, login)
+		case "http" =>
+			poster = new HttpPostUploader(hostname, login)
+		case _ =>
+			stopSelf()
+		}
+		poster.start()
 
 		val upd_int = prefs.getString("interval", "10").toInt
 		val upd_dist = prefs.getString("distance", "10").toInt
@@ -64,12 +81,12 @@ class AprsService extends Service with LocationListener {
 		
 	def showToast(msg : String) {
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
-		db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_INFO, null, msg)
-		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, msg))
+		addPost(StorageDatabase.Post.TYPE_INFO, null, msg)
 	}
 
 	override def onDestroy() {
 		locMan.removeUpdates(this);
+		poster.stop()
 		running = false
 		showToast(getString(R.string.service_stop))
 	}
@@ -147,23 +164,11 @@ class AprsService extends Service with LocationListener {
 		if (symbol.length != 2)
 			symbol = getString(R.string.default_symbol)
 		val status = prefs.getString("status", getString(R.string.default_status))
-
-		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
-			prefs.getString("ssid", null), prefs.getString("passcode", null))
 		val packet = AprsPacket.formatLoc(callssid, symbol, status, location)
-
-		var hostname = prefs.getString("host", null)
-		if (hostname == null || hostname == "")
-			hostname = getString(R.string.aprs_server);
 
 		Log.d(TAG, "packet: " + packet)
 		try {
-			var poster : AprsIsUploader = null
-			if (prefs.getString("conntype", "http") == "udp")
-				poster = new UdpUploader()
-			else
-				poster = new HttpPostUploader()
-			val status = poster.update(hostname, login, packet)
+			val status = poster.update(packet)
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet)
 			val prec_status = "%s (±%dm)".format(status, location.getAccuracy.asInstanceOf[Int])

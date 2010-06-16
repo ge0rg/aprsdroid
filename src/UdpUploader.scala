@@ -5,14 +5,14 @@ import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 
-class UdpUploader extends AprsIsUploader {
+class UdpUploader(host : String, login : String) extends AprsIsUploader(host, login) {
 	val TAG = "AprsUdp"
 	lazy val socket = new DatagramSocket()
 
 	def start() {
 	}
 
-	def update(host : String, login : String, packet : String) : String = {
+	def update(packet : String) : String = {
 		val (h, port) = AprsPacket.parseHostPort(host, 8080)
 		val addr = InetAddress.getByName(h)
 		val pbytes = (login + "\r\n" + packet + "\r\n").getBytes()

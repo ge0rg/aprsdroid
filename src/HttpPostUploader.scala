@@ -8,7 +8,7 @@ import _root_.org.apache.http.entity.StringEntity
 import _root_.org.apache.http.impl.client.DefaultHttpClient
 import _root_.org.apache.http.client.methods.HttpPost
 
-class HttpPostUploader extends AprsIsUploader {
+class HttpPostUploader(host : String, login : String) extends AprsIsUploader(host, login) {
 	val TAG = "AprsHttpPost"
 
 	def start() {
@@ -25,7 +25,7 @@ class HttpPostUploader extends AprsIsUploader {
 		"HTTP " + response.getStatusLine().getReasonPhrase()
 	}
 
-	def update(host : String, login : String, packet : String) : String = {
+	def update(packet : String) : String = {
 		var hostname = host
 		if (hostname.indexOf(":") == -1) {
 			hostname = "http://" + hostname + ":8080/"
