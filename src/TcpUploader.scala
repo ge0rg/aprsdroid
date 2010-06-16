@@ -7,7 +7,8 @@ import _root_.android.util.Log
 import _root_.java.io.{BufferedReader, InputStreamReader, OutputStreamWriter, PrintWriter}
 import _root_.java.net.{InetAddress, Socket}
 
-class TcpUploader(service : AprsService, hostname : String, login : String) extends AprsIsUploader(hostname, login) {
+class TcpUploader(service : AprsService, hostname : String, login : String, filter : String)
+			extends AprsIsUploader(hostname, login) {
 	val TAG = "TcpUploader"
 	var is_connected : Boolean = false
 	var socket : Socket = null
@@ -31,7 +32,7 @@ class TcpUploader(service : AprsService, hostname : String, login : String) exte
 				socket.getInputStream()))
 		writer = new PrintWriter(new OutputStreamWriter(
 				socket.getOutputStream()), true)
-		writer.println(login + " filter m/200")
+		writer.println(login + filter)
 		if (receiver != null) {
 			receiver.interrupt()
 			receiver.join()

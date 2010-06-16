@@ -78,6 +78,18 @@
     </PreferenceCategory>
                 
     <PreferenceCategory
+	android:title="@string/p__filter">
+
+        <EditTextPreference
+                android:key="filterdist"
+		android:inputType="number"
+		android:title="@string/p_filterdist"
+		android:summary="@string/p_filterdist_summary"
+		android:dialogTitle="@string/p_filterdist_entry" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
 	android:title="@string/p__network">
 
         <ListPreference

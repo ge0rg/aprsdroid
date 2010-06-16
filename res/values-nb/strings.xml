@@ -92,4 +92,8 @@
 <string name="p_speedbrg_summary">Hold GPS aktiv (på) for mer presis posisjonsdata</string>
 <string name="p_netloc">Bruk nettverkslokasjon</string>
 <string name="p_netloc_summary">Hent posisjon fra mobilnettverket (GSM)</string>
+<string name="p__filter">Incoming Filter (TCP only)</string>
+<string name="p_filterdist">Neighbor radius</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
 </resources>

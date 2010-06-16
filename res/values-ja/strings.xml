@@ -112,4 +112,8 @@
 <string name="p_speedbrg_summary">GPSの情報をより長時間かけて取得する</string>
 <string name="p_netloc">ネットワーク位置情報を使用</string>
 <string name="p_netloc_summary">携帯電話網から取得した位置情報を使用する</string>
+<string name="p__filter">Incoming Filter (TCP only)</string>
+<string name="p_filterdist">Neighbor radius</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
 </resources>

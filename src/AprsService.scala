@@ -47,13 +47,14 @@ class AprsService extends Service with LocationListener {
 			hostname = getString(R.string.aprs_server);
 		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
 			prefs.getString("ssid", null), prefs.getString("passcode", null))
+		val filterdist = prefs.getString("filterdist", "10").toInt
 		prefs.getString("conntype", "http") match {
 		case "udp" =>
 			poster = new UdpUploader(hostname, login)
 		case "http" =>
 			poster = new HttpPostUploader(hostname, login)
 		case "tcp" =>
-			poster = new TcpUploader(this, hostname, login)
+			poster = new TcpUploader(this, hostname, login, " filter m/%d".format(filterdist))
 		case _ =>
 			stopSelf()
 		}

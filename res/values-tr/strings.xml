@@ -112,4 +112,8 @@
 <string name="p_speedbrg_summary">Daha hassas konum bilgisi almak için GPS\'i daha uzun süre açık tut</string>
 <string name="p_netloc">Ağ konum bilgisi kullan</string>
 <string name="p_netloc_summary">Konum bilgisini hücresel ağdan al</string>
+<string name="p__filter">Incoming Filter (TCP only)</string>
+<string name="p_filterdist">Neighbor radius</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
 </resources>

@@ -104,4 +104,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_speedbrg_summary">GPS für präzisere Daten länger aktivieren</string>
 <string name="p_netloc">Netzwerk-Lokalisierung</string>
 <string name="p_netloc_summary">Position über drahtloses Netzwerk beziehen</string>
+<string name="p__filter">Incoming Filter (TCP only)</string>
+<string name="p_filterdist">Neighbor radius</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
 </resources>
