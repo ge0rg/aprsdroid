@@ -172,11 +172,11 @@ class AprsService extends Service with LocationListener {
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet)
 			val prec_status = "%s (±%dm)".format(status, location.getAccuracy.asInstanceOf[Int])
-			db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_POST, prec_status, packet)
+			addPost(StorageDatabase.Post.TYPE_POST, prec_status, packet)
 		} catch {
 			case e : Exception =>
 				i.putExtra(PACKET, e.getMessage())
-				db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
+				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
 		}
 		sendBroadcast(i)
 		if (singleShot) {
@@ -195,5 +195,9 @@ class AprsService extends Service with LocationListener {
 		Log.d(TAG, "onStatusChanged: " + provider)
 	}
 
+	def addPost(t : Int, status : String, message : String) {
+		db.addPost(System.currentTimeMillis(), t, status, message)
+		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, message))
+	}
 }
 
