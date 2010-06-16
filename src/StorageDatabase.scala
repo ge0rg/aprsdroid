@@ -25,6 +25,9 @@ object StorageDatabase {
 		val TYPE_POST	= 0
 		val TYPE_INFO	= 1
 		val TYPE_ERROR	= 2
+		val TYPE_INCMG	= 3
+		val COLUMN_TYPE		= 3
+		val COLUMN_MESSAGE	= 5
 	}
 
 	var singleton : StorageDatabase = null
