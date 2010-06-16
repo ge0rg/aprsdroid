@@ -27,7 +27,7 @@ object AprsPacket {
 		val minFrac = minDec % 100
 		(deg, min, minFrac, letter)
 	}
-		
+
 	def formatLat(c : Double) : String = {
 		val (deg, min, minFrac, letter) = splitCoord(c)
 		"%02d%02d.%02d%c".format(deg, min, minFrac, "NS"(letter))
@@ -75,5 +75,13 @@ object AprsPacket {
 
 	def formatLogin(callsign : String, ssid : String, passcode : String) : String = {
 		"user " + formatCallSsid(callsign, ssid) + " pass " + passcode + " vers APRSdroid 0.1"
+	}
+
+	def parseHostPort(hostport : String, defaultport : Int) : (String, Int) = {
+		val splits = hostport.split(":")
+		if (splits.length == 2)
+			return (splits(0), splits(1).toInt)
+		else
+			return (splits(0), defaultport)
 	}
 }
