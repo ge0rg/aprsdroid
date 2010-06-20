@@ -10,11 +10,7 @@ import _root_.java.net.{InetAddress, Socket}
 class TcpUploader(service : AprsService, hostname : String, login : String, filter : String)
 			extends AprsIsUploader(hostname, login) {
 	val TAG = "TcpUploader"
-	var is_connected : Boolean = false
-	var socket : Socket = null
-	var reader : BufferedReader = null
-	var receiver : Thread = null
-	var writer : PrintWriter = null
+	var conn : TcpSocketThread = null
 
 	createConnection()
 
@@ -24,52 +20,80 @@ class TcpUploader(service : AprsService, hostname : String, login : String, filt
 	def createConnection() {
 		val (host, port) = AprsPacket.parseHostPort(hostname, 14580)
 		Log.d(TAG, "TcpUploader.createConnection: " + host + ":" + port)
-		if (socket != null)
-			socket.close()
-		socket = new Socket(host, port)
-		socket.setKeepAlive(true)
-		reader = new BufferedReader(new InputStreamReader(
-				socket.getInputStream()))
-		writer = new PrintWriter(new OutputStreamWriter(
-				socket.getOutputStream()), true)
-		writer.println(login + filter)
-		if (receiver != null) {
-			receiver.interrupt()
-			receiver.join()
-		}
-
-		receiver = new TcpReceiver(service, reader)
-		receiver.start()
+		conn = new TcpSocketThread(host, port)
+		conn.start()
 	}
 
 	def update(packet : String) : String = {
 		Log.d(TAG, "TcpUploader.update: " + packet)
-		writer.println(packet)
-		"TCP OK"
+		conn.update(packet)
 	}
 
 	def stop() {
-		socket.close()
-		reader.close()
-		receiver.join()
-		receiver = null
-		socket = null
+		conn.shutdown()
+		conn.join()
 	}
 
-	class TcpReceiver(service : AprsService, reader : BufferedReader) extends Thread("APRSdroid TcpReceiver") {
-		override def run() {
-			Log.d(TAG, "TcpReceiver.run()")
-			try {
-				var line : String = null
-				while ({ line = reader.readLine(); line != null }) {
-					Log.d(TAG, "recv: " + line)
-					if (line(0) != '#')
-						service.postSubmit(line)
-				}
-			} catch {
-				case e : Exception => Log.d(TAG, "Exception" + e)
+	class TcpSocketThread(host : String, port : Int)
+			extends Thread("APRSdroid TCP connection") {
+		val TAG = "TcpSocketThread"
+		var running = false
+		var socket : Socket = null
+		var reader : BufferedReader = null
+		var writer : PrintWriter = null
+
+		def init_socket() {
+			if (socket != null) {
+				shutdown()
 			}
-			Log.d(TAG, "TcpReceiver.terminate()")
+			socket = new Socket(host, port)
+			socket.setKeepAlive(true)
+			reader = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()))
+			writer = new PrintWriter(new OutputStreamWriter(
+					socket.getOutputStream()), true)
+			writer.println(login + filter)
+			running = true
+		}
+
+		override def run() {
+			Log.d(TAG, "TcpSocketThread.run()")
+			init_socket()
+			while (running) {
+				try {
+					if (!socket.isConnected()) {
+						Log.d(TAG, "reconnecting in 30s")
+						Thread.sleep(30*1000)
+						init_socket()
+					}
+					Log.d(TAG, "waiting for data...")
+					var line : String = null
+					while ({ line = reader.readLine(); line != null }) {
+						Log.d(TAG, "recv: " + line)
+						if (line(0) != '#')
+							service.postSubmit(line)
+					}
+				} catch {
+					case e : Exception => Log.d(TAG, "Exception" + e)
+				}
+			}
+			Log.d(TAG, "TcpSocketThread.terminate()")
+		}
+
+		def update(packet : String) : String = {
+			if (socket != null && socket.isConnected()) {
+				//writer.println(packet)
+				"TCP ignored"
+			} else "TCP disconnected"
+		}
+
+		def shutdown() {
+			this.synchronized {
+				running = false
+				socket.shutdownInput()
+				socket.shutdownOutput()
+				socket.close()
+			}
 		}
 	}
 }
