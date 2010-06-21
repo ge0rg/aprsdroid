@@ -43,17 +43,21 @@ class TcpUploader(service : AprsService, hostname : String, login : String, filt
 		var writer : PrintWriter = null
 
 		def init_socket() {
-			if (socket != null) {
-				shutdown()
+			Log.d(TAG, "init_socket()")
+			this.synchronized {
+				if (socket != null) {
+					shutdown()
+				}
+				socket = new Socket(host, port)
+				socket.setKeepAlive(true)
+				reader = new BufferedReader(new InputStreamReader(
+						socket.getInputStream()))
+				writer = new PrintWriter(new OutputStreamWriter(
+						socket.getOutputStream()), true)
+				writer.println(login + filter)
+				running = true
 			}
-			socket = new Socket(host, port)
-			socket.setKeepAlive(true)
-			reader = new BufferedReader(new InputStreamReader(
-					socket.getInputStream()))
-			writer = new PrintWriter(new OutputStreamWriter(
-					socket.getOutputStream()), true)
-			writer.println(login + filter)
-			running = true
+			Log.d(TAG, "init_socket() done")
 		}
 
 		override def run() {
