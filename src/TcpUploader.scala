@@ -82,8 +82,8 @@ class TcpUploader(service : AprsService, hostname : String, login : String, filt
 
 		def update(packet : String) : String = {
 			if (socket != null && socket.isConnected()) {
-				//writer.println(packet)
-				"TCP ignored"
+				writer.println(packet)
+				"TCP OK"
 			} else "TCP disconnected"
 		}
 
