@@ -31,6 +31,7 @@ class TcpUploader(service : AprsService, hostname : String, login : String, filt
 
 	def stop() {
 		conn.shutdown()
+		conn.interrupt()
 		conn.join()
 	}
 
@@ -62,20 +63,20 @@ class TcpUploader(service : AprsService, hostname : String, login : String, filt
 
 		override def run() {
 			Log.d(TAG, "TcpSocketThread.run()")
-			init_socket()
+			catchLog("init_socket", init_socket)
 			while (running) {
 				try {
-					if (!socket.isConnected()) {
-						Log.d(TAG, "reconnecting in 30s")
-						Thread.sleep(30*1000)
-						init_socket()
-					}
 					Log.d(TAG, "waiting for data...")
 					var line : String = null
-					while ({ line = reader.readLine(); line != null }) {
+					while (running && { line = reader.readLine(); line != null }) {
 						Log.d(TAG, "recv: " + line)
 						if (line(0) != '#')
 							service.postSubmit(line)
+					}
+					if (running && (line == null || !socket.isConnected())) {
+						Log.d(TAG, "reconnecting in 30s")
+						Thread.sleep(30*1000)
+						init_socket()
 					}
 				} catch {
 					case e : Exception => Log.d(TAG, "Exception" + e)
@@ -91,12 +92,22 @@ class TcpUploader(service : AprsService, hostname : String, login : String, filt
 			} else "TCP disconnected"
 		}
 
+		def catchLog(tag : String, fun : ()=>Unit) {
+			Log.d(TAG, "catchLog(" + tag + ")")
+			try {
+				fun()
+			} catch {
+			case e : Exception => Log.d(TAG, tag + " execption: " + e)
+			}
+		}
+
 		def shutdown() {
+			Log.d(TAG, "shutdown()")
 			this.synchronized {
 				running = false
-				socket.shutdownInput()
-				socket.shutdownOutput()
-				socket.close()
+				catchLog("shutdownInput", socket.shutdownInput)
+				catchLog("shutdownOutput", socket.shutdownOutput)
+				catchLog("socket.close", socket.close)
 			}
 		}
 	}
