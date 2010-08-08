@@ -132,7 +132,7 @@ class AprsService extends Service with LocationListener {
 			if (awaitingSpdCourse == null)
 				speedBearingStart()
 			awaitingSpdCourse = location
-			false
+			return false
 		} else if (awaitingSpdCourse != null && hasSpdBrg) {
 			speedBearingEnd(false)
 		}
