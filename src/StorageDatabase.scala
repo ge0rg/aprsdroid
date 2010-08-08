@@ -28,6 +28,8 @@ object StorageDatabase {
 		val TYPE_INCMG	= 3
 		val COLUMN_TYPE		= 3
 		val COLUMN_MESSAGE	= 5
+
+		var trimCounter	= 0
 	}
 
 	var singleton : StorageDatabase = null
@@ -62,6 +64,9 @@ class StorageDatabase(context : Context) extends
 			Array(long2Long(ts)))
 	}
 
+	// default trim filter: 31 days in [ms]
+	def trimPosts() : Unit = trimPosts(System.currentTimeMillis - 31L * 24 * 3600 * 1000)
+
 	def addPost(ts : Long, posttype : Int, status : String, message : String) {
 		val cv = new ContentValues()
 		cv.put(Post.TS, ts.asInstanceOf[java.lang.Long])
@@ -70,8 +75,10 @@ class StorageDatabase(context : Context) extends
 		cv.put(Post.MESSAGE, message)
 		Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
 		getWritableDatabase().insertOrThrow(Post.TABLE, Post.MESSAGE, cv)
-		// filter against db bloat: 31 days in [ms]
-		trimPosts(ts - 31L * 24 * 3600 * 1000)
+		if (Post.trimCounter == 0) {
+			trimPosts()
+			Post.trimCounter = 100
+		} else Post.trimCounter -= 1
 	}
 
 	def getPosts(limit : String) : Cursor = {
