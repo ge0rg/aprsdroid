@@ -17,6 +17,12 @@ object AprsService {
 	val PACKET = "de.duenndns.aprsdroid.PACKET"
 
 	var running = false
+
+	implicit def block2runnable(block: => Unit) =
+		new Runnable() {
+			def run() { block }
+		}
+
 }
 
 class AprsService extends Service with LocationListener {
@@ -100,9 +106,7 @@ class AprsService extends Service with LocationListener {
 		locMan.removeUpdates(this);
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			0, 0, this)
-		handler.postDelayed(new Runnable() {
-			def run() { speedBearingEnd(true) }
-		}, 30000)
+		handler.postDelayed({ speedBearingEnd(true) }, 30000)
 	}
 
 	def speedBearingEnd(post : Boolean) {
@@ -204,9 +208,7 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def postSubmit(post : String) {
-		handler.post(new Runnable() {
-			def run() { addPost(StorageDatabase.Post.TYPE_INCMG, "incoming", post) }
-		})
+		handler.post { addPost(StorageDatabase.Post.TYPE_INCMG, "incoming", post) }
 	}
 }
 
