@@ -52,7 +52,7 @@ class TcpUploader(service : AprsService, hostname : String, login : String, filt
 				socket = new Socket(host, port)
 				socket.setKeepAlive(true)
 				reader = new BufferedReader(new InputStreamReader(
-						socket.getInputStream()))
+						socket.getInputStream()), 256)
 				writer = new PrintWriter(new OutputStreamWriter(
 						socket.getOutputStream()), true)
 				writer.println(login + filter)
