@@ -217,6 +217,7 @@
 	    -outjars ${out-folder}/classes.min.jar
 	    -libraryjars ${android-jar}
 	    -dontwarn scala.**
+	    -dontnote scala.**
 	    -dontobfuscate
 	    -printusage ${out-folder}/proguard.usage
 	    -keep public class * extends android.app.Activity
