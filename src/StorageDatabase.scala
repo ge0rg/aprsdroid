@@ -81,9 +81,13 @@ class StorageDatabase(context : Context) extends
 		} else Post.trimCounter -= 1
 	}
 
-	def getPosts(limit : String) : Cursor = {
-		getWritableDatabase().query(Post.TABLE, Post.COLUMNS, null, null, null, null, "_ID DESC", limit)
+	def getPosts(sel : String, selArgs : Array[String], limit : String) : Cursor = {
+		getWritableDatabase().query(Post.TABLE, Post.COLUMNS,
+			sel, selArgs,
+			null, null, "_ID DESC", limit)
 	}
+
+	def getPosts(limit : String) : Cursor = getPosts(null, null, limit)
 
 	def getPosts() : Cursor = getPosts(null)
 
