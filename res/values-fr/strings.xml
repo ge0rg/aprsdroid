@@ -8,7 +8,7 @@
 <string name="mininterval">Minimum update time is 1 minute!</string>
 <string name="singlelog">Single Shot</string>
 <string name="startlog">Start Tracking</string>
-<string name="stoplog">Stop Tracking</string>
+<string name="stoplog">Arret du Traçage</string>
 
 <string name="latlon_format">lat: %1.4f  lon: %1.4f (±%dm)</string>
 
@@ -50,7 +50,7 @@
 <string name="ad_homepage">Home Page</string>
 
 <!-- options menu -->
-<string name="about">About</string>
+<string name="about">À propos</string>
 <string name="quit">Quitter</string>
 <string name="preferences">Préférences</string>
 <!-- preferences -->
@@ -70,9 +70,9 @@
 	<item>(none)</item>
 	<item>1: Digipeater (home/WX)</item>
 	<item>2: Digipeater 70cm</item>
-	<item>3: Digipeater</item>
+	<item>relais numérique</item>
 	<item>4: HF to VHF gateway</item>
-	<item>5: IGate (not home station)</item>
+	<item>passerelle internet (pas pour les stations fixe)</item>
 	<item>Satellite</item>
 	<item>7: Handheld radio</item>
 	<item>8: Boat / ship</item>

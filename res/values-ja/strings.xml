@@ -44,7 +44,7 @@
 	\n\n
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
-<string name="ad_trans">\n\nTranslation:</string>
+<string name="ad_trans">翻訳:</string>
 <string name="ad_homepage">Home Page</string>
 
 <!-- options menu -->
@@ -54,7 +54,7 @@
 <!-- preferences -->
 <string name="p__ham">無線局情報設定</string>
 <string name="p_callsign">コールサイン</string>
-<string name="p_callsign_summary">あなたのアマチュア無線コールサイン</string>
+<string name="p_callsign_summary">あなたのアマチュア無線局コールサイン</string>
 <string name="p_callsign_entry">コールサインを入力</string>
 <string name="p_passcode">パスコード</string>
 <string name="p_passcode_summary">APRS-IS認証パスコード</string>
@@ -104,10 +104,10 @@
 <string name="p__location">位置情報設定</string>
 <string name="p_interval">最小更新時間</string>
 <string name="p_interval_summary">ビーコンを送信する間隔</string>
-<string name="p_interval_entry">更新する間隔（分）を入力</string>
+<string name="p_interval_entry">更新する間隔[分]を入力</string>
 <string name="p_distance">最小更新距離</string>
 <string name="p_distance_summary">ビーコンを送信する距離 (0で時間更新のみ)</string>
-<string name="p_distance_entry">更新距離[km]を入力</string>
+<string name="p_distance_entry">更新する距離[km]を入力</string>
 <string name="p_speedbrg">速度と進路の取得</string>
 <string name="p_speedbrg_summary">GPSの情報をより長時間かけて取得する</string>
 <string name="p_netloc">ネットワーク位置情報を使用</string>
