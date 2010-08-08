@@ -185,7 +185,6 @@ class AprsService extends Service with LocationListener {
 				i.putExtra(PACKET, e.getMessage())
 				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
 		}
-		sendBroadcast(i)
 		if (singleShot) {
 			singleShot = false
 			stopSelf()

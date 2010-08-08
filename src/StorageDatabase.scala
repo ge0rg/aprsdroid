@@ -82,7 +82,7 @@ class StorageDatabase(context : Context) extends
 	}
 
 	def getPosts(limit : String) : Cursor = {
-		getWritableDatabase().query(Post.TABLE, Post.COLUMNS, null, null, null, null, "TS DESC", limit)
+		getWritableDatabase().query(Post.TABLE, Post.COLUMNS, null, null, null, null, "_ID DESC", limit)
 	}
 
 	def getPosts() : Cursor = getPosts(null)
