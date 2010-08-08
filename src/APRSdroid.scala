@@ -34,8 +34,8 @@ class APRSdroid extends Activity with OnClickListener
 	lazy val locReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
 			val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
-			postcursor.requery()
-			postlist.setSelection(0)
+			Benchmark("requery") { postcursor.requery() }
+			//postlist.setSelection(0)
 			setupButtons(AprsService.running)
 		}
 	}
