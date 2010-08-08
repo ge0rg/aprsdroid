@@ -6,6 +6,7 @@ import _root_.android.database.sqlite.SQLiteOpenHelper
 import _root_.android.database.sqlite.SQLiteDatabase
 import _root_.android.database.Cursor
 import _root_.android.util.Log
+import _root_.android.widget.FilterQueryProvider
 
 object StorageDatabase {
 	val TAG = "StorageDatabase"
@@ -101,6 +102,16 @@ class StorageDatabase(context : Context) extends
 			val statidx = c.getColumnIndexOrThrow(Post.STATUS)
 			val msgidx = c.getColumnIndexOrThrow(Post.MESSAGE)
 			return (c.getLong(tsidx), c.getString(statidx), c.getString(msgidx))
+		}
+	}
+
+	def getPostFilter(limit : String) : FilterQueryProvider = {
+		new FilterQueryProvider() {
+			def runQuery(constraint : CharSequence) : Cursor = {
+				getPosts("MESSAGE LIKE ?", Array("%%%s%%".format(constraint)),
+					limit)
+			}
+
 		}
 	}
 }

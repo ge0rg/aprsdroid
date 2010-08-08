@@ -55,7 +55,9 @@ class APRSdroid extends Activity with OnClickListener
 				Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
 				Array(R.id.listts, R.id.liststatus, R.id.listmessage))
 		la.setViewBinder(new PostViewBinder())
+		la.setFilterQueryProvider(storage.getPostFilter("100"))
 		postlist.setAdapter(la)
+		postlist.setTextFilterEnabled(true)
 	}
 
 	override def onResume() {
