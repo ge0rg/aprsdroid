@@ -26,7 +26,8 @@ translate_po2xml() {
 	fi
 	for po in $PO*.po; do
 		lang=${po##$PO}
-		lang=${lang%%.po}
+		lang=${lang%%.po}	# strip .po
+		lang=${lang/_/-r}	# fix up lang_Locale -> lang-rLocale
 		echo $lang:
 		dir=$RES-$lang
 		mkdir -p $dir
