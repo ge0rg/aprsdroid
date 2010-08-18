@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">在APRSdroid中，你需要先配置好你的呼号和口令！</string>
+<string name="wrongpasscode">口令和呼号不匹配！</string>
+<string name="mininterval">最小的更新时间是1分钟！</string>
+<string name="singlelog">发送一次</string>
+<string name="startlog">开始记录路径</string>
+<string name="stoplog">停止记录路径</string>
+
+<string name="latlon_format">纬度：%1.4f 经度： %1.4f (±%dm)</string>
+
+<!-- AprsService -->
+<string name="service_once">APRS 服务单次启动</string>
+<string name="service_start">APRS 服务启动。每 %d 分钟， %d 公里更新一次。</string>
+<string name="service_stop">APRS 服务停止。</string>
+
+<!-- first run dialog -->
+<string name="fr_title">欢迎使用 APRSdroid！</string>
+<string name="fr_text">本程序仅供有执照的HAM操作人员使用！\n\n 如果你没有执照并使用，可能会被起诉。</string>
+
+<!-- about dialog -->
+<string name="ad_title">关于 APRSdroid v%s</string>
+<string name="ad_text">版权声明，Copyright © 2009-2010 Georg Lukas (DO1GL)\n http://aprsdroid.org/ \n\n APRS® Bob Bruninga (WB4APR) 的注册商标。 \n\n 本程序是自由软件；你可以再发布并且/或者在 Free Software Foundation 的 GNU General Public License 条款下修改它并发布； 包括版本2，或者任何更新的版本。 \n\n 本程序发布是希望它能成为有用的东西，但不包含任何形式的保障；详情请查阅 GNU General Public License。 \n\n 你应该有一分 GNU General Public License; 如果没有，写信给 Free Software Foundation, Inc., 地址是 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_trans">\n\n翻译</string>
+<string name="ad_homepage">Home Page</string>
+
+<!-- options menu -->
+<string name="about">关于</string>
+<string name="quit">退出</string>
+<string name="preferences">偏好设置</string>
+<!-- preferences -->
+<string name="p__ham">业余无线电</string>
+<string name="p_callsign">呼号</string>
+<string name="p_callsign_summary">你的业余无线电呼号</string>
+<string name="p_callsign_entry">输入你的呼号</string>
+<string name="p_passcode">口令</string>
+<string name="p_passcode_summary">ARPS-IS 验证口令</string>
+<string name="p_passcode_entry">请输入口令</string>
+<string name="p__aprs">APRS 设置</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">基站类型 (1..15; 9=移动台, 10=APRS-IS)</string>
+<string name="p_ssid_entry">输入你的基站的SSID</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(无)</item>
+	<item>数据中继 (home/WX)</item>
+	<item>数据中继 70cm</item>
+	<item>数据中继</item>
+	<item>HF / VHF 网关</item>
+	<item>IGate （非主基站）</item>
+	<item>卫星</item>
+	<item>手持无线电台</item>
+	<item>舰船</item>
+	<item>移动基站</item>
+	<item>APRS-IS (非无线电台)</item>
+	<item>气球 / APRStouch-tone</item>
+	<item>便携设备 （膝上或者营地站）</item>
+	<item>...</item>
+	<item>货运车辆</item>
+	<item>HF 基站</item>
+</string-array>
+<string name="p_symbol">APRS 符号</string>
+<string name="p_symbol_summary">你用作在地图中显示的符号</string>
+<string name="p_symbol_entry">输入表示双角色的符号</string>
+<string name="p_status">状态信息</string>
+<string name="p_status_summary">匹配后的文本</string>
+<string name="p_status_entry">输入你的状态信息</string>
+<string name="p__network">网络</string>
+<string name="p_conntype">连接协议</string>
+<string name="p_conntype_summary">选择 UDP (端口8080) 或者 HTTP POST (URL)</string>
+<string name="p_conntype_entry">选择连接协议</string>
+<!-- array of connection types -->
+<string-array name="p_conntype_e">
+	<item>UDP 端口 8080</item>
+	<item>HTTP POST</item>
+	<item>TCP connection</item>
+</string-array>
+<string name="p_host">服务器</string>
+<string name="p_host_summary">APRS-IS 服务器 (端口 8080) 发送信标</string>
+<string name="p_host_entry">输入 APRS-IS 服务器的主机名</string>
+<string name="p__location">位置设置</string>
+<string name="p_interval">最小更新时间</string>
+<string name="p_interval_summary">分钟信标传送间隔</string>
+<string name="p_interval_entry">输入更新间隔［分钟］</string>
+<string name="p_distance">最小更新距离</string>
+<string name="p_distance_summary">公里信标传送间隔（设置为0则以时间设置为准）</string>
+<string name="p_distance_entry">输入更新距离［公里］</string>
+<string name="p_speedbrg">等待速度 &amp; 方位</string>
+<string name="p_speedbrg_summary">保持 GPS 开启以获得更多预设数据</string>
+<string name="p_netloc">使用网络位置</string>
+<string name="p_netloc_summary">从移动电话网络中请求位置信息</string>
+<string name="p__filter">Incoming Filter (TCP only)</string>
+<string name="p_filterdist">Neighbor radius</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+</resources>
