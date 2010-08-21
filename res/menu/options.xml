@@ -1,11 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@+id/preferences"
 		android:title="@string/preferences"
+		android:alphabeticShortcut="p"
 		android:icon="@android:drawable/ic_menu_preferences" />
 	<item android:id="@+id/about"
 		android:title="@string/about"
+		android:alphabeticShortcut="a"
 		android:icon="@android:drawable/ic_menu_info_details" />
 	<item android:id="@+id/quit"
 		android:title="@string/quit"
+		android:alphabeticShortcut="q"
 		android:icon="@android:drawable/ic_menu_close_clear_cancel" />
 </menu>
