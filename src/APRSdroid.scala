@@ -10,7 +10,7 @@ import _root_.android.os.Bundle
 import _root_.android.preference.PreferenceManager
 import _root_.java.text.SimpleDateFormat
 import _root_.android.util.Log
-import _root_.android.view.{Menu, MenuItem, View}
+import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
 import _root_.android.view.View.OnClickListener
 import _root_.android.widget.Button
 import _root_.android.widget.{ListView,SimpleCursorAdapter}
@@ -130,10 +130,10 @@ class APRSdroid extends Activity with OnClickListener
 	def aboutDialog() {
 		val pi = getPackageManager().getPackageInfo(getPackageName(), 0)
 		val title = getString(R.string.ad_title, pi.versionName);
-		val translators = getString(R.string.ad_trans) +
-				  getString(R.string.translation_credits)
+		val inflater = getLayoutInflater()
+		val aboutview = inflater.inflate(R.layout.aboutview, null)
 		new AlertDialog.Builder(this).setTitle(title)
-			.setMessage(getString(R.string.ad_text) + translators)
+			.setView(aboutview)
 			.setIcon(android.R.drawable.ic_dialog_info)
 			.setPositiveButton(android.R.string.ok, null)
 			.setNeutralButton(R.string.ad_homepage, new HomePageOpener())
