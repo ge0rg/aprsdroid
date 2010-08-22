@@ -92,18 +92,22 @@ class StorageDatabase(context : Context) extends
 
 	def getPosts() : Cursor = getPosts(null)
 
-	def getLastPost() : (Long, String, String) = {
-		val c = getPosts("1")
+	def getSinglePost(sel : String, selArgs : Array[String]) : (Long, String, String) = {
+		val c = getPosts(sel, selArgs, "1")
 		c.moveToFirst()
 		if (c.isAfterLast()) {
+			c.close()
 			return (0, "", "")
 		} else {
 			val tsidx = c.getColumnIndexOrThrow(Post.TS)
 			val statidx = c.getColumnIndexOrThrow(Post.STATUS)
 			val msgidx = c.getColumnIndexOrThrow(Post.MESSAGE)
-			return (c.getLong(tsidx), c.getString(statidx), c.getString(msgidx))
+			val (ts, status, message) = (c.getLong(tsidx), c.getString(statidx), c.getString(msgidx))
+			c.close()
+			return (ts, status, message)
 		}
 	}
+	def getLastPost() = getSinglePost(null, null)
 
 	def getPostFilter(limit : String) : FilterQueryProvider = {
 		new FilterQueryProvider() {
