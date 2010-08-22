@@ -48,12 +48,39 @@ class AprsService extends Service with LocationListener {
 		super.onStart(i, startId)
 		running = true
 
+		// get update interval and distance
+		val upd_int = prefs.getString("interval", "10").toInt
+		val upd_dist = prefs.getString("distance", "10").toInt
+
+		// display notification (even though we are not actually started yet,
+		// but we need this to prevent error message reordering)
+		awaitingSpdCourse = null
+		if (i.getAction() == SERVICE_ONCE) {
+			lastLoc = null // for singleshot mode, ignore last post
+			singleShot = true
+			showToast(getString(R.string.service_once))
+		} else
+			showToast(getString(R.string.service_start).format(upd_int, upd_dist))
+
+		// the poster needs to be running before location updates come in
+		startPoster()
+
+		if (prefs.getBoolean("netloc", false)) {
+			locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
+				upd_int * 60000, upd_dist * 1000, this)
+		}
+		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+			upd_int * 60000, upd_dist * 1000, this)
+	}
+
+	def startPoster() {
 		var hostname = prefs.getString("host", null)
 		if (hostname == null || hostname == "")
 			hostname = getString(R.string.aprs_server);
 		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
 			prefs.getString("ssid", null), prefs.getString("passcode", null))
 		val filterdist = prefs.getString("filterdist", "10").toInt
+
 		prefs.getString("conntype", "http") match {
 		case "udp" =>
 			poster = new UdpUploader(hostname, login)
@@ -65,23 +92,6 @@ class AprsService extends Service with LocationListener {
 			stopSelf()
 		}
 		poster.start()
-
-		val upd_int = prefs.getString("interval", "10").toInt
-		val upd_dist = prefs.getString("distance", "10").toInt
-		if (prefs.getBoolean("netloc", false)) {
-			locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-				upd_int * 60000, upd_dist * 1000, this)
-		}
-		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-			upd_int * 60000, upd_dist * 1000, this)
-
-		awaitingSpdCourse = null
-		if (i.getAction() == SERVICE_ONCE) {
-			lastLoc = null // for singleshot mode, ignore last post
-			singleShot = true
-			showToast(getString(R.string.service_once))
-		} else
-			showToast(getString(R.string.service_start).format(upd_int, upd_dist))
 	}
 
 	override def onBind(i : Intent) : IBinder = null
