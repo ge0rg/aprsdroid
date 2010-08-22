@@ -209,5 +209,12 @@ class AprsService extends Service with LocationListener {
 	def postSubmit(post : String) {
 		handler.post { addPost(StorageDatabase.Post.TYPE_INCMG, "incoming", post) }
 	}
+
+	def postAbort(post : String) {
+		handler.post {
+			addPost(StorageDatabase.Post.TYPE_ERROR, "Error", post)
+			stopSelf()
+		}
+	}
 }
 

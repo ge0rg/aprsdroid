@@ -63,7 +63,11 @@ class TcpUploader(service : AprsService, hostname : String, login : String, filt
 
 		override def run() {
 			Log.d(TAG, "TcpSocketThread.run()")
-			catchLog("init_socket", init_socket)
+			try {
+				init_socket()
+			} catch {
+				case e : Exception => service.postAbort(e.getMessage())
+			}
 			while (running) {
 				try {
 					Log.d(TAG, "waiting for data...")
