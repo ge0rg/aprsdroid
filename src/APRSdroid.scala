@@ -12,6 +12,8 @@ import _root_.java.text.SimpleDateFormat
 import _root_.android.util.Log
 import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
 import _root_.android.view.View.OnClickListener
+import _root_.android.widget.AdapterView
+import _root_.android.widget.AdapterView.OnItemClickListener
 import _root_.android.widget.Button
 import _root_.android.widget.{ListView,SimpleCursorAdapter}
 import _root_.android.widget.TextView
@@ -58,6 +60,19 @@ class APRSdroid extends Activity with OnClickListener
 		la.setFilterQueryProvider(storage.getPostFilter("100"))
 		postlist.setAdapter(la)
 		postlist.setTextFilterEnabled(true)
+		postlist.setOnItemClickListener(new OnItemClickListener() {
+			override def onItemClick(parent : AdapterView[_], view : View, position : Int, id : Long) {
+				// When clicked, show a toast with the TextView text
+				val (ts, status, message) = storage.getSinglePost("_ID = ?", Array(id.toString()))
+				Log.d(TAG, "onItemClick: %s: %s".format(status, message))
+				if (status != null) {
+					// extract call sign without ssid
+					val filter = message.split(">")(0).split("-")(0)
+					postlist.setFilterText(filter)
+				}
+			}
+		});
+
 	}
 
 	override def onResume() {
