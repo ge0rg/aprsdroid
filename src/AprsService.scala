@@ -61,6 +61,8 @@ class AprsService extends Service with LocationListener {
 			poster = new HttpPostUploader(hostname, login)
 		case "tcp" =>
 			poster = new TcpUploader(this, hostname, login, " filter m/%d".format(filterdist))
+		case "afsk" =>
+			poster = new AfskUploader(hostname, login)
 		case _ =>
 			stopSelf()
 		}
