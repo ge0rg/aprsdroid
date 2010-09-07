@@ -61,6 +61,8 @@
 <string name="p_passcode">Passcode</string>
 <string name="p_passcode_summary">APRS-IS validation passcode</string>
 <string name="p_passcode_entry">Enter the passcode for your call</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
 <string name="p__aprs">APRS Settings</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
