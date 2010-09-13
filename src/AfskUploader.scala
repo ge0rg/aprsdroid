@@ -16,38 +16,13 @@ class AfskUploader(host : String, login : String) extends AprsIsUploader(host, l
 
 	def update(packet : String) : String = {
 		// Need to "parse" the packet in order to replace the Digipeaters
-		var from = packet.split('>')
-		var temp : String = ""
-		var i=1
-		while (i<from.length-1)
-		{
-			temp += from(i)+">"
-			i=i+1
-		}
-		temp+=from(i)
-		var to = temp.split(',')
-		i=1
-		temp = ""
-		while (i<to.length-1)
-		{
-			temp += to(i)+","
-			i=i+1
-		}
-		temp+=to(i)
-		var digi = temp.split(':')
-		i=1
-		temp = ""
-		while (i<digi.length-1)
-		{
-			temp += digi(i)+":"
-			i=i+1
-		}
-		temp+=digi(i)
-		var data = temp
-		var msg : Message = (new APRSFrame(from(0),to(0),Digis,data,FrameLength)).getMessage()
-		var mod : Afsk = new Afsk()
+		val Array(from, to_data) = packet.split(">", 2)
+		val Array(to_digis, data) = to_data.split(":", 2)
+		val Array(to, digis) = to_digis.split(",", 2)
+		val msg = new APRSFrame(from,to,Digis,data,FrameLength).getMessage()
+		val mod = new Afsk()
 		mod.sendMessage(msg)
-		Log.d(TAG, "update(): From: " + from +" To: "+ to +" Via: " + digi + " telling " + data)
+		Log.d(TAG, "update(): From: " + from +" To: "+ to +" Via: " + Digis + " telling " + data)
 		"AFSK OK"
 	}
 
