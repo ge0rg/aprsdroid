@@ -97,6 +97,7 @@
 	<item>UDP ポート8080</item>
 	<item>HTTP POST</item>
 	<item>TCP connection</item>
+        <item>AFSK</item>
 </string-array>
 <string name="p_host">送信サーバ</string>
 <string name="p_host_summary">ビーコンを送信するAPRS-ISサーバ (ポート8080)</string>

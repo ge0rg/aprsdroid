@@ -4,6 +4,7 @@
 		<item>udp</item>
 		<item>http</item>
 		<item>tcp</item>
+		<item>afsk</item>
 	</string-array>
 
 	<string-array name="p_ssid_ev">

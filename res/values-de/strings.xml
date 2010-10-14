@@ -89,6 +89,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 	<item>UDP Port 8080</item>
 	<item>HTTP POST</item>
 	<item>TCP-Verbindung</item>
+	<item>AFSK Töne</item>
 </string-array>
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS Zielserver (Port 8080)</string>

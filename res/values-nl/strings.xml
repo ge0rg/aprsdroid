@@ -97,6 +97,7 @@
 	<item>UDP poort 8080</item>
 	<item>HTTP POST</item>
 	<item>TCP connection</item>
+	<item>AFSK</item>
 </string-array>
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) voor het versturen van bakens</string>

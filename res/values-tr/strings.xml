@@ -97,6 +97,7 @@
 	<item>UDP port 8080</item>
 	<item>HTTP POST</item>
 	<item>TCP connection</item>
+        <item>AFSK</item>
 </string-array>
 <string name="p_host">Sunucu</string>
 <string name="p_host_summary">Beacon gönderilecek APRS-IS sunucusu (port 8080)</string>
