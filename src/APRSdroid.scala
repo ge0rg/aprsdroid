@@ -170,6 +170,9 @@ class APRSdroid extends Activity with OnClickListener
 		case R.id.about =>
 			aboutDialog()
 			true
+		case R.id.map =>
+			startActivity(new Intent(this, classOf[MapAct]));
+			true
 		case R.id.quit =>
 			stopService(serviceIntent(AprsService.SERVICE))
 			finish();

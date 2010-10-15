@@ -7,6 +7,10 @@
 		android:title="@string/about"
 		android:alphabeticShortcut="a"
 		android:icon="@android:drawable/ic_menu_info_details" />
+	<item android:id="@+id/map"
+		android:title="@string/show_map"
+		android:alphabeticShortcut="m"
+		android:icon="@android:drawable/ic_menu_mapmode" />
 	<item android:id="@+id/quit"
 		android:title="@string/quit"
 		android:alphabeticShortcut="q"

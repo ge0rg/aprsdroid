@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application android:label="@string/app_name" android:icon="@drawable/icon">
+	<uses-library android:name="com.google.android.maps" />
+
         <activity android:name=".APRSdroid"
                   android:label="@string/app_name">
             <intent-filter>
@@ -18,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PrefsAct"
+		android:label="@string/app_name" />
+        <activity android:name=".MapAct"
 		android:label="@string/app_name" />
 	<service android:name=".AprsService">
 	    <intent-filter>
