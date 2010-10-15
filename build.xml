@@ -195,9 +195,9 @@
 	    classpath="tools/scala-compiler.jar:tools/scala-library.jar" />
 	<scalac force="changed" deprecation="on"
 	    srcdir="${source-folder}" includes="**/*.scala"
+	    bootclasspathref="android.target.classpath"
 	    destdir="${out-classes}">
 	    <classpath>
-		<pathelement location="${android-jar}"/>
 		<pathelement location="${out-classes}"/>
 		<fileset dir="tools" includes="*.jar"/>
 		<fileset dir="${external-libs-folder}"  includes="*.jar"/>
@@ -216,7 +216,7 @@
 	<proguard>
 	    -injars ${out-classes}:${external-libs-folder}:tools/scala-library.jar(!META-INF/MANIFEST.MF,!library.properties)
 	    -outjars ${out-folder}/classes.min.jar
-	    -libraryjars ${android-jar}
+	    -libraryjars ${toString:android.target.classpath}
 	    -dontwarn scala.**
 	    -dontnote scala.**
 	    -dontobfuscate
