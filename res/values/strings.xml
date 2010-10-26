@@ -2,6 +2,8 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_map">APRSdroid Map</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
 <string name="wrongpasscode">Your passcode does not match your callsign!</string>
