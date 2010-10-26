@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Be kell állítanod a hívójeled és a passcode-od!</string>
+<string name="wrongpasscode">A passcode-od nem jó ehhez a hívójelhez!</string>
+<string name="mininterval">A minimum frissítési idő 1 perc!</string>
+<string name="singlelog">Feltöltés egyszer</string>
+<string name="startlog">Nyomkövetés indítása</string>
+<string name="stoplog">Nyomkövetés leállítása</string>
+
+<string name="latlon_format">szél: %1.4f hossz: %1.4f (±%dm)</string>
+
+<!-- AprsService -->
+<string name="service_once">Egyszeri feltöltés.</string>
+<string name="service_start">APRS szolgáltatás elindítva, frissítés minden %d. percben, %d kilométerenként.</string>
+<string name="service_stop">APRS szolgáltatás leállítva.</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Üdvözöllek, ez itt az APRSdroid!</string>
+<string name="fr_text">Ezt a szoftvert csak engedéllyel rendelkező rádióamatőrök használhatják.\n\nEngedély nélküli használata törvénybe ütközik!</string>
+
+<!-- about dialog -->
+<string name="ad_title">Az APRSdroid v%s-ról</string>
+<string name="ad_text">Minden jog fenttartva © 2009-2010 Georg Lukas (DO1GL)\nhttp://aprsdroid.org/\n\nAz APRS® márka Bob Bruninga (WB4APR) védjegye.\n\nEz a program szabad szoftver; terjeszthető illetve módosítható a Free Software Foundation által kiadott GNU General Public License dokumentumában leírtak; akár a licenc 2-es, akár (tetszőleges) későbbi változata szerint.\n\nEz a program abban a reményben kerül közreadásra, hogy hasznos lesz, de minden egyéb GARANCIA NÉLKÜL, az ELADHATÓSÁGRA vagy VALAMELY CÉLRA VALÓ ALKALMAZHATÓSÁGRA való származtatott garanciát is beleértve. További részleteket a GNU General Public License tartalmaz.\n\nA felhasználónak a programmal együtt meg kell kapnia a GNU General 
+ Public License egy példányát; ha mégsem kapta meg, akkor tekintse meg a </string>
+<string name="ad_trans">\n\nFordítás: Varga "Nonoo" Norbert HA2NON </string>
+<string name="ad_homepage">Kezdőlap</string>
+
+<!-- options menu -->
+<string name="about">Névjegy</string>
+<string name="quit">Kilépés</string>
+<string name="preferences">Beállítások</string>
+<!-- preferences -->
+<string name="p__ham">Amatőr rádió</string>
+<string name="p_callsign">Hívójel</string>
+<string name="p_callsign_summary">A hívójeled</string>
+<string name="p_callsign_entry">Írd be a hívójeled</string>
+<string name="p_passcode">Passcode</string>
+<string name="p_passcode_summary">APRS-IS ellenőrző passcode</string>
+<string name="p_passcode_entry">Írd be a hívójeledhez tartozó passcodeot</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
+<string name="p__aprs">APRS beállítások</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Állomás típusa (1..15; 9=Mobil, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Írd be az állomásod SSID-jét</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(üres)</item>
+	<item>1: Digipeater (otthoni/WX)</item>
+	<item>2: Digipeater 70cm</item>
+	<item>3: Digipeater</item>
+	<item>RH-URH átjáró</item>
+	<item>5: IGate (nem otthoni állomás)</item>
+	<item>6: Műhold</item>
+	<item>7: Kézirádió</item>
+	<item>8: Csónak / hajó</item>
+	<item>9: Mobil állomás</item>
+	<item>10: APRS-IS (rádió nélküli)</item>
+	<item>11: Léggömb /APRStouch-tone</item>
+	<item>12: Kitelepült (laptop/táborhely)</item>
+	<item>13: ...</item>
+	<item>14: Áruszállító jármű</item>
+	<item>15: RH állomás</item>
+</string-array>
+<string name="p_symbol">APRS szimbólum</string>
+<string name="p_symbol_summary">A szimbólumod a térképen</string>
+<string name="p_symbol_entry">Írd be a szimbólumot reprezentáló két karakterkódot</string>
+<string name="p_status">Állapot üzenet</string>
+<string name="p_status_summary">Szöveg a koordinátáid után</string>
+<string name="p_status_entry">Írd be a státusz üzeneted</string>
+<string name="p__network">Hálózatkezelés</string>
+<string name="p_conntype">Kapcsolódási protokoll</string>
+<string name="p_conntype_summary">Válassz az UDP (8080-as port) vagy HTTP POST (URL) közül</string>
+<string name="p_conntype_entry">Válaszd ki a kapcsolódási protokollt</string>
+<!-- array of connection types -->
+<string-array name="p_conntype_e">
+	<item>UDP, 8080-as port</item>
+	<item>HTTP POST</item>
+	<item>TCP kapcsolat</item>
+	<item>AFSK via Speaker</item>
+</string-array>
+<string name="p_host">Szerver</string>
+<string name="p_host_summary">APRS-IS szerver (8080-as port), amire a beaconok mennek</string>
+<string name="p_host_entry">Írd be az APRS-IS szerver hostnevét</string>
+<string name="p__location">Helymeghatározás</string>
+<string name="p_interval">Minimum frissítési idő</string>
+<string name="p_interval_summary">Percek a beacon küldések között</string>
+<string name="p_interval_entry">Írd be a frissítési intervallumot [perc]</string>
+<string name="p_distance">Minimum frissítési távolság</string>
+<string name="p_distance_summary">Távolság minden egyes beacon küldés között (állítsd 0-ra, ha csak az időt szeretnéd figyelembevenni)</string>
+<string name="p_distance_entry">Írd be a frissítési távolságot [km]</string>
+<string name="p_speedbrg">Várakozás a sebességre, irányra</string>
+<string name="p_speedbrg_summary">GPS tovább bekapcsolva tartása a precízebb adatokhoz</string>
+<string name="p_netloc">Hálózati helyinformáció használata</string>
+<string name="p_netloc_summary">Pozíció megszerzése a mobilhálózatból</string>
+<string name="p__filter">Bejövő szűrő (csak TCP)</string>
+<string name="p_filterdist">Figyelés sugara</string>
+<string name="p_filterdist_summary">Csomagok fogadása ebből a távolságból</string>
+<string name="p_filterdist_entry">Csomagok fogadása ezen távolságon belülről [km]</string>
+</resources>

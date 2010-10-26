@@ -51,6 +51,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_passcode">Passwort</string>
 <string name="p_passcode_summary">APRS-IS-Passwort</string>
 <string name="p_passcode_entry">Geben Sie das Passwort zu Ihrem Rufzeichen ein</string>
+<string name="p_passreq">Passwort anfordern</string>
+<string name="p_passreq_summary">Online APRS-IS-Passwort anfordern</string>
 <string name="p__aprs">APRS-Einstellungen</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Stationstyp (1..15; 9=Mobile, 10=APRS-IS)</string>
@@ -89,7 +91,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 	<item>UDP Port 8080</item>
 	<item>HTTP POST</item>
 	<item>TCP-Verbindung</item>
-	<item>AFSK Töne</item>
+	<item>AFSK über Lautsprecher</item>
 </string-array>
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS Zielserver (Port 8080)</string>

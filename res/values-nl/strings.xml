@@ -3,8 +3,8 @@
 <resources>
 <string name="app_name">APRSdroid</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">Je moet APRSdroid configureren met je roepteken en passcode!</string>
-<string name="wrongpasscode">Je passcode is niet geldig voor je roepteken!</string>
+<string name="firstrun">Je moet APRSdroid configureren met je callsign en passcode!</string>
+<string name="wrongpasscode">Je passcode is niet geldig voor je callsign!</string>
 <string name="mininterval">Minimum update tijd is 1 minuut!</string>
 <string name="singlelog">Positie verzenden</string>
 <string name="startlog">Tracking starten</string>
@@ -15,7 +15,7 @@
 <!-- AprsService -->
 <string name="service_once">APRS Service positie zenden.</string>
 <string name="service_start">APRS Service gestart. Update elke %d minuten, %d km.</string>
-<string name="service_stop">APRS Service gestopt.</string>
+<string name="service_stop">APRS Service is gestopt.</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Welkom bij APRSdroid!</string>
@@ -23,42 +23,24 @@
 
 <!-- about dialog -->
 <string name="ad_title">Over APRSdroid v%s</string>
-<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org/
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-	\n\n
-	This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	\n\n
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	\n\n
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-	\n\n
-	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-	</string>
+<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n http://aprsdroid.org/ \n\n APRS® is een geregistreerd  handelsmerk van Bob Bruninga (WB4APR) \n\n Dit programma is freeware; je mag het redistribueren en/of modificeren binnen de voorwaarden van de GNU Algemene Publieke Licentie zoals gepubliceerd door de  Free Software Foundation; of versie 2 van de Licentie, of (Uw keuze) elke latere versie. \n\n Dit programma wordt gedistribueerd hopende dat het bruikbaar is, ZONDER ELKE GARANTIE; zelfs zonder de garantie van VERKOOPBAARHEID of  GESCHIKTHEID VOOR EEN BEPAALD DOEL. Zie de GNU Algemene Publieke Licentie voor meer informatie. \n\n U zou een exemplaar van de GNU Algemene Publieke Licentie moeten hebben ontvangen tesamen met dit programma; als dit niet het geval is, schrijf dan naar de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_trans">\n\nVertaling:</string>
-<string name="ad_homepage">Home Page</string>
+<string name="ad_homepage">Startpagina</string>
 
 <!-- options menu -->
-<string name="about">Meer info</string>
+<string name="about">Info</string>
 <string name="quit">Afsluiten</string>
 <string name="preferences">Voorkeuren</string>
 <!-- preferences -->
-<string name="p__ham">Amateurradio</string>
-<string name="p_callsign">Roepteken</string>
-<string name="p_callsign_summary">Je amateurradio roepteken</string>
-<string name="p_callsign_entry">Geef je roepteken op</string>
+<string name="p__ham">Amateur Radio</string>
+<string name="p_callsign">Callsign</string>
+<string name="p_callsign_summary">Je Amateur Radio callsign</string>
+<string name="p_callsign_entry">Geef je callsign op</string>
 <string name="p_passcode">Passcode</string>
 <string name="p_passcode_summary">APRS-IS validatie passcode</string>
-<string name="p_passcode_entry">Geef de passcode voor je roepteken</string>
+<string name="p_passcode_entry">Geef de passcode voor je callsign</string>
+<string name="p_passreq">Verzoek Passcode</string>
+<string name="p_passreq_summary">Verzoek APRS-IS passcode online</string>
 <string name="p__aprs">APRS Instellingen</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Station type (1..15; 9=Mobiel, 10=APRS-IS)</string>
@@ -66,18 +48,18 @@
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
 	<item>(geen)</item>
-	<item>1: Digipeater (9k6)</item>
+	<item>1: Digipeater (home/WX)</item>
 	<item>2: Digipeater 70cm</item>
 	<item>3: Digipeater</item>
-	<item>4: Crossdigipeater</item>
+	<item>4: HF to VHF gateway</item>
 	<item>5: WX-station</item>
-	<item>6: Satteliet</item>
-	<item>7: Portabel</item>
+	<item>6: Satelliet</item>
+	<item>7: portofoon</item>
 	<item>8: Boot / schip</item>
 	<item>9: Mobiel station</item>
 	<item>10: IGate</item>
 	<item>11: Aeronautical</item>
-	<item>12: ...</item>
+	<item>12: Portabel (laptop/kampeerplaats)</item>
 	<item>13: ...</item>
 	<item>14: Vrachtwagen</item>
 	<item>15: HF Station</item>
@@ -96,25 +78,25 @@
 <string-array name="p_conntype_e">
 	<item>UDP poort 8080</item>
 	<item>HTTP POST</item>
-	<item>TCP connection</item>
-	<item>AFSK</item>
+	<item>TCP connectie</item>
+	<item>AFSK via luidspreker</item>
 </string-array>
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) voor het versturen van bakens</string>
 <string name="p_host_entry">Geef de APRS-IS server hostnaam</string>
-<string name="p__location">Locatie-instellingen</string>
+<string name="p__location">Lokatie instellingen</string>
 <string name="p_interval">Minimum update tijd</string>
 <string name="p_interval_summary">Minuten tussen baken uitzendingen</string>
 <string name="p_interval_entry">Geef het update interval [min]</string>
 <string name="p_distance">Minimum update afstand</string>
 <string name="p_distance_summary">Kilometers voor baken uitzending (0 voor enkel op tijd gebaseerd)</string>
 <string name="p_distance_entry">Geef de update afstand [km]</string>
-<string name="p_speedbrg">Await speed &amp; bearing</string>
+<string name="p_speedbrg">Verwachte snelheid &amp; richting</string>
 <string name="p_speedbrg_summary">Laat GPS langer actief voor meer preciese data</string>
 <string name="p_netloc">Gebruik netwerk locatie</string>
 <string name="p_netloc_summary">Verkrijg positie van het GSM netwerk</string>
-<string name="p__filter">Incoming Filter (TCP only)</string>
-<string name="p_filterdist">Neighbor radius</string>
-<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
-<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p__filter">Binnenkomend filter (alleen TCP)</string>
+<string name="p_filterdist">Buur radius</string>
+<string name="p_filterdist_summary">Ontvangen packets van stations in deze radius</string>
+<string name="p_filterdist_entry">Radius om je heen om op packets te monitoren [km]</string>
 </resources>

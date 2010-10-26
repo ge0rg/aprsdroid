@@ -39,6 +39,8 @@
 <string name="p_passcode">adgangskode</string>
 <string name="p_passcode_summary">APRS-IS validering af adgangskode</string>
 <string name="p_passcode_entry">Indtast adgangskoden for dit kaldesignal</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
 <string name="p__aprs">APRS Indstillinger</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Stations type (1 .. 15; 9 = Mobil, 10 = APRS-IS)</string>
@@ -77,7 +79,7 @@
 	<item>UDP port 8080</item>
 	<item>HTTP POST</item>
 	<item>TCP connection</item>
-	<item>AFSK</item>
+	<item>AFSK via Speaker</item>
 </string-array>
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) til at sende beacons</string>

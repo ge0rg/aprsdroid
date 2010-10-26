@@ -59,6 +59,8 @@
 <string name="p_passcode">パスコード</string>
 <string name="p_passcode_summary">APRS-IS認証パスコード</string>
 <string name="p_passcode_entry">パスコードを入力</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
 <string name="p__aprs">APRS設定</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">局の種別 (1..15; 9=モービル局, 10=APRS-IS)</string>
@@ -97,7 +99,7 @@
 	<item>UDP ポート8080</item>
 	<item>HTTP POST</item>
 	<item>TCP connection</item>
-        <item>AFSK</item>
+	<item>AFSK via Speaker</item>
 </string-array>
 <string name="p_host">送信サーバ</string>
 <string name="p_host_summary">ビーコンを送信するAPRS-ISサーバ (ポート8080)</string>

@@ -59,6 +59,8 @@
 <string name="p_passcode">Şifre</string>
 <string name="p_passcode_summary">APRS-IS onay numaranız</string>
 <string name="p_passcode_entry">Çağrı işaretiniz için şifre giriniz</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
 <string name="p__aprs">APRS ayarları</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">İstasyon türü (1..15; 9=mobil, 10=APRS-IS)</string>
@@ -97,7 +99,7 @@
 	<item>UDP port 8080</item>
 	<item>HTTP POST</item>
 	<item>TCP connection</item>
-        <item>AFSK</item>
+	<item>AFSK via Speaker</item>
 </string-array>
 <string name="p_host">Sunucu</string>
 <string name="p_host_summary">Beacon gönderilecek APRS-IS sunucusu (port 8080)</string>

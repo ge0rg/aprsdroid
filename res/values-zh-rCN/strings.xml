@@ -39,6 +39,8 @@
 <string name="p_passcode">口令</string>
 <string name="p_passcode_summary">ARPS-IS 验证口令</string>
 <string name="p_passcode_entry">请输入口令</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
 <string name="p__aprs">APRS 设置</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">基站类型 (1..15; 9=移动台, 10=APRS-IS)</string>
@@ -77,7 +79,7 @@
 	<item>UDP 端口 8080</item>
 	<item>HTTP POST</item>
 	<item>TCP connection</item>
-        <item>AFSK</item>
+	<item>AFSK via Speaker</item>
 </string-array>
 <string name="p_host">服务器</string>
 <string name="p_host_summary">APRS-IS 服务器 (端口 8080) 发送信标</string>
