@@ -1,8 +1,15 @@
 package de.duenndns.aprsdroid
 
+import scala.util.matching.Regex
 import _root_.android.location.Location
 
 object AprsPacket {
+
+	// position report regex:
+	// #0: call #1: latitude  #2: sym1  #3: longitude  #4: sym2  #5: comment
+	val POS_RE = """([A-Z0-9-]+)>.*[!=/zh](\d{4}\.\d{2}[NS])(.)(\d{5}\.\d{2}[EW])(.)\s*(.*)"""
+	lazy val PositionRegex = new Regex(POS_RE)
+	lazy val CoordRegex = new Regex("""(\d{2,3})(\d{2})\.(\d{2})([NSEW])""")
 
 	def passcode(callssid : String) : Int = {
 		// remove ssid, uppercase, add \0 for odd-length calls
@@ -35,6 +42,25 @@ object AprsPacket {
 	def formatLon(c : Double) : String = {
 		val (deg, min, minFrac, letter) = splitCoord(c)
 		"%03d%02d.%02d%c".format(deg, min, minFrac, "EW"(letter))
+	}
+
+	def coord2microdeg(s : String) : Int = {
+		val CoordRegex(captures @ _*) = s
+		val Seq(deg, min, minFrac) = captures.take(3).map(_.toInt)
+		val nsew = captures.last(0)
+		// .d = M.m/60 = (M + (m/100))/60
+		val microdeg = deg*1000000 + 10000*(min*100 + minFrac)/60
+		nsew match {
+		case 'N' => microdeg
+		case 'E' => microdeg
+		case 'S' => -microdeg
+		case 'W' => -microdeg
+		}
+	}
+
+	def parseReport(report : String) : (String, Int, Int, String, String) = {
+		val PositionRegex(call, lat, sym1, lon, sym2, comment) = report
+		(call, coord2microdeg(lat), coord2microdeg(lon), sym1+sym2, comment)
 	}
 
 	def formatCallSsid(callsign : String, ssid : String) : String = {
