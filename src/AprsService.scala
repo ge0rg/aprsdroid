@@ -77,7 +77,7 @@ class AprsService extends Service with LocationListener {
 		var hostname = prefs.getString("host", null)
 		if (hostname == null || hostname == "")
 			hostname = getString(R.string.aprs_server);
-		val login = AprsPacket.formatLogin(prefs.getString("callsign", null),
+		val login = AprsPacket.formatLogin(prefs.getString("callsign", null).trim(),
 			prefs.getString("ssid", null), prefs.getString("passcode", null))
 		val filterdist = prefs.getString("filterdist", "10").toInt
 
@@ -177,7 +177,7 @@ class AprsService extends Service with LocationListener {
 		val i = new Intent(UPDATE)
 		i.putExtra(LOCATION, location)
 
-		val callsign = prefs.getString("callsign", null)
+		val callsign = prefs.getString("callsign", null).trim()
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
 		var symbol = prefs.getString("symbol", "")
 		if (symbol.length != 2)

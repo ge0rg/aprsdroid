@@ -88,7 +88,7 @@ class APRSdroid extends Activity with OnClickListener
 		}
 		if (!checkConfig())
 			return
-		val callsign = prefs.getString("callsign", "")
+		val callsign = prefs.getString("callsign", "").trim()
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
 		setTitle(getString(R.string.app_name) + ": " + callssid)
 		setupButtons(AprsService.running)
@@ -114,7 +114,7 @@ class APRSdroid extends Activity with OnClickListener
 	}
 
 	def checkConfig() : Boolean = {
-		val callsign = prefs.getString("callsign", "")
+		val callsign = prefs.getString("callsign", "").trim()
 		val passcode = prefs.getString("passcode", "")
 		if (callsign == "" || passcode == "") {
 			openPrefs(R.string.firstrun)
