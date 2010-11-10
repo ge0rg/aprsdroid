@@ -23,7 +23,7 @@
 		android:title="@string/p_passreq"
 		android:summary="@string/p_passreq_summary" >
 		<intent android:action="android.intent.action.VIEW"
-			android:data="http://www.android.com" />
+			android:data="http://aprsdroid.org/passcode/" />
 	</Preference>
 
     </PreferenceCategory>
