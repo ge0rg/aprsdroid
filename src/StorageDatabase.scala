@@ -10,7 +10,7 @@ import _root_.android.widget.FilterQueryProvider
 
 object StorageDatabase {
 	val TAG = "StorageDatabase"
-	val DB_VERSION = 2
+	val DB_VERSION = 3
 	val DB_NAME = "storage.db"
 	object Post {
 		val TABLE = "posts"
@@ -33,6 +33,20 @@ object StorageDatabase {
 		var trimCounter	= 0
 	}
 
+	object Position {
+		val TABLE = "position"
+		val _ID = "_id"
+		val TS = "ts"
+		val CALL = "call"
+		val LAT = "lat"
+		val LON = "lon"
+		val SYMBOL = "symbol"
+		val COMMENT = "comment"
+		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s TEXT, %s INTEGER, %s INTEGER, %s TEXT, %s TEXT)"
+					.format(TABLE, _ID, TS, CALL, LAT, LON, SYMBOL, COMMENT)
+		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT)
+	}
+
 	var singleton : StorageDatabase = null
 	def open(context : Context) : StorageDatabase = {
 		if (singleton == null) {
@@ -51,22 +65,61 @@ class StorageDatabase(context : Context) extends
 	override def onCreate(db: SQLiteDatabase) {
 		Log.d(TAG, "onCreate(): creating new database " + DB_NAME);
 		db.execSQL(Post.TABLE_CREATE);
+		db.execSQL(Position.TABLE_CREATE)
 	}
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
-		if (from == 1 && to == 2) {
+		if (from == 1 && to >= 2) {
 			db.execSQL("ALTER TABLE %s ADD COLUMN %s".format(Post.TABLE, "TYPE INTEGER DEFAULT 0"))
-		} else
-			throw new IllegalStateException("StorageDatabase.onUpgrade(%d, %d)".format(from, to))
+		}
+		if (from <= 2 && to >= 3) {
+			db.execSQL(Position.TABLE_CREATE)
+			// we can not call getPosts() here due to recursion issues
+			val c = db.query(Post.TABLE, Post.COLUMNS, "TYPE = 0 OR TYPE = 3",
+						null, null, null, "_ID DESC", null)
+			c.moveToFirst()
+			while (!c.isAfterLast()) {
+				val message = c.getString(c.getColumnIndexOrThrow(Post.MESSAGE))
+				val ts = c.getLong(c.getColumnIndexOrThrow(Post.TS))
+				addPosition(ts, message)
+				c.moveToNext()
+			}
+			c.close()
+		}
 	}
 
 	def trimPosts(ts : Long) {
 		Log.d(TAG, "StorageDatabase.trimPosts")
 		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Post.TABLE, Post.TS),
 			Array(long2Long(ts)))
+		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Position.TABLE, Position.TS),
+			Array(long2Long(ts)))
 	}
 
 	// default trim filter: 31 days in [ms]
 	def trimPosts() : Unit = trimPosts(System.currentTimeMillis - 31L * 24 * 3600 * 1000)
+
+	def addPosition(ts : Long, message : String) {
+		try {
+			val (call, lat, lon, sym, comment) = AprsPacket.parseReport(message)
+			val cv = new ContentValues()
+			cv.put(Position.TS, ts.asInstanceOf[java.lang.Long])
+			cv.put(Position.CALL, call)
+			cv.put(Position.LAT, lat.asInstanceOf[java.lang.Integer])
+			cv.put(Position.LON, lon.asInstanceOf[java.lang.Integer])
+			cv.put(Position.SYMBOL, sym)
+			cv.put(Position.COMMENT, comment)
+			Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
+			getWritableDatabase().insertOrThrow(Position.TABLE, Position.CALL, cv)
+		} catch {
+		case e : Exception =>
+		}
+	}
+
+	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = {
+		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
+			sel, selArgs,
+			Position.CALL, null, "_ID DESC", limit)
+	}
 
 	def addPost(ts : Long, posttype : Int, status : String, message : String) {
 		val cv = new ContentValues()
@@ -76,6 +129,9 @@ class StorageDatabase(context : Context) extends
 		cv.put(Post.MESSAGE, message)
 		Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
 		getWritableDatabase().insertOrThrow(Post.TABLE, Post.MESSAGE, cv)
+		if (posttype == Post.TYPE_POST || posttype == Post.TYPE_INCMG) {
+			addPosition(ts, message)
+		}
 		if (Post.trimCounter == 0) {
 			trimPosts()
 			Post.trimCounter = 100
