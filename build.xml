@@ -47,9 +47,19 @@
 
 <!-- extension targets. Uncomment the ones where you want to do custom work
      in between standard targets -->
-<!--
+    <property name="mapviewxml" value="res/layout/mapview.xml" />
     <target name="-pre-build">
+	    <fail unless="mapsApiKey">You need to add mapsApiKey=... to local.properties</fail>
+	    <copy file="mapview.xml.tpl" tofile="${mapviewxml}" overwrite="true">
+		    <filterchain>
+			    <replacetokens>
+				    <token key="apiKey" value="${mapsApiKey}"/>
+			    </replacetokens>
+		    </filterchain>
+
+	    </copy>
     </target>
+<!--
     <target name="-pre-compile">
     </target>
 

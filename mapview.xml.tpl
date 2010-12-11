@@ -5,5 +5,5 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:clickable="true"
-	android:apiKey="not for your eyes"
+	android:apiKey="@apiKey@"
 	/>
