@@ -107,9 +107,12 @@ class AprsService extends Service with LocationListener {
 
 	override def onDestroy() {
 		locMan.removeUpdates(this);
-		poster.stop()
+		// catch FC when service is killed from outside
+		if (poster != null) {
+			poster.stop()
+			showToast(getString(R.string.service_stop))
+		}
 		running = false
-		showToast(getString(R.string.service_stop))
 	}
 
 	def speedBearingStart() {
