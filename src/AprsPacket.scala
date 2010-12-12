@@ -64,7 +64,7 @@ object AprsPacket {
 	}
 
 	def formatCallSsid(callsign : String, ssid : String) : String = {
-		if (ssid != "")
+		if (ssid != null && ssid != "")
 			return callsign + "-" + ssid
 		else
 			return callsign
