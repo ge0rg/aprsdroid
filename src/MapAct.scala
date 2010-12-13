@@ -15,13 +15,13 @@ class MapAct extends MapActivity {
 
 	lazy val mapview = findViewById(R.id.mapview).asInstanceOf[MapView]
 	lazy val allicons = this.getResources().getDrawable(R.drawable.allicons)
-	lazy val staoverlay = new StationOverlay(allicons)
 	lazy val db = StorageDatabase.open(this)
+	lazy val staoverlay = new StationOverlay(allicons, db)
 
 	lazy val locReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
 			Benchmark("loadDb") {
-				staoverlay.loadDb(db)
+				staoverlay.loadDb()
 			}
 			mapview.invalidate()
 			//postlist.setSelection(0)
@@ -32,7 +32,7 @@ class MapAct extends MapActivity {
 		setContentView(R.layout.mapview)
 		mapview.setBuiltInZoomControls(true)
 
-		staoverlay.loadDb(db)
+		staoverlay.loadDb()
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
@@ -53,7 +53,8 @@ class Station(val point : GeoPoint, val call : String, val message : String, val
 
 }
 
-class StationOverlay(icons : Drawable) extends ItemizedOverlay[Station](icons) {
+class StationOverlay(icons : Drawable, db : StorageDatabase) extends ItemizedOverlay[Station](icons) {
+	val TAG = "StationOverlay"
 
 	//lazy val calls = new scala.collection.mutable.HashMap[String, Boolean]()
 	lazy val stations = new java.util.ArrayList[Station]()
@@ -112,7 +113,7 @@ class StationOverlay(icons : Drawable) extends ItemizedOverlay[Station](icons) {
 		}
 	}
 
-	def loadDb(db : StorageDatabase) {
+	def loadDb() {
 		stations.clear()
 		val c = db.getPositions(null, null, null)
 		c.moveToFirst()
@@ -141,11 +142,11 @@ class StationOverlay(icons : Drawable) extends ItemizedOverlay[Station](icons) {
 	def addStation(post : String) {
 		try {
 			val (call, lat, lon, sym, comment) = AprsPacket.parseReport(post)
-			Log.d("StationOverlay", "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
+			Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
 			addStation(new Station(new GeoPoint(lat, lon), call, comment, sym))
 		} catch {
 		case e : Exception =>
-			Log.d("StationOverlay", "bad " + post)
+			Log.d(TAG, "bad " + post)
 		}
 	}
 }
