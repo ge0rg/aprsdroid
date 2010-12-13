@@ -2,7 +2,7 @@ package de.duenndns.aprsdroid
 
 import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
 import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
-import _root_.android.graphics.{Canvas, Paint, Point, Rect, Typeface}
+import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
 import _root_.android.os.Bundle
 import _root_.android.util.Log
 import _root_.com.google.android.maps._
@@ -72,6 +72,43 @@ class StationOverlay(icons : Drawable, db : StorageDatabase) extends ItemizedOve
 
 	def symbolIsOverlayed(symbol : String) = {
 		(symbol(0) != '/' && symbol(0) != '\\')
+	}
+
+	def drawTrace(c : Canvas, m : MapView, call : String) : Unit = {
+		//Log.d(TAG, "drawing trace of %s".format(call))
+
+		val tracePaint = new Paint()
+		tracePaint.setARGB(200, 255, 128, 128)
+		tracePaint.setStyle(Paint.Style.STROKE)
+		tracePaint.setStrokeJoin(Paint.Join.ROUND)
+		tracePaint.setStrokeCap(Paint.Cap.ROUND)
+		tracePaint.setStrokeWidth(2)
+		tracePaint.setAntiAlias(true)
+
+
+		val path = new Path()
+		val point = new Point()
+
+		val cur = db.getStaPositions(call, "%d".format(System.currentTimeMillis() - 30*3600*1000))
+		if (cur.getCount() < 2) {
+			cur.close()
+			return
+		}
+		cur.moveToFirst()
+		var first = true
+		while (!cur.isAfterLast()) {
+			val lat = cur.getInt(cur.getColumnIndexOrThrow(StorageDatabase.Position.LAT))
+			val lon = cur.getInt(cur.getColumnIndexOrThrow(StorageDatabase.Position.LON))
+			m.getProjection().toPixels(new GeoPoint(lat, lon), point)
+			if (first) {
+				path.moveTo(point.x, point.y)
+				first = false
+			} else
+				path.lineTo(point.x, point.y)
+			cur.moveToNext()
+		}
+		cur.close()
+		c.drawPath(path, tracePaint)
 	}
 
 	override def draw(c : Canvas, m : MapView, shadow : Boolean) : Unit = {

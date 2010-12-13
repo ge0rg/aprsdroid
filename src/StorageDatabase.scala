@@ -125,6 +125,12 @@ class StorageDatabase(context : Context) extends
 			Position.CALL, null, "_ID DESC", limit)
 	}
 
+	def getStaPositions(call : String, limit : String) : Cursor = {
+		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
+			"call LIKE ? AND TS > ?", Array(call, limit),
+			null, null, "_ID DESC", null)
+	}
+
 	def addPost(ts : Long, posttype : Int, status : String, message : String) {
 		val cv = new ContentValues()
 		cv.put(Post.TS, ts.asInstanceOf[java.lang.Long])
