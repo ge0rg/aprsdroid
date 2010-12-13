@@ -136,16 +136,23 @@ class StationOverlay(icons : Drawable, db : StorageDatabase) extends ItemizedOve
 		val p = new Point()
 		for (s <- stations) {
 			m.getProjection().toPixels(s.point, p)
-			val srcRect = symbol2rect(s.symbol)
-			val destRect = new Rect(p.x-8, p.y-8, p.x+8, p.y+8)
-			c.drawBitmap(icons.asInstanceOf[BitmapDrawable].getBitmap, srcRect, destRect, null)
-			if (symbolIsOverlayed(s.symbol)) {
-				c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbStrPaint)
-				c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbPaint)
-			}
-			if (m.getZoomLevel() >= 10) {
-				c.drawText(s.call, p.x, p.y+20, strokePaint)
-				c.drawText(s.call, p.x, p.y+20, textPaint)
+			if (p.x >= 0 && p.y >= 0 && p.x < m.getWidth() && p.y < m.getHeight()) {
+				val srcRect = symbol2rect(s.symbol)
+				val destRect = new Rect(p.x-8, p.y-8, p.x+8, p.y+8)
+				// first draw callsign and trace
+				if (m.getZoomLevel() >= 10) {
+					drawTrace(c, m, s.call)
+
+					c.drawText(s.call, p.x, p.y+20, strokePaint)
+					c.drawText(s.call, p.x, p.y+20, textPaint)
+				}
+				// then the bitmap
+				c.drawBitmap(icons.asInstanceOf[BitmapDrawable].getBitmap, srcRect, destRect, null)
+				// and finally the bitmap overlay, if any
+				if (m.getZoomLevel() >= 6 && symbolIsOverlayed(s.symbol)) {
+					c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbStrPaint)
+					c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbPaint)
+				}
 			}
 		}
 	}
