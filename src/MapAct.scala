@@ -113,7 +113,8 @@ class StationOverlay(icons : Drawable) extends ItemizedOverlay[Station](icons) {
 	}
 
 	def loadDb(db : StorageDatabase) {
-		val c = db.getPositions(null, null, "100")
+		stations.clear()
+		val c = db.getPositions(null, null, null)
 		c.moveToFirst()
 		while (!c.isAfterLast()) {
 			val call = c.getString(c.getColumnIndexOrThrow(StorageDatabase.Position.CALL))
@@ -125,6 +126,8 @@ class StationOverlay(icons : Drawable) extends ItemizedOverlay[Station](icons) {
 			c.moveToNext()
 		}
 		c.close()
+		setLastFocusedIndex(-1)
+		populate()
 		Log.d("StationOverlay", "total %d items".format(size()))
 	}
 
@@ -133,7 +136,6 @@ class StationOverlay(icons : Drawable) extends ItemizedOverlay[Station](icons) {
 		//	return
 		//calls.add(sta.getTitle(), true)
 		stations.add(sta)
-		populate()
 	}
 
 	def addStation(post : String) {
