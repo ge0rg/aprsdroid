@@ -10,7 +10,7 @@ import _root_.android.widget.FilterQueryProvider
 
 object StorageDatabase {
 	val TAG = "StorageDatabase"
-	val DB_VERSION = 3
+	val DB_VERSION = 4
 	val DB_NAME = "storage.db"
 	object Post {
 		val TABLE = "posts"
@@ -45,6 +45,7 @@ object StorageDatabase {
 		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s TEXT, %s INTEGER, %s INTEGER, %s TEXT, %s TEXT)"
 					.format(TABLE, _ID, TS, CALL, LAT, LON, SYMBOL, COMMENT)
 		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT)
+		lazy val TABLE_INDEX = "CREATE INDEX idx_position_%s ON position (%s)"
 	}
 
 	var singleton : StorageDatabase = null
@@ -84,6 +85,9 @@ class StorageDatabase(context : Context) extends
 				c.moveToNext()
 			}
 			c.close()
+		}
+		if (from <= 3 && to >= 4) {
+			Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
 		}
 	}
 
