@@ -73,9 +73,8 @@ class StationOverlay(icons : Drawable) extends ItemizedOverlay[Station](icons) {
 		(symbol(0) != '/' && symbol(0) != '\\')
 	}
 
-	override def draw(c : Canvas, m : MapView, shadow : Boolean) = {
-		//super.draw(c, m, shadow)
-		populate()
+	override def draw(c : Canvas, m : MapView, shadow : Boolean) : Unit = {
+		if (shadow) return;
 
 		val textPaint = new Paint()
 		textPaint.setARGB(255, 200, 255, 200)
