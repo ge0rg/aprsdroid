@@ -105,8 +105,10 @@ class StationOverlay(icons : Drawable) extends ItemizedOverlay[Station](icons) {
 				c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbStrPaint)
 				c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbPaint)
 			}
-			c.drawText(s.call, p.x, p.y+20, strokePaint)
-			c.drawText(s.call, p.x, p.y+20, textPaint)
+			if (m.getZoomLevel() >= 10) {
+				c.drawText(s.call, p.x, p.y+20, strokePaint)
+				c.drawText(s.call, p.x, p.y+20, textPaint)
+			}
 		}
 	}
 
