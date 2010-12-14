@@ -163,18 +163,18 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		val c = db.getPositions(null, null, null)
 		c.moveToFirst()
 		while (!c.isAfterLast()) {
-			val call = c.getString(c.getColumnIndexOrThrow(StorageDatabase.Position.CALL))
-			val symbol = c.getString(c.getColumnIndexOrThrow(StorageDatabase.Position.SYMBOL))
-			val comment = c.getString(c.getColumnIndexOrThrow(StorageDatabase.Position.COMMENT))
-			val lat = c.getInt(c.getColumnIndexOrThrow(StorageDatabase.Position.LAT))
-			val lon = c.getInt(c.getColumnIndexOrThrow(StorageDatabase.Position.LON))
+			val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
+			val symbol = c.getString(StorageDatabase.Position.COLUMN_SYMBOL)
+			val comment = c.getString(StorageDatabase.Position.COLUMN_COMMENT)
+			val lat = c.getInt(StorageDatabase.Position.COLUMN_LAT)
+			val lon = c.getInt(StorageDatabase.Position.COLUMN_LON)
 			addStation(new Station(new GeoPoint(lat, lon), call, comment, symbol))
 			c.moveToNext()
 		}
 		c.close()
 		setLastFocusedIndex(-1)
 		populate()
-		Log.d("StationOverlay", "total %d items".format(size()))
+		Log.d(TAG, "total %d items".format(size()))
 	}
 
 	def addStation(sta : Station) {

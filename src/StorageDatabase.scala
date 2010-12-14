@@ -45,6 +45,11 @@ object StorageDatabase {
 		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s TEXT, %s INTEGER, %s INTEGER, %s TEXT, %s TEXT)"
 					.format(TABLE, _ID, TS, CALL, LAT, LON, SYMBOL, COMMENT)
 		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT)
+		val COLUMN_CALL		= 2
+		val COLUMN_LAT		= 3
+		val COLUMN_LON		= 4
+		val COLUMN_SYMBOL	= 5
+		val COLUMN_COMMENT	= 6
 		lazy val TABLE_INDEX = "CREATE INDEX idx_position_%s ON position (%s)"
 	}
 
