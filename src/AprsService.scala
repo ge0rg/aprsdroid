@@ -46,6 +46,16 @@ class AprsService extends Service with LocationListener {
 	override def onStart(i : Intent, startId : Int) {
 		Log.d(TAG, "onStart: " + i + ", " + startId);
 		super.onStart(i, startId)
+		handleStart(i)
+	}
+
+	override def onStartCommand(i : Intent, flags : Int, startId : Int) : Int = {
+		Log.d(TAG, "onStartCommand: " + i + ", " + flags + ", " + startId);
+		handleStart(i)
+		Service.START_REDELIVER_INTENT
+	}
+
+	def handleStart(i : Intent) {
 		running = true
 
 		// get update interval and distance
