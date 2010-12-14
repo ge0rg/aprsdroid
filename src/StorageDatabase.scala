@@ -72,6 +72,7 @@ class StorageDatabase(context : Context) extends
 		Log.d(TAG, "onCreate(): creating new database " + DB_NAME);
 		db.execSQL(Post.TABLE_CREATE);
 		db.execSQL(Position.TABLE_CREATE)
+		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
 	}
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
 		if (from == 1 && to >= 2) {
