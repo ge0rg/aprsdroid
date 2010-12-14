@@ -14,6 +14,10 @@
 
 <string name="latlon_format">lat: %1.4f  lon: %1.4f (±%dm)</string>
 
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Last Report</string>
+
+
 <!-- AprsService -->
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS Service started. Updates every %d minutes, %d km.</string>

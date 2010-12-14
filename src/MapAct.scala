@@ -1,5 +1,6 @@
 package de.duenndns.aprsdroid
 
+import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
 import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
@@ -16,7 +17,7 @@ class MapAct extends MapActivity {
 	lazy val mapview = findViewById(R.id.mapview).asInstanceOf[MapView]
 	lazy val allicons = this.getResources().getDrawable(R.drawable.allicons)
 	lazy val db = StorageDatabase.open(this)
-	lazy val staoverlay = new StationOverlay(allicons, db)
+	lazy val staoverlay = new StationOverlay(allicons, this, db)
 
 	lazy val locReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
@@ -53,7 +54,7 @@ class Station(val point : GeoPoint, val call : String, val message : String, val
 
 }
 
-class StationOverlay(icons : Drawable, db : StorageDatabase) extends ItemizedOverlay[Station](icons) {
+class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) extends ItemizedOverlay[Station](icons) {
 	val TAG = "StationOverlay"
 
 	//lazy val calls = new scala.collection.mutable.HashMap[String, Boolean]()
@@ -192,5 +193,30 @@ class StationOverlay(icons : Drawable, db : StorageDatabase) extends ItemizedOve
 		case e : Exception =>
 			Log.d(TAG, "bad " + post)
 		}
+	}
+
+	override def onTap(index : Int) : Boolean = {
+		val s = stations(index)
+		Log.d(TAG, "user clicked on " + s.call)
+
+		// extract stations last report from database
+		val cur = db.getPosts("MESSAGE like ?", Array("%s%%".format(s.call)), "1")
+		cur.moveToFirst()
+		val message = if (!cur.isAfterLast()) {
+				"%s %s".format(cur.getString(cur.getColumnIndexOrThrow("TSS")),
+					cur.getString(StorageDatabase.Post.COLUMN_MESSAGE))
+			} else {
+				// fall back to positions table
+				"%s> %s".format(s.call, s.message)
+			}
+		cur.close()
+		// display a dialog with last report
+		val title = context.getString(R.string.sta_lastreport, s.call)
+		new AlertDialog.Builder(context).setTitle(title)
+			.setMessage(message)
+			.setPositiveButton(android.R.string.ok, null)
+			.create.show
+
+		true
 	}
 }
