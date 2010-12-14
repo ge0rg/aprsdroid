@@ -6,7 +6,7 @@ import _root_.android.content._
 import _root_.android.content.pm.PackageInfo;
 import _root_.android.location._
 import _root_.android.net.Uri
-import _root_.android.os.Bundle
+import _root_.android.os.{Bundle, Handler}
 import _root_.android.preference.PreferenceManager
 import _root_.java.text.SimpleDateFormat
 import _root_.android.util.Log
@@ -33,14 +33,11 @@ class APRSdroid extends Activity with OnClickListener
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
 	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
 
-	lazy val locReceiver = new BroadcastReceiver() {
-		override def onReceive(ctx : Context, i : Intent) {
-			val l = i.getParcelableExtra(AprsService.LOCATION).asInstanceOf[Location]
+	lazy val locReceiver = new LocationReceiver(new Handler(), () => {
 			Benchmark("requery") { postcursor.requery() }
 			//postlist.setSelection(0)
 			setupButtons(AprsService.running)
-		}
-	}
+		})
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)

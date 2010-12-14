@@ -4,7 +4,7 @@ import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
 import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
-import _root_.android.os.Bundle
+import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
 import _root_.com.google.android.maps._
 
@@ -19,15 +19,14 @@ class MapAct extends MapActivity {
 	lazy val db = StorageDatabase.open(this)
 	lazy val staoverlay = new StationOverlay(allicons, this, db)
 
-	lazy val locReceiver = new BroadcastReceiver() {
-		override def onReceive(ctx : Context, i : Intent) {
+	lazy val locReceiver = new LocationReceiver(new Handler(), () => {
 			Benchmark("loadDb") {
 				staoverlay.loadDb()
 			}
 			mapview.invalidate()
 			//postlist.setSelection(0)
-		}
-	}
+		})
+
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.mapview)
