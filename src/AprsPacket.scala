@@ -7,7 +7,7 @@ object AprsPacket {
 
 	// position report regex:
 	// #0: call #1: latitude  #2: sym1  #3: longitude  #4: sym2  #5: comment
-	val POS_RE = """([A-Z0-9-]+)>.*[!=/zh](\d{4}\.\d{2}[NS])(.)(\d{5}\.\d{2}[EW])(.)\s*(.*)"""
+	val POS_RE = """([A-Z0-9-]+)>.*:[!=/zh](\d{4}\.\d{2}[NS])(.)(\d{5}\.\d{2}[EW])(.)\s*(.*)"""
 	lazy val PositionRegex = new Regex(POS_RE)
 	lazy val CoordRegex = new Regex("""(\d{2,3})(\d{2})\.(\d{2})([NSEW])""")
 
