@@ -113,6 +113,7 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 
 	override def draw(c : Canvas, m : MapView, shadow : Boolean) : Unit = {
 		if (shadow) return;
+		Benchmark("draw") {
 
 		val textPaint = new Paint()
 		textPaint.setARGB(255, 200, 255, 200)
@@ -156,6 +157,7 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 					c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbPaint)
 				}
 			}
+		}
 		}
 	}
 
