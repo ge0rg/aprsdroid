@@ -133,6 +133,8 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		val symbStrPaint = new Paint(strokePaint)
 		symbStrPaint.setTextSize(11)
 
+		val iconbitmap = icons.asInstanceOf[BitmapDrawable].getBitmap
+
 		val p = new Point()
 		for (s <- stations) {
 			m.getProjection().toPixels(s.point, p)
@@ -147,7 +149,7 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 					c.drawText(s.call, p.x, p.y+20, textPaint)
 				}
 				// then the bitmap
-				c.drawBitmap(icons.asInstanceOf[BitmapDrawable].getBitmap, srcRect, destRect, null)
+				c.drawBitmap(iconbitmap, srcRect, destRect, null)
 				// and finally the bitmap overlay, if any
 				if (m.getZoomLevel() >= 6 && symbolIsOverlayed(s.symbol)) {
 					c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbStrPaint)
