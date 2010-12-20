@@ -2,6 +2,8 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_map">APRSdroid Map</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Você deve configurar o APRSdroid com seu indicativo de chamada e senha!</string>
 <string name="wrongpasscode">Sua senha não confere com seu indicativo de chamada!</string>
@@ -11,6 +13,10 @@
 <string name="stoplog">Parar Monitoramento</string>
 
 <string name="latlon_format">lat: %1.4f  lon: %1.4f (±%dm)</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Last Report</string>
+
 
 <!-- AprsService -->
 <string name="service_once">APRS Service single shot.</string>
@@ -49,6 +55,7 @@
 
 <!-- options menu -->
 <string name="about">Sobre</string>
+<string name="show_map">Show Map</string>
 <string name="quit">Fechar</string>
 <string name="preferences">Preferências</string>
 <!-- preferences -->
@@ -73,10 +80,10 @@
 	<item>3: Digipeater</item>
 	<item>4: HF to VHF gateway</item>
 	<item>5: IGate (not home station)</item>
-	<item>6: Satellite</item>
+	<item>6: Satélite</item>
 	<item>7: Handheld radio</item>
-	<item>8: Boat / ship</item>
-	<item>9: Mobile station</item>
+	<item>8: Barco / navio</item>
+	<item>9: Estação móvel</item>
 	<item>10: APRS-IS (no radio)</item>
 	<item>11: Balloon / APRStouch-tone</item>
 	<item>12: Portable (laptop/camp site)</item>

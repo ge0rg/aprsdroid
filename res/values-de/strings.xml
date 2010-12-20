@@ -2,6 +2,8 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid-Einstellungen</string>
+<string name="app_map">APRSdroid-Karte</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Sie müssen Ihr Rufzeichen und das dazugehörige Passwort eingeben!</string>
 <string name="wrongpasscode">Das Passwort für Ihr Rufzeichen ist nicht korrekt!</string>
@@ -11,6 +13,10 @@
 <string name="stoplog">Tracking beenden</string>
 
 <string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s: Letzte Meldung</string>
+
 
 <!-- AprsService -->
 <string name="service_once">APRS-Dienst Einzelmeldung.</string>
@@ -41,6 +47,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 
 <!-- options menu -->
 <string name="about">Über...</string>
+<string name="show_map">Zeige Karte</string>
 <string name="quit">Beenden</string>
 <string name="preferences">Einstellungen</string>
 <!-- preferences -->

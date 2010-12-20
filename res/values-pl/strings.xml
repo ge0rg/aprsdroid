@@ -2,6 +2,8 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_map">APRSdroid Map</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Należy skonfigurować APRSdroid z znakiem i hasłem!</string>
 <string name="wrongpasscode">Hasło nie pasuje do znaku!</string>
@@ -10,45 +12,30 @@
 <string name="startlog">Start Tracking</string>
 <string name="stoplog">Stop Tracking</string>
 
-<string name="latlon_format">lat: %1.4f  lon: %1.4f (±%dm)</string>
+<string name="latlon_format">szer: %1.4f dług: %1.4f (±%dm)</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Last Report</string>
+
 
 <!-- AprsService -->
-<string name="service_once">APRS Service single shot.</string>
-<string name="service_start">APRS Service started. Updates every %d minutes, %d km.</string>
-<string name="service_stop">APRS Service stopped.</string>
+<string name="service_once">Usługa APRS pojedynczy strzał.</string>
+<string name="service_start">Uruchomiono usługę APRS. Aktualizacja co%d minut, %d km.</string>
+<string name="service_stop">Zatrzymano usługę APRS</string>
 
 <!-- first run dialog -->
-<string name="fr_title">Welcome to APRSdroid!</string>
+<string name="fr_title">Witamy w APRSdroid!</string>
 <string name="fr_text">To oprogramowanie może być używane wyłącznie przez licencjonowanych operatorów! \ N \ n Jeśli działają bez zezwolenia, może być ścigane karnej!</string>
 
 <!-- about dialog -->
 <string name="ad_title">O APRSdroid% v s</string>
-<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org/
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-	\n\n
-	This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	\n\n
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	\n\n
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-	\n\n
-	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-	</string>
-<string name="ad_trans">\n\nTranslation:</string>
-<string name="ad_homepage">Home Page</string>
+<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL) \ n http://aprsdroid.org/ \ n \ n APRS ® jest zarejestrowanym znakiem towarowym Bob Bruninga (WB4APR) \ n \ n Ten program jest wolnym oprogramowaniem; możesz go rozprowadzać i / lub modyfikować na warunkach GNU General Public License opublikowanej przez Free Software Foundation w wersji 2 tej Licencji lub (według twojego wyboru) którejś z późniejszych wersji. \ N \ n Ten program jest rozpowszechniany w nadziei, że będzie użyteczny, ale BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONEGO CELU. Zobacz licencję GNU General Public License więcej szczegółów. \ N \ n Powinieneś otrzymać kopię GNU General Public License wraz z tym programem, a jeśli nie, napisz do Free Software Foundation, Inc, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \ Http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_trans">\n\nTłumaczenie:</string>
+<string name="ad_homepage">Strona domowa</string>
 
 <!-- options menu -->
 <string name="about">O programie</string>
+<string name="show_map">Show Map</string>
 <string name="quit">Zakończ</string>
 <string name="preferences">Ustawienia</string>
 <!-- preferences -->
@@ -56,67 +43,67 @@
 <string name="p_callsign">Znak</string>
 <string name="p_callsign_summary">Twój znak</string>
 <string name="p_callsign_entry">Wpisz znak</string>
-<string name="p_passcode">Passcode</string>
-<string name="p_passcode_summary">APRS-IS validation passcode</string>
-<string name="p_passcode_entry">Enter the passcode for your call</string>
-<string name="p_passreq">Request Passcode</string>
-<string name="p_passreq_summary">Request APRS-IS passcode online</string>
-<string name="p__aprs">APRS Settings</string>
+<string name="p_passcode">Hasło</string>
+<string name="p_passcode_summary">APRS-IS hasło walidacji</string>
+<string name="p_passcode_entry">Wprowadź hasło dla telefonu</string>
+<string name="p_passreq">Wymaga hasła</string>
+<string name="p_passreq_summary">Wymaga hasła APRS-IS online</string>
+<string name="p__aprs">Ustawienia APRS</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">typu Statci (1 .. 15; 9 = Mobile, 10 = APRS-IS)</string>
-<string name="p_ssid_entry">Enter the SSID for your station</string>
+<string name="p_ssid_entry">Wprowadź SSID dla twojej stacji</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
 	<item>(brak)</item>
 	<item>1: Digipeater (home/WX)</item>
 	<item>2: Digipeater 70cm</item>
 	<item>3: Digipeater</item>
-	<item>4: HF to VHF gateway</item>
-	<item>5: IGate (not home station)</item>
-	<item>6: Satellite</item>
-	<item>7: Handheld radio</item>
-	<item>8: Boat / ship</item>
-	<item>9: Mobile station</item>
-	<item>10: APRS-IS (no radio)</item>
-	<item>11: Balloon / APRStouch-tone</item>
-	<item>12: Portable (laptop/camp site)</item>
+	<item>4: bramka HF do VHF</item>
+	<item>5: IGate (stacja niedomowa)</item>
+	<item>6: Satelita</item>
+	<item>7: Radio przenośne</item>
+	<item>8: Łódź / Statek</item>
+	<item>9: Stacja mobilna</item>
+	<item>10: APRS-IS (bez radia)</item>
+	<item>11: Balon / APRStouch-tone</item>
+	<item>12: Portable (laptop/kemping)</item>
 	<item>13: ...</item>
-	<item>14: Freight vehicle</item>
-	<item>15: HF Station</item>
+	<item>14: Pojazd towarowy</item>
+	<item>15: Stacja HF</item>
 </string-array>
-<string name="p_symbol">APRS symbol</string>
-<string name="p_symbol_summary">Your symbol for map display</string>
-<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
-<string name="p_status">Status message</string>
-<string name="p_status_summary">The text after your coordinates</string>
-<string name="p_status_entry">Enter your status message</string>
-<string name="p__network">Networking</string>
-<string name="p_conntype">Connection Protocol</string>
-<string name="p_conntype_summary">Choose UDP (port 8080) or HTTP POST (URL)</string>
-<string name="p_conntype_entry">Choose the connection protocol</string>
+<string name="p_symbol">Symbol APRS</string>
+<string name="p_symbol_summary">Twój symbol wyświetlania mapy</string>
+<string name="p_symbol_entry">Wprowadź symbol w postaci dwóch znaków</string>
+<string name="p_status">Wiadomośc statusu</string>
+<string name="p_status_summary">Tekst po koordynatach</string>
+<string name="p_status_entry">Wprowadź wiadomość statusu</string>
+<string name="p__network">Ścieciowe</string>
+<string name="p_conntype">Protokół połączenia</string>
+<string name="p_conntype_summary">Wybierz UDP (port 8080) lub HTTP POST (URL)</string>
+<string name="p_conntype_entry">Wybierz protokół połączenia</string>
 <!-- array of connection types -->
 <string-array name="p_conntype_e">
 	<item>UDP port 8080</item>
 	<item>HTTP POST</item>
-	<item>TCP connection</item>
-	<item>AFSK via Speaker</item>
+	<item>Połączenie TCP</item>
+	<item>AFSK przez głosnik</item>
 </string-array>
-<string name="p_host">Server</string>
-<string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
-<string name="p_host_entry">Enter the APRS-IS server hostname</string>
-<string name="p__location">Location Settings</string>
-<string name="p_interval">Minimum update time</string>
-<string name="p_interval_summary">Minutes between beacon transmissions</string>
-<string name="p_interval_entry">Enter the update interval [min]</string>
-<string name="p_distance">Minimum update distance</string>
-<string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
-<string name="p_distance_entry">Enter the update distance [km]</string>
-<string name="p_speedbrg">Await speed &amp; bearing</string>
-<string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
-<string name="p_netloc">Use network location</string>
-<string name="p_netloc_summary">Acquire position from the cellular network</string>
-<string name="p__filter">Incoming Filter (TCP only)</string>
-<string name="p_filterdist">Neighbor radius</string>
-<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
-<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p_host">Serwer</string>
+<string name="p_host_summary">APRS-IS serwer (port 8080) do wysyłania sygnałów nawigacyjnych</string>
+<string name="p_host_entry">Wprowadź nazwę hosta serwera APRS-IS</string>
+<string name="p__location">Ustawienia lokacji</string>
+<string name="p_interval">Minimalny czas aktualizacji</string>
+<string name="p_interval_summary">Minuty pomiędzy transmisjami sygnału</string>
+<string name="p_interval_entry">Podaj częstotliwość aktualizacji [min]</string>
+<string name="p_distance">Minimalna odległość aktualizacji</string>
+<string name="p_distance_summary">Kilometry przed transmisją sygnału nawigacyjnego (0 - tylko czas)</string>
+<string name="p_distance_entry">Wprowadź odległośc aktualizacji [km]</string>
+<string name="p_speedbrg">Oczekuj prędkość i kierunek</string>
+<string name="p_speedbrg_summary">Utrzymuj GPS dłużej, aby uzyskać dokładniejsze dane</string>
+<string name="p_netloc">Użyj lokalizacji sieci</string>
+<string name="p_netloc_summary">PObierz pozycję z sieci komórkowej</string>
+<string name="p__filter">Filtr przychodzący (tylko TCP)</string>
+<string name="p_filterdist">Promień sąsiada</string>
+<string name="p_filterdist_summary">Odbiór pakietów z tej stacji w promieniu</string>
+<string name="p_filterdist_entry">Promień do monitorowania pakietów [km]</string>
 </resources>

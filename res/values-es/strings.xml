@@ -2,6 +2,8 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_map">APRSdroid Map</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
 <string name="wrongpasscode">Your passcode does not match your callsign!</string>
@@ -11,6 +13,10 @@
 <string name="stoplog">Detener el seguimiento</string>
 
 <string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Last Report</string>
+
 
 <!-- AprsService -->
 <string name="service_once">APRS Service single shot.</string>
@@ -51,6 +57,7 @@
 
 <!-- options menu -->
 <string name="about">Acerca de</string>
+<string name="show_map">Show Map</string>
 <string name="quit">Salir</string>
 <string name="preferences">Preferencias</string>
 <!-- preferences -->

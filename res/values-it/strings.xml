@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_map">APRSdroid Map</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Devi conifigurare APRSdroid con il tuo nominativo e la password!</string>
+<string name="wrongpasscode">La password non è corretta!</string>
+<string name="mininterval">L\'aggiornamento minimo è 1 minuto!</string>
+<string name="singlelog">Singola tramissione</string>
+<string name="startlog">Inizia a trasmettere</string>
+<string name="stoplog">Interrompi trasmissione</string>
+
+<string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Last Report</string>
+
+
+<!-- AprsService -->
+<string name="service_once">Trasmissione APRS in modalità singola trasmissione</string>
+<string name="service_start">Servizio APRS iniziato. Aggiornamento ogni %d minuties e %d km.</string>
+<string name="service_stop">Servizio APRS fermato.</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Benvenuto su APRSdroid!</string>
+<string name="fr_text">Questo software può essere usato solo se hai una stazione radioamatoriale autorizzata.\n\n Se usi il programma senza licenza, puoi essere perseguito penalmente.</string>
+
+<!-- about dialog -->
+<string name="ad_title">Info su APRSdroid v%s</string>
+<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n http://aprsdroid.org/ \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR) \n\n This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. \n\n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \n\n You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_trans">\n\nTraduzione:</string>
+<string name="ad_homepage">Pagina Principale</string>
+
+<!-- options menu -->
+<string name="about">Info</string>
+<string name="show_map">Show Map</string>
+<string name="quit">Chiudi</string>
+<string name="preferences">Preferenze</string>
+<!-- preferences -->
+<string name="p__ham">Informazioni sul Radioamatore</string>
+<string name="p_callsign">Nominativo</string>
+<string name="p_callsign_summary">Nominativo di stazione</string>
+<string name="p_callsign_entry">Inserisci Nominativo di stazione</string>
+<string name="p_passcode">Password</string>
+<string name="p_passcode_summary">APRS-IS password di validazione</string>
+<string name="p_passcode_entry">Inserisci la password di validazione</string>
+<string name="p_passreq">Password obbligatoria</string>
+<string name="p_passreq_summary">Richiedi la password APRS-IS online</string>
+<string name="p__aprs">Impostazioni APRS</string>
+<string name="p_ssid">Tipo di Stazione</string>
+<string name="p_ssid_summary">Tipo di Stazione (1..15; 9=Mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Seleziona il tipo di stazione usata</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(nessuna)</item>
+	<item>1: Digipeater (home/WX)</item>
+	<item>2: Digipeater 70cm</item>
+	<item>3: Digipeater</item>
+	<item>4: HF to VHF gateway</item>
+	<item>5: IGate (no stazioni casalinghe)</item>
+	<item>6: Satellite</item>
+	<item>7: Radio portatile</item>
+	<item>8: Nave / Barca</item>
+	<item>9: Stazione mobile</item>
+	<item>10: APRS-IS (no radio)</item>
+	<item>11: Balloon / APRStouch-tone</item>
+	<item>12: Portatil (computer / campeggio)</item>
+	<item>13: ...</item>
+	<item>14: Veicolo</item>
+	<item>15: Stazione HF</item>
+</string-array>
+<string name="p_symbol">Simbolo APRS</string>
+<string name="p_symbol_summary">Simbolo per la mappa</string>
+<string name="p_symbol_entry">Scegli il simbolo per la mappa</string>
+<string name="p_status">Messaggi di Stato</string>
+<string name="p_status_summary">Il testo da inserire dopo le coordinate</string>
+<string name="p_status_entry">Inserisci messaggio</string>
+<string name="p__network">Rete</string>
+<string name="p_conntype">Protocollo di Connessione</string>
+<string name="p_conntype_summary">Segli UDP (port 8080) oppure HTTP POST (URL)</string>
+<string name="p_conntype_entry">Scegli il protocollo di connessione</string>
+<!-- array of connection types -->
+<string-array name="p_conntype_e">
+	<item>UDP porta 8080</item>
+	<item>HTTP POST</item>
+	<item>Connessione TCP</item>
+	<item>AFSK tramite lo Speaker</item>
+</string-array>
+<string name="p_host">Server</string>
+<string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
+<string name="p_host_entry">Inserisci l\'host del server APRS-IS</string>
+<string name="p__location">Impostazioni di Posizione</string>
+<string name="p_interval">Tempo minimo di aggiornamento</string>
+<string name="p_interval_summary">Minuti tra trasmissione beacon</string>
+<string name="p_interval_entry">Inserisci l\'intervallo di aggiornamento [min]</string>
+<string name="p_distance">Distanza minima di aggiornamento</string>
+<string name="p_distance_summary">Km prima dell\'aggiornamento del beacon (se 0 aggiorna solo dopo un tempo prestabilito)</string>
+<string name="p_distance_entry">Inserisci la distanza di aggiornamento [km]</string>
+<string name="p_speedbrg">Attesa velocità e rapporto</string>
+<string name="p_speedbrg_summary">Tieni attivo il GPS solo per rilevare dati più precisi</string>
+<string name="p_netloc">Usa la posizione della rete</string>
+<string name="p_netloc_summary">Acquisisci la posizione attraverso la rete del cellulare</string>
+<string name="p__filter">Filtro ricezione</string>
+<string name="p_filterdist">Distanza dalle postazioni</string>
+<string name="p_filterdist_summary">Ricevi frame solo da stazioni nella distanza</string>
+<string name="p_filterdist_entry">Raggio di azione in [km] per la ricezione di frame.</string>
+</resources>

@@ -2,15 +2,21 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_map">APRSdroid Map</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroidの使用前にコールサインとパスコードの設定が必要です</string>
 <string name="wrongpasscode">コールサインとパスコードが一致しません！</string>
 <string name="mininterval">最小更新間隔は１分以下に設定できません！</string>
 <string name="singlelog">１回のみ送信</string>
 <string name="startlog">連続送信開始</string>
-<string name="stoplog">連続送信停止</string>
+<string name="stoplog">送信停止</string>
 
 <string name="latlon_format">緯度: %1.4f 経度: %1.4f (±%dm)</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Last Report</string>
+
 
 <!-- AprsService -->
 <string name="service_once">ARPSサービス １回送信</string>
@@ -45,10 +51,11 @@
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
 <string name="ad_trans">翻訳:</string>
-<string name="ad_homepage">Home Page</string>
+<string name="ad_homepage">ホームページ</string>
 
 <!-- options menu -->
 <string name="about">ソフトウェア情報</string>
+<string name="show_map">Show Map</string>
 <string name="quit">終了</string>
 <string name="preferences">設定</string>
 <!-- preferences -->
@@ -59,8 +66,8 @@
 <string name="p_passcode">パスコード</string>
 <string name="p_passcode_summary">APRS-IS認証パスコード</string>
 <string name="p_passcode_entry">パスコードを入力</string>
-<string name="p_passreq">Request Passcode</string>
-<string name="p_passreq_summary">Request APRS-IS passcode online</string>
+<string name="p_passreq">パスコード申請</string>
+<string name="p_passreq_summary">APRS-ISパスコード発行サイトへ接続</string>
 <string name="p__aprs">APRS設定</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">局の種別 (1..15; 9=モービル局, 10=APRS-IS)</string>
@@ -91,19 +98,19 @@
 <string name="p_status_summary">位置情報と共に送信するメッセージ</string>
 <string name="p_status_entry">ステータスメッセージを入力</string>
 <string name="p__network">ネットワークの設定</string>
-<string name="p_conntype">使用するプロトコル</string>
-<string name="p_conntype_summary">UDP (ポート8080) か HTTP POST (URL)を選択</string>
-<string name="p_conntype_entry">使用するプロトコルを選択</string>
+<string name="p_conntype">データ送信方式</string>
+<string name="p_conntype_summary">サーバへのデータ送信方式を選択</string>
+<string name="p_conntype_entry">使用する送信方式を選択</string>
 <!-- array of connection types -->
 <string-array name="p_conntype_e">
 	<item>UDP ポート8080</item>
 	<item>HTTP POST</item>
-	<item>TCP connection</item>
-	<item>AFSK via Speaker</item>
+	<item>TCP接続</item>
+	<item>AFSK音声出力</item>
 </string-array>
-<string name="p_host">送信サーバ</string>
-<string name="p_host_summary">ビーコンを送信するAPRS-ISサーバ (ポート8080)</string>
-<string name="p_host_entry">送信先のAPRS-ISサーバホストを入力</string>
+<string name="p_host">送信先サーバ名</string>
+<string name="p_host_summary">ビーコン情報を送信するAPRS-ISサーバ名</string>
+<string name="p_host_entry">送信先のAPRS-ISサーバホスト名を入力</string>
 <string name="p__location">位置情報設定</string>
 <string name="p_interval">最小更新時間</string>
 <string name="p_interval_summary">ビーコンを送信する間隔</string>
@@ -115,8 +122,8 @@
 <string name="p_speedbrg_summary">GPSの情報をより長時間かけて取得する</string>
 <string name="p_netloc">ネットワーク位置情報を使用</string>
 <string name="p_netloc_summary">携帯電話網から取得した位置情報を使用する</string>
-<string name="p__filter">Incoming Filter (TCP only)</string>
-<string name="p_filterdist">Neighbor radius</string>
-<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
-<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p__filter">受信ビーコン表示設定 （TCP接続のみ）</string>
+<string name="p_filterdist">近隣局ビーコン表示範囲</string>
+<string name="p_filterdist_summary">ここで指定した範囲内にある局のビーコンを受信表示する</string>
+<string name="p_filterdist_entry">ビーコンを受信する範囲[km]を指定</string>
 </resources>
