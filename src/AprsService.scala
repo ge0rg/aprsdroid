@@ -81,6 +81,10 @@ class AprsService extends Service with LocationListener {
 		}
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			upd_int * 60000, upd_dist * 1000, this)
+
+		val callssid = AprsPacket.formatCallSsid(prefs.getString("callsign", null), prefs.getString("ssid", ""))
+		val message = "%s: %d min, %d km".format(callssid, upd_int, upd_dist)
+		ServiceNotifier.instance.start(this, message)
 	}
 
 	def startPoster() {
@@ -122,6 +126,7 @@ class AprsService extends Service with LocationListener {
 			poster.stop()
 			showToast(getString(R.string.service_stop))
 		}
+		ServiceNotifier.instance.stop(this)
 		running = false
 	}
 
@@ -213,6 +218,9 @@ class AprsService extends Service with LocationListener {
 		if (singleShot) {
 			singleShot = false
 			stopSelf()
+		} else {
+			val message = "%s: %s".format(callssid, status)
+			ServiceNotifier.instance.start(this, message)
 		}
 	}
 
