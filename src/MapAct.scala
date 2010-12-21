@@ -6,6 +6,7 @@ import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
+import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
 import _root_.com.google.android.maps._
 
 // to make scala-style iterating over arraylist possible
@@ -45,6 +46,42 @@ class MapAct extends MapActivity {
 		unregisterReceiver(locReceiver)
 	}
 	override def isRouteDisplayed() = false
+
+	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
+		getMenuInflater().inflate(R.menu.options_map, menu);
+		true
+	}
+	override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+		val mi = menu.findItem(R.id.startstopbtn)
+		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
+		mi.setIcon(if (AprsService.running) android.R.drawable.ic_menu_close_clear_cancel  else android.R.drawable.ic_menu_compass)
+		true
+	}
+
+	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
+		mi.getItemId match {
+		case R.id.preferences =>
+			startActivity(new Intent(this, classOf[PrefsAct]));
+			true
+		case R.id.map =>
+			finish();
+			true
+		case R.id.startstopbtn =>
+			val is_running = AprsService.running
+			if (!is_running) {
+				startService(AprsService.intent(this, AprsService.SERVICE))
+			} else {
+				stopService(AprsService.intent(this, AprsService.SERVICE))
+			}
+			true
+		case R.id.quit =>
+			stopService(AprsService.intent(this, AprsService.SERVICE))
+			finish();
+			true
+		case _ => false
+		}
+	}
+
 }
 
 class Station(val point : GeoPoint, val call : String, val message : String, val symbol : String)

@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/preferences"
+		android:title="@string/preferences"
+		android:alphabeticShortcut="p"
+		android:icon="@android:drawable/ic_menu_preferences" />
+	<item android:id="@+id/map"
+		android:title="@string/show_log"
+		android:alphabeticShortcut="l"
+		android:icon="@android:drawable/ic_menu_revert" />
+	<item android:id="@+id/startstopbtn"
+		android:title="@string/startlog"
+		android:alphabeticShortcut="s"
+		android:icon="@android:drawable/ic_menu_compass" />
+</menu>
+

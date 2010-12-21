@@ -58,6 +58,7 @@
 <!-- options menu -->
 <string name="about">About</string>
 <string name="show_map">Show Map</string>
+<string name="show_log">Show Log</string>
 <string name="quit">Quit</string>
 <string name="preferences">Preferences</string>
 <!-- preferences -->
