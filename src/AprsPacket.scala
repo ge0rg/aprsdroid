@@ -6,13 +6,13 @@ import _root_.android.location.Location
 object AprsPacket {
 
 	// position report regexes:
-	val SYM_TAB_RE = """[/\\A-Z0-9]"""			// symbol table character
+	val SYM_TAB_RE = """([/\\A-Z0-9])"""			// symbol table character
 	val SYM_TAB_COMP_RE = """([/\\A-Za-j])"""		// symbol table character for compressed packets
 	val COORD_COMP_RE = """([!-{]{4})"""
-	val POS_START_RE = """([A-Z0-9-]+)>[^:]*:[!=/zh]"""	// header for position report
-	// #0: call  #1: latitude  #2: sym1  #3: longitude  #4: sym2  #5: comment
+	val POS_START_RE = """([A-Z0-9-]+)>[^:]*:([A-Za-z0-9 ]*!|=|[/@]\d{6}[/zh])"""	// header for position report
+	// #0: call  #2: latitude  #3: sym1  #4: longitude  #5: sym2  #6: comment
 	val POS_RE = POS_START_RE + """(\d{4}\.\d{2}[NS])""" + SYM_TAB_RE + """(\d{5}\.\d{2}[EW])(.)\s*(.*)"""
-	// #0: call  #1: sym1comp  #2: latcom  #3: loncomp  #4: sym2  #5: csespdtype  #6: comment
+	// #0: call  #2: sym1comp  #3: latcom  #4: loncomp  #5: sym2  #6: csespdtype  #7: comment
 	val COMP_RE = POS_START_RE + SYM_TAB_COMP_RE + COORD_COMP_RE + COORD_COMP_RE + """(.)(...)\s*(.*)"""
 	lazy val PositionRegex = new Regex(POS_RE)
 	lazy val PositionCompRegex = new Regex(COMP_RE)
@@ -79,9 +79,9 @@ object AprsPacket {
 
 	def parseReport(report : String) : (String, Int, Int, String, String) = {
 		report match {
-		case PositionRegex(call, lat, sym1, lon, sym2, comment) =>
+		case PositionRegex(call, _, lat, sym1, lon, sym2, comment) =>
 			(call, coord2microdeg(lat), coord2microdeg(lon), sym1+sym2, comment)
-		case PositionCompRegex(call, sym1comp, latcomp, loncomp, sym2, _, comment) =>
+		case PositionCompRegex(call, _, sym1comp, latcomp, loncomp, sym2, _, comment) =>
 		        val sym1 = if ('a' <= sym1comp(0) && sym1comp(0) <= 'j') (sym1comp(0) - 'a' + '0').toChar else sym1comp
 			(call, compressed2lat(latcomp), compressed2lon(loncomp), sym1+sym2, comment)
 		}
