@@ -8,6 +8,8 @@ import _root_.android.database.Cursor
 import _root_.android.util.Log
 import _root_.android.widget.FilterQueryProvider
 
+import _root_.fi.aprs.fap.FineAPRSParser
+
 object StorageDatabase {
 	val TAG = "StorageDatabase"
 	val DB_VERSION = 5
@@ -126,20 +128,27 @@ class StorageDatabase(context : Context) extends
 
 	def addPosition(ts : Long, message : String) {
 		try {
-			val (call, lat, lon, sym, comment, origin) = AprsPacket.parseReport(message)
+			val fap = new FineAPRSParser().parse(message)
+			Log.d(TAG, "fap: %s>%s via %s - %s".format(fap.getSourceCall, fap.getDestinationCall, fap.getDigipeaters, fap.getType))
+			Log.d(TAG, "fap: %f %f".format(fap.getLatitude, fap.getLongitude))
+			if (fap.hasFault())
+				throw new Exception("FAP fault")
+			if (!fap.hasCoordinate())
+				throw new Exception("FAP no coords")
 			val cv = new ContentValues()
 			cv.put(Position.TS, ts.asInstanceOf[java.lang.Long])
-			cv.put(Position.CALL, call.toUpperCase)
-			cv.put(Position.LAT, lat.asInstanceOf[java.lang.Integer])
-			cv.put(Position.LON, lon.asInstanceOf[java.lang.Integer])
-			cv.put(Position.SYMBOL, sym)
-			cv.put(Position.COMMENT, comment)
-			if (origin != null)
-				cv.put(Position.ORIGIN, origin)
+			cv.put(Position.CALL, fap.getSourceCall())
+			cv.put(Position.LAT, fap.getLatitude()*1000000)
+			cv.put(Position.LON, fap.getLongitude()*1000000)
+			cv.put(Position.SYMBOL, fap.getSymbol())
+			cv.put(Position.COMMENT, fap.getComment())
+			//if (origin != null)
+			//	cv.put(Position.ORIGIN, origin)
 			Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
 			getWritableDatabase().insertOrThrow(Position.TABLE, Position.CALL, cv)
 		} catch {
 		case e : Exception =>
+			Log.d(TAG, "addPosition() failed: " + e)
 		}
 	}
 
