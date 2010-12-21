@@ -1,6 +1,5 @@
 package de.duenndns.aprsdroid
 
-import scala.util.matching.Regex
 import _root_.android.location.Location
 
 object AprsPacket {
@@ -9,14 +8,20 @@ object AprsPacket {
 	val SYM_TAB_RE = """([/\\A-Z0-9])"""			// symbol table character
 	val SYM_TAB_COMP_RE = """([/\\A-Za-j])"""		// symbol table character for compressed packets
 	val COORD_COMP_RE = """([!-{]{4})"""
-	val POS_START_RE = """([A-Z0-9-]+)>[^:]*:([A-Za-z0-9 ]*!|=|[/@]\d{6}[/zh])"""	// header for position report
+	val PATH_RE = """([A-Za-z0-9-]+)>[^:]*:"""		// header for APRS packet
+	val POS_START_RE = """([^!]{0,40}!|=|[/@]\d{6}[/zh])"""	// header for position report
+	val OBJ_START_RE = """;([A-Za-z0-9 -_]{9})\*\d{6}[/zh]"""	// header for position report
+	val POSIT_RE = """(\d{4}\.\d{2}[NS])""" + SYM_TAB_RE + """(\d{5}\.\d{2}[EW])(.)\s*(.*)"""
 	// #0: call  #2: latitude  #3: sym1  #4: longitude  #5: sym2  #6: comment
-	val POS_RE = POS_START_RE + """(\d{4}\.\d{2}[NS])""" + SYM_TAB_RE + """(\d{5}\.\d{2}[EW])(.)\s*(.*)"""
+	val POS_REPORT_RE = PATH_RE + POS_START_RE + POSIT_RE
 	// #0: call  #2: sym1comp  #3: latcom  #4: loncomp  #5: sym2  #6: csespdtype  #7: comment
-	val COMP_RE = POS_START_RE + SYM_TAB_COMP_RE + COORD_COMP_RE + COORD_COMP_RE + """(.)(...)\s*(.*)"""
-	lazy val PositionRegex = new Regex(POS_RE)
-	lazy val PositionCompRegex = new Regex(COMP_RE)
-	lazy val CoordRegex = new Regex("""(\d{2,3})(\d{2})\.(\d{2})([NSEW])""")
+	val COMP_RE = PATH_RE + POS_START_RE + SYM_TAB_COMP_RE + COORD_COMP_RE + COORD_COMP_RE + """(.)(...)\s*(.*)"""
+	// #0: call  #1: object call  #2: latitude  #3: sym1  #4: longitude  #5: sym2  #6: comment
+	val OBJ_REPORT_RE = PATH_RE + OBJ_START_RE + POSIT_RE
+	lazy val PositionRegex = POS_REPORT_RE.r
+	lazy val PositionCompRegex = COMP_RE.r
+	lazy val ObjectRegex = OBJ_REPORT_RE.r
+	lazy val CoordRegex = """(\d{2,3})(\d{2})\.(\d{2})([NSEW])""".r
 
 	def passcode(callssid : String) : Int = {
 		// remove ssid, uppercase, add \0 for odd-length calls
@@ -84,6 +89,8 @@ object AprsPacket {
 		case PositionCompRegex(call, _, sym1comp, latcomp, loncomp, sym2, _, comment) =>
 		        val sym1 = if ('a' <= sym1comp(0) && sym1comp(0) <= 'j') (sym1comp(0) - 'a' + '0').toChar else sym1comp
 			(call, compressed2lat(latcomp), compressed2lon(loncomp), sym1+sym2, comment)
+		case ObjectRegex(call, objcall, lat, sym1, lon, sym2, comment) =>
+			(objcall.trim(), coord2microdeg(lat), coord2microdeg(lon), sym1+sym2, comment)
 		}
 	}
 

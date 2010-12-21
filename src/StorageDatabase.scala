@@ -113,7 +113,7 @@ class StorageDatabase(context : Context) extends
 			val (call, lat, lon, sym, comment) = AprsPacket.parseReport(message)
 			val cv = new ContentValues()
 			cv.put(Position.TS, ts.asInstanceOf[java.lang.Long])
-			cv.put(Position.CALL, call)
+			cv.put(Position.CALL, call.toUpperCase)
 			cv.put(Position.LAT, lat.asInstanceOf[java.lang.Integer])
 			cv.put(Position.LON, lon.asInstanceOf[java.lang.Integer])
 			cv.put(Position.SYMBOL, sym)
