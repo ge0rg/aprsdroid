@@ -16,6 +16,10 @@ object AprsService {
 	val STATUS = "de.duenndns.aprsdroid.STATUS"
 	val PACKET = "de.duenndns.aprsdroid.PACKET"
 
+	def intent(ctx : Context, action : String) : Intent = {
+		new Intent(action, null, ctx, classOf[AprsService])
+	}
+
 	var running = false
 
 	implicit def block2runnable(block: => Unit) =

@@ -96,10 +96,6 @@ class APRSdroid extends Activity with OnClickListener
 		unregisterReceiver(locReceiver)
 	}
 
-	def serviceIntent(action : String) : Intent = {
-		new Intent(action, null, this, classOf[AprsService])
-	}
-
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
 		getMenuInflater().inflate(R.menu.options, menu);
 		true
@@ -171,7 +167,7 @@ class APRSdroid extends Activity with OnClickListener
 			startActivity(new Intent(this, classOf[MapAct]));
 			true
 		case R.id.quit =>
-			stopService(serviceIntent(AprsService.SERVICE))
+			stopService(AprsService.intent(this, AprsService.SERVICE))
 			finish();
 			true
 		case _ => false
@@ -193,13 +189,13 @@ class APRSdroid extends Activity with OnClickListener
 
 		view.getId match {
 		case R.id.singlebtn =>
-			startService(serviceIntent(AprsService.SERVICE_ONCE))
+			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
-				startService(serviceIntent(AprsService.SERVICE))
+				startService(AprsService.intent(this, AprsService.SERVICE))
 			} else {
-				stopService(serviceIntent(AprsService.SERVICE))
+				stopService(AprsService.intent(this, AprsService.SERVICE))
 			}
 			setupButtons(!is_running)
 		case _ =>
