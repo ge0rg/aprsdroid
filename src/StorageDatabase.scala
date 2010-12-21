@@ -131,6 +131,12 @@ class StorageDatabase(context : Context) extends
 			Position.CALL, null, "_ID DESC", limit)
 	}
 
+	def getRectPositions(lat1 : Int, lon1 : Int, lat2 : Int, lon2 : Int, limit : String) : Cursor = {
+		Log.d(TAG, "StorageDatabase.getRectPositions: %d,%d - %d,%d".format(lat1, lon1, lat2, lon2))
+		getPositions("LAT >= ? AND LAT <= ? AND LON >= ? AND LON <= ?",
+			Array(lat1, lat2, lon1, lon2).map(_.toString), limit)
+	}
+
 	def getStaPositions(call : String, limit : String) : Cursor = {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ? AND TS > ?", Array(call, limit),
