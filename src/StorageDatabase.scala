@@ -10,7 +10,7 @@ import _root_.android.widget.FilterQueryProvider
 
 object StorageDatabase {
 	val TAG = "StorageDatabase"
-	val DB_VERSION = 4
+	val DB_VERSION = 5
 	val DB_NAME = "storage.db"
 	object Post {
 		val TABLE = "posts"
@@ -40,16 +40,33 @@ object StorageDatabase {
 		val CALL = "call"
 		val LAT = "lat"
 		val LON = "lon"
+		val SPEED = "speed"
+		val COURSE = "course"
+		val ALT = "alt"
 		val SYMBOL = "symbol"
 		val COMMENT = "comment"
-		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s TEXT, %s INTEGER, %s INTEGER, %s TEXT, %s TEXT)"
-					.format(TABLE, _ID, TS, CALL, LAT, LON, SYMBOL, COMMENT)
-		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT)
+		val ORIGIN = "origin"	// originator call for object/item
+		val QRG = "qrg"		// voice frequency
+		lazy val TABLE_CREATE = """CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG,
+			%s TEXT, %s INTEGER, %s INTEGER,
+			%s INTEGER, %s INTEGER, %s INTEGER,
+			%s TEXT, %s TEXT, %s TEXT, %s TEXT)"""
+			.format(TABLE, _ID, TS,
+				CALL, LAT, LON,
+				SPEED, COURSE, ALT,
+				SYMBOL, COMMENT, ORIGIN, QRG)
+		lazy val TABLE_DROP = "DROP TABLE %s".format(TABLE)
+		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT, SPEED, COURSE, ALT, ORIGIN, QRG)
 		val COLUMN_CALL		= 2
 		val COLUMN_LAT		= 3
 		val COLUMN_LON		= 4
 		val COLUMN_SYMBOL	= 5
 		val COLUMN_COMMENT	= 6
+		val COLUMN_SPEED	= 7
+		val COLUMN_COURSE	= 8
+		val COLUMN_ALT		= 9
+		val COLUMN_ORIGIN	= 10
+		val COLUMN_QRG		= 11
 		lazy val TABLE_INDEX = "CREATE INDEX idx_position_%s ON position (%s)"
 	}
 
@@ -78,8 +95,10 @@ class StorageDatabase(context : Context) extends
 		if (from == 1 && to >= 2) {
 			db.execSQL("ALTER TABLE %s ADD COLUMN %s".format(Post.TABLE, "TYPE INTEGER DEFAULT 0"))
 		}
-		if (from <= 2 && to >= 3) {
+		if (from <= 4 && to >= 3) {
+			db.execSQL(Position.TABLE_DROP)
 			db.execSQL(Position.TABLE_CREATE)
+			Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
 			// we can not call getPosts() here due to recursion issues
 			val c = db.query(Post.TABLE, Post.COLUMNS, "TYPE = 0 OR TYPE = 3",
 						null, null, null, "_ID DESC", null)
@@ -91,9 +110,6 @@ class StorageDatabase(context : Context) extends
 				c.moveToNext()
 			}
 			c.close()
-		}
-		if (from <= 3 && to >= 4) {
-			Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
 		}
 	}
 
