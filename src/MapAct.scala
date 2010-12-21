@@ -150,6 +150,14 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 
 	override def draw(c : Canvas, m : MapView, shadow : Boolean) : Unit = {
 		if (shadow) return;
+		Benchmark("getRectPositions") {
+			val topleft = m.getProjection().fromPixels(0, 0)
+			val bottomright = m.getProjection().fromPixels(m.getWidth, m.getHeight)
+			val cursor = db.getRectPositions(bottomright.getLatitudeE6, topleft.getLongitudeE6,
+						topleft.getLatitudeE6, bottomright.getLongitudeE6, null)
+			Log.d(TAG, "getRectPositions: " + cursor.getCount())
+			cursor.close()
+		}
 		Benchmark("draw") {
 
 		val textPaint = new Paint()
