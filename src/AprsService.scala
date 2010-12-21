@@ -204,22 +204,24 @@ class AprsService extends Service with LocationListener {
 		val packet = AprsPacket.formatLoc(callssid, symbol, status, location)
 
 		Log.d(TAG, "packet: " + packet)
-		try {
+		val result = try {
 			val status = poster.update(packet)
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet)
 			val prec_status = "%s (±%dm)".format(status, location.getAccuracy.asInstanceOf[Int])
 			addPost(StorageDatabase.Post.TYPE_POST, prec_status, packet)
+			prec_status
 		} catch {
 			case e : Exception =>
 				i.putExtra(PACKET, e.getMessage())
 				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
+				e.getMessage()
 		}
 		if (singleShot) {
 			singleShot = false
 			stopSelf()
 		} else {
-			val message = "%s: %s".format(callssid, status)
+			val message = "%s: %s".format(callssid, result)
 			ServiceNotifier.instance.start(this, message)
 		}
 	}
