@@ -7,6 +7,10 @@
 		android:title="@string/show_log"
 		android:alphabeticShortcut="l"
 		android:icon="@android:drawable/ic_menu_revert" />
+	<item android:id="@+id/toggleobjects"
+		android:title="@string/show_objects"
+		android:alphabeticShortcut="o"
+		android:icon="@android:drawable/ic_menu_myplaces" />
 	<item android:id="@+id/startstopbtn"
 		android:title="@string/startlog"
 		android:alphabeticShortcut="s"

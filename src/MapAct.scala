@@ -20,9 +20,11 @@ class MapAct extends MapActivity {
 	lazy val db = StorageDatabase.open(this)
 	lazy val staoverlay = new StationOverlay(allicons, this, db)
 
+	var showObjects = false
+
 	lazy val locReceiver = new LocationReceiver(new Handler(), () => {
 			Benchmark("loadDb") {
-				staoverlay.loadDb()
+				staoverlay.loadDb(showObjects)
 			}
 			mapview.invalidate()
 			//postlist.setSelection(0)
@@ -33,7 +35,7 @@ class MapAct extends MapActivity {
 		setContentView(R.layout.mapview)
 		mapview.setBuiltInZoomControls(true)
 
-		staoverlay.loadDb()
+		staoverlay.loadDb(showObjects)
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
@@ -73,6 +75,11 @@ class MapAct extends MapActivity {
 			} else {
 				stopService(AprsService.intent(this, AprsService.SERVICE))
 			}
+			true
+		case R.id.toggleobjects =>
+			showObjects = !showObjects
+			staoverlay.loadDb(showObjects)
+			mapview.invalidate()
 			true
 		case R.id.quit =>
 			stopService(AprsService.intent(this, AprsService.SERVICE))
@@ -198,9 +205,10 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		}
 	}
 
-	def loadDb() {
+	def loadDb(showObjects : Boolean) {
 		stations.clear()
-		val c = db.getPositions(null, null, null)
+		val filter = if (showObjects) null else "ORIGIN IS NULL"
+		val c = db.getPositions(filter, null, null)
 		c.moveToFirst()
 		while (!c.isAfterLast()) {
 			val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
