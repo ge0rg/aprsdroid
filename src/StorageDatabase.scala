@@ -158,6 +158,12 @@ class StorageDatabase(context : Context) extends
 			"call LIKE ? AND TS > ?", Array(call, limit),
 			null, null, "_ID DESC", null)
 	}
+	def getAllSsids(call : String) : Cursor = {
+		val querycall = call.split("-")(0) + "%"
+		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
+			"call LIKE ?", Array(querycall),
+			"call", null, null, null)
+	}
 
 	def addPost(ts : Long, posttype : Int, status : String, message : String) {
 		val cv = new ContentValues()

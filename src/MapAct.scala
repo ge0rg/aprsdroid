@@ -240,7 +240,7 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		Log.d(TAG, "user clicked on " + s.call)
 
 		// extract stations last report from database
-		val cur = db.getPosts("MESSAGE like ?", Array("%s%%".format(s.call)), "1")
+		var cur = db.getPosts("MESSAGE like ?", Array("%s%%".format(s.call)), "1")
 		cur.moveToFirst()
 		val message = if (!cur.isAfterLast()) {
 				"%s %s".format(cur.getString(cur.getColumnIndexOrThrow("TSS")),
@@ -252,9 +252,22 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		cur.close()
 		// display a dialog with last report
 		val title = context.getString(R.string.sta_lastreport, s.call)
+
+		val ssidlist = new scala.collection.mutable.ArrayBuffer[CharSequence]()
+		cur = db.getAllSsids(s.call)
+		cur.moveToFirst()
+		while  (!cur.isAfterLast()) {
+			ssidlist += cur.getString(StorageDatabase.Position.COLUMN_CALL)
+			Log.d(TAG, "%s has %s".format(s.call, cur.getString(StorageDatabase.Position.COLUMN_CALL)))
+			cur.moveToNext()
+		}
+		cur.close()
+		val qrzurl = "http://qrz.com/db/%s".format(s.call.split("-")(0))
 		new AlertDialog.Builder(context).setTitle(title)
 			.setMessage(message)
-			.setPositiveButton(android.R.string.ok, null)
+			//.setItems(ssidlist.toArray, null)
+			.setPositiveButton("QRZ.com", new UrlOpener(context, qrzurl))
+			.setNegativeButton(android.R.string.ok, null)
 			.create.show
 
 		true

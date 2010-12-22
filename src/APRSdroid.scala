@@ -144,15 +144,8 @@ class APRSdroid extends Activity with OnClickListener
 			.setView(aboutview)
 			.setIcon(android.R.drawable.ic_dialog_info)
 			.setPositiveButton(android.R.string.ok, null)
-			.setNeutralButton(R.string.ad_homepage, new HomePageOpener())
+			.setNeutralButton(R.string.ad_homepage, new UrlOpener(this, "http://aprsdroid.org/"))
 			.create.show
-	}
-
-	class HomePageOpener extends DialogInterface.OnClickListener {
-		override def onClick(d : DialogInterface, which : Int) {
-			startActivity(new Intent(Intent.ACTION_VIEW,
-				Uri.parse("http://aprsdroid.org/")))
-		}
 	}
 
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
@@ -203,5 +196,12 @@ class APRSdroid extends Activity with OnClickListener
 		}
 	}
 
+}
+
+class UrlOpener(ctx : Context, url : String) extends DialogInterface.OnClickListener {
+	override def onClick(d : DialogInterface, which : Int) {
+		ctx.startActivity(new Intent(Intent.ACTION_VIEW,
+			Uri.parse(url)))
+	}
 }
 
