@@ -9,8 +9,9 @@ object AprsPacket {
 	val SYM_TAB_COMP_RE = """([/\\A-Za-j])"""		// symbol table character for compressed packets
 	val COORD_COMP_RE = """([!-{]{4})"""
 	val PATH_RE = """([A-Za-z0-9-]+)>[^:]*:"""		// header for APRS packet
-	val POS_START_RE = """([^!]{0,40}!|=|[/@]\d{6}[/zh])"""	// header for position report
+	val POS_START_RE = """([^!;)`']{0,40}!|=|[/@]\d{6}[/zh])"""	// header for position report
 	val OBJ_START_RE = """;([A-Za-z0-9 -_]{9})\*\d{6}[/zh]"""	// header for position report
+	val COMMENT_RE = """(\d{3}/\d{3})?\s*(.*)"""
 	val POSIT_RE = """(\d{4}\.\d{2}[NS])""" + SYM_TAB_RE + """(\d{5}\.\d{2}[EW])(.)\s*(.*)"""
 	// #0: call  #2: latitude  #3: sym1  #4: longitude  #5: sym2  #6: comment
 	val POS_REPORT_RE = PATH_RE + POS_START_RE + POSIT_RE
