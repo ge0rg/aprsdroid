@@ -126,7 +126,7 @@ class StorageDatabase(context : Context) extends
 
 	def addPosition(ts : Long, message : String) {
 		try {
-			val (call, lat, lon, sym, comment) = AprsPacket.parseReport(message)
+			val (call, lat, lon, sym, comment, origin) = AprsPacket.parseReport(message)
 			val cv = new ContentValues()
 			cv.put(Position.TS, ts.asInstanceOf[java.lang.Long])
 			cv.put(Position.CALL, call.toUpperCase)
@@ -134,6 +134,8 @@ class StorageDatabase(context : Context) extends
 			cv.put(Position.LON, lon.asInstanceOf[java.lang.Integer])
 			cv.put(Position.SYMBOL, sym)
 			cv.put(Position.COMMENT, comment)
+			if (origin != null)
+				cv.put(Position.ORIGIN, origin)
 			Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
 			getWritableDatabase().insertOrThrow(Position.TABLE, Position.CALL, cv)
 		} catch {

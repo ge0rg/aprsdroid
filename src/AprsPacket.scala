@@ -82,15 +82,15 @@ object AprsPacket {
 		double2microdeg(comp.map(_-33).reduceLeft(_*91+_)/190463.0 - 180)
 	}
 
-	def parseReport(report : String) : (String, Int, Int, String, String) = {
+	def parseReport(report : String) : (String, Int, Int, String, String, String) = {
 		report match {
 		case PositionRegex(call, _, lat, sym1, lon, sym2, comment) =>
-			(call, coord2microdeg(lat), coord2microdeg(lon), sym1+sym2, comment)
+			(call, coord2microdeg(lat), coord2microdeg(lon), sym1+sym2, comment, null)
 		case PositionCompRegex(call, _, sym1comp, latcomp, loncomp, sym2, _, comment) =>
 		        val sym1 = if ('a' <= sym1comp(0) && sym1comp(0) <= 'j') (sym1comp(0) - 'a' + '0').toChar else sym1comp
-			(call, compressed2lat(latcomp), compressed2lon(loncomp), sym1+sym2, comment)
+			(call, compressed2lat(latcomp), compressed2lon(loncomp), sym1+sym2, comment, null)
 		case ObjectRegex(call, objcall, lat, sym1, lon, sym2, comment) =>
-			(objcall.trim(), coord2microdeg(lat), coord2microdeg(lon), sym1+sym2, comment)
+			(objcall.trim(), coord2microdeg(lat), coord2microdeg(lon), sym1+sym2, comment, call)
 		}
 	}
 

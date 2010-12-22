@@ -226,7 +226,7 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 
 	def addStation(post : String) {
 		try {
-			val (call, lat, lon, sym, comment) = AprsPacket.parseReport(post)
+			val (call, lat, lon, sym, comment, origin) = AprsPacket.parseReport(post)
 			Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
 			addStation(new Station(new GeoPoint(lat, lon), call, comment, sym))
 		} catch {
