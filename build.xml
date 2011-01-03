@@ -132,7 +132,11 @@
 	    -dontwarn scala.**
 	    -dontnote scala.**
 	    -dontobfuscate
-	    -dontoptimize
+	    -dontpreverify
+	    -repackageclasses ''
+	    -allowaccessmodification
+	    -optimizations !code/simplification/arithmetic,!code/allocation/variable
+	    -keepattributes *Annotation*
 	    -printusage ${optimized.dir}/proguard.usage
 	    -keep public class * extends android.app.Activity
 	    -keep public class * extends android.app.Service
