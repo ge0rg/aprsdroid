@@ -29,5 +29,6 @@ android:layout_height="wrap_content"
 android:textColor="#30b030"
 android:textSize="17dp"
 android:typeface="monospace"
+android:autoLink="web"
 />
 </LinearLayout>
