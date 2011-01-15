@@ -8,7 +8,7 @@ import _root_.android.database.Cursor
 import _root_.android.util.Log
 import _root_.android.widget.FilterQueryProvider
 
-import _root_.fi.aprs.fap.FineAPRSParser
+import _root_.net.ab0oo.aprs._
 
 object StorageDatabase {
 	val TAG = "StorageDatabase"
@@ -128,27 +128,42 @@ class StorageDatabase(context : Context) extends
 
 	def addPosition(ts : Long, message : String) {
 		try {
-			val fap = new FineAPRSParser().parse(message)
-			Log.d(TAG, "fap: %s>%s via %s - %s".format(fap.getSourceCall, fap.getDestinationCall, fap.getDigipeaters, fap.getType))
-			Log.d(TAG, "fap: %f %f".format(fap.getLatitude, fap.getLongitude))
+			val fap = new Parser().parse(message)
+			if (fap.getAprsInformation() == null) {
+				Log.d(TAG, "addPosition() misses position: " + message)
+				return
+			}
+			Log.d(TAG, "got %s".format(message))
+			val (pos, objectname) = fap.getAprsInformation() match {
+				case pp : PositionPacket => (pp.getPosition(), null)
+				case op : ObjectPacket => (op.getPosition(), op.getObjectName())
+			}
+			//Log.d(TAG, "fap: %s>%s via %s - %s".format(fap.getSourceCall, fap.getDestinationCall, fap.getDigipeaters, fap.getType))
+			//Log.d(TAG, "fap: %f %f".format(pos.getLatitude, pos.getLongitude))
 			if (fap.hasFault())
 				throw new Exception("FAP fault")
-			if (!fap.hasCoordinate())
-				throw new Exception("FAP no coords")
 			val cv = new ContentValues()
+			val call = fap.getSourceCall()
+			val lat = (pos.getLatitude()*1000000).asInstanceOf[Int]
+			val lon = (pos.getLongitude()*1000000).asInstanceOf[Int]
+			val sym = "%s%s".format(pos.getSymbolTable(), pos.getSymbolCode())
+			val comment = fap.getAprsInformation().getComment()
 			cv.put(Position.TS, ts.asInstanceOf[java.lang.Long])
-			cv.put(Position.CALL, fap.getSourceCall())
-			cv.put(Position.LAT, fap.getLatitude()*1000000)
-			cv.put(Position.LON, fap.getLongitude()*1000000)
-			cv.put(Position.SYMBOL, fap.getSymbol())
-			cv.put(Position.COMMENT, fap.getComment())
-			//if (origin != null)
-			//	cv.put(Position.ORIGIN, origin)
+			if (objectname != null) {
+				cv.put(Position.CALL, objectname)
+				cv.put(Position.ORIGIN, call)
+			} else
+				cv.put(Position.CALL, call)
+			cv.put(Position.LAT, lat.asInstanceOf[java.lang.Integer])
+			cv.put(Position.LON, lon.asInstanceOf[java.lang.Integer])
+			cv.put(Position.SYMBOL, sym)
+			cv.put(Position.COMMENT, comment)
 			Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
 			getWritableDatabase().insertOrThrow(Position.TABLE, Position.CALL, cv)
 		} catch {
 		case e : Exception =>
-			Log.d(TAG, "addPosition() failed: " + e)
+			Log.d(TAG, "addPosition() not a position: " + message)
+			e.printStackTrace()
 		}
 	}
 
