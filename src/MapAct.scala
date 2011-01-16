@@ -232,17 +232,6 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		stations.add(sta)
 	}
 
-	def addStation(post : String) {
-		try {
-			val (call, lat, lon, sym, comment, origin) = AprsPacket.parseReport(post)
-			Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
-			addStation(new Station(new GeoPoint(lat, lon), call, comment, sym))
-		} catch {
-		case e : Exception =>
-			Log.d(TAG, "bad " + post)
-		}
-	}
-
 	override def onTap(index : Int) : Boolean = {
 		val s = stations(index)
 		Log.d(TAG, "user clicked on " + s.call)
