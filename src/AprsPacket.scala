@@ -1,6 +1,7 @@
 package de.duenndns.aprsdroid
 
 import _root_.android.location.Location
+import _root_.net.ab0oo.aprs._
 
 object AprsPacket {
 
@@ -46,15 +47,6 @@ object AprsPacket {
 		val min = (minDec / 100) % 60
 		val minFrac = minDec % 100
 		(deg, min, minFrac, letter)
-	}
-
-	def formatLat(c : Double) : String = {
-		val (deg, min, minFrac, letter) = splitCoord(c)
-		"%02d%02d.%02d%c".format(deg, min, minFrac, "NS"(letter))
-	}
-	def formatLon(c : Double) : String = {
-		val (deg, min, minFrac, letter) = splitCoord(c)
-		"%03d%02d.%02d%c".format(deg, min, minFrac, "EW"(letter))
 	}
 
 	def coord2microdeg(s : String) : Int = {
@@ -125,10 +117,11 @@ object AprsPacket {
 
 	def formatLoc(callssid : String, symbol : String,
 			status : String, location : Location) : String = {
-		callssid + ">APAND1,TCPIP*:!" + formatLat(location.getLatitude) +
-			symbol(0) + formatLon(location.getLongitude) + symbol(1) +
+		callssid + ">APAND1,TCPIP*:" + new PositionPacket(
+			new Position(location.getLatitude, location.getLongitude, 0,
+				     symbol(0), symbol(1)),
 			formatCourseSpeed(location) + formatAltitude(location) +
-			" " + status
+			" " + status)
 	}
 
 	def formatLogin(callsign : String, ssid : String, passcode : String) : String = {
