@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	    android:title="TCP">
+
+        <EditTextPreference
+                android:key="host"
+		android:hint="@string/aprs_server"
+		android:inputType="textUri"
+		android:title="@string/p_host"
+		android:summary="@string/p_host_summary"
+		android:dialogTitle="@string/p_host_entry" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
+
