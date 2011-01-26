@@ -125,25 +125,11 @@
 	<taskdef resource="proguard/ant/task.properties"
 	    classpath="tools/proguard.jar" />
 	<mkdir dir="${optimized.dir}" />
-	<proguard>
+	<proguard configuration="proguard.cfg">
 	    -injars ${out.classes.absolute.dir}:${external.libs.dir}:tools/scala-library.jar(!META-INF/MANIFEST.MF,!library.properties)
 	    -outjars ${out.absolute.dir}/classes.min.jar
 	    -libraryjars ${toString:android.target.classpath}
-	    -dontwarn scala.**
-	    -dontnote scala.**
-	    -dontobfuscate
-	    -dontpreverify
-	    -repackageclasses ''
-	    -allowaccessmodification
-	    -optimizations !code/simplification/arithmetic,!code/allocation/variable
-	    -keepattributes *Annotation*
 	    -printusage ${optimized.dir}/proguard.usage
-	    -keep public class * extends android.app.Activity
-	    -keep public class * extends android.app.Service
-	    -keep public interface scala.ScalaObject
-	    -dontskipnonpubliclibraryclasses
-	    -dontskipnonpubliclibraryclassmembers
-	    -allowaccessmodification
 	</proguard>
     </target>
 
