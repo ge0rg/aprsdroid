@@ -11,6 +11,7 @@
 		<item>udp</item>
 		<item>http</item>
 		<item>afsk</item>
+		<item>bluetooth</item>
 	</string-array>
 
 	<string-array name="p_gps_e">
