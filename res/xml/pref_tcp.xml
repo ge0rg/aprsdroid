@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	    android:title="@string/p_tcp">
+
+        <EditTextPreference
+                android:key="tcp.server"
+		android:inputType="textUri"
+		android:title="@string/p_host"
+		android:summary="@string/p_tcp_server_summary"
+		android:hint="@string/p_host_hint"
+		android:defaultValue="@string/aprs_server"
+		android:dialogTitle="@string/p_host_entry" />
+
+        <EditTextPreference
+                android:key="tcp.filter"
+		android:title="@string/p_filter"
+		android:summary="@string/p_filter_summary"
+		android:hint="@string/p_filter_hint"
+		android:defaultValue="@string/p_filter_default"
+		android:dialogTitle="@string/p_filter_entry" />
+
+	<Preference
+		android:key="tcp.filter.help"
+		android:title="@string/p_filterhelp"
+		android:summary="@string/p_filterhelp_summary" >
+		<intent android:action="android.intent.action.VIEW"
+			android:data="http://www.aprs-is.net/javAPRSFilter.aspx" />
+	</Preference>
+    </PreferenceCategory>
+
+</PreferenceScreen>
+

@@ -37,6 +37,7 @@
 		android:summary="@string/p_ssid_summary"
                 android:entries="@array/p_ssid_e"
                 android:entryValues="@array/p_ssid_ev"
+		android:defaultValue=""
 		android:dialogTitle="@string/p_ssid_entry" />
 
         <EditTextPreference
@@ -44,6 +45,7 @@
 		android:hint="@string/default_symbol"
 		android:title="@string/p_symbol"
 		android:summary="@string/p_symbol_summary"
+		android:defaultValue="@string/default_symbol"
 		android:dialogTitle="@string/p_symbol_entry" />
 
         <EditTextPreference
@@ -85,19 +87,7 @@
     </PreferenceCategory>
                 
     <PreferenceCategory
-	android:title="@string/p__filter">
-
-        <EditTextPreference
-                android:key="filterdist"
-		android:inputType="number"
-		android:title="@string/p_filterdist"
-		android:summary="@string/p_filterdist_summary"
-		android:dialogTitle="@string/p_filterdist_entry" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-	android:title="@string/p__network">
+	android:title="@string/p__connection">
 
         <ListPreference
                 android:key="conntype"
@@ -105,16 +95,18 @@
 		android:summary="@string/p_conntype_summary"
                 android:entries="@array/p_conntype_e"
                 android:entryValues="@array/p_conntype_ev"
+		android:defaultValue="@string/p_conntype_default"
 		android:dialogTitle="@string/p_conntype_entry" />
 
-        <EditTextPreference
-                android:key="host"
-		android:hint="@string/aprs_server"
-		android:inputType="textUri"
-		android:title="@string/p_host"
-		android:summary="@string/p_host_summary"
-		android:dialogTitle="@string/p_host_entry" />
-                
+        <PreferenceScreen
+		android:title="@string/p_connsetup"
+		android:summary="@string/p_connsetup_summary">
+
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="de.duenndns.aprsdroid"
+                    android:targetClass="de.duenndns.aprsdroid.BackendPrefs" />
+
+        </PreferenceScreen>
     </PreferenceCategory>
 
 </PreferenceScreen>

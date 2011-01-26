@@ -101,10 +101,12 @@
 <string name="p_status">Status message</string>
 <string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your status message</string>
-<string name="p__network">Networking</string>
+<string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Connection Protocol</string>
-<string name="p_conntype_summary">Choose UDP (port 8080) or HTTP POST (URL)</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
+<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
 <string-array name="p_conntype_e">
 	<item>UDP port 8080</item>
@@ -115,6 +117,7 @@
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>
+<string name="p_host_hint">host:port</string>
 <string name="p__location">Location Settings</string>
 <string name="p_interval">Minimum update time</string>
 <string name="p_interval_summary">Minutes between beacon transmissions</string>
@@ -126,8 +129,20 @@
 <string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
 <string name="p_netloc">Use network location</string>
 <string name="p_netloc_summary">Acquire position from the cellular network</string>
-<string name="p__filter">Incoming Filter (TCP only)</string>
-<string name="p_filterdist">Neighbor radius</string>
-<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
-<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+
+<string name="p_afsk">AFSK Preferences</string>
+<string name="p_http">HTTP Preferences</string>
+<string name="p_udp">UDP Preferences</string>
+<string name="p_tcp">TCP Preferences</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_filter">Message filter</string>
+<string name="p_filter_hint">m/10 b/DO1GL*</string>
+<string name="p_filter_default">m/10</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming messages ("m/10" filters 10km around own position)</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
 </resources>
