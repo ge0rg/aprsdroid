@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
+	<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:orientation="horizontal">
+		<TextView
+		android:id="@+id/station_call"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="5dp"
+		android:textColor="#b0b080"
+		android:textSize="26dp"
+		android:typeface="monospace"
+		android:text="DO1GL-14"
+		/>
+		<TextView
+		android:id="@+id/station_distage"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="5dp"
+		android:layout_weight="1"
+		android:gravity="center"
+		android:textColor="#b0b080"
+		android:textSize="13dp"
+		android:text="15km NE\n30min"
+		/>
+		<TextView
+		android:id="@+id/station_qrg"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="5dp"
+		android:textColor="#b0b080"
+		android:textSize="26dp"
+		android:typeface="monospace"
+		android:text="439.250"
+		/>
+	</LinearLayout>
+	<TextView
+	android:id="@+id/listmessage"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:textColor="#8080b0"
+	android:textSize="17dp"
+	android:typeface="monospace"
+	android:autoLink="web"
+	android:text="http://aprsdroid.org/ Georg portabel"
+	/>
+</LinearLayout>
+

@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".StationActivity" android:label="Station DO1GL-7" />
 	<activity android:name=".PrefsAct" android:label="@string/app_prefs" />
 	<activity android:name=".BackendPrefs" android:label="@string/app_prefs" />
         <activity android:name=".MapAct" android:label="@string/app_map"

@@ -208,7 +208,8 @@ class APRSdroid extends Activity with OnClickListener
 		view.getId match {
 		case R.id.singlebtn =>
 			passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
-			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
+			startActivity(new Intent(this, classOf[StationActivity]));
+			//startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
