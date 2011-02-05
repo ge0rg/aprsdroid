@@ -93,25 +93,31 @@ class StorageDatabase(context : Context) extends
 		db.execSQL(Position.TABLE_CREATE)
 		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
 	}
+	def resetPositionsTable(db : SQLiteDatabase) {
+		db.execSQL(Position.TABLE_DROP)
+		db.execSQL(Position.TABLE_CREATE)
+		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
+		return; // this code causes a too long wait in onUpgrade...
+		// we can not call getPosts() here due to recursion issues
+		val c = db.query(Post.TABLE, Post.COLUMNS, "TYPE = 0 OR TYPE = 3",
+					null, null, null, "_ID DESC", null)
+		c.moveToFirst()
+		while (!c.isAfterLast()) {
+			val message = c.getString(c.getColumnIndexOrThrow(Post.MESSAGE))
+			val ts = c.getLong(c.getColumnIndexOrThrow(Post.TS))
+			addPosition(ts, message)
+			c.moveToNext()
+		}
+		c.close()
+	}
+	def resetPositionsTable() : Unit = resetPositionsTable(getWritableDatabase())
+
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
 		if (from == 1 && to >= 2) {
 			db.execSQL("ALTER TABLE %s ADD COLUMN %s".format(Post.TABLE, "TYPE INTEGER DEFAULT 0"))
 		}
 		if (from <= 4 && to >= 3) {
-			db.execSQL(Position.TABLE_DROP)
-			db.execSQL(Position.TABLE_CREATE)
-			Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
-			// we can not call getPosts() here due to recursion issues
-			val c = db.query(Post.TABLE, Post.COLUMNS, "TYPE = 0 OR TYPE = 3",
-						null, null, null, "_ID DESC", null)
-			c.moveToFirst()
-			while (!c.isAfterLast()) {
-				val message = c.getString(c.getColumnIndexOrThrow(Post.MESSAGE))
-				val ts = c.getLong(c.getColumnIndexOrThrow(Post.TS))
-				addPosition(ts, message)
-				c.moveToNext()
-			}
-			c.close()
+			resetPositionsTable(db)
 		}
 	}
 
@@ -197,10 +203,12 @@ class StorageDatabase(context : Context) extends
 		cv.put(Post.TYPE, posttype.asInstanceOf[java.lang.Integer])
 		cv.put(Post.STATUS, status)
 		cv.put(Post.MESSAGE, message)
-		Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
 		getWritableDatabase().insertOrThrow(Post.TABLE, Post.MESSAGE, cv)
 		if (posttype == Post.TYPE_POST || posttype == Post.TYPE_INCMG) {
 			addPosition(ts, message)
+		} else {
+			// only log status messages
+			Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
 		}
 		if (Post.trimCounter == 0) {
 			trimPosts()
