@@ -179,10 +179,12 @@ class StorageDatabase(context : Context) extends
 		cv.put(Post.TYPE, posttype.asInstanceOf[java.lang.Integer])
 		cv.put(Post.STATUS, status)
 		cv.put(Post.MESSAGE, message)
-		Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
 		getWritableDatabase().insertOrThrow(Post.TABLE, Post.MESSAGE, cv)
 		if (posttype == Post.TYPE_POST || posttype == Post.TYPE_INCMG) {
 			addPosition(ts, message)
+		} else {
+			// only log status messages
+			Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
 		}
 		if (Post.trimCounter == 0) {
 			trimPosts()
