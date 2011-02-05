@@ -95,6 +95,7 @@ class StorageDatabase(context : Context) extends
 		db.execSQL(Position.TABLE_DROP)
 		db.execSQL(Position.TABLE_CREATE)
 		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
+		return; // this code causes a too long wait in onUpgrade...
 		// we can not call getPosts() here due to recursion issues
 		val c = db.query(Post.TABLE, Post.COLUMNS, "TYPE = 0 OR TYPE = 3",
 					null, null, null, "_ID DESC", null)
