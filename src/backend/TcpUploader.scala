@@ -2,7 +2,7 @@ package de.duenndns.aprsdroid
 
 import _root_.android.content.SharedPreferences
 import _root_.android.app.Service
-import _root_.android.location.Location
+import _root_.android.location.{Location, LocationManager}
 import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.java.io.{BufferedReader, InputStreamReader, OutputStreamWriter, PrintWriter}
@@ -11,8 +11,10 @@ import _root_.java.net.{InetAddress, Socket}
 class TcpUploader(service : AprsService, prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	val TAG = "TcpUploader"
 	val hostname = prefs.getString("tcp.server", "srvr.aprs-is.net")
-	val filterdist = prefs.getString("tcp.filterdist", "10").toInt
-	val filter = " filter m/%d".format(filterdist)
+	val filterdist = prefs.getString("tcp.filter", "m/10")
+	val lastloc = AprsPacket.formatRangeFilter(
+		service.locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER), 10)
+	val filter = " filter %s %s".format(filterdist, lastloc)
 	var conn : TcpSocketThread = null
 
 	createConnection()

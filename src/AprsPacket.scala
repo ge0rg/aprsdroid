@@ -57,6 +57,13 @@ object AprsPacket {
 		"user " + formatCallSsid(callsign, ssid) + " pass " + passcode + " vers APRSdroid 0.1"
 	}
 
+	def formatRangeFilter(loc : Location, range : Int) : String = {
+		if (loc != null)
+			"r/%1.3f/%1.3f/%d".formatLocal(null, loc.getLatitude, loc.getLongitude, range)
+		else
+			""
+	}
+
 	def parseHostPort(hostport : String, defaultport : Int) : (String, Int) = {
 		val splits = hostport.split(":")
 		if (splits.length == 2)
