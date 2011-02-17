@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string-array name="p_conntype_e">
+		<item>@string/p_conn_tcp</item>
+		<item>@string/p_conn_udp</item>
+		<item>@string/p_conn_http</item>
+		<item>@string/p_conn_afsk</item>
+	</string-array>
 	<string-array name="p_conntype_ev">
+		<item>tcp</item>
 		<item>udp</item>
 		<item>http</item>
-		<item>tcp</item>
 		<item>afsk</item>
 	</string-array>
 
