@@ -27,7 +27,7 @@ object Backend {
 		)
 
 	def defaultBackendInfo(prefs : SharedPreferences) : BackendInfo = {
-		backend_collection.get(prefs.getString("conntype", "")) match {
+		backend_collection.get(prefs.getString("backend", "")) match {
 		case Some(bi) => bi
 		case None => backend_collection("tcp")
 		}

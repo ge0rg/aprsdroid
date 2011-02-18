@@ -90,7 +90,7 @@
 	android:title="@string/p__connection">
 
         <ListPreference
-                android:key="conntype"
+                android:key="backend"
 		android:title="@string/p_conntype"
 		android:summary="@string/p_conntype_summary"
                 android:entries="@array/p_conntype_e"
