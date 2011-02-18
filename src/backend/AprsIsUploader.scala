@@ -6,23 +6,10 @@ object AprsIsUploader {
 	val DEFAULT_CONNTYPE = "tcp"
 
 	def instanciateUploader(service : AprsService, prefs : SharedPreferences) : AprsIsUploader = {
-		prefs.getString("conntype", DEFAULT_CONNTYPE) match {
-		case "udp" =>
-			new UdpUploader(prefs)
-		case "http" =>
-			new HttpPostUploader(prefs)
-		case "afsk" =>
-			new AfskUploader(prefs)
-		case _ =>
-			new TcpUploader(service, prefs)
-		}
+		Backend.defaultBackendInfo(prefs).create(service, prefs)
 	}
 	def instanciatePrefsAct(prefs : SharedPreferences) = {
-		prefs.getString("conntype", DEFAULT_CONNTYPE) match {
-		case "afsk" => R.xml.pref_afsk
-		case "udp" => R.xml.pref_udp
-		case _ => R.xml.pref_tcp // TCP is default
-		}
+		Backend.defaultBackendInfo(prefs).prefxml
 	}
 }
 
