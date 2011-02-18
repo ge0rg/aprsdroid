@@ -3,23 +3,27 @@ package de.duenndns.aprsdroid
 import _root_.android.content.SharedPreferences
 
 object Backend {
+	val PASSCODE_NONE	= 0
+	val PASSCODE_OPTIONAL	= 1
+	val PASSCODE_REQUIRED	= 2
+
 	val backend_collection = Map(
 		"udp" -> new BackendInfo(
 			(s, p) => new UdpUploader(p),
 			R.xml.pref_udp,
-			true),
+			PASSCODE_REQUIRED),
 		"http" -> new BackendInfo(
 			(s, p) => new HttpPostUploader(p),
 			R.xml.pref_http,
-			true),
+			PASSCODE_REQUIRED),
 		"afsk" -> new BackendInfo(
 			(s, p) => new AfskUploader(p),
 			R.xml.pref_afsk,
-			false),
+			PASSCODE_NONE),
 		"tcp" -> new BackendInfo(
 			(s, p) => new TcpUploader(s, p),
 			R.xml.pref_tcp,
-			true)
+			PASSCODE_OPTIONAL)
 		)
 
 	def defaultBackendInfo(prefs : SharedPreferences) : BackendInfo = {
@@ -33,5 +37,5 @@ object Backend {
 class BackendInfo(
 	val create : (AprsService, SharedPreferences) => AprsIsUploader,
 	val prefxml : Int,
-	val need_passcode : Boolean
+	val need_passcode : Int
 ) {}
