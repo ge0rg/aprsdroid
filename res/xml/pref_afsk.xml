@@ -3,15 +3,14 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-	    android:title="TCP">
+	    android:title="@string/p_conn_afsk">
 
         <EditTextPreference
-                android:key="host"
-		android:hint="@string/aprs_server"
-		android:inputType="textUri"
-		android:title="@string/p_host"
-		android:summary="@string/p_host_summary"
-		android:dialogTitle="@string/p_host_entry" />
+                android:key="path"
+		android:hint="not yet implemented"
+		android:title="TODO"
+		android:summary="TODO"
+		android:dialogTitle="TODO" />
 
     </PreferenceCategory>
 

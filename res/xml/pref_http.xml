@@ -3,10 +3,10 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-	    android:title="@string/p_conn_udp">
+	    android:title="@string/p_conn_http">
 
         <EditTextPreference
-                android:key="udp.server"
+                android:key="http.server"
 		android:defaultValue="@string/aprs_server"
 		android:hint="@string/p_host_hint"
 		android:inputType="textUri"
