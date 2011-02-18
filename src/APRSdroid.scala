@@ -106,18 +106,38 @@ class APRSdroid extends Activity with OnClickListener
 		Toast.makeText(this, toastId, Toast.LENGTH_SHORT).show()
 	}
 
+	def passcodeWarning(call : String, pass : String) {
+		import Backend._
+		if ((defaultBackendInfo(prefs).need_passcode == PASSCODE_OPTIONAL) &&
+				!AprsPacket.passcodeAllowed(call, pass, false))
+			Toast.makeText(this, R.string.anon_warning, Toast.LENGTH_LONG).show()
+	}
+
+	def passcodeConfigRequired(call : String, pass : String) : Boolean = {
+		import Backend._
+		// a valid passcode must be entered for "required",
+		// "" and "-1" are accepted as well for "optional"
+		defaultBackendInfo(prefs).need_passcode match {
+		case PASSCODE_NONE => false
+		case PASSCODE_OPTIONAL =>
+			!AprsPacket.passcodeAllowed(call, pass, true)
+		case PASSCODE_REQUIRED =>
+			!AprsPacket.passcodeAllowed(call, pass, false)
+		}
+	}
+
 	def checkConfig() : Boolean = {
 		val callsign = prefs.getString("callsign", "").trim()
 		val passcode = prefs.getString("passcode", "")
-		if (callsign == "" || passcode == "") {
+		if (callsign == "") {
 			openPrefs(R.string.firstrun)
 			return false
 		}
-		val genpasscode = AprsPacket.passcode(callsign)
-		if (passcode != genpasscode.toString()) {
+		if (passcodeConfigRequired(callsign, passcode)) {
 			openPrefs(R.string.wrongpasscode)
 			return false
-		}
+		} else passcodeWarning(callsign, passcode)
+
 		val intval = prefs.getString("interval", "10")
 		if (intval == "" || intval.toInt < 1) {
 			openPrefs(R.string.mininterval)
@@ -182,6 +202,7 @@ class APRSdroid extends Activity with OnClickListener
 
 		view.getId match {
 		case R.id.singlebtn =>
+			passcodeWarning(getCallsign(), prefs.getString("passcode", ""))
 			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
@@ -196,6 +217,9 @@ class APRSdroid extends Activity with OnClickListener
 		}
 	}
 
+	def getCallsign() = {
+		prefs.getString("callsign", "").trim()
+	}
 }
 
 class UrlOpener(ctx : Context, url : String) extends DialogInterface.OnClickListener {

@@ -15,6 +15,14 @@ object AprsPacket {
 		}
 		hash & 0x7fff
 	}
+	def passcodeAllowed(callssid : String, pass : String, optional : Boolean) = {
+		pass match {
+		case "" => optional
+		case "-1" => optional
+		case _ => (passcode(callssid).toString() == pass)
+		}
+	}
+		
 
 	def formatCallSsid(callsign : String, ssid : String) : String = {
 		if (ssid != null && ssid != "")
