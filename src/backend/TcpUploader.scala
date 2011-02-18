@@ -10,7 +10,7 @@ import _root_.java.net.{InetAddress, Socket}
 
 class TcpUploader(service : AprsService, prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	val TAG = "TcpUploader"
-	val hostname = prefs.getString("tcp.server", "srvr.aprs-is.net")
+	val hostname = prefs.getString("tcp.server", "euro.aprs2.net")
 	val filterdist = prefs.getString("tcp.filter", "m/10")
 	val lastloc = AprsPacket.formatRangeFilter(
 		service.locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER), 10)

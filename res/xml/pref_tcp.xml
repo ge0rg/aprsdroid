@@ -11,7 +11,7 @@
 		android:title="@string/p_host"
 		android:summary="@string/p_tcp_server_summary"
 		android:hint="@string/p_host_hint"
-		android:defaultValue="@string/aprs_server"
+		android:defaultValue="euro.aprs2.net"
 		android:dialogTitle="@string/p_host_entry" />
 
         <EditTextPreference
