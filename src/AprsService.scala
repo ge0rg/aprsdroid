@@ -1,4 +1,4 @@
-package de.duenndns.aprsdroid
+package org.aprsdroid.app
 
 import _root_.android.app.Service
 import _root_.android.content.{Context, Intent}
@@ -9,12 +9,13 @@ import _root_.android.util.Log
 import _root_.android.widget.Toast
 
 object AprsService {
-	val SERVICE = "de.duenndns.aprsdroid.SERVICE"
-	val SERVICE_ONCE = "de.duenndns.aprsdroid.ONCE"
-	val UPDATE = "de.duenndns.aprsdroid.UPDATE"
-	val LOCATION = "de.duenndns.aprsdroid.LOCATION"
-	val STATUS = "de.duenndns.aprsdroid.STATUS"
-	val PACKET = "de.duenndns.aprsdroid.PACKET"
+	val PACKAGE = "org.aprsdroid.app"
+	val SERVICE = PACKAGE + ".SERVICE"
+	val SERVICE_ONCE = PACKAGE + ".ONCE"
+	val UPDATE = PACKAGE + ".UPDATE"
+	val LOCATION = PACKAGE + ".LOCATION"
+	val STATUS = PACKAGE + ".STATUS"
+	val PACKET = PACKAGE + ".PACKET"
 
 	def intent(ctx : Context, action : String) : Intent = {
 		new Intent(action, null, ctx, classOf[AprsService])

@@ -1,4 +1,4 @@
-package de.duenndns.aprsdroid
+package org.aprsdroid.app
 
 import _root_.android.util.Log
 

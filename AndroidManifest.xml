@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="de.duenndns.aprsdroid"
-      android:versionCode="10"
+      package="org.aprsdroid.app"
+      android:versionCode="1"
       android:versionName="0.9"
       android:installLocation="auto">
 
@@ -32,8 +32,8 @@
 	</activity>
 	<service android:name=".AprsService">
 	    <intent-filter>
-		<action android:name="de.duenndns.aprsdroid.SERVICE" />
-		<action android:name="de.duenndns.aprsdroid.ONCE" />
+		<action android:name="org.aprsdroid.app.SERVICE" />
+		<action android:name="org.aprsdroid.app.ONCE" />
 	    </intent-filter>
 	</service>
     </application>

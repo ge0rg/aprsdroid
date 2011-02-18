@@ -1,4 +1,4 @@
-package de.duenndns.aprsdroid
+package org.aprsdroid.app
 
 import _root_.android.app.{Notification, NotificationManager, PendingIntent, Service}
 import _root_.android.content.{Context, Intent}

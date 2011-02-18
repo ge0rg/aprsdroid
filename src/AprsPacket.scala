@@ -1,4 +1,4 @@
-package de.duenndns.aprsdroid
+package org.aprsdroid.app
 
 import _root_.android.location.Location
 import _root_.net.ab0oo.aprs._

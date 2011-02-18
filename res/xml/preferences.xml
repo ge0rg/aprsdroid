@@ -103,8 +103,8 @@
 		android:summary="@string/p_connsetup_summary">
 
             <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="de.duenndns.aprsdroid"
-                    android:targetClass="de.duenndns.aprsdroid.BackendPrefs" />
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.BackendPrefs" />
 
         </PreferenceScreen>
     </PreferenceCategory>
