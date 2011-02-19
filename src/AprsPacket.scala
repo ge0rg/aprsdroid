@@ -52,9 +52,9 @@ object AprsPacket {
 			""
 	}
 
-	def formatLoc(callssid : String, symbol : String,
+	def formatLoc(callssid : String, toCall : String, symbol : String,
 			status : String, location : Location) : String = {
-		callssid + ">APAND1,TCPIP*:" + new PositionPacket(
+		callssid + ">" + toCall + ",TCPIP*:" + new PositionPacket(
 			new Position(location.getLatitude, location.getLongitude, 0,
 				     symbol(0), symbol(1)),
 			formatCourseSpeed(location) + formatAltitude(location) +

@@ -183,6 +183,11 @@ class AprsService extends Service with LocationListener {
 		postLocation(location)
 	}
 
+	def appVersion() : String = {
+		val pi = getPackageManager().getPackageInfo(getPackageName(), 0)
+		"APDR%s".format(pi.versionName filter (_.isDigit) take 2)
+	}
+
 	def postLocation(location : Location) {
 		lastLoc = location
 
@@ -195,7 +200,7 @@ class AprsService extends Service with LocationListener {
 		if (symbol.length != 2)
 			symbol = getString(R.string.default_symbol)
 		val status = prefs.getString("status", getString(R.string.default_status))
-		val packet = AprsPacket.formatLoc(callssid, symbol, status, location)
+		val packet = AprsPacket.formatLoc(callssid, appVersion(), symbol, status, location)
 
 		Log.d(TAG, "packet: " + packet)
 		val result = try {
