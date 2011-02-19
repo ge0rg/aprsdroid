@@ -9,7 +9,7 @@ import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 class AfskUploader(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	val TAG = "AprsAfsk"
 	var FrameLength = 150	//1200Bits = 1sec to open VOX
-	var Digis = "WIDE1-1"
+	var Digis = prefs.getString("digi_path", "WIDE1-1")
 	
 	def start() {
 	}

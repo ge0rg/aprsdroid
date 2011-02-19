@@ -130,10 +130,11 @@
 <string name="p_netloc">Use network location</string>
 <string name="p_netloc_summary">Acquire position from the cellular network</string>
 
-<string name="p_afsk">AFSK Preferences</string>
-<string name="p_http">HTTP Preferences</string>
-<string name="p_udp">UDP Preferences</string>
-<string name="p_tcp">TCP Preferences</string>
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
