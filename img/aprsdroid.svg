@@ -16,9 +16,9 @@
    version="1.1"
    inkscape:version="0.47 r22583"
    sodipodi:docname="aprsdroid.svg"
-   inkscape:export-filename="aprsdroid64.png"
-   inkscape:export-xdpi="80"
-   inkscape:export-ydpi="80">
+   inkscape:export-filename="aprsdroid48.png"
+   inkscape:export-xdpi="60"
+   inkscape:export-ydpi="60">
   <defs
      id="defs4846">
     <linearGradient
@@ -35,11 +35,19 @@
     <linearGradient
        id="linearGradient5396">
       <stop
-         style="stop-color:#00ff00;stop-opacity:1;"
+         style="stop-color:#ff2626;stop-opacity:1;"
          offset="0"
          id="stop5398" />
       <stop
-         style="stop-color:#00a100;stop-opacity:1;"
+         id="stop3642"
+         offset="0.33000001"
+         style="stop-color:#ffff22;stop-opacity:1;" />
+      <stop
+         style="stop-color:#81ff11;stop-opacity:1;"
+         offset="0.69"
+         id="stop3644" />
+      <stop
+         style="stop-color:#854bff;stop-opacity:1;"
          offset="1"
          id="stop5400" />
     </linearGradient>
@@ -61,10 +69,10 @@
        inkscape:collect="always"
        xlink:href="#linearGradient5396"
        id="linearGradient6140"
-       x1="22"
-       y1="4"
-       x2="53"
-       y2="31"
+       x1="14.773399"
+       y1="-2.3152711"
+       x2="51.226601"
+       y2="32.315269"
        gradientUnits="userSpaceOnUse"
        gradientTransform="matrix(1.0972973,0,0,1.0972973,-5.2108107,0.54054064)" />
     <inkscape:perspective
@@ -245,13 +253,14 @@
        patternTransform="matrix(0.94117647,0,0,0.94117647,15,25)"
        id="pattern7285">
       <image
+         sodipodi:absref="/usr/src/G1/aprsdroid/img/greyblue.png"
          xlink:href="greyblue.png"
-         style="display:inline"
-         width="34"
-         height="34"
-         id="image7238"
+         y="0"
          x="0"
-         y="0" />
+         id="image7238"
+         height="34"
+         width="34"
+         style="display:inline" />
     </pattern>
   </defs>
   <sodipodi:namedview
@@ -262,9 +271,9 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="10.083333"
-     inkscape:cx="35.126765"
+     inkscape:cx="27.275907"
      inkscape:cy="35.801653"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:grid-bbox="true"
      inkscape:document-units="px"
@@ -365,7 +374,7 @@
        sodipodi:cy="41"
        sodipodi:rx="41"
        sodipodi:ry="41"
-       d="M 45.022825,2.4726021 A 41,41 0 0 1 69.527398,26.977176"
+       d="M 45.022825,2.4726021 C 56.41125,6.6176497 65.382351,15.58875 69.527398,26.977176"
        transform="translate(0,-24)"
        sodipodi:start="5.0614548"
        sodipodi:end="5.9341195"
@@ -378,7 +387,7 @@
        sodipodi:cy="41"
        sodipodi:rx="35"
        sodipodi:ry="35"
-       d="M 42.970704,8.1107579 A 35,35 0 0 1 63.889242,29.029296"
+       d="M 42.970704,8.1107579 C 52.692531,11.649213 60.350787,19.30747 63.889242,29.029296"
        transform="translate(0,-24)"
        sodipodi:start="5.0614548"
        sodipodi:end="5.9341195"
@@ -391,7 +400,7 @@
        sodipodi:cy="41"
        sodipodi:rx="29"
        sodipodi:ry="29"
-       d="M 40.918583,13.748914 A 29,29 0 0 1 58.251086,31.081417"
+       d="m 40.918583,13.748914 c 8.055228,2.931863 14.400641,9.277275 17.332503,17.332503"
        transform="translate(0.10041668,-24.100417)"
        sodipodi:start="5.0614548"
        sodipodi:end="5.9341195"
