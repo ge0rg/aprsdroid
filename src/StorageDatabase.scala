@@ -12,7 +12,7 @@ import _root_.net.ab0oo.aprs._
 
 object StorageDatabase {
 	val TAG = "StorageDatabase"
-	val DB_VERSION = 5
+	val DB_VERSION = 1
 	val DB_NAME = "storage.db"
 	object Post {
 		val TABLE = "posts"
@@ -113,12 +113,6 @@ class StorageDatabase(context : Context) extends
 	def resetPositionsTable() : Unit = resetPositionsTable(getWritableDatabase())
 
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
-		if (from == 1 && to >= 2) {
-			db.execSQL("ALTER TABLE %s ADD COLUMN %s".format(Post.TABLE, "TYPE INTEGER DEFAULT 0"))
-		}
-		if (from <= 4 && to >= 3) {
-			resetPositionsTable(db)
-		}
 	}
 
 	def trimPosts(ts : Long) {
