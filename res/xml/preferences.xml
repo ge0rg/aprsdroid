@@ -19,7 +19,6 @@
 		android:summary="@string/p_passcode_summary"
 		android:dialogTitle="@string/p_passcode_entry" />
 	<Preference
-		android:key="passcode_request"
 		android:title="@string/p_passreq"
 		android:summary="@string/p_passreq_summary" >
 		<intent android:action="android.intent.action.VIEW"
