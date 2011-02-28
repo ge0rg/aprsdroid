@@ -35,6 +35,7 @@ class TcpUploader(service : AprsService, prefs : SharedPreferences) extends Aprs
 	}
 
 	def stop() {
+		conn.running = false
 		conn.shutdown()
 		conn.interrupt()
 		conn.join()
@@ -71,7 +72,7 @@ class TcpUploader(service : AprsService, prefs : SharedPreferences) extends Aprs
 			try {
 				init_socket()
 			} catch {
-				case e : Exception => service.postAbort(e.getMessage())
+				case e : Exception => service.postAbort(e.toString())
 			}
 			while (running) {
 				try {
@@ -84,11 +85,12 @@ class TcpUploader(service : AprsService, prefs : SharedPreferences) extends Aprs
 					}
 					if (running && (line == null || !socket.isConnected())) {
 						Log.d(TAG, "reconnecting in 30s")
+						shutdown()
 						Thread.sleep(30*1000)
 						init_socket()
 					}
 				} catch {
-					case e : Exception => Log.d(TAG, "Exception" + e)
+					case e : Exception => Log.d(TAG, "Exception " + e)
 				}
 			}
 			Log.d(TAG, "TcpSocketThread.terminate()")
@@ -113,10 +115,10 @@ class TcpUploader(service : AprsService, prefs : SharedPreferences) extends Aprs
 		def shutdown() {
 			Log.d(TAG, "shutdown()")
 			this.synchronized {
-				running = false
 				catchLog("shutdownInput", socket.shutdownInput)
 				catchLog("shutdownOutput", socket.shutdownOutput)
 				catchLog("socket.close", socket.close)
+				socket = null
 			}
 		}
 	}
