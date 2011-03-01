@@ -11,9 +11,7 @@ import _root_.java.net.{InetAddress, Socket}
 class TcpUploader(service : AprsService, prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	val TAG = "TcpUploader"
 	val hostname = prefs.getString("tcp.server", "euro.aprs2.net")
-	val filter = setupFilter()
 	var conn : TcpSocketThread = null
-	Log.d(TAG, "TcpUploader.filter: " + filter)
 
 	createConnection()
 
@@ -59,16 +57,14 @@ class TcpUploader(service : AprsService, prefs : SharedPreferences) extends Aprs
 		def init_socket() {
 			Log.d(TAG, "init_socket()")
 			this.synchronized {
-				if (socket != null) {
-					shutdown()
-				}
 				socket = new Socket(host, port)
 				socket.setKeepAlive(true)
 				reader = new BufferedReader(new InputStreamReader(
 						socket.getInputStream()), 256)
 				writer = new PrintWriter(new OutputStreamWriter(
 						socket.getOutputStream()), true)
-				writer.println(login + filter)
+				Log.d(TAG, login + setupFilter())
+				writer.println(login + setupFilter())
 				running = true
 			}
 			Log.d(TAG, "init_socket() done")
