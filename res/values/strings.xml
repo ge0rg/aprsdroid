@@ -138,11 +138,13 @@
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_filterdist">Neighbor radius</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
 <string name="p_filter">Message filter</string>
-<string name="p_filter_hint">m/10 b/DO1GL*</string>
-<string name="p_filter_default">m/10</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Filter for incoming packets</string>
-<string name="p_filter_entry">Enter a filter for incoming messages ("m/10" filters 10km around own position)</string>
+<string name="p_filter_entry">Enter a filter for incoming messages</string>
 
 <string name="p_filterhelp">Message filter help</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>

@@ -11,15 +11,22 @@ import _root_.java.net.{InetAddress, Socket}
 class TcpUploader(service : AprsService, prefs : SharedPreferences) extends AprsIsUploader(prefs) {
 	val TAG = "TcpUploader"
 	val hostname = prefs.getString("tcp.server", "euro.aprs2.net")
-	val filterdist = prefs.getString("tcp.filter", "m/10")
-	val lastloc = AprsPacket.formatRangeFilter(
-		service.locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER), 10)
-	val filter = " filter %s %s".format(filterdist, lastloc)
+	val filter = setupFilter()
 	var conn : TcpSocketThread = null
+	Log.d(TAG, "TcpUploader.filter: " + filter)
 
 	createConnection()
 
 	def start() {
+	}
+
+	def setupFilter() : String = {
+		val filterdist = try { prefs.getString("tcp.filterdist", "10").trim.toInt } catch { case _ => 0 }
+		val userfilter = prefs.getString("tcp.filter", "")
+		val lastloc = AprsPacket.formatRangeFilter(
+			service.locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER), filterdist)
+		if (filterdist == 0) return " filter %s %s".format(userfilter, lastloc)
+				else return " filter m/%d %s %s".format(filterdist, userfilter, lastloc)
 	}
 
 	def createConnection() {

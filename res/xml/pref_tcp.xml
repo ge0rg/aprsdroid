@@ -14,12 +14,19 @@
 		android:defaultValue="euro.aprs2.net"
 		android:dialogTitle="@string/p_host_entry" />
 
+	<EditTextPreference
+		android:key="tcp.filterdist"
+		android:inputType="number"
+		android:title="@string/p_filterdist"
+		android:summary="@string/p_filterdist_summary"
+		android:defaultValue="10"
+		android:dialogTitle="@string/p_filterdist_entry" />
+
         <EditTextPreference
                 android:key="tcp.filter"
 		android:title="@string/p_filter"
 		android:summary="@string/p_filter_summary"
 		android:hint="@string/p_filter_hint"
-		android:defaultValue="@string/p_filter_default"
 		android:dialogTitle="@string/p_filter_entry" />
 
 	<Preference
