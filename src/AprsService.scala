@@ -93,13 +93,6 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def startPoster() {
-		var passcode = prefs.getString("passcode", "")
-		if (passcode == "")
-			passcode = "-1"
-		val login = AprsPacket.formatLogin(prefs.getString("callsign", null).trim(),
-			prefs.getString("ssid", null), passcode)
-		val filterdist = prefs.getString("filterdist", "10").toInt
-
 		poster = AprsIsUploader.instanciateUploader(this, prefs)
 		poster.start()
 	}
