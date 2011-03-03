@@ -24,7 +24,7 @@ class APRSdroid extends Activity with OnClickListener
 		with DialogInterface.OnClickListener {
 	val TAG = "APRSdroid"
 
-	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+	lazy val prefs = new PrefsWrapper(this)
 	lazy val storage = StorageDatabase.open(this)
 	lazy val postcursor = storage.getPosts("100")
 
@@ -85,7 +85,7 @@ class APRSdroid extends Activity with OnClickListener
 		}
 		if (!checkConfig())
 			return
-		val callsign = prefs.getString("callsign", "").trim()
+		val callsign = prefs.getCallsign()
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
 		setTitle(getString(R.string.app_name) + ": " + callssid)
 		setupButtons(AprsService.running)
@@ -108,7 +108,7 @@ class APRSdroid extends Activity with OnClickListener
 
 	def passcodeWarning(call : String, pass : String) {
 		import Backend._
-		if ((defaultBackendInfo(prefs).need_passcode == PASSCODE_OPTIONAL) &&
+		if ((defaultBackendInfo(prefs.prefs).need_passcode == PASSCODE_OPTIONAL) &&
 				!AprsPacket.passcodeAllowed(call, pass, false))
 			Toast.makeText(this, R.string.anon_warning, Toast.LENGTH_LONG).show()
 	}
@@ -117,7 +117,7 @@ class APRSdroid extends Activity with OnClickListener
 		import Backend._
 		// a valid passcode must be entered for "required",
 		// "" and "-1" are accepted as well for "optional"
-		defaultBackendInfo(prefs).need_passcode match {
+		defaultBackendInfo(prefs.prefs).need_passcode match {
 		case PASSCODE_NONE => false
 		case PASSCODE_OPTIONAL =>
 			!AprsPacket.passcodeAllowed(call, pass, true)
@@ -127,7 +127,7 @@ class APRSdroid extends Activity with OnClickListener
 	}
 
 	def checkConfig() : Boolean = {
-		val callsign = prefs.getString("callsign", "").trim()
+		val callsign = prefs.getCallsign()
 		val passcode = prefs.getString("passcode", "")
 		if (callsign == "") {
 			openPrefs(R.string.firstrun)
@@ -190,7 +190,7 @@ class APRSdroid extends Activity with OnClickListener
 	override def onClick(d : DialogInterface, which : Int) {
 		which match {
 		case DialogInterface.BUTTON_POSITIVE =>
-			prefs.edit().putBoolean("firstrun", false).commit();
+			prefs.prefs.edit().putBoolean("firstrun", false).commit();
 			checkConfig()
 		case _ =>
 			finish()
@@ -202,7 +202,7 @@ class APRSdroid extends Activity with OnClickListener
 
 		view.getId match {
 		case R.id.singlebtn =>
-			passcodeWarning(getCallsign(), prefs.getString("passcode", ""))
+			passcodeWarning(prefs.getCallsign(), prefs.getString("passcode", ""))
 			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
@@ -215,10 +215,6 @@ class APRSdroid extends Activity with OnClickListener
 		case _ =>
 			//status.setText(view.asInstanceOf[Button].getText)
 		}
-	}
-
-	def getCallsign() = {
-		prefs.getString("callsign", "").trim()
 	}
 }
 

@@ -34,7 +34,7 @@ class AprsService extends Service with LocationListener {
 	import AprsService._
 	val TAG = "AprsService"
 
-	lazy val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+	lazy val prefs = new PrefsWrapper(this)
 
 	lazy val locMan = getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
@@ -87,13 +87,13 @@ class AprsService extends Service with LocationListener {
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			upd_int * 60000, upd_dist * 1000, this)
 
-		val callssid = AprsPacket.formatCallSsid(prefs.getString("callsign", null), prefs.getString("ssid", ""))
+		val callssid = AprsPacket.formatCallSsid(prefs.getCallsign(), prefs.getString("ssid", ""))
 		val message = "%s: %d min, %d km".format(callssid, upd_int, upd_dist)
 		ServiceNotifier.instance.start(this, message)
 	}
 
 	def startPoster() {
-		poster = AprsIsUploader.instanciateUploader(this, prefs)
+		poster = AprsIsUploader.instanciateUploader(this, prefs.prefs)
 		poster.start()
 	}
 
@@ -187,7 +187,7 @@ class AprsService extends Service with LocationListener {
 		val i = new Intent(UPDATE)
 		i.putExtra(LOCATION, location)
 
-		val callsign = prefs.getString("callsign", null).trim()
+		val callsign = prefs.getCallsign()
 		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
 		var symbol = prefs.getString("symbol", "")
 		if (symbol.length != 2)
