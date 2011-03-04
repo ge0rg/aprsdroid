@@ -102,16 +102,17 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 
 	//lazy val calls = new scala.collection.mutable.HashMap[String, Boolean]()
 	lazy val stations = new java.util.ArrayList[Station]()
+	lazy val symbolSize = (context.getResources().getDisplayMetrics().density * 16).toInt
 
 	override def size() = stations.size()
 	override def createItem(idx : Int) : Station = stations.get(idx)
 
 	def symbol2rect(symbol : String) : Rect = {
-		val alt_offset = if (symbol(0) == '/') 0 else 96
+		val alt_offset = if (symbol(0) == '/') 0 else symbolSize*6
 		val index = symbol(1) - 32
-		val x = (index / 16) * 16 + alt_offset
-		val y = (index % 16) * 16
-		new Rect(x, y, x+16, y+16)
+		val x = (index / 16) * symbolSize + alt_offset
+		val y = (index % 16) * symbolSize
+		new Rect(x, y, x+symbolSize, y+symbolSize)
 	}
 
 	def symbolIsOverlayed(symbol : String) = {
@@ -159,16 +160,17 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		if (shadow) return;
 		Benchmark("draw") {
 
+		val fontSize = symbolSize*3/4
 		val textPaint = new Paint()
 		textPaint.setARGB(255, 200, 255, 200)
 		textPaint.setTextAlign(Paint.Align.CENTER)
-		textPaint.setTextSize(12)
+		textPaint.setTextSize(fontSize)
 		textPaint.setTypeface(Typeface.MONOSPACE)
 		textPaint.setAntiAlias(true)
 
 		val symbPaint = new Paint(textPaint)
 		symbPaint.setARGB(255, 255, 255, 255)
-		symbPaint.setTextSize(11)
+		symbPaint.setTextSize(fontSize - 1)
 
 		val strokePaint = new Paint(textPaint)
 		strokePaint.setARGB(255, 0, 0, 0)
@@ -176,7 +178,7 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		strokePaint.setStrokeWidth(2)
 
 		val symbStrPaint = new Paint(strokePaint)
-		symbStrPaint.setTextSize(11)
+		symbStrPaint.setTextSize(fontSize - 1)
 
 		val iconbitmap = icons.asInstanceOf[BitmapDrawable].getBitmap
 
@@ -184,26 +186,27 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		val proj = m.getProjection()
 		val zoom = m.getZoomLevel()
 		val (width, height) = (m.getWidth(), m.getHeight())
+		val ss = symbolSize/2
 		for (s <- stations) {
 			proj.toPixels(s.point, p)
 			if (p.x >= 0 && p.y >= 0 && p.x < width && p.y < height) {
 				val srcRect = symbol2rect(s.symbol)
-				val destRect = new Rect(p.x-8, p.y-8, p.x+8, p.y+8)
+				val destRect = new Rect(p.x-ss, p.y-ss, p.x+ss, p.y+ss)
 				// first draw callsign and trace
 				if (zoom >= 10) {
 					Benchmark("drawTrace") {
 					drawTrace(c, m, s.call)
 					}
 
-					c.drawText(s.call, p.x, p.y+20, strokePaint)
-					c.drawText(s.call, p.x, p.y+20, textPaint)
+					c.drawText(s.call, p.x, p.y+ss+fontSize, strokePaint)
+					c.drawText(s.call, p.x, p.y+ss+fontSize, textPaint)
 				}
 				// then the bitmap
 				c.drawBitmap(iconbitmap, srcRect, destRect, null)
 				// and finally the bitmap overlay, if any
 				if (zoom >= 6 && symbolIsOverlayed(s.symbol)) {
-					c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbStrPaint)
-					c.drawText(s.symbol(0).toString(), p.x, p.y+4, symbPaint)
+					c.drawText(s.symbol(0).toString(), p.x, p.y+ss/2, symbStrPaint)
+					c.drawText(s.symbol(0).toString(), p.x, p.y+ss/2, symbPaint)
 				}
 			}
 		}
