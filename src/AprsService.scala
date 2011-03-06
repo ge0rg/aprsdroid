@@ -60,6 +60,20 @@ class AprsService extends Service with LocationListener {
 		Service.START_REDELIVER_INTENT
 	}
 
+	def requestLocations(stay_on : Boolean) {
+		if (stay_on) {
+			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				0, 0, this)
+		} else {
+			// get update interval and distance
+			val upd_int = prefs.getStringInt("interval", 10)
+			val upd_dist = prefs.getStringInt("distance", 10)
+
+			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				upd_int * 60000, upd_dist * 1000, this)
+		}
+	}
+
 	def handleStart(i : Intent) {
 		running = true
 
@@ -84,8 +98,7 @@ class AprsService extends Service with LocationListener {
 			locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
 				upd_int * 60000, upd_dist * 1000, this)
 		}
-		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-			upd_int * 60000, upd_dist * 1000, this)
+		requestLocations(prefs.getString("gps_activation", "") == "always")
 
 		val callssid = AprsPacket.formatCallSsid(prefs.getCallsign(), prefs.getString("ssid", ""))
 		val message = "%s: %d min, %d km".format(callssid, upd_int, upd_dist)
@@ -121,8 +134,7 @@ class AprsService extends Service with LocationListener {
 		Log.d(TAG, "switching to fast lane");
 		// request fast update rate
 		locMan.removeUpdates(this);
-		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-			0, 0, this)
+		requestLocations(true)
 		handler.postDelayed({ speedBearingEnd(true) }, 30000)
 	}
 
@@ -137,10 +149,7 @@ class AprsService extends Service with LocationListener {
 		awaitingSpdCourse = null
 		// reset update speed
 		locMan.removeUpdates(this);
-		val upd_int = prefs.getString("interval", "10").toInt
-		val upd_dist = prefs.getString("distance", "10").toInt
-		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-			upd_int, upd_dist, this)
+		requestLocations(prefs.getString("gps_activation", "") == "always")
 	}
 
 	def checkSpeedBearing(location : Location) : Boolean = {
