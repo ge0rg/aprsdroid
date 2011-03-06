@@ -1,14 +1,12 @@
 package org.aprsdroid.app
 
-import _root_.android.content.SharedPreferences
 import _root_.android.app.Service
 import _root_.android.location.{Location, LocationManager}
-import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.java.io.{BufferedReader, InputStreamReader, OutputStreamWriter, PrintWriter}
 import _root_.java.net.{InetAddress, Socket}
 
-class TcpUploader(service : AprsService, prefs : SharedPreferences) extends AprsIsUploader(prefs) {
+class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "TcpUploader"
 	val hostname = prefs.getString("tcp.server", "euro.aprs2.net")
 	var conn : TcpSocketThread = null

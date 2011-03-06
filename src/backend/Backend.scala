@@ -1,6 +1,5 @@
 package org.aprsdroid.app
 
-import _root_.android.content.SharedPreferences
 
 object Backend {
 	val PASSCODE_NONE	= 0
@@ -26,7 +25,7 @@ object Backend {
 			PASSCODE_OPTIONAL)
 		)
 
-	def defaultBackendInfo(prefs : SharedPreferences) : BackendInfo = {
+	def defaultBackendInfo(prefs : PrefsWrapper) : BackendInfo = {
 		backend_collection.get(prefs.getString("backend", "")) match {
 		case Some(bi) => bi
 		case None => backend_collection("tcp")
@@ -35,7 +34,7 @@ object Backend {
 }
 
 class BackendInfo(
-	val create : (AprsService, SharedPreferences) => AprsIsUploader,
+	val create : (AprsService, PrefsWrapper) => AprsIsUploader,
 	val prefxml : Int,
 	val need_passcode : Int
 ) {}

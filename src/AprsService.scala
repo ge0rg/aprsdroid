@@ -93,7 +93,7 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def startPoster() {
-		poster = AprsIsUploader.instanciateUploader(this, prefs.prefs)
+		poster = AprsIsUploader.instanciateUploader(this, prefs)
 		poster.start()
 	}
 

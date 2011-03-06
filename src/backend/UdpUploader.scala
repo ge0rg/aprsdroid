@@ -1,12 +1,10 @@
 package org.aprsdroid.app
 
-import _root_.android.content.SharedPreferences
 import _root_.android.location.Location
-import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 
-class UdpUploader(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
+class UdpUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "AprsUdp"
 	lazy val socket = new DatagramSocket()
 	val host = prefs.getString("udp.server", "srvr.aprs-is.net")

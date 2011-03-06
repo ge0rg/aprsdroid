@@ -1,12 +1,10 @@
 package org.aprsdroid.app
 
-import _root_.android.content.SharedPreferences
-import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 
-class AfskUploader(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
+class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "AprsAfsk"
 	var FrameLength = 150	//1200Bits = 1sec to open VOX
 	var Digis = prefs.getString("digi_path", "WIDE1-1")

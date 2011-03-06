@@ -108,7 +108,7 @@ class APRSdroid extends Activity with OnClickListener
 
 	def passcodeWarning(call : String, pass : String) {
 		import Backend._
-		if ((defaultBackendInfo(prefs.prefs).need_passcode == PASSCODE_OPTIONAL) &&
+		if ((defaultBackendInfo(prefs).need_passcode == PASSCODE_OPTIONAL) &&
 				!AprsPacket.passcodeAllowed(call, pass, false))
 			Toast.makeText(this, R.string.anon_warning, Toast.LENGTH_LONG).show()
 	}
@@ -117,7 +117,7 @@ class APRSdroid extends Activity with OnClickListener
 		import Backend._
 		// a valid passcode must be entered for "required",
 		// "" and "-1" are accepted as well for "optional"
-		defaultBackendInfo(prefs.prefs).need_passcode match {
+		defaultBackendInfo(prefs).need_passcode match {
 		case PASSCODE_NONE => false
 		case PASSCODE_OPTIONAL =>
 			!AprsPacket.passcodeAllowed(call, pass, true)

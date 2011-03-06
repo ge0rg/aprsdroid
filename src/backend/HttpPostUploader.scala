@@ -1,6 +1,5 @@
 package org.aprsdroid.app
 
-import _root_.android.content.SharedPreferences
 import _root_.android.location.Location
 import _root_.android.util.Log
 import _root_.org.apache.http._
@@ -8,7 +7,7 @@ import _root_.org.apache.http.entity.StringEntity
 import _root_.org.apache.http.impl.client.DefaultHttpClient
 import _root_.org.apache.http.client.methods.HttpPost
 
-class HttpPostUploader(prefs : SharedPreferences) extends AprsIsUploader(prefs) {
+class HttpPostUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "AprsHttpPost"
 	val host = prefs.getString("http.server", "srvr.aprs-is.net")
 
