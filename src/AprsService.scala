@@ -78,8 +78,8 @@ class AprsService extends Service with LocationListener {
 		running = true
 
 		// get update interval and distance
-		val upd_int = prefs.getString("interval", "10").toInt
-		val upd_dist = prefs.getString("distance", "10").toInt
+		val upd_int = prefs.getStringInt("interval", 10)
+		val upd_dist = prefs.getStringInt("distance", 10)
 
 		// display notification (even though we are not actually started yet,
 		// but we need this to prevent error message reordering)
@@ -167,9 +167,8 @@ class AprsService extends Service with LocationListener {
 
 	// LocationListener interface
 	override def onLocationChanged(location : Location) {
-		Log.d(TAG, "onLocationChanged: " + location)
-		val upd_int = prefs.getString("interval", "10").toInt * 60000
-		val upd_dist = prefs.getString("distance", "10").toInt * 1000
+		val upd_int = prefs.getStringInt("interval", 10) * 60000
+		val upd_dist = prefs.getStringInt("distance", 10) * 1000
 		if (lastLoc != null &&
 		    (location.getTime - lastLoc.getTime < upd_int ||
 		     location.distanceTo(lastLoc) < upd_dist)) {

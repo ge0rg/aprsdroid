@@ -13,12 +13,8 @@ object AprsIsUploader {
 }
 
 abstract class AprsIsUploader(prefs : PrefsWrapper) {
-	val passcode = prefs.getString("passcode", "") match {
-		case "" => "-1"
-		case s => s
-	}
-	val login = AprsPacket.formatLogin(prefs.getString("callsign", null).trim(),
-		prefs.getString("ssid", null), passcode)
+	val login = AprsPacket.formatLogin(prefs.getCallsign(),
+		prefs.getString("ssid", null), prefs.getPasscode())
 
 	def start()
 

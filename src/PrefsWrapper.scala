@@ -18,4 +18,8 @@ class PrefsWrapper(val context : Context) {
 	// return commonly used prefs
 	def getCallsign() = prefs.getString("callsign", "").trim()
 
+	def getPasscode() = prefs.getString("passcode", "") match {
+		case "" => "-1"
+		case s => s
+	}
 }

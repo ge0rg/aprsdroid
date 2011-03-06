@@ -128,7 +128,7 @@ class APRSdroid extends Activity with OnClickListener
 
 	def checkConfig() : Boolean = {
 		val callsign = prefs.getCallsign()
-		val passcode = prefs.getString("passcode", "")
+		val passcode = prefs.getPasscode()
 		if (callsign == "") {
 			openPrefs(R.string.firstrun)
 			return false
@@ -138,8 +138,7 @@ class APRSdroid extends Activity with OnClickListener
 			return false
 		} else passcodeWarning(callsign, passcode)
 
-		val intval = prefs.getString("interval", "10")
-		if (intval == "" || intval.toInt < 1) {
+		if (prefs.getStringInt("interval", 10) < 1) {
 			openPrefs(R.string.mininterval)
 			return false
 		}
@@ -202,7 +201,7 @@ class APRSdroid extends Activity with OnClickListener
 
 		view.getId match {
 		case R.id.singlebtn =>
-			passcodeWarning(prefs.getCallsign(), prefs.getString("passcode", ""))
+			passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
 			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
