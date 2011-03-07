@@ -9,6 +9,14 @@ POT=$TRAN/$PACKAGE.pot
 PODIR=translations/$PACKAGE
 PO=$PODIR/$PACKAGE-
 
+download() {
+	FN=launchpad-$(date +%F).tar.gz
+	pushd "$TRAN"
+	wget "$1" -O "$FN"
+	tar xvzf "$FN"
+	popd
+}
+
 translate_xml2pot() {
 	if [ -f $POT ] ; then
 		xml2po -a -u $POT $RES/strings.xml
@@ -50,6 +58,9 @@ EOF
 
 if [ "$1" = "xml2pot" ]; then
 	translate_xml2pot
+elif [ -n "$1" ] ; then
+	download "$1"
+	translate_po2xml
 else
 	translate_po2xml
 fi
