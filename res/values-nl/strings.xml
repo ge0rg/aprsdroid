@@ -7,12 +7,11 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Je moet APRSdroid configureren met je callsign en passcode!</string>
 <string name="wrongpasscode">Je passcode is niet geldig voor je callsign!</string>
+<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
 <string name="mininterval">Minimum update tijd is 1 minuut!</string>
 <string name="singlelog">Positie verzenden</string>
 <string name="startlog">Tracking starten</string>
 <string name="stoplog">Tracking stoppen</string>
-
-<string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
@@ -20,7 +19,7 @@
 
 <!-- AprsService -->
 <string name="service_once">APRS Service positie zenden.</string>
-<string name="service_start">APRS Service gestart. Update elke %d minuten, %d km.</string>
+<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRS Service is gestopt.</string>
 
 <!-- first run dialog -->
@@ -36,6 +35,8 @@
 <!-- options menu -->
 <string name="about">Info</string>
 <string name="show_map">Show Map</string>
+<string name="show_log">Show Log</string>
+<string name="show_objects">Toggle Objects</string>
 <string name="quit">Afsluiten</string>
 <string name="preferences">Voorkeuren</string>
 <!-- preferences -->
@@ -77,20 +78,22 @@
 <string name="p_status">Status bericht</string>
 <string name="p_status_summary">Text na je coördinaten</string>
 <string name="p_status_entry">Geef je status bericht</string>
-<string name="p__network">Netwerken</string>
+<string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Connectie Protocol</string>
-<string name="p_conntype_summary">Kies UDP (poort 8080) of HTTP POST (URL)</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">Kies het connectie protocol</string>
+<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
-<string-array name="p_conntype_e">
-	<item>UDP poort 8080</item>
-	<item>HTTP POST</item>
-	<item>TCP connectie</item>
-	<item>AFSK via luidspreker</item>
-</string-array>
+<string name="p_conn_tcp">TCP connectie</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_afsk">AFSK via luidspreker</string>
+
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) voor het versturen van bakens</string>
 <string name="p_host_entry">Geef de APRS-IS server hostnaam</string>
+<string name="p_host_hint">host:port</string>
 <string name="p__location">Lokatie instellingen</string>
 <string name="p_interval">Minimum update tijd</string>
 <string name="p_interval_summary">Minuten tussen baken uitzendingen</string>
@@ -102,8 +105,36 @@
 <string name="p_speedbrg_summary">Laat GPS langer actief voor meer preciese data</string>
 <string name="p_netloc">Gebruik netwerk locatie</string>
 <string name="p_netloc_summary">Verkrijg positie van het GSM netwerk</string>
-<string name="p__filter">Binnenkomend filter (alleen TCP)</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
 <string name="p_filterdist">Buur radius</string>
 <string name="p_filterdist_summary">Ontvangen packets van stations in deze radius</string>
 <string name="p_filterdist_entry">Radius om je heen om op packets te monitoren [km]</string>
+<string name="p_filter">Message filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming messages</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Ge0rG https://launchpad.net/~georg-op-co
+  H.F.P. Pit https://launchpad.net/~pd5dp
+  Robbie De Lise https://launchpad.net/~robbie-delise</string>
+
 </resources>

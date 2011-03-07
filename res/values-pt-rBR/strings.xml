@@ -7,12 +7,11 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Você deve configurar o APRSdroid com seu indicativo de chamada e senha!</string>
 <string name="wrongpasscode">Sua senha não confere com seu indicativo de chamada!</string>
+<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
 <string name="mininterval">O tempo mínimo de atualização é 1 minuto!</string>
 <string name="singlelog">Single Shot</string>
 <string name="startlog">Iniciar Monitoramento</string>
 <string name="stoplog">Parar Monitoramento</string>
-
-<string name="latlon_format">lat: %1.4f  lon: %1.4f (±%dm)</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
@@ -20,7 +19,7 @@
 
 <!-- AprsService -->
 <string name="service_once">APRS Service single shot.</string>
-<string name="service_start">Serviço de APRS iniciado. Atualizações a cada %d minutos, %d km.</string>
+<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">Serviço de APRS parado.</string>
 
 <!-- first run dialog -->
@@ -56,6 +55,8 @@
 <!-- options menu -->
 <string name="about">Sobre</string>
 <string name="show_map">Show Map</string>
+<string name="show_log">Show Log</string>
+<string name="show_objects">Toggle Objects</string>
 <string name="quit">Fechar</string>
 <string name="preferences">Preferências</string>
 <!-- preferences -->
@@ -97,20 +98,22 @@
 <string name="p_status">Status message</string>
 <string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your status message</string>
-<string name="p__network">Networking</string>
+<string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Connection Protocol</string>
-<string name="p_conntype_summary">Choose UDP (port 8080) or HTTP POST (URL)</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
+<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
-<string-array name="p_conntype_e">
-	<item>UDP port 8080</item>
-	<item>HTTP POST</item>
-	<item>TCP connection</item>
-	<item>AFSK via Speaker</item>
-</string-array>
+<string name="p_conn_tcp">TCP connection</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_afsk">AFSK via Speaker</string>
+
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>
+<string name="p_host_hint">host:port</string>
 <string name="p__location">Location Settings</string>
 <string name="p_interval">Minimum update time</string>
 <string name="p_interval_summary">Minutes between beacon transmissions</string>
@@ -122,8 +125,35 @@
 <string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
 <string name="p_netloc">Use network location</string>
 <string name="p_netloc_summary">Acquire position from the cellular network</string>
-<string name="p__filter">Incoming Filter (TCP only)</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
 <string name="p_filterdist">Neighbor radius</string>
 <string name="p_filterdist_summary">Receive packets from stations in this radius</string>
 <string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p_filter">Message filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming messages</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Júlio Cezar Santos Pires https://launchpad.net/~juliocspires
+  Lucas - Lobo https://launchpad.net/~lobo-lists</string>
+
 </resources>

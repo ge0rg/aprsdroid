@@ -5,13 +5,13 @@
 <string name="app_prefs">APRSdroid Preferences</string>
 <string name="app_map">APRSdroid Map</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
+<string name="firstrun">Anda harus memasukkan callsign dan passcode utk menggunakan APRSdroid</string>
 <string name="wrongpasscode">Your passcode does not match your callsign!</string>
 <string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">¡El tiempo mínimo de la actualización es 1 minuto!</string>
+<string name="mininterval">Minimum update time is 1 minute!</string>
 <string name="singlelog">Single Shot</string>
-<string name="startlog">Iniciar el seguimiento</string>
-<string name="stoplog">Detener el seguimiento</string>
+<string name="startlog">Start Tracking</string>
+<string name="stoplog">Stop Tracking</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
@@ -20,16 +20,16 @@
 <!-- AprsService -->
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
-<string name="service_stop">Servicio APRS detenido.</string>
+<string name="service_stop">APRS Service stopped.</string>
 
 <!-- first run dialog -->
-<string name="fr_title">¡Bienvenido a APRSdroid!</string>
+<string name="fr_title">Welcome to APRSdroid!</string>
 <string name="fr_text">This software may only be used by licensed HAM radio
 	operators!\n\n
 	If you operate without a license, you might be criminally prosecuted!</string>
 
 <!-- about dialog -->
-<string name="ad_title">Sobre APRSdroid v%s</string>
+<string name="ad_title">About APRSdroid v%s</string>
 <string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org/
 	\n\n
@@ -51,16 +51,16 @@
 	\n\n
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
-<string name="ad_trans">\n\nTraducción:</string>
-<string name="ad_homepage">Página de Inicio</string>
+<string name="ad_trans">\n\nTranslation:</string>
+<string name="ad_homepage">Home Page</string>
 
 <!-- options menu -->
-<string name="about">Acerca de</string>
+<string name="about">About</string>
 <string name="show_map">Show Map</string>
 <string name="show_log">Show Log</string>
 <string name="show_objects">Toggle Objects</string>
-<string name="quit">Salir</string>
-<string name="preferences">Preferencias</string>
+<string name="quit">Quit</string>
+<string name="preferences">Preferences</string>
 <!-- preferences -->
 <string name="p__ham">Amateur Radio</string>
 <string name="p_callsign">Callsign</string>
@@ -71,22 +71,22 @@
 <string name="p_passcode_entry">Enter the passcode for your call</string>
 <string name="p_passreq">Request Passcode</string>
 <string name="p_passreq_summary">Request APRS-IS passcode online</string>
-<string name="p__aprs">Configuración APRS</string>
+<string name="p__aprs">APRS Settings</string>
 <string name="p_ssid">SSID</string>
-<string name="p_ssid_summary">Tipo de estación (1..15; 9=Móvil, 10=APRS-IS)</string>
-<string name="p_ssid_entry">Introduce el SSID de tu estación</string>
+<string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Enter the SSID for your station</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
-	<item>(ninguna)</item>
+	<item>(none)</item>
 	<item>1: Digipeater (home/WX)</item>
 	<item>2: Digipeater 70cm</item>
 	<item>3: Digipeater</item>
-	<item>4: Pasarela HF a VHF</item>
+	<item>4: HF to VHF gateway</item>
 	<item>5: IGate (not home station)</item>
-	<item>6: Satélite</item>
+	<item>6: Satellite</item>
 	<item>7: Handheld radio</item>
-	<item>8: Barco / nave</item>
-	<item>9: Estación móvil</item>
+	<item>8: Boat / ship</item>
+	<item>9: Mobile station</item>
 	<item>10: APRS-IS (no radio)</item>
 	<item>11: Balloon / APRStouch-tone</item>
 	<item>12: Portable (laptop/camp site)</item>
@@ -97,30 +97,30 @@
 <string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Your symbol for map display</string>
 <string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
-<string name="p_status">Mensaje de estado</string>
+<string name="p_status">Status message</string>
 <string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your status message</string>
 <string name="p__connection">APRS Connection</string>
-<string name="p_conntype">Protocolo de conexión</string>
+<string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
-<string name="p_conntype_entry">Elige el protocolo de conexión</string>
+<string name="p_conntype_entry">Choose the connection protocol</string>
 <string name="p_connsetup">Connection Preferences</string>
 <string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">Conexión TCP</string>
+<string name="p_conn_tcp">TCP connection</string>
 <string name="p_conn_udp">UDP (send only)</string>
 <string name="p_conn_http">HTTP POST (send only)</string>
 <string name="p_conn_afsk">AFSK via Speaker</string>
 
-<string name="p_host">Servidor</string>
+<string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>
 <string name="p_host_hint">host:port</string>
 <string name="p__location">Location Settings</string>
-<string name="p_interval">Tiempo mínimo de actualización</string>
+<string name="p_interval">Minimum update time</string>
 <string name="p_interval_summary">Minutes between beacon transmissions</string>
-<string name="p_interval_entry">Introduce el intervalo de actualización (min)</string>
-<string name="p_distance">Distancia mínima de actualización</string>
+<string name="p_interval_entry">Enter the update interval [min]</string>
+<string name="p_distance">Minimum update distance</string>
 <string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
 <string name="p_distance_entry">Enter the update distance [km]</string>
 <string name="p_speedbrg">Await speed &amp; bearing</string>
@@ -155,8 +155,6 @@
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Aeoris https://launchpad.net/~aeoris
-  Ge0rG https://launchpad.net/~georg-op-co
-  Ryan Schultz https://launchpad.net/~rschultz82</string>
+  Zoel Gandhi https://launchpad.net/~yc0nyo</string>
 
 </resources>

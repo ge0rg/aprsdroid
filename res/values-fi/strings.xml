@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid Asetukset</string>
+<string name="app_map">APRSdroid Kartta</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Sinun pitää asettaa kutsu ja passcode!</string>
+<string name="wrongpasscode">Passcode ei vastaa asemakutsuasi!</string>
+<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
+<string name="mininterval">Pienin päivitysväli on 1 minuutti!</string>
+<string name="singlelog">Single Shot</string>
+<string name="startlog">Aloita seuranta</string>
+<string name="stoplog">Lopeta seuranta</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Viimeisin Raportti</string>
+
+
+<!-- AprsService -->
+<string name="service_once">APRS Service single shot.</string>
+<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
+<string name="service_stop">APRS Palvelu pysäytetty.</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Tervettuloa APRSdroid!</string>
+<string name="fr_text">Tätä ohjelmistoa voi käyttää vain Radioamatööriluvan omaava henkilö!\n\n Käyttö ilman lupaa voi johtaa rikosoikeudelliseen vastuuseen!</string>
+
+<!-- about dialog -->
+<string name="ad_title">About APRSdroid v%s</string>
+<string name="ad_text">Teikijänoikeus © 2009-2010 Georg Lukas (DO1GL)\n http://aprsdroid.org/ \n\n APRS® on Bob Bruninga (WB4APR) rekisteröity tavaramerkki \n\n Tämä ohjelma on vapaata ohjelmistoa; voit levittää ja/tai muuttaa sitä GNU General Public License mukaisesti, jonka on julkaissut Free Software Foundation; joko versio 2 tai (valintasi mukaa) jokin vanhempi versio. \n\n Tämä ohjelma on kehitetty siinä toivossa, että se olisi hyödyllinen, mutta ILMAN TAKUUTA; edes KAUPALLISESTI HYVÄKSYTTÄVÄSTÄ LAADUSTA tai SOVELTUVUUDESTA TIETTYYN TARKOITUKSEEN. Katso lisätietoa GNU General Public License. \n\n Sinun pitäisi saada kopio GNU GPL lisenssistä tämän ohjelman mukana; jos et saa lisenssiä, kirjoita Free Software Foundation, inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_trans">\n\nKäännös:</string>
+<string name="ad_homepage">Etusivu</string>
+
+<!-- options menu -->
+<string name="about">Tietoja</string>
+<string name="show_map">Näytä Kartta</string>
+<string name="show_log">Show Log</string>
+<string name="show_objects">Toggle Objects</string>
+<string name="quit">Lopeta</string>
+<string name="preferences">Asetukset</string>
+<!-- preferences -->
+<string name="p__ham">Amatööri Radio</string>
+<string name="p_callsign">Kutsu</string>
+<string name="p_callsign_summary">Sinun Radioamatööri kutsu</string>
+<string name="p_callsign_entry">Enter callsign</string>
+<string name="p_passcode">Passcode</string>
+<string name="p_passcode_summary">APRS-IS varmennus passcode</string>
+<string name="p_passcode_entry">Kirjoita kutsusi passcode</string>
+<string name="p_passreq">Pyydä Passcode</string>
+<string name="p_passreq_summary">Pyydä APRS-IS passcode verkossa</string>
+<string name="p__aprs">APRS Asetukset</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Aseman tyyppi (1..15; 9=mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Kirjoita asemasi SSID</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(ei mitään)</item>
+	<item>1: Digitoistin (koti/WX)</item>
+	<item>2: Digitoistin 70cm</item>
+	<item>3: Digitoistin</item>
+	<item>4: HF to VHF gateway</item>
+	<item>5: IGate (not home station)</item>
+	<item>6: Satelliitti</item>
+	<item>7: Käsikapula</item>
+	<item>8: Vene / Laiva</item>
+	<item>9: Mobile asema</item>
+	<item>10: APRS-IS (ei radio)</item>
+	<item>11: Pallo / APRStouch-tone</item>
+	<item>12: Portable (Läppäri/leirintä alue)</item>
+	<item>13: ...</item>
+	<item>14: Freight vehicle</item>
+	<item>15: HF Asema</item>
+</string-array>
+<string name="p_symbol">APRS symboli</string>
+<string name="p_symbol_summary">Asemasi symboli</string>
+<string name="p_symbol_entry">Aseta symboli joka on koodattu kahteen merkkiin</string>
+<string name="p_status">Tilaviesti</string>
+<string name="p_status_summary">Koordinaattejen jälkeinen teksti</string>
+<string name="p_status_entry">Aseta tilaviesti</string>
+<string name="p__connection">APRS Connection</string>
+<string name="p_conntype">Yhdistämisen Protokolla</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
+<string name="p_conntype_entry">Valitse yhdistämisen protokolla</string>
+<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
+<!-- array of connection types -->
+<string name="p_conn_tcp">TCP yhteys</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_afsk">AFSK kaiuttimien kautta</string>
+
+<string name="p_host">Palvelin</string>
+<string name="p_host_summary">APRS-IS palvelin (portti 8080) to send beacons</string>
+<string name="p_host_entry">Kirjoita APRS-IS palvelimen hostname</string>
+<string name="p_host_hint">host:port</string>
+<string name="p__location">Sijaintiasetukset</string>
+<string name="p_interval">Pienin päivitys aika</string>
+<string name="p_interval_summary">Minutes between beacon transmissions</string>
+<string name="p_interval_entry">Aseta päivityksen aikaväli [min]</string>
+<string name="p_distance">Pienin päivitysmatka</string>
+<string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
+<string name="p_distance_entry">Aseta päiviyksen matka [km]</string>
+<string name="p_speedbrg">Odota speed &amp; bearing</string>
+<string name="p_speedbrg_summary">Pidä GPS päällä kauemmin saadaksesi tarkempia tietoja</string>
+<string name="p_netloc">Käytä verkon paikannusta</string>
+<string name="p_netloc_summary">Käytä puhelinverkon paikannusta</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_filterdist">Vastaanoton säde</string>
+<string name="p_filterdist_summary">Vastaanota paketteja säteen sisäpuolelta</string>
+<string name="p_filterdist_entry">Seuraa ympäilläsi olevia paketteja [km]</string>
+<string name="p_filter">Message filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming messages</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Ville Filpus https://launchpad.net/~ville-f</string>
+
+</resources>

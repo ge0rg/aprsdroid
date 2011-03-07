@@ -7,12 +7,11 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">在APRSdroid中，你需要先配置好你的呼号和口令！</string>
 <string name="wrongpasscode">口令和呼号不匹配！</string>
+<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
 <string name="mininterval">最小的更新时间是1分钟！</string>
 <string name="singlelog">发送一次</string>
 <string name="startlog">开始记录路径</string>
 <string name="stoplog">停止记录路径</string>
-
-<string name="latlon_format">纬度：%1.4f 经度： %1.4f (±%dm)</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
@@ -20,7 +19,7 @@
 
 <!-- AprsService -->
 <string name="service_once">APRS 服务单次启动</string>
-<string name="service_start">APRS 服务启动。每 %d 分钟， %d 公里更新一次。</string>
+<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRS 服务停止。</string>
 
 <!-- first run dialog -->
@@ -36,6 +35,8 @@
 <!-- options menu -->
 <string name="about">关于</string>
 <string name="show_map">Show Map</string>
+<string name="show_log">Show Log</string>
+<string name="show_objects">Toggle Objects</string>
 <string name="quit">退出</string>
 <string name="preferences">偏好设置</string>
 <!-- preferences -->
@@ -77,20 +78,22 @@
 <string name="p_status">状态信息</string>
 <string name="p_status_summary">匹配后的文本</string>
 <string name="p_status_entry">输入你的状态信息</string>
-<string name="p__network">网络</string>
+<string name="p__connection">APRS Connection</string>
 <string name="p_conntype">连接协议</string>
-<string name="p_conntype_summary">选择 UDP (端口8080) 或者 HTTP POST (URL)</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">选择连接协议</string>
+<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
-<string-array name="p_conntype_e">
-	<item>UDP 端口 8080</item>
-	<item>HTTP POST</item>
-	<item>TCP connection</item>
-	<item>AFSK via Speaker</item>
-</string-array>
+<string name="p_conn_tcp">TCP connection</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_afsk">AFSK via Speaker</string>
+
 <string name="p_host">服务器</string>
 <string name="p_host_summary">APRS-IS 服务器 (端口 8080) 发送信标</string>
 <string name="p_host_entry">输入 APRS-IS 服务器的主机名</string>
+<string name="p_host_hint">host:port</string>
 <string name="p__location">位置设置</string>
 <string name="p_interval">最小更新时间</string>
 <string name="p_interval_summary">分钟信标传送间隔</string>
@@ -102,8 +105,34 @@
 <string name="p_speedbrg_summary">保持 GPS 开启以获得更多预设数据</string>
 <string name="p_netloc">使用网络位置</string>
 <string name="p_netloc_summary">从移动电话网络中请求位置信息</string>
-<string name="p__filter">Incoming Filter (TCP only)</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
 <string name="p_filterdist">Neighbor radius</string>
 <string name="p_filterdist_summary">Receive packets from stations in this radius</string>
 <string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p_filter">Message filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming messages</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  zhuye https://launchpad.net/~zhuye</string>
+
 </resources>

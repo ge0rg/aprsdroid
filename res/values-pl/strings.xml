@@ -2,25 +2,24 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
-<string name="app_map">APRSdroid Map</string>
+<string name="app_prefs">Preferencje APRSdroid</string>
+<string name="app_map">Mapa APRSdroid</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Należy skonfigurować APRSdroid z znakiem i hasłem!</string>
 <string name="wrongpasscode">Hasło nie pasuje do znaku!</string>
+<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
 <string name="mininterval">Minimalny czas aktualizacji jest 1 minuta!</string>
 <string name="singlelog">Pojedynczy Shot</string>
 <string name="startlog">Start Tracking</string>
 <string name="stoplog">Stop Tracking</string>
 
-<string name="latlon_format">szer: %1.4f dług: %1.4f (±%dm)</string>
-
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
+<string name="sta_lastreport">Ostatni raport %s</string>
 
 
 <!-- AprsService -->
 <string name="service_once">Usługa APRS pojedynczy strzał.</string>
-<string name="service_start">Uruchomiono usługę APRS. Aktualizacja co%d minut, %d km.</string>
+<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">Zatrzymano usługę APRS</string>
 
 <!-- first run dialog -->
@@ -35,7 +34,9 @@
 
 <!-- options menu -->
 <string name="about">O programie</string>
-<string name="show_map">Show Map</string>
+<string name="show_map">Pokaż mapę</string>
+<string name="show_log">Show Log</string>
+<string name="show_objects">Toggle Objects</string>
 <string name="quit">Zakończ</string>
 <string name="preferences">Ustawienia</string>
 <!-- preferences -->
@@ -77,20 +78,22 @@
 <string name="p_status">Wiadomośc statusu</string>
 <string name="p_status_summary">Tekst po koordynatach</string>
 <string name="p_status_entry">Wprowadź wiadomość statusu</string>
-<string name="p__network">Ścieciowe</string>
+<string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Protokół połączenia</string>
-<string name="p_conntype_summary">Wybierz UDP (port 8080) lub HTTP POST (URL)</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">Wybierz protokół połączenia</string>
+<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
-<string-array name="p_conntype_e">
-	<item>UDP port 8080</item>
-	<item>HTTP POST</item>
-	<item>Połączenie TCP</item>
-	<item>AFSK przez głosnik</item>
-</string-array>
+<string name="p_conn_tcp">Połączenie TCP</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_afsk">AFSK przez głosnik</string>
+
 <string name="p_host">Serwer</string>
 <string name="p_host_summary">APRS-IS serwer (port 8080) do wysyłania sygnałów nawigacyjnych</string>
 <string name="p_host_entry">Wprowadź nazwę hosta serwera APRS-IS</string>
+<string name="p_host_hint">host:port</string>
 <string name="p__location">Ustawienia lokacji</string>
 <string name="p_interval">Minimalny czas aktualizacji</string>
 <string name="p_interval_summary">Minuty pomiędzy transmisjami sygnału</string>
@@ -102,8 +105,35 @@
 <string name="p_speedbrg_summary">Utrzymuj GPS dłużej, aby uzyskać dokładniejsze dane</string>
 <string name="p_netloc">Użyj lokalizacji sieci</string>
 <string name="p_netloc_summary">PObierz pozycję z sieci komórkowej</string>
-<string name="p__filter">Filtr przychodzący (tylko TCP)</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
 <string name="p_filterdist">Promień sąsiada</string>
 <string name="p_filterdist_summary">Odbiór pakietów z tej stacji w promieniu</string>
 <string name="p_filterdist_entry">Promień do monitorowania pakietów [km]</string>
+<string name="p_filter">Message filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming messages</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Adam Czabara https://launchpad.net/~adam-czabara
+  andy https://launchpad.net/~info-funk24</string>
+
 </resources>

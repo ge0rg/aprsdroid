@@ -2,25 +2,24 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
-<string name="app_map">APRSdroid Map</string>
+<string name="app_prefs">APRSdroid：設定</string>
+<string name="app_map">APRSdroid：地図</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroidの使用前にコールサインとパスコードの設定が必要です</string>
 <string name="wrongpasscode">コールサインとパスコードが一致しません！</string>
-<string name="mininterval">最小更新間隔は１分以下に設定できません！</string>
+<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
+<string name="mininterval">GPS測位間隔は１分以下に設定できません</string>
 <string name="singlelog">１回のみ送信</string>
 <string name="startlog">連続送信開始</string>
 <string name="stoplog">送信停止</string>
 
-<string name="latlon_format">緯度: %1.4f 経度: %1.4f (±%dm)</string>
-
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
+<string name="sta_lastreport">%s 最終受信情報</string>
 
 
 <!-- AprsService -->
 <string name="service_once">ARPSサービス １回送信</string>
-<string name="service_start">ARPSサービス開始。%d分、%dkmごとに更新します。</string>
+<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRSサービス停止</string>
 
 <!-- first run dialog -->
@@ -55,13 +54,15 @@
 
 <!-- options menu -->
 <string name="about">ソフトウェア情報</string>
-<string name="show_map">Show Map</string>
+<string name="show_map">地図</string>
+<string name="show_log">Show Log</string>
+<string name="show_objects">Toggle Objects</string>
 <string name="quit">終了</string>
 <string name="preferences">設定</string>
 <!-- preferences -->
 <string name="p__ham">無線局情報設定</string>
 <string name="p_callsign">コールサイン</string>
-<string name="p_callsign_summary">あなたのアマチュア無線局コールサイン</string>
+<string name="p_callsign_summary">利用者のアマチュア無線局コールサイン</string>
 <string name="p_callsign_entry">コールサインを入力</string>
 <string name="p_passcode">パスコード</string>
 <string name="p_passcode_summary">APRS-IS認証パスコード</string>
@@ -97,33 +98,61 @@
 <string name="p_status">ステータスメッセージ</string>
 <string name="p_status_summary">位置情報と共に送信するメッセージ</string>
 <string name="p_status_entry">ステータスメッセージを入力</string>
-<string name="p__network">ネットワークの設定</string>
+<string name="p__connection">APRS Connection</string>
 <string name="p_conntype">データ送信方式</string>
-<string name="p_conntype_summary">サーバへのデータ送信方式を選択</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">使用する送信方式を選択</string>
+<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
-<string-array name="p_conntype_e">
-	<item>UDP ポート8080</item>
-	<item>HTTP POST</item>
-	<item>TCP接続</item>
-	<item>AFSK音声出力</item>
-</string-array>
+<string name="p_conn_tcp">TCP接続</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_afsk">AFSK音声出力</string>
+
 <string name="p_host">送信先サーバ名</string>
 <string name="p_host_summary">ビーコン情報を送信するAPRS-ISサーバ名</string>
 <string name="p_host_entry">送信先のAPRS-ISサーバホスト名を入力</string>
+<string name="p_host_hint">host:port</string>
 <string name="p__location">位置情報設定</string>
-<string name="p_interval">最小更新時間</string>
-<string name="p_interval_summary">ビーコンを送信する間隔</string>
-<string name="p_interval_entry">更新する間隔[分]を入力</string>
-<string name="p_distance">最小更新距離</string>
-<string name="p_distance_summary">ビーコンを送信する距離 (0で時間更新のみ)</string>
-<string name="p_distance_entry">更新する距離[km]を入力</string>
-<string name="p_speedbrg">速度と進路の取得</string>
-<string name="p_speedbrg_summary">GPSの情報をより長時間かけて取得する</string>
-<string name="p_netloc">ネットワーク位置情報を使用</string>
-<string name="p_netloc_summary">携帯電話網から取得した位置情報を使用する</string>
-<string name="p__filter">受信ビーコン表示設定 （TCP接続のみ）</string>
+<string name="p_interval">位置情報取得間隔</string>
+<string name="p_interval_summary">GPSから位置情報を取得する間隔</string>
+<string name="p_interval_entry">取得する間隔[分]を入力</string>
+<string name="p_distance">ビーコン送信距離間隔</string>
+<string name="p_distance_summary">前回送信からこの距離以上移動したらビーコン送信（0で測位を行うごとに毎回送信）</string>
+<string name="p_distance_entry">送信する距離間隔[km]を入力</string>
+<string name="p_speedbrg">速度・進路を取得</string>
+<string name="p_speedbrg_summary">位置情報取得の時間が長くなります</string>
+<string name="p_netloc">基地局位置情報の使用</string>
+<string name="p_netloc_summary">GPS測位不能時に基地局位置情報（誤差大）を使用します</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
 <string name="p_filterdist">近隣局ビーコン表示範囲</string>
 <string name="p_filterdist_summary">ここで指定した範囲内にある局のビーコンを受信表示する</string>
 <string name="p_filterdist_entry">ビーコンを受信する範囲[km]を指定</string>
+<string name="p_filter">Message filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming messages</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Yoshikazu AKAGI https://launchpad.net/~7k4owm</string>
+
 </resources>

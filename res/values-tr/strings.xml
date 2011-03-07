@@ -2,17 +2,16 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
-<string name="app_map">APRSdroid Map</string>
+<string name="app_prefs">APRSdroid Tercihler</string>
+<string name="app_map">APRSdroid harita</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid programını çağrı işaretiniz  ve şifrenizle konfigüre etmeniz gerekiyor!</string>
 <string name="wrongpasscode">Şifreniz çağrı işaretinizle eşleşmiyor!</string>
+<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
 <string name="mininterval">En sık güncelleme aralığı 1 dakikadır!</string>
 <string name="singlelog">Tek atım</string>
 <string name="startlog">İzlemeyi başlat</string>
 <string name="stoplog">İzlemeyi durdur</string>
-
-<string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
@@ -20,7 +19,7 @@
 
 <!-- AprsService -->
 <string name="service_once">APRS Servis tek atım</string>
-<string name="service_start">APRS servisi başlatıldı. Güncelleme her %d dakika, %d km.</string>
+<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRS servisi durduruldu.</string>
 
 <!-- first run dialog -->
@@ -51,11 +50,13 @@
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
 <string name="ad_trans">\n\nTranslation:</string>
-<string name="ad_homepage">Home Page</string>
+<string name="ad_homepage">Ana Sayfa</string>
 
 <!-- options menu -->
 <string name="about">Hakkında</string>
-<string name="show_map">Show Map</string>
+<string name="show_map">Haritayı Göster</string>
+<string name="show_log">Show Log</string>
+<string name="show_objects">Toggle Objects</string>
 <string name="quit">Çık</string>
 <string name="preferences">Ayarlar</string>
 <!-- preferences -->
@@ -97,20 +98,22 @@
 <string name="p_status">Durum mesajı</string>
 <string name="p_status_summary">Koordinatlarınızdan sonra gönderilecek metin</string>
 <string name="p_status_entry">Durum mesajınızı giriniz</string>
-<string name="p__network">Ağ Oluşturma</string>
+<string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Bağlantı Protokolü</string>
-<string name="p_conntype_summary">UDP (port 8080) ya da HTTP POST (URL) seçiniz</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">Bağlantı protokolünü seçiniz</string>
+<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
-<string-array name="p_conntype_e">
-	<item>UDP port 8080</item>
-	<item>HTTP POST</item>
-	<item>TCP connection</item>
-	<item>AFSK via Speaker</item>
-</string-array>
+<string name="p_conn_tcp">TCP connection</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_afsk">AFSK via Speaker</string>
+
 <string name="p_host">Sunucu</string>
 <string name="p_host_summary">Beacon gönderilecek APRS-IS sunucusu (port 8080)</string>
 <string name="p_host_entry">APRS-IS sunucu ismini girin</string>
+<string name="p_host_hint">host:port</string>
 <string name="p__location">Konum Ayarları</string>
 <string name="p_interval">Asgari güncelleme zamanı</string>
 <string name="p_interval_summary">Beacon gönderileri arasındaki zaman (dk)</string>
@@ -122,8 +125,36 @@
 <string name="p_speedbrg_summary">Daha hassas konum bilgisi almak için GPS\'i daha uzun süre açık tut</string>
 <string name="p_netloc">Ağ konum bilgisi kullan</string>
 <string name="p_netloc_summary">Konum bilgisini hücresel ağdan al</string>
-<string name="p__filter">Incoming Filter (TCP only)</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
 <string name="p_filterdist">Neighbor radius</string>
 <string name="p_filterdist_summary">Receive packets from stations in this radius</string>
 <string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p_filter">Message filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming messages</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Angel Spy https://launchpad.net/~dilara.ekinci
+  Hüseyin Odabaş https://launchpad.net/~ta1df
+  zeugma https://launchpad.net/~sunder67</string>
+
 </resources>

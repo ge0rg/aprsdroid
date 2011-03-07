@@ -3,24 +3,23 @@
 <resources>
 <string name="app_name">APRSdroid</string>
 <string name="app_prefs">APRSdroid Preferences</string>
-<string name="app_map">APRSdroid Map</string>
+<string name="app_map">APRSdroid Kort</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid skal konfigureres med Amatør kaldesignal og adgangskode!</string>
 <string name="wrongpasscode">Din adgangskode matcher ikke dit kaldesignal!</string>
+<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
 <string name="mininterval">Minimum opdaterings tid er 1 minut!</string>
 <string name="singlelog">Send engangs Sporing.</string>
 <string name="startlog">Start Sporing</string>
 <string name="stoplog">Stop Sporing</string>
 
-<string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
-
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
+<string name="sta_lastreport">%s Sidste Rapport</string>
 
 
 <!-- AprsService -->
 <string name="service_once">APRS Service enkelt Track.</string>
-<string name="service_start">APRS Service startet. Updateres hver %d minut, %d km.</string>
+<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRS Service stoppet.</string>
 
 <!-- first run dialog -->
@@ -35,7 +34,9 @@
 
 <!-- options menu -->
 <string name="about">Om...</string>
-<string name="show_map">Show Map</string>
+<string name="show_map">Vis kort</string>
+<string name="show_log">Vis Log</string>
+<string name="show_objects">Toggle Objects</string>
 <string name="quit">Afslut</string>
 <string name="preferences">Indstillinger</string>
 <!-- preferences -->
@@ -77,20 +78,22 @@
 <string name="p_status">Statusmeddelelse</string>
 <string name="p_status_summary">Tekst som kommer efter dine koordinater</string>
 <string name="p_status_entry">Indtast din statusmeddelelse</string>
-<string name="p__network">Netværk</string>
+<string name="p__connection">APRS Forbindelse</string>
 <string name="p_conntype">Forbindelses-protokol</string>
-<string name="p_conntype_summary">Vælg UDP (port 8080) eller HTTP POST (URL)</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP eller UDP</string>
 <string name="p_conntype_entry">Vælg forbindelses-protokol</string>
+<string name="p_connsetup">Indstillinger af forbindelse</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
-<string-array name="p_conntype_e">
-	<item>UDP port 8080</item>
-	<item>HTTP POST</item>
-	<item>TCP forbindelse</item>
-	<item>AFSK igennem højtaler</item>
-</string-array>
+<string name="p_conn_tcp">TCP forbindelse</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_afsk">AFSK igennem højtaler</string>
+
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) til at sende beacons</string>
 <string name="p_host_entry">Indtast APRS-IS server hostname</string>
+<string name="p_host_hint">host:port</string>
 <string name="p__location">Lokations indstillinger</string>
 <string name="p_interval">Minimum opdaterings tid</string>
 <string name="p_interval_summary">Minutter mellem beacon transmissioner</string>
@@ -102,8 +105,35 @@
 <string name="p_speedbrg_summary">Holder GPS tændt længere for at få mere præcise data</string>
 <string name="p_netloc">Brug Mobil netværksplacering</string>
 <string name="p_netloc_summary">Modtage position fra det mobile netværk</string>
-<string name="p__filter">Indkommende filter (kun TCP)</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
 <string name="p_filterdist">Nabo radius</string>
 <string name="p_filterdist_summary">Modtag pakker fra stationer i denne radius</string>
 <string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p_filter">Message filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming messages</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Alex Csete https://launchpad.net/~alexc
+  Finn Leslie https://launchpad.net/~idestrup</string>
+
 </resources>

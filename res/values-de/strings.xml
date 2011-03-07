@@ -7,12 +7,11 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Sie müssen Ihr Rufzeichen und das dazugehörige Passwort eingeben!</string>
 <string name="wrongpasscode">Das Passwort für Ihr Rufzeichen ist nicht korrekt!</string>
+<string name="anon_warning">Ohne Passwortangabe werden Ihre Meldungen nicht weitergeleitet!</string>
 <string name="mininterval">Minimale Update-Zeit ist 1 Minute!</string>
 <string name="singlelog">Position senden</string>
 <string name="startlog">Tracking starten</string>
 <string name="stoplog">Tracking beenden</string>
-
-<string name="latlon_format">lat: %1.4f lon: %1.4f (±%dm)</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s: Letzte Meldung</string>
@@ -20,7 +19,7 @@
 
 <!-- AprsService -->
 <string name="service_once">APRS-Dienst Einzelmeldung.</string>
-<string name="service_start">APRS-Dienst gestartet. Aktualisierung alle %d Minuten, %d km.</string>
+<string name="service_start">APRS-Dienst gestartet. Aktualisierung alle %1$d Minuten, %2$d km.</string>
 <string name="service_stop">APRS-Dienst beendet.</string>
 
 <!-- first run dialog -->
@@ -48,6 +47,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <!-- options menu -->
 <string name="about">Über...</string>
 <string name="show_map">Zeige Karte</string>
+<string name="show_log">Protokoll anzeigen</string>
+<string name="show_objects">Objekte ein/ausblenden</string>
 <string name="quit">Beenden</string>
 <string name="preferences">Einstellungen</string>
 <!-- preferences -->
@@ -89,20 +90,22 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_status">Statusmeldung</string>
 <string name="p_status_summary">Nachrichtenteil in der Bake</string>
 <string name="p_status_entry">Geben Sie die Statusnachricht ein</string>
-<string name="p__network">Netzwerk</string>
+<string name="p__connection">APRS-Verbindung</string>
 <string name="p_conntype">Verbindungsprotokoll</string>
-<string name="p_conntype_summary">Wählen Sie UDP (Port 8080) oder HTTP POST (URL)</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP oder UDP</string>
 <string name="p_conntype_entry">Wählen Sie das Verbindungsprotokoll</string>
+<string name="p_connsetup">Verbindungseinstellungen</string>
+<string name="p_connsetup_summary">Konfiguration der Verbindung</string>
 <!-- array of connection types -->
-<string-array name="p_conntype_e">
-	<item>UDP Port 8080</item>
-	<item>HTTP POST</item>
-	<item>TCP-Verbindung</item>
-	<item>AFSK über Lautsprecher</item>
-</string-array>
+<string name="p_conn_tcp">TCP-Verbindung</string>
+<string name="p_conn_udp">UDP (nur Senden)</string>
+<string name="p_conn_http">HTTP POST (nur Senden)</string>
+<string name="p_conn_afsk">AFSK über Lautsprecher</string>
+
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS Zielserver (Port 8080)</string>
 <string name="p_host_entry">Geben Sie den APRS-IS-Servernamen ein</string>
+<string name="p_host_hint">host:port</string>
 <string name="p__location">Standorteinstellungen</string>
 <string name="p_interval">Minimale Updatezeit</string>
 <string name="p_interval_summary">Minuten zwischen Baken</string>
@@ -114,8 +117,34 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_speedbrg_summary">GPS für präzisere Daten länger aktivieren</string>
 <string name="p_netloc">Netzwerk-Lokalisierung</string>
 <string name="p_netloc_summary">Position über drahtloses Netzwerk beziehen</string>
-<string name="p__filter">Empfangsfilter (nur TCP)</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS-Digi-Pfad</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Digipeater-Abfolge</string>
+<string name="p_aprs_path_entry">Digi-Pfad (getrennt durch Kommas) eingeben</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP-Server (Port 14580) zum Verbinden</string>
 <string name="p_filterdist">Nachbarradius</string>
 <string name="p_filterdist_summary">Pakete von Stationen in diesem Radius empfangen</string>
 <string name="p_filterdist_entry">Empfangsradius für andere Stationen [km]</string>
+<string name="p_filter">Nachrichtenfilter</string>
+<string name="p_filter_hint">b/RUFZEICHEN o/OBJEKT</string>
+<string name="p_filter_summary">Filter für Paketempfang</string>
+<string name="p_filter_entry">Filter für Paketempfang eingeben</string>
+
+<string name="p_filterhelp">Hilfe zum Nachrichtenfilter</string>
+<string name="p_filterhelp_summary">Online-Referenz für APRS-IS-Filter</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Ge0rG https://launchpad.net/~georg-op-co</string>
+
 </resources>
