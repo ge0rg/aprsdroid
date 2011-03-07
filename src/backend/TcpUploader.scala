@@ -38,7 +38,9 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 	}
 
 	def stop() {
-		conn.running = false
+		conn.synchronized {
+			conn.running = false
+		}
 		conn.shutdown()
 		conn.interrupt()
 		conn.join()
