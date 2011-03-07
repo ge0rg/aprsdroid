@@ -17,6 +17,8 @@ object AprsService {
 	val STATUS = PACKAGE + ".STATUS"
 	val PACKET = PACKAGE + ".PACKET"
 
+	val FAST_LANE_ACT = 30000
+
 	def intent(ctx : Context, action : String) : Intent = {
 		new Intent(action, null, ctx, classOf[AprsService])
 	}
@@ -46,7 +48,7 @@ class AprsService extends Service with LocationListener {
 
 	var singleShot = false
 	var lastLoc : Location = null
-	var awaitingSpdCourse : Location = null
+	var fastLaneLoc : Location = null
 
 	override def onStart(i : Intent, startId : Int) {
 		Log.d(TAG, "onStart: " + i + ", " + startId);
@@ -61,15 +63,20 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def requestLocations(stay_on : Boolean) {
-		if (stay_on) {
+		// get update interval and distance
+		val upd_int = prefs.getStringInt("interval", 10)
+		val upd_dist = prefs.getStringInt("distance", 10)
+		val gps_act = prefs.getString("gps_activation", "med")
+		if (stay_on || (gps_act == "always")) {
 			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				0, 0, this)
 		} else {
-			// get update interval and distance
-			val upd_int = prefs.getStringInt("interval", 10)
-			val upd_dist = prefs.getStringInt("distance", 10)
-
+			// for GPS precision == medium, we use getGpsInterval()
 			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				upd_int * 60000 - getGpsInterval(), upd_dist * 1000, this)
+		}
+		if (prefs.getBoolean("netloc", false)) {
+			locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
 				upd_int * 60000, upd_dist * 1000, this)
 		}
 	}
@@ -83,7 +90,7 @@ class AprsService extends Service with LocationListener {
 
 		// display notification (even though we are not actually started yet,
 		// but we need this to prevent error message reordering)
-		awaitingSpdCourse = null
+		fastLaneLoc = null
 		if (i.getAction() == SERVICE_ONCE) {
 			lastLoc = null // for singleshot mode, ignore last post
 			singleShot = true
@@ -94,11 +101,8 @@ class AprsService extends Service with LocationListener {
 		// the poster needs to be running before location updates come in
 		startPoster()
 
-		if (prefs.getBoolean("netloc", false)) {
-			locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-				upd_int * 60000, upd_dist * 1000, this)
-		}
-		requestLocations(prefs.getString("gps_activation", "") == "always")
+		// continuous GPS tracking for single shot mode
+		requestLocations(singleShot)
 
 		val callssid = AprsPacket.formatCallSsid(prefs.getCallsign(), prefs.getString("ssid", ""))
 		val message = "%s: %d min, %d km".format(callssid, upd_int, upd_dist)
@@ -130,55 +134,57 @@ class AprsService extends Service with LocationListener {
 		running = false
 	}
 
-	def speedBearingStart() {
+	def getGpsInterval() : Int = {
+		val gps_act = prefs.getString("gps_activation", "med")
+		if (gps_act == "med") FAST_LANE_ACT
+				else  0
+	}
+
+	def startFastLane() {
 		Log.d(TAG, "switching to fast lane");
 		// request fast update rate
 		locMan.removeUpdates(this);
 		requestLocations(true)
-		handler.postDelayed({ speedBearingEnd(true) }, 30000)
+		handler.postDelayed({ stopFastLane(true) }, FAST_LANE_ACT)
 	}
 
-	def speedBearingEnd(post : Boolean) {
+	def stopFastLane(post : Boolean) {
 		if (!running)
 			return;
 		Log.d(TAG, "switching to slow lane");
-		if (post && awaitingSpdCourse != null) {
-			Log.d(TAG, "speedBearingEnd: posting " + awaitingSpdCourse);
-			postLocation(awaitingSpdCourse)
+		if (post && fastLaneLoc != null) {
+			Log.d(TAG, "stopFastLane: posting " + fastLaneLoc);
+			postLocation(fastLaneLoc)
 		}
-		awaitingSpdCourse = null
+		fastLaneLoc = null
 		// reset update speed
 		locMan.removeUpdates(this);
-		requestLocations(prefs.getString("gps_activation", "") == "always")
+		requestLocations(false)
 	}
 
-	def checkSpeedBearing(location : Location) : Boolean = {
-		val hasSpdBrg = (location.hasBearing && location.hasSpeed)
-		if (!hasSpdBrg) {
-			if (awaitingSpdCourse == null)
-				speedBearingStart()
-			awaitingSpdCourse = location
-			return false
-		} else if (awaitingSpdCourse != null && hasSpdBrg) {
-			speedBearingEnd(false)
-		}
-		true
+	def goingFastLane(location : Location) : Boolean = {
+		if (fastLaneLoc == null)
+			startFastLane()
+		fastLaneLoc = location
+		return true
 	}
 
 	// LocationListener interface
 	override def onLocationChanged(location : Location) {
 		val upd_int = prefs.getStringInt("interval", 10) * 60000
 		val upd_dist = prefs.getStringInt("distance", 10) * 1000
+		Log.d(TAG, "onLocationChanged: n=" + location)
+		Log.d(TAG, "onLocationChanged: l=" + lastLoc)
 		if (lastLoc != null &&
-		    (location.getTime - lastLoc.getTime < upd_int ||
+		    (location.getTime - lastLoc.getTime < (upd_int  - getGpsInterval()) ||
 		     location.distanceTo(lastLoc) < upd_dist)) {
 			Log.d(TAG, "onLocationChanged: ignoring premature location")
 			return
 		}
-		// check if we have speed and course
-		val speedbrg = prefs.getBoolean("speedbrg", false)
-		if (speedbrg && location.getProvider == LocationManager.GPS_PROVIDER) {
-			if (!checkSpeedBearing(location))
+		// check if we need to go fast lane
+		val gps_act = prefs.getString("gps_activation", "med")
+		if (gps_act == "med" && location.getProvider == LocationManager.GPS_PROVIDER) {
+			if (goingFastLane(location))
 				return
 		}
 		postLocation(location)

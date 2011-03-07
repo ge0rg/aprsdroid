@@ -73,10 +73,14 @@
 		android:summary="@string/p_distance_summary"
 		android:dialogTitle="@string/p_distance_entry" />
 
-        <CheckBoxPreference
-                android:key="speedbrg"
-		android:title="@string/p_speedbrg"
-		android:summary="@string/p_speedbrg_summary" />
+        <ListPreference
+                android:key="gps_activation"
+		android:title="@string/p_gps"
+		android:summary="@string/p_gps_summary"
+                android:entries="@array/p_gps_e"
+                android:entryValues="@array/p_gps_ev"
+		android:defaultValue="med"
+		android:dialogTitle="@string/p_gps_entry" />
 
         <CheckBoxPreference
                 android:key="netloc"

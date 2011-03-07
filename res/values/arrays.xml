@@ -13,6 +13,17 @@
 		<item>afsk</item>
 	</string-array>
 
+	<string-array name="p_gps_e">
+		<item>@string/p_gps_always</item>
+		<item>@string/p_gps_med</item>
+		<item>@string/p_gps_low</item>
+	</string-array>
+	<string-array name="p_gps_ev">
+		<item>always</item>
+		<item>med</item>
+		<item>low</item>
+	</string-array>
+
 	<string-array name="p_ssid_ev">
 		<item></item> <item>1</item> <item>2</item> <item>3</item>
 		<item>4</item> <item>5</item> <item>6</item> <item>7</item>

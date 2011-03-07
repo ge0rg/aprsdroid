@@ -129,6 +129,13 @@
 <string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
 <string name="p_netloc">Use network location</string>
 <string name="p_netloc_summary">Acquire position from the cellular network</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Medium</string>
+<string name="p_gps_low">Low</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
