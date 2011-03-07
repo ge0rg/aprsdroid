@@ -13,15 +13,13 @@
 <string name="startlog">Start Tracking</string>
 <string name="stoplog">Stop Tracking</string>
 
-<string name="latlon_format">lat: %1.4f  lon: %1.4f (±%dm)</string>
-
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
 
 
 <!-- AprsService -->
 <string name="service_once">APRS Service single shot.</string>
-<string name="service_start">APRS Service started. Updates every %d minutes, %d km.</string>
+<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRS Service stopped.</string>
 
 <!-- first run dialog -->
@@ -110,8 +108,8 @@
 <string name="p_connsetup_summary">Configuration of Connection</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP connection</string>
-<string name="p_conn_udp">UDP send-only</string>
-<string name="p_conn_http">HTTP POST</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
 <string name="p_conn_afsk">AFSK via Speaker</string>
 
 <string name="p_host">Server</string>
@@ -155,4 +153,7 @@
 
 <string name="p_filterhelp">Message filter help</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="translator_credits">translator-credits</string>
+
 </resources>

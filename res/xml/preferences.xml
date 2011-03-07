@@ -98,7 +98,7 @@
 		android:summary="@string/p_conntype_summary"
                 android:entries="@array/p_conntype_e"
                 android:entryValues="@array/p_conntype_ev"
-		android:defaultValue="@string/p_conntype_default"
+		android:defaultValue="tcp"
 		android:dialogTitle="@string/p_conntype_entry" />
 
         <PreferenceScreen

@@ -5,6 +5,5 @@
 
 <string name="default_status">http://aprsdroid.org/</string>
 <string name="default_symbol">/$</string>
-<string name="p_conntype_default" value="tcp" />
 
 </resources>
