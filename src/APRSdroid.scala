@@ -43,6 +43,8 @@ class APRSdroid extends Activity with OnClickListener
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.main)
 
+		Log.d(TAG, "starting " + getString(R.string.build_version))
+
 		singleBtn.setOnClickListener(this);
 		startstopBtn.setOnClickListener(this);
 
