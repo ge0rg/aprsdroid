@@ -5,6 +5,7 @@
 		<item>@string/p_conn_udp</item>
 		<item>@string/p_conn_http</item>
 		<item>@string/p_conn_afsk</item>
+		<item>@string/p_conn_bt</item>
 	</string-array>
 	<string-array name="p_conntype_ev">
 		<item>tcp</item>
