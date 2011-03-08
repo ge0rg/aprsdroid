@@ -36,7 +36,7 @@
 		android:summary="@string/p_ssid_summary"
                 android:entries="@array/p_ssid_e"
                 android:entryValues="@array/p_ssid_ev"
-		android:defaultValue=""
+		android:defaultValue="10"
 		android:dialogTitle="@string/p_ssid_entry" />
 
         <EditTextPreference
