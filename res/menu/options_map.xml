@@ -7,10 +7,19 @@
 		android:title="@string/show_log"
 		android:alphabeticShortcut="l"
 		android:icon="@android:drawable/ic_menu_revert" />
-	<item android:id="@+id/toggleobjects"
-		android:title="@string/show_objects"
+	<item android:id="@+id/overlays"
+		android:title="@string/map_overlays"
 		android:alphabeticShortcut="o"
-		android:icon="@android:drawable/ic_menu_myplaces" />
+		android:icon="@android:drawable/ic_menu_mapmode" >
+		<menu>
+			<group android:checkableBehavior="all">
+				<item android:id="@+id/objects"
+					android:title="@string/map_objects" />
+				<item android:id="@+id/satellite"
+					android:title="@string/map_satellite" />
+			</group>
+		</menu>
+	</item>
 	<item android:id="@+id/startstopbtn"
 		android:title="@string/startlog"
 		android:alphabeticShortcut="s"

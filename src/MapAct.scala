@@ -76,10 +76,15 @@ class MapAct extends MapActivity {
 				stopService(AprsService.intent(this, AprsService.SERVICE))
 			}
 			true
-		case R.id.toggleobjects =>
-			showObjects = !showObjects
+		case R.id.objects =>
+			mi.setChecked(!mi.isChecked())
+			showObjects = mi.isChecked()
 			staoverlay.loadDb(showObjects)
 			mapview.invalidate()
+			true
+		case R.id.satellite =>
+			mi.setChecked(!mi.isChecked())
+			mapview.setSatellite(mi.isChecked())
 			true
 		case R.id.quit =>
 			stopService(AprsService.intent(this, AprsService.SERVICE))
