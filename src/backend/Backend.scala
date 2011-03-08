@@ -22,7 +22,7 @@ object Backend {
 		"tcp" -> new BackendInfo(
 			(s, p) => new TcpUploader(s, p),
 			R.xml.pref_tcp,
-			PASSCODE_OPTIONAL)
+			PASSCODE_OPTIONAL),
 		"bt" -> new BackendInfo(
 			(s, p) => new BluetoothTnc(s, p),
 			R.xml.pref_bluetooth,

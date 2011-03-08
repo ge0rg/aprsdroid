@@ -1,16 +1,15 @@
-package de.duenndns.aprsdroid
+package org.aprsdroid.app
 
 import _root_.android.bluetooth._
 import _root_.android.app.Service
-import _root_.android.content.{Intent, SharedPreferences}
+import _root_.android.content.Intent
 import _root_.android.location.Location
-import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
-import _root_.java.io.{BufferedReader, InputStreamReader, OutputStreamWriter, PrintWriter}
+import _root_.java.io.{InputStream, OutputStream}
 import _root_.java.net.{InetAddress, Socket}
 import _root_.java.util.UUID
 
-class BluetoothTnc(service : AprsService, prefs : SharedPreferences) extends AprsIsUploader(prefs) {
+class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "BluetoothTnc"
 	val SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
 
@@ -54,8 +53,8 @@ class BluetoothTnc(service : AprsService, prefs : SharedPreferences) extends Apr
 		val TAG = "BtSocketThread"
 		var running = false
 		var socket : BluetoothSocket = null
-		var reader : BufferedReader = null
-		var writer : PrintWriter = null
+		var reader : KissReader = null
+		var writer : KissWriter = null
 
 		def init_socket() {
 			Log.d(TAG, "init_socket()")
@@ -72,10 +71,8 @@ class BluetoothTnc(service : AprsService, prefs : SharedPreferences) extends Apr
 				}
 
 				socket.connect()
-				reader = new BufferedReader(new InputStreamReader(
-						socket.getInputStream()), 256)
-				writer = new PrintWriter(new OutputStreamWriter(
-						socket.getOutputStream()), true)
+				reader = new KissReader(socket.getInputStream())
+				writer = new KissWriter(socket.getOutputStream())
 				running = true
 			}
 			Log.d(TAG, "init_socket() done")
@@ -91,11 +88,10 @@ class BluetoothTnc(service : AprsService, prefs : SharedPreferences) extends Apr
 			while (running) {
 				try {
 					Log.d(TAG, "waiting for data...")
-					var line : String = null
-					while (running && { line = reader.readLine(); line != null }) {
+					while (running) {
+						val line = reader.readPacket()
 						Log.d(TAG, "recv: " + line)
-						if (line(0) != '#')
-							service.postSubmit(line)
+						service.postSubmit(line)
 					}
 				} catch {
 					case e : Exception => 
@@ -112,7 +108,7 @@ class BluetoothTnc(service : AprsService, prefs : SharedPreferences) extends Apr
 
 		def update(packet : String) : String = {
 			if (socket != null) {
-				writer.println(packet)
+				writer.writePacket(packet)
 				"Bluetooth OK"
 			} else "Bluetooth disconnected"
 		}
@@ -132,6 +128,51 @@ class BluetoothTnc(service : AprsService, prefs : SharedPreferences) extends Apr
 				running = false
 				catchLog("socket.close", socket.close)
 			}
+		}
+	}
+
+	object Kiss {
+		// escape sequences
+		val FEND  = 0xC0
+		val FESC  = 0xDB
+		val TFEND = 0xDC
+		val TFESC = 0xDD
+
+		// commands
+		val CMD_DATA = 0x00
+	}
+
+	class KissReader(is : InputStream) {
+		def readPacket() : String = {
+			import Kiss._
+			val buf = scala.collection.mutable.ListBuffer[Byte]()
+			do {
+				var ch = is.read()
+				ch match {
+				case FEND =>
+					if (buf.length > 0)
+						return new String(buf.toArray)
+				case FESC => is.read() match {
+					case TFEND => buf.append(FEND.toByte)
+					case TFESC => buf.append(FESC.toByte)
+					case _ =>
+					}
+				case -1	=> throw new java.io.IOException("KissReader out of data")
+				case _ =>
+					buf.append(ch.toByte)
+				}
+			} while (true)
+			""
+		}
+	}
+
+	class KissWriter(os : OutputStream) {
+		def writePacket(p : String) {
+			os.write(Kiss.FEND)
+			os.write(Kiss.CMD_DATA)
+			os.write(p.getBytes())
+			os.write(Kiss.FEND)
+			os.flush()
 		}
 	}
 }
