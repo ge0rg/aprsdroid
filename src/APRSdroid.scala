@@ -174,6 +174,10 @@ class APRSdroid extends Activity with OnClickListener
 		case R.id.preferences =>
 			startActivity(new Intent(this, classOf[PrefsAct]));
 			true
+		case R.id.clear =>
+			storage.trimPosts(System.currentTimeMillis)
+			postcursor.requery()
+			true
 		case R.id.about =>
 			aboutDialog()
 			true
