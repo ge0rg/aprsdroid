@@ -14,7 +14,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	val SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
 
 	val tncmac = prefs.getString("bt.mac", null)
-	val tncchannel = prefs.getString("bt.channel", "")
+	val tncchannel = prefs.getStringInt("bt.channel", -1)
 	var conn : BtSocketThread = null
 
 	createConnection()
@@ -62,12 +62,11 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				if (socket != null) {
 					shutdown()
 				}
-				if (tncchannel == "") {
+				if (tncchannel == -1) {
 					socket = tnc.createRfcommSocketToServiceRecord(SPP)
 				} else {
 					val m = tnc.getClass().getMethod("createRfcommSocket", classOf[Int])
-					val chan = tncchannel.asInstanceOf[Int]
-					socket = m.invoke(tnc, chan.asInstanceOf[AnyRef]).asInstanceOf[BluetoothSocket]
+					socket = m.invoke(tnc, tncchannel.asInstanceOf[AnyRef]).asInstanceOf[BluetoothSocket]
 				}
 
 				socket.connect()
@@ -83,7 +82,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			try {
 				init_socket()
 			} catch {
-				case e : Exception => service.postAbort(e.getMessage())
+				case e : Exception => e.printStackTrace(); service.postAbort(e.toString())
 			}
 			while (running) {
 				try {
@@ -118,7 +117,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			try {
 				fun()
 			} catch {
-			case e : Exception => Log.d(TAG, tag + " execption: " + e)
+			case e : Exception => e.printStackTrace(); Log.d(TAG, tag + " execption: " + e)
 			}
 		}
 
@@ -148,16 +147,24 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			val buf = scala.collection.mutable.ListBuffer[Byte]()
 			do {
 				var ch = is.read()
+				Log.d(TAG, "KissReader.readPacket: %02X '%c'".format(ch, ch))
 				ch match {
 				case FEND =>
-					if (buf.length > 0)
+					if (buf.length > 0) {
+						Log.d(TAG, "KissReader.readPacket: sending back %s".format(buf.toArray))
 						return new String(buf.toArray)
+					}
 				case FESC => is.read() match {
 					case TFEND => buf.append(FEND.toByte)
 					case TFESC => buf.append(FESC.toByte)
 					case _ =>
 					}
 				case -1	=> throw new java.io.IOException("KissReader out of data")
+				case 0 =>
+					// hack: ignore 0x00 byte at start of frame, this is the command
+					Log.d(TAG, "KissReader.readPacket: ignoring command byte")
+					if (buf.length != 0)
+						buf.append(ch.toByte)
 				case _ =>
 					buf.append(ch.toByte)
 				}
@@ -168,6 +175,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 
 	class KissWriter(os : OutputStream) {
 		def writePacket(p : String) {
+			Log.d(TAG, "KissWriter.writePacket: %s".format(p))
 			os.write(Kiss.FEND)
 			os.write(Kiss.CMD_DATA)
 			os.write(p.getBytes())
