@@ -59,6 +59,9 @@ object StorageDatabase {
 				SYMBOL, COMMENT, ORIGIN, QRG)
 		lazy val TABLE_DROP = "DROP TABLE %s".format(TABLE)
 		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT, SPEED, COURSE, ALT, ORIGIN, QRG)
+		lazy val COL_DIST = "((lat - %d)*(lat - %d) + (lon - %d)*(lon - %d)) as dist"
+
+		val COLUMN_TS		= 1
 		val COLUMN_CALL		= 2
 		val COLUMN_LAT		= 3
 		val COLUMN_LON		= 4
@@ -191,6 +194,13 @@ class StorageDatabase(context : Context) extends
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ?", Array(querycall),
 			"call", null, null, null)
+	}
+	def getNeighbors(lat : Int, lon : Int, limit : String) : Cursor = {
+		// add a distance column to the query
+		val newcols = Position.COLUMNS :+ Position.COL_DIST.format(lat, lat, lon, lon)
+		getReadableDatabase().query(Position.TABLE, newcols,
+			null, null,
+			"call", null, "dist", limit)
 	}
 
 	def addPost(ts : Long, posttype : Int, status : String, message : String) {
