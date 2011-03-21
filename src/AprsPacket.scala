@@ -4,6 +4,7 @@ import _root_.android.location.Location
 import _root_.net.ab0oo.aprs._
 
 object AprsPacket {
+	val QRG_RE = ".*?(\\d{2,3}[.,]\\d{3,4}).*?".r
 
 	def passcode(callssid : String) : Int = {
 		// remove ssid, uppercase, add \0 for odd-length calls
@@ -70,6 +71,13 @@ object AprsPacket {
 			"r/%1.3f/%1.3f/%d".formatLocal(null, loc.getLatitude, loc.getLongitude, range)
 		else
 			""
+	}
+
+	def parseQrg(comment : String) : String = {
+		comment match {
+		case QRG_RE(qrg) => qrg
+		case _ => null
+		}
 	}
 
 	def parseHostPort(hostport : String, defaultport : Int) : (String, Int) = {

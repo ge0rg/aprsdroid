@@ -148,6 +148,7 @@ class StorageDatabase(context : Context) extends
 			val lon = (pos.getLongitude()*1000000).asInstanceOf[Int]
 			val sym = "%s%s".format(pos.getSymbolTable(), pos.getSymbolCode())
 			val comment = fap.getAprsInformation().getComment()
+			val qrg = AprsPacket.parseQrg(comment)
 			cv.put(Position.TS, ts.asInstanceOf[java.lang.Long])
 			if (objectname != null) {
 				cv.put(Position.CALL, objectname)
@@ -158,6 +159,7 @@ class StorageDatabase(context : Context) extends
 			cv.put(Position.LON, lon.asInstanceOf[java.lang.Integer])
 			cv.put(Position.SYMBOL, sym)
 			cv.put(Position.COMMENT, comment)
+			cv.put(Position.QRG, qrg)
 			Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
 			getWritableDatabase().insertOrThrow(Position.TABLE, Position.CALL, cv)
 		} catch {
