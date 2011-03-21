@@ -22,4 +22,5 @@ class PrefsWrapper(val context : Context) {
 		case "" => "-1"
 		case s => s
 	}
+	def getCallSsid() = AprsPacket.formatCallSsid(getCallsign(), getString("ssid", ""))
 }

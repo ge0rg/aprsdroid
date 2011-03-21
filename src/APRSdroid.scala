@@ -87,9 +87,7 @@ class APRSdroid extends Activity with OnClickListener
 		}
 		if (!checkConfig())
 			return
-		val callsign = prefs.getCallsign()
-		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
-		setTitle(getString(R.string.app_name) + ": " + callssid)
+		setTitle(getString(R.string.app_name) + ": " + prefs.getCallSsid())
 		setupButtons(AprsService.running)
 	}
 

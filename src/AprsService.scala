@@ -201,8 +201,7 @@ class AprsService extends Service with LocationListener {
 		val i = new Intent(UPDATE)
 		i.putExtra(LOCATION, location)
 
-		val callsign = prefs.getCallsign()
-		val callssid = AprsPacket.formatCallSsid(callsign, prefs.getString("ssid", ""))
+		val callssid = prefs.getCallSsid()
 		var symbol = prefs.getString("symbol", "")
 		if (symbol.length != 2)
 			symbol = getString(R.string.default_symbol)
