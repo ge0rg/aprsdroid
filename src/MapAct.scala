@@ -27,6 +27,7 @@ class MapAct extends MapActivity {
 				staoverlay.loadDb(showObjects)
 			}
 			mapview.invalidate()
+			animateToCall()
 			//postlist.setSelection(0)
 		})
 
@@ -36,6 +37,7 @@ class MapAct extends MapActivity {
 		mapview.setBuiltInZoomControls(true)
 
 		staoverlay.loadDb(showObjects)
+		animateToCall()
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
@@ -94,6 +96,22 @@ class MapAct extends MapActivity {
 		}
 	}
 
+	def animateToCall() {
+		val i = getIntent()
+		if (i != null && i.getStringExtra("call") != null) {
+			val targetcall = i.getStringExtra("call")
+			val cursor = db.getStaPositions(targetcall, "1")
+			if (cursor.getCount() > 0) {
+				cursor.moveToFirst()
+				val lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
+				val lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
+				mapview.getController().animateTo(new GeoPoint(lat, lon))
+			}
+			cursor.close()
+			
+		}
+
+	}
 }
 
 class Station(val point : GeoPoint, val call : String, val message : String, val symbol : String)
