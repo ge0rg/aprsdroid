@@ -14,7 +14,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginRight="5dp"
 		android:textColor="#b0b080"
-		android:textSize="26dp"
+		android:textSize="24dp"
 		android:typeface="monospace"
 		android:text="DO1GL-14"
 		/>
@@ -25,7 +25,8 @@
 		android:layout_marginRight="5dp"
 		android:layout_weight="1"
 		android:gravity="center"
-		android:textColor="#b0b080"
+		android:textStyle="bold"
+		android:textColor="#d0d0b0"
 		android:textSize="13dp"
 		android:text="15km NE\n30min"
 		/>
@@ -35,7 +36,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginRight="5dp"
 		android:textColor="#b0b080"
-		android:textSize="26dp"
+		android:textSize="24dp"
 		android:typeface="monospace"
 		android:text="439.250"
 		/>
@@ -47,7 +48,7 @@
 	android:textColor="#8080b0"
 	android:textSize="17dp"
 	android:typeface="monospace"
-	android:autoLink="web"
+	android:focusable="false"
 	android:text="http://aprsdroid.org/ Georg portabel"
 	/>
 </LinearLayout>

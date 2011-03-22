@@ -12,10 +12,14 @@ object PositionListAdapter {
 	import StorageDatabase.Position._
 	val LIST_FROM = Array(CALL, COMMENT, QRG)
 	val LIST_TO = Array(R.id.station_call, R.id.listmessage, R.id.station_qrg)
+
+	val SINGLE = 0
+	val NEIGHBORS = 1
+	val SSIDS = 2
 }
 
 class PositionListAdapter(context : Context,
-	mycall : String)
+	mycall : String, targetcall : String, mode : Int)
 		extends SimpleCursorAdapter(context, R.layout.stationview, null, PositionListAdapter.LIST_FROM, PositionListAdapter.LIST_TO) {
 
 	var my_lat = 0
@@ -29,6 +33,19 @@ class PositionListAdapter(context : Context,
 		})
 	context.registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 
+	def getAgeColor(ts : Long) : Int = {
+		val DARK = Array(0xff, 0x60, 0x60, 0x40)
+		val BRIGHT = Array(0xff, 0xff, 0xff, 0xc0)
+		val MAX = 30*60*1000
+		val delta = (System.currentTimeMillis - ts).toInt
+		val factor = if (delta < MAX) delta else MAX
+		val mix = DARK zip BRIGHT map (t => { t._2 - (t._2 - t._1)*factor/MAX } )
+		mix.reduceLeft(_*256 + _)
+	}
+
+	// return compass bearing for a given value
+	private val LETTERS = Array("N", "NE", "E", "SE", "S", "SW", "W", "NW")
+	def getBearing(b : Double) = LETTERS(((b.toInt + 22 + 720) % 360) / 45)
 
 	override def bindView(view : View, context : Context, cursor : Cursor) {
 		import StorageDatabase.Position._
@@ -44,20 +61,29 @@ class PositionListAdapter(context : Context,
 
 		if (call == mycall) {
 			view.setBackgroundColor(0x4020ff20)
+		} else if (call == targetcall) {
+			view.setBackgroundColor(0x402020ff)
 		} else
 			view.setBackgroundColor(0)
+		distage.setTextColor(getAgeColor(ts))
+		view.findViewById(R.id.station_call).asInstanceOf[TextView].setTextColor(getAgeColor(ts))
+		view.findViewById(R.id.station_qrg).asInstanceOf[TextView].setTextColor(getAgeColor(ts))
 		val MCD = 1000000.
 		android.location.Location.distanceBetween(my_lat/MCD, my_lon/MCD,
 			lat/MCD, lon/MCD, dist)
-		Log.d("PLS", "distance %d %d - %d %d = %1.2f".format(my_lat, my_lon, lat, lon, dist(0)/1000))
-		distage.setText("%1.2f km : %3.0f°\n%s".format(dist(0)/1000., dist(1), age))
+		distage.setText("%1.1f km %s\n%s".format(dist(0)/1000., getBearing(dist(1)), age))
 		super.bindView(view, context, cursor)
 	}
 
 	def updateMyLocation(lat : Int, lon : Int) {
+		import PositionListAdapter._
 		my_lat = lat
 		my_lon = lon
-		val new_cursor = storage.getNeighbors(my_lat, my_lon, "20")
+		val new_cursor = mode match {
+			case SINGLE	=> storage.getStaPositions(targetcall, "1")
+			case NEIGHBORS	=> storage.getNeighbors(my_lat, my_lon, System.currentTimeMillis - 30*60*1000, "20")
+			case SSIDS	=> storage.getAllSsids(targetcall)
+		}
 		changeCursor(new_cursor)
 	}
 
@@ -65,10 +91,16 @@ class PositionListAdapter(context : Context,
 		val cursor = storage.getStaPositions(mycall, "1")
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst()
-			val lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
-			val lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
-			updateMyLocation(lat, lon)
+			my_lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
+			my_lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
 		}
 		cursor.close()
+		updateMyLocation(my_lat, my_lon)
 	}
+
+	def onDestroy() {
+		context.unregisterReceiver(locReceiver)
+		changeCursor(null)
+	}
+
 }
