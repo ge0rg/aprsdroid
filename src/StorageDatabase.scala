@@ -10,6 +10,8 @@ import _root_.android.widget.FilterQueryProvider
 
 import _root_.net.ab0oo.aprs._
 
+import _root_.scala.math.{cos, Pi}
+
 object StorageDatabase {
 	val TAG = "StorageDatabase"
 	val DB_VERSION = 1
@@ -59,7 +61,7 @@ object StorageDatabase {
 				SYMBOL, COMMENT, ORIGIN, QRG)
 		lazy val TABLE_DROP = "DROP TABLE %s".format(TABLE)
 		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT, SPEED, COURSE, ALT, ORIGIN, QRG)
-		lazy val COL_DIST = "((lat - %d)*(lat - %d) + (lon - %d)*(lon - %d)) as dist"
+		lazy val COL_DIST = "((lat - %d)*(lat - %d) + (lon - %d)*(lon - %d)*%d/1000) as dist"
 
 		val COLUMN_TS		= 1
 		val COLUMN_CALL		= 2
@@ -190,16 +192,19 @@ class StorageDatabase(context : Context) extends
 			null, null, "_ID DESC", null)
 	}
 	def getAllSsids(call : String) : Cursor = {
-		val querycall = call.split("-")(0) + "%"
+		val querycall = call.split("[- _]+")(0) + "%"
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ?", Array(querycall),
 			"call", null, null, null)
 	}
-	def getNeighbors(lat : Int, lon : Int, limit : String) : Cursor = {
+	def getNeighbors(lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
+		// calculate latitude correction
+		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*1000).toInt
+		Log.d(TAG, "getNeighbors: correcting by %d".format(corr))
 		// add a distance column to the query
-		val newcols = Position.COLUMNS :+ Position.COL_DIST.format(lat, lat, lon, lon)
+		val newcols = Position.COLUMNS :+ Position.COL_DIST.format(lat, lat, lon, lon, corr)
 		getReadableDatabase().query(Position.TABLE, newcols,
-			null, null,
+			"ts > ?", Array(ts.toString),
 			"call", null, "dist", limit)
 	}
 
