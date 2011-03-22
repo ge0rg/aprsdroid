@@ -291,10 +291,12 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		}
 		cur.close()
 		val qrzurl = "http://qrz.com/db/%s".format(s.call.split("-")(0))
+		val aprsfiurl = "http://aprs.fi/?call=%s".format(s.call)
 		new AlertDialog.Builder(context).setTitle(title)
 			.setMessage(message)
 			//.setItems(ssidlist.toArray, null)
 			.setPositiveButton("QRZ.com", new UrlOpener(context, qrzurl))
+			.setNeutralButton("aprs.fi", new UrlOpener(context, aprsfiurl))
 			.setNegativeButton(android.R.string.ok, null)
 			.create.show
 
