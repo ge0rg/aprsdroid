@@ -5,11 +5,12 @@ import _root_.android.content._
 import _root_.android.database.Cursor
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
-import _root_.android.view.View
+import _root_.android.view.{Menu, MenuItem, View}
 import _root_.android.widget.ListView
 
 class StationActivity extends ListActivity {
 	lazy val prefs = new PrefsWrapper(this)
+	lazy val uihelper = new UIHelper(this, R.id.hub, prefs)
 
 	var targetcall = ""
 	lazy val pla = getIntentPLA()
@@ -37,6 +38,17 @@ class StationActivity extends ListActivity {
 	override def onDestroy() {
 		super.onDestroy()
 		pla.onDestroy()
+	}
+
+	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
+		getMenuInflater().inflate(R.menu.options_map, menu);
+		true
+	}
+
+	override def onPrepareOptionsMenu(menu : Menu) = uihelper.onPrepareOptionsMenu(menu)
+
+	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
+		uihelper.optionsItemAction(mi)
 	}
 
 

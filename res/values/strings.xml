@@ -59,9 +59,16 @@
 <string name="map_satellite">Satellite</string>
 <string name="map_objects">APRS Objects</string>
 
+<!-- map view -->
+<string name="age">Show last...</string>
+<string name="age_10">10 minutes</string>
+<string name="age_30">30 minutes</string>
+<string name="age_1d">1 day</string>
+
 
 <!-- options menu -->
 <string name="about">About</string>
+<string name="show_hub">Show Hub</string>
 <string name="show_map">Show Map</string>
 <string name="show_log">Show Log</string>
 <string name="clear_log">Clear Log</string>

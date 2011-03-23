@@ -24,7 +24,7 @@ class APRSdroid extends Activity with OnClickListener
 	val TAG = "APRSdroid"
 
 	lazy val prefs = new PrefsWrapper(this)
-	lazy val uihelper = new UIHelper(this, prefs)
+	lazy val uihelper = new UIHelper(this, R.id.log, prefs)
 	lazy val storage = StorageDatabase.open(this)
 	lazy val postcursor = storage.getPosts("100")
 
@@ -97,12 +97,13 @@ class APRSdroid extends Activity with OnClickListener
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options, menu);
+		getMenuInflater().inflate(R.menu.options_map, menu);
 		true
 	}
+	override def onPrepareOptionsMenu(menu : Menu) = uihelper.onPrepareOptionsMenu(menu)
 
 	def setupButtons(running : Boolean) {
-		singleBtn.setEnabled(!running)
+		//singleBtn.setEnabled(!running)
 		if (running) {
 			startstopBtn.setText(R.string.stoplog)
 		} else {

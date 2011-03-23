@@ -8,7 +8,7 @@ import _root_.android.net.Uri
 import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
 import _root_.android.widget.Toast
 
-class UIHelper(ctx : Activity, prefs : PrefsWrapper) {
+class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper) {
 
 	def openPrefs(toastId : Int) {
 		ctx.startActivity(new Intent(ctx, classOf[PrefsAct]));
@@ -72,6 +72,17 @@ class UIHelper(ctx : Activity, prefs : PrefsWrapper) {
 	def showFirstRunDialog() {
 	}
 
+	def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+		val mi = menu.findItem(R.id.startstopbtn)
+		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
+		mi.setIcon(if (AprsService.running) android.R.drawable.ic_menu_close_clear_cancel  else android.R.drawable.ic_menu_compass)
+		// disable the "own" menu
+		Array(R.id.hub, R.id.map, R.id.log).map((id) => {
+			menu.findItem(id).setVisible(id != menu_id)
+		})
+		menu.findItem(R.id.overlays).setVisible(R.id.map == menu_id)
+		true
+	}
 
 	def optionsItemAction(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
@@ -85,9 +96,20 @@ class UIHelper(ctx : Activity, prefs : PrefsWrapper) {
 		case R.id.about =>
 			aboutDialog()
 			true
+		// switch between activities
+		case R.id.hub =>
+			ctx.startActivity(new Intent(ctx, classOf[StationActivity]));
+			ctx.finish()
+			true
 		case R.id.map =>
 			ctx.startActivity(new Intent(ctx, classOf[MapAct]));
+			ctx.finish()
 			true
+		case R.id.log =>
+			ctx.startActivity(new Intent(ctx, classOf[APRSdroid]));
+			ctx.finish()
+			true
+		// toggle service
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
@@ -96,6 +118,7 @@ class UIHelper(ctx : Activity, prefs : PrefsWrapper) {
 				ctx.stopService(AprsService.intent(ctx, AprsService.SERVICE))
 			}
 			true
+		// quit the app
 		case R.id.quit =>
 			// XXX deprecated!
 			ctx.stopService(AprsService.intent(ctx, AprsService.SERVICE))

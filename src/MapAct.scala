@@ -15,6 +15,8 @@ import scala.collection.JavaConversions._
 class MapAct extends MapActivity {
 	val TAG = "MapAct"
 
+	lazy val prefs = new PrefsWrapper(this)
+	lazy val uihelper = new UIHelper(this, R.id.map, prefs)
 	lazy val mapview = findViewById(R.id.mapview).asInstanceOf[MapView]
 	lazy val allicons = this.getResources().getDrawable(R.drawable.allicons)
 	lazy val db = StorageDatabase.open(this)
@@ -55,29 +57,10 @@ class MapAct extends MapActivity {
 		getMenuInflater().inflate(R.menu.options_map, menu);
 		true
 	}
-	override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
-		val mi = menu.findItem(R.id.startstopbtn)
-		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
-		mi.setIcon(if (AprsService.running) android.R.drawable.ic_menu_close_clear_cancel  else android.R.drawable.ic_menu_compass)
-		true
-	}
+	override def onPrepareOptionsMenu(menu : Menu) = uihelper.onPrepareOptionsMenu(menu)
 
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
-		case R.id.preferences =>
-			startActivity(new Intent(this, classOf[PrefsAct]));
-			true
-		case R.id.map =>
-			finish();
-			true
-		case R.id.startstopbtn =>
-			val is_running = AprsService.running
-			if (!is_running) {
-				startService(AprsService.intent(this, AprsService.SERVICE))
-			} else {
-				stopService(AprsService.intent(this, AprsService.SERVICE))
-			}
-			true
 		case R.id.objects =>
 			mi.setChecked(!mi.isChecked())
 			showObjects = mi.isChecked()
@@ -88,11 +71,7 @@ class MapAct extends MapActivity {
 			mi.setChecked(!mi.isChecked())
 			mapview.setSatellite(mi.isChecked())
 			true
-		case R.id.quit =>
-			stopService(AprsService.intent(this, AprsService.SERVICE))
-			finish();
-			true
-		case _ => false
+		case _ => uihelper.optionsItemAction(mi)
 		}
 	}
 

@@ -1,12 +1,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/preferences"
-		android:title="@string/preferences"
-		android:alphabeticShortcut="p"
-		android:icon="@android:drawable/ic_menu_preferences" />
+	<item android:id="@+id/hub"
+		android:title="@string/show_hub"
+		android:alphabeticShortcut="h"
+		android:icon="@android:drawable/ic_menu_mylocation" />
 	<item android:id="@+id/map"
+		android:title="@string/show_map"
+		android:alphabeticShortcut="m"
+		android:icon="@android:drawable/ic_menu_mapmode" />
+	<item android:id="@+id/log"
 		android:title="@string/show_log"
 		android:alphabeticShortcut="l"
-		android:icon="@android:drawable/ic_menu_revert" />
+		android:icon="@android:drawable/ic_menu_recent_history" />
+	<item android:id="@+id/age"
+		android:title="@string/age"
+		android:alphabeticShortcut="a"
+		android:icon="@android:drawable/ic_menu_today" >
+		<menu>
+			<group android:checkableBehavior="single">
+				<item android:id="@+id/age_10"
+					android:title="@string/age_10" />
+				<item android:id="@+id/age_30"
+					android:title="@string/age_30" />
+				<item android:id="@+id/age_1d"
+					android:title="@string/age_1d" />
+			</group>
+		</menu>
+	</item>
 	<item android:id="@+id/overlays"
 		android:title="@string/map_overlays"
 		android:alphabeticShortcut="o"
@@ -22,7 +41,11 @@
 	</item>
 	<item android:id="@+id/startstopbtn"
 		android:title="@string/startlog"
-		android:alphabeticShortcut="s"
+		android:alphabeticShortcut="t"
 		android:icon="@android:drawable/ic_menu_compass" />
+	<item android:id="@+id/preferences"
+		android:title="@string/preferences"
+		android:alphabeticShortcut="p"
+		android:icon="@android:drawable/ic_menu_preferences" />
 </menu>
 
