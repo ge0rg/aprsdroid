@@ -8,11 +8,20 @@ import _root_.android.net.Uri
 import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
 import _root_.android.widget.Toast
 
-class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper) {
+class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
+	extends DialogInterface.OnClickListener {
+
+	var openedPrefs = false
 
 	def openPrefs(toastId : Int) {
-		ctx.startActivity(new Intent(ctx, classOf[PrefsAct]));
-		Toast.makeText(ctx, toastId, Toast.LENGTH_SHORT).show()
+		if (openedPrefs) {
+			// only open prefs once, exit app afterwards
+			ctx.finish()
+		} else {
+			ctx.startActivity(new Intent(ctx, classOf[PrefsAct]));
+			Toast.makeText(ctx, toastId, Toast.LENGTH_SHORT).show()
+			openedPrefs = true
+		}
 	}
 
 	def passcodeWarning(call : String, pass : String) {
@@ -36,6 +45,27 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper) {
 		}
 	}
 
+	def checkFirstRun() {
+		if (prefs.getBoolean("firstrun", true)) {
+			new AlertDialog.Builder(ctx).setTitle(ctx.getString(R.string.fr_title))
+				.setMessage(ctx.getString(R.string.fr_text))
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setPositiveButton(android.R.string.ok, this)
+				.setNegativeButton(android.R.string.cancel, this)
+				.create.show
+			return
+		}
+	}
+	override def onClick(d : DialogInterface, which : Int) {
+		which match {
+		case DialogInterface.BUTTON_POSITIVE =>
+			prefs.prefs.edit().putBoolean("firstrun", false).commit();
+			checkConfig()
+		case _ =>
+			ctx.finish()
+		}
+	}
+
 	def checkConfig() : Boolean = {
 		val callsign = prefs.getCallsign()
 		val passcode = prefs.getPasscode()
@@ -55,7 +85,6 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper) {
 		true
 	}
 
-
 	def aboutDialog() {
 		val pi = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0)
 		val title = ctx.getString(R.string.ad_title, pi.versionName);
@@ -67,9 +96,6 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper) {
 			.setPositiveButton(android.R.string.ok, null)
 			.setNeutralButton(R.string.ad_homepage, new UrlOpener(ctx, "http://aprsdroid.org/"))
 			.create.show
-	}
-
-	def showFirstRunDialog() {
 	}
 
 	def onPrepareOptionsMenu(menu : Menu) : Boolean = {
@@ -113,10 +139,15 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper) {
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
+				passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
 				ctx.startService(AprsService.intent(ctx, AprsService.SERVICE))
 			} else {
 				ctx.stopService(AprsService.intent(ctx, AprsService.SERVICE))
 			}
+			true
+		case R.id.singlebtn =>
+			passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
+			ctx.startService(AprsService.intent(ctx, AprsService.SERVICE_ONCE))
 			true
 		// quit the app
 		case R.id.quit =>

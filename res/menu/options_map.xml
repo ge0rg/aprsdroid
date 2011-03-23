@@ -43,9 +43,21 @@
 		android:title="@string/startlog"
 		android:alphabeticShortcut="t"
 		android:icon="@android:drawable/ic_menu_compass" />
+	<item android:id="@+id/singlebtn"
+		android:title="@string/singlelog"
+		android:alphabeticShortcut="s"
+		android:icon="@android:drawable/ic_menu_myplaces" />
+	<item android:id="@+id/clear"
+		android:title="@string/clear_log"
+		android:alphabeticShortcut="c"
+		android:icon="@android:drawable/ic_menu_delete" />
 	<item android:id="@+id/preferences"
 		android:title="@string/preferences"
 		android:alphabeticShortcut="p"
 		android:icon="@android:drawable/ic_menu_preferences" />
+	<item android:id="@+id/about"
+		android:title="@string/about"
+		android:alphabeticShortcut="a"
+		android:icon="@android:drawable/ic_menu_info_details" />
 </menu>
 

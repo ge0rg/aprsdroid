@@ -19,8 +19,7 @@ import _root_.android.widget.TextView
 import _root_.android.widget.Toast
 import _root_.java.util.Date
 
-class APRSdroid extends Activity with OnClickListener
-		with DialogInterface.OnClickListener {
+class APRSdroid extends Activity with OnClickListener {
 	val TAG = "APRSdroid"
 
 	lazy val prefs = new PrefsWrapper(this)
@@ -76,15 +75,7 @@ class APRSdroid extends Activity with OnClickListener
 
 	override def onResume() {
 		super.onResume()
-		if (prefs.getBoolean("firstrun", true)) {
-			new AlertDialog.Builder(this).setTitle(getString(R.string.fr_title))
-				.setMessage(getString(R.string.fr_text))
-				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setPositiveButton(android.R.string.ok, this)
-				.setNegativeButton(android.R.string.cancel, this)
-				.create.show
-			return
-		}
+		uihelper.checkFirstRun()
 		if (!uihelper.checkConfig())
 			return
 		setTitle(getString(R.string.app_name) + ": " + prefs.getCallSsid())
@@ -118,16 +109,6 @@ class APRSdroid extends Activity with OnClickListener
 			postcursor.requery()
 			true
 		case _ => uihelper.optionsItemAction(mi)
-		}
-	}
-
-	override def onClick(d : DialogInterface, which : Int) {
-		which match {
-		case DialogInterface.BUTTON_POSITIVE =>
-			prefs.prefs.edit().putBoolean("firstrun", false).commit();
-			uihelper.checkConfig()
-		case _ =>
-			finish()
 		}
 	}
 
