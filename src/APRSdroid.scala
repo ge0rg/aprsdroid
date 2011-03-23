@@ -5,7 +5,6 @@ import _root_.android.app.AlertDialog
 import _root_.android.content._
 import _root_.android.content.pm.PackageInfo;
 import _root_.android.location._
-import _root_.android.net.Uri
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.preference.PreferenceManager
 import _root_.java.text.SimpleDateFormat
@@ -25,6 +24,7 @@ class APRSdroid extends Activity with OnClickListener
 	val TAG = "APRSdroid"
 
 	lazy val prefs = new PrefsWrapper(this)
+	lazy val uihelper = new UIHelper(this, prefs)
 	lazy val storage = StorageDatabase.open(this)
 	lazy val postcursor = storage.getPosts("100")
 
@@ -85,7 +85,7 @@ class APRSdroid extends Activity with OnClickListener
 				.create.show
 			return
 		}
-		if (!checkConfig())
+		if (!uihelper.checkConfig())
 			return
 		setTitle(getString(R.string.app_name) + ": " + prefs.getCallSsid())
 		setupButtons(AprsService.running)
@@ -101,50 +101,6 @@ class APRSdroid extends Activity with OnClickListener
 		true
 	}
 
-	def openPrefs(toastId : Int) {
-		startActivity(new Intent(this, classOf[PrefsAct]));
-		Toast.makeText(this, toastId, Toast.LENGTH_SHORT).show()
-	}
-
-	def passcodeWarning(call : String, pass : String) {
-		import Backend._
-		if ((defaultBackendInfo(prefs).need_passcode == PASSCODE_OPTIONAL) &&
-				!AprsPacket.passcodeAllowed(call, pass, false))
-			Toast.makeText(this, R.string.anon_warning, Toast.LENGTH_LONG).show()
-	}
-
-	def passcodeConfigRequired(call : String, pass : String) : Boolean = {
-		import Backend._
-		// a valid passcode must be entered for "required",
-		// "" and "-1" are accepted as well for "optional"
-		defaultBackendInfo(prefs).need_passcode match {
-		case PASSCODE_NONE => false
-		case PASSCODE_OPTIONAL =>
-			!AprsPacket.passcodeAllowed(call, pass, true)
-		case PASSCODE_REQUIRED =>
-			!AprsPacket.passcodeAllowed(call, pass, false)
-		}
-	}
-
-	def checkConfig() : Boolean = {
-		val callsign = prefs.getCallsign()
-		val passcode = prefs.getPasscode()
-		if (callsign == "") {
-			openPrefs(R.string.firstrun)
-			return false
-		}
-		if (passcodeConfigRequired(callsign, passcode)) {
-			openPrefs(R.string.wrongpasscode)
-			return false
-		} else passcodeWarning(callsign, passcode)
-
-		if (prefs.getStringInt("interval", 10) < 1) {
-			openPrefs(R.string.mininterval)
-			return false
-		}
-		true
-	}
-
 	def setupButtons(running : Boolean) {
 		singleBtn.setEnabled(!running)
 		if (running) {
@@ -154,39 +110,13 @@ class APRSdroid extends Activity with OnClickListener
 		}
 	}
 
-	def aboutDialog() {
-		val pi = getPackageManager().getPackageInfo(getPackageName(), 0)
-		val title = getString(R.string.ad_title, pi.versionName);
-		val inflater = getLayoutInflater()
-		val aboutview = inflater.inflate(R.layout.aboutview, null)
-		new AlertDialog.Builder(this).setTitle(title)
-			.setView(aboutview)
-			.setIcon(android.R.drawable.ic_dialog_info)
-			.setPositiveButton(android.R.string.ok, null)
-			.setNeutralButton(R.string.ad_homepage, new UrlOpener(this, "http://aprsdroid.org/"))
-			.create.show
-	}
-
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
-		case R.id.preferences =>
-			startActivity(new Intent(this, classOf[PrefsAct]));
-			true
 		case R.id.clear =>
 			storage.trimPosts(System.currentTimeMillis)
 			postcursor.requery()
 			true
-		case R.id.about =>
-			aboutDialog()
-			true
-		case R.id.map =>
-			startActivity(new Intent(this, classOf[MapAct]));
-			true
-		case R.id.quit =>
-			stopService(AprsService.intent(this, AprsService.SERVICE))
-			finish();
-			true
-		case _ => false
+		case _ => uihelper.optionsItemAction(mi)
 		}
 	}
 
@@ -194,7 +124,7 @@ class APRSdroid extends Activity with OnClickListener
 		which match {
 		case DialogInterface.BUTTON_POSITIVE =>
 			prefs.prefs.edit().putBoolean("firstrun", false).commit();
-			checkConfig()
+			uihelper.checkConfig()
 		case _ =>
 			finish()
 		}
@@ -205,9 +135,8 @@ class APRSdroid extends Activity with OnClickListener
 
 		view.getId match {
 		case R.id.singlebtn =>
-			passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
-			startActivity(new Intent(this, classOf[StationActivity]));
-			//startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
+			uihelper.passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
+			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
@@ -221,11 +150,3 @@ class APRSdroid extends Activity with OnClickListener
 		}
 	}
 }
-
-class UrlOpener(ctx : Context, url : String) extends DialogInterface.OnClickListener {
-	override def onClick(d : DialogInterface, which : Int) {
-		ctx.startActivity(new Intent(Intent.ACTION_VIEW,
-			Uri.parse(url)))
-	}
-}
-
