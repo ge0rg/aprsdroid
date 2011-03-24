@@ -51,6 +51,7 @@
                 android:key="status"
 		android:hint="@string/default_status"
 		android:title="@string/p_status"
+		android:defaultValue="@string/default_status"
 		android:summary="@string/p_status_summary"
 		android:dialogTitle="@string/p_status_entry" />
 
@@ -62,6 +63,7 @@
         <EditTextPreference
                 android:key="interval"
 		android:inputType="number"
+		android:defaultValue="10"
 		android:title="@string/p_interval"
 		android:summary="@string/p_interval_summary"
 		android:dialogTitle="@string/p_interval_entry" />
@@ -69,6 +71,7 @@
         <EditTextPreference
                 android:key="distance"
 		android:inputType="number"
+		android:defaultValue="10"
 		android:title="@string/p_distance"
 		android:summary="@string/p_distance_summary"
 		android:dialogTitle="@string/p_distance_entry" />
