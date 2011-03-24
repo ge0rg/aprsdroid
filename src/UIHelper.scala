@@ -124,7 +124,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			true
 		// switch between activities
 		case R.id.hub =>
-			ctx.startActivity(new Intent(ctx, classOf[StationActivity]));
+			ctx.startActivity(new Intent(ctx, classOf[HubActivity]));
 			ctx.finish()
 			true
 		case R.id.map =>
