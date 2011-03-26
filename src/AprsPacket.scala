@@ -62,8 +62,8 @@ object AprsPacket {
 			" " + status)
 	}
 
-	def formatLogin(callsign : String, ssid : String, passcode : String) : String = {
-		"user " + formatCallSsid(callsign, ssid) + " pass " + passcode + " vers APRSdroid 0.1"
+	def formatLogin(callsign : String, ssid : String, passcode : String, version : String) : String = {
+		"user %s pass %s vers %s".format(formatCallSsid(callsign, ssid), passcode, version)
 	}
 
 	def formatRangeFilter(loc : Location, range : Int) : String = {

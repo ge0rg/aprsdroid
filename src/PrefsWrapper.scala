@@ -23,4 +23,10 @@ class PrefsWrapper(val context : Context) {
 		case s => s
 	}
 	def getCallSsid() = AprsPacket.formatCallSsid(getCallsign(), getString("ssid", ""))
+
+	// this is actually a hack!
+	def getVersion() = context.getString(R.string.build_version).split(" ").take(2).mkString(" ")
+
+	def getLoginString() = AprsPacket.formatLogin(getCallsign(), getString("ssid", null),
+		getPasscode(), getVersion())
 }

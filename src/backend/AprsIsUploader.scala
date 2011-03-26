@@ -13,8 +13,7 @@ object AprsIsUploader {
 }
 
 abstract class AprsIsUploader(prefs : PrefsWrapper) {
-	val login = AprsPacket.formatLogin(prefs.getCallsign(),
-		prefs.getString("ssid", null), prefs.getPasscode())
+	val login = prefs.getLoginString()
 
 	def start()
 
