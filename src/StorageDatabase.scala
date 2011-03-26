@@ -194,7 +194,7 @@ class StorageDatabase(context : Context) extends
 	def getAllSsids(call : String) : Cursor = {
 		val querycall = call.split("[- _]+")(0) + "%"
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
-			"call LIKE ?", Array(querycall),
+			"call LIKE ? or origin LIKE ?", Array(querycall, querycall),
 			"call", null, null, null)
 	}
 	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
@@ -236,6 +236,14 @@ class StorageDatabase(context : Context) extends
 	def getPosts(limit : String) : Cursor = getPosts(null, null, limit)
 
 	def getPosts() : Cursor = getPosts(null)
+
+	def getStaPosts(call : String, limit : String) : Cursor = {
+		val start = "%s%%".format(call)		// match for call-originated messages
+		val obj1 = "%%;%s%%".format(call)	// ;call - object
+		val obj2 = "%%)%s%%".format(call)	// )call - item
+		getPosts("message LIKE ? OR message LIKE ? OR message LIKE ?",
+			Array(start, obj1, obj2), "100")
+	}
 
 	def getSinglePost(sel : String, selArgs : Array[String]) : (Long, String, String) = {
 		val c = getPosts(sel, selArgs, "1")
