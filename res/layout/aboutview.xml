@@ -30,7 +30,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:autoLink="web"
-			android:text="@string/translation_credits"
+			android:text="@string/translator_credits"
 			/>
 	</LinearLayout>
 </ScrollView>
