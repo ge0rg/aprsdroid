@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StationActivity" android:label="Hub View" />
+        <activity android:name=".HubActivity" android:label="Hub View" />
+        <activity android:name=".StationActivity" android:label="Station Info" />
 	<activity android:name=".PrefsAct" android:label="@string/app_prefs" />
 	<activity android:name=".BackendPrefs" android:label="@string/app_prefs" />
         <activity android:name=".MapAct" android:label="@string/app_map"
