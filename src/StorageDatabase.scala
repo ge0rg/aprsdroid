@@ -61,7 +61,7 @@ object StorageDatabase {
 				SYMBOL, COMMENT, ORIGIN, QRG)
 		lazy val TABLE_DROP = "DROP TABLE %s".format(TABLE)
 		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT, SPEED, COURSE, ALT, ORIGIN, QRG)
-		lazy val COL_DIST = "((lat - %d)*(lat - %d) + (lon - %d)*(lon - %d)*%d/1000) as dist"
+		lazy val COL_DIST = "((lat - %d)*(lat - %d) + (lon - %d)*(lon - %d)*%d/100) as dist"
 
 		val COLUMN_TS		= 1
 		val COLUMN_CALL		= 2
@@ -197,14 +197,14 @@ class StorageDatabase(context : Context) extends
 			"call LIKE ?", Array(querycall),
 			"call", null, null, null)
 	}
-	def getNeighbors(lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
+	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
-		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*1000).toInt
+		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
 		Log.d(TAG, "getNeighbors: correcting by %d".format(corr))
 		// add a distance column to the query
 		val newcols = Position.COLUMNS :+ Position.COL_DIST.format(lat, lat, lon, lon, corr)
 		getReadableDatabase().query(Position.TABLE, newcols,
-			"ts > ?", Array(ts.toString),
+			"ts > ? or call = ?", Array(ts.toString, mycall),
 			"call", null, "dist", limit)
 	}
 
