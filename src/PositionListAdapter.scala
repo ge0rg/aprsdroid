@@ -81,7 +81,7 @@ class PositionListAdapter(context : Context,
 		my_lon = lon
 		val new_cursor = mode match {
 			case SINGLE	=> storage.getStaPositions(targetcall, "1")
-			case NEIGHBORS	=> storage.getNeighbors(my_lat, my_lon, System.currentTimeMillis - 30*60*1000, "20")
+			case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon, System.currentTimeMillis - 30*60*1000, "20")
 			case SSIDS	=> storage.getAllSsids(targetcall)
 		}
 		changeCursor(new_cursor)
