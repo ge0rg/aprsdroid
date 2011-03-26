@@ -1,12 +1,11 @@
 package org.aprsdroid.app
 
-import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
 import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
-import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
+import _root_.android.view.{Menu, MenuItem, View}
 import _root_.com.google.android.maps._
 
 // to make scala-style iterating over arraylist possible
@@ -245,40 +244,7 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 	override def onTap(index : Int) : Boolean = {
 		val s = stations(index)
 		Log.d(TAG, "user clicked on " + s.call)
-
-		// extract stations last report from database
-		var cur = db.getPosts("MESSAGE like ?", Array("%s%%".format(s.call)), "1")
-		cur.moveToFirst()
-		val message = if (!cur.isAfterLast()) {
-				"%s %s".format(cur.getString(cur.getColumnIndexOrThrow("TSS")),
-					cur.getString(StorageDatabase.Post.COLUMN_MESSAGE))
-			} else {
-				// fall back to positions table
-				"%s> %s".format(s.call, s.message)
-			}
-		cur.close()
-		// display a dialog with last report
-		val title = context.getString(R.string.sta_lastreport, s.call)
-
-		val ssidlist = new scala.collection.mutable.ArrayBuffer[CharSequence]()
-		cur = db.getAllSsids(s.call)
-		cur.moveToFirst()
-		while  (!cur.isAfterLast()) {
-			ssidlist += cur.getString(StorageDatabase.Position.COLUMN_CALL)
-			Log.d(TAG, "%s has %s".format(s.call, cur.getString(StorageDatabase.Position.COLUMN_CALL)))
-			cur.moveToNext()
-		}
-		cur.close()
-		val qrzurl = "http://qrz.com/db/%s".format(s.call.split("-")(0))
-		val aprsfiurl = "http://aprs.fi/?call=%s".format(s.call)
-		new AlertDialog.Builder(context).setTitle(title)
-			.setMessage(message)
-			//.setItems(ssidlist.toArray, null)
-			.setPositiveButton("QRZ.com", new UrlOpener(context, qrzurl))
-			.setNeutralButton("aprs.fi", new UrlOpener(context, aprsfiurl))
-			.setNegativeButton(android.R.string.ok, null)
-			.create.show
-
+		context.startActivity(new Intent(context, classOf[StationActivity]).putExtra("call", s.call));
 		true
 	}
 }
