@@ -64,9 +64,9 @@ class APRSdroid extends Activity with OnClickListener {
 				val (ts, status, message) = storage.getSinglePost("_ID = ?", Array(id.toString()))
 				Log.d(TAG, "onItemClick: %s: %s".format(status, message))
 				if (status != null) {
-					// extract call sign without ssid
-					val filter = message.split(">")(0).split("-")(0)
-					postlist.setFilterText(filter)
+					// extract call sign
+					val call = message.split(">")(0)
+					startActivity(new Intent(APRSdroid.this, classOf[StationActivity]).putExtra("call", call));
 				}
 			}
 		});
