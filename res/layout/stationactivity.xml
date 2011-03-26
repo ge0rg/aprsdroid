@@ -1,14 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:orientation="vertical"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
-<ListView android:id="@android:id/list"
 	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	>
-</ListView>
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dp"
+		android:text="Station SSIDs"
+		/>
+	<ListView android:id="@android:id/list"
+		android:layout_width="fill_parent"
+		android:layout_height="100dp"
+		android:layout_weight="1"
+		/>
+	<TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="5dp"
+		android:text="History"
+		/>
+	<include layout="@layout/textviews" />
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		>
+		<Button
+			android:id="@+id/mapbutton"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Map"
+			>
+		</Button>
+		<Button
+			android:id="@+id/aprsfibutton"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="aprs.fi"
+			>
+		</Button>
+		<Button
+			android:id="@+id/qrzcombutton"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="QRZ.com"
+			>
+		</Button>
+	</LinearLayout>
 </LinearLayout>
 

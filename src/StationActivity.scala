@@ -3,28 +3,26 @@ package org.aprsdroid.app
 import _root_.android.app.ListActivity
 import _root_.android.content._
 import _root_.android.database.Cursor
+import _root_.android.net.Uri
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
 import _root_.android.view.{Menu, MenuItem, View}
-import _root_.android.widget.ListView
+import _root_.android.view.View.OnClickListener
+import _root_.android.widget.{ListView,SimpleCursorAdapter}
 
-class StationActivity extends ListActivity {
+class StationActivity extends ListActivity with OnClickListener {
 	lazy val prefs = new PrefsWrapper(this)
-	lazy val uihelper = new UIHelper(this, R.id.hub, prefs)
+	lazy val uihelper = new UIHelper(this, -1, prefs)
 
-	var targetcall = ""
-	lazy val pla = getIntentPLA()
+	lazy val targetcall = getIntent().getStringExtra("call")
 
-	def getIntentPLA() : PositionListAdapter = {
-		val i = getIntent()
-		val mycall = prefs.getCallSsid()
-		if (i != null && i.getStringExtra("call") != null) {
-			targetcall = i.getStringExtra("call")
-			new PositionListAdapter(this, mycall, targetcall, PositionListAdapter.SSIDS)
-		} else {
-			new PositionListAdapter(this, mycall, mycall, PositionListAdapter.NEIGHBORS)
-		}
-	}
+	lazy val storage = StorageDatabase.open(this)
+	lazy val postcursor = storage.getStaPosts(targetcall, "100")
+
+	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
+			
+	lazy val mycall = prefs.getCallSsid()
+	lazy val pla = new PositionListAdapter(this, mycall, targetcall, PositionListAdapter.SSIDS)
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
@@ -33,6 +31,17 @@ class StationActivity extends ListActivity {
 		getListView().setOnCreateContextMenuListener(this);
 
 		setListAdapter(pla)
+		startManagingCursor(postcursor)
+		val la = new SimpleCursorAdapter(this, R.layout.listitem, 
+				postcursor,
+				Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
+				Array(R.id.listts, R.id.liststatus, R.id.listmessage))
+		la.setViewBinder(new PostViewBinder())
+		postlist.setAdapter(la)
+
+		Array(R.id.mapbutton, R.id.qrzcombutton, R.id.aprsfibutton).foreach((id) => {
+				findViewById(id).setOnClickListener(this)
+			})
 	}
 
 	override def onDestroy() {
@@ -61,8 +70,27 @@ class StationActivity extends ListActivity {
 		if (targetcall == call) {
 			// click on own callssid
 			startActivity(new Intent(this, classOf[MapAct]).putExtra("call", call));
-		} else
+		} else {
 			startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call));
+			finish()
+		}
+	}
 
+	// button actions
+	override def onClick(view : View) {
+		view.getId match {
+		case R.id.mapbutton =>
+			startActivity(new Intent(this, classOf[MapAct]).putExtra("call", targetcall))
+		case R.id.aprsfibutton =>
+			val url = "http://aprs.fi/?call=%s".format(targetcall)
+			startActivity(new Intent(Intent.ACTION_VIEW,
+				Uri.parse(url)))
+		case R.id.qrzcombutton =>
+			val url = "http://qrz.com/db/%s".format(targetcall.split("[- ]+")(0))
+			startActivity(new Intent(Intent.ACTION_VIEW,
+				Uri.parse(url)))
+		case _ =>
+			//status.setText(view.asInstanceOf[Button].getText)
+		}
 	}
 }
