@@ -16,7 +16,6 @@
 		android:textColor="#b0b080"
 		android:textSize="24dp"
 		android:typeface="monospace"
-		android:text="DO1GL-14"
 		/>
 		<TextView
 		android:id="@+id/station_distage"
@@ -28,7 +27,6 @@
 		android:textStyle="bold"
 		android:textColor="#d0d0b0"
 		android:textSize="13dp"
-		android:text="15km NE\n30min"
 		/>
 		<TextView
 		android:id="@+id/station_qrg"
@@ -38,7 +36,6 @@
 		android:textColor="#b0b080"
 		android:textSize="24dp"
 		android:typeface="monospace"
-		android:text="439.250"
 		/>
 	</LinearLayout>
 	<TextView
@@ -49,7 +46,6 @@
 	android:textSize="17dp"
 	android:typeface="monospace"
 	android:focusable="false"
-	android:text="http://aprsdroid.org/ Georg portabel"
 	/>
 </LinearLayout>
 
