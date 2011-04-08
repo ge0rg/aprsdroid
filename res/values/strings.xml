@@ -4,6 +4,8 @@
 <string name="app_name">APRSdroid</string>
 <string name="app_prefs">APRSdroid Preferences</string>
 <string name="app_map">APRSdroid Map</string>
+<string name="app_hub">APRSdroid Hub</string>
+<string name="app_sta">Station Info</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
 <string name="wrongpasscode">Your passcode does not match your callsign!</string>
