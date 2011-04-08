@@ -69,7 +69,7 @@ class StationActivity extends ListActivity with OnClickListener {
 
 		if (targetcall == call) {
 			// click on own callssid
-			startActivity(new Intent(this, classOf[MapAct]).putExtra("call", call));
+			uihelper.trackOnMap(call)
 		} else {
 			startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call));
 			finish()
@@ -80,7 +80,7 @@ class StationActivity extends ListActivity with OnClickListener {
 	override def onClick(view : View) {
 		view.getId match {
 		case R.id.mapbutton =>
-			startActivity(new Intent(this, classOf[MapAct]).putExtra("call", targetcall))
+			uihelper.trackOnMap(targetcall)
 		case R.id.aprsfibutton =>
 			val url = "http://aprs.fi/?call=%s".format(targetcall)
 			startActivity(new Intent(Intent.ACTION_VIEW,

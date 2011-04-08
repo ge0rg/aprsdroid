@@ -13,6 +13,12 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 
 	var openedPrefs = false
 
+	def trackOnMap(call : String) {
+		val text = ctx.getString(R.string.map_track_call, call)
+		Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show()
+		ctx.startActivity(new Intent(ctx, classOf[MapAct]).putExtra("call", call))
+	}
+
 	def openPrefs(toastId : Int) {
 		if (openedPrefs) {
 			// only open prefs once, exit app afterwards
