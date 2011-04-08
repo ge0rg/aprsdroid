@@ -131,15 +131,12 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		// switch between activities
 		case R.id.hub =>
 			ctx.startActivity(new Intent(ctx, classOf[HubActivity]));
-			ctx.finish()
 			true
 		case R.id.map =>
 			ctx.startActivity(new Intent(ctx, classOf[MapAct]));
-			ctx.finish()
 			true
 		case R.id.log =>
 			ctx.startActivity(new Intent(ctx, classOf[APRSdroid]));
-			ctx.finish()
 			true
 		// toggle service
 		case R.id.startstopbtn =>
