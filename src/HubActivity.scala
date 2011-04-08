@@ -5,7 +5,7 @@ import _root_.android.content._
 import _root_.android.database.Cursor
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
-import _root_.android.view.{Menu, MenuItem, View}
+import _root_.android.view.{Menu, MenuItem, View, Window}
 import _root_.android.widget.ListView
 
 class HubActivity extends ListActivity {
@@ -17,7 +17,9 @@ class HubActivity extends ListActivity {
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS)
 		setContentView(R.layout.hubactivity)
+		setProgressBarIndeterminateVisibility(true)
 
 		getListView().setOnCreateContextMenuListener(this);
 

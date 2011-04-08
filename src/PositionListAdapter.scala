@@ -1,8 +1,9 @@
 package org.aprsdroid.app
 
+import _root_.android.app.Activity
 import _root_.android.content._
 import _root_.android.database.Cursor
-import _root_.android.os.{Bundle, Handler}
+import _root_.android.os.{AsyncTask, Bundle, Handler}
 import _root_.android.text.format.DateUtils
 import _root_.android.util.Log
 import _root_.android.view.View
@@ -75,27 +76,10 @@ class PositionListAdapter(context : Context,
 		super.bindView(view, context, cursor)
 	}
 
-	def updateMyLocation(lat : Int, lon : Int) {
-		import PositionListAdapter._
-		my_lat = lat
-		my_lon = lon
-		val new_cursor = mode match {
-			case SINGLE	=> storage.getStaPositions(targetcall, "1")
-			case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon, System.currentTimeMillis - 30*60*1000, "20")
-			case SSIDS	=> storage.getAllSsids(targetcall)
-		}
-		changeCursor(new_cursor)
-	}
-
 	def reload() {
-		val cursor = storage.getStaPositions(mycall, "1")
-		if (cursor.getCount() > 0) {
-			cursor.moveToFirst()
-			my_lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
-			my_lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
-		}
-		cursor.close()
-		updateMyLocation(my_lat, my_lon)
+		val qh = new QueryHandler()
+		// qh.execute(mycall, targetcall)
+		qh.onPostExecute(qh.doInBackground1(Array(mycall, targetcall)))
 	}
 
 	def onDestroy() {
@@ -103,4 +87,35 @@ class PositionListAdapter(context : Context,
 		changeCursor(null)
 	}
 
+	class QueryHandler extends MyAsyncTask[Unit, Cursor] {
+		override def doInBackground1(calls : Array[String]) : Cursor = {
+			import PositionListAdapter._
+			Benchmark("doInBackground1") {
+			val mycall = calls(0)
+			val targetcall = calls(1)
+			//var my_lat = 0
+			//var my_lon = 0
+			val cursor = storage.getStaPositions(mycall, "1")
+			if (cursor.getCount() > 0) {
+				cursor.moveToFirst()
+				my_lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
+				my_lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
+			}
+			cursor.close()
+		}
+			mode match {
+				case SINGLE	=> storage.getStaPositions(targetcall, "1")
+				case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon,
+					System.currentTimeMillis - 30*60*1000, "20")
+				case SSIDS	=> storage.getAllSsids(targetcall)
+			}
+		}
+
+		override def onPostExecute(c : Cursor) {
+			Benchmark("changeCursor") {
+			changeCursor(c)
+		}
+			context.asInstanceOf[Activity].setProgressBarIndeterminateVisibility(false)
+		}
+	}
 }
