@@ -163,9 +163,12 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def goingFastLane(location : Location) : Boolean = {
-		if (fastLaneLoc == null)
+		if (fastLaneLoc == null) {
+			// need to set fastLaneLoc before re-requesting locations
+			fastLaneLoc = location
 			startFastLane()
-		fastLaneLoc = location
+		} else
+			fastLaneLoc = location
 		return true
 	}
 
