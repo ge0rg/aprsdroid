@@ -6,4 +6,6 @@
 <string name="default_status">http://aprsdroid.org/</string>
 <string name="default_symbol">/$</string>
 
+<string name="passcode_url">http://aprsdroid.org/passcode/</string>
+
 </resources>
