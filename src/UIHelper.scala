@@ -6,7 +6,7 @@ import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
 import _root_.android.net.Uri
 import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
-import _root_.android.widget.Toast
+import _root_.android.widget.{EditText, Toast}
 
 class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 	extends DialogInterface.OnClickListener {
@@ -51,16 +51,30 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		}
 	}
 
-	def checkFirstRun() {
-		if (prefs.getBoolean("firstrun", true)) {
+	def firstRunDialog() = {
+			val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE)
+					.asInstanceOf[LayoutInflater]
+			val fr_view = inflater.inflate(R.layout.firstrunview, null, false)
+			val fr_call = fr_view.findViewById(R.id.callsign).asInstanceOf[EditText]
+			val fr_pass = fr_view.findViewById(R.id.passcode).asInstanceOf[EditText]
 			new AlertDialog.Builder(ctx).setTitle(ctx.getString(R.string.fr_title))
-				.setMessage(ctx.getString(R.string.fr_text))
+				.setView(fr_view)
 				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setPositiveButton(android.R.string.ok, this)
+				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+					override def onClick(d : DialogInterface, which : Int) {
+						which match {
+							case DialogInterface.BUTTON_POSITIVE =>
+							prefs.prefs.edit().putString("callsign", fr_call.getText().toString())
+									.putString("passcode", fr_pass.getText().toString())
+									.putBoolean("firstrun", false).commit();
+							checkConfig()
+							case _ =>
+							ctx.finish()
+						}
+					}})
+				.setNeutralButton(R.string.p_passreq, new UrlOpener(ctx, ctx.getString(R.string.passcode_url)))
 				.setNegativeButton(android.R.string.cancel, this)
 				.create.show
-			return
-		}
 	}
 	override def onClick(d : DialogInterface, which : Int) {
 		which match {
@@ -75,8 +89,8 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 	def checkConfig() : Boolean = {
 		val callsign = prefs.getCallsign()
 		val passcode = prefs.getPasscode()
-		if (callsign == "") {
-			openPrefs(R.string.firstrun)
+		if (callsign == "" || prefs.getBoolean("firstrun", true)) {
+			firstRunDialog()
 			return false
 		}
 		if (passcodeConfigRequired(callsign, passcode)) {
