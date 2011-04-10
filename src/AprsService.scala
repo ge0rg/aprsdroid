@@ -82,8 +82,6 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def handleStart(i : Intent) {
-		running = true
-
 		// get update interval and distance
 		val upd_int = prefs.getStringInt("interval", 10)
 		val upd_dist = prefs.getStringInt("distance", 10)
@@ -92,11 +90,17 @@ class AprsService extends Service with LocationListener {
 		// but we need this to prevent error message reordering)
 		fastLaneLoc = null
 		if (i.getAction() == SERVICE_ONCE) {
-			lastLoc = null // for singleshot mode, ignore last post
-			singleShot = true
-			showToast(getString(R.string.service_once))
+			// if already running, we want to send immediately and continue;
+			// otherwise, we finish after a single position report
+			lastLoc = null
+			// set to true if not yet running or already running singleShot
+			singleShot = !running || singleShot
+			if (singleShot)
+					showToast(getString(R.string.service_once))
 		} else
 			showToast(getString(R.string.service_start).format(upd_int, upd_dist))
+
+		running = true
 
 		// the poster needs to be running before location updates come in
 		startPoster()
