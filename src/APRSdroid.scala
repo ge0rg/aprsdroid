@@ -47,8 +47,6 @@ class APRSdroid extends Activity with OnClickListener {
 		singleBtn.setOnClickListener(this);
 		startstopBtn.setOnClickListener(this);
 
-		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
-
 		startManagingCursor(postcursor)
 		val la = new SimpleCursorAdapter(this, R.layout.listitem, 
 				postcursor,
@@ -75,15 +73,17 @@ class APRSdroid extends Activity with OnClickListener {
 
 	override def onResume() {
 		super.onResume()
-		uihelper.checkFirstRun()
+		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
+
 		if (!uihelper.checkConfig())
 			return
 		setTitle(getString(R.string.app_name) + ": " + prefs.getCallSsid())
 		setupButtons(AprsService.running)
+
 	}
 
-	override def onDestroy() {
-		super.onDestroy()
+	override def onPause() {
+		super.onPause()
 		unregisterReceiver(locReceiver)
 	}
 
