@@ -3,7 +3,7 @@ package org.aprsdroid.app
 import _root_.android.util.Log
 
 object Benchmark {
-	def apply[T](tag: String)(block: => T) {
+	def apply[T](tag: String)(block: => T) : T = {
 		val start = System.currentTimeMillis
 		try {
 			block
