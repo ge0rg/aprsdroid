@@ -25,6 +25,7 @@ class PositionListAdapter(context : Context,
 
 	var my_lat = 0
 	var my_lon = 0
+	var reload_pending = 0
 	lazy val storage = StorageDatabase.open(context)
 
 	reload()
@@ -77,9 +78,13 @@ class PositionListAdapter(context : Context,
 	}
 
 	def reload() {
-		val qh = new QueryHandler()
-		// qh.execute(mycall, targetcall)
-		qh.onPostExecute(qh.doInBackground1(Array(mycall, targetcall)))
+		if (reload_pending == 0) {
+			reload_pending = 1
+			val qh = new QueryHandler()
+			context.asInstanceOf[Activity].setProgressBarIndeterminateVisibility(true)
+			qh.execute(mycall, targetcall)
+			// qh.onPostExecute(qh.doInBackground1(Array(mycall, targetcall)))
+		}
 	}
 
 	def onDestroy() {
@@ -103,19 +108,22 @@ class PositionListAdapter(context : Context,
 			}
 			cursor.close()
 		}
-			mode match {
+			val c = Benchmark("storage.get") { mode match {
 				case SINGLE	=> storage.getStaPositions(targetcall, "1")
 				case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon,
 					System.currentTimeMillis - 30*60*1000, "20")
 				case SSIDS	=> storage.getAllSsids(targetcall)
-			}
+			}}
+			Benchmark("moveToFirst") { c.moveToFirst() }
+			c
 		}
 
 		override def onPostExecute(c : Cursor) {
 			Benchmark("changeCursor") {
 			changeCursor(c)
-		}
+			}
 			context.asInstanceOf[Activity].setProgressBarIndeterminateVisibility(false)
+			reload_pending = 0
 		}
 	}
 }
