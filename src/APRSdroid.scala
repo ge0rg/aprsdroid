@@ -87,6 +87,11 @@ class APRSdroid extends Activity with OnClickListener {
 		unregisterReceiver(locReceiver)
 	}
 
+	override def onDestroy() {
+		super.onDestroy()
+		la.changeCursor(null)
+	}
+
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
 		getMenuInflater().inflate(R.menu.options_map, menu);
 		true
