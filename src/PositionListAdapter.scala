@@ -95,26 +95,26 @@ class PositionListAdapter(context : Context,
 	class QueryHandler extends MyAsyncTask[Unit, Cursor] {
 		override def doInBackground1(calls : Array[String]) : Cursor = {
 			import PositionListAdapter._
-			Benchmark("doInBackground1") {
+			Benchmark("get my position") {
 			val mycall = calls(0)
 			val targetcall = calls(1)
 			//var my_lat = 0
 			//var my_lon = 0
-			val cursor = storage.getStaPositions(mycall, "1")
+			val cursor = storage.getStaPosition(mycall)
 			if (cursor.getCount() > 0) {
 				cursor.moveToFirst()
 				my_lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
 				my_lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
 			}
 			cursor.close()
-		}
-			val c = Benchmark("storage.get") { mode match {
-				case SINGLE	=> storage.getStaPositions(targetcall, "1")
+			}
+			val c = mode match {
+				case SINGLE	=> storage.getStaPosition(targetcall)
 				case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon,
 					System.currentTimeMillis - 30*60*1000, "20")
 				case SSIDS	=> storage.getAllSsids(targetcall)
-			}}
-			Benchmark("moveToFirst") { c.moveToFirst() }
+			}
+			Benchmark("getCount") { c.getCount() }
 			c
 		}
 
