@@ -129,7 +129,7 @@ class StorageDatabase(context : Context) extends
 	}
 
 	// default trim filter: 31 days in [ms]
-	def trimPosts() : Unit = trimPosts(System.currentTimeMillis - 31L * 24 * 3600 * 1000)
+	def trimPosts() : Unit = trimPosts(System.currentTimeMillis - 2L * 24 * 3600 * 1000)
 
 	def addPosition(ts : Long, message : String) {
 		try {
