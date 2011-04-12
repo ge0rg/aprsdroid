@@ -128,6 +128,8 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			menu.findItem(id).setVisible(id != menu_id)
 		})
 		menu.findItem(R.id.overlays).setVisible(R.id.map == menu_id)
+		menu.findItem(R.id.objects).setChecked(prefs.getShowObjects())
+		menu.findItem(R.id.satellite).setChecked(prefs.getShowSatellite())
 		true
 	}
 

@@ -36,6 +36,8 @@ class MapAct extends MapActivity {
 		mapview.setBuiltInZoomControls(true)
 
 		locReceiver.startTask(null)
+		showObjects = prefs.getShowObjects()
+		mapview.setSatellite(prefs.getShowSatellite())
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
@@ -58,15 +60,16 @@ class MapAct extends MapActivity {
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
 		case R.id.objects =>
-			mi.setChecked(!mi.isChecked())
-			showObjects = mi.isChecked()
+			val newState = prefs.toggleBoolean("show_objects", false)
+			mi.setChecked(newState)
+			showObjects = newState
 			loading.setVisibility(View.VISIBLE)
 			locReceiver.startTask(null)
-			mapview.invalidate()
 			true
 		case R.id.satellite =>
-			mi.setChecked(!mi.isChecked())
-			mapview.setSatellite(mi.isChecked())
+			val newState = prefs.toggleBoolean("show_satellite", false)
+			mi.setChecked(newState)
+			mapview.setSatellite(newState)
 			true
 		case _ => uihelper.optionsItemAction(mi)
 		}

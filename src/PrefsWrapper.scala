@@ -24,6 +24,15 @@ class PrefsWrapper(val context : Context) {
 	}
 	def getCallSsid() = AprsPacket.formatCallSsid(getCallsign(), getString("ssid", ""))
 
+	def toggleBoolean(name : String, default : Boolean) = {
+		val new_val = !prefs.getBoolean(name, default)
+		android.util.Log.d("toggleBoolean", name + "=" + new_val)
+		prefs.edit().putBoolean(name, new_val).commit()
+		new_val
+	}
+	def getShowObjects() = prefs.getBoolean("show_objects", false)
+	def getShowSatellite() = prefs.getBoolean("show_satellite", false)
+	
 	// this is actually a hack!
 	def getVersion() = context.getString(R.string.build_version).split(" ").take(2).mkString(" ")
 
