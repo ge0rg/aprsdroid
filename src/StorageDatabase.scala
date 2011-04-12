@@ -120,8 +120,8 @@ class StorageDatabase(context : Context) extends
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
 	}
 
-	def trimPosts(ts : Long) {
-		Log.d(TAG, "StorageDatabase.trimPosts")
+	def trimPosts(ts : Long) = Benchmark("trimPosts") {
+		//Log.d(TAG, "StorageDatabase.trimPosts")
 		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Post.TABLE, Post.TS),
 			Array(long2Long(ts)))
 		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Position.TABLE, Position.TS),
@@ -138,7 +138,7 @@ class StorageDatabase(context : Context) extends
 				Log.d(TAG, "addPosition() misses position: " + message)
 				return
 			}
-			Log.d(TAG, "got %s".format(message))
+			//Log.d(TAG, "got %s".format(message))
 			val (pos, objectname) = fap.getAprsInformation() match {
 				case pp : PositionPacket => (pp.getPosition(), null)
 				case op : ObjectPacket => (op.getPosition(), op.getObjectName())
@@ -174,7 +174,7 @@ class StorageDatabase(context : Context) extends
 		}
 	}
 
-	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = {
+	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = Benchmark("getPositions") {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			sel, selArgs,
 			Position.CALL, null, "_ID DESC", limit)
@@ -186,18 +186,23 @@ class StorageDatabase(context : Context) extends
 			Array(lat1, lat2, lon1, lon2).map(_.toString), limit)
 	}
 
-	def getStaPositions(call : String, limit : String) : Cursor = {
+	def getStaPosition(call : String) : Cursor = Benchmark("getStaPosition") {
+		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
+			"call LIKE ?", Array(call),
+			null, null, "_ID DESC", "1")
+	}
+	def getStaPositions(call : String, limit : String) : Cursor = Benchmark("getStaPositions") {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ? AND TS > ?", Array(call, limit),
 			null, null, "_ID DESC", null)
 	}
-	def getAllSsids(call : String) : Cursor = {
+	def getAllSsids(call : String) : Cursor = Benchmark("getAllSsids") {
 		val querycall = call.split("[- _]+")(0) + "%"
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ? or origin LIKE ?", Array(querycall, querycall),
 			"call", null, null, null)
 	}
-	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
+	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = Benchmark("getNeighbors") {
 		// calculate latitude correction
 		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
 		Log.d(TAG, "getNeighbors: correcting by %d".format(corr))
