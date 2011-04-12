@@ -21,6 +21,7 @@
 
 
 <!-- AprsService -->
+<string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRS Service stopped.</string>

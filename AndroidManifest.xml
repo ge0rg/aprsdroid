@@ -32,7 +32,7 @@
 		<category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 	</activity>
-	<service android:name=".AprsService">
+	<service android:name=".AprsService" android:label="@string/aprsservice">
 	    <intent-filter>
 		<action android:name="org.aprsdroid.app.SERVICE" />
 		<action android:name="org.aprsdroid.app.ONCE" />
