@@ -52,7 +52,7 @@ class StationActivity extends ListActivity with OnClickListener {
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options_map, menu);
+		getMenuInflater().inflate(R.menu.options, menu);
 		true
 	}
 

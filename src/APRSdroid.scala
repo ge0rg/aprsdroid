@@ -93,7 +93,7 @@ class APRSdroid extends Activity with OnClickListener {
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options_map, menu);
+		getMenuInflater().inflate(R.menu.options, menu);
 		true
 	}
 	override def onPrepareOptionsMenu(menu : Menu) = uihelper.onPrepareOptionsMenu(menu)
