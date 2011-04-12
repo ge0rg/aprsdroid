@@ -27,18 +27,15 @@ class MapAct extends MapActivity {
 
 	var showObjects = false
 
-	lazy val locReceiver = new LocationReceiver(new Handler(), () => {
-			Benchmark("loadDb") {
-				staoverlay.loadDb(showObjects)
-			}
-		})
+	lazy val locReceiver = new LocationReceiver2[ArrayList[Station]](staoverlay.load_stations,
+			staoverlay.replace_stations, staoverlay.cancel_stations)
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.mapview)
 		mapview.setBuiltInZoomControls(true)
 
-		staoverlay.loadDb(showObjects)
+		locReceiver.startTask(null)
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
@@ -64,7 +61,7 @@ class MapAct extends MapActivity {
 			mi.setChecked(!mi.isChecked())
 			showObjects = mi.isChecked()
 			loading.setVisibility(View.VISIBLE)
-			staoverlay.loadDb(showObjects)
+			locReceiver.startTask(null)
 			mapview.invalidate()
 			true
 		case R.id.satellite =>
@@ -216,12 +213,6 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		}
 	}
 
-	def loadDb(showObjects : Boolean) {
-		val filter = if (showObjects) null else "ORIGIN IS NULL"
-		val qh = new QueryHandler()
-		qh.execute(filter)
-	}
-
 	def addStation(sta : Station) {
 		//if (calls.contains(sta.getTitle()))
 		//	return
@@ -236,42 +227,42 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		true
 	}
 
-	class QueryHandler extends MyAsyncTask[Unit, ArrayList[Station]] {
-		override def doInBackground1(params : Array[String]) : ArrayList[Station] = {
-			val s = new ArrayList[Station]()
-			val c = db.getPositions(params(0), null, null)
-			Benchmark("getCount") { c.getCount() }
-			c.moveToFirst()
-			var m = new ArrayBuffer[GeoPoint]()
-			while (!c.isAfterLast()) {
-				val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
-				val lat = c.getInt(StorageDatabase.Position.COLUMN_LAT)
-				val lon = c.getInt(StorageDatabase.Position.COLUMN_LON)
-				val symbol = c.getString(StorageDatabase.Position.COLUMN_SYMBOL)
-				val comment = c.getString(StorageDatabase.Position.COLUMN_COMMENT)
-				val p = new GeoPoint(lat, lon)
-				m.add(p)
-				// peek at the next row
-				c.moveToNext()
-				val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Position.COLUMN_CALL) else null
-				c.moveToPrevious()
-				if (next_call != call) {
-					//Log.d(TAG, "end of call: " + call + " " + next_call + " " + m.size())
-					s.add(new Station(m, p, call, comment, symbol))
-					m = new ArrayBuffer[GeoPoint]()
-				}
-				c.moveToNext()
+	def load_stations(i : Intent) : ArrayList[Station] = {
+		val s = new ArrayList[Station]()
+		val filter = if (context.showObjects) null else "ORIGIN IS NULL"
+		val c = db.getPositions(filter, null, null)
+		c.moveToFirst()
+		var m = new ArrayBuffer[GeoPoint]()
+		while (!c.isAfterLast()) {
+			val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
+			val lat = c.getInt(StorageDatabase.Position.COLUMN_LAT)
+			val lon = c.getInt(StorageDatabase.Position.COLUMN_LON)
+			val symbol = c.getString(StorageDatabase.Position.COLUMN_SYMBOL)
+			val comment = c.getString(StorageDatabase.Position.COLUMN_COMMENT)
+			val p = new GeoPoint(lat, lon)
+			m.add(p)
+			// peek at the next row
+			c.moveToNext()
+			val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Position.COLUMN_CALL) else null
+			c.moveToPrevious()
+			if (next_call != call) {
+				//Log.d(TAG, "end of call: " + call + " " + next_call + " " + m.size())
+				s.add(new Station(m, p, call, comment, symbol))
+				m = new ArrayBuffer[GeoPoint]()
 			}
-			c.close()
-			Log.d(TAG, "total %d items".format(s.size()))
-			s
+			c.moveToNext()
 		}
+		c.close()
+		Log.d(TAG, "total %d items".format(s.size()))
+		s
+	}
 
-		override def onPostExecute(s : ArrayList[Station]) {
-			stations = s
-			setLastFocusedIndex(-1)
-			Benchmark("populate") { populate() }
-			context.onPostLoad()
-		}
+	def replace_stations(s : ArrayList[Station]) {
+		stations = s
+		setLastFocusedIndex(-1)
+		Benchmark("populate") { populate() }
+		context.onPostLoad()
+	}
+	def cancel_stations(s : ArrayList[Station]) {
 	}
 }

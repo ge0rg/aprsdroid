@@ -30,9 +30,9 @@ class PositionListAdapter(context : Context,
 
 	reload()
 
-	lazy val locReceiver = new LocationReceiver(new Handler(), () => {
-			reload()
-		})
+	lazy val locReceiver = new LocationReceiver2(load_cursor,
+		replace_cursor, cancel_cursor)
+
 	context.registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 
 	def getAgeColor(ts : Long) : Int = {
@@ -77,53 +77,41 @@ class PositionListAdapter(context : Context,
 		super.bindView(view, context, cursor)
 	}
 
-	def reload() {
-		if (reload_pending == 0) {
-			reload_pending = 1
-			val qh = new QueryHandler()
-			context.asInstanceOf[Activity].setProgressBarIndeterminateVisibility(true)
-			qh.execute(mycall, targetcall)
-			// qh.onPostExecute(qh.doInBackground1(Array(mycall, targetcall)))
+	def load_cursor(i : Intent) = {
+		import PositionListAdapter._
+		Benchmark("get my position") {
+		val cursor = storage.getStaPosition(mycall)
+		if (cursor.getCount() > 0) {
+			cursor.moveToFirst()
+			my_lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
+			my_lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
 		}
+		cursor.close()
+		}
+		val c = mode match {
+			case SINGLE	=> storage.getStaPosition(targetcall)
+			case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon,
+				System.currentTimeMillis - 30*60*1000, "20")
+			case SSIDS	=> storage.getAllSsids(targetcall)
+		}
+		Benchmark("getCount") { c.getCount() }
+		c
+	}
+
+	def replace_cursor(c : Cursor) {
+		changeCursor(c)
+		context.asInstanceOf[Activity].setProgressBarIndeterminateVisibility(false)
+	}
+	def cancel_cursor(c : Cursor) {
+		c.close()
+	}
+
+	def reload() {
+		locReceiver.startTask(null)
 	}
 
 	def onDestroy() {
 		context.unregisterReceiver(locReceiver)
 		changeCursor(null)
-	}
-
-	class QueryHandler extends MyAsyncTask[Unit, Cursor] {
-		override def doInBackground1(calls : Array[String]) : Cursor = {
-			import PositionListAdapter._
-			Benchmark("get my position") {
-			val mycall = calls(0)
-			val targetcall = calls(1)
-			//var my_lat = 0
-			//var my_lon = 0
-			val cursor = storage.getStaPosition(mycall)
-			if (cursor.getCount() > 0) {
-				cursor.moveToFirst()
-				my_lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
-				my_lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
-			}
-			cursor.close()
-			}
-			val c = mode match {
-				case SINGLE	=> storage.getStaPosition(targetcall)
-				case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon,
-					System.currentTimeMillis - 30*60*1000, "20")
-				case SSIDS	=> storage.getAllSsids(targetcall)
-			}
-			Benchmark("getCount") { c.getCount() }
-			c
-		}
-
-		override def onPostExecute(c : Cursor) {
-			Benchmark("changeCursor") {
-			changeCursor(c)
-			}
-			context.asInstanceOf[Activity].setProgressBarIndeterminateVisibility(false)
-			reload_pending = 0
-		}
 	}
 }

@@ -4,12 +4,13 @@ import _root_.android.app.Activity
 import _root_.android.app.AlertDialog
 import _root_.android.content._
 import _root_.android.content.pm.PackageInfo;
+import _root_.android.database.Cursor
 import _root_.android.location._
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.preference.PreferenceManager
 import _root_.java.text.SimpleDateFormat
 import _root_.android.util.Log
-import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
+import _root_.android.view.{LayoutInflater, Menu, MenuItem, View, Window}
 import _root_.android.view.View.OnClickListener
 import _root_.android.widget.AdapterView
 import _root_.android.widget.AdapterView.OnItemClickListener
@@ -32,14 +33,15 @@ class APRSdroid extends Activity with OnClickListener {
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
 	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
 
-	lazy val locReceiver = new LocationReceiver(new Handler(), () => {
-			Benchmark("requery") { postcursor.requery() }
-			//postlist.setSelection(0)
-			setupButtons(AprsService.running)
-		})
+	lazy val locReceiver = new LocationReceiver2[Cursor](load_cursor, replace_cursor, cancel_cursor)
+	lazy val la = new SimpleCursorAdapter(this, R.layout.listitem, 
+				null,
+				Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
+				Array(R.id.listts, R.id.liststatus, R.id.listmessage))
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
+		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS)
 		setContentView(R.layout.main)
 
 		Log.d(TAG, "starting " + getString(R.string.build_version))
@@ -47,13 +49,12 @@ class APRSdroid extends Activity with OnClickListener {
 		singleBtn.setOnClickListener(this);
 		startstopBtn.setOnClickListener(this);
 
-		startManagingCursor(postcursor)
-		val la = new SimpleCursorAdapter(this, R.layout.listitem, 
-				postcursor,
-				Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
-				Array(R.id.listts, R.id.liststatus, R.id.listmessage))
+		setProgressBarIndeterminateVisibility(true)
+		locReceiver.startTask(null)
+
 		la.setViewBinder(new PostViewBinder())
 		la.setFilterQueryProvider(storage.getPostFilter("100"))
+
 		postlist.setAdapter(la)
 		postlist.setTextFilterEnabled(true)
 		postlist.setOnItemClickListener(new OnItemClickListener() {
@@ -68,7 +69,6 @@ class APRSdroid extends Activity with OnClickListener {
 				}
 			}
 		});
-
 	}
 
 	override def onResume() {
@@ -130,5 +130,19 @@ class APRSdroid extends Activity with OnClickListener {
 		case _ =>
 			//status.setText(view.asInstanceOf[Button].getText)
 		}
+	}
+
+	def load_cursor(i : Intent) = {
+		val c = storage.getPosts("100")
+		c.getCount()
+		c
+	}
+	def replace_cursor(c : Cursor) {
+		la.changeCursor(c)
+		setupButtons(AprsService.running)
+		setProgressBarIndeterminateVisibility(false)
+	}
+	def cancel_cursor(c : Cursor) {
+		c.close()
 	}
 }
