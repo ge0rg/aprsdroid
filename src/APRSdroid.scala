@@ -103,13 +103,7 @@ class APRSdroid extends Activity with OnClickListener {
 	}
 
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
-		mi.getItemId match {
-		case R.id.clear =>
-			storage.trimPosts(System.currentTimeMillis)
-			postcursor.requery()
-			true
-		case _ => uihelper.optionsItemAction(mi)
-		}
+		uihelper.optionsItemAction(mi)
 	}
 
 	override def onClick(view : View) {

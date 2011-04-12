@@ -5,6 +5,7 @@ import _root_.android.app.Activity
 import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
 import _root_.android.net.Uri
+import _root_.android.util.Log
 import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
 import _root_.android.widget.{EditText, Toast}
 
@@ -136,8 +137,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			ctx.startActivity(new Intent(ctx, classOf[PrefsAct]));
 			true
 		case R.id.clear =>
-			//storage.trimPosts(System.currentTimeMillis)
-			//postcursor.requery()
+			new StorageCleaner(StorageDatabase.open(ctx)).execute()
 			true
 		case R.id.about =>
 			aboutDialog()
@@ -176,6 +176,16 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		}
 	}
 
+	class StorageCleaner(storage : StorageDatabase) extends MyAsyncTask[Unit, Unit] {
+		override def doInBackground1(params : Array[String]) {
+			Log.d("StorageCleaner", "trimming...")
+			storage.trimPosts(System.currentTimeMillis)
+		}
+		override def onPostExecute(x : Unit) {
+			Log.d("StorageCleaner", "broadcasting...")
+			ctx.sendBroadcast(new Intent(AprsService.UPDATE))
+		}
+	}
 }
 
 class UrlOpener(ctx : Context, url : String) extends DialogInterface.OnClickListener {
