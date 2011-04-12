@@ -14,7 +14,7 @@ import _root_.scala.math.{cos, Pi}
 
 object StorageDatabase {
 	val TAG = "StorageDatabase"
-	val DB_VERSION = 1
+	val DB_VERSION = 2
 	val DB_NAME = "storage.db"
 	object Post {
 		val TABLE = "posts"
@@ -96,12 +96,12 @@ class StorageDatabase(context : Context) extends
 		Log.d(TAG, "onCreate(): creating new database " + DB_NAME);
 		db.execSQL(Post.TABLE_CREATE);
 		db.execSQL(Position.TABLE_CREATE)
-		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
+		Array("ts", "call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
 	}
 	def resetPositionsTable(db : SQLiteDatabase) {
 		db.execSQL(Position.TABLE_DROP)
 		db.execSQL(Position.TABLE_CREATE)
-		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
+		Array("ts", "call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
 		return; // this code causes a too long wait in onUpgrade...
 		// we can not call getPosts() here due to recursion issues
 		val c = db.query(Post.TABLE, Post.COLUMNS, "TYPE = 0 OR TYPE = 3",
