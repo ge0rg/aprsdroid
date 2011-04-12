@@ -6,6 +6,7 @@ import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
 import _root_.android.view.{Menu, MenuItem, View}
+import _root_.android.widget.TextView
 import _root_.com.google.android.maps._
 import _root_.scala.collection.mutable.ArrayBuffer
 import _root_.java.util.ArrayList
@@ -22,6 +23,7 @@ class MapAct extends MapActivity {
 	lazy val allicons = this.getResources().getDrawable(R.drawable.allicons)
 	lazy val db = StorageDatabase.open(this)
 	lazy val staoverlay = new StationOverlay(allicons, this, db)
+	lazy val loading = findViewById(R.id.loading).asInstanceOf[TextView]
 
 	var showObjects = false
 
@@ -61,6 +63,7 @@ class MapAct extends MapActivity {
 		case R.id.objects =>
 			mi.setChecked(!mi.isChecked())
 			showObjects = mi.isChecked()
+			loading.setVisibility(View.VISIBLE)
 			staoverlay.loadDb(showObjects)
 			mapview.invalidate()
 			true
@@ -87,6 +90,12 @@ class MapAct extends MapActivity {
 			
 		}
 
+	}
+
+	def onPostLoad() {
+		loading.setVisibility(View.GONE)
+		mapview.invalidate()
+		animateToCall()
 	}
 }
 
@@ -262,8 +271,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 			stations = s
 			setLastFocusedIndex(-1)
 			Benchmark("populate") { populate() }
-			context.mapview.invalidate()
-			context.animateToCall()
+			context.onPostLoad()
 		}
 	}
 }

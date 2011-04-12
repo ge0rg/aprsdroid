@@ -19,6 +19,7 @@
 <string name="sta_lastreport">%s Last Report</string>
 <string name="map_track_call">Tracking %s...</string>
 
+<string name="map_loading">Loading...</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
