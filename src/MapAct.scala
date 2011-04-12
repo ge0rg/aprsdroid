@@ -7,6 +7,8 @@ import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
 import _root_.android.view.{Menu, MenuItem, View}
 import _root_.com.google.android.maps._
+import _root_.scala.collection.mutable.ArrayBuffer
+import _root_.java.util.ArrayList
 
 // to make scala-style iterating over arraylist possible
 import scala.collection.JavaConversions._
@@ -92,13 +94,13 @@ class MapAct extends MapActivity {
 	}
 }
 
-class Station(val point : GeoPoint, val call : String, val message : String, val symbol : String)
+class Station(val movelog : ArrayBuffer[GeoPoint], val point : GeoPoint,
+	val call : String, val message : String, val symbol : String)
 	extends OverlayItem(point, call, message) {
-
 
 }
 
-class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) extends ItemizedOverlay[Station](icons) {
+class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) extends ItemizedOverlay[Station](icons) {
 	val TAG = "StationOverlay"
 
 	//lazy val calls = new scala.collection.mutable.HashMap[String, Boolean]()
@@ -120,7 +122,7 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		(symbol(0) != '/' && symbol(0) != '\\')
 	}
 
-	def drawTrace(c : Canvas, m : MapView, call : String) : Unit = {
+	def drawTrace(c : Canvas, m : MapView, s : Station) : Unit = {
 		//Log.d(TAG, "drawing trace of %s".format(call))
 
 		val tracePaint = new Paint()
@@ -135,25 +137,18 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		val path = new Path()
 		val point = new Point()
 
-		val cur = db.getStaPositions(call, "%d".format(System.currentTimeMillis() - 30*3600*1000))
-		if (cur.getCount() < 2) {
-			cur.close()
+		if (s.movelog.size() < 2) {
 			return
 		}
-		cur.moveToFirst()
 		var first = true
-		while (!cur.isAfterLast()) {
-			val lat = cur.getInt(cur.getColumnIndexOrThrow(StorageDatabase.Position.LAT))
-			val lon = cur.getInt(cur.getColumnIndexOrThrow(StorageDatabase.Position.LON))
-			m.getProjection().toPixels(new GeoPoint(lat, lon), point)
+		for (p <- s.movelog) {
+			m.getProjection().toPixels(p, point)
 			if (first) {
 				path.moveTo(point.x, point.y)
 				first = false
 			} else
 				path.lineTo(point.x, point.y)
-			cur.moveToNext()
 		}
-		cur.close()
 		c.drawPath(path, tracePaint)
 	}
 
@@ -195,9 +190,7 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 				val destRect = new Rect(p.x-ss, p.y-ss, p.x+ss, p.y+ss)
 				// first draw callsign and trace
 				if (zoom >= 10) {
-					Benchmark("drawTrace") {
-					drawTrace(c, m, s.call)
-					}
+					drawTrace(c, m, s)
 
 					c.drawText(s.call, p.x, p.y+ss+fontSize, strokePaint)
 					c.drawText(s.call, p.x, p.y+ss+fontSize, textPaint)
@@ -219,19 +212,32 @@ class StationOverlay(icons : Drawable, context : Context, db : StorageDatabase) 
 		val filter = if (showObjects) null else "ORIGIN IS NULL"
 		val c = db.getPositions(filter, null, null)
 		c.moveToFirst()
+		var m = new ArrayBuffer[GeoPoint]()
 		while (!c.isAfterLast()) {
 			val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
-			val symbol = c.getString(StorageDatabase.Position.COLUMN_SYMBOL)
-			val comment = c.getString(StorageDatabase.Position.COLUMN_COMMENT)
 			val lat = c.getInt(StorageDatabase.Position.COLUMN_LAT)
 			val lon = c.getInt(StorageDatabase.Position.COLUMN_LON)
-			addStation(new Station(new GeoPoint(lat, lon), call, comment, symbol))
+			val symbol = c.getString(StorageDatabase.Position.COLUMN_SYMBOL)
+			val comment = c.getString(StorageDatabase.Position.COLUMN_COMMENT)
+			val p = new GeoPoint(lat, lon)
+			m.add(p)
+			// peek at the next row
+			c.moveToNext()
+			val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Position.COLUMN_CALL) else null
+			c.moveToPrevious()
+			if (next_call != call) {
+				//Log.d(TAG, "end of call: " + call + " " + next_call + " " + m.size())
+				addStation(new Station(m, p, call, comment, symbol))
+				m = new ArrayBuffer[GeoPoint]()
+			}
 			c.moveToNext()
 		}
 		c.close()
-		setLastFocusedIndex(-1)
-		populate()
 		Log.d(TAG, "total %d items".format(size()))
+		setLastFocusedIndex(-1)
+		Benchmark("populate") { populate() }
+		context.mapview.invalidate()
+		context.animateToCall()
 	}
 
 	def addStation(sta : Station) {

@@ -177,7 +177,7 @@ class StorageDatabase(context : Context) extends
 	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = Benchmark("getPositions") {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			sel, selArgs,
-			Position.CALL, null, "_ID DESC", limit)
+			null, null, "CALL, _ID DESC", limit)
 	}
 
 	def getRectPositions(lat1 : Int, lon1 : Int, lat2 : Int, lon2 : Int, limit : String) : Cursor = {
