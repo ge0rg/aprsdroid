@@ -29,9 +29,6 @@ class MapAct extends MapActivity {
 			Benchmark("loadDb") {
 				staoverlay.loadDb(showObjects)
 			}
-			mapview.invalidate()
-			animateToCall()
-			//postlist.setSelection(0)
 		})
 
 	override def onCreate(savedInstanceState: Bundle) {
@@ -40,7 +37,6 @@ class MapAct extends MapActivity {
 		mapview.setBuiltInZoomControls(true)
 
 		staoverlay.loadDb(showObjects)
-		animateToCall()
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
@@ -104,7 +100,11 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	val TAG = "StationOverlay"
 
 	//lazy val calls = new scala.collection.mutable.HashMap[String, Boolean]()
-	lazy val stations = new java.util.ArrayList[Station]()
+	var stations = new java.util.ArrayList[Station]()
+
+	// prevent android bug #11666
+	populate()
+
 	lazy val symbolSize = (context.getResources().getDisplayMetrics().density * 16).toInt
 
 	override def size() = stations.size()
@@ -208,36 +208,9 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	}
 
 	def loadDb(showObjects : Boolean) {
-		stations.clear()
 		val filter = if (showObjects) null else "ORIGIN IS NULL"
-		val c = db.getPositions(filter, null, null)
-		c.moveToFirst()
-		var m = new ArrayBuffer[GeoPoint]()
-		while (!c.isAfterLast()) {
-			val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
-			val lat = c.getInt(StorageDatabase.Position.COLUMN_LAT)
-			val lon = c.getInt(StorageDatabase.Position.COLUMN_LON)
-			val symbol = c.getString(StorageDatabase.Position.COLUMN_SYMBOL)
-			val comment = c.getString(StorageDatabase.Position.COLUMN_COMMENT)
-			val p = new GeoPoint(lat, lon)
-			m.add(p)
-			// peek at the next row
-			c.moveToNext()
-			val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Position.COLUMN_CALL) else null
-			c.moveToPrevious()
-			if (next_call != call) {
-				//Log.d(TAG, "end of call: " + call + " " + next_call + " " + m.size())
-				addStation(new Station(m, p, call, comment, symbol))
-				m = new ArrayBuffer[GeoPoint]()
-			}
-			c.moveToNext()
-		}
-		c.close()
-		Log.d(TAG, "total %d items".format(size()))
-		setLastFocusedIndex(-1)
-		Benchmark("populate") { populate() }
-		context.mapview.invalidate()
-		context.animateToCall()
+		val qh = new QueryHandler()
+		qh.execute(filter)
 	}
 
 	def addStation(sta : Station) {
@@ -252,5 +225,45 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		Log.d(TAG, "user clicked on " + s.call)
 		context.startActivity(new Intent(context, classOf[StationActivity]).putExtra("call", s.call));
 		true
+	}
+
+	class QueryHandler extends MyAsyncTask[Unit, ArrayList[Station]] {
+		override def doInBackground1(params : Array[String]) : ArrayList[Station] = {
+			val s = new ArrayList[Station]()
+			val c = db.getPositions(params(0), null, null)
+			Benchmark("getCount") { c.getCount() }
+			c.moveToFirst()
+			var m = new ArrayBuffer[GeoPoint]()
+			while (!c.isAfterLast()) {
+				val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
+				val lat = c.getInt(StorageDatabase.Position.COLUMN_LAT)
+				val lon = c.getInt(StorageDatabase.Position.COLUMN_LON)
+				val symbol = c.getString(StorageDatabase.Position.COLUMN_SYMBOL)
+				val comment = c.getString(StorageDatabase.Position.COLUMN_COMMENT)
+				val p = new GeoPoint(lat, lon)
+				m.add(p)
+				// peek at the next row
+				c.moveToNext()
+				val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Position.COLUMN_CALL) else null
+				c.moveToPrevious()
+				if (next_call != call) {
+					//Log.d(TAG, "end of call: " + call + " " + next_call + " " + m.size())
+					s.add(new Station(m, p, call, comment, symbol))
+					m = new ArrayBuffer[GeoPoint]()
+				}
+				c.moveToNext()
+			}
+			c.close()
+			Log.d(TAG, "total %d items".format(s.size()))
+			s
+		}
+
+		override def onPostExecute(s : ArrayList[Station]) {
+			stations = s
+			setLastFocusedIndex(-1)
+			Benchmark("populate") { populate() }
+			context.mapview.invalidate()
+			context.animateToCall()
+		}
 	}
 }
