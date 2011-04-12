@@ -100,10 +100,11 @@ class AprsService extends Service with LocationListener {
 		} else
 			showToast(getString(R.string.service_start).format(upd_int, upd_dist))
 
-		running = true
-
 		// the poster needs to be running before location updates come in
-		startPoster()
+		if (!running) {
+			running = true
+			startPoster()
+		}
 
 		// continuous GPS tracking for single shot mode
 		requestLocations(singleShot)
@@ -114,6 +115,8 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def startPoster() {
+		if (poster != null)
+			poster.stop()
 		poster = AprsIsUploader.instanciateUploader(this, prefs)
 		poster.start()
 	}
