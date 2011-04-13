@@ -50,7 +50,6 @@ class APRSdroid extends Activity with OnClickListener {
 		startstopBtn.setOnClickListener(this);
 
 		setProgressBarIndeterminateVisibility(true)
-		locReceiver.startTask(null)
 
 		la.setViewBinder(new PostViewBinder())
 		la.setFilterQueryProvider(storage.getPostFilter("100"))
@@ -74,6 +73,7 @@ class APRSdroid extends Activity with OnClickListener {
 	override def onResume() {
 		super.onResume()
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
+		locReceiver.startTask(null)
 
 		if (!uihelper.checkConfig())
 			return
