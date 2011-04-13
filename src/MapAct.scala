@@ -185,6 +185,8 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		val symbStrPaint = new Paint(strokePaint)
 		symbStrPaint.setTextSize(fontSize - 1)
 
+		strokePaint.setShadowLayer(0.5f, 0, 0, 0xff000000)
+
 		val iconbitmap = icons.asInstanceOf[BitmapDrawable].getBitmap
 
 		val p = new Point()
