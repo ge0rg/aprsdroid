@@ -190,11 +190,11 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			ctx.startService(AprsService.intent(ctx, AprsService.SERVICE_ONCE))
 			true
 		// quit the app
-		case R.id.quit =>
-			// XXX deprecated!
-			ctx.stopService(AprsService.intent(ctx, AprsService.SERVICE))
-			ctx.finish();
-			true
+		//case R.id.quit =>
+		//	// XXX deprecated!
+		//	ctx.stopService(AprsService.intent(ctx, AprsService.SERVICE))
+		//	ctx.finish();
+		//	true
 		case _ => false
 		}
 	}
