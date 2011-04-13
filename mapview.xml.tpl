@@ -18,7 +18,9 @@
 	android:layout_gravity="center_horizontal"
 	android:padding="10sp"
 	android:textColor="#000"
-	android:textSize="14sp"
+	android:shadowColor="#fff"
+	android:shadowRadius="3.0"
+	android:textSize="25sp"
 	android:text="@string/map_loading"
 	/>
 </FrameLayout>
