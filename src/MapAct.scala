@@ -232,8 +232,9 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 	def load_stations(i : Intent) : ArrayList[Station] = {
 		val s = new ArrayList[Station]()
-		val filter = if (context.showObjects) null else "ORIGIN IS NULL"
-		val c = db.getPositions(filter, null, null)
+		val age_ts = (System.currentTimeMillis - context.prefs.getShowAge()).toString
+		val filter = if (context.showObjects) "TS > ?" else "ORIGIN IS NULL AND TS > ?"
+		val c = db.getPositions(filter, Array(age_ts), null)
 		c.moveToFirst()
 		var m = new ArrayBuffer[GeoPoint]()
 		while (!c.isAfterLast()) {

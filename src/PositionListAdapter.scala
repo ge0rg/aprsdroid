@@ -19,7 +19,7 @@ object PositionListAdapter {
 	val SSIDS = 2
 }
 
-class PositionListAdapter(context : Context,
+class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 	mycall : String, targetcall : String, mode : Int)
 		extends SimpleCursorAdapter(context, R.layout.stationview, null, PositionListAdapter.LIST_FROM, PositionListAdapter.LIST_TO) {
 
@@ -91,7 +91,7 @@ class PositionListAdapter(context : Context,
 		val c = mode match {
 			case SINGLE	=> storage.getStaPosition(targetcall)
 			case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon,
-				System.currentTimeMillis - 30*60*1000, "20")
+				System.currentTimeMillis - prefs.getShowAge(), "20")
 			case SSIDS	=> storage.getAllSsids(targetcall)
 		}
 		Benchmark("getCount") { c.getCount() }

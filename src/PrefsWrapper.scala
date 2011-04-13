@@ -32,6 +32,8 @@ class PrefsWrapper(val context : Context) {
 	}
 	def getShowObjects() = prefs.getBoolean("show_objects", false)
 	def getShowSatellite() = prefs.getBoolean("show_satellite", false)
+
+	def getShowAge() = getStringInt("show_age", 30)*60L*1000
 	
 	// this is actually a hack!
 	def getVersion() = context.getString(R.string.build_version).split(" ").take(2).mkString(" ")

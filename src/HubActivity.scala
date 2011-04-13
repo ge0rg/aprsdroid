@@ -13,7 +13,7 @@ class HubActivity extends ListActivity {
 	lazy val uihelper = new UIHelper(this, R.id.hub, prefs)
 
 	lazy val mycall = prefs.getCallSsid()
-	lazy val pla = new PositionListAdapter(this, mycall, mycall, PositionListAdapter.NEIGHBORS)
+	lazy val pla = new PositionListAdapter(this, prefs, mycall, mycall, PositionListAdapter.NEIGHBORS)
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)

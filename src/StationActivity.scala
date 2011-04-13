@@ -22,7 +22,7 @@ class StationActivity extends ListActivity with OnClickListener {
 	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
 			
 	lazy val mycall = prefs.getCallSsid()
-	lazy val pla = new PositionListAdapter(this, mycall, targetcall, PositionListAdapter.SSIDS)
+	lazy val pla = new PositionListAdapter(this, prefs, mycall, targetcall, PositionListAdapter.SSIDS)
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
