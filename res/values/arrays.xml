@@ -30,4 +30,19 @@
 		<item>8</item> <item>9</item> <item>10</item> <item>11</item>
 		<item>12</item> <item>13</item> <item>14</item> <item>15</item>
 	</string-array>
+
+	<string-array name="ages">
+		<item>@string/age_30</item>
+		<item>@string/age_2h</item>
+		<item>@string/age_12h</item>
+		<item>@string/age_1d</item>
+		<item>@string/age_2d</item>
+	</string-array>
+	<string-array name="age_minutes">
+		<item>30</item>
+		<item>120</item>
+		<item>720</item>
+		<item>1440</item>
+		<item>2880</item>
+	</string-array>
 </resources>

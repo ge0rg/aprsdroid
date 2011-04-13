@@ -67,9 +67,11 @@
 
 <!-- map view -->
 <string name="age">Show last...</string>
-<string name="age_10">10 minutes</string>
 <string name="age_30">30 minutes</string>
+<string name="age_2h">2 hours</string>
+<string name="age_12h">12 hours</string>
 <string name="age_1d">1 day</string>
+<string name="age_2d">2 days</string>
 
 
 <!-- options menu -->

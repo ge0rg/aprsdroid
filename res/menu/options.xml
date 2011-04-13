@@ -14,18 +14,7 @@
 	<item android:id="@+id/age"
 		android:title="@string/age"
 		android:alphabeticShortcut="a"
-		android:icon="@android:drawable/ic_menu_today" >
-		<menu>
-			<group android:checkableBehavior="single">
-				<item android:id="@+id/age_10"
-					android:title="@string/age_10" />
-				<item android:id="@+id/age_30"
-					android:title="@string/age_30" />
-				<item android:id="@+id/age_1d"
-					android:title="@string/age_1d" />
-			</group>
-		</menu>
-	</item>
+		android:icon="@android:drawable/ic_menu_today" />
 	<item android:id="@+id/overlays"
 		android:title="@string/map_overlays"
 		android:alphabeticShortcut="o"

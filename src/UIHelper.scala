@@ -119,6 +119,24 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			.create.show
 	}
 
+	def ageDialog() {
+		val minutes = ctx.getResources().getStringArray(R.array.age_minutes)
+		val selected = minutes.indexOf(prefs.getString("show_age", "30"))
+
+		new AlertDialog.Builder(ctx).setTitle(ctx.getString(R.string.age))
+			.setSingleChoiceItems(R.array.ages, selected, new DialogInterface.OnClickListener() {
+					override def onClick(d : DialogInterface, which : Int) {
+						Log.d("onClick", "clicked on: " + d + " " + which)
+						val min = ctx.getResources().getStringArray(R.array.age_minutes)(which)
+						prefs.prefs.edit().putString("show_age", min).commit()
+						ctx.sendBroadcast(new Intent(AprsService.UPDATE))
+						d.dismiss()
+					}})
+			//.setPositiveButton(android.R.string.ok, null)
+			//.setNegativeButton(android.R.string.cancel, null)
+			.create.show
+	}
+
 	def onPrepareOptionsMenu(menu : Menu) : Boolean = {
 		val mi = menu.findItem(R.id.startstopbtn)
 		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
@@ -143,6 +161,9 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			true
 		case R.id.about =>
 			aboutDialog()
+			true
+		case R.id.age =>
+			ageDialog()
 			true
 		// switch between activities
 		case R.id.hub =>
