@@ -10,7 +10,8 @@ import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
 import _root_.android.widget.{EditText, Toast}
 
 class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
-	extends DialogInterface.OnClickListener {
+	extends DialogInterface.OnClickListener 
+	   with DialogInterface.OnCancelListener {
 
 	var openedPrefs = false
 
@@ -75,16 +76,16 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 					}})
 				.setNeutralButton(R.string.p_passreq, new UrlOpener(ctx, ctx.getString(R.string.passcode_url)))
 				.setNegativeButton(android.R.string.cancel, this)
+				.setOnCancelListener(this)
 				.create.show
 	}
+	// DialogInterface.OnClickListener
 	override def onClick(d : DialogInterface, which : Int) {
-		which match {
-		case DialogInterface.BUTTON_POSITIVE =>
-			prefs.prefs.edit().putBoolean("firstrun", false).commit();
-			checkConfig()
-		case _ =>
-			ctx.finish()
-		}
+		ctx.finish()
+	}
+	// DialogInterface.OnCancelListener
+	override def onCancel(d : DialogInterface) {
+		ctx.finish()
 	}
 
 	def checkConfig() : Boolean = {

@@ -44,6 +44,8 @@ class StationActivity extends ListActivity with OnClickListener {
 		Array(R.id.mapbutton, R.id.qrzcombutton, R.id.aprsfibutton).foreach((id) => {
 				findViewById(id).setOnClickListener(this)
 			})
+
+		setTitle(getString(R.string.app_sta) + ": " + targetcall)
 	}
 
 	override def onDestroy() {
