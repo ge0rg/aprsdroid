@@ -7,8 +7,7 @@ android:layout_weight="1"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:text="@string/singlelog"
->
-</Button>
+/>
 <Button
 android:id="@+id/startstopbtn"
 android:layout_weight="1"
@@ -16,6 +15,5 @@ android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:text="@string/startlog"
 android:layout_below="@+id/singlebtn"
->
-</Button>
+/>
 </merge>
