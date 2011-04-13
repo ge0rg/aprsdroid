@@ -21,6 +21,13 @@
 
 <string name="map_loading">Loading...</string>
 
+<!-- StationInfo activity -->
+<string name="sta_ssids">Station SSIDs</string>
+<string name="sta_history">Station History</string>
+<string name="sta_map">Map</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
+
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">APRS Service single shot.</string>

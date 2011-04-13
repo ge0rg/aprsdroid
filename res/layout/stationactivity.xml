@@ -9,18 +9,19 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="5dp"
-		android:text="Station SSIDs"
+		android:text="@string/sta_ssids"
 		/>
 	<ListView android:id="@android:id/list"
 		android:layout_width="fill_parent"
 		android:layout_height="100dp"
 		android:layout_weight="1"
+		android:descendantFocusability="blocksDescendants"
 		/>
 	<TextView
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="5dp"
-		android:text="History"
+		android:text="@string/sta_history"
 		/>
 	<include layout="@layout/textviews" />
 	<LinearLayout
@@ -34,7 +35,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="Map"
+			android:text="@string/sta_map"
 			>
 		</Button>
 		<Button
@@ -42,7 +43,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="aprs.fi"
+			android:text="@string/sta_aprsfi"
 			>
 		</Button>
 		<Button
@@ -50,7 +51,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:text="QRZ.com"
+			android:text="@string/sta_qrzcom"
 			>
 		</Button>
 	</LinearLayout>
