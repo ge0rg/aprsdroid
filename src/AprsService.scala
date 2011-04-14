@@ -109,7 +109,7 @@ class AprsService extends Service with LocationListener {
 		// continuous GPS tracking for single shot mode
 		requestLocations(singleShot)
 
-		val callssid = AprsPacket.formatCallSsid(prefs.getCallsign(), prefs.getString("ssid", ""))
+		val callssid = prefs.getCallSsid()
 		val message = "%s: %d min, %d km".format(callssid, upd_int, upd_dist)
 		ServiceNotifier.instance.start(this, message)
 	}

@@ -22,7 +22,8 @@ class PrefsWrapper(val context : Context) {
 		case "" => "-1"
 		case s => s
 	}
-	def getCallSsid() = AprsPacket.formatCallSsid(getCallsign(), getString("ssid", ""))
+	def getSsid() = getString("ssid", "10")
+	def getCallSsid() = AprsPacket.formatCallSsid(getCallsign(), getSsid())
 
 	def toggleBoolean(name : String, default : Boolean) = {
 		val new_val = !prefs.getBoolean(name, default)
@@ -38,6 +39,6 @@ class PrefsWrapper(val context : Context) {
 	// this is actually a hack!
 	def getVersion() = context.getString(R.string.build_version).split(" ").take(2).mkString(" ")
 
-	def getLoginString() = AprsPacket.formatLogin(getCallsign(), getString("ssid", null),
+	def getLoginString() = AprsPacket.formatLogin(getCallsign(), getSsid(),
 		getPasscode(), getVersion())
 }
