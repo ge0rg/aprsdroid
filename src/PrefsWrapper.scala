@@ -31,7 +31,7 @@ class PrefsWrapper(val context : Context) {
 		prefs.edit().putBoolean(name, new_val).commit()
 		new_val
 	}
-	def getShowObjects() = prefs.getBoolean("show_objects", false)
+	def getShowObjects() = prefs.getBoolean("show_objects", true)
 	def getShowSatellite() = prefs.getBoolean("show_satellite", false)
 
 	def getShowAge() = getStringInt("show_age", 30)*60L*1000

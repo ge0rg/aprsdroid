@@ -60,7 +60,7 @@ class MapAct extends MapActivity {
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
 		case R.id.objects =>
-			val newState = prefs.toggleBoolean("show_objects", false)
+			val newState = prefs.toggleBoolean("show_objects", true)
 			mi.setChecked(newState)
 			showObjects = newState
 			loading.setVisibility(View.VISIBLE)
