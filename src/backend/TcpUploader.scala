@@ -17,7 +17,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 	}
 
 	def setupFilter() : String = {
-		val filterdist = prefs.getStringInt("tcp.filterdist", 10)
+		val filterdist = prefs.getStringInt("tcp.filterdist", 50)
 		val userfilter = prefs.getString("tcp.filter", "")
 		val lastloc = AprsPacket.formatRangeFilter(
 			service.locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER), filterdist)
