@@ -65,7 +65,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			val fr_pass = fr_view.findViewById(R.id.passcode).asInstanceOf[EditText]
 			new AlertDialog.Builder(ctx).setTitle(ctx.getString(R.string.fr_title))
 				.setView(fr_view)
-				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setIcon(android.R.drawable.ic_dialog_info)
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 					override def onClick(d : DialogInterface, which : Int) {
 						which match {
