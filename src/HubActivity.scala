@@ -35,6 +35,8 @@ class HubActivity extends LoadingListActivity with OnClickListener {
 
 	override def onResume() {
 		super.onResume()
+		if (!uihelper.checkConfig())
+			return
 		setupButtons(AprsService.running)
 	}
 
