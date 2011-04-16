@@ -15,6 +15,10 @@
 <string name="startlog">Start Tracking</string>
 <string name="stoplog">Stop Tracking</string>
 
+<string name="empty_logview">You have not yet sent or received any packets.\n\n
+	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
+	You can also change the application preferences from the menu.</string>
+
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
 <string name="map_track_call">Tracking %s...</string>
