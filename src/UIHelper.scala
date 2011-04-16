@@ -15,6 +15,10 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 
 	var openedPrefs = false
 
+	def onStartLoading() {
+		ctx.asInstanceOf[LoadingIndicator].onStartLoading()
+	}
+
 	def trackOnMap(call : String) {
 		val text = ctx.getString(R.string.map_track_call, call)
 		Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show()
@@ -131,6 +135,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 						val min = ctx.getResources().getStringArray(R.array.age_minutes)(which)
 						prefs.prefs.edit().putString("show_age", min).commit()
 						ctx.sendBroadcast(new Intent(AprsService.UPDATE))
+						onStartLoading()
 						d.dismiss()
 					}})
 			//.setPositiveButton(android.R.string.ok, null)
@@ -158,6 +163,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			ctx.startActivity(new Intent(ctx, classOf[PrefsAct]));
 			true
 		case R.id.clear =>
+			onStartLoading()
 			new StorageCleaner(StorageDatabase.open(ctx)).execute()
 			true
 		case R.id.about =>
