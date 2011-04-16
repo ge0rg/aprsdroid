@@ -23,7 +23,13 @@
 		android:layout_marginBottom="5dp"
 		android:text="@string/sta_history"
 		/>
-	<include layout="@layout/textviews" />
+	<ListView
+		android:id="@+id/postlist"
+		android:layout_width="fill_parent"
+		android:layout_height="100sp"
+		android:layout_weight="1"
+		android:descendantFocusability="blocksDescendants"
+		/>
 	<LinearLayout
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"

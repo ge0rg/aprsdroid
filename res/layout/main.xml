@@ -6,12 +6,24 @@ android:layout_height="fill_parent"
 android:orientation="vertical"
 xmlns:android="http://schemas.android.com/apk/res/android"
 >
-<include layout="@layout/textviews" />
+<ListView
+	android:id="@android:id/list"
+	android:layout_width="fill_parent"
+	android:layout_height="100sp"
+	android:layout_weight="1"
+	android:descendantFocusability="blocksDescendants"
+	/>
+<TextView android:id="@+id/android:empty"
+	android:layout_width="fill_parent" 
+	android:layout_height="100sp"
+	android:layout_weight="1"
+	android:textSize="18sp"
+	android:text="@string/empty_logview"/>
 <LinearLayout
 android:id="@+id/buttonlayout"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
-android:orientation="vertical"
+android:orientation="horizontal"
 xmlns:android="http://schemas.android.com/apk/res/android"
 >
 <include layout="@layout/buttons" />
