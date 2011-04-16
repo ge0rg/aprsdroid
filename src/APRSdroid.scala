@@ -1,6 +1,5 @@
 package org.aprsdroid.app
 
-import _root_.android.app.Activity
 import _root_.android.app.AlertDialog
 import _root_.android.content._
 import _root_.android.content.pm.PackageInfo;
@@ -20,7 +19,7 @@ import _root_.android.widget.TextView
 import _root_.android.widget.Toast
 import _root_.java.util.Date
 
-class APRSdroid extends Activity with OnClickListener {
+class APRSdroid extends LoadingListActivity with OnClickListener {
 	val TAG = "APRSdroid"
 
 	lazy val prefs = new PrefsWrapper(this)
@@ -28,7 +27,7 @@ class APRSdroid extends Activity with OnClickListener {
 	lazy val storage = StorageDatabase.open(this)
 	lazy val postcursor = storage.getPosts("100")
 
-	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
+	lazy val postlist = getListView()
 
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
 	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
@@ -41,7 +40,6 @@ class APRSdroid extends Activity with OnClickListener {
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS)
 		setContentView(R.layout.main)
 
 		Log.d(TAG, "starting " + getString(R.string.build_version))
@@ -49,7 +47,7 @@ class APRSdroid extends Activity with OnClickListener {
 		singleBtn.setOnClickListener(this);
 		startstopBtn.setOnClickListener(this);
 
-		setProgressBarIndeterminateVisibility(true)
+		onStartLoading()
 
 		la.setViewBinder(new PostViewBinder())
 		la.setFilterQueryProvider(storage.getPostFilter("100"))
@@ -138,10 +136,15 @@ class APRSdroid extends Activity with OnClickListener {
 	}
 	def replace_cursor(c : Cursor) {
 		la.changeCursor(c)
-		setupButtons(AprsService.running)
-		setProgressBarIndeterminateVisibility(false)
+		onStopLoading()
 	}
 	def cancel_cursor(c : Cursor) {
 		c.close()
 	}
+
+	override def onStopLoading() {
+		super.onStopLoading()
+		setupButtons(AprsService.running)
+	}
+
 }

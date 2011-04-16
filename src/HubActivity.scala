@@ -6,24 +6,36 @@ import _root_.android.database.Cursor
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
 import _root_.android.view.{Menu, MenuItem, View, Window}
+import _root_.android.view.View.OnClickListener
+import _root_.android.widget.Button
 import _root_.android.widget.ListView
 
-class HubActivity extends ListActivity {
+class HubActivity extends LoadingListActivity with OnClickListener {
 	lazy val prefs = new PrefsWrapper(this)
 	lazy val uihelper = new UIHelper(this, R.id.hub, prefs)
+
+	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
+	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
 
 	lazy val mycall = prefs.getCallSsid()
 	lazy val pla = new PositionListAdapter(this, prefs, mycall, mycall, PositionListAdapter.NEIGHBORS)
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS)
-		setContentView(R.layout.hubactivity)
-		setProgressBarIndeterminateVisibility(true)
+		setContentView(R.layout.main)
+
+		singleBtn.setOnClickListener(this);
+		startstopBtn.setOnClickListener(this);
 
 		getListView().setOnCreateContextMenuListener(this);
 
+		onStartLoading()
 		setListAdapter(pla)
+	}
+
+	override def onResume() {
+		super.onResume()
+		setupButtons(AprsService.running)
 	}
 
 	override def onDestroy() {
@@ -42,6 +54,32 @@ class HubActivity extends ListActivity {
 		uihelper.optionsItemAction(mi)
 	}
 
+	def setupButtons(running : Boolean) {
+		//singleBtn.setEnabled(!running)
+		if (running) {
+			startstopBtn.setText(R.string.stoplog)
+		} else {
+			startstopBtn.setText(R.string.startlog)
+		}
+	}
+
+	override def onClick(view : View) {
+		view.getId match {
+		case R.id.singlebtn =>
+			uihelper.passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
+			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
+			setupButtons(true)
+		case R.id.startstopbtn =>
+			val is_running = AprsService.running
+			if (!is_running) {
+				startService(AprsService.intent(this, AprsService.SERVICE))
+			} else {
+				stopService(AprsService.intent(this, AprsService.SERVICE))
+			}
+			setupButtons(!is_running)
+		}
+	}
+
 
 	override def onListItemClick(l : ListView, v : View, position : Int, id : Long) {
 		//super.onListItemClick(l, v, position, id)
@@ -51,4 +89,10 @@ class HubActivity extends ListActivity {
 
 		startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call));
 	}
+
+	override def onStopLoading() {
+		super.onStopLoading()
+		setupButtons(AprsService.running)
+	}
+
 }

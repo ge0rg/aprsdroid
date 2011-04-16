@@ -14,7 +14,7 @@ import _root_.java.util.ArrayList
 // to make scala-style iterating over arraylist possible
 import scala.collection.JavaConversions._
 
-class MapAct extends MapActivity {
+class MapAct extends MapActivity with LoadingIndicator {
 	val TAG = "MapAct"
 
 	lazy val prefs = new PrefsWrapper(this)
@@ -63,7 +63,7 @@ class MapAct extends MapActivity {
 			val newState = prefs.toggleBoolean("show_objects", true)
 			mi.setChecked(newState)
 			showObjects = newState
-			loading.setVisibility(View.VISIBLE)
+			onStartLoading()
 			locReceiver.startTask(null)
 			true
 		case R.id.satellite =>
@@ -93,9 +93,17 @@ class MapAct extends MapActivity {
 	}
 
 	def onPostLoad() {
-		loading.setVisibility(View.GONE)
 		mapview.invalidate()
+		onStopLoading()
 		animateToCall()
+	}
+
+	override def onStartLoading() {
+		loading.setVisibility(View.VISIBLE)
+	}
+
+	override def onStopLoading() {
+		loading.setVisibility(View.GONE)
 	}
 }
 
@@ -271,4 +279,5 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	}
 	def cancel_stations(s : ArrayList[Station]) {
 	}
+
 }

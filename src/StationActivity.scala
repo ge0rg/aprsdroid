@@ -10,7 +10,7 @@ import _root_.android.view.{Menu, MenuItem, View, Window}
 import _root_.android.view.View.OnClickListener
 import _root_.android.widget.{ListView,SimpleCursorAdapter}
 
-class StationActivity extends ListActivity with OnClickListener {
+class StationActivity extends LoadingListActivity with OnClickListener {
 	lazy val prefs = new PrefsWrapper(this)
 	lazy val uihelper = new UIHelper(this, -1, prefs)
 
@@ -26,12 +26,11 @@ class StationActivity extends ListActivity with OnClickListener {
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
-		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS)
 		setContentView(R.layout.stationactivity)
-		setProgressBarIndeterminateVisibility(true)
 
 		getListView().setOnCreateContextMenuListener(this);
 
+		onStartLoading()
 		setListAdapter(pla)
 		startManagingCursor(postcursor)
 		val la = new SimpleCursorAdapter(this, R.layout.listitem, 
@@ -97,4 +96,5 @@ class StationActivity extends ListActivity with OnClickListener {
 			//status.setText(view.asInstanceOf[Button].getText)
 		}
 	}
+
 }
