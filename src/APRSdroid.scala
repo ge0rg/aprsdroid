@@ -110,8 +110,6 @@ class APRSdroid extends LoadingListActivity with OnClickListener {
 	}
 
 	override def onClick(view : View) {
-		Log.d(TAG, "onClick: " + view + "/" + view.getId)
-
 		view.getId match {
 		case R.id.singlebtn =>
 			uihelper.passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
@@ -124,8 +122,6 @@ class APRSdroid extends LoadingListActivity with OnClickListener {
 				stopService(AprsService.intent(this, AprsService.SERVICE))
 			}
 			setupButtons(!is_running)
-		case _ =>
-			//status.setText(view.asInstanceOf[Button].getText)
 		}
 	}
 
