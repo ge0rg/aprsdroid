@@ -91,7 +91,7 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 		val c = mode match {
 			case SINGLE	=> storage.getStaPosition(targetcall)
 			case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon,
-				System.currentTimeMillis - prefs.getShowAge(), "20")
+				System.currentTimeMillis - prefs.getShowAge(), "50")
 			case SSIDS	=> storage.getAllSsids(targetcall)
 		}
 		Benchmark("getCount") { c.getCount() }
