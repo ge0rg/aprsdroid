@@ -4,27 +4,46 @@
 <string name="app_name">APRSdroid</string>
 <string name="app_prefs">APRSdroid Préférences</string>
 <string name="app_map">APRSdroid carte</string>
+<string name="app_hub">APRSdroid Hub</string>
+<string name="app_sta">Station Info</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Vous devez configurer APRSdroid avec votre indicatif et votre mot de passe</string>
 <string name="wrongpasscode">Le mot de passe ne correspond pas a votre indicatif!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
+<string name="anon_warning">Sans mot de passe vos positions ne seront pas transmises!</string>
 <string name="mininterval">Le délais de rafraichissement est d\'une minute minimum!</string>
 <string name="singlelog">Envoyer ma position</string>
 <string name="startlog">Commencer la localisation</string>
 <string name="stoplog">Arrêter la localisation</string>
 
+<string name="empty_logview">You have not yet sent or received any packets.\n\n
+	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
+	You can also change the application preferences from the menu.</string>
+
 <!-- Maps activity -->
 <string name="sta_lastreport">%s dernier Report</string>
+<string name="map_track_call">Tracking %s...</string>
 
+<string name="map_loading">Loading...</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">Station SSIDs</string>
+<string name="sta_history">Station History</string>
+<string name="sta_map">Map</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
 
 <!-- AprsService -->
+<string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">Service APRS notification unique</string>
-<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
+<string name="service_start">Service APRS  démarré. m.a.j. tous les %1$d minutes, %2$d km.</string>
 <string name="service_stop">service APRS arrêté</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Bienvenue dans APRSdroid!</string>
-<string name="fr_text">Ce logiciel ne peut etre utilisé que par des Radio-Amateurs licenciés!\n\n Si vous l\'utilisez sans licence vous etes passible de poursuites pénales!</string>
+<string name="fr_text">This software may only be used by licensed amateur radio
+	operators!</string>
+<string name="fr_text2">You need to enter your callsign to use this software.
+	To forward your packets, an APRS-IS passcode is required as well.</string>
 
 <!-- about dialog -->
 <string name="ad_title">A propos d\'APRSdroid v%s</string>
@@ -32,19 +51,35 @@
 <string name="ad_trans">\n\nTraduction:</string>
 <string name="ad_homepage">Page d\'accueil</string>
 
+<!-- map view -->
+<string name="map_overlays">Overlays</string>
+<string name="map_satellite">Satellite</string>
+<string name="map_objects">APRS Objects</string>
+
+<!-- map view -->
+<string name="age">Show last...</string>
+<string name="age_30">30 minutes</string>
+<string name="age_2h">2 hours</string>
+<string name="age_12h">12 hours</string>
+<string name="age_1d">1 day</string>
+<string name="age_2d">2 days</string>
+
+
 <!-- options menu -->
 <string name="about">À propos</string>
+<string name="show_hub">Show Hub</string>
 <string name="show_map">Montrer la carte</string>
-<string name="show_log">Show Log</string>
-<string name="show_objects">Toggle Objects</string>
+<string name="show_log">Afficher le Journal</string>
+<string name="clear_log">Clear Log</string>
 <string name="quit">Quitter</string>
 <string name="preferences">Préférences</string>
 <!-- preferences -->
 <string name="p__ham">Radioamateur</string>
 <string name="p_callsign">Indicatif</string>
+<string name="p_callsign_nossid">Callsign (without SSID)</string>
 <string name="p_callsign_summary">Votre indicatif Radioamateur</string>
 <string name="p_callsign_entry">Entrez votre indicatif</string>
-<string name="p_passcode">Mot de passe</string>
+<string name="p_passcode">APRS-IS Passcode</string>
 <string name="p_passcode_summary">code de validation APRS-IS</string>
 <string name="p_passcode_entry">Entrez le passcode correspondant a votre indicatif</string>
 <string name="p_passreq">Demander passcode</string>
@@ -78,16 +113,16 @@
 <string name="p_status">Message d\'état</string>
 <string name="p_status_summary">texte diffusé après vos coordonnées</string>
 <string name="p_status_entry">Entrez votre message d\'état</string>
-<string name="p__connection">APRS Connection</string>
+<string name="p__connection">Connexion APRS</string>
 <string name="p_conntype">Protocole de connexion</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP ou UDP</string>
 <string name="p_conntype_entry">Choisissez le protocole de connexion</string>
-<string name="p_connsetup">Connection Preferences</string>
-<string name="p_connsetup_summary">Configuration of Connection</string>
+<string name="p_connsetup">Préférences de connexion</string>
+<string name="p_connsetup_summary">configuration de la connexion</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">connection TCP</string>
-<string name="p_conn_udp">UDP (send only)</string>
-<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_udp">UDP envoi seulement</string>
+<string name="p_conn_http">HTTP POST (envoi seulement)</string>
 <string name="p_conn_afsk">AFSK via haut parleur</string>
 
 <string name="p_host">Serveur</string>
@@ -103,7 +138,7 @@
 <string name="p_distance_entry">entrez la distance de mise a jour</string>
 <string name="p_speedbrg">Attendre vitesse &amp; direction</string>
 <string name="p_speedbrg_summary">laisser le GPS actif plus longtemps pour des données plus précises</string>
-<string name="p_netloc">utiliser la location via le reseau</string>
+<string name="p_netloc">utiliser la localisation via le réseau</string>
 <string name="p_netloc_summary">Acquérir la position par le réseau téléphonique</string>
 <string name="p_gps">GPS Precision</string>
 <string name="p_gps_summary">Battery usage vs. position quality</string>
@@ -114,23 +149,23 @@
 <string name="p_gps_low">Low</string>
 
 <!-- AFSK settings -->
-<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path">chemin du digi APRS</string>
 <string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
-<string name="p_aprs_path_summary">Sequence of digipeaters</string>
-<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+<string name="p_aprs_path_summary">Séquence des digis</string>
+<string name="p_aprs_path_entry">Entrez le chemin Digi séparé par des virgules</string>
 
 <!-- TCP server settings -->
-<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_tcp_server_summary">Serveur APRS-IS TCP (port 14580) à contacter</string>
 <string name="p_filterdist">rayon voisinage</string>
 <string name="p_filterdist_summary">Recevoir les paquets des stations dans ce rayon</string>
 <string name="p_filterdist_entry">Rayon de surveillance des paquets autour de vous [km]</string>
-<string name="p_filter">Message filter</string>
-<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
-<string name="p_filter_summary">Filter for incoming packets</string>
-<string name="p_filter_entry">Enter a filter for incoming messages</string>
+<string name="p_filter">Filtre de messages</string>
+<string name="p_filter_hint">b/ami o/OBJET ...</string>
+<string name="p_filter_summary">Filtrer les paquets entrants</string>
+<string name="p_filter_entry">Entrer un filtre pour les messages entrants</string>
 
-<string name="p_filterhelp">Message filter help</string>
-<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+<string name="p_filterhelp">Aide fitre de messages</string>
+<string name="p_filterhelp_summary">Référence en ligne pour les filtres APRS-IS</string>
 
 <string name="translator_credits">Launchpad Contributions:
   F8ANZ https://launchpad.net/~matromat

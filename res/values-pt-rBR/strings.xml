@@ -4,6 +4,8 @@
 <string name="app_name">APRSdroid</string>
 <string name="app_prefs">APRSdroid Preferences</string>
 <string name="app_map">APRSdroid Map</string>
+<string name="app_hub">APRSdroid Hub</string>
+<string name="app_sta">Station Info</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Você deve configurar o APRSdroid com seu indicativo de chamada e senha!</string>
 <string name="wrongpasscode">Sua senha não confere com seu indicativo de chamada!</string>
@@ -13,18 +15,35 @@
 <string name="startlog">Iniciar Monitoramento</string>
 <string name="stoplog">Parar Monitoramento</string>
 
+<string name="empty_logview">You have not yet sent or received any packets.\n\n
+	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
+	You can also change the application preferences from the menu.</string>
+
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
+<string name="map_track_call">Tracking %s...</string>
 
+<string name="map_loading">Loading...</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">Station SSIDs</string>
+<string name="sta_history">Station History</string>
+<string name="sta_map">Map</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
 
 <!-- AprsService -->
+<string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">Serviço de APRS parado.</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Bem-vindo ao APRSdroid!</string>
-<string name="fr_text">Este software pode ser usado apenas por radioamadores licenciados! Se você operar sem licença, poderá ser processado criminalmente!</string>
+<string name="fr_text">This software may only be used by licensed amateur radio
+	operators!</string>
+<string name="fr_text2">You need to enter your callsign to use this software.
+	To forward your packets, an APRS-IS passcode is required as well.</string>
 
 <!-- about dialog -->
 <string name="ad_title">Sobre o APRSdroid</string>
@@ -52,19 +71,35 @@
 <string name="ad_trans">\n\nTradução:</string>
 <string name="ad_homepage">Página Web</string>
 
+<!-- map view -->
+<string name="map_overlays">Overlays</string>
+<string name="map_satellite">Satellite</string>
+<string name="map_objects">APRS Objects</string>
+
+<!-- map view -->
+<string name="age">Show last...</string>
+<string name="age_30">30 minutes</string>
+<string name="age_2h">2 hours</string>
+<string name="age_12h">12 hours</string>
+<string name="age_1d">1 day</string>
+<string name="age_2d">2 days</string>
+
+
 <!-- options menu -->
 <string name="about">Sobre</string>
+<string name="show_hub">Show Hub</string>
 <string name="show_map">Show Map</string>
 <string name="show_log">Show Log</string>
-<string name="show_objects">Toggle Objects</string>
+<string name="clear_log">Clear Log</string>
 <string name="quit">Fechar</string>
 <string name="preferences">Preferências</string>
 <!-- preferences -->
 <string name="p__ham">Radioamador</string>
 <string name="p_callsign">Indicativo de chamada</string>
+<string name="p_callsign_nossid">Callsign (without SSID)</string>
 <string name="p_callsign_summary">Seu indicativo de chamada</string>
 <string name="p_callsign_entry">Enter your callsign</string>
-<string name="p_passcode">Senha</string>
+<string name="p_passcode">APRS-IS Passcode</string>
 <string name="p_passcode_summary">APRS-IS validation passcode</string>
 <string name="p_passcode_entry">Enter the passcode for your call</string>
 <string name="p_passreq">Request Passcode</string>

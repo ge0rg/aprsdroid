@@ -4,28 +4,44 @@
 <string name="app_name">APRSdroid</string>
 <string name="app_prefs">APRSdroid-Einstellungen</string>
 <string name="app_map">APRSdroid-Karte</string>
+<string name="app_hub">APRSdroid-Hub</string>
+<string name="app_sta">Stationsinfo</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">Sie müssen Ihr Rufzeichen und das dazugehörige Passwort eingeben!</string>
-<string name="wrongpasscode">Das Passwort für Ihr Rufzeichen ist nicht korrekt!</string>
-<string name="anon_warning">Ohne Passwortangabe werden Ihre Meldungen nicht weitergeleitet!</string>
+<string name="firstrun">Sie müssen Ihr Rufzeichen und den dazugehörigen Passcode eingeben!</string>
+<string name="wrongpasscode">Der Passcode für Ihr Rufzeichen ist nicht korrekt!</string>
+<string name="anon_warning">Ohne Passcode-Angabe werden Ihre Meldungen nicht weitergeleitet!</string>
 <string name="mininterval">Minimale Update-Zeit ist 1 Minute!</string>
 <string name="singlelog">Position senden</string>
 <string name="startlog">Tracking starten</string>
 <string name="stoplog">Tracking beenden</string>
 
+<string name="empty_logview">Sie haben bisher keine Pakete gesendet oder empfangen.\n\n
+Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das Tracking zu starten.\n\n
+Über das Menü lassen sich auch die Programmeinstellungen verändern.</string>
+
 <!-- Maps activity -->
 <string name="sta_lastreport">%s: Letzte Meldung</string>
+<string name="map_track_call">Verfolge %s...</string>
 
+<string name="map_loading">Laden…</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">Stations-SSIDs</string>
+<string name="sta_history">Stationsgeschichte</string>
+<string name="sta_map">Karte</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
 
 <!-- AprsService -->
+<string name="aprsservice">APRSdroid-Dienst</string>
 <string name="service_once">APRS-Dienst Einzelmeldung.</string>
 <string name="service_start">APRS-Dienst gestartet. Aktualisierung alle %1$d Minuten, %2$d km.</string>
 <string name="service_stop">APRS-Dienst beendet.</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Willkommen zu APRSdroid!</string>
-<string name="fr_text">Diese Software darf nur von lizensierten Funkamateuren verwendet werden!\n\n
-Eine Nutzung ohne Amateurfunklizenz kann strafrechtliche Konsequenzen haben!</string>
+<string name="fr_text">Diese Software darf nur von lizensierten Funkamateuren verwendet werden!</string>
+<string name="fr_text2">Sie müssen Ihr Rufzeichen eingeben, um diese Software nutzen zu können. Damit Ihre Pakete weitergeleitet werden, ist weiterhin ein APRS-IS-Passcode erforderlich.</string>
 
 <!-- about dialog -->
 <string name="ad_title">Über APRSdroid v%s</string>
@@ -44,23 +60,39 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="ad_trans">\n\nÜbersetzung:</string>
 <string name="ad_homepage">Homepage</string>
 
+<!-- map view -->
+<string name="map_overlays">Ebenen</string>
+<string name="map_satellite">Satellit</string>
+<string name="map_objects">APRS-Objekte</string>
+
+<!-- map view -->
+<string name="age">Zeige letzte...</string>
+<string name="age_30">30 Minuten</string>
+<string name="age_2h">2 Stunden</string>
+<string name="age_12h">12 Stunden</string>
+<string name="age_1d">1 Tag</string>
+<string name="age_2d">2 Tage</string>
+
+
 <!-- options menu -->
 <string name="about">Über...</string>
-<string name="show_map">Zeige Karte</string>
+<string name="show_hub">Hub anzeigen</string>
+<string name="show_map">Karte anzeigen</string>
 <string name="show_log">Protokoll anzeigen</string>
-<string name="show_objects">Objekte ein/ausblenden</string>
+<string name="clear_log">Protokoll leeren</string>
 <string name="quit">Beenden</string>
 <string name="preferences">Einstellungen</string>
 <!-- preferences -->
 <string name="p__ham">Amateurfunk</string>
 <string name="p_callsign">Rufzeichen</string>
+<string name="p_callsign_nossid">Rufzeichen (ohne SSID)</string>
 <string name="p_callsign_summary">Ihr Amateurfunk-Rufzeichen</string>
 <string name="p_callsign_entry">Geben Sie Ihr Rufzeichen ein</string>
-<string name="p_passcode">Passwort</string>
-<string name="p_passcode_summary">APRS-IS-Passwort</string>
-<string name="p_passcode_entry">Geben Sie das Passwort zu Ihrem Rufzeichen ein</string>
-<string name="p_passreq">Passwort anfordern</string>
-<string name="p_passreq_summary">Online APRS-IS-Passwort anfordern</string>
+<string name="p_passcode">APRS-IS-Passcode</string>
+<string name="p_passcode_summary">APRS-IS-Passcode</string>
+<string name="p_passcode_entry">Geben Sie den Passcode zu Ihrem Rufzeichen ein</string>
+<string name="p_passreq">Passcode anfordern</string>
+<string name="p_passreq_summary">Online APRS-IS-Passcode anfordern</string>
 <string name="p__aprs">APRS-Einstellungen</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Stationstyp (1..15; 9=Mobile, 10=APRS-IS)</string>
@@ -117,13 +149,13 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_speedbrg_summary">GPS für präzisere Daten länger aktivieren</string>
 <string name="p_netloc">Netzwerk-Lokalisierung</string>
 <string name="p_netloc_summary">Position über drahtloses Netzwerk beziehen</string>
-<string name="p_gps">GPS Precision</string>
-<string name="p_gps_summary">Battery usage vs. position quality</string>
-<string name="p_gps_entry">Please set the GPS Precision</string>
+<string name="p_gps">GPS-Genauigkeit</string>
+<string name="p_gps_summary">Batterieverbrauch gegen präzisere Position</string>
+<string name="p_gps_entry">Bitte GPS-Genauigkeit angeben</string>
 <!-- array of GPS precisions -->
-<string name="p_gps_always">High (Always on)</string>
-<string name="p_gps_med">Medium</string>
-<string name="p_gps_low">Low</string>
+<string name="p_gps_always">Hoch (Immer an)</string>
+<string name="p_gps_med">Mittel</string>
+<string name="p_gps_low">Niedrig</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS-Digi-Pfad</string>
@@ -145,6 +177,6 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_filterhelp_summary">Online-Referenz für APRS-IS-Filter</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Ge0rG https://launchpad.net/~georg-op-co</string>
+  Georg Lukas https://launchpad.net/~ge0rg</string>
 
 </resources>

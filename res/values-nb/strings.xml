@@ -4,6 +4,8 @@
 <string name="app_name">APRSdroid</string>
 <string name="app_prefs">APRSdroid Preferences</string>
 <string name="app_map">APRSdroid Map</string>
+<string name="app_hub">APRSdroid Hub</string>
+<string name="app_sta">Station Info</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Du må konfigurere APRSdroid med ditt kallesignal og din valideringsnøkkel</string>
 <string name="wrongpasscode">Din valideringsnøkkel samsvarer ikke med ditt kallesignal</string>
@@ -13,18 +15,35 @@
 <string name="startlog">Start sporing</string>
 <string name="stoplog">Stopp sporing</string>
 
+<string name="empty_logview">You have not yet sent or received any packets.\n\n
+	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
+	You can also change the application preferences from the menu.</string>
+
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
+<string name="map_track_call">Tracking %s...</string>
 
+<string name="map_loading">Loading...</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">Station SSIDs</string>
+<string name="sta_history">Station History</string>
+<string name="sta_map">Map</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
 
 <!-- AprsService -->
+<string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">APRS tjeneste enkel posisjonsoppdatering</string>
 <string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRS tjeneste stoppet.</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Velkommen til APRSdroid!</string>
-<string name="fr_text">Denne programvaren kan kun brukes av lisensierte radioamatører. Besøk http://www.nrrl.no for mer informasjon.</string>
+<string name="fr_text">This software may only be used by licensed amateur radio
+	operators!</string>
+<string name="fr_text2">You need to enter your callsign to use this software.
+	To forward your packets, an APRS-IS passcode is required as well.</string>
 
 <!-- about dialog -->
 <string name="ad_title">Om APRSdroid v%s</string>
@@ -32,19 +51,35 @@
 <string name="ad_trans">Oversettelse</string>
 <string name="ad_homepage">Hjemmeside</string>
 
+<!-- map view -->
+<string name="map_overlays">Overlays</string>
+<string name="map_satellite">Satellite</string>
+<string name="map_objects">APRS Objects</string>
+
+<!-- map view -->
+<string name="age">Show last...</string>
+<string name="age_30">30 minutes</string>
+<string name="age_2h">2 hours</string>
+<string name="age_12h">12 hours</string>
+<string name="age_1d">1 day</string>
+<string name="age_2d">2 days</string>
+
+
 <!-- options menu -->
 <string name="about">Om</string>
+<string name="show_hub">Show Hub</string>
 <string name="show_map">Show Map</string>
 <string name="show_log">Show Log</string>
-<string name="show_objects">Toggle Objects</string>
+<string name="clear_log">Clear Log</string>
 <string name="quit">Avslutt</string>
 <string name="preferences">Innstillinger</string>
 <!-- preferences -->
 <string name="p__ham">Amatørradio</string>
 <string name="p_callsign">Kallesignal</string>
+<string name="p_callsign_nossid">Callsign (without SSID)</string>
 <string name="p_callsign_summary">Ditt radioamatør kallesignal</string>
 <string name="p_callsign_entry">Skriv ditt kallesignal</string>
-<string name="p_passcode">Valideringsnøkkel</string>
+<string name="p_passcode">APRS-IS Passcode</string>
 <string name="p_passcode_summary">APRS-IS valideringsnøkkel</string>
 <string name="p_passcode_entry">Skriv inn valideringsnøkkel for ditt kallesignal</string>
 <string name="p_passreq">Request Passcode</string>
