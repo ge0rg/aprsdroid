@@ -1,3 +1,4 @@
+*.swo
 *.swp
 bin
 gen
@@ -5,3 +6,9 @@ local.properties
 tools/proguard.jar
 tools/scala-compiler.jar
 tools/scala-library.jar
+res/layout/mapview.xml
+res/values/translators.xml
+res/values/version.xml
+tags
+translations/
+wiki/
