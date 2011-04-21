@@ -17,12 +17,15 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 	lazy val targetcall = getIntent().getStringExtra("call")
 
 	lazy val storage = StorageDatabase.open(this)
-	lazy val postcursor = storage.getStaPosts(targetcall, "100")
-
 	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
 			
 	lazy val mycall = prefs.getCallSsid()
 	lazy val pla = new PositionListAdapter(this, prefs, mycall, targetcall, PositionListAdapter.SSIDS)
+	lazy val la = new SimpleCursorAdapter(this, R.layout.listitem, 
+			null,
+			Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
+			Array(R.id.listts, R.id.liststatus, R.id.listmessage))
+	lazy val locReceiver = new LocationReceiver2[Cursor](load_cursor, replace_cursor, cancel_cursor)
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
@@ -32,13 +35,10 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 
 		onStartLoading()
 		setListAdapter(pla)
-		startManagingCursor(postcursor)
-		val la = new SimpleCursorAdapter(this, R.layout.listitem, 
-				postcursor,
-				Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
-				Array(R.id.listts, R.id.liststatus, R.id.listmessage))
 		la.setViewBinder(new PostViewBinder())
 		postlist.setAdapter(la)
+		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
+		locReceiver.startTask(null)
 
 		Array(R.id.mapbutton, R.id.qrzcombutton, R.id.aprsfibutton).foreach((id) => {
 				findViewById(id).setOnClickListener(this)
@@ -50,6 +50,8 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 	override def onDestroy() {
 		super.onDestroy()
 		pla.onDestroy()
+		unregisterReceiver(locReceiver)
+		la.changeCursor(null)
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
@@ -95,6 +97,20 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 		case _ =>
 			//status.setText(view.asInstanceOf[Button].getText)
 		}
+	}
+
+	def load_cursor(i : Intent) = {
+		val c = storage.getStaPosts(targetcall, "100")
+		c.getCount()
+		c
+	}
+	def replace_cursor(c : Cursor) {
+		la.changeCursor(c)
+		// do not call onStopLoading, PositionListAdapter takes much longer
+		//onStopLoading()
+	}
+	def cancel_cursor(c : Cursor) {
+		c.close()
 	}
 
 }
