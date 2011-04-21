@@ -100,7 +100,7 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 
 	def replace_cursor(c : Cursor) {
 		changeCursor(c)
-		context.asInstanceOf[Activity].setProgressBarIndeterminateVisibility(false)
+		context.asInstanceOf[LoadingIndicator].onStopLoading()
 	}
 	def cancel_cursor(c : Cursor) {
 		c.close()
