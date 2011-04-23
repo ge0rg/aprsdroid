@@ -9,6 +9,7 @@ import _root_.java.net.{InetAddress, Socket}
 class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "TcpUploader"
 	val hostname = prefs.getString("tcp.server", "euro.aprs2.net")
+	val so_timeout = prefs.getStringInt("tcp.sotimeout", 120)
 	var conn : TcpSocketThread = null
 
 	createConnection()
@@ -59,6 +60,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 			this.synchronized {
 				socket = new Socket(host, port)
 				socket.setKeepAlive(true)
+				socket.setSoTimeout(so_timeout*1000)
 				reader = new BufferedReader(new InputStreamReader(
 						socket.getInputStream()), 256)
 				writer = new PrintWriter(new OutputStreamWriter(
@@ -93,6 +95,10 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 						init_socket()
 					}
 				} catch {
+					case se : java.net.SocketTimeoutException =>
+						Log.i(TAG, "restarting due to timeout")
+						shutdown()
+						init_socket()
 					case e : Exception => Log.d(TAG, "Exception " + e)
 				}
 			}

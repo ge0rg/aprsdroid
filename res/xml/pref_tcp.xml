@@ -36,6 +36,14 @@
 		<intent android:action="android.intent.action.VIEW"
 			android:data="http://www.aprs-is.net/javAPRSFilter.aspx" />
 	</Preference>
+	<EditTextPreference
+		android:key="tcp.sotimeout"
+		android:inputType="number"
+		android:title="@string/p_sotimeout"
+		android:summary="@string/p_sotimeout_summary"
+		android:defaultValue="120"
+		android:dialogTitle="@string/p_sotimeout_entry" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
