@@ -30,7 +30,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			return
 		}
 		if (!adapter.isEnabled()) {
-			service.startActivity(new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE))
+			service.postAbort("Bluetooth not enabled!")
+			return
 		}
 
 		conn = new BtSocketThread(adapter.getRemoteDevice(tncmac))
