@@ -13,6 +13,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	val TAG = "BluetoothTnc"
 	val SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
 
+	val bt_client = prefs.getBoolean("bt.client", true)
 	val tncmac = prefs.getString("bt.mac", null)
 	val tncchannel = prefs.getStringInt("bt.channel", -1)
 	var conn : BtSocketThread = null
@@ -34,7 +35,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			return
 		}
 
-		conn = new BtSocketThread(adapter.getRemoteDevice(tncmac))
+		val tnc = if (bt_client) adapter.getRemoteDevice(tncmac) else null
+		conn = new BtSocketThread(adapter, tnc)
 		conn.start()
 	}
 
@@ -51,7 +53,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		conn.join()
 	}
 
-	class BtSocketThread(tnc : BluetoothDevice)
+	class BtSocketThread(ba : BluetoothAdapter, tnc : BluetoothDevice)
 			extends Thread("APRSdroid Bluetooth connection") {
 		val TAG = "BtSocketThread"
 		var running = false
@@ -65,14 +67,23 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				if (socket != null) {
 					shutdown()
 				}
+				if (tnc == null) {
+					// we are a host
+					Log.d(TAG, "awaiting client connection...")
+					socket = ba.listenUsingRfcommWithServiceRecord("SPP", SPP).accept(-1)
+					Log.d(TAG, "client connected.")
+				} else
 				if (tncchannel == -1) {
+					Log.d(TAG, "Connecting to SPP service...")
 					socket = tnc.createRfcommSocketToServiceRecord(SPP)
+					socket.connect()
 				} else {
+					Log.d(TAG, "Connecting to channel %d...".format(tncchannel))
 					val m = tnc.getClass().getMethod("createRfcommSocket", classOf[Int])
 					socket = m.invoke(tnc, tncchannel.asInstanceOf[AnyRef]).asInstanceOf[BluetoothSocket]
+					socket.connect()
 				}
 
-				socket.connect()
 				reader = new KissReader(socket.getInputStream())
 				writer = new KissWriter(socket.getOutputStream())
 				running = true
