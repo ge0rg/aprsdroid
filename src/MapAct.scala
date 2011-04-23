@@ -24,6 +24,7 @@ class MapAct extends MapActivity with LoadingIndicator {
 	lazy val db = StorageDatabase.open(this)
 	lazy val staoverlay = new StationOverlay(allicons, this, db)
 	lazy val loading = findViewById(R.id.loading).asInstanceOf[TextView]
+	lazy val targetcall = getTargetCall()
 
 	var showObjects = false
 
@@ -75,10 +76,15 @@ class MapAct extends MapActivity with LoadingIndicator {
 		}
 	}
 
-	def animateToCall() {
+	def getTargetCall() : String = {
 		val i = getIntent()
 		if (i != null && i.getStringExtra("call") != null) {
-			val targetcall = i.getStringExtra("call")
+			i.getStringExtra("call")
+		} else ""
+	}
+
+	def animateToCall() {
+		if (targetcall != "") {
 			val cursor = db.getStaPositions(targetcall, "1")
 			if (cursor.getCount() > 0) {
 				cursor.moveToFirst()
@@ -87,9 +93,7 @@ class MapAct extends MapActivity with LoadingIndicator {
 				mapview.getController().animateTo(new GeoPoint(lat, lon))
 			}
 			cursor.close()
-			
 		}
-
 	}
 
 	def onPostLoad() {
@@ -243,8 +247,8 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	def load_stations(i : Intent) : ArrayList[Station] = {
 		val s = new ArrayList[Station]()
 		val age_ts = (System.currentTimeMillis - context.prefs.getShowAge()).toString
-		val filter = if (context.showObjects) "TS > ?" else "ORIGIN IS NULL AND TS > ?"
-		val c = db.getPositions(filter, Array(age_ts), null)
+		val filter = if (context.showObjects) "TS > ? OR CALL=?" else "(ORIGIN IS NULL AND TS > ?) OR CALL=?"
+		val c = db.getPositions(filter, Array(age_ts, context.targetcall), null)
 		c.moveToFirst()
 		var m = new ArrayBuffer[GeoPoint]()
 		while (!c.isAfterLast()) {
