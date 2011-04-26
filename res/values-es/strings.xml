@@ -5,13 +5,13 @@
 <string name="app_prefs">Preferencias de APRSdroid</string>
 <string name="app_map">APRSdroid Map</string>
 <string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Station Info</string>
+<string name="app_sta">Informatcion de station</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
-<string name="wrongpasscode">Your passcode does not match your callsign!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
+<string name="firstrun">¡ Tienes que configurar APRSdroid con tu señal de llamada y clave!</string>
+<string name="wrongpasscode">¡Su clave no coresponde con su señal de llamada!</string>
+<string name="anon_warning">¡Sin clave, su reporte no sera distribuido!</string>
 <string name="mininterval">¡El tiempo mínimo de la actualización es 1 minuto!</string>
-<string name="singlelog">Single Shot</string>
+<string name="singlelog">instantáneo</string>
 <string name="startlog">Iniciar el seguimiento</string>
 <string name="stoplog">Detener el seguimiento</string>
 
@@ -20,20 +20,20 @@
 	You can also change the application preferences from the menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
-<string name="map_track_call">Tracking %s...</string>
+<string name="sta_lastreport">%s ultimo reporte</string>
+<string name="map_track_call">seguimiento</string>
 
-<string name="map_loading">Loading...</string>
+<string name="map_loading">Cargando…</string>
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Station SSIDs</string>
 <string name="sta_history">Station History</string>
-<string name="sta_map">Map</string>
+<string name="sta_map">Mapa</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid Service</string>
+<string name="aprsservice">Servicio de APRSdroid</string>
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">Servicio APRS detenido.</string>
@@ -187,10 +187,15 @@
 <string name="p_filterhelp">Message filter help</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
 
+<string name="p_sotimeout">TCP socket timeout</string>
+<string name="p_sotimeout_summary">Time before resetting the connection</string>
+<string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Aeoris https://launchpad.net/~aeoris
   Fitoschido https://launchpad.net/~fitoschido
   Georg Lukas https://launchpad.net/~ge0rg
+  Miguel https://launchpad.net/~nobody-su
   Ryan Schultz https://launchpad.net/~rschultz82</string>
 
 </resources>

@@ -5,7 +5,7 @@
 <string name="app_prefs">Preferenze APRSdroid</string>
 <string name="app_map">Mappa APRSdroid</string>
 <string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Station Info</string>
+<string name="app_sta">Informazioni Stazione</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Devi conifigurare APRSdroid con il tuo nominativo e la password!</string>
 <string name="wrongpasscode">La password non è corretta!</string>
@@ -21,19 +21,19 @@
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Ultimo Rapporto</string>
-<string name="map_track_call">Tracking %s...</string>
+<string name="map_track_call">Tracciando %s...</string>
 
-<string name="map_loading">Loading...</string>
+<string name="map_loading">Caricamento...</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">Station SSIDs</string>
-<string name="sta_history">Station History</string>
-<string name="sta_map">Map</string>
+<string name="sta_ssids">Stazione SSIDs</string>
+<string name="sta_history">Storico Stazione</string>
+<string name="sta_map">Mappa</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid Service</string>
+<string name="aprsservice">Servizio APRSdroid</string>
 <string name="service_once">Trasmissione APRS in modalità singola trasmissione</string>
 <string name="service_start">Servizio APRS Service attivato. Aggiornamento ogni %1$d minuti, %2$d km</string>
 <string name="service_stop">Servizio APRS fermato.</string>
@@ -54,15 +54,15 @@
 <!-- map view -->
 <string name="map_overlays">Overlays</string>
 <string name="map_satellite">Satellite</string>
-<string name="map_objects">APRS Objects</string>
+<string name="map_objects">Oggetti APRS</string>
 
 <!-- map view -->
-<string name="age">Show last...</string>
-<string name="age_30">30 minutes</string>
-<string name="age_2h">2 hours</string>
-<string name="age_12h">12 hours</string>
-<string name="age_1d">1 day</string>
-<string name="age_2d">2 days</string>
+<string name="age">Mostra ultimo...</string>
+<string name="age_30">30 minuti</string>
+<string name="age_2h">2 ore</string>
+<string name="age_12h">12 ore</string>
+<string name="age_1d">1 giorno</string>
+<string name="age_2d">2 giorni</string>
 
 
 <!-- options menu -->
@@ -140,13 +140,13 @@
 <string name="p_speedbrg_summary">Tieni attivo il GPS solo per rilevare dati più precisi</string>
 <string name="p_netloc">Usa la posizione della rete</string>
 <string name="p_netloc_summary">Acquisisci la posizione attraverso la rete del cellulare</string>
-<string name="p_gps">GPS Precision</string>
+<string name="p_gps">Precisione GPS</string>
 <string name="p_gps_summary">Battery usage vs. position quality</string>
-<string name="p_gps_entry">Please set the GPS Precision</string>
+<string name="p_gps_entry">Seleziona la Precisione GPS perfavore</string>
 <!-- array of GPS precisions -->
-<string name="p_gps_always">High (Always on)</string>
-<string name="p_gps_med">Medium</string>
-<string name="p_gps_low">Low</string>
+<string name="p_gps_always">Alta (Sempre attiva)</string>
+<string name="p_gps_med">Media</string>
+<string name="p_gps_low">Minima</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -167,8 +167,13 @@
 <string name="p_filterhelp">Filtro messaggi di aiuto</string>
 <string name="p_filterhelp_summary">Informazioni Online per i filtri APRS-IS</string>
 
+<string name="p_sotimeout">TCP socket timeout</string>
+<string name="p_sotimeout_summary">Time before resetting the connection</string>
+<string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+
 <string name="translator_credits">Launchpad Contributions:
   IZ5MSM https://launchpad.net/~iz5msm
-  Martino Barbon https://launchpad.net/~martins999</string>
+  Martino Barbon https://launchpad.net/~martins999
+  simone.sandri https://launchpad.net/~lexluxsox</string>
 
 </resources>

@@ -168,6 +168,10 @@
 <string name="p_filterhelp">Message filter help</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
 
+<string name="p_sotimeout">TCP socket timeout</string>
+<string name="p_sotimeout_summary">Time before resetting the connection</string>
+<string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Norbert Varga https://launchpad.net/~nonoo</string>
 
