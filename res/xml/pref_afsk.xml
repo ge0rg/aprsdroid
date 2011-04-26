@@ -13,6 +13,15 @@
 		android:summary="@string/p_aprs_path_summary"
 		android:dialogTitle="@string/p_aprs_path_entry" />
 
+        <EditTextPreference
+                android:key="afsk.prefix"
+		android:inputType="number"
+		android:defaultValue="1000"
+		android:hint="1000"
+		android:title="@string/p_afsk_prefix"
+		android:summary="@string/p_afsk_prefix_summary"
+		android:dialogTitle="@string/p_afsk_prefix_entry" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

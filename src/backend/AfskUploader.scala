@@ -6,7 +6,8 @@ import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 
 class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "AprsAfsk"
-	var FrameLength = 150	//1200Bits = 1sec to open VOX
+	// frame prefix: bytes = milliseconds * baudrate / 8 / 1000
+	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
 	var Digis = prefs.getString("digi_path", "WIDE1-1")
 	
 	def start() {
@@ -27,12 +28,4 @@ class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	def stop() {
 	}
 
-	// Non Interface methods
-	def set_FrameLength(length: Int) = {
-		FrameLength = length
-	}
-
-	def set_Digis(Digipeaters : String) = {
-		Digis = Digipeaters
-	}
 }
