@@ -44,6 +44,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	}
 
 	def stop() {
+		if (conn == null)
+			return
 		conn.shutdown()
 		conn.interrupt()
 		conn.join()
