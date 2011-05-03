@@ -84,6 +84,15 @@ object StorageDatabase {
 		lazy val TABLE_INDEX = "CREATE INDEX idx_position_%s ON position (%s)"
 	}
 
+	object Message {
+		val TABLE = "message"
+		val _ID = "_id"
+		val TS = "ts"
+		val CALL = "call"
+		val MSGID = "msgid"
+		val TEXT = "text"
+	}
+
 	var singleton : StorageDatabase = null
 	def open(context : Context) : StorageDatabase = {
 		if (singleton == null) {
