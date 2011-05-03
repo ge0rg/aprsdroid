@@ -73,6 +73,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 		}
 
 		override def run() {
+			var need_reconnect = false
 			Log.d(TAG, "TcpSocketThread.run()")
 			try {
 				init_socket()
@@ -81,6 +82,11 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 			}
 			while (running) {
 				try {
+					if (need_reconnect) {
+						need_reconnect = false
+						shutdown()
+						init_socket()
+					}
 					Log.d(TAG, "waiting for data...")
 					var line : String = null
 					while (running && { line = reader.readLine(); line != null }) {
@@ -97,8 +103,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 				} catch {
 					case se : java.net.SocketTimeoutException =>
 						Log.i(TAG, "restarting due to timeout")
-						shutdown()
-						init_socket()
+						need_reconnect = true
 					case e : Exception => Log.d(TAG, "Exception " + e)
 				}
 			}
