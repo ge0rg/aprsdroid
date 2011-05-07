@@ -153,6 +153,9 @@
 <string name="p_aprs_path_hint">sito1, sito2, ...</string>
 <string name="p_aprs_path_summary">Sequenza di ripetitori</string>
 <string name="p_aprs_path_entry">Inserisci separato da virgole, i ripetitori che vuoi usare.</string>
+<string name="p_afsk_prefix">Frame Sync Prefix</string>
+<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
+<string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (normalmente su porta 14580) per inviare i dati</string>

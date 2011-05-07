@@ -153,6 +153,9 @@
 <string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
 <string name="p_aprs_path_summary">Séquence des digis</string>
 <string name="p_aprs_path_entry">Entrez le chemin Digi séparé par des virgules</string>
+<string name="p_afsk_prefix">Frame Sync Prefix</string>
+<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
+<string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">Serveur APRS-IS TCP (port 14580) à contacter</string>

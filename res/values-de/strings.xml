@@ -162,6 +162,9 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
 <string name="p_aprs_path_summary">Digipeater-Abfolge</string>
 <string name="p_aprs_path_entry">Digi-Pfad (getrennt durch Kommas) eingeben</string>
+<string name="p_afsk_prefix">Frame-Sync-Präfix</string>
+<string name="p_afsk_prefix_summary">No-Op-Präambel (z.B. für VOX-Steuerung)</string>
+<string name="p_afsk_prefix_entry">Präfix-Zeit eingeben [ms]</string>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP-Server (Port 14580) zum Verbinden</string>
