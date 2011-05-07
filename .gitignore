@@ -10,5 +10,6 @@ res/layout/mapview.xml
 res/values/translators.xml
 res/values/version.xml
 tags
-translations/
+translations/aprsdroid/
+translations/launchpad-*.tar.gz
 wiki/
