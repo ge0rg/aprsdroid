@@ -15,14 +15,14 @@
 
 	<de.duenndns.BluetoothDevicePreference
 		android:key="bt.mac"
-		android:title="Bluetooth Device"
-		android:summary="yup"
+		android:title="TNC Bluetooth Device"
+		android:summary="You need to pair it from the system preferences"
 		android:dialogTitle="choose device" />
         <EditTextPreference
                 android:key="bt.channel"
 		android:inputType="number"
 		android:title="Channel"
-		android:summary="yupfup"
+		android:summary="Usually this is '1'"
 		android:dialogTitle="enter your channel" />
     </PreferenceCategory>
 
