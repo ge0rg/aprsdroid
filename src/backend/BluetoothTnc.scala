@@ -154,8 +154,12 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				ch match {
 				case FEND =>
 					if (buf.length > 0) {
-						Log.d(TAG, "KissReader.readPacket: sending back %s".format(buf.toArray))
-						return new String(buf.toArray)
+						Log.d(TAG, "KissReader.readPacket: sending back %s".format(new String(buf.toArray)))
+						try {
+							return Parser.parseAX25(buf.toArray).toString().trim()
+						} catch {
+							case e => buf.clear()
+						}
 					}
 				case FESC => is.read() match {
 					case TFEND => buf.append(FEND.toByte)
@@ -165,9 +169,10 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				case -1	=> throw new java.io.IOException("KissReader out of data")
 				case 0 =>
 					// hack: ignore 0x00 byte at start of frame, this is the command
-					Log.d(TAG, "KissReader.readPacket: ignoring command byte")
 					if (buf.length != 0)
 						buf.append(ch.toByte)
+					else
+						Log.d(TAG, "KissReader.readPacket: ignoring command byte")
 				case _ =>
 					buf.append(ch.toByte)
 				}
