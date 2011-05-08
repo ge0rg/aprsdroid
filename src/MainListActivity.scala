@@ -38,8 +38,10 @@ class MainListActivity(menuid : Int) extends LoadingListActivity with OnClickLis
 	def setupButtons(running : Boolean) {
 		//singleBtn.setEnabled(!running)
 		if (running) {
+			startstopBtn.getBackground().setColorFilter(0xffffc0c0, PorterDuff.Mode.MULTIPLY)
 			startstopBtn.setText(R.string.stoplog)
 		} else {
+			startstopBtn.getBackground().setColorFilter(0xffc0ffc0, PorterDuff.Mode.MULTIPLY)
 			startstopBtn.setText(R.string.startlog)
 		}
 	}
