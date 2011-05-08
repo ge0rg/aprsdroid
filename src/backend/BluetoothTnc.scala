@@ -97,10 +97,10 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 					}
 				} catch {
 					case e : Exception => 
-						Log.d(TAG, "Exception" + e)
-						Log.d(TAG, "reconnecting in 30s")
+						e.printStackTrace()
+						Log.d(TAG, "reconnecting in 3s")
 						try {
-							Thread.sleep(30*1000)
+							Thread.sleep(3*1000)
 							init_socket()
 						} catch { case _ => }
 				}
