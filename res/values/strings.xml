@@ -130,9 +130,9 @@
 <string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Your symbol for map display</string>
 <string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
-<string name="p_status">Status message</string>
+<string name="p_status">Comment field</string>
 <string name="p_status_summary">The text after your coordinates</string>
-<string name="p_status_entry">Enter your status message</string>
+<string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
