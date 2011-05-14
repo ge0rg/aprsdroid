@@ -57,6 +57,25 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		}
 	}
 
+	def saveFirstRun(call : String, passcode : String) {
+		val pe = prefs.prefs.edit()
+		call.split("-") match {
+		case Array(callsign) => 
+			pe.putString("callsign", callsign)
+		case Array(callsign, ssid) =>
+			pe.putString("callsign", callsign)
+			pe.putString("ssid", ssid)
+		case _ =>
+			Log.d("saveFirstRun", "could not split callsign")
+			ctx.finish()
+			return
+		}
+		if (passcode != "")
+			pe.putString("passcode", passcode)
+		pe.putBoolean("firstrun", false)
+		pe.commit()
+	}
+
 	def firstRunDialog() = {
 			val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE)
 					.asInstanceOf[LayoutInflater]
@@ -70,9 +89,8 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 					override def onClick(d : DialogInterface, which : Int) {
 						which match {
 							case DialogInterface.BUTTON_POSITIVE =>
-							prefs.prefs.edit().putString("callsign", fr_call.getText().toString())
-									.putString("passcode", fr_pass.getText().toString())
-									.putBoolean("firstrun", false).commit();
+							saveFirstRun(fr_call.getText().toString(),
+								fr_pass.getText().toString())
 							checkConfig()
 							case _ =>
 							ctx.finish()
