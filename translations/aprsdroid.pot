@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: APRSdroid 0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-14 20:53+0200\n"
+"POT-Creation-Date: 2011-05-15 01:27+0200\n"
 "PO-Revision-Date: 2010-03-17 18:33+0100\n"
 "Last-Translator: Georg Lukas <georg@op-co.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -290,27 +290,27 @@ msgid "Enter the SSID for your station"
 msgstr ""
 
 #: res/values/strings.xml:113(item)
-msgid "(none)"
+msgid "(none) Primary Station"
 msgstr ""
 
 #: res/values/strings.xml:114(item)
-msgid "1: Digipeater (home/WX)"
+msgid "1: Generic additional station"
 msgstr ""
 
 #: res/values/strings.xml:115(item)
-msgid "2: Digipeater 70cm"
+msgid "2: Generic additional station"
 msgstr ""
 
 #: res/values/strings.xml:116(item)
-msgid "3: Digipeater"
+msgid "3: Generic additional station"
 msgstr ""
 
 #: res/values/strings.xml:117(item)
-msgid "4: HF to VHF gateway"
+msgid "4: Generic additional station"
 msgstr ""
 
 #: res/values/strings.xml:118(item)
-msgid "5: IGate (not home station)"
+msgid "5: Other network (D-Star, 3G)"
 msgstr ""
 
 #: res/values/strings.xml:119(item)
@@ -334,15 +334,15 @@ msgid "10: APRS-IS (no radio)"
 msgstr ""
 
 #: res/values/strings.xml:124(item)
-msgid "11: Balloon / APRStouch-tone"
+msgid "11: Balloon, aircraft, spacecraft"
 msgstr ""
 
 #: res/values/strings.xml:125(item)
-msgid "12: Portable (laptop/camp site)"
+msgid "12: APRStt, DTMF, ... (one way)"
 msgstr ""
 
 #: res/values/strings.xml:126(item)
-msgid "13: ..."
+msgid "13: Weather station"
 msgstr ""
 
 #: res/values/strings.xml:127(item)
@@ -350,7 +350,7 @@ msgid "14: Freight vehicle"
 msgstr ""
 
 #: res/values/strings.xml:128(item)
-msgid "15: HF Station"
+msgid "15: Generic additional station"
 msgstr ""
 
 #: res/values/strings.xml:130(string)
