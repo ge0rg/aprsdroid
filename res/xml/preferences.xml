@@ -8,8 +8,9 @@
         <EditTextPreference
                 android:key="callsign"
 		android:inputType="textCapCharacters"
-		android:title="@string/p_callsign"
+		android:title="@string/p_callsign_nossid"
 		android:summary="@string/p_callsign_summary"
+		android:hint="@string/p_callsign_nossid"
 		android:dialogTitle="@string/p_callsign_entry" />
 
         <EditTextPreference

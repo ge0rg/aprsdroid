@@ -36,7 +36,7 @@
 			android:layout_marginRight="10sp"
 			android:singleLine="true"
 			android:inputType="textCapCharacters"
-			android:hint="@string/p_callsign_nossid"
+			android:hint="@string/p_callsign"
 			/>
 		<EditText
 			android:id="@+id/passcode"
