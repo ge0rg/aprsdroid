@@ -18,6 +18,7 @@ abstract class ServiceNotifier {
 		n.when = System.currentTimeMillis
 		n.flags |= Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR
 		val i = new Intent(ctx, classOf[APRSdroid])
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 		n.contentIntent = PendingIntent.getActivity(ctx, 0, i, 0)
 		val appname = ctx.getResources().getString(R.string.app_name)
 		n.setLatestEventInfo(ctx, appname, status, n.contentIntent)

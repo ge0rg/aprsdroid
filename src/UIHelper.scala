@@ -110,6 +110,11 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		ctx.finish()
 	}
 
+	// store the activity name for next APRSdroid launch
+	def makeLaunchActivity(actname : String) {
+		prefs.prefs.edit().putString("activity", actname).commit()
+	}
+
 	def checkConfig() : Boolean = {
 		val callsign = prefs.getCallsign()
 		val passcode = prefs.getPasscode()
@@ -198,7 +203,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			ctx.startActivity(new Intent(ctx, classOf[MapAct]));
 			true
 		case R.id.log =>
-			ctx.startActivity(new Intent(ctx, classOf[APRSdroid]));
+			ctx.startActivity(new Intent(ctx, classOf[LogActivity]));
 			true
 		// toggle service
 		case R.id.startstopbtn =>

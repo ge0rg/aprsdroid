@@ -5,7 +5,7 @@ import _root_.android.view.View.OnClickListener
 import _root_.android.view.{Menu, MenuItem, View, Window}
 import _root_.android.widget.Button
 
-class MainListActivity(menuid : Int) extends LoadingListActivity with OnClickListener {
+class MainListActivity(actname : String, menuid : Int) extends LoadingListActivity with OnClickListener {
 	lazy val prefs = new PrefsWrapper(this)
 	lazy val uihelper = new UIHelper(this, menuid, prefs)
 
@@ -23,6 +23,7 @@ class MainListActivity(menuid : Int) extends LoadingListActivity with OnClickLis
 		if (!uihelper.checkConfig())
 			return
 		setupButtons(AprsService.running)
+		uihelper.makeLaunchActivity(actname)
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {

@@ -17,7 +17,7 @@ import _root_.android.widget.TextView
 import _root_.android.widget.Toast
 import _root_.java.util.Date
 
-class APRSdroid extends MainListActivity(R.id.log) {
+class LogActivity extends MainListActivity("log", R.id.log) {
 	val TAG = "APRSdroid"
 
 	lazy val storage = StorageDatabase.open(this)
@@ -54,7 +54,7 @@ class APRSdroid extends MainListActivity(R.id.log) {
 				if (status != null) {
 					// extract call sign
 					val call = message.split(">")(0)
-					startActivity(new Intent(APRSdroid.this, classOf[StationActivity]).putExtra("call", call));
+					startActivity(new Intent(LogActivity.this, classOf[StationActivity]).putExtra("call", call));
 				}
 			}
 		});

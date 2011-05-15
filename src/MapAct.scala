@@ -45,6 +45,12 @@ class MapAct extends MapActivity with LoadingIndicator {
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 
 	}
+	override def onResume() {
+		super.onResume()
+		// only make it default if not tracking
+		if (targetcall == "")
+			uihelper.makeLaunchActivity("map")
+	}
 
 	override def onDestroy() {
 		super.onDestroy()

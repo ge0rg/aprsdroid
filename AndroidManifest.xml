@@ -22,7 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+	<activity android:name=".LogActivity" android:label="@string/app_name"
+		android:launchMode="singleTop"
+		android:configChanges="orientation|keyboardHidden"
+		/>
 	<activity android:name=".HubActivity" android:label="@string/app_hub"
+		android:launchMode="singleTop"
 		android:configChanges="orientation|keyboardHidden"
 		/>
 	<activity android:name=".StationActivity" android:label="@string/app_sta"
@@ -31,6 +36,7 @@
 	<activity android:name=".PrefsAct" android:label="@string/app_prefs" />
 	<activity android:name=".BackendPrefs" android:label="@string/app_prefs" />
         <activity android:name=".MapAct" android:label="@string/app_map"
+		android:launchMode="singleTop"
 		android:configChanges="orientation|keyboardHidden"
 		android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter>
