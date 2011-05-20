@@ -1,10 +1,26 @@
 package org.aprsdroid.app
 
 import _root_.android.database.Cursor
+import _root_.android.content.Context
 import _root_.android.graphics.Typeface
 import _root_.android.view.View
+import _root_.android.widget.SimpleCursorAdapter
 import _root_.android.widget.SimpleCursorAdapter.ViewBinder
 import _root_.android.widget.TextView
+
+object PostListAdapter {
+	val LIST_FROM = Array("TSS", StorageDatabase.Post.STATUS,
+		StorageDatabase.Post.MESSAGE)
+	val LIST_TO = Array(R.id.listts, R.id.liststatus, R.id.listmessage)
+}
+
+class PostListAdapter(context : Context)
+		extends SimpleCursorAdapter(context, R.layout.listitem,
+			null, PostListAdapter.LIST_FROM, PostListAdapter.LIST_TO) {
+
+	setViewBinder(new PostViewBinder())
+}
+
 
 class PostViewBinder extends ViewBinder {
 

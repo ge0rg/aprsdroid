@@ -25,10 +25,7 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 	lazy val postlist = getListView()
 
 	lazy val locReceiver = new LocationReceiver2[Cursor](load_cursor, replace_cursor, cancel_cursor)
-	lazy val la = new SimpleCursorAdapter(this, R.layout.listitem, 
-				null,
-				Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
-				Array(R.id.listts, R.id.liststatus, R.id.listmessage))
+	lazy val la = new PostListAdapter(this)
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
@@ -40,7 +37,6 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 
 		onStartLoading()
 
-		la.setViewBinder(new PostViewBinder())
 		la.setFilterQueryProvider(storage.getPostFilter("100"))
 
 		postlist.setAdapter(la)

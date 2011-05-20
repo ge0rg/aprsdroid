@@ -21,10 +21,7 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 			
 	lazy val mycall = prefs.getCallSsid()
 	lazy val pla = new PositionListAdapter(this, prefs, mycall, targetcall, PositionListAdapter.SSIDS)
-	lazy val la = new SimpleCursorAdapter(this, R.layout.listitem, 
-			null,
-			Array("TSS", StorageDatabase.Post.STATUS, StorageDatabase.Post.MESSAGE),
-			Array(R.id.listts, R.id.liststatus, R.id.listmessage))
+	lazy val la = new PostListAdapter(this)
 	lazy val locReceiver = new LocationReceiver2[Cursor](load_cursor, replace_cursor, cancel_cursor)
 
 	override def onCreate(savedInstanceState: Bundle) {
@@ -35,7 +32,6 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 
 		onStartLoading()
 		setListAdapter(pla)
-		la.setViewBinder(new PostViewBinder())
 		postlist.setAdapter(la)
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 		locReceiver.startTask(null)
