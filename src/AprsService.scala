@@ -183,12 +183,12 @@ class AprsService extends Service with LocationListener {
 	override def onLocationChanged(location : Location) {
 		val upd_int = prefs.getStringInt("interval", 10) * 60000
 		val upd_dist = prefs.getStringInt("distance", 10) * 1000
-		//Log.d(TAG, "onLocationChanged: n=" + location)
-		//Log.d(TAG, "onLocationChanged: l=" + lastLoc)
+		Log.d(TAG, "onLocationChanged: n=" + location)
+		Log.d(TAG, "onLocationChanged: l=" + lastLoc)
 		if (lastLoc != null &&
 		    (location.getTime - lastLoc.getTime < (upd_int  - getGpsInterval()) ||
 		     location.distanceTo(lastLoc) < upd_dist)) {
-			//Log.d(TAG, "onLocationChanged: ignoring premature location")
+			Log.d(TAG, "onLocationChanged: ignoring premature location")
 			return
 		}
 		// check if we need to go fast lane
