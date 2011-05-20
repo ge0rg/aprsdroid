@@ -2,7 +2,7 @@ package org.aprsdroid.app
 
 import _root_.android.graphics.PorterDuff
 import _root_.android.view.View.OnClickListener
-import _root_.android.view.{Menu, MenuItem, View, Window}
+import _root_.android.view.{ContextMenu, Menu, MenuItem, View, Window}
 import _root_.android.widget.Button
 
 class MainListActivity(actname : String, menuid : Int) extends LoadingListActivity with OnClickListener {
@@ -15,7 +15,7 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 	def onContentViewLoaded() {
 		singleBtn.setOnClickListener(this);
 		startstopBtn.setOnClickListener(this);
-
+		registerForContextMenu(getListView())
 	}
 
 	override def onResume() {
@@ -63,6 +63,14 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 			setupButtons(!is_running)
 		}
 	}
+
+	override def onCreateContextMenu(menu : ContextMenu, v : View,
+			menuInfo : ContextMenu.ContextMenuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo)
+		uihelper.onCreateContextMenu(menu, v, menuInfo)
+	}
+	override def onContextItemSelected(item : MenuItem) =
+		uihelper.contextItemAction(item)
 
 	override def onStopLoading() {
 		super.onStopLoading()
