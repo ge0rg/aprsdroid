@@ -10,8 +10,7 @@ import _root_.android.preference.PreferenceManager
 import _root_.java.text.SimpleDateFormat
 import _root_.android.util.Log
 import _root_.android.view.View
-import _root_.android.widget.AdapterView
-import _root_.android.widget.AdapterView.OnItemClickListener
+import _root_.android.widget.ListView
 import _root_.android.widget.SimpleCursorAdapter
 import _root_.android.widget.TextView
 import _root_.android.widget.Toast
@@ -46,18 +45,6 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 
 		postlist.setAdapter(la)
 		postlist.setTextFilterEnabled(true)
-		postlist.setOnItemClickListener(new OnItemClickListener() {
-			override def onItemClick(parent : AdapterView[_], view : View, position : Int, id : Long) {
-				// When clicked, show a toast with the TextView text
-				val (ts, status, message) = storage.getSinglePost("_ID = ?", Array(id.toString()))
-				Log.d(TAG, "onItemClick: %s: %s".format(status, message))
-				if (status != null) {
-					// extract call sign
-					val call = message.split(">")(0)
-					startActivity(new Intent(LogActivity.this, classOf[StationActivity]).putExtra("call", call));
-				}
-			}
-		});
 	}
 
 	override def onResume() {
@@ -76,6 +63,18 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 	override def onDestroy() {
 		super.onDestroy()
 		la.changeCursor(null)
+	}
+
+	override def onListItemClick(l : ListView, v : View, position : Int, id : Long) {
+		import StorageDatabase.Post._
+		//super.onListItemClick(l, v, position, id)
+		val c = getListView().getItemAtPosition(position).asInstanceOf[Cursor]
+		val t = c.getInt(COLUMN_TYPE)
+		if (t != TYPE_POST && t != TYPE_INCMG)
+			return
+		val call = c.getString(COLUMN_MESSAGE).split(">")(0)
+		Log.d(TAG, "onListItemClick: %s".format(call))
+		uihelper.openDetails(call)
 	}
 
 	def load_cursor(i : Intent) = {
