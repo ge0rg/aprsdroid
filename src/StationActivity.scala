@@ -83,20 +83,7 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 
 	// button actions
 	override def onClick(view : View) {
-		view.getId match {
-		case R.id.mapbutton =>
-			uihelper.trackOnMap(targetcall)
-		case R.id.aprsfibutton =>
-			val url = "http://aprs.fi/?call=%s".format(targetcall)
-			startActivity(new Intent(Intent.ACTION_VIEW,
-				Uri.parse(url)))
-		case R.id.qrzcombutton =>
-			val url = "http://qrz.com/db/%s".format(targetcall.split("[- ]+")(0))
-			startActivity(new Intent(Intent.ACTION_VIEW,
-				Uri.parse(url)))
-		case _ =>
-			//status.setText(view.asInstanceOf[Button].getText)
-		}
+		uihelper.callsignAction(view.getId, targetcall)
 	}
 
 	def load_cursor(i : Intent) = {
