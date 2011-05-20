@@ -85,6 +85,19 @@ object StorageDatabase {
 		}
 		singleton
 	}
+
+	def cursor2call(c : Cursor) : String = {
+		val msgidx = c.getColumnIndex(Post.MESSAGE)
+		val callidx = c.getColumnIndex(Position.CALL)
+		if (msgidx != -1 && callidx == -1) { // Post table
+			val t = c.getInt(Post.COLUMN_TYPE)
+			if (t == Post.TYPE_POST || t == Post.TYPE_INCMG)
+				c.getString(msgidx).split(">")(0)
+			else
+				null
+		} else
+			c.getString(Position.COLUMN_CALL)
+	}
 }
 
 class StorageDatabase(context : Context) extends
