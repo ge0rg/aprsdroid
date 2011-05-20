@@ -1,12 +1,13 @@
 package org.aprsdroid.app
 // this class is a hack containing all the common UI code for different Activity subclasses
 
-import _root_.android.app.Activity
+import _root_.android.app.{Activity, ListActivity}
 import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
 import _root_.android.net.Uri
 import _root_.android.util.Log
-import _root_.android.view.{LayoutInflater, Menu, MenuItem, View}
+import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View}
+import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 import _root_.android.widget.{EditText, Toast}
 
 class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
@@ -228,6 +229,50 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		case _ => false
 		}
 	}
+	
+	def onCreateContextMenu(menu : ContextMenu, v : View,
+			menuInfo : ContextMenu.ContextMenuInfo) {
+		val call = menuInfoCall(menuInfo)
+		if (call == null)
+			return
+		ctx.getMenuInflater().inflate(R.menu.context_call, menu)
+		menu.setHeaderTitle(call)
+	}
+	def menuInfoCall(menuInfo : ContextMenu.ContextMenuInfo) : String = {
+		val i = menuInfo.asInstanceOf[AdapterContextMenuInfo]
+		// a listview with a database backend gives out a cursor :D
+		val c = ctx.asInstanceOf[ListActivity].getListView()
+			.getItemAtPosition(i.position).asInstanceOf[android.database.Cursor]
+		StorageDatabase.cursor2call(c)
+	}
+
+	def callsignAction(id : Int, targetcall : String) : Boolean = {
+		id match {
+		case R.id.details =>
+			ctx.startActivity(new Intent(ctx, classOf[StationActivity]).putExtra("call", targetcall));
+			true
+		case R.id.mapbutton =>
+			trackOnMap(targetcall)
+			true
+		case R.id.aprsfibutton =>
+			val url = "http://aprs.fi/?call=%s".format(targetcall)
+			ctx.startActivity(new Intent(Intent.ACTION_VIEW,
+				Uri.parse(url)))
+			true
+		case R.id.qrzcombutton =>
+			val url = "http://qrz.com/db/%s".format(targetcall.split("[- ]+")(0))
+			ctx.startActivity(new Intent(Intent.ACTION_VIEW,
+				Uri.parse(url)))
+			true
+		case _ =>
+			false
+		}
+	}
+	def contextItemAction(item : MenuItem) : Boolean = {
+		val targetcall = menuInfoCall(item.getMenuInfo)
+		callsignAction(item.getItemId(), targetcall)
+	}
+
 
 	class StorageCleaner(storage : StorageDatabase) extends MyAsyncTask[Unit, Unit] {
 		override def doInBackground1(params : Array[String]) {
