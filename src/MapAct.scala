@@ -246,7 +246,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	override def onTap(index : Int) : Boolean = {
 		val s = stations(index)
 		Log.d(TAG, "user clicked on " + s.call)
-		context.startActivity(new Intent(context, classOf[StationActivity]).putExtra("call", s.call));
+		context.uihelper.openDetails(s.call)
 		true
 	}
 

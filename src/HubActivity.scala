@@ -35,9 +35,7 @@ class HubActivity extends MainListActivity("hub", R.id.hub) {
 		//super.onListItemClick(l, v, position, id)
 		val c = getListView().getItemAtPosition(position).asInstanceOf[Cursor]
 		val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
-		Log.d("HubActivity", "onListItemClick: %s".format(call))
-
-		startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call));
+		uihelper.openDetails(call)
 	}
 
 }

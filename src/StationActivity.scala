@@ -76,7 +76,7 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 			// click on own callssid
 			uihelper.trackOnMap(call)
 		} else {
-			startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call));
+			uihelper.openDetails(call)
 			finish()
 		}
 	}

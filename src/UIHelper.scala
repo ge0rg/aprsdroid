@@ -20,6 +20,10 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		ctx.asInstanceOf[LoadingIndicator].onStartLoading()
 	}
 
+	def openDetails(call : String) {
+		ctx.startActivity(new Intent(ctx, classOf[StationActivity]).putExtra("call", call))
+	}
+
 	def trackOnMap(call : String) {
 		val text = ctx.getString(R.string.map_track_call, call)
 		Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show()
@@ -249,7 +253,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 	def callsignAction(id : Int, targetcall : String) : Boolean = {
 		id match {
 		case R.id.details =>
-			ctx.startActivity(new Intent(ctx, classOf[StationActivity]).putExtra("call", targetcall));
+			openDetails(targetcall)
 			true
 		case R.id.mapbutton =>
 			trackOnMap(targetcall)
