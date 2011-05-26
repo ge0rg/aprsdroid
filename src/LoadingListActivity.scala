@@ -4,7 +4,8 @@ import _root_.android.app.ListActivity
 import _root_.android.os.Bundle
 import _root_.android.view.Window
 
-class LoadingListActivity extends ListActivity with LoadingIndicator {
+class LoadingListActivity extends ListActivity
+		with UIHelper {
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)

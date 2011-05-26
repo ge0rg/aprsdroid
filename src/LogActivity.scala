@@ -70,7 +70,7 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 			return
 		val call = c.getString(COLUMN_MESSAGE).split(">")(0)
 		Log.d(TAG, "onListItemClick: %s".format(call))
-		uihelper.openDetails(call)
+		openDetails(call)
 	}
 
 	def load_cursor(i : Intent) = {

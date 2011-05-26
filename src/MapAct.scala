@@ -14,11 +14,10 @@ import _root_.java.util.ArrayList
 // to make scala-style iterating over arraylist possible
 import scala.collection.JavaConversions._
 
-class MapAct extends MapActivity with LoadingIndicator {
+class MapAct extends MapActivity with UIHelper {
 	val TAG = "MapAct"
 
-	lazy val prefs = new PrefsWrapper(this)
-	lazy val uihelper = new UIHelper(this, R.id.map, prefs)
+	menu_id = R.id.map
 	lazy val mapview = findViewById(R.id.mapview).asInstanceOf[MapView]
 	lazy val allicons = this.getResources().getDrawable(R.drawable.allicons)
 	lazy val db = StorageDatabase.open(this)
@@ -49,7 +48,7 @@ class MapAct extends MapActivity with LoadingIndicator {
 		super.onResume()
 		// only make it default if not tracking
 		if (targetcall == "")
-			uihelper.makeLaunchActivity("map")
+			makeLaunchActivity("map")
 	}
 
 	override def onDestroy() {
@@ -62,7 +61,6 @@ class MapAct extends MapActivity with LoadingIndicator {
 		getMenuInflater().inflate(R.menu.options, menu);
 		true
 	}
-	override def onPrepareOptionsMenu(menu : Menu) = uihelper.onPrepareOptionsMenu(menu)
 
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
@@ -78,7 +76,7 @@ class MapAct extends MapActivity with LoadingIndicator {
 			mi.setChecked(newState)
 			mapview.setSatellite(newState)
 			true
-		case _ => uihelper.optionsItemAction(mi)
+		case _ => super.onOptionsItemSelected(mi)
 		}
 	}
 
@@ -246,7 +244,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	override def onTap(index : Int) : Boolean = {
 		val s = stations(index)
 		Log.d(TAG, "user clicked on " + s.call)
-		context.uihelper.openDetails(s.call)
+		context.openDetails(s.call)
 		true
 	}
 

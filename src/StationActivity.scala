@@ -10,10 +10,8 @@ import _root_.android.view.{Menu, MenuItem, View, Window}
 import _root_.android.view.View.OnClickListener
 import _root_.android.widget.{ListView,SimpleCursorAdapter}
 
-class StationActivity extends LoadingListActivity with OnClickListener {
-	lazy val prefs = new PrefsWrapper(this)
-	lazy val uihelper = new UIHelper(this, -1, prefs)
-
+class StationActivity extends LoadingListActivity
+		with OnClickListener {
 	lazy val targetcall = getIntent().getStringExtra("call")
 
 	lazy val storage = StorageDatabase.open(this)
@@ -55,13 +53,6 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 		true
 	}
 
-	override def onPrepareOptionsMenu(menu : Menu) = uihelper.onPrepareOptionsMenu(menu)
-
-	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
-		uihelper.optionsItemAction(mi)
-	}
-
-
 	override def onListItemClick(l : ListView, v : View, position : Int, id : Long) {
 		//super.onListItemClick(l, v, position, id)
 		val c = getListView().getItemAtPosition(position).asInstanceOf[Cursor]
@@ -70,16 +61,16 @@ class StationActivity extends LoadingListActivity with OnClickListener {
 
 		if (targetcall == call) {
 			// click on own callssid
-			uihelper.trackOnMap(call)
+			trackOnMap(call)
 		} else {
-			uihelper.openDetails(call)
+			openDetails(call)
 			finish()
 		}
 	}
 
 	// button actions
 	override def onClick(view : View) {
-		uihelper.callsignAction(view.getId, targetcall)
+		callsignAction(view.getId, targetcall)
 	}
 
 	def load_cursor(i : Intent) = {

@@ -10,33 +10,32 @@ import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 import _root_.android.widget.{EditText, Toast}
 
-class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
-	extends DialogInterface.OnClickListener 
-	   with DialogInterface.OnCancelListener {
+trait UIHelper extends Activity
+		with LoadingIndicator
+		with DialogInterface.OnClickListener 
+		with DialogInterface.OnCancelListener {
 
+	var menu_id : Int = -1
+	lazy val prefs = new PrefsWrapper(this)
 	var openedPrefs = false
 
-	def onStartLoading() {
-		ctx.asInstanceOf[LoadingIndicator].onStartLoading()
-	}
-
 	def openDetails(call : String) {
-		ctx.startActivity(new Intent(ctx, classOf[StationActivity]).putExtra("call", call))
+		startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call))
 	}
 
 	def trackOnMap(call : String) {
-		val text = ctx.getString(R.string.map_track_call, call)
-		Toast.makeText(ctx, text, Toast.LENGTH_SHORT).show()
-		ctx.startActivity(new Intent(ctx, classOf[MapAct]).putExtra("call", call))
+		val text = getString(R.string.map_track_call, call)
+		Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
+		startActivity(new Intent(this, classOf[MapAct]).putExtra("call", call))
 	}
 
 	def openPrefs(toastId : Int) {
 		if (openedPrefs) {
 			// only open prefs once, exit app afterwards
-			ctx.finish()
+			finish()
 		} else {
-			ctx.startActivity(new Intent(ctx, classOf[PrefsAct]));
-			Toast.makeText(ctx, toastId, Toast.LENGTH_SHORT).show()
+			startActivity(new Intent(this, classOf[PrefsAct]));
+			Toast.makeText(this, toastId, Toast.LENGTH_SHORT).show()
 			openedPrefs = true
 		}
 	}
@@ -45,7 +44,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		import Backend._
 		if ((defaultBackendInfo(prefs).need_passcode == PASSCODE_OPTIONAL) &&
 				!AprsPacket.passcodeAllowed(call, pass, false))
-			Toast.makeText(ctx, R.string.anon_warning, Toast.LENGTH_LONG).show()
+			Toast.makeText(this, R.string.anon_warning, Toast.LENGTH_LONG).show()
 	}
 
 
@@ -72,7 +71,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			pe.putString("ssid", ssid)
 		case _ =>
 			Log.d("saveFirstRun", "could not split callsign")
-			ctx.finish()
+			finish()
 			return
 		}
 		if (passcode != "")
@@ -82,12 +81,12 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 	}
 
 	def firstRunDialog() = {
-			val inflater = ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE)
+			val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE)
 					.asInstanceOf[LayoutInflater]
 			val fr_view = inflater.inflate(R.layout.firstrunview, null, false)
 			val fr_call = fr_view.findViewById(R.id.callsign).asInstanceOf[EditText]
 			val fr_pass = fr_view.findViewById(R.id.passcode).asInstanceOf[EditText]
-			new AlertDialog.Builder(ctx).setTitle(ctx.getString(R.string.fr_title))
+			new AlertDialog.Builder(this).setTitle(getString(R.string.fr_title))
 				.setView(fr_view)
 				.setIcon(android.R.drawable.ic_dialog_info)
 				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -98,21 +97,21 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 								fr_pass.getText().toString())
 							checkConfig()
 							case _ =>
-							ctx.finish()
+							finish()
 						}
 					}})
-				.setNeutralButton(R.string.p_passreq, new UrlOpener(ctx, ctx.getString(R.string.passcode_url)))
+				.setNeutralButton(R.string.p_passreq, new UrlOpener(this, getString(R.string.passcode_url)))
 				.setNegativeButton(android.R.string.cancel, this)
 				.setOnCancelListener(this)
 				.create.show
 	}
 	// DialogInterface.OnClickListener
 	override def onClick(d : DialogInterface, which : Int) {
-		ctx.finish()
+		finish()
 	}
 	// DialogInterface.OnCancelListener
 	override def onCancel(d : DialogInterface) {
-		ctx.finish()
+		finish()
 	}
 
 	// store the activity name for next APRSdroid launch
@@ -140,29 +139,29 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 	}
 
 	def aboutDialog() {
-		val pi = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), 0)
-		val title = ctx.getString(R.string.ad_title, pi.versionName);
-		val inflater = ctx.getLayoutInflater()
+		val pi = getPackageManager().getPackageInfo(this.getPackageName(), 0)
+		val title = getString(R.string.ad_title, pi.versionName);
+		val inflater = getLayoutInflater()
 		val aboutview = inflater.inflate(R.layout.aboutview, null)
-		new AlertDialog.Builder(ctx).setTitle(title)
+		new AlertDialog.Builder(this).setTitle(title)
 			.setView(aboutview)
 			.setIcon(android.R.drawable.ic_dialog_info)
 			.setPositiveButton(android.R.string.ok, null)
-			.setNeutralButton(R.string.ad_homepage, new UrlOpener(ctx, "http://aprsdroid.org/"))
+			.setNeutralButton(R.string.ad_homepage, new UrlOpener(this, "http://aprsdroid.org/"))
 			.create.show
 	}
 
 	def ageDialog() {
-		val minutes = ctx.getResources().getStringArray(R.array.age_minutes)
+		val minutes = getResources().getStringArray(R.array.age_minutes)
 		val selected = minutes.indexOf(prefs.getString("show_age", "30"))
 
-		new AlertDialog.Builder(ctx).setTitle(ctx.getString(R.string.age))
+		new AlertDialog.Builder(this).setTitle(getString(R.string.age))
 			.setSingleChoiceItems(R.array.ages, selected, new DialogInterface.OnClickListener() {
 					override def onClick(d : DialogInterface, which : Int) {
 						Log.d("onClick", "clicked on: " + d + " " + which)
-						val min = ctx.getResources().getStringArray(R.array.age_minutes)(which)
+						val min = getResources().getStringArray(R.array.age_minutes)(which)
 						prefs.prefs.edit().putString("show_age", min).commit()
-						ctx.sendBroadcast(new Intent(AprsService.UPDATE))
+						sendBroadcast(new Intent(AprsService.UPDATE))
 						onStartLoading()
 						d.dismiss()
 					}})
@@ -171,7 +170,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			.create.show
 	}
 
-	def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+	abstract override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
 		val mi = menu.findItem(R.id.startstopbtn)
 		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
 		mi.setIcon(if (AprsService.running) android.R.drawable.ic_menu_close_clear_cancel  else android.R.drawable.ic_menu_compass)
@@ -185,14 +184,14 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		true
 	}
 
-	def optionsItemAction(mi : MenuItem) : Boolean = {
+	abstract override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
 		case R.id.preferences =>
-			ctx.startActivity(new Intent(ctx, classOf[PrefsAct]));
+			startActivity(new Intent(this, classOf[PrefsAct]));
 			true
 		case R.id.clear =>
 			onStartLoading()
-			new StorageCleaner(StorageDatabase.open(ctx)).execute()
+			new StorageCleaner(StorageDatabase.open(this)).execute()
 			true
 		case R.id.about =>
 			aboutDialog()
@@ -202,50 +201,51 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			true
 		// switch between activities
 		case R.id.hub =>
-			ctx.startActivity(new Intent(ctx, classOf[HubActivity]));
+			startActivity(new Intent(this, classOf[HubActivity]));
 			true
 		case R.id.map =>
-			ctx.startActivity(new Intent(ctx, classOf[MapAct]));
+			startActivity(new Intent(this, classOf[MapAct]));
 			true
 		case R.id.log =>
-			ctx.startActivity(new Intent(ctx, classOf[LogActivity]));
+			startActivity(new Intent(this, classOf[LogActivity]));
 			true
 		// toggle service
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
 				passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
-				ctx.startService(AprsService.intent(ctx, AprsService.SERVICE))
+				startService(AprsService.intent(this, AprsService.SERVICE))
 			} else {
-				ctx.stopService(AprsService.intent(ctx, AprsService.SERVICE))
+				stopService(AprsService.intent(this, AprsService.SERVICE))
 			}
 			true
 		case R.id.singlebtn =>
 			passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
-			ctx.startService(AprsService.intent(ctx, AprsService.SERVICE_ONCE))
+			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 			true
 		// quit the app
 		//case R.id.quit =>
 		//	// XXX deprecated!
-		//	ctx.stopService(AprsService.intent(ctx, AprsService.SERVICE))
-		//	ctx.finish();
+		//	stopService(AprsService.intent(this, AprsService.SERVICE))
+		//	finish();
 		//	true
 		case _ => false
 		}
 	}
 	
-	def onCreateContextMenu(menu : ContextMenu, v : View,
+	abstract override def onCreateContextMenu(menu : ContextMenu, v : View,
 			menuInfo : ContextMenu.ContextMenuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo)
 		val call = menuInfoCall(menuInfo)
 		if (call == null)
 			return
-		ctx.getMenuInflater().inflate(R.menu.context_call, menu)
+		getMenuInflater().inflate(R.menu.context_call, menu)
 		menu.setHeaderTitle(call)
 	}
 	def menuInfoCall(menuInfo : ContextMenu.ContextMenuInfo) : String = {
 		val i = menuInfo.asInstanceOf[AdapterContextMenuInfo]
 		// a listview with a database backend gives out a cursor :D
-		val c = ctx.asInstanceOf[ListActivity].getListView()
+		val c = asInstanceOf[ListActivity].getListView()
 			.getItemAtPosition(i.position).asInstanceOf[android.database.Cursor]
 		StorageDatabase.cursor2call(c)
 	}
@@ -260,12 +260,12 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 			true
 		case R.id.aprsfibutton =>
 			val url = "http://aprs.fi/?call=%s".format(targetcall)
-			ctx.startActivity(new Intent(Intent.ACTION_VIEW,
+			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
 			true
 		case R.id.qrzcombutton =>
 			val url = "http://qrz.com/db/%s".format(targetcall.split("[- ]+")(0))
-			ctx.startActivity(new Intent(Intent.ACTION_VIEW,
+			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
 			true
 		case _ =>
@@ -285,7 +285,7 @@ class UIHelper(ctx : Activity, menu_id : Int, prefs : PrefsWrapper)
 		}
 		override def onPostExecute(x : Unit) {
 			Log.d("StorageCleaner", "broadcasting...")
-			ctx.sendBroadcast(new Intent(AprsService.UPDATE))
+			sendBroadcast(new Intent(AprsService.UPDATE))
 		}
 	}
 }

@@ -5,9 +5,9 @@ import _root_.android.view.View.OnClickListener
 import _root_.android.view.{ContextMenu, Menu, MenuItem, View, Window}
 import _root_.android.widget.Button
 
-class MainListActivity(actname : String, menuid : Int) extends LoadingListActivity with OnClickListener {
-	lazy val prefs = new PrefsWrapper(this)
-	lazy val uihelper = new UIHelper(this, menuid, prefs)
+class MainListActivity(actname : String, menuid : Int) extends LoadingListActivity
+		with OnClickListener {
+	menu_id = menuid
 
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
 	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
@@ -20,20 +20,15 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 
 	override def onResume() {
 		super.onResume()
-		if (!uihelper.checkConfig())
+		if (!checkConfig())
 			return
 		setupButtons(AprsService.running)
-		uihelper.makeLaunchActivity(actname)
+		makeLaunchActivity(actname)
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
 		getMenuInflater().inflate(R.menu.options, menu);
 		true
-	}
-	override def onPrepareOptionsMenu(menu : Menu) = uihelper.onPrepareOptionsMenu(menu)
-
-	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
-		uihelper.optionsItemAction(mi)
 	}
 
 	def setupButtons(running : Boolean) {
@@ -50,7 +45,7 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 	override def onClick(view : View) {
 		view.getId match {
 		case R.id.singlebtn =>
-			uihelper.passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
+			passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
 			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 			setupButtons(true)
 		case R.id.startstopbtn =>
@@ -63,14 +58,6 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 			setupButtons(!is_running)
 		}
 	}
-
-	override def onCreateContextMenu(menu : ContextMenu, v : View,
-			menuInfo : ContextMenu.ContextMenuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo)
-		uihelper.onCreateContextMenu(menu, v, menuInfo)
-	}
-	override def onContextItemSelected(item : MenuItem) =
-		uihelper.contextItemAction(item)
 
 	override def onStopLoading() {
 		super.onStopLoading()
