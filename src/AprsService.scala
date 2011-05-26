@@ -179,12 +179,28 @@ class AprsService extends Service with LocationListener {
 		return true
 	}
 
+	var fixTs = 0L
+	var lastLocTs = 0L
+	def logPrecision(location : Location) {
+		import java.io._
+		val path = android.os.Environment.getExternalStorageDirectory()
+		val f = new FileWriter(new File(path, "aprsdroid-fix.log"), true)
+		if (location.getTime - lastLocTs > 10000) // more than 10s passed
+			fixTs = location.getTime
+		val deltaT = location.getTime - fixTs
+		Log.d(TAG, "logPrecision: %d %d %1.0f".format(location.getTime, deltaT, location.getAccuracy))
+		f.write("%d %d %1.0f %s\n".format(location.getTime, deltaT, location.getAccuracy, location.hasSpeed))
+		f.close()
+		lastLocTs = location.getTime
+	}
+
 	// LocationListener interface
 	override def onLocationChanged(location : Location) {
 		val upd_int = prefs.getStringInt("interval", 10) * 60000
 		val upd_dist = prefs.getStringInt("distance", 10) * 1000
-		Log.d(TAG, "onLocationChanged: n=" + location)
-		Log.d(TAG, "onLocationChanged: l=" + lastLoc)
+		logPrecision(location)
+		//Log.d(TAG, "onLocationChanged: n=" + location)
+		//Log.d(TAG, "onLocationChanged: l=" + lastLoc)
 		if (lastLoc != null &&
 		    (location.getTime - lastLoc.getTime < (upd_int  - getGpsInterval()) ||
 		     location.distanceTo(lastLoc) < upd_dist)) {
