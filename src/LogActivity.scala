@@ -79,7 +79,8 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 		c
 	}
 	def replace_cursor(c : Cursor) {
-		la.changeCursor(c)
+		if (!getListView().hasTextFilter())
+			la.changeCursor(c)
 		onStopLoading()
 	}
 	def cancel_cursor(c : Cursor) {

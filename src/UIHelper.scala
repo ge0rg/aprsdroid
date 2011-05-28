@@ -19,6 +19,11 @@ trait UIHelper extends Activity
 	lazy val prefs = new PrefsWrapper(this)
 	var openedPrefs = false
 
+	// thx to http://robots.thoughtbot.com/post/5836463058/scala-a-better-java-for-android
+	def findView[WidgetType] (id : Int) : WidgetType = {
+		findViewById(id).asInstanceOf[WidgetType]
+	}
+
 	def openDetails(call : String) {
 		startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call))
 	}
