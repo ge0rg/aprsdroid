@@ -49,6 +49,7 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 		locReceiver.startTask(null)
 
 		setTitle(getString(R.string.app_name) + ": " + prefs.getCallSsid())
+		postlist.requestFocus()
 	}
 
 	override def onPause() {

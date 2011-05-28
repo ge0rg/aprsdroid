@@ -23,6 +23,7 @@ class HubActivity extends MainListActivity("hub", R.id.hub) {
 
 		onStartLoading()
 		setListAdapter(pla)
+		getListView().setTextFilterEnabled(true)
 	}
 
 	override def onDestroy() {
