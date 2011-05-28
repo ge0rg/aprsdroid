@@ -23,12 +23,12 @@
 <string name="sta_lastreport">%s Viimeisin Raportti</string>
 <string name="map_track_call">Tracking %s...</string>
 
-<string name="map_loading">Loading...</string>
+<string name="map_loading">Ladataan...</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">Station SSIDs</string>
+<string name="sta_ssids">Aseman SSID:t</string>
 <string name="sta_history">Station History</string>
-<string name="sta_map">Map</string>
+<string name="sta_map">Kartta</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -53,16 +53,16 @@
 
 <!-- map view -->
 <string name="map_overlays">Overlays</string>
-<string name="map_satellite">Satellite</string>
-<string name="map_objects">APRS Objects</string>
+<string name="map_satellite">Satelliitti</string>
+<string name="map_objects">APRS Objektit</string>
 
 <!-- map view -->
-<string name="age">Show last...</string>
-<string name="age_30">30 minutes</string>
-<string name="age_2h">2 hours</string>
-<string name="age_12h">12 hours</string>
-<string name="age_1d">1 day</string>
-<string name="age_2d">2 days</string>
+<string name="age">Näytä viimeiset...</string>
+<string name="age_30">30 minuuttia</string>
+<string name="age_2h">2 tuntia</string>
+<string name="age_12h">12 tuntia</string>
+<string name="age_1d">1 päivä</string>
+<string name="age_2d">2 päivää</string>
 
 
 <!-- options menu -->
@@ -70,7 +70,7 @@
 <string name="show_hub">Show Hub</string>
 <string name="show_map">Näytä Kartta</string>
 <string name="show_log">Näytä loki</string>
-<string name="clear_log">Clear Log</string>
+<string name="clear_log">Tyhjennä loki</string>
 <string name="quit">Lopeta</string>
 <string name="preferences">Asetukset</string>
 <!-- preferences -->
@@ -90,29 +90,29 @@
 <string name="p_ssid_entry">Kirjoita asemasi SSID</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
-	<item>(ei mitään)</item>
-	<item>1: Digitoistin (koti/WX)</item>
-	<item>2: Digitoistin 70cm</item>
-	<item>3: Digitoistin</item>
-	<item>4: HF to VHF gateway</item>
-	<item>5: IGate (not home station)</item>
+	<item>(none) Primary Station</item>
+	<item>1: Generic additional station</item>
+	<item>2: Generic additional station</item>
+	<item>3: Generic additional station</item>
+	<item>4: Generic additional station</item>
+	<item>5: Other network (D-Star, 3G)</item>
 	<item>6: Satelliitti</item>
 	<item>7: Käsikapula</item>
 	<item>8: Vene / Laiva</item>
 	<item>9: Mobile asema</item>
 	<item>10: APRS-IS (ei radio)</item>
-	<item>11: Pallo / APRStouch-tone</item>
-	<item>12: Portable (Läppäri/leirintä alue)</item>
-	<item>13: ...</item>
+	<item>11: Balloon, aircraft, spacecraft</item>
+	<item>12: APRStt, DTMF, ... (one way)</item>
+	<item>13: Weather station</item>
 	<item>14: Freight vehicle</item>
-	<item>15: HF Asema</item>
+	<item>15: Generic additional station</item>
 </string-array>
 <string name="p_symbol">APRS symboli</string>
 <string name="p_symbol_summary">Asemasi symboli</string>
 <string name="p_symbol_entry">Aseta symboli joka on koodattu kahteen merkkiin</string>
-<string name="p_status">Tilaviesti</string>
+<string name="p_status">Comment field</string>
 <string name="p_status_summary">Koordinaattejen jälkeinen teksti</string>
-<string name="p_status_entry">Aseta tilaviesti</string>
+<string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Yhteys</string>
 <string name="p_conntype">Yhdistämisen Protokolla</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP tai UDP</string>
@@ -140,13 +140,13 @@
 <string name="p_speedbrg_summary">Pidä GPS päällä kauemmin saadaksesi tarkempia tietoja</string>
 <string name="p_netloc">Käytä verkon paikannusta</string>
 <string name="p_netloc_summary">Käytä puhelinverkon paikannusta</string>
-<string name="p_gps">GPS Precision</string>
-<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps">GPS tarkkuus</string>
+<string name="p_gps_summary">Akun käyttö vs. paikannuksen tarkkuus</string>
 <string name="p_gps_entry">Please set the GPS Precision</string>
 <!-- array of GPS precisions -->
-<string name="p_gps_always">High (Always on)</string>
-<string name="p_gps_med">Medium</string>
-<string name="p_gps_low">Low</string>
+<string name="p_gps_always">Suuri (Aina päällä)</string>
+<string name="p_gps_med">Keskitaso</string>
+<string name="p_gps_low">Pieni</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -170,11 +170,12 @@
 <string name="p_filterhelp">Viestien suodatuksen ohje</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
 
-<string name="p_sotimeout">TCP socket timeout</string>
+<string name="p_sotimeout">TCP-yhteyden aikakatkaisu</string>
 <string name="p_sotimeout_summary">Time before resetting the connection</string>
-<string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+<string name="p_sotimeout_entry">Aikakatkaisu sekunneissa (0 = ei käytössä)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Lasse Kurkela https://launchpad.net/~oh3jaj
   Ville Filpus https://launchpad.net/~oh6fse</string>
 
 </resources>

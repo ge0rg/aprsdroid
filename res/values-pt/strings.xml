@@ -90,29 +90,29 @@
 <string name="p_ssid_entry">Escreva o SSID da sua estação</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
-	<item>nenhum(a)</item>
-	<item>1: Digipeater (casa/WX)</item>
-	<item>Digipeater 70cm</item>
-	<item>3: Digipeater</item>
-	<item>4: Saída HF to VHF</item>
-	<item>5: IGate (estação não fixa)</item>
+	<item>(none) Primary Station</item>
+	<item>1: Generic additional station</item>
+	<item>2: Generic additional station</item>
+	<item>3: Generic additional station</item>
+	<item>4: Generic additional station</item>
+	<item>5: Other network (D-Star, 3G)</item>
 	<item>6: Satélite</item>
 	<item>7: Portátil</item>
 	<item>8: Barco / navio</item>
 	<item>9: Estação móvel</item>
 	<item>10: APRS-IS (sem rádio)</item>
-	<item>11: Balão / APRStouch-tone</item>
-	<item>12: Portátil</item>
-	<item>13: ...</item>
+	<item>11: Balloon, aircraft, spacecraft</item>
+	<item>12: APRStt, DTMF, ... (one way)</item>
+	<item>13: Weather station</item>
 	<item>Veículo de carga</item>
-	<item>15: Estação de HF</item>
+	<item>15: Generic additional station</item>
 </string-array>
 <string name="p_symbol">Símbolo APRS</string>
 <string name="p_symbol_summary">O seu símbolo para o mapa</string>
 <string name="p_symbol_entry">Escreva o código (2 caractéres) do símbolo</string>
-<string name="p_status">Mensagem de estado</string>
+<string name="p_status">Comment field</string>
 <string name="p_status_summary">O texto após as suas coordenadas</string>
-<string name="p_status_entry">Escreva a sua mensagem de estado</string>
+<string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Protocolo de ligação</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>

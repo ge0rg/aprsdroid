@@ -90,29 +90,29 @@
 <string name="p_ssid_entry">输入你的基站的SSID</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
-	<item>(无)</item>
-	<item>数据中继 (home/WX)</item>
-	<item>数据中继 70cm</item>
-	<item>数据中继</item>
-	<item>HF / VHF 网关</item>
-	<item>IGate （非主基站）</item>
+	<item>(none) Primary Station</item>
+	<item>1: Generic additional station</item>
+	<item>2: Generic additional station</item>
+	<item>3: Generic additional station</item>
+	<item>4: Generic additional station</item>
+	<item>5: Other network (D-Star, 3G)</item>
 	<item>卫星</item>
 	<item>手持无线电台</item>
 	<item>舰船</item>
 	<item>移动基站</item>
 	<item>APRS-IS (非无线电台)</item>
-	<item>气球 / APRStouch-tone</item>
-	<item>便携设备 （膝上或者营地站）</item>
-	<item>...</item>
+	<item>11: Balloon, aircraft, spacecraft</item>
+	<item>12: APRStt, DTMF, ... (one way)</item>
+	<item>13: Weather station</item>
 	<item>货运车辆</item>
-	<item>HF 基站</item>
+	<item>15: Generic additional station</item>
 </string-array>
 <string name="p_symbol">APRS 符号</string>
 <string name="p_symbol_summary">你用作在地图中显示的符号</string>
 <string name="p_symbol_entry">输入表示双角色的符号</string>
-<string name="p_status">状态信息</string>
+<string name="p_status">Comment field</string>
 <string name="p_status_summary">匹配后的文本</string>
-<string name="p_status_entry">输入你的状态信息</string>
+<string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
 <string name="p_conntype">连接协议</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>

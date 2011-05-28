@@ -99,29 +99,29 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_ssid_entry">Geben Sie Ihre SSID an</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
-	<item>(keine)</item>
-	<item>1: Digipeater (home/WX)</item>
-	<item>2: Digipeater 70cm</item>
-	<item>3: Digipeater</item>
-	<item>4: HF-VHF-Gateway</item>
-	<item>5: IGate (not home station)</item>
+	<item>(keine) Primärstation</item>
+	<item>1: weitere allgemeine Station</item>
+	<item>2: weitere allgemeine Station</item>
+	<item>3: weitere allgemeine Station</item>
+	<item>4: weitere allgemeine Station</item>
+	<item>5: anderes Netzwerk (D-Star, 3G)</item>
 	<item>6: Satellit</item>
 	<item>7: Handfunkgerät</item>
 	<item>8: Boot / Schiff</item>
 	<item>9: Mobilstation</item>
 	<item>10: APRS-IS (ohne Funkmodul)</item>
-	<item>11: Ballon / APRStouch-tone</item>
-	<item>12: Portabel (Laptop/Camp)</item>
-	<item>13: ...</item>
+	<item>11: Ballon, Fluggerät, Raumschiff</item>
+	<item>12: APRStt, DTMF, ... (einweg)</item>
+	<item>13: Wetterstation</item>
 	<item>14: Lastkraftwagen</item>
-	<item>15: HF-Station</item>
+	<item>15: weitere allgemeine Station</item>
 </string-array>
 <string name="p_symbol">APRS-Symbol</string>
 <string name="p_symbol_summary">Symbol für die Kartenanzeige</string>
 <string name="p_symbol_entry">Geben Sie das APRS-Symbol an (zwei Zeichen)</string>
-<string name="p_status">Statusmeldung</string>
+<string name="p_status">Kommentarfeld</string>
 <string name="p_status_summary">Nachrichtenteil in der Bake</string>
-<string name="p_status_entry">Geben Sie die Statusnachricht ein</string>
+<string name="p_status_entry">Bitte Baken-Kommentar eingeben</string>
 <string name="p__connection">APRS-Verbindung</string>
 <string name="p_conntype">Verbindungsprotokoll</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP oder UDP</string>
