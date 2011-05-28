@@ -88,9 +88,19 @@ object StorageDatabase {
 		val TABLE = "message"
 		val _ID = "_id"
 		val TS = "ts"
+		val NEXTTS = "nextts"
 		val CALL = "call"
 		val MSGID = "msgid"
+		val TYPE = "type"
 		val TEXT = "text"
+		lazy val TABLE_CREATE = """CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT,
+			%s LONG, %s LONG,
+			%s TEXT, %s TEXT,
+			%s INTEGER, %s TEXT)"""
+			.format(TABLE, _ID, TS, NEXTTS,
+				CALL, MSGID,
+				TYPE, TEXT)
+		lazy val COLUMNS = Array(_ID, TS, NEXTTS, CALL, MSGID, TYPE, TEXT)
 	}
 
 	var singleton : StorageDatabase = null

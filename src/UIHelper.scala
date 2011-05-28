@@ -28,6 +28,10 @@ trait UIHelper extends Activity
 		startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call))
 	}
 
+	def openMessaging(call : String) {
+		startActivity(new Intent(this, classOf[MessageActivity]).putExtra("call", call))
+	}
+
 	def trackOnMap(call : String) {
 		val text = getString(R.string.map_track_call, call)
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
@@ -259,6 +263,9 @@ trait UIHelper extends Activity
 		id match {
 		case R.id.details =>
 			openDetails(targetcall)
+			true
+		case R.id.message =>
+			openMessaging(targetcall)
 			true
 		case R.id.mapbutton =>
 			trackOnMap(targetcall)

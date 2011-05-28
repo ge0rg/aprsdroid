@@ -1,5 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:id="@+id/details" android:title="@string/app_sta" />
+	<item android:id="@+id/message" android:title="Message" />
 	<item android:id="@+id/mapbutton" android:title="@string/sta_map" />
 	<item android:id="@+id/aprsfibutton" android:title="@string/sta_aprsfi" />
 	<item android:id="@+id/qrzcombutton" android:title="@string/sta_qrzcom" />
