@@ -1,6 +1,6 @@
 package org.aprsdroid.app
 
-import _root_.android.app.Activity
+import _root_.android.app.ListActivity
 import _root_.android.content._
 import _root_.android.database.Cursor
 import _root_.android.os.{AsyncTask, Bundle, Handler}
@@ -8,6 +8,7 @@ import _root_.android.text.format.DateUtils
 import _root_.android.util.Log
 import _root_.android.view.View
 import _root_.android.widget.{SimpleCursorAdapter, TextView}
+import _root_.android.widget.FilterQueryProvider
 
 object PositionListAdapter {
 	import StorageDatabase.Position._
@@ -27,6 +28,9 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 	var my_lon = 0
 	var reload_pending = 0
 	lazy val storage = StorageDatabase.open(context)
+
+	if (mode == PositionListAdapter.NEIGHBORS)
+		setFilterQueryProvider(getNeighborFilter())
 
 	reload()
 
@@ -77,6 +81,17 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 		super.bindView(view, context, cursor)
 	}
 
+	def getNeighborFilter() = new FilterQueryProvider() {
+		def runQuery(constraint : CharSequence) = {
+			if (constraint.length() > 0)
+				storage.getNeighborsLike("%s%%".format(constraint),
+					my_lat, my_lon, System.currentTimeMillis - prefs.getShowAge(), "50")
+			else
+				storage.getNeighbors(mycall, my_lat, my_lon,
+					System.currentTimeMillis - prefs.getShowAge(), "50")
+		}
+	}
+
 	def load_cursor(i : Intent) = {
 		import PositionListAdapter._
 		Benchmark("get my position") {
@@ -99,7 +114,8 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 	}
 
 	def replace_cursor(c : Cursor) {
-		changeCursor(c)
+		if (!context.asInstanceOf[ListActivity].getListView().hasTextFilter())
+			changeCursor(c)
 		context.asInstanceOf[LoadingIndicator].onStopLoading()
 	}
 	def cancel_cursor(c : Cursor) {

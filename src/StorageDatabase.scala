@@ -233,6 +233,17 @@ class StorageDatabase(context : Context) extends
 			"call", null, "dist", limit)
 	}
 
+	def getNeighborsLike(call : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = Benchmark("getNeighborsLike") {
+		// calculate latitude correction
+		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
+		Log.d(TAG, "getNeighborsLike: correcting by %d".format(corr))
+		// add a distance column to the query
+		val newcols = Position.COLUMNS :+ Position.COL_DIST.format(lat, lat, lon, lon, corr)
+		getReadableDatabase().query(Position.TABLE, newcols,
+			"call like ?", Array(call),
+			"call", null, "dist", limit)
+	}
+
 	def addPost(ts : Long, posttype : Int, status : String, message : String) {
 		val cv = new ContentValues()
 		cv.put(Post.TS, ts.asInstanceOf[java.lang.Long])
