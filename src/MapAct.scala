@@ -256,20 +256,19 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		c.moveToFirst()
 		var m = new ArrayBuffer[GeoPoint]()
 		while (!c.isAfterLast()) {
-			val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
-			val lat = c.getInt(StorageDatabase.Position.COLUMN_LAT)
-			val lon = c.getInt(StorageDatabase.Position.COLUMN_LON)
-			val symbol = c.getString(StorageDatabase.Position.COLUMN_SYMBOL)
-			val comment = c.getString(StorageDatabase.Position.COLUMN_COMMENT)
+			val call = c.getString(StorageDatabase.Position.COLUMN_MAP_CALL)
+			val lat = c.getInt(StorageDatabase.Position.COLUMN_MAP_LAT)
+			val lon = c.getInt(StorageDatabase.Position.COLUMN_MAP_LON)
+			val symbol = c.getString(StorageDatabase.Position.COLUMN_MAP_SYMBOL)
 			val p = new GeoPoint(lat, lon)
 			m.add(p)
 			// peek at the next row
 			c.moveToNext()
-			val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Position.COLUMN_CALL) else null
+			val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Position.COLUMN_MAP_CALL) else null
 			c.moveToPrevious()
 			if (next_call != call) {
 				//Log.d(TAG, "end of call: " + call + " " + next_call + " " + m.size())
-				s.add(new Station(m, p, call, comment, symbol))
+				s.add(new Station(m, p, call, null, symbol))
 				m = new ArrayBuffer[GeoPoint]()
 			}
 			c.moveToNext()

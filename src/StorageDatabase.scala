@@ -74,6 +74,13 @@ object StorageDatabase {
 		val COLUMN_ALT		= 9
 		val COLUMN_ORIGIN	= 10
 		val COLUMN_QRG		= 11
+
+		lazy val COLUMNS_MAP = Array(_ID, CALL, LAT, LON, SYMBOL)
+		val COLUMN_MAP_CALL	= 1
+		val COLUMN_MAP_LAT	= 2
+		val COLUMN_MAP_LON	= 3
+		val COLUMN_MAP_SYMBOL	= 4
+
 		lazy val TABLE_INDEX = "CREATE INDEX idx_position_%s ON position (%s)"
 	}
 
@@ -188,7 +195,7 @@ class StorageDatabase(context : Context) extends
 	}
 
 	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = Benchmark("getPositions") {
-		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
+		getReadableDatabase().query(Position.TABLE, Position.COLUMNS_MAP,
 			sel, selArgs,
 			null, null, "CALL, _ID", limit)
 	}
