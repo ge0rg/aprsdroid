@@ -272,7 +272,7 @@ trait UIHelper extends Activity
 			false
 		}
 	}
-	def contextItemAction(item : MenuItem) : Boolean = {
+	abstract override def onContextItemSelected(item : MenuItem) : Boolean = {
 		val targetcall = menuInfoCall(item.getMenuInfo)
 		callsignAction(item.getItemId(), targetcall)
 	}
