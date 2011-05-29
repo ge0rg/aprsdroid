@@ -45,18 +45,20 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 
 <!-- about dialog -->
 <string name="ad_title">Über APRSdroid v%s</string>
-<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n
-http://aprsdroid.org/
-\n\n
-APRS® ist ein eingetragenes Warenzeichen von Bob Bruninga (WB4APR)
-\n\n
-Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
+<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® ist ein eingetragenes Warenzeichen von Bob Bruninga (WB4APR)</string>
+<string name="ad_gpl">Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
 \n\n
 Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
 \n\n
 Sie sollten ein Exemplar der GNU General Public License zusammen mit diesem Programm erhalten haben. Falls nicht, schreiben Sie an die Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA.
 \n\n
 http://www.gnu.de/documents/gpl-2.0.de.html</string>
+<string name="ad_thanks">Dank an:</string>
+<string name="ad_thanks_0">Meine YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: Idee</string>
+<string name="ad_thanks_2">Dirk, DB5OY: Motivation und Unterstützung</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK-Implementierung</string>
+<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_trans">\n\nÜbersetzung:</string>
 <string name="ad_homepage">Homepage</string>
 

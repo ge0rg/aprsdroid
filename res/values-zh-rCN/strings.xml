@@ -47,7 +47,33 @@
 
 <!-- about dialog -->
 <string name="ad_title">关于 APRSdroid v%s</string>
-<string name="ad_text">版权声明，Copyright © 2009-2010 Georg Lukas (DO1GL)\n http://aprsdroid.org/ \n\n APRS® Bob Bruninga (WB4APR) 的注册商标。 \n\n 本程序是自由软件；你可以再发布并且/或者在 Free Software Foundation 的 GNU General Public License 条款下修改它并发布； 包括版本2，或者任何更新的版本。 \n\n 本程序发布是希望它能成为有用的东西，但不包含任何形式的保障；详情请查阅 GNU General Public License。 \n\n 你应该有一分 GNU General Public License; 如果没有，写信给 Free Software Foundation, Inc., 地址是 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
+<string name="ad_gpl">This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_thanks">Thanks to:</string>
+<string name="ad_thanks_0">My YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: idea</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
+<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_trans">\n\n翻译</string>
 <string name="ad_homepage">Home Page</string>
 

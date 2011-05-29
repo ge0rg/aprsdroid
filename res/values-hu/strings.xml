@@ -47,8 +47,33 @@
 
 <!-- about dialog -->
 <string name="ad_title">Az APRSdroid v%s-ról</string>
-<string name="ad_text">Minden jog fenttartva © 2009-2010 Georg Lukas (DO1GL)\nhttp://aprsdroid.org/\n\nAz APRS® márka Bob Bruninga (WB4APR) védjegye.\n\nEz a program szabad szoftver; terjeszthető illetve módosítható a Free Software Foundation által kiadott GNU General Public License dokumentumában leírtak; akár a licenc 2-es, akár (tetszőleges) későbbi változata szerint.\n\nEz a program abban a reményben kerül közreadásra, hogy hasznos lesz, de minden egyéb GARANCIA NÉLKÜL, az ELADHATÓSÁGRA vagy VALAMELY CÉLRA VALÓ ALKALMAZHATÓSÁGRA való származtatott garanciát is beleértve. További részleteket a GNU General Public License tartalmaz.\n\nA felhasználónak a programmal együtt meg kell kapnia a GNU General 
- Public License egy példányát; ha mégsem kapta meg, akkor tekintse meg a </string>
+<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
+<string name="ad_gpl">This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_thanks">Thanks to:</string>
+<string name="ad_thanks_0">My YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: idea</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
+<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_trans">\n\nFordítás: Varga "Nonoo" Norbert HA2NON </string>
 <string name="ad_homepage">Kezdőlap</string>
 

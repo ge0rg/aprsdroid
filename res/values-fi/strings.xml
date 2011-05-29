@@ -47,7 +47,33 @@
 
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>
-<string name="ad_text">Teikijänoikeus © 2009-2010 Georg Lukas (DO1GL)\n http://aprsdroid.org/ \n\n APRS® on Bob Bruninga (WB4APR) rekisteröity tavaramerkki \n\n Tämä ohjelma on vapaata ohjelmistoa; voit levittää ja/tai muuttaa sitä GNU General Public License mukaisesti, jonka on julkaissut Free Software Foundation; joko versio 2 tai (valintasi mukaa) jokin vanhempi versio. \n\n Tämä ohjelma on kehitetty siinä toivossa, että se olisi hyödyllinen, mutta ILMAN TAKUUTA; edes KAUPALLISESTI HYVÄKSYTTÄVÄSTÄ LAADUSTA tai SOVELTUVUUDESTA TIETTYYN TARKOITUKSEEN. Katso lisätietoa GNU General Public License. \n\n Sinun pitäisi saada kopio GNU GPL lisenssistä tämän ohjelman mukana; jos et saa lisenssiä, kirjoita Free Software Foundation, inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
+<string name="ad_gpl">This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_thanks">Thanks to:</string>
+<string name="ad_thanks_0">My YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: idea</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
+<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_trans">\n\nKäännös:</string>
 <string name="ad_homepage">Etusivu</string>
 

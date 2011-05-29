@@ -47,12 +47,12 @@
 
 <!-- about dialog -->
 <string name="ad_title">Sobre APRSdroid v%s</string>
-<string name="ad_text">Copyright © 2009-2010 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org/
+<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-	\n\n
-	This program is free software; you can redistribute it and/or
+</string>
+<string name="ad_gpl">This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
 	as published by the Free Software Foundation; either version 2
 	of the License, or (at your option) any later version.
@@ -68,6 +68,12 @@
 	\n\n
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
+<string name="ad_thanks">Thanks to:</string>
+<string name="ad_thanks_0">My YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: idea</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
+<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_trans">\n\nTraducción:</string>
 <string name="ad_homepage">Página de Inicio</string>
 
