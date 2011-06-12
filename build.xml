@@ -124,7 +124,7 @@
 	    <classpath>
 		<pathelement location="${out.classes.absolute.dir}"/>
 		<fileset dir="tools" includes="*.jar"/>
-		<fileset dir="${external.libs.dir}"  includes="*.jar"/>
+		<fileset dir="${jar.libs.dir}"  includes="*.jar"/>
 	    </classpath>
 	</scalac>
     </target>
@@ -140,7 +140,7 @@
 	    classpath="tools/proguard.jar" />
 	<mkdir dir="${optimized.dir}" />
 	<proguard configuration="proguard.cfg">
-	    -injars ${out.classes.absolute.dir}:${external.libs.dir}:tools/scala-library.jar(!META-INF/MANIFEST.MF,!library.properties)
+	    -injars ${out.classes.absolute.dir}:${jar.libs.dir}:tools/scala-library.jar(!META-INF/MANIFEST.MF,!library.properties)
 	    -outjars ${out.absolute.dir}/classes.min.jar
 	    -libraryjars ${toString:android.target.classpath}
 	    -printusage ${optimized.dir}/proguard.usage
