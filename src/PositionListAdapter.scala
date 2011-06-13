@@ -63,6 +63,7 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 		val age = DateUtils.getRelativeTimeSpanString(context, ts)
 		val lat = cursor.getInt(COLUMN_LAT)
 		val lon = cursor.getInt(COLUMN_LON)
+		val qrg = cursor.getString(COLUMN_QRG)
 		val dist = Array[Float](0, 0)
 
 		if (call == mycall) {
@@ -71,9 +72,12 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 			view.setBackgroundColor(0x402020ff)
 		} else
 			view.setBackgroundColor(0)
-		distage.setTextColor(getAgeColor(ts))
-		view.findViewById(R.id.station_call).asInstanceOf[TextView].setTextColor(getAgeColor(ts))
-		view.findViewById(R.id.station_qrg).asInstanceOf[TextView].setTextColor(getAgeColor(ts))
+		val color = getAgeColor(ts)
+		distage.setTextColor(color)
+		view.findViewById(R.id.station_call).asInstanceOf[TextView].setTextColor(color)
+		view.findViewById(R.id.station_qrg).asInstanceOf[TextView].setTextColor(color)
+		val qrg_visible = if (qrg != null && qrg != "") View.VISIBLE else View.GONE
+		view.findViewById(R.id.station_qrg).setVisibility(qrg_visible)
 		val MCD = 1000000.
 		android.location.Location.distanceBetween(my_lat/MCD, my_lon/MCD,
 			lat/MCD, lon/MCD, dist)
