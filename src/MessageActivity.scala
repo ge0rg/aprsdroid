@@ -7,12 +7,12 @@ import _root_.android.net.Uri
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.text.{Editable, TextWatcher}
 import _root_.android.util.Log
-import _root_.android.view.{Menu, MenuItem, View, Window}
-import _root_.android.view.View.OnClickListener
+import _root_.android.view.{KeyEvent, Menu, MenuItem, View, Window}
+import _root_.android.view.View.{OnClickListener, OnKeyListener}
 import _root_.android.widget.{Button, EditText, ListView}
 
 class MessageActivity extends LoadingListActivity
-		with OnClickListener with TextWatcher {
+		with OnClickListener with OnKeyListener with TextWatcher {
 	val TAG = "APRSdroid.Message"
 	lazy val targetcall = getIntent().getStringExtra("call")
 
@@ -37,6 +37,7 @@ class MessageActivity extends LoadingListActivity
 		locReceiver.startTask(null)
 
 		msginput.addTextChangedListener(this)
+		msginput.setOnKeyListener(this)
 		msgsend.setOnClickListener(this)
 
 		setTitle(getString(R.string.app_sta) + ": " + targetcall)
@@ -75,6 +76,14 @@ class MessageActivity extends LoadingListActivity
 	override def beforeTextChanged(s : CharSequence, start : Int, before : Int, count : Int) {
 	}
 	override def onTextChanged(s : CharSequence, start : Int, before : Int, count : Int) {
+	}
+
+	// react on "Return" key
+	def onKey(v : View, kc : Int, ev : KeyEvent) = {
+		if (ev.getAction() == KeyEvent.ACTION_DOWN && kc == KeyEvent.KEYCODE_ENTER) {
+			sendMessage()
+			true
+		} else false
 	}
 
 	def sendMessage() {
