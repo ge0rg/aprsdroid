@@ -10,7 +10,7 @@ android:id="@+id/listts"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:layout_marginRight="5dp"
-android:textColor="#808080"
+android:textColor="#b0b0b0"
 android:textSize="16dp"
 />
 <TextView
@@ -18,7 +18,7 @@ android:id="@+id/liststatus"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:layout_weight="1"
-android:textColor="#b0b0b0"
+android:textColor="#c0c080"
 android:textSize="16dp"
 />
 </LinearLayout>
