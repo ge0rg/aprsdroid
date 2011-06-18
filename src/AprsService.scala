@@ -10,9 +10,13 @@ import _root_.android.widget.Toast
 
 object AprsService {
 	val PACKAGE = "org.aprsdroid.app"
+	// intent actions
 	val SERVICE = PACKAGE + ".SERVICE"
 	val SERVICE_ONCE = PACKAGE + ".ONCE"
+	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"
+	val MESSAGE = PACKAGE + ".MESSAGE"
+	// broadcast intent extras
 	val LOCATION = PACKAGE + ".LOCATION"
 	val STATUS = PACKAGE + ".STATUS"
 	val PACKET = PACKAGE + ".PACKET"
@@ -266,6 +270,23 @@ class AprsService extends Service with LocationListener {
 			addPost(StorageDatabase.Post.TYPE_ERROR, "Error", post)
 			stopSelf()
 		}
+	}
+
+	def sendPendingMessages() {
+		import StorageDatabase.Message._
+		val c = db.getPendingMessages()
+		c.moveToFirst()
+		while (!c.isAfterLast()) {
+			val ts = c.getLong(COLUMN_TS)
+			val retrycnt = c.getInt(COLUMN_RETRYCNT)
+			val call = c.getString(COLUMN_CALL)
+			val msgid = c.getString(COLUMN_MSGID)
+			val msgtype = c.getInt(COLUMN_TYPE)
+			val text = c.getString(COLUMN_TEXT)
+			Log.d(TAG, "pending message: ->%s '%s'".format(call, text))
+			c.moveToNext()
+		}
+		c.close()
 	}
 }
 
