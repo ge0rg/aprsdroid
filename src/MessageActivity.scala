@@ -87,11 +87,24 @@ class MessageActivity extends LoadingListActivity
 	}
 
 	def sendMessage() {
+		import StorageDatabase.Message._
+
 		val msg = msginput.getText().toString()
 		if (msg.length() == 0)
 			return
 		Log.d("MessageActivity", "sending " + msg)
 		msginput.setText(null)
+
+		val cv = new ContentValues()
+		cv.put(TS, System.currentTimeMillis().asInstanceOf[java.lang.Long])
+		cv.put(RETRYCNT, 0.asInstanceOf[java.lang.Integer])
+		cv.put(CALL, targetcall)
+		cv.put(MSGID, "0")
+		cv.put(TYPE, TYPE_OUT_NEW.asInstanceOf[java.lang.Integer])
+		cv.put(TEXT, msg)
+		storage.addMessage(cv)
+		// notify backend
+		sendBroadcast(new Intent(AprsService.MESSAGE))
 	}
 
 	// button actions
