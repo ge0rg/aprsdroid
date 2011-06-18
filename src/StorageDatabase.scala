@@ -130,7 +130,7 @@ class StorageDatabase(context : Context) extends
 		while (!c.isAfterLast()) {
 			val message = c.getString(c.getColumnIndexOrThrow(Post.MESSAGE))
 			val ts = c.getLong(c.getColumnIndexOrThrow(Post.TS))
-			addPosition(ts, message)
+			parsePacket(ts, message)
 			c.moveToNext()
 		}
 		c.close()
@@ -151,45 +151,46 @@ class StorageDatabase(context : Context) extends
 	// default trim filter: 31 days in [ms]
 	def trimPosts() : Unit = trimPosts(System.currentTimeMillis - 2L * 24 * 3600 * 1000)
 
-	def addPosition(ts : Long, message : String) {
+	def addPosition(ts : Long, ap : APRSPacket, pos : Position, objectname : String) {
+		import Position._
+		val cv = new ContentValues()
+		val call = ap.getSourceCall()
+		val lat = (pos.getLatitude()*1000000).asInstanceOf[Int]
+		val lon = (pos.getLongitude()*1000000).asInstanceOf[Int]
+		val sym = "%s%s".format(pos.getSymbolTable(), pos.getSymbolCode())
+		val comment = ap.getAprsInformation().getComment()
+		val qrg = AprsPacket.parseQrg(comment)
+		cv.put(TS, ts.asInstanceOf[java.lang.Long])
+		if (objectname != null) {
+			cv.put(CALL, objectname)
+			cv.put(ORIGIN, call)
+		} else
+			cv.put(CALL, call)
+		cv.put(LAT, lat.asInstanceOf[java.lang.Integer])
+		cv.put(LON, lon.asInstanceOf[java.lang.Integer])
+		cv.put(SYMBOL, sym)
+		cv.put(COMMENT, comment)
+		cv.put(QRG, qrg)
+		Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
+		getWritableDatabase().insertOrThrow(TABLE, CALL, cv)
+	}
+
+	def parsePacket(ts : Long, message : String) {
 		try {
 			val fap = new Parser().parse(message)
 			if (fap.getAprsInformation() == null) {
-				Log.d(TAG, "addPosition() misses position: " + message)
+				Log.d(TAG, "parsePacket() misses payload: " + message)
 				return
 			}
-			//Log.d(TAG, "got %s".format(message))
-			val (pos, objectname) = fap.getAprsInformation() match {
-				case pp : PositionPacket => (pp.getPosition(), null)
-				case op : ObjectPacket => (op.getPosition(), op.getObjectName())
-			}
-			//Log.d(TAG, "fap: %s>%s via %s - %s".format(fap.getSourceCall, fap.getDestinationCall, fap.getDigipeaters, fap.getType))
-			//Log.d(TAG, "fap: %f %f".format(pos.getLatitude, pos.getLongitude))
 			if (fap.hasFault())
 				throw new Exception("FAP fault")
-			val cv = new ContentValues()
-			val call = fap.getSourceCall()
-			val lat = (pos.getLatitude()*1000000).asInstanceOf[Int]
-			val lon = (pos.getLongitude()*1000000).asInstanceOf[Int]
-			val sym = "%s%s".format(pos.getSymbolTable(), pos.getSymbolCode())
-			val comment = fap.getAprsInformation().getComment()
-			val qrg = AprsPacket.parseQrg(comment)
-			cv.put(Position.TS, ts.asInstanceOf[java.lang.Long])
-			if (objectname != null) {
-				cv.put(Position.CALL, objectname)
-				cv.put(Position.ORIGIN, call)
-			} else
-				cv.put(Position.CALL, call)
-			cv.put(Position.LAT, lat.asInstanceOf[java.lang.Integer])
-			cv.put(Position.LON, lon.asInstanceOf[java.lang.Integer])
-			cv.put(Position.SYMBOL, sym)
-			cv.put(Position.COMMENT, comment)
-			cv.put(Position.QRG, qrg)
-			Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
-			getWritableDatabase().insertOrThrow(Position.TABLE, Position.CALL, cv)
+			fap.getAprsInformation() match {
+				case pp : PositionPacket => addPosition(ts, fap, pp.getPosition(), null)
+				case op : ObjectPacket => addPosition(ts, fap, op.getPosition(), op.getObjectName())
+			}
 		} catch {
 		case e : Exception =>
-			Log.d(TAG, "addPosition() not a position: " + message)
+			Log.d(TAG, "parsePacket() unsupported packet: " + message)
 			e.printStackTrace()
 		}
 	}
@@ -252,7 +253,7 @@ class StorageDatabase(context : Context) extends
 		cv.put(Post.MESSAGE, message)
 		getWritableDatabase().insertOrThrow(Post.TABLE, Post.MESSAGE, cv)
 		if (posttype == Post.TYPE_POST || posttype == Post.TYPE_INCMG) {
-			addPosition(ts, message)
+			parsePacket(ts, message)
 		} else {
 			// only log status messages
 			Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
