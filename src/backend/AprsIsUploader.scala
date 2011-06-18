@@ -1,5 +1,6 @@
 package org.aprsdroid.app
 
+import _root_.net.ab0oo.aprs.APRSPacket
 
 object AprsIsUploader {
 	val DEFAULT_CONNTYPE = "tcp"
@@ -17,7 +18,7 @@ abstract class AprsIsUploader(prefs : PrefsWrapper) {
 
 	def start()
 
-	def update(packet : String) : String
+	def update(packet : APRSPacket) : String
 
 	def stop()
 }

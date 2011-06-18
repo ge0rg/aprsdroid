@@ -2,6 +2,7 @@ package org.aprsdroid.app
 
 import _root_.android.location.Location
 import _root_.android.util.Log
+import _root_.net.ab0oo.aprs.APRSPacket
 import _root_.org.apache.http._
 import _root_.org.apache.http.entity.StringEntity
 import _root_.org.apache.http.impl.client.DefaultHttpClient
@@ -25,7 +26,7 @@ class HttpPostUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 		"HTTP " + response.getStatusLine().getReasonPhrase()
 	}
 
-	def update(packet : String) : String = {
+	def update(packet : APRSPacket) : String = {
 		var hostname = host
 		if (hostname.indexOf(":") == -1) {
 			hostname = "http://" + hostname + ":8080/"

@@ -222,9 +222,9 @@ class AprsService extends Service with LocationListener {
 		val result = try {
 			val status = poster.update(packet)
 			i.putExtra(STATUS, status)
-			i.putExtra(PACKET, packet)
+			i.putExtra(PACKET, packet.toString)
 			val prec_status = "%s (±%dm)".format(status, location.getAccuracy.asInstanceOf[Int])
-			addPost(StorageDatabase.Post.TYPE_POST, prec_status, packet)
+			addPost(StorageDatabase.Post.TYPE_POST, prec_status, packet.toString)
 			prec_status
 		} catch {
 			case e : Exception =>

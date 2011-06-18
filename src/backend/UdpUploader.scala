@@ -3,6 +3,7 @@ package org.aprsdroid.app
 import _root_.android.location.Location
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
+import _root_.net.ab0oo.aprs.APRSPacket
 
 class UdpUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "AprsUdp"
@@ -12,7 +13,7 @@ class UdpUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	def start() {
 	}
 
-	def update(packet : String) : String = {
+	def update(packet : APRSPacket) : String = {
 		val (h, port) = AprsPacket.parseHostPort(host, 8080)
 		val addr = InetAddress.getByName(h)
 		val pbytes = (login + "\r\n" + packet + "\r\n").getBytes()

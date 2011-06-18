@@ -5,6 +5,7 @@ import _root_.android.location.{Location, LocationManager}
 import _root_.android.util.Log
 import _root_.java.io.{BufferedReader, InputStreamReader, OutputStreamWriter, PrintWriter}
 import _root_.java.net.{InetAddress, Socket}
+import _root_.net.ab0oo.aprs.APRSPacket
 
 class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "TcpUploader"
@@ -33,7 +34,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 		conn.start()
 	}
 
-	def update(packet : String) : String = {
+	def update(packet : APRSPacket) : String = {
 		Log.d(TAG, "TcpUploader.update: " + packet)
 		conn.update(packet)
 	}
@@ -110,7 +111,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 			Log.d(TAG, "TcpSocketThread.terminate()")
 		}
 
-		def update(packet : String) : String = {
+		def update(packet : APRSPacket) : String = {
 			if (socket != null && socket.isConnected()) {
 				writer.println(packet)
 				"TCP OK"
