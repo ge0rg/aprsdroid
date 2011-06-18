@@ -14,7 +14,7 @@ import _root_.scala.math.{cos, Pi}
 
 object StorageDatabase {
 	val TAG = "APRSdroid.Storage"
-	val DB_VERSION = 1
+	val DB_VERSION = 2
 	val DB_NAME = "storage.db"
 	object Post {
 		val TABLE = "posts"
@@ -87,20 +87,33 @@ object StorageDatabase {
 	object Message {
 		val TABLE = "message"
 		val _ID = "_id"
-		val TS = "ts"
-		val NEXTTS = "nextts"
-		val CALL = "call"
-		val MSGID = "msgid"
-		val TYPE = "type"
-		val TEXT = "text"
+		val TS = "ts"			// timestamp of RX or first TX
+		val RETRYCNT = "retrycnt"	// attemp number for sending msg
+		val CALL = "call"		// callsign of comms partner
+		val MSGID = "msgid"		// message id (up to 5 alphanumeric symbols)
+		val TYPE = "type"		// incoming / out-new / out-acked
+		val TEXT = "text"		// message text
 		lazy val TABLE_CREATE = """CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT,
-			%s LONG, %s LONG,
+			%s LONG, %s INT,
 			%s TEXT, %s TEXT,
 			%s INTEGER, %s TEXT)"""
-			.format(TABLE, _ID, TS, NEXTTS,
+			.format(TABLE, _ID, TS, RETRYCNT,
 				CALL, MSGID,
 				TYPE, TEXT)
-		lazy val COLUMNS = Array(_ID, TS, NEXTTS, CALL, MSGID, TYPE, TEXT)
+		lazy val COLUMNS = Array(_ID, TS, "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS", RETRYCNT, CALL, MSGID, TYPE, TEXT)
+		val COLUMN_TS		= 1
+		val COLUMN_TTS		= 2
+		val COLUMN_RETRYCNT	= 3
+		val COLUMN_CALL		= 4
+		val COLUMN_MSGID	= 5
+		val COLUMN_TYPE		= 6
+		val COLUMN_TEXT		= 7
+
+
+		val TYPE_INCOMING	= 1
+		val TYPE_OUT_NEW	= 2
+		val TYPE_OUT_ACKED	= 3
+
 	}
 
 	var singleton : StorageDatabase = null
@@ -136,6 +149,7 @@ class StorageDatabase(context : Context) extends
 		db.execSQL(Post.TABLE_CREATE);
 		db.execSQL(Position.TABLE_CREATE)
 		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
+		db.execSQL(Message.TABLE_CREATE)
 	}
 	def resetPositionsTable(db : SQLiteDatabase) {
 		db.execSQL(Position.TABLE_DROP)
@@ -157,6 +171,9 @@ class StorageDatabase(context : Context) extends
 	def resetPositionsTable() : Unit = resetPositionsTable(getWritableDatabase())
 
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
+		if (from <= 1 && to <= 2) {
+			db.execSQL(Message.TABLE_CREATE)
+		}
 	}
 
 	def trimPosts(ts : Long) = Benchmark("trimPosts") {
@@ -326,5 +343,23 @@ class StorageDatabase(context : Context) extends
 			}
 
 		}
+	}
+
+	def getMessages(call : String) = {
+		getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
+			"call = ?", Array(call),
+			null, null,
+			null, null)
+	}
+
+	def getPendingMessages() = {
+		getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
+			"type = 2 and retrycnt < 5", null,
+			null, null,
+			null, null)
+	}
+
+	def addMessage(cv : ContentValues) = {
+		getWritableDatabase().insertOrThrow(Message.TABLE, "_id", cv)
 	}
 }
