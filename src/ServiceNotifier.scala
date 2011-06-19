@@ -25,10 +25,28 @@ abstract class ServiceNotifier {
 		n
 	}
 
+	def newMessageNotification(ctx : Service, call : String, message : String) : Notification = {
+		val n = new Notification()
+		n.icon = R.drawable.ic_status
+		n.when = System.currentTimeMillis
+		n.flags |= Notification.FLAG_AUTO_CANCEL
+		val i = new Intent(ctx, classOf[MessageActivity])
+		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+		i.putExtra("call", call)
+		n.contentIntent = PendingIntent.getActivity(ctx, 0, i, 0)
+		n.setLatestEventInfo(ctx, call, message, n.contentIntent)
+		n
+	}
+
 	def getNotificationMgr(ctx : Service) = ctx.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
 
 	def start(ctx : Service, status : String)
 	def stop(ctx : Service)
+
+	def notifyMessage(ctx : Service, call : String, message : String) {
+		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION + 1,
+			newMessageNotification(ctx, call, message))
+	}
 }
 
 class DonutNotifier extends ServiceNotifier {
