@@ -1,7 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.android.app.Service
-import _root_.android.content.{ContentValues, Context, Intent}
+import _root_.android.content.{BroadcastReceiver, ContentValues, Context, Intent, IntentFilter}
 import _root_.android.location._
 import _root_.android.os.{Bundle, IBinder, Handler}
 import _root_.android.preference.PreferenceManager
@@ -49,6 +49,12 @@ class AprsService extends Service with LocationListener {
 	val handler = new Handler()
 
 	lazy val db = StorageDatabase.open(this)
+
+	lazy val msgNotifier = new BroadcastReceiver() {
+		override def onReceive(ctx : Context, i : Intent) {
+			sendPendingMessages()
+		}
+	}
 
 	var poster : AprsIsUploader = null
 
@@ -115,6 +121,10 @@ class AprsService extends Service with LocationListener {
 		// continuous GPS tracking for single shot mode
 		requestLocations(singleShot)
 
+		// register for outgoing message notifications
+		registerReceiver(msgNotifier, new IntentFilter(AprsService.MESSAGE))
+
+
 		val callssid = prefs.getCallSsid()
 		val message = "%s: %d min, %d km".format(callssid, upd_int, upd_dist)
 		ServiceNotifier.instance.start(this, message)
@@ -143,6 +153,7 @@ class AprsService extends Service with LocationListener {
 			poster.stop()
 			showToast(getString(R.string.service_stop))
 		}
+		unregisterReceiver(msgNotifier)
 		ServiceNotifier.instance.stop(this)
 		running = false
 	}
