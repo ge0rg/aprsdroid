@@ -211,6 +211,24 @@ class StorageDatabase(context : Context) extends
 		getWritableDatabase().insertOrThrow(TABLE, CALL, cv)
 	}
 
+	def addMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
+		import Message._
+		if (msg.isAck() || msg.isRej()) {
+			// TODO: implement ack parsing
+			return
+		}
+		if (msg.getTargetCallsign() == "ASDF")
+			return
+		val cv = new ContentValues()
+		cv.put(TS, ts.asInstanceOf[java.lang.Long])
+		cv.put(RETRYCNT, 0.asInstanceOf[java.lang.Integer])
+		cv.put(CALL, ap.getSourceCall())
+		cv.put(MSGID, msg.getMessageNumber())
+		cv.put(TYPE, TYPE_INCOMING.asInstanceOf[java.lang.Integer])
+		cv.put(TEXT, msg.getMessageBody())
+		addMessage(cv)
+	}
+
 	def parsePacket(ts : Long, message : String) {
 		try {
 			val fap = new Parser().parse(message)
@@ -223,6 +241,7 @@ class StorageDatabase(context : Context) extends
 			fap.getAprsInformation() match {
 				case pp : PositionPacket => addPosition(ts, fap, pp.getPosition(), null)
 				case op : ObjectPacket => addPosition(ts, fap, op.getPosition(), op.getObjectName())
+				case msg : MessagePacket => addMessage(ts, fap, msg)
 			}
 		} catch {
 		case e : Exception =>
@@ -361,5 +380,22 @@ class StorageDatabase(context : Context) extends
 
 	def addMessage(cv : ContentValues) = {
 		getWritableDatabase().insertOrThrow(Message.TABLE, "_id", cv)
+	}
+	def updateMessage(id : Long, cv : ContentValues) = {
+		getWritableDatabase().update(Message.TABLE, cv, "_id = ?", Array(id.toString))
+	}
+
+	def createMsgId(call : String) = {
+		val c = getReadableDatabase().query(Message.TABLE, Array("max(msgid)"),
+			"call = ? AND type != ?", Array(call, Message.TYPE_INCOMING.toString),
+			null, null,
+			null, null)
+		c.moveToFirst()
+		val result = if (c.getCount() == 0)
+			0
+		else c.getInt(0) + 1
+		Log.d(TAG, "createMsgId(%s) = %d".format(call, result))
+		c.close()
+		result
 	}
 }
