@@ -8,7 +8,7 @@ import _root_.android.database.Cursor
 import _root_.android.util.Log
 import _root_.android.widget.FilterQueryProvider
 
-import _root_.net.ab0oo.aprs._
+import _root_.net.ab0oo.aprs.parser._
 
 import _root_.scala.math.{cos, Pi}
 

@@ -2,7 +2,7 @@ package org.aprsdroid.app
 
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
-import _root_.net.ab0oo.aprs.APRSPacket
+import _root_.net.ab0oo.aprs.parser.APRSPacket
 import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 
 class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {

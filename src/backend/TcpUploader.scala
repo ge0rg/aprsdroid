@@ -5,7 +5,7 @@ import _root_.android.location.{Location, LocationManager}
 import _root_.android.util.Log
 import _root_.java.io.{BufferedReader, InputStreamReader, OutputStreamWriter, PrintWriter}
 import _root_.java.net.{InetAddress, Socket}
-import _root_.net.ab0oo.aprs.APRSPacket
+import _root_.net.ab0oo.aprs.parser.APRSPacket
 
 class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "TcpUploader"

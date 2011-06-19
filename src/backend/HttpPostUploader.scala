@@ -2,7 +2,7 @@ package org.aprsdroid.app
 
 import _root_.android.location.Location
 import _root_.android.util.Log
-import _root_.net.ab0oo.aprs.APRSPacket
+import _root_.net.ab0oo.aprs.parser.APRSPacket
 import _root_.org.apache.http._
 import _root_.org.apache.http.entity.StringEntity
 import _root_.org.apache.http.impl.client.DefaultHttpClient

@@ -1,6 +1,6 @@
 package org.aprsdroid.app
 
-import _root_.net.ab0oo.aprs.APRSPacket
+import _root_.net.ab0oo.aprs.parser.APRSPacket
 
 object AprsIsUploader {
 	val DEFAULT_CONNTYPE = "tcp"

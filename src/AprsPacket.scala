@@ -1,7 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.android.location.Location
-import _root_.net.ab0oo.aprs._
+import _root_.net.ab0oo.aprs.parser._
 
 object AprsPacket {
 	val QRG_RE = ".*?(\\d{2,3}[.,]\\d{3,4}).*?".r
