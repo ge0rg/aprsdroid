@@ -151,24 +151,6 @@ class StorageDatabase(context : Context) extends
 		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
 		db.execSQL(Message.TABLE_CREATE)
 	}
-	def resetPositionsTable(db : SQLiteDatabase) {
-		db.execSQL(Position.TABLE_DROP)
-		db.execSQL(Position.TABLE_CREATE)
-		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
-		return; // this code causes a too long wait in onUpgrade...
-		// we can not call getPosts() here due to recursion issues
-		val c = db.query(Post.TABLE, Post.COLUMNS, "TYPE = 0 OR TYPE = 3",
-					null, null, null, "_ID DESC", null)
-		c.moveToFirst()
-		while (!c.isAfterLast()) {
-			val message = c.getString(c.getColumnIndexOrThrow(Post.MESSAGE))
-			val ts = c.getLong(c.getColumnIndexOrThrow(Post.TS))
-			parsePacket(ts, message)
-			c.moveToNext()
-		}
-		c.close()
-	}
-	def resetPositionsTable() : Unit = resetPositionsTable(getWritableDatabase())
 
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
 		if (from <= 1 && to <= 2) {
