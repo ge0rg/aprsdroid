@@ -54,21 +54,6 @@ class MessageActivity extends LoadingListActivity
 		true
 	}
 
-	override def onListItemClick(l : ListView, v : View, position : Int, id : Long) {
-		//super.onListItemClick(l, v, position, id)
-		val c = getListView().getItemAtPosition(position).asInstanceOf[Cursor]
-		val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
-		Log.d("MessageActivity", "onListItemClick: %s".format(call))
-
-		if (targetcall == call) {
-			// click on own callssid
-			trackOnMap(call)
-		} else {
-			openDetails(call)
-			finish()
-		}
-	}
-
 	// TextWatcher for msginput
 	override def afterTextChanged(s : Editable) {
 		msgsend.setEnabled(msginput.getText().length() > 0)

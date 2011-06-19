@@ -14,8 +14,8 @@ object MessageListAdapter {
 	val LIST_FROM = Array("TSS", CALL, TEXT)
 	val LIST_TO = Array(R.id.listts, R.id.liststatus, R.id.listmessage)
 
-	// null, incoming, out-new, out-acked
-	val COLORS = Array(0, 0xff8080b0, 0xff80b080, 0xff30b030) 
+	// null, incoming, out-new, out-acked, out-rejected
+	val COLORS = Array(0, 0xff8080b0, 0xff80a080, 0xff30b030, 0xffb03030)
 }
 
 class MessageListAdapter(context : Context, prefs : PrefsWrapper,
@@ -34,9 +34,23 @@ class MessageListAdapter(context : Context, prefs : PrefsWrapper,
 	override def bindView(view : View, context : Context, cursor : Cursor) {
 		import StorageDatabase.Message._
 		val msgtype = cursor.getInt(COLUMN_TYPE)
+		val retrycnt = cursor.getInt(COLUMN_RETRYCNT)
 		view.findViewById(R.id.listmessage).asInstanceOf[TextView]
 			.setTextColor(MessageListAdapter.COLORS(msgtype))
+		val statusview = view.findViewById(R.id.liststatus).asInstanceOf[TextView]
+		statusview.setTextColor(MessageListAdapter.COLORS(msgtype))
 		super.bindView(view, context, cursor)
+		msgtype match {
+		case TYPE_INCOMING =>
+			statusview.setText(targetcall)
+		case TYPE_OUT_NEW =>
+			statusview.setText("%s %d/5".format(mycall, retrycnt))
+		case TYPE_OUT_ACKED =>
+			//statusview.setText("%s ack #%d".format(mycall, retrycnt))
+			statusview.setText(mycall)
+		case TYPE_OUT_REJECTED =>
+			statusview.setText("%s rej #%d".format(mycall, retrycnt))
+		}
 	}
 
 	def load_cursor(i : Intent) = {
