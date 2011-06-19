@@ -213,12 +213,6 @@ class StorageDatabase(context : Context) extends
 
 	def addMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
 		import Message._
-		if (msg.isAck() || msg.isRej()) {
-			// TODO: implement ack parsing
-			return
-		}
-		if (msg.getTargetCallsign() == "ASDF")
-			return
 		val cv = new ContentValues()
 		cv.put(TS, ts.asInstanceOf[java.lang.Long])
 		cv.put(RETRYCNT, 0.asInstanceOf[java.lang.Integer])
@@ -227,27 +221,6 @@ class StorageDatabase(context : Context) extends
 		cv.put(TYPE, TYPE_INCOMING.asInstanceOf[java.lang.Integer])
 		cv.put(TEXT, msg.getMessageBody())
 		addMessage(cv)
-	}
-
-	def parsePacket(ts : Long, message : String) {
-		try {
-			val fap = new Parser().parse(message)
-			if (fap.getAprsInformation() == null) {
-				Log.d(TAG, "parsePacket() misses payload: " + message)
-				return
-			}
-			if (fap.hasFault())
-				throw new Exception("FAP fault")
-			fap.getAprsInformation() match {
-				case pp : PositionPacket => addPosition(ts, fap, pp.getPosition(), null)
-				case op : ObjectPacket => addPosition(ts, fap, op.getPosition(), op.getObjectName())
-				case msg : MessagePacket => addMessage(ts, fap, msg)
-			}
-		} catch {
-		case e : Exception =>
-			Log.d(TAG, "parsePacket() unsupported packet: " + message)
-			e.printStackTrace()
-		}
 	}
 
 	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = Benchmark("getPositions") {
@@ -307,12 +280,6 @@ class StorageDatabase(context : Context) extends
 		cv.put(Post.STATUS, status)
 		cv.put(Post.MESSAGE, message)
 		getWritableDatabase().insertOrThrow(Post.TABLE, Post.MESSAGE, cv)
-		if (posttype == Post.TYPE_POST || posttype == Post.TYPE_INCMG) {
-			parsePacket(ts, message)
-		} else {
-			// only log status messages
-			Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
-		}
 		if (Post.trimCounter == 0) {
 			trimPosts()
 			Post.trimCounter = 100

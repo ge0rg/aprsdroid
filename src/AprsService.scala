@@ -8,6 +8,8 @@ import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.android.widget.Toast
 
+import _root_.net.ab0oo.aprs.parser._
+
 object AprsService {
 	val PACKAGE = "org.aprsdroid.app"
 	// intent actions
@@ -257,8 +259,53 @@ class AprsService extends Service with LocationListener {
 		Log.d(TAG, "onStatusChanged: " + provider)
 	}
 
+	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
+		if (msg.isAck() || msg.isRej()) {
+			// TODO: implement ack parsing
+			return
+		}
+		val callssid = prefs.getCallSsid()
+		if (msg.getTargetCallsign() == callssid) {
+			db.addMessage(ts, ap, msg)
+			if (msg.getMessageNumber() != "") {
+				// we need to send an ack
+				val ack = AprsPacket.formatMessage(callssid, appVersion(), ap.getSourceCall(), "ack", msg.getMessageNumber())
+				val status = poster.update(ack)
+				addPost(StorageDatabase.Post.TYPE_POST, status, ack.toString)
+			}
+		}
+	}
+
+	def parsePacket(ts : Long, message : String) {
+		try {
+			val fap = new Parser().parse(message)
+			if (fap.getAprsInformation() == null) {
+				Log.d(TAG, "parsePacket() misses payload: " + message)
+				return
+			}
+			if (fap.hasFault())
+				throw new Exception("FAP fault")
+			fap.getAprsInformation() match {
+				case pp : PositionPacket => db.addPosition(ts, fap, pp.getPosition(), null)
+				case op : ObjectPacket => db.addPosition(ts, fap, op.getPosition(), op.getObjectName())
+				case msg : MessagePacket => handleMessage(ts, fap, msg)
+			}
+		} catch {
+		case e : Exception =>
+			Log.d(TAG, "parsePacket() unsupported packet: " + message)
+			e.printStackTrace()
+		}
+	}
+
 	def addPost(t : Int, status : String, message : String) {
-		db.addPost(System.currentTimeMillis(), t, status, message)
+		val ts = System.currentTimeMillis()
+		db.addPost(ts, t, status, message)
+		if (t == StorageDatabase.Post.TYPE_POST || t == StorageDatabase.Post.TYPE_INCMG) {
+			parsePacket(ts, message)
+		} else {
+			// only log status messages
+			Log.d(TAG, "addPost: " + status + " - " + message)
+		}
 		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, message))
 	}
 
