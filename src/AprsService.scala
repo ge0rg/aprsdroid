@@ -271,19 +271,25 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
-		if (msg.isAck() || msg.isRej()) {
-			// TODO: implement ack parsing
-			return
-		}
 		val callssid = prefs.getCallSsid()
 		if (msg.getTargetCallsign() == callssid) {
-			db.addMessage(ts, ap, msg)
-			if (msg.getMessageNumber() != "") {
-				// we need to send an ack
-				val ack = AprsPacket.formatMessage(callssid, appVersion(), ap.getSourceCall(), "ack", msg.getMessageNumber())
-				val status = poster.update(ack)
-				addPost(StorageDatabase.Post.TYPE_POST, status, ack.toString)
+			if (msg.isAck() || msg.isRej()) {
+				val new_type = if (msg.isAck())
+					StorageDatabase.Message.TYPE_OUT_ACKED
+				else
+					StorageDatabase.Message.TYPE_OUT_REJECTED
+				db.updateMessageAcked(ap.getSourceCall(), msg.getMessageNumber(), new_type)
+			} else {
+				db.addMessage(ts, ap, msg)
+				if (msg.getMessageNumber() != "") {
+					// we need to send an ack
+					val ack = AprsPacket.formatMessage(callssid, appVersion(), ap.getSourceCall(), "ack", msg.getMessageNumber())
+					val status = poster.update(ack)
+					addPost(StorageDatabase.Post.TYPE_POST, status, ack.toString)
+				}
+				ServiceNotifier.instance.notifyMessage(this, ap.getSourceCall(), msg.getMessageBody())
 			}
+			sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(STATUS, ap.toString))
 		}
 	}
 
@@ -347,14 +353,15 @@ class AprsService extends Service with LocationListener {
 			val msgtype = c.getInt(COLUMN_TYPE)
 			val text = c.getString(COLUMN_TEXT)
 			Log.d(TAG, "pending message: ->%s '%s'".format(call, text))
-			if (retrycnt == 0) {
+			if (retrycnt < 5) {
 				val msg = AprsPacket.formatMessage(callssid, appVersion(), call, text, msgid)
 				val status = poster.update(msg)
 				addPost(StorageDatabase.Post.TYPE_POST, status, msg.toString)
 				val cv = new ContentValues()
-				cv.put(RETRYCNT, 1.asInstanceOf[java.lang.Integer])
-				cv.put(TYPE, TYPE_OUT_ACKED.asInstanceOf[java.lang.Integer])
+				cv.put(RETRYCNT, (retrycnt + 1).asInstanceOf[java.lang.Integer])
+				// XXX: do not ack until acked
 				db.updateMessage(c.getLong(/* COLUMN_ID */ 0), cv)
+				sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(STATUS, msg.toString))
 			}
 			c.moveToNext()
 		}
