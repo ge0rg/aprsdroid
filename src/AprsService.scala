@@ -1,7 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.android.app.Service
-import _root_.android.content.{Context, Intent}
+import _root_.android.content.{ContentValues, Context, Intent}
 import _root_.android.location._
 import _root_.android.os.{Bundle, IBinder, Handler}
 import _root_.android.preference.PreferenceManager
@@ -224,6 +224,7 @@ class AprsService extends Service with LocationListener {
 
 		Log.d(TAG, "packet: " + packet)
 		val result = try {
+			sendPendingMessages()
 			val status = poster.update(packet)
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet.toString)
@@ -274,7 +275,11 @@ class AprsService extends Service with LocationListener {
 
 	def sendPendingMessages() {
 		import StorageDatabase.Message._
+
+		val callssid = prefs.getCallSsid()
+
 		val c = db.getPendingMessages()
+		Log.d(TAG, "sendPendingMessages")
 		c.moveToFirst()
 		while (!c.isAfterLast()) {
 			val ts = c.getLong(COLUMN_TS)
@@ -284,6 +289,15 @@ class AprsService extends Service with LocationListener {
 			val msgtype = c.getInt(COLUMN_TYPE)
 			val text = c.getString(COLUMN_TEXT)
 			Log.d(TAG, "pending message: ->%s '%s'".format(call, text))
+			if (retrycnt == 0) {
+				val msg = AprsPacket.formatMessage(callssid, appVersion(), call, text, msgid)
+				val status = poster.update(msg)
+				addPost(StorageDatabase.Post.TYPE_POST, status, msg.toString)
+				val cv = new ContentValues()
+				cv.put(RETRYCNT, 1.asInstanceOf[java.lang.Integer])
+				cv.put(TYPE, TYPE_OUT_ACKED.asInstanceOf[java.lang.Integer])
+				db.updateMessage(c.getLong(/* COLUMN_ID */ 0), cv)
+			}
 			c.moveToNext()
 		}
 		c.close()

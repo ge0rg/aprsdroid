@@ -99,7 +99,7 @@ class MessageActivity extends LoadingListActivity
 		cv.put(TS, System.currentTimeMillis().asInstanceOf[java.lang.Long])
 		cv.put(RETRYCNT, 0.asInstanceOf[java.lang.Integer])
 		cv.put(CALL, targetcall)
-		cv.put(MSGID, "0")
+		cv.put(MSGID, storage.createMsgId(targetcall).asInstanceOf[java.lang.Integer])
 		cv.put(TYPE, TYPE_OUT_NEW.asInstanceOf[java.lang.Integer])
 		cv.put(TEXT, msg)
 		storage.addMessage(cv)
