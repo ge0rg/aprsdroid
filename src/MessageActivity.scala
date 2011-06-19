@@ -29,7 +29,7 @@ class MessageActivity extends LoadingListActivity
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.message_act)
 
-		getListView().setOnCreateContextMenuListener(this);
+		//getListView().setOnCreateContextMenuListener(this);
 
 		onStartLoading()
 		setListAdapter(pla)
@@ -40,7 +40,7 @@ class MessageActivity extends LoadingListActivity
 		msginput.setOnKeyListener(this)
 		msgsend.setOnClickListener(this)
 
-		setTitle(getString(R.string.app_sta) + ": " + targetcall)
+		setTitle(getString(R.string.app_messages) + ": " + targetcall)
 	}
 
 	override def onDestroy() {

@@ -13,6 +13,9 @@ object MessageListAdapter {
 	import StorageDatabase.Message._
 	val LIST_FROM = Array("TSS", CALL, TEXT)
 	val LIST_TO = Array(R.id.listts, R.id.liststatus, R.id.listmessage)
+
+	// null, incoming, out-new, out-acked
+	val COLORS = Array(0, 0xff8080b0, 0xff80b080, 0xff30b030) 
 }
 
 class MessageListAdapter(context : Context, prefs : PrefsWrapper,
@@ -27,6 +30,14 @@ class MessageListAdapter(context : Context, prefs : PrefsWrapper,
 		replace_cursor, cancel_cursor)
 
 	context.registerReceiver(locReceiver, new IntentFilter(AprsService.MESSAGE))
+
+	override def bindView(view : View, context : Context, cursor : Cursor) {
+		import StorageDatabase.Message._
+		val msgtype = cursor.getInt(COLUMN_TYPE)
+		view.findViewById(R.id.listmessage).asInstanceOf[TextView]
+			.setTextColor(MessageListAdapter.COLORS(msgtype))
+		super.bindView(view, context, cursor)
+	}
 
 	def load_cursor(i : Intent) = {
 		val c = storage.getMessages(targetcall)
