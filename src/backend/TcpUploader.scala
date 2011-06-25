@@ -45,7 +45,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 		}
 		conn.shutdown()
 		conn.interrupt()
-		conn.join()
+		conn.join(50)
 	}
 
 	class TcpSocketThread(host : String, port : Int)
