@@ -337,6 +337,16 @@ class AprsService extends Service with LocationListener {
 		}
 	}
 
+	def canSendMsg(ts : Long, retrycnt : Int) : Boolean = {
+		if (retrycnt == 0)
+			true
+		else {
+			//val delta = 30000*scala.math.pow(2, retrycnt-1).toLong
+			val delta = 30000 * (1 << (retrycnt - 1))
+			(ts + delta < System.currentTimeMillis)
+		}
+	}
+
 	def sendPendingMessages() {
 		import StorageDatabase.Message._
 
@@ -352,13 +362,14 @@ class AprsService extends Service with LocationListener {
 			val msgid = c.getString(COLUMN_MSGID)
 			val msgtype = c.getInt(COLUMN_TYPE)
 			val text = c.getString(COLUMN_TEXT)
-			Log.d(TAG, "pending message: ->%s '%s'".format(call, text))
-			if (retrycnt < 5) {
+			Log.d(TAG, "pending message: %d/5 ->%s '%s'".format(retrycnt, call, text))
+			if (retrycnt < 5 && canSendMsg(ts, retrycnt)) {
 				val msg = AprsPacket.formatMessage(callssid, appVersion(), call, text, msgid)
 				val status = poster.update(msg)
 				addPost(StorageDatabase.Post.TYPE_POST, status, msg.toString)
 				val cv = new ContentValues()
 				cv.put(RETRYCNT, (retrycnt + 1).asInstanceOf[java.lang.Integer])
+				cv.put(TS, System.currentTimeMillis.asInstanceOf[java.lang.Long])
 				// XXX: do not ack until acked
 				db.updateMessage(c.getLong(/* COLUMN_ID */ 0), cv)
 				sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(STATUS, msg.toString))
