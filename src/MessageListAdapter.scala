@@ -55,7 +55,7 @@ class MessageListAdapter(context : Context, prefs : PrefsWrapper,
 
 	def load_cursor(i : Intent) = {
 		val c = storage.getMessages(targetcall)
-		Benchmark("getCount") { c.getCount() }
+		c.getCount()
 		c
 	}
 

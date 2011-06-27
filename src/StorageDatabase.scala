@@ -206,7 +206,7 @@ class StorageDatabase(context : Context) extends
 		addMessage(cv)
 	}
 
-	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = Benchmark("getPositions") {
+	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS_MAP,
 			sel, selArgs,
 			null, null, "CALL, _ID", limit)
@@ -218,23 +218,23 @@ class StorageDatabase(context : Context) extends
 			Array(lat1, lat2, lon1, lon2).map(_.toString), limit)
 	}
 
-	def getStaPosition(call : String) : Cursor = Benchmark("getStaPosition") {
+	def getStaPosition(call : String) : Cursor = {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ?", Array(call),
 			null, null, "_ID DESC", "1")
 	}
-	def getStaPositions(call : String, limit : String) : Cursor = Benchmark("getStaPositions") {
+	def getStaPositions(call : String, limit : String) : Cursor = {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ? AND TS > ?", Array(call, limit),
 			null, null, "_ID DESC", null)
 	}
-	def getAllSsids(call : String) : Cursor = Benchmark("getAllSsids") {
+	def getAllSsids(call : String) : Cursor = {
 		val querycall = call.split("[- _]+")(0) + "%"
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ? or origin LIKE ?", Array(querycall, querycall),
 			"call", null, null, null)
 	}
-	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = Benchmark("getNeighbors") {
+	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
 		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
 		Log.d(TAG, "getNeighbors: correcting by %d".format(corr))
@@ -245,7 +245,7 @@ class StorageDatabase(context : Context) extends
 			"call", null, "dist", limit)
 	}
 
-	def getNeighborsLike(call : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = Benchmark("getNeighborsLike") {
+	def getNeighborsLike(call : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
 		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
 		Log.d(TAG, "getNeighborsLike: correcting by %d".format(corr))
