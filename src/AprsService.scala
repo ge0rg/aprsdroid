@@ -327,7 +327,10 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def postSubmit(post : String) {
-		handler.post { addPost(StorageDatabase.Post.TYPE_INCMG, "incoming", post) }
+		handler.post {
+			addPost(StorageDatabase.Post.TYPE_INCMG, "incoming", post)
+			sendPendingMessages()
+		}
 	}
 
 	def postAbort(post : String) {
@@ -353,7 +356,7 @@ class AprsService extends Service with LocationListener {
 		val callssid = prefs.getCallSsid()
 
 		val c = db.getPendingMessages()
-		Log.d(TAG, "sendPendingMessages")
+		//Log.d(TAG, "sendPendingMessages")
 		c.moveToFirst()
 		while (!c.isAfterLast()) {
 			val ts = c.getLong(COLUMN_TS)
