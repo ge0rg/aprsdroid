@@ -9,6 +9,8 @@ import _root_.java.io.{InputStream, OutputStream}
 import _root_.java.net.{InetAddress, Socket}
 import _root_.java.util.UUID
 
+import _root_.net.ab0oo.aprs.parser._
+
 class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "BluetoothTnc"
 	val SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
@@ -40,7 +42,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		conn.start()
 	}
 
-	def update(packet : String) : String = {
+	def update(packet : APRSPacket) : String = {
 		Log.d(TAG, "BluetoothTnc.update: " + packet)
 		conn.update(packet)
 	}
@@ -119,9 +121,9 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			Log.d(TAG, "BtSocketThread.terminate()")
 		}
 
-		def update(packet : String) : String = {
+		def update(packet : APRSPacket) : String = {
 			if (socket != null) {
-				writer.writePacket(packet)
+				writer.writePacket(packet.toAX25Frame())
 				"Bluetooth OK"
 			} else "Bluetooth disconnected"
 		}
@@ -193,11 +195,11 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	}
 
 	class KissWriter(os : OutputStream) {
-		def writePacket(p : String) {
+		def writePacket(p : Array[Byte]) {
 			Log.d(TAG, "KissWriter.writePacket: %s".format(p))
 			os.write(Kiss.FEND)
 			os.write(Kiss.CMD_DATA)
-			os.write(p.getBytes())
+			os.write(p)
 			os.write(Kiss.FEND)
 			os.flush()
 		}
