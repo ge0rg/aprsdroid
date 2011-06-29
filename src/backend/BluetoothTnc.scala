@@ -52,7 +52,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			return
 		conn.shutdown()
 		conn.interrupt()
-		conn.join()
+		conn.join(50)
 	}
 
 	class BtSocketThread(ba : BluetoothAdapter, tnc : BluetoothDevice)
@@ -65,10 +65,9 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 
 		def init_socket() {
 			Log.d(TAG, "init_socket()")
-			this.synchronized {
-				if (socket != null) {
-					shutdown()
-				}
+			if (socket != null) {
+				shutdown()
+			}
 				if (tnc == null) {
 					// we are a host
 					Log.d(TAG, "awaiting client connection...")
@@ -86,6 +85,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 					socket.connect()
 				}
 
+			this.synchronized {
 				reader = new KissReader(socket.getInputStream())
 				writer = new KissWriter(socket.getOutputStream())
 				running = true
