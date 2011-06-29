@@ -230,6 +230,7 @@ class AprsService extends Service with LocationListener {
 			case e : Exception =>
 				i.putExtra(PACKET, e.getMessage())
 				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
+				e.printStackTrace()
 				e.getMessage()
 		}
 		if (singleShot) {
