@@ -194,12 +194,27 @@ class StorageDatabase(context : Context) extends
 		getWritableDatabase().insertOrThrow(TABLE, CALL, cv)
 	}
 
-	def addMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
+	def isMessageDuplicate(call : String, msgid : String, text : String) : Boolean = {
+		val c = getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
+			"type = 1 AND call = ? AND msgid = ? AND text = ?",
+			Array(call, msgid, text),
+			null, null,
+			null, null)
+		val result = (c.getCount() > 0)
+		c.close()
+		result
+	}
+
+	def addMessage(ts : Long, srccall : String, msg : MessagePacket) {
 		import Message._
+		if (isMessageDuplicate(srccall, msg.getMessageNumber(), msg.getMessageBody())) {
+			Log.i(TAG, "received duplicate message from %s: %s".format(srccall, msg))
+			return
+		}
 		val cv = new ContentValues()
 		cv.put(TS, ts.asInstanceOf[java.lang.Long])
 		cv.put(RETRYCNT, 0.asInstanceOf[java.lang.Integer])
-		cv.put(CALL, ap.getSourceCall())
+		cv.put(CALL, srccall)
 		cv.put(MSGID, msg.getMessageNumber())
 		cv.put(TYPE, TYPE_INCOMING.asInstanceOf[java.lang.Integer])
 		cv.put(TEXT, msg.getMessageBody())

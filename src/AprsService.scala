@@ -280,7 +280,7 @@ class AprsService extends Service with LocationListener {
 					StorageDatabase.Message.TYPE_OUT_REJECTED
 				db.updateMessageAcked(ap.getSourceCall(), msg.getMessageNumber(), new_type)
 			} else {
-				db.addMessage(ts, ap, msg)
+				db.addMessage(ts, ap.getSourceCall(), msg)
 				if (msg.getMessageNumber() != "") {
 					// we need to send an ack
 					val ack = AprsPacket.formatMessage(callssid, appVersion(), ap.getSourceCall(), "ack", msg.getMessageNumber())
