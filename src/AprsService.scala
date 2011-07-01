@@ -34,7 +34,7 @@ object AprsService {
 
 class AprsService extends Service with LocationListener {
 	import AprsService._
-	val TAG = "AprsService"
+	val TAG = "APRSdroid.Service"
 
 	lazy val prefs = new PrefsWrapper(this)
 

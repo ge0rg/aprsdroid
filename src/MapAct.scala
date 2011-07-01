@@ -15,7 +15,7 @@ import _root_.java.util.ArrayList
 import scala.collection.JavaConversions._
 
 class MapAct extends MapActivity with UIHelper {
-	val TAG = "MapAct"
+	val TAG = "APRSdroid.Map"
 
 	menu_id = R.id.map
 	lazy val mapview = findViewById(R.id.mapview).asInstanceOf[MapView]
@@ -122,7 +122,7 @@ class Station(val movelog : ArrayBuffer[GeoPoint], val point : GeoPoint,
 }
 
 class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) extends ItemizedOverlay[Station](icons) {
-	val TAG = "StationOverlay"
+	val TAG = "APRSdroid.StaOverlay"
 
 	//lazy val calls = new scala.collection.mutable.HashMap[String, Boolean]()
 	var stations = new java.util.ArrayList[Station]()

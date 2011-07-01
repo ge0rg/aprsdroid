@@ -8,7 +8,7 @@ import _root_.java.net.{InetAddress, Socket}
 import _root_.net.ab0oo.aprs.parser.APRSPacket
 
 class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
-	val TAG = "TcpUploader"
+	val TAG = "APRSdroid.TcpUploader"
 	val hostname = prefs.getString("tcp.server", "euro.aprs2.net")
 	val so_timeout = prefs.getStringInt("tcp.sotimeout", 120)
 	var conn : TcpSocketThread = null
@@ -50,7 +50,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 
 	class TcpSocketThread(host : String, port : Int)
 			extends Thread("APRSdroid TCP connection") {
-		val TAG = "TcpSocketThread"
+		val TAG = "APRSdroid.TcpSocketThread"
 		var running = false
 		var socket : Socket = null
 		var reader : BufferedReader = null

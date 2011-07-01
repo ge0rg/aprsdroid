@@ -9,7 +9,7 @@ import _root_.org.apache.http.impl.client.DefaultHttpClient
 import _root_.org.apache.http.client.methods.HttpPost
 
 class HttpPostUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
-	val TAG = "AprsHttpPost"
+	val TAG = "APRSdroid.HttpPost"
 	val host = prefs.getString("http.server", "srvr.aprs-is.net")
 
 	def start() {

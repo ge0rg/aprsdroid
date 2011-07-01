@@ -9,6 +9,7 @@ import _root_.android.view.View
 import _root_.android.widget.ListView
 
 class HubActivity extends MainListActivity("hub", R.id.hub) {
+	val TAG = "APRSdroid.Hub"
 
 	lazy val mycall = prefs.getCallSsid()
 	lazy val pla = new PositionListAdapter(this, prefs, mycall, mycall, PositionListAdapter.NEIGHBORS)

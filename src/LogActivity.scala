@@ -17,7 +17,7 @@ import _root_.android.widget.Toast
 import _root_.java.util.Date
 
 class LogActivity extends MainListActivity("log", R.id.log) {
-	val TAG = "APRSdroid"
+	val TAG = "APRSdroid.Log"
 
 	lazy val storage = StorageDatabase.open(this)
 	lazy val postcursor = storage.getPosts("100")

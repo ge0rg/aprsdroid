@@ -6,7 +6,7 @@ import _root_.net.ab0oo.aprs.parser.APRSPacket
 import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 
 class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
-	val TAG = "AprsAfsk"
+	val TAG = "APRSdroid.Afsk"
 	// frame prefix: bytes = milliseconds * baudrate / 8 / 1000
 	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
 	var Digis = prefs.getString("digi_path", "WIDE1-1")

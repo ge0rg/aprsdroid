@@ -13,7 +13,7 @@ import _root_.net.ab0oo.aprs.parser._
 import _root_.scala.math.{cos, Pi}
 
 object StorageDatabase {
-	val TAG = "StorageDatabase"
+	val TAG = "APRSdroid.Storage"
 	val DB_VERSION = 1
 	val DB_NAME = "storage.db"
 	object Post {
