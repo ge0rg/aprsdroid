@@ -20,7 +20,6 @@ class MessageActivity extends LoadingListActivity
 			
 	lazy val mycall = prefs.getCallSsid()
 	lazy val pla = new MessageListAdapter(this, prefs, mycall, targetcall)
-	lazy val locReceiver = new LocationReceiver2[Cursor](load_cursor, replace_cursor, cancel_cursor)
 
 	lazy val msginput = findView[EditText](R.id.msginput)
 	lazy val msgsend = findView[Button](R.id.msgsend)
@@ -33,8 +32,6 @@ class MessageActivity extends LoadingListActivity
 
 		onStartLoading()
 		setListAdapter(pla)
-		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
-		locReceiver.startTask(null)
 
 		msginput.addTextChangedListener(this)
 		msginput.setOnKeyListener(this)
@@ -46,7 +43,6 @@ class MessageActivity extends LoadingListActivity
 	override def onDestroy() {
 		super.onDestroy()
 		pla.onDestroy()
-		unregisterReceiver(locReceiver)
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
@@ -101,19 +97,6 @@ class MessageActivity extends LoadingListActivity
 			true
 		case _ => false
 		}
-	}
-
-	def load_cursor(i : Intent) = {
-		val c = storage.getStaPosts(targetcall, "100")
-		c.getCount()
-		c
-	}
-	def replace_cursor(c : Cursor) {
-		// do not call onStopLoading, PositionListAdapter takes much longer
-		//onStopLoading()
-	}
-	def cancel_cursor(c : Cursor) {
-		c.close()
 	}
 
 }
