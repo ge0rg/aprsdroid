@@ -39,6 +39,7 @@
 		/>
 	<activity android:name=".MessageActivity" android:label="@string/app_sta"
 		android:configChanges="orientation|keyboardHidden"
+		android:alwaysRetainTaskState="true"
 		/>
 	<activity android:name=".PrefsAct" android:label="@string/app_prefs" />
 	<activity android:name=".BackendPrefs" android:label="@string/app_prefs" />
