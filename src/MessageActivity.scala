@@ -38,6 +38,12 @@ class MessageActivity extends LoadingListActivity
 		msgsend.setOnClickListener(this)
 
 		setTitle(getString(R.string.app_messages) + ": " + targetcall)
+
+		val message = getIntent().getStringExtra("message")
+		if (message != null) {
+			Log.d(TAG, "sending message to %s: %s".format(targetcall, message))
+			sendMessage(message)
+		}
 	}
 
 	override def onDestroy() {
@@ -68,9 +74,11 @@ class MessageActivity extends LoadingListActivity
 	}
 
 	def sendMessage() {
+		sendMessage(msginput.getText().toString())
+	}
+	def sendMessage(msg : String) {
 		import StorageDatabase.Message._
 
-		val msg = msginput.getText().toString()
 		if (msg.length() == 0)
 			return
 		Log.d("MessageActivity", "sending " + msg)

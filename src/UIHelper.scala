@@ -32,6 +32,10 @@ trait UIHelper extends Activity
 		startActivity(new Intent(this, classOf[MessageActivity]).putExtra("call", call))
 	}
 
+	def openMessageSend(call : String, message : String) {
+		startActivity(new Intent(this, classOf[MessageActivity]).putExtra("call", call).putExtra("message", message))
+	}
+
 	def trackOnMap(call : String) {
 		val text = getString(R.string.map_track_call, call)
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
