@@ -30,6 +30,10 @@
 		android:launchMode="singleTop"
 		android:configChanges="orientation|keyboardHidden"
 		/>
+	<activity android:name=".ConversationsActivity" android:label="@string/app_messages"
+		android:launchMode="singleTop"
+		android:configChanges="orientation|keyboardHidden"
+		/>
 	<activity android:name=".StationActivity" android:label="@string/app_sta"
 		android:configChanges="orientation|keyboardHidden"
 		/>

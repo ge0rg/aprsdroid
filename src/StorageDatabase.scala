@@ -356,7 +356,7 @@ class StorageDatabase(context : Context) extends
 	def updateMessageAcked(call : String, msgid : String, new_type : Int) = {
 		val cv = new ContentValues()
 		cv.put(Message.TYPE, new_type.asInstanceOf[java.lang.Integer])
-		getWritableDatabase().update(Message.TABLE, cv, "call = ? and msgid = ?",
+		getWritableDatabase().update(Message.TABLE, cv, "type = 2 AND call = ? AND msgid = ?",
 			Array(call, msgid))
 	}
 
@@ -373,4 +373,12 @@ class StorageDatabase(context : Context) extends
 		c.close()
 		result
 	}
+
+	def getConversations() = {
+		getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
+			null, null,
+			"call", null,
+			"_id DESC", null)
+	}
+
 }
