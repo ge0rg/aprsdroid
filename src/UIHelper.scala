@@ -25,21 +25,21 @@ trait UIHelper extends Activity
 	}
 
 	def openDetails(call : String) {
-		startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call))
+		startActivity(new Intent(this, classOf[StationActivity]).setData(Uri.parse(call)))
 	}
 
 	def openMessaging(call : String) {
-		startActivity(new Intent(this, classOf[MessageActivity]).putExtra("call", call))
+		startActivity(new Intent(this, classOf[MessageActivity]).setData(Uri.parse(call)))
 	}
 
 	def openMessageSend(call : String, message : String) {
-		startActivity(new Intent(this, classOf[MessageActivity]).putExtra("call", call).putExtra("message", message))
+		startActivity(new Intent(this, classOf[MessageActivity]).setData(Uri.parse(call)).putExtra("message", message))
 	}
 
 	def trackOnMap(call : String) {
 		val text = getString(R.string.map_track_call, call)
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-		startActivity(new Intent(this, classOf[MapAct]).putExtra("call", call))
+		startActivity(new Intent(this, classOf[MapAct]).setData(Uri.parse(call)))
 	}
 
 	def openPrefs(toastId : Int) {

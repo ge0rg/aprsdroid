@@ -82,8 +82,8 @@ class MapAct extends MapActivity with UIHelper {
 
 	def getTargetCall() : String = {
 		val i = getIntent()
-		if (i != null && i.getStringExtra("call") != null) {
-			i.getStringExtra("call")
+		if (i != null && i.getDataString() != null) {
+			i.getDataString()
 		} else ""
 	}
 

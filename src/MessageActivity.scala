@@ -14,7 +14,7 @@ import _root_.android.widget.{Button, EditText, ListView}
 class MessageActivity extends LoadingListActivity
 		with OnClickListener with OnKeyListener with TextWatcher {
 	val TAG = "APRSdroid.Message"
-	lazy val targetcall = getIntent().getStringExtra("call")
+	lazy val targetcall = getIntent().getDataString()
 
 	lazy val storage = StorageDatabase.open(this)
 			
