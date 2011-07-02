@@ -25,6 +25,8 @@ object AprsService {
 
 	val FAST_LANE_ACT = 30000
 
+	val NUM_OF_RETRIES = 7
+
 	def intent(ctx : Context, action : String) : Intent = {
 		new Intent(action, null, ctx, classOf[AprsService])
 	}
@@ -355,7 +357,7 @@ class AprsService extends Service with LocationListener {
 
 		val callssid = prefs.getCallSsid()
 
-		val c = db.getPendingMessages()
+		val c = db.getPendingMessages(NUM_OF_RETRIES)
 		//Log.d(TAG, "sendPendingMessages")
 		c.moveToFirst()
 		while (!c.isAfterLast()) {
@@ -365,8 +367,8 @@ class AprsService extends Service with LocationListener {
 			val msgid = c.getString(COLUMN_MSGID)
 			val msgtype = c.getInt(COLUMN_TYPE)
 			val text = c.getString(COLUMN_TEXT)
-			Log.d(TAG, "pending message: %d/5 ->%s '%s'".format(retrycnt, call, text))
-			if (retrycnt < 5 && canSendMsg(ts, retrycnt)) {
+			Log.d(TAG, "pending message: %d/%d ->%s '%s'".format(retrycnt, NUM_OF_RETRIES, call, text))
+			if (retrycnt < NUM_OF_RETRIES && canSendMsg(ts, retrycnt)) {
 				val msg = AprsPacket.formatMessage(callssid, appVersion(), call, text, msgid)
 				val status = poster.update(msg)
 				addPost(StorageDatabase.Post.TYPE_POST, status, msg.toString)

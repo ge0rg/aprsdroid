@@ -339,9 +339,9 @@ class StorageDatabase(context : Context) extends
 			null, null)
 	}
 
-	def getPendingMessages() = {
+	def getPendingMessages(retries : Int) = {
 		getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
-			"type = 2 and retrycnt < 5", null,
+			"type = 2 and retrycnt < ?", Array(retries.toString),
 			null, null,
 			null, null)
 	}

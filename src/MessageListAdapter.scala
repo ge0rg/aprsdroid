@@ -14,6 +14,7 @@ object MessageListAdapter {
 	val LIST_FROM = Array("TSS", CALL, TEXT)
 	val LIST_TO = Array(R.id.listts, R.id.liststatus, R.id.listmessage)
 
+	val NUM_OF_RETRIES = 7
 	// null, incoming, out-new, out-acked, out-rejected
 	val COLORS = Array(0, 0xff8080b0, 0xff80a080, 0xff30b030, 0xffb03030)
 }
@@ -44,7 +45,7 @@ class MessageListAdapter(context : Context, prefs : PrefsWrapper,
 		case TYPE_INCOMING =>
 			statusview.setText(targetcall)
 		case TYPE_OUT_NEW =>
-			statusview.setText("%s %d/5".format(mycall, retrycnt))
+			statusview.setText("%s %d/%d".format(mycall, retrycnt, MessageListAdapter.NUM_OF_RETRIES))
 		case TYPE_OUT_ACKED =>
 			//statusview.setText("%s ack #%d".format(mycall, retrycnt))
 			statusview.setText(mycall)
