@@ -22,7 +22,11 @@ object Backend {
 		"tcp" -> new BackendInfo(
 			(s, p) => new TcpUploader(s, p),
 			R.xml.pref_tcp,
-			PASSCODE_OPTIONAL)
+			PASSCODE_OPTIONAL),
+		"bluetooth" -> new BackendInfo(
+			(s, p) => new BluetoothTnc(s, p),
+			R.xml.pref_bluetooth,
+			PASSCODE_NONE)
 		)
 
 	def defaultBackendInfo(prefs : PrefsWrapper) : BackendInfo = {
