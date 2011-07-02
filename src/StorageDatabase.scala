@@ -16,6 +16,9 @@ object StorageDatabase {
 	val TAG = "APRSdroid.Storage"
 	val DB_VERSION = 2
 	val DB_NAME = "storage.db"
+
+	val TSS_COL = "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS"
+
 	object Post {
 		val TABLE = "posts"
 		val _ID = "_id"
@@ -25,7 +28,7 @@ object StorageDatabase {
 		val MESSAGE = "message"
 		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s INTEGER, %s TEXT, %s TEXT)"
 					.format(TABLE, _ID, TS, TYPE, STATUS, MESSAGE);
-		lazy val COLUMNS = Array(_ID, TS, "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS", TYPE, STATUS, MESSAGE);
+		lazy val COLUMNS = Array(_ID, TS, TSS_COL, TYPE, STATUS, MESSAGE);
 
 		val TYPE_POST	= 0
 		val TYPE_INFO	= 1
@@ -100,7 +103,7 @@ object StorageDatabase {
 			.format(TABLE, _ID, TS, RETRYCNT,
 				CALL, MSGID,
 				TYPE, TEXT)
-		lazy val COLUMNS = Array(_ID, TS, "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS", RETRYCNT, CALL, MSGID, TYPE, TEXT)
+		lazy val COLUMNS = Array(_ID, TS, TSS_COL, RETRYCNT, CALL, MSGID, TYPE, TEXT)
 		val COLUMN_TS		= 1
 		val COLUMN_TTS		= 2
 		val COLUMN_RETRYCNT	= 3
@@ -136,7 +139,7 @@ object StorageDatabase {
 			else
 				null
 		} else
-			c.getString(Position.COLUMN_CALL)
+			c.getString(callidx)
 	}
 }
 
