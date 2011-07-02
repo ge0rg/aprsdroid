@@ -46,6 +46,11 @@ class MessageActivity extends LoadingListActivity
 		}
 	}
 
+	override def onResume() {
+		super.onResume()
+		ServiceNotifier.instance.cancelMessage(this, targetcall)
+	}
+
 	override def onDestroy() {
 		super.onDestroy()
 		pla.onDestroy()
