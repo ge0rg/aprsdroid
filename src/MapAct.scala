@@ -49,6 +49,7 @@ class MapAct extends MapActivity with UIHelper {
 		// only make it default if not tracking
 		if (targetcall == "")
 			makeLaunchActivity("map")
+		setKeepScreenOn()
 	}
 
 	override def onDestroy() {
