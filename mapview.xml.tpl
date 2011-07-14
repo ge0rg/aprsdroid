@@ -4,7 +4,7 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	>
-<com.google.android.maps.MapView
+<org.mapsforge.android.maps.MapView
 	android:id="@+id/mapview"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"

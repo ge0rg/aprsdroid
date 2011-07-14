@@ -11,7 +11,7 @@ import _root_.android.view.{Menu, MenuItem, View}
 import _root_.android.widget.SimpleCursorAdapter
 import _root_.android.widget.Spinner
 import _root_.android.widget.TextView
-import _root_.com.google.android.maps._
+import _root_.org.mapsforge.android.maps._
 import _root_.scala.collection.mutable.ArrayBuffer
 import _root_.java.util.ArrayList
 
@@ -41,7 +41,8 @@ class MapAct extends MapActivity with UIHelper {
 
 		locReceiver.startTask(null)
 		showObjects = prefs.getShowObjects()
-		mapview.setSatellite(prefs.getShowSatellite())
+		//mapview.setSatellite(prefs.getShowSatellite())
+		mapview.setMapFile("/sdcard/aprsdroid.map")
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
@@ -61,7 +62,7 @@ class MapAct extends MapActivity with UIHelper {
 		super.onDestroy()
 		unregisterReceiver(locReceiver)
 	}
-	override def isRouteDisplayed() = false
+	//override def isRouteDisplayed() = false
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
 		getMenuInflater().inflate(R.menu.options, menu);
@@ -80,7 +81,7 @@ class MapAct extends MapActivity with UIHelper {
 		case R.id.satellite =>
 			val newState = prefs.toggleBoolean("show_satellite", false)
 			mi.setChecked(newState)
-			mapview.setSatellite(newState)
+			//mapview.setSatellite(newState)
 			true
 		case _ => super.onOptionsItemSelected(mi)
 		}
@@ -100,7 +101,7 @@ class MapAct extends MapActivity with UIHelper {
 				cursor.moveToFirst()
 				val lat = cursor.getInt(StorageDatabase.Station.COLUMN_LAT)
 				val lon = cursor.getInt(StorageDatabase.Station.COLUMN_LON)
-				mapview.getController().animateTo(new GeoPoint(lat, lon))
+				mapview.getController().setCenter(new GeoPoint(lat, lon))
 			}
 			cursor.close()
 		}
@@ -194,8 +195,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		c.drawPath(path, tracePaint)
 	}
 
-	override def draw(c : Canvas, m : MapView, shadow : Boolean) : Unit = {
-		if (shadow) return;
+	override def drawOverlayBitmap(c : Canvas, dp : Point, proj : Projection, zoom : Byte) : Unit = {
 
 		val fontSize = symbolSize*7/8
 		val textPaint = new Paint()
@@ -223,8 +223,6 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		val iconbitmap = icons.asInstanceOf[BitmapDrawable].getBitmap
 
 		val p = new Point()
-		val proj = m.getProjection()
-		val zoom = m.getZoomLevel()
 		val (width, height) = (c.getWidth(), c.getHeight())
 		val ss = symbolSize/2
 		for (s <- stations) {
