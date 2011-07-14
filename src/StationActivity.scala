@@ -12,7 +12,7 @@ import _root_.android.widget.{ListView,SimpleCursorAdapter}
 
 class StationActivity extends LoadingListActivity
 		with OnClickListener {
-	lazy val targetcall = getIntent().getStringExtra("call")
+	lazy val targetcall = getIntent().getDataString()
 
 	lazy val storage = StorageDatabase.open(this)
 	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]

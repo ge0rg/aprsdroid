@@ -39,10 +39,10 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 
 	context.registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 
+	private val DARK = Array(0xff, 0x60, 0x60, 0x40)
+	private val BRIGHT = Array(0xff, 0xff, 0xff, 0xc0)
+	private val MAX = 30*60*1000
 	def getAgeColor(ts : Long) : Int = {
-		val DARK = Array(0xff, 0x60, 0x60, 0x40)
-		val BRIGHT = Array(0xff, 0xff, 0xff, 0xc0)
-		val MAX = 30*60*1000
 		val delta = (System.currentTimeMillis - ts).toInt
 		val factor = if (delta < MAX) delta else MAX
 		val mix = DARK zip BRIGHT map (t => { t._2 - (t._2 - t._1)*factor/MAX } )
@@ -98,7 +98,6 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 
 	def load_cursor(i : Intent) = {
 		import PositionListAdapter._
-		Benchmark("get my position") {
 		val cursor = storage.getStaPosition(mycall)
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst()
@@ -106,14 +105,13 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 			my_lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
 		}
 		cursor.close()
-		}
 		val c = mode match {
 			case SINGLE	=> storage.getStaPosition(targetcall)
 			case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon,
 				System.currentTimeMillis - prefs.getShowAge(), "50")
 			case SSIDS	=> storage.getAllSsids(targetcall)
 		}
-		Benchmark("getCount") { c.getCount() }
+		c.getCount()
 		c
 	}
 

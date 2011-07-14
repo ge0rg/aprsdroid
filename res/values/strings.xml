@@ -6,6 +6,7 @@
 <string name="app_map">APRSdroid Map</string>
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Station Info</string>
+<string name="app_messages">Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
 <string name="wrongpasscode">Your passcode does not match your callsign!</string>
@@ -31,6 +32,11 @@
 <string name="sta_map">Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
+
+<!-- Conversations activity -->
+<string name="msg_send_new">Send message to...</string>
+<string name="msg_message_text">Message text</string>
+<string name="msg_empty_list">There are no stored conversations.</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>

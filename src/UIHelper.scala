@@ -25,13 +25,21 @@ trait UIHelper extends Activity
 	}
 
 	def openDetails(call : String) {
-		startActivity(new Intent(this, classOf[StationActivity]).putExtra("call", call))
+		startActivity(new Intent(this, classOf[StationActivity]).setData(Uri.parse(call)))
+	}
+
+	def openMessaging(call : String) {
+		startActivity(new Intent(this, classOf[MessageActivity]).setData(Uri.parse(call)))
+	}
+
+	def openMessageSend(call : String, message : String) {
+		startActivity(new Intent(this, classOf[MessageActivity]).setData(Uri.parse(call)).putExtra("message", message))
 	}
 
 	def trackOnMap(call : String) {
 		val text = getString(R.string.map_track_call, call)
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-		startActivity(new Intent(this, classOf[MapAct]).putExtra("call", call))
+		startActivity(new Intent(this, classOf[MapAct]).setData(Uri.parse(call)))
 	}
 
 	def openPrefs(toastId : Int) {
@@ -189,9 +197,10 @@ trait UIHelper extends Activity
 		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
 		mi.setIcon(if (AprsService.running) android.R.drawable.ic_menu_close_clear_cancel  else android.R.drawable.ic_menu_compass)
 		// disable the "own" menu
-		Array(R.id.hub, R.id.map, R.id.log).map((id) => {
+		Array(R.id.hub, R.id.map, R.id.log, R.id.conversations).map((id) => {
 			menu.findItem(id).setVisible(id != menu_id)
 		})
+		menu.findItem(R.id.age).setVisible(R.id.map == menu_id || R.id.hub == menu_id)
 		menu.findItem(R.id.overlays).setVisible(R.id.map == menu_id)
 		menu.findItem(R.id.objects).setChecked(prefs.getShowObjects())
 		menu.findItem(R.id.satellite).setChecked(prefs.getShowSatellite())
@@ -222,6 +231,9 @@ trait UIHelper extends Activity
 			true
 		case R.id.log =>
 			startActivity(new Intent(this, classOf[LogActivity]));
+			true
+		case R.id.conversations =>
+			startActivity(new Intent(this, classOf[ConversationsActivity]));
 			true
 		// toggle service
 		case R.id.startstopbtn =>
@@ -268,6 +280,9 @@ trait UIHelper extends Activity
 		id match {
 		case R.id.details =>
 			openDetails(targetcall)
+			true
+		case R.id.message =>
+			openMessaging(targetcall)
 			true
 		case R.id.mapbutton =>
 			trackOnMap(targetcall)

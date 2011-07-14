@@ -11,6 +11,10 @@
 		android:title="@string/show_log"
 		android:alphabeticShortcut="l"
 		android:icon="@android:drawable/ic_menu_recent_history" />
+	<item android:id="@+id/conversations"
+		android:title="@string/app_messages"
+		android:alphabeticShortcut="c"
+		android:icon="@android:drawable/ic_menu_send" />
 	<item android:id="@+id/age"
 		android:title="@string/age"
 		android:alphabeticShortcut="a"

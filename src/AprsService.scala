@@ -1,23 +1,31 @@
 package org.aprsdroid.app
 
 import _root_.android.app.Service
-import _root_.android.content.{Context, Intent}
+import _root_.android.content.{BroadcastReceiver, ContentValues, Context, Intent, IntentFilter}
 import _root_.android.location._
 import _root_.android.os.{Bundle, IBinder, Handler}
 import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.android.widget.Toast
 
+import _root_.net.ab0oo.aprs.parser._
+
 object AprsService {
 	val PACKAGE = "org.aprsdroid.app"
+	// intent actions
 	val SERVICE = PACKAGE + ".SERVICE"
 	val SERVICE_ONCE = PACKAGE + ".ONCE"
+	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"
+	val MESSAGE = PACKAGE + ".MESSAGE"
+	// broadcast intent extras
 	val LOCATION = PACKAGE + ".LOCATION"
 	val STATUS = PACKAGE + ".STATUS"
 	val PACKET = PACKAGE + ".PACKET"
 
 	val FAST_LANE_ACT = 30000
+
+	val NUM_OF_RETRIES = 7
 
 	def intent(ctx : Context, action : String) : Intent = {
 		new Intent(action, null, ctx, classOf[AprsService])
@@ -43,6 +51,12 @@ class AprsService extends Service with LocationListener {
 	val handler = new Handler()
 
 	lazy val db = StorageDatabase.open(this)
+
+	lazy val msgNotifier = new BroadcastReceiver() {
+		override def onReceive(ctx : Context, i : Intent) {
+			sendPendingMessages()
+		}
+	}
 
 	var poster : AprsIsUploader = null
 
@@ -109,6 +123,10 @@ class AprsService extends Service with LocationListener {
 		// continuous GPS tracking for single shot mode
 		requestLocations(singleShot)
 
+		// register for outgoing message notifications
+		registerReceiver(msgNotifier, new IntentFilter(AprsService.MESSAGE))
+
+
 		val callssid = prefs.getCallSsid()
 		val message = "%s: %d min, %d km".format(callssid, upd_int, upd_dist)
 		ServiceNotifier.instance.start(this, message)
@@ -137,6 +155,7 @@ class AprsService extends Service with LocationListener {
 			poster.stop()
 			showToast(getString(R.string.service_stop))
 		}
+		unregisterReceiver(msgNotifier)
 		ServiceNotifier.instance.stop(this)
 		running = false
 	}
@@ -220,6 +239,7 @@ class AprsService extends Service with LocationListener {
 
 		Log.d(TAG, "packet: " + packet)
 		val result = try {
+			sendPendingMessages()
 			val status = poster.update(packet)
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet.toString)
@@ -252,13 +272,67 @@ class AprsService extends Service with LocationListener {
 		Log.d(TAG, "onStatusChanged: " + provider)
 	}
 
+	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
+		val callssid = prefs.getCallSsid()
+		if (msg.getTargetCallsign() == callssid) {
+			if (msg.isAck() || msg.isRej()) {
+				val new_type = if (msg.isAck())
+					StorageDatabase.Message.TYPE_OUT_ACKED
+				else
+					StorageDatabase.Message.TYPE_OUT_REJECTED
+				db.updateMessageAcked(ap.getSourceCall(), msg.getMessageNumber(), new_type)
+			} else {
+				db.addMessage(ts, ap.getSourceCall(), msg)
+				if (msg.getMessageNumber() != "") {
+					// we need to send an ack
+					val ack = AprsPacket.formatMessage(callssid, appVersion(), ap.getSourceCall(), "ack", msg.getMessageNumber())
+					val status = poster.update(ack)
+					addPost(StorageDatabase.Post.TYPE_POST, status, ack.toString)
+				}
+				ServiceNotifier.instance.notifyMessage(this, ap.getSourceCall(), msg.getMessageBody())
+			}
+			sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(STATUS, ap.toString))
+		}
+	}
+
+	def parsePacket(ts : Long, message : String) {
+		try {
+			val fap = new Parser().parse(message)
+			if (fap.getAprsInformation() == null) {
+				Log.d(TAG, "parsePacket() misses payload: " + message)
+				return
+			}
+			if (fap.hasFault())
+				throw new Exception("FAP fault")
+			fap.getAprsInformation() match {
+				case pp : PositionPacket => db.addPosition(ts, fap, pp.getPosition(), null)
+				case op : ObjectPacket => db.addPosition(ts, fap, op.getPosition(), op.getObjectName())
+				case msg : MessagePacket => handleMessage(ts, fap, msg)
+			}
+		} catch {
+		case e : Exception =>
+			Log.d(TAG, "parsePacket() unsupported packet: " + message)
+			e.printStackTrace()
+		}
+	}
+
 	def addPost(t : Int, status : String, message : String) {
-		db.addPost(System.currentTimeMillis(), t, status, message)
+		val ts = System.currentTimeMillis()
+		db.addPost(ts, t, status, message)
+		if (t == StorageDatabase.Post.TYPE_POST || t == StorageDatabase.Post.TYPE_INCMG) {
+			parsePacket(ts, message)
+		} else {
+			// only log status messages
+			Log.d(TAG, "addPost: " + status + " - " + message)
+		}
 		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, message))
 	}
 
 	def postSubmit(post : String) {
-		handler.post { addPost(StorageDatabase.Post.TYPE_INCMG, "incoming", post) }
+		handler.post {
+			addPost(StorageDatabase.Post.TYPE_INCMG, "incoming", post)
+			sendPendingMessages()
+		}
 	}
 
 	def postAbort(post : String) {
@@ -266,6 +340,48 @@ class AprsService extends Service with LocationListener {
 			addPost(StorageDatabase.Post.TYPE_ERROR, "Error", post)
 			stopSelf()
 		}
+	}
+
+	def canSendMsg(ts : Long, retrycnt : Int) : Boolean = {
+		if (retrycnt == 0)
+			true
+		else {
+			//val delta = 30000*scala.math.pow(2, retrycnt-1).toLong
+			val delta = 30000 * (1 << (retrycnt - 1))
+			(ts + delta < System.currentTimeMillis)
+		}
+	}
+
+	def sendPendingMessages() {
+		import StorageDatabase.Message._
+
+		val callssid = prefs.getCallSsid()
+
+		val c = db.getPendingMessages(NUM_OF_RETRIES)
+		//Log.d(TAG, "sendPendingMessages")
+		c.moveToFirst()
+		while (!c.isAfterLast()) {
+			val ts = c.getLong(COLUMN_TS)
+			val retrycnt = c.getInt(COLUMN_RETRYCNT)
+			val call = c.getString(COLUMN_CALL)
+			val msgid = c.getString(COLUMN_MSGID)
+			val msgtype = c.getInt(COLUMN_TYPE)
+			val text = c.getString(COLUMN_TEXT)
+			Log.d(TAG, "pending message: %d/%d ->%s '%s'".format(retrycnt, NUM_OF_RETRIES, call, text))
+			if (retrycnt < NUM_OF_RETRIES && canSendMsg(ts, retrycnt)) {
+				val msg = AprsPacket.formatMessage(callssid, appVersion(), call, text, msgid)
+				val status = poster.update(msg)
+				addPost(StorageDatabase.Post.TYPE_POST, status, msg.toString)
+				val cv = new ContentValues()
+				cv.put(RETRYCNT, (retrycnt + 1).asInstanceOf[java.lang.Integer])
+				cv.put(TS, System.currentTimeMillis.asInstanceOf[java.lang.Long])
+				// XXX: do not ack until acked
+				db.updateMessage(c.getLong(/* COLUMN_ID */ 0), cv)
+				sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(STATUS, msg.toString))
+			}
+			c.moveToNext()
+		}
+		c.close()
 	}
 }
 

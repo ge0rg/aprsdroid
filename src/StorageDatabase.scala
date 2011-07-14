@@ -14,8 +14,11 @@ import _root_.scala.math.{cos, Pi}
 
 object StorageDatabase {
 	val TAG = "APRSdroid.Storage"
-	val DB_VERSION = 1
+	val DB_VERSION = 2
 	val DB_NAME = "storage.db"
+
+	val TSS_COL = "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS"
+
 	object Post {
 		val TABLE = "posts"
 		val _ID = "_id"
@@ -25,7 +28,7 @@ object StorageDatabase {
 		val MESSAGE = "message"
 		lazy val TABLE_CREATE = "CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG, %s INTEGER, %s TEXT, %s TEXT)"
 					.format(TABLE, _ID, TS, TYPE, STATUS, MESSAGE);
-		lazy val COLUMNS = Array(_ID, TS, "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS", TYPE, STATUS, MESSAGE);
+		lazy val COLUMNS = Array(_ID, TS, TSS_COL, TYPE, STATUS, MESSAGE);
 
 		val TYPE_POST	= 0
 		val TYPE_INFO	= 1
@@ -84,6 +87,39 @@ object StorageDatabase {
 		lazy val TABLE_INDEX = "CREATE INDEX idx_position_%s ON position (%s)"
 	}
 
+	object Message {
+		val TABLE = "message"
+		val _ID = "_id"
+		val TS = "ts"			// timestamp of RX or first TX
+		val RETRYCNT = "retrycnt"	// attemp number for sending msg
+		val CALL = "call"		// callsign of comms partner
+		val MSGID = "msgid"		// message id (up to 5 alphanumeric symbols)
+		val TYPE = "type"		// incoming / out-new / out-acked
+		val TEXT = "text"		// message text
+		lazy val TABLE_CREATE = """CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT,
+			%s LONG, %s INT,
+			%s TEXT, %s TEXT,
+			%s INTEGER, %s TEXT)"""
+			.format(TABLE, _ID, TS, RETRYCNT,
+				CALL, MSGID,
+				TYPE, TEXT)
+		lazy val COLUMNS = Array(_ID, TS, TSS_COL, RETRYCNT, CALL, MSGID, TYPE, TEXT)
+		val COLUMN_TS		= 1
+		val COLUMN_TTS		= 2
+		val COLUMN_RETRYCNT	= 3
+		val COLUMN_CALL		= 4
+		val COLUMN_MSGID	= 5
+		val COLUMN_TYPE		= 6
+		val COLUMN_TEXT		= 7
+
+
+		val TYPE_INCOMING	= 1
+		val TYPE_OUT_NEW	= 2
+		val TYPE_OUT_ACKED	= 3
+		val TYPE_OUT_REJECTED	= 4
+
+	}
+
 	var singleton : StorageDatabase = null
 	def open(context : Context) : StorageDatabase = {
 		if (singleton == null) {
@@ -103,7 +139,7 @@ object StorageDatabase {
 			else
 				null
 		} else
-			c.getString(Position.COLUMN_CALL)
+			c.getString(callidx)
 	}
 }
 
@@ -117,27 +153,13 @@ class StorageDatabase(context : Context) extends
 		db.execSQL(Post.TABLE_CREATE);
 		db.execSQL(Position.TABLE_CREATE)
 		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
+		db.execSQL(Message.TABLE_CREATE)
 	}
-	def resetPositionsTable(db : SQLiteDatabase) {
-		db.execSQL(Position.TABLE_DROP)
-		db.execSQL(Position.TABLE_CREATE)
-		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
-		return; // this code causes a too long wait in onUpgrade...
-		// we can not call getPosts() here due to recursion issues
-		val c = db.query(Post.TABLE, Post.COLUMNS, "TYPE = 0 OR TYPE = 3",
-					null, null, null, "_ID DESC", null)
-		c.moveToFirst()
-		while (!c.isAfterLast()) {
-			val message = c.getString(c.getColumnIndexOrThrow(Post.MESSAGE))
-			val ts = c.getLong(c.getColumnIndexOrThrow(Post.TS))
-			parsePacket(ts, message)
-			c.moveToNext()
-		}
-		c.close()
-	}
-	def resetPositionsTable() : Unit = resetPositionsTable(getWritableDatabase())
 
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
+		if (from <= 1 && to <= 2) {
+			db.execSQL(Message.TABLE_CREATE)
+		}
 	}
 
 	def trimPosts(ts : Long) = Benchmark("trimPosts") {
@@ -175,27 +197,34 @@ class StorageDatabase(context : Context) extends
 		getWritableDatabase().insertOrThrow(TABLE, CALL, cv)
 	}
 
-	def parsePacket(ts : Long, message : String) {
-		try {
-			val fap = new Parser().parse(message)
-			if (fap.getAprsInformation() == null) {
-				Log.d(TAG, "parsePacket() misses payload: " + message)
-				return
-			}
-			if (fap.hasFault())
-				throw new Exception("FAP fault")
-			fap.getAprsInformation() match {
-				case pp : PositionPacket => addPosition(ts, fap, pp.getPosition(), null)
-				case op : ObjectPacket => addPosition(ts, fap, op.getPosition(), op.getObjectName())
-			}
-		} catch {
-		case e : Exception =>
-			Log.d(TAG, "parsePacket() unsupported packet: " + message)
-			e.printStackTrace()
-		}
+	def isMessageDuplicate(call : String, msgid : String, text : String) : Boolean = {
+		val c = getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
+			"type = 1 AND call = ? AND msgid = ? AND text = ?",
+			Array(call, msgid, text),
+			null, null,
+			null, null)
+		val result = (c.getCount() > 0)
+		c.close()
+		result
 	}
 
-	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = Benchmark("getPositions") {
+	def addMessage(ts : Long, srccall : String, msg : MessagePacket) {
+		import Message._
+		if (isMessageDuplicate(srccall, msg.getMessageNumber(), msg.getMessageBody())) {
+			Log.i(TAG, "received duplicate message from %s: %s".format(srccall, msg))
+			return
+		}
+		val cv = new ContentValues()
+		cv.put(TS, ts.asInstanceOf[java.lang.Long])
+		cv.put(RETRYCNT, 0.asInstanceOf[java.lang.Integer])
+		cv.put(CALL, srccall)
+		cv.put(MSGID, msg.getMessageNumber())
+		cv.put(TYPE, TYPE_INCOMING.asInstanceOf[java.lang.Integer])
+		cv.put(TEXT, msg.getMessageBody())
+		addMessage(cv)
+	}
+
+	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS_MAP,
 			sel, selArgs,
 			null, null, "CALL, _ID", limit)
@@ -207,23 +236,23 @@ class StorageDatabase(context : Context) extends
 			Array(lat1, lat2, lon1, lon2).map(_.toString), limit)
 	}
 
-	def getStaPosition(call : String) : Cursor = Benchmark("getStaPosition") {
+	def getStaPosition(call : String) : Cursor = {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ?", Array(call),
 			null, null, "_ID DESC", "1")
 	}
-	def getStaPositions(call : String, limit : String) : Cursor = Benchmark("getStaPositions") {
+	def getStaPositions(call : String, limit : String) : Cursor = {
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ? AND TS > ?", Array(call, limit),
 			null, null, "_ID DESC", null)
 	}
-	def getAllSsids(call : String) : Cursor = Benchmark("getAllSsids") {
+	def getAllSsids(call : String) : Cursor = {
 		val querycall = call.split("[- _]+")(0) + "%"
 		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
 			"call LIKE ? or origin LIKE ?", Array(querycall, querycall),
 			"call", null, null, null)
 	}
-	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = Benchmark("getNeighbors") {
+	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
 		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
 		Log.d(TAG, "getNeighbors: correcting by %d".format(corr))
@@ -234,7 +263,7 @@ class StorageDatabase(context : Context) extends
 			"call", null, "dist", limit)
 	}
 
-	def getNeighborsLike(call : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = Benchmark("getNeighborsLike") {
+	def getNeighborsLike(call : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
 		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
 		Log.d(TAG, "getNeighborsLike: correcting by %d".format(corr))
@@ -252,12 +281,6 @@ class StorageDatabase(context : Context) extends
 		cv.put(Post.STATUS, status)
 		cv.put(Post.MESSAGE, message)
 		getWritableDatabase().insertOrThrow(Post.TABLE, Post.MESSAGE, cv)
-		if (posttype == Post.TYPE_POST || posttype == Post.TYPE_INCMG) {
-			parsePacket(ts, message)
-		} else {
-			// only log status messages
-			Log.d(TAG, "StorageDatabase.addPost: " + status + " - " + message)
-		}
 		if (Post.trimCounter == 0) {
 			trimPosts()
 			Post.trimCounter = 100
@@ -308,4 +331,54 @@ class StorageDatabase(context : Context) extends
 
 		}
 	}
+
+	def getMessages(call : String) = {
+		getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
+			"call = ?", Array(call),
+			null, null,
+			null, null)
+	}
+
+	def getPendingMessages(retries : Int) = {
+		getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
+			"type = 2 and retrycnt < ?", Array(retries.toString),
+			null, null,
+			null, null)
+	}
+
+	def addMessage(cv : ContentValues) = {
+		getWritableDatabase().insertOrThrow(Message.TABLE, "_id", cv)
+	}
+	def updateMessage(id : Long, cv : ContentValues) = {
+		getWritableDatabase().update(Message.TABLE, cv, "_id = ?", Array(id.toString))
+	}
+
+	def updateMessageAcked(call : String, msgid : String, new_type : Int) = {
+		val cv = new ContentValues()
+		cv.put(Message.TYPE, new_type.asInstanceOf[java.lang.Integer])
+		getWritableDatabase().update(Message.TABLE, cv, "type = 2 AND call = ? AND msgid = ?",
+			Array(call, msgid))
+	}
+
+	def createMsgId(call : String) = {
+		val c = getReadableDatabase().query(Message.TABLE, Array("max(msgid)"),
+			"call = ? AND type != ?", Array(call, Message.TYPE_INCOMING.toString),
+			null, null,
+			null, null)
+		c.moveToFirst()
+		val result = if (c.getCount() == 0)
+			0
+		else c.getInt(0) + 1
+		Log.d(TAG, "createMsgId(%s) = %d".format(call, result))
+		c.close()
+		result
+	}
+
+	def getConversations() = {
+		getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
+			null, null,
+			"call", null,
+			"_id DESC", null)
+	}
+
 }

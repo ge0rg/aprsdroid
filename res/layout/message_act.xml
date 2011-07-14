@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+android:id="@+id/message_act"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<ListView
+	android:id="@android:id/list"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_weight="1"
+	android:descendantFocusability="blocksDescendants"
+	android:stackFromBottom="true"
+	android:transcriptMode="alwaysScroll" />
+	/>
+<LinearLayout
+android:id="@+id/buttonlayout"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<EditText android:id="@+id/msginput"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:singleLine="true"
+	android:maxLength="67"
+	android:layout_weight="1"
+	android:inputType="textShortMessage"
+	/>
+<Button android:id="@+id/msgsend"
+	android:layout_width="60sp"
+	android:layout_height="wrap_content"
+	android:text="@android:string/ok"
+	android:enabled="false"
+	/>
+</LinearLayout>
+</LinearLayout>
+

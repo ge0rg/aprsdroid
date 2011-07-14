@@ -59,7 +59,13 @@ object AprsPacket {
 			new Position(location.getLatitude, location.getLongitude, 0,
 				     symbol(0), symbol(1)),
 			formatCourseSpeed(location) + formatAltitude(location) +
-			" " + status))
+			" " + status, /* messaging = */ true))
+	}
+
+	def formatMessage(callssid : String, toCall : String, dest : String,
+			message : String, msgid : String) = {
+		new APRSPacket(callssid, toCall, null, new MessagePacket(dest,
+			message, msgid))
 	}
 
 	def formatLogin(callsign : String, ssid : String, passcode : String, version : String) : String = {
