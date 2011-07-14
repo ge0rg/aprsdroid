@@ -14,7 +14,7 @@ import _root_.scala.math.{cos, Pi}
 
 object StorageDatabase {
 	val TAG = "APRSdroid.Storage"
-	val DB_VERSION = 2
+	val DB_VERSION = 3
 	val DB_NAME = "storage.db"
 
 	val TSS_COL = "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS"
@@ -40,8 +40,8 @@ object StorageDatabase {
 		var trimCounter	= 0
 	}
 
-	object Position {
-		val TABLE = "position"
+	object Station {
+		val TABLE = "stations"
 		val _ID = "_id"
 		val TS = "ts"
 		val CALL = "call"
@@ -55,7 +55,7 @@ object StorageDatabase {
 		val ORIGIN = "origin"	// originator call for object/item
 		val QRG = "qrg"		// voice frequency
 		lazy val TABLE_CREATE = """CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG,
-			%s TEXT, %s INTEGER, %s INTEGER,
+			%s TEXT UNIQUE, %s INTEGER, %s INTEGER,
 			%s INTEGER, %s INTEGER, %s INTEGER,
 			%s TEXT, %s TEXT, %s TEXT, %s TEXT)"""
 			.format(TABLE, _ID, TS,
@@ -84,11 +84,23 @@ object StorageDatabase {
 		val COLUMN_MAP_LON	= 3
 		val COLUMN_MAP_SYMBOL	= 4
 
-		lazy val TABLE_INDEX = "CREATE INDEX idx_position_%s ON position (%s)"
+		lazy val TABLE_INDEX = "CREATE INDEX idx_stations_%s ON stations (%s)"
+	}
+	object Position {
+		val TABLE = "positions"
+		val _ID = "_id"
+		val TS = "ts"
+		val CALL = "call"
+		val LAT = "lat"
+		val LON = "lon"
+		lazy val TABLE_CREATE = """CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG,
+			%s TEXT, %s INTEGER, %s INTEGER)"""
+			.format(TABLE, _ID, TS,
+				CALL, LAT, LON)
 	}
 
 	object Message {
-		val TABLE = "message"
+		val TABLE = "messages"
 		val _ID = "_id"
 		val TS = "ts"			// timestamp of RX or first TX
 		val RETRYCNT = "retrycnt"	// attemp number for sending msg
@@ -131,7 +143,7 @@ object StorageDatabase {
 
 	def cursor2call(c : Cursor) : String = {
 		val msgidx = c.getColumnIndex(Post.MESSAGE)
-		val callidx = c.getColumnIndex(Position.CALL)
+		val callidx = c.getColumnIndex(Station.CALL)
 		if (msgidx != -1 && callidx == -1) { // Post table
 			val t = c.getInt(Post.COLUMN_TYPE)
 			if (t == Post.TYPE_POST || t == Post.TYPE_INCMG)
@@ -151,14 +163,22 @@ class StorageDatabase(context : Context) extends
 	override def onCreate(db: SQLiteDatabase) {
 		Log.d(TAG, "onCreate(): creating new database " + DB_NAME);
 		db.execSQL(Post.TABLE_CREATE);
+		db.execSQL(Station.TABLE_CREATE)
+		// index on call is implicit due to UNIQUE
+		Array("lat", "lon").map(col => db.execSQL(Station.TABLE_INDEX.format(col, col)))
 		db.execSQL(Position.TABLE_CREATE)
-		Array("call", "lat", "lon").map(col => db.execSQL(Position.TABLE_INDEX.format(col, col)))
 		db.execSQL(Message.TABLE_CREATE)
 	}
 
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
-		if (from <= 1 && to <= 2) {
-			db.execSQL(Message.TABLE_CREATE)
+		if (from <= 1 && to <= 3) {
+			db.execSQL("CREATE TABLE message") // use old name here!
+		}
+		if (from <= 2 && to <= 3) {
+			db.execSQL("ALTER TABLE message RENAME TO messages") // make names consistent
+			db.execSQL("DROP TABLE position") // old name
+			db.execSQL(Station.TABLE_CREATE)
+			db.execSQL(Position.TABLE_CREATE)
 		}
 	}
 
@@ -174,7 +194,7 @@ class StorageDatabase(context : Context) extends
 	def trimPosts() : Unit = trimPosts(System.currentTimeMillis - 2L * 24 * 3600 * 1000)
 
 	def addPosition(ts : Long, ap : APRSPacket, pos : Position, objectname : String) {
-		import Position._
+		import Station._
 		val cv = new ContentValues()
 		val call = ap.getSourceCall()
 		val lat = (pos.getLatitude()*1000000).asInstanceOf[Int]
@@ -183,18 +203,20 @@ class StorageDatabase(context : Context) extends
 		val comment = ap.getAprsInformation().getComment()
 		val qrg = AprsPacket.parseQrg(comment)
 		cv.put(TS, ts.asInstanceOf[java.lang.Long])
-		if (objectname != null) {
-			cv.put(CALL, objectname)
-			cv.put(ORIGIN, call)
-		} else
-			cv.put(CALL, call)
+		cv.put(CALL, if (objectname != null) objectname else call)
 		cv.put(LAT, lat.asInstanceOf[java.lang.Integer])
 		cv.put(LON, lon.asInstanceOf[java.lang.Integer])
+		// add the position into positions table
+		getWritableDatabase().insertOrThrow(Position.TABLE, CALL, cv)
+
+		if (objectname != null)
+			cv.put(ORIGIN, call)
 		cv.put(SYMBOL, sym)
 		cv.put(COMMENT, comment)
 		cv.put(QRG, qrg)
 		Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
-		getWritableDatabase().insertOrThrow(TABLE, CALL, cv)
+		// replace the full station info in stations table
+		getWritableDatabase().replaceOrThrow(TABLE, CALL, cv)
 	}
 
 	def isMessageDuplicate(call : String, msgid : String, text : String) : Boolean = {
@@ -224,31 +246,31 @@ class StorageDatabase(context : Context) extends
 		addMessage(cv)
 	}
 
-	def getPositions(sel : String, selArgs : Array[String], limit : String) : Cursor = {
-		getReadableDatabase().query(Position.TABLE, Position.COLUMNS_MAP,
+	def getStations(sel : String, selArgs : Array[String], limit : String) : Cursor = {
+		getReadableDatabase().query(Station.TABLE, Station.COLUMNS_MAP,
 			sel, selArgs,
-			null, null, "CALL, _ID", limit)
+			null, null, "CALL", limit)
 	}
 
-	def getRectPositions(lat1 : Int, lon1 : Int, lat2 : Int, lon2 : Int, limit : String) : Cursor = {
-		Log.d(TAG, "StorageDatabase.getRectPositions: %d,%d - %d,%d".format(lat1, lon1, lat2, lon2))
-		getPositions("LAT >= ? AND LAT <= ? AND LON >= ? AND LON <= ?",
+	def getRectStations(lat1 : Int, lon1 : Int, lat2 : Int, lon2 : Int, limit : String) : Cursor = {
+		Log.d(TAG, "StorageDatabase.getRectStations: %d,%d - %d,%d".format(lat1, lon1, lat2, lon2))
+		getStations("LAT >= ? AND LAT <= ? AND LON >= ? AND LON <= ?",
 			Array(lat1, lat2, lon1, lon2).map(_.toString), limit)
 	}
 
 	def getStaPosition(call : String) : Cursor = {
-		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
+		getReadableDatabase().query(Station.TABLE, Station.COLUMNS,
 			"call LIKE ?", Array(call),
 			null, null, "_ID DESC", "1")
 	}
 	def getStaPositions(call : String, limit : String) : Cursor = {
-		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
+		getReadableDatabase().query(Station.TABLE, Station.COLUMNS,
 			"call LIKE ? AND TS > ?", Array(call, limit),
 			null, null, "_ID DESC", null)
 	}
 	def getAllSsids(call : String) : Cursor = {
 		val querycall = call.split("[- _]+")(0) + "%"
-		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
+		getReadableDatabase().query(Station.TABLE, Station.COLUMNS,
 			"call LIKE ? or origin LIKE ?", Array(querycall, querycall),
 			"call", null, null, null)
 	}
@@ -257,10 +279,10 @@ class StorageDatabase(context : Context) extends
 		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
 		Log.d(TAG, "getNeighbors: correcting by %d".format(corr))
 		// add a distance column to the query
-		val newcols = Position.COLUMNS :+ Position.COL_DIST.format(lat, lat, lon, lon, corr)
-		getReadableDatabase().query(Position.TABLE, newcols,
+		val newcols = Station.COLUMNS :+ Station.COL_DIST.format(lat, lat, lon, lon, corr)
+		getReadableDatabase().query(Station.TABLE, newcols,
 			"ts > ? or call = ?", Array(ts.toString, mycall),
-			"call", null, "dist", limit)
+			null, null, "dist", limit)
 	}
 
 	def getNeighborsLike(call : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
@@ -268,10 +290,10 @@ class StorageDatabase(context : Context) extends
 		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
 		Log.d(TAG, "getNeighborsLike: correcting by %d".format(corr))
 		// add a distance column to the query
-		val newcols = Position.COLUMNS :+ Position.COL_DIST.format(lat, lat, lon, lon, corr)
-		getReadableDatabase().query(Position.TABLE, newcols,
+		val newcols = Station.COLUMNS :+ Station.COL_DIST.format(lat, lat, lon, lon, corr)
+		getReadableDatabase().query(Station.TABLE, newcols,
 			"call like ?", Array(call),
-			"call", null, "dist", limit)
+			null, null, "dist", limit)
 	}
 
 	def addPost(ts : Long, posttype : Int, status : String, message : String) {

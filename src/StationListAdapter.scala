@@ -10,8 +10,8 @@ import _root_.android.view.View
 import _root_.android.widget.{SimpleCursorAdapter, TextView}
 import _root_.android.widget.FilterQueryProvider
 
-object PositionListAdapter {
-	import StorageDatabase.Position._
+object StationListAdapter {
+	import StorageDatabase.Station._
 	val LIST_FROM = Array(CALL, COMMENT, QRG)
 	val LIST_TO = Array(R.id.station_call, R.id.listmessage, R.id.station_qrg)
 
@@ -20,16 +20,16 @@ object PositionListAdapter {
 	val SSIDS = 2
 }
 
-class PositionListAdapter(context : Context, prefs : PrefsWrapper,
+class StationListAdapter(context : Context, prefs : PrefsWrapper,
 	mycall : String, targetcall : String, mode : Int)
-		extends SimpleCursorAdapter(context, R.layout.stationview, null, PositionListAdapter.LIST_FROM, PositionListAdapter.LIST_TO) {
+		extends SimpleCursorAdapter(context, R.layout.stationview, null, StationListAdapter.LIST_FROM, StationListAdapter.LIST_TO) {
 
 	var my_lat = 0
 	var my_lon = 0
 	var reload_pending = 0
 	lazy val storage = StorageDatabase.open(context)
 
-	if (mode == PositionListAdapter.NEIGHBORS)
+	if (mode == StationListAdapter.NEIGHBORS)
 		setFilterQueryProvider(getNeighborFilter())
 
 	reload()
@@ -54,7 +54,7 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 	def getBearing(b : Double) = LETTERS(((b.toInt + 22 + 720) % 360) / 45)
 
 	override def bindView(view : View, context : Context, cursor : Cursor) {
-		import StorageDatabase.Position._
+		import StorageDatabase.Station._
 
 		// TODO: multidimensional mapping
 		val distage = view.findViewById(R.id.station_distage).asInstanceOf[TextView]
@@ -97,12 +97,12 @@ class PositionListAdapter(context : Context, prefs : PrefsWrapper,
 	}
 
 	def load_cursor(i : Intent) = {
-		import PositionListAdapter._
+		import StationListAdapter._
 		val cursor = storage.getStaPosition(mycall)
 		if (cursor.getCount() > 0) {
 			cursor.moveToFirst()
-			my_lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
-			my_lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
+			my_lat = cursor.getInt(StorageDatabase.Station.COLUMN_LAT)
+			my_lon = cursor.getInt(StorageDatabase.Station.COLUMN_LON)
 		}
 		cursor.close()
 		val c = mode match {

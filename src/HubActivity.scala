@@ -12,7 +12,7 @@ class HubActivity extends MainListActivity("hub", R.id.hub) {
 	val TAG = "APRSdroid.Hub"
 
 	lazy val mycall = prefs.getCallSsid()
-	lazy val pla = new PositionListAdapter(this, prefs, mycall, mycall, PositionListAdapter.NEIGHBORS)
+	lazy val pla = new StationListAdapter(this, prefs, mycall, mycall, StationListAdapter.NEIGHBORS)
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
@@ -36,7 +36,7 @@ class HubActivity extends MainListActivity("hub", R.id.hub) {
 	override def onListItemClick(l : ListView, v : View, position : Int, id : Long) {
 		//super.onListItemClick(l, v, position, id)
 		val c = getListView().getItemAtPosition(position).asInstanceOf[Cursor]
-		val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
+		val call = c.getString(StorageDatabase.Station.COLUMN_CALL)
 		openDetails(call)
 	}
 

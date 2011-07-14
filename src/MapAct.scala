@@ -90,11 +90,11 @@ class MapAct extends MapActivity with UIHelper {
 
 	def animateToCall() {
 		if (targetcall != "") {
-			val cursor = db.getStaPositions(targetcall, "1")
+			val cursor = db.getStaPosition(targetcall)
 			if (cursor.getCount() > 0) {
 				cursor.moveToFirst()
-				val lat = cursor.getInt(StorageDatabase.Position.COLUMN_LAT)
-				val lon = cursor.getInt(StorageDatabase.Position.COLUMN_LON)
+				val lat = cursor.getInt(StorageDatabase.Station.COLUMN_LAT)
+				val lon = cursor.getInt(StorageDatabase.Station.COLUMN_LON)
 				mapview.getController().animateTo(new GeoPoint(lat, lon))
 			}
 			cursor.close()
@@ -253,19 +253,19 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		val s = new ArrayList[Station]()
 		val age_ts = (System.currentTimeMillis - context.prefs.getShowAge()).toString
 		val filter = if (context.showObjects) "TS > ? OR CALL=?" else "(ORIGIN IS NULL AND TS > ?) OR CALL=?"
-		val c = db.getPositions(filter, Array(age_ts, context.targetcall), null)
+		val c = db.getStations(filter, Array(age_ts, context.targetcall), null)
 		c.moveToFirst()
 		var m = new ArrayBuffer[GeoPoint]()
 		while (!c.isAfterLast()) {
-			val call = c.getString(StorageDatabase.Position.COLUMN_MAP_CALL)
-			val lat = c.getInt(StorageDatabase.Position.COLUMN_MAP_LAT)
-			val lon = c.getInt(StorageDatabase.Position.COLUMN_MAP_LON)
-			val symbol = c.getString(StorageDatabase.Position.COLUMN_MAP_SYMBOL)
+			val call = c.getString(StorageDatabase.Station.COLUMN_MAP_CALL)
+			val lat = c.getInt(StorageDatabase.Station.COLUMN_MAP_LAT)
+			val lon = c.getInt(StorageDatabase.Station.COLUMN_MAP_LON)
+			val symbol = c.getString(StorageDatabase.Station.COLUMN_MAP_SYMBOL)
 			val p = new GeoPoint(lat, lon)
 			m.add(p)
 			// peek at the next row
 			c.moveToNext()
-			val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Position.COLUMN_MAP_CALL) else null
+			val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Station.COLUMN_MAP_CALL) else null
 			c.moveToPrevious()
 			if (next_call != call) {
 				//Log.d(TAG, "end of call: " + call + " " + next_call + " " + m.size())
