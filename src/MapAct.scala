@@ -1,6 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
+import _root_.android.database.Cursor
 import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
 import _root_.android.os.{Bundle, Handler}
@@ -249,32 +250,44 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		true
 	}
 
+	def fetchStaPositions(call : String, c : Cursor) : ArrayBuffer[GeoPoint] = {
+		import StorageDatabase.Position._
+		val m = new ArrayBuffer[GeoPoint]()
+		// skip forward to the right callsign
+		while (!c.isAfterLast() && c.getString(COLUMN_CALL) < call)
+			c.moveToNext()
+		// add every matching entry to arraybuffer
+		while (!c.isAfterLast() && c.getString(COLUMN_CALL) == call) {
+			val lat = c.getInt(COLUMN_LAT)
+			val lon = c.getInt(COLUMN_LON)
+			m.add(new GeoPoint(lat, lon))
+			c.moveToNext()
+		}
+		m
+	}
+
 	def load_stations(i : Intent) : ArrayList[Station] = {
+		import StorageDatabase.Station._
+
 		val s = new ArrayList[Station]()
 		val age_ts = (System.currentTimeMillis - context.prefs.getShowAge()).toString
 		val filter = if (context.showObjects) "TS > ? OR CALL=?" else "(ORIGIN IS NULL AND TS > ?) OR CALL=?"
 		val c = db.getStations(filter, Array(age_ts, context.targetcall), null)
 		c.moveToFirst()
-		var m = new ArrayBuffer[GeoPoint]()
+		val pos_c = db.getAllStaPositions(age_ts)
+		pos_c.moveToFirst()
 		while (!c.isAfterLast()) {
-			val call = c.getString(StorageDatabase.Station.COLUMN_MAP_CALL)
-			val lat = c.getInt(StorageDatabase.Station.COLUMN_MAP_LAT)
-			val lon = c.getInt(StorageDatabase.Station.COLUMN_MAP_LON)
-			val symbol = c.getString(StorageDatabase.Station.COLUMN_MAP_SYMBOL)
+			val call = c.getString(COLUMN_MAP_CALL)
+			val lat = c.getInt(COLUMN_MAP_LAT)
+			val lon = c.getInt(COLUMN_MAP_LON)
+			val symbol = c.getString(COLUMN_MAP_SYMBOL)
 			val p = new GeoPoint(lat, lon)
-			m.add(p)
-			// peek at the next row
-			c.moveToNext()
-			val next_call = if (!c.isAfterLast()) c.getString(StorageDatabase.Station.COLUMN_MAP_CALL) else null
-			c.moveToPrevious()
-			if (next_call != call) {
-				//Log.d(TAG, "end of call: " + call + " " + next_call + " " + m.size())
-				s.add(new Station(m, p, call, null, symbol))
-				m = new ArrayBuffer[GeoPoint]()
-			}
+			val m = fetchStaPositions(call, pos_c)
+			s.add(new Station(m, p, call, null, symbol))
 			c.moveToNext()
 		}
 		c.close()
+		pos_c.close()
 		Log.d(TAG, "total %d items".format(s.size()))
 		s
 	}

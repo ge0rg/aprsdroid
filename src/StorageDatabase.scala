@@ -105,6 +105,11 @@ object StorageDatabase {
 			%s TEXT, %s INTEGER, %s INTEGER)"""
 			.format(TABLE, _ID, TS,
 				CALL, LAT, LON)
+		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON)
+		val COLUMN_TS		= 1
+		val COLUMN_CALL		= 2
+		val COLUMN_LAT		= 3
+		val COLUMN_LON		= 4
 	}
 
 	object Message {
@@ -271,16 +276,16 @@ class StorageDatabase(context : Context) extends
 			"call LIKE ?", Array(call),
 			null, null, "_ID DESC", "1")
 	}
-	def getStaPositions(call : String, limit : String) : Cursor = {
-		getReadableDatabase().query(Station.TABLE, Station.COLUMNS,
-			"call LIKE ? AND TS > ?", Array(call, limit),
-			null, null, "_ID DESC", null)
+	def getAllStaPositions(limit : String) : Cursor = {
+		getReadableDatabase().query(Position.TABLE, Position.COLUMNS,
+			"TS > ?", Array(limit),
+			null, null, "CALL, _ID", null)
 	}
 	def getAllSsids(call : String) : Cursor = {
 		val querycall = call.split("[- _]+")(0) + "%"
 		getReadableDatabase().query(Station.TABLE, Station.COLUMNS,
 			"call LIKE ? or origin LIKE ?", Array(querycall, querycall),
-			"call", null, null, null)
+			null, null, null, null)
 	}
 	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
