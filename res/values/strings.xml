@@ -180,6 +180,8 @@
 <string name="p_gps_always">High (Always on)</string>
 <string name="p_gps_med">Medium</string>
 <string name="p_gps_low">Low</string>
+<string name="p_keepscreen">Keep screen awake</string>
+<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>

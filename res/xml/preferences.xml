@@ -92,6 +92,12 @@
 		android:summary="@string/p_netloc_summary" />
 
     </PreferenceCategory>
+
+        <CheckBoxPreference
+                android:key="keepscreen"
+		android:title="@string/p_keepscreen"
+		android:summary="@string/p_keepscreen_summary" />
+
                 
     <PreferenceCategory
 	android:title="@string/p__connection">

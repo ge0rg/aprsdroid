@@ -18,7 +18,7 @@ class StationActivity extends LoadingListActivity
 	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
 			
 	lazy val mycall = prefs.getCallSsid()
-	lazy val pla = new PositionListAdapter(this, prefs, mycall, targetcall, PositionListAdapter.SSIDS)
+	lazy val pla = new StationListAdapter(this, prefs, mycall, targetcall, StationListAdapter.SSIDS)
 	lazy val la = new PostListAdapter(this)
 	lazy val locReceiver = new LocationReceiver2[Cursor](load_cursor, replace_cursor, cancel_cursor)
 
@@ -56,7 +56,7 @@ class StationActivity extends LoadingListActivity
 	override def onListItemClick(l : ListView, v : View, position : Int, id : Long) {
 		//super.onListItemClick(l, v, position, id)
 		val c = getListView().getItemAtPosition(position).asInstanceOf[Cursor]
-		val call = c.getString(StorageDatabase.Position.COLUMN_CALL)
+		val call = c.getString(StorageDatabase.Station.COLUMN_CALL)
 		Log.d("StationActivity", "onListItemClick: %s".format(call))
 
 		if (targetcall == call) {
@@ -80,7 +80,7 @@ class StationActivity extends LoadingListActivity
 	}
 	def replace_cursor(c : Cursor) {
 		la.changeCursor(c)
-		// do not call onStopLoading, PositionListAdapter takes much longer
+		// do not call onStopLoading, StationListAdapter takes much longer
 		//onStopLoading()
 	}
 	def cancel_cursor(c : Cursor) {

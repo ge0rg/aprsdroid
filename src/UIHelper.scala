@@ -6,7 +6,7 @@ import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
 import _root_.android.net.Uri
 import _root_.android.util.Log
-import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View}
+import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View, WindowManager}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 import _root_.android.widget.{EditText, Toast}
 
@@ -130,6 +130,15 @@ trait UIHelper extends Activity
 	// store the activity name for next APRSdroid launch
 	def makeLaunchActivity(actname : String) {
 		prefs.prefs.edit().putString("activity", actname).commit()
+	}
+
+	// keep screen on all the time if requested
+	def setKeepScreenOn() {
+		if (prefs.getBoolean("keepscreen", false)) {
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+		} else {
+			getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+		}
 	}
 
 	def checkConfig() : Boolean = {

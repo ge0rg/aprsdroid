@@ -24,6 +24,7 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 			return
 		setupButtons(AprsService.running)
 		makeLaunchActivity(actname)
+		setKeepScreenOn()
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
