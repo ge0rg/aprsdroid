@@ -54,14 +54,15 @@ object StorageDatabase {
 		val COMMENT = "comment"
 		val ORIGIN = "origin"	// originator call for object/item
 		val QRG = "qrg"		// voice frequency
+		val FLAGS = "flags"	// bitmask for attributes like "messaging capable"
 		lazy val TABLE_CREATE = """CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG,
 			%s TEXT UNIQUE, %s INTEGER, %s INTEGER,
 			%s INTEGER, %s INTEGER, %s INTEGER,
-			%s TEXT, %s TEXT, %s TEXT, %s TEXT)"""
+			%s TEXT, %s TEXT, %s TEXT, %s TEXT, %s INTEGER)"""
 			.format(TABLE, _ID, TS,
 				CALL, LAT, LON,
 				SPEED, COURSE, ALT,
-				SYMBOL, COMMENT, ORIGIN, QRG)
+				SYMBOL, COMMENT, ORIGIN, QRG, FLAGS)
 		lazy val TABLE_DROP = "DROP TABLE %s".format(TABLE)
 		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT, SPEED, COURSE, ALT, ORIGIN, QRG)
 		lazy val COL_DIST = "((lat - %d)*(lat - %d) + (lon - %d)*(lon - %d)*%d/100) as dist"
@@ -77,6 +78,7 @@ object StorageDatabase {
 		val COLUMN_ALT		= 9
 		val COLUMN_ORIGIN	= 10
 		val COLUMN_QRG		= 11
+		val COLUMN_FLAGS	= 12
 
 		lazy val COLUMNS_MAP = Array(_ID, CALL, LAT, LON, SYMBOL)
 		val COLUMN_MAP_CALL	= 1
@@ -85,7 +87,13 @@ object StorageDatabase {
 		val COLUMN_MAP_SYMBOL	= 4
 
 		lazy val TABLE_INDEX = "CREATE INDEX idx_stations_%s ON stations (%s)"
+
+		// binary flags used for symbol coloring
+		val FLAG_MSGCAPABLE	= 1
+		val FLAG_OBJECT		= 2
+		val FLAG_MOVING		= 4
 	}
+
 	object Position {
 		val TABLE = "positions"
 		val _ID = "_id"
