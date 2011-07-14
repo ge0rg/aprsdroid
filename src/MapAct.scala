@@ -181,7 +181,6 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 	override def draw(c : Canvas, m : MapView, shadow : Boolean) : Unit = {
 		if (shadow) return;
-		Benchmark("draw") {
 
 		val fontSize = symbolSize*3/4
 		val textPaint = new Paint()
@@ -232,7 +231,6 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 					c.drawText(s.symbol(0).toString(), p.x, p.y+ss/2, symbPaint)
 				}
 			}
-		}
 		}
 	}
 
