@@ -11,16 +11,13 @@
 	android:clickable="true"
 	android:apiKey="@apiKey@"
 	/>
-<TextView 
+<ProgressBar
+	style="@android:style/Widget.ProgressBar.Large.Inverse"
 	android:id="@+id/loading"
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:layout_gravity="center_horizontal"
 	android:padding="10sp"
-	android:textColor="#000"
-	android:shadowColor="#fff"
-	android:shadowRadius="3.0"
-	android:textSize="25sp"
-	android:text="@string/map_loading"
+	android:layout_width="76dip"
+	android:layout_height="76dip"
+	android:gravity="right|top"
+	android:indeterminate="true"
 	/>
 </FrameLayout>
