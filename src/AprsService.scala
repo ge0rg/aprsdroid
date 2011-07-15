@@ -264,6 +264,13 @@ class AprsService extends Service with LocationListener {
 
 	override def onProviderDisabled(provider : String) {
 		Log.d(TAG, "onProviderDisabled: " + provider)
+		val netloc_available = locMan.getProviders(true).contains(LocationManager.NETWORK_PROVIDER)
+		val netloc_usable = netloc_available && prefs.getBoolean("netloc", false)
+		if (provider == LocationManager.GPS_PROVIDER &&
+			netloc_usable == false) {
+			// GPS was our last data source, we have to complain!
+			Toast.makeText(this, R.string.service_no_location, Toast.LENGTH_LONG).show()
+		}
 	}
 	override def onProviderEnabled(provider : String) {
 		Log.d(TAG, "onProviderEnabled: " + provider)

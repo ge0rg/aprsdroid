@@ -23,7 +23,7 @@ class MapAct extends MapActivity with UIHelper {
 	lazy val allicons = this.getResources().getDrawable(R.drawable.allicons)
 	lazy val db = StorageDatabase.open(this)
 	lazy val staoverlay = new StationOverlay(allicons, this, db)
-	lazy val loading = findViewById(R.id.loading).asInstanceOf[TextView]
+	lazy val loading = findViewById(R.id.loading)
 	lazy val targetcall = getTargetCall()
 
 	var showObjects = false
