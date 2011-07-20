@@ -12,12 +12,13 @@ import _root_.java.util.UUID
 import _root_.net.ab0oo.aprs.parser._
 
 class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
-	val TAG = "BluetoothTnc"
+	val TAG = "APRSdroid.Bluetooth"
 	val SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
 
 	val bt_client = prefs.getBoolean("bt.client", true)
 	val tncmac = prefs.getString("bt.mac", null)
 	val tncchannel = prefs.getStringInt("bt.channel", -1)
+	var digipath = prefs.getString("digi_path", "WIDE1-1")
 	var conn : BtSocketThread = null
 
 	createConnection()
@@ -43,6 +44,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	}
 
 	def update(packet : APRSPacket) : String = {
+		packet.setDigipeaters(Digipeater.parseList(digipath, true))
 		Log.d(TAG, "BluetoothTnc.update: " + packet)
 		conn.update(packet)
 	}

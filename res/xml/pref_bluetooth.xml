@@ -24,7 +24,15 @@
 		android:title="Channel"
 		android:summary="Usually this is '1'"
 		android:dialogTitle="enter your channel" />
-    </PreferenceCategory>
 
+        <EditTextPreference
+                android:key="digi_path"
+		android:hint="hop1,hop2,.."
+		android:defaultValue="WIDE1-1"
+		android:title="@string/p_aprs_path"
+		android:summary="@string/p_aprs_path_summary"
+		android:dialogTitle="@string/p_aprs_path_entry" />
+
+    </PreferenceCategory>
 </PreferenceScreen>
 
