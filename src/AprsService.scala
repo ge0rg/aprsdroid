@@ -4,6 +4,7 @@ import _root_.android.app.Service
 import _root_.android.content.{Context, Intent, IntentFilter}
 import _root_.android.location._
 import _root_.android.os.{Bundle, IBinder, Handler}
+import _root_.android.os.Debug
 import _root_.android.preference.PreferenceManager
 import _root_.android.util.Log
 import _root_.android.widget.Toast
@@ -95,6 +96,8 @@ class AprsService extends Service with LocationListener {
 		val upd_int = prefs.getStringInt("interval", 10)
 		val upd_dist = prefs.getStringInt("distance", 10)
 
+		Debug.startMethodTracing("aprsdroid")
+
 		// display notification (even though we are not actually started yet,
 		// but we need this to prevent error message reordering)
 		fastLaneLoc = null
@@ -152,6 +155,7 @@ class AprsService extends Service with LocationListener {
 		unregisterReceiver(msgNotifier)
 		ServiceNotifier.instance.stop(this)
 		running = false
+		Debug.stopMethodTracing()
 	}
 
 	def getGpsInterval() : Int = {
