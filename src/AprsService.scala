@@ -113,14 +113,13 @@ class AprsService extends Service with LocationListener {
 		if (!running) {
 			running = true
 			startPoster()
+
+			// register for outgoing message notifications
+			registerReceiver(msgNotifier, new IntentFilter(AprsService.MESSAGE))
 		}
 
 		// continuous GPS tracking for single shot mode
 		requestLocations(singleShot)
-
-		// register for outgoing message notifications
-		registerReceiver(msgNotifier, new IntentFilter(AprsService.MESSAGE))
-
 
 		val callssid = prefs.getCallSsid()
 		val message = "%s: %d min, %d km".format(callssid, upd_int, upd_dist)
