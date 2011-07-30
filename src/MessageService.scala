@@ -34,7 +34,8 @@ class MessageService(s : AprsService) {
 					val status = s.poster.update(ack)
 					s.addPost(StorageDatabase.Post.TYPE_POST, status, ack.toString)
 				}
-				ServiceNotifier.instance.notifyMessage(s, ap.getSourceCall(), msg.getMessageBody())
+				ServiceNotifier.instance.notifyMessage(s, s.prefs, 
+					ap.getSourceCall(), msg.getMessageBody())
 			}
 			s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, ap.toString))
 		}
