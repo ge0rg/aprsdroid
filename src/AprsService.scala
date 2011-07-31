@@ -51,7 +51,7 @@ class AprsService extends Service with LocationListener {
 
 	lazy val db = StorageDatabase.open(this)
 
-	var msgService = new MessageService(this)
+	lazy val msgService = new MessageService(this)
 	lazy val msgNotifier = msgService.createMessageNotifier()
 
 	var poster : AprsIsUploader = null
@@ -234,7 +234,6 @@ class AprsService extends Service with LocationListener {
 
 		Log.d(TAG, "packet: " + packet)
 		val result = try {
-			msgService.sendPendingMessages()
 			val status = poster.update(packet)
 			i.putExtra(STATUS, status)
 			i.putExtra(PACKET, packet.toString)
