@@ -6,6 +6,7 @@
 <string name="app_map">APRSdroid-Karte</string>
 <string name="app_hub">APRSdroid-Hub</string>
 <string name="app_sta">Stationsinfo</string>
+<string name="app_messages">Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Sie müssen Ihr Rufzeichen und den dazugehörigen Passcode eingeben!</string>
 <string name="wrongpasscode">Der Passcode für Ihr Rufzeichen ist nicht korrekt!</string>
@@ -32,11 +33,17 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
+<!-- Conversations activity -->
+<string name="msg_send_new">Send message to...</string>
+<string name="msg_message_text">Message text</string>
+<string name="msg_empty_list">There are no stored conversations.</string>
+
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid-Dienst</string>
 <string name="service_once">APRS-Dienst Einzelmeldung.</string>
 <string name="service_start">APRS-Dienst gestartet. Aktualisierung alle %1$d Minuten, %2$d km.</string>
 <string name="service_stop">APRS-Dienst beendet.</string>
+<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Willkommen zu APRSdroid!</string>
@@ -140,6 +147,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_host_summary">APRS-IS Zielserver (Port 8080)</string>
 <string name="p_host_entry">Geben Sie den APRS-IS-Servernamen ein</string>
 <string name="p_host_hint">host:port</string>
+<string name="p__position">Position Reports</string>
+<string name="p__position_summary">Configuration for sending position reports</string>
 <string name="p__location">Standorteinstellungen</string>
 <string name="p_interval">Minimale Updatezeit</string>
 <string name="p_interval_summary">Minuten zwischen Baken</string>
@@ -158,6 +167,23 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_gps_always">Hoch (Immer an)</string>
 <string name="p_gps_med">Mittel</string>
 <string name="p_gps_low">Niedrig</string>
+<string name="p_keepscreen">Keep screen awake</string>
+<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+
+<!-- messaging -->
+<string name="p__message">Messaging</string>
+<string name="p__message_summary">Message transmission and notifications</string>
+<string name="p__msg_notify">Message Notification</string>
+<string name="p_msg_led">Blinking LED</string>
+<string name="p_msg_led_on">LED notifications are on</string>
+<string name="p_msg_led_off">LED notifications are off</string>
+<string name="p_msg_vibr">Vibration</string>
+<string name="p_msg_vibr_on">Vibration notifications are on</string>
+<string name="p_msg_vibr_off">Vibration notification are off</string>
+<string name="p_msg_ring">Ringtone</string>
+<string name="p_msg_ring_summary">Tone for incoming messages</string>
+
+<string name="p__display">Display</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS-Digi-Pfad</string>

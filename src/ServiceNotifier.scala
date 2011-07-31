@@ -4,6 +4,7 @@ import _root_.android.app.{Notification, NotificationManager, PendingIntent, Ser
 import _root_.android.content.{Context, Intent}
 import _root_.android.net.Uri
 import _root_.android.os.Build
+import _root_.android.graphics.Color
 
 
 object ServiceNotifier {
@@ -43,7 +44,7 @@ abstract class ServiceNotifier {
 		val n = new Notification()
 		n.icon = R.drawable.icon
 		n.when = System.currentTimeMillis
-		n.flags |= Notification.FLAG_AUTO_CANCEL
+		n.flags = Notification.FLAG_AUTO_CANCEL
 		val i = new Intent(ctx, classOf[MessageActivity])
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 		i.setData(Uri.parse(call))
@@ -57,9 +58,22 @@ abstract class ServiceNotifier {
 	def start(ctx : Service, status : String)
 	def stop(ctx : Service)
 
-	def notifyMessage(ctx : Service, call : String, message : String) {
+	def notifyMessage(ctx : Service, prefs : PrefsWrapper,
+			call : String, message : String) {
+		val n = newMessageNotification(ctx, call, message)
+		// set notification LED
+		if (prefs.getBoolean("notify_led", true)) {
+			n.ledARGB = Color.YELLOW
+			n.ledOnMS = 300
+			n.ledOffMS = 1000
+			n.flags |= Notification.FLAG_SHOW_LIGHTS
+		}
+		if (prefs.getBoolean("notify_vibr", true)) {
+			n.vibrate = Array[Long](200, 10000)
+		}
+		n.sound = Uri.parse(prefs.getString("notify_ringtone", null))
 		getNotificationMgr(ctx).notify(getCallNumber(call),
-			newMessageNotification(ctx, call, message))
+			n)
 	}
 
 	def cancelMessage(ctx : Context, call : String) {

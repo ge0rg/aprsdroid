@@ -98,7 +98,7 @@ class MessageActivity extends LoadingListActivity
 		cv.put(TEXT, msg)
 		storage.addMessage(cv)
 		// notify backend
-		sendBroadcast(new Intent(AprsService.MESSAGE))
+		sendBroadcast(new Intent(AprsService.MESSAGETX))
 	}
 
 	// button actions

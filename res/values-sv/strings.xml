@@ -6,6 +6,7 @@
 <string name="app_map">APRSdroid karta</string>
 <string name="app_hub">APRSdroid Hubb</string>
 <string name="app_sta">Stationsinfo</string>
+<string name="app_messages">Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Du måste konfigurera APRSdroid med anropssignal och lösen!</string>
 <string name="wrongpasscode">Ditt lösen stämmer inte med anropssignalen</string>
@@ -30,11 +31,17 @@
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
+<!-- Conversations activity -->
+<string name="msg_send_new">Send message to...</string>
+<string name="msg_message_text">Message text</string>
+<string name="msg_empty_list">There are no stored conversations.</string>
+
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">APRS Service single shot.</string>
 <string name="service_start">APRS service startad. Uppdaterar varje %1$d minut, %2$d km.</string>
 <string name="service_stop">APRS service stoppad.</string>
+<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Välkommer till APRSdroid!</string>
@@ -151,6 +158,8 @@
 <string name="p_host_summary">APRS-IS server (port 8080) för sändning av beacon</string>
 <string name="p_host_entry">Ange värdnamnet på APRS-IS servern</string>
 <string name="p_host_hint">värd:port</string>
+<string name="p__position">Position Reports</string>
+<string name="p__position_summary">Configuration for sending position reports</string>
 <string name="p__location">Platsinställningar</string>
 <string name="p_interval">Lägsta tid för uppdatering</string>
 <string name="p_interval_summary">Minuter mellan sändning av beacon</string>
@@ -169,6 +178,23 @@
 <string name="p_gps_always">Hög (alltid på)</string>
 <string name="p_gps_med">Normal</string>
 <string name="p_gps_low">Låg</string>
+<string name="p_keepscreen">Keep screen awake</string>
+<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+
+<!-- messaging -->
+<string name="p__message">Messaging</string>
+<string name="p__message_summary">Message transmission and notifications</string>
+<string name="p__msg_notify">Message Notification</string>
+<string name="p_msg_led">Blinking LED</string>
+<string name="p_msg_led_on">LED notifications are on</string>
+<string name="p_msg_led_off">LED notifications are off</string>
+<string name="p_msg_vibr">Vibration</string>
+<string name="p_msg_vibr_on">Vibration notifications are on</string>
+<string name="p_msg_vibr_off">Vibration notification are off</string>
+<string name="p_msg_ring">Ringtone</string>
+<string name="p_msg_ring_summary">Tone for incoming messages</string>
+
+<string name="p__display">Display</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi väg</string>

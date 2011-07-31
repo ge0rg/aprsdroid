@@ -6,6 +6,7 @@
 <string name="app_map">APRSdroid：地図</string>
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Station Info</string>
+<string name="app_messages">Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroidの使用前にコールサインとパスコードの設定が必要です</string>
 <string name="wrongpasscode">コールサインとパスコードが一致しません！</string>
@@ -32,11 +33,17 @@
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
+<!-- Conversations activity -->
+<string name="msg_send_new">Send message to...</string>
+<string name="msg_message_text">Message text</string>
+<string name="msg_empty_list">There are no stored conversations.</string>
+
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">ARPSサービス １回送信</string>
 <string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRSサービス停止</string>
+<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
 
 <!-- first run dialog -->
 <string name="fr_title">ようこそAPRSdroidへ！</string>
@@ -155,6 +162,8 @@
 <string name="p_host_summary">ビーコン情報を送信するAPRS-ISサーバ名</string>
 <string name="p_host_entry">送信先のAPRS-ISサーバホスト名を入力</string>
 <string name="p_host_hint">host:port</string>
+<string name="p__position">Position Reports</string>
+<string name="p__position_summary">Configuration for sending position reports</string>
 <string name="p__location">位置情報設定</string>
 <string name="p_interval">位置情報取得間隔</string>
 <string name="p_interval_summary">GPSから位置情報を取得する間隔</string>
@@ -173,6 +182,23 @@
 <string name="p_gps_always">High (Always on)</string>
 <string name="p_gps_med">Medium</string>
 <string name="p_gps_low">Low</string>
+<string name="p_keepscreen">Keep screen awake</string>
+<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+
+<!-- messaging -->
+<string name="p__message">Messaging</string>
+<string name="p__message_summary">Message transmission and notifications</string>
+<string name="p__msg_notify">Message Notification</string>
+<string name="p_msg_led">Blinking LED</string>
+<string name="p_msg_led_on">LED notifications are on</string>
+<string name="p_msg_led_off">LED notifications are off</string>
+<string name="p_msg_vibr">Vibration</string>
+<string name="p_msg_vibr_on">Vibration notifications are on</string>
+<string name="p_msg_vibr_off">Vibration notification are off</string>
+<string name="p_msg_ring">Ringtone</string>
+<string name="p_msg_ring_summary">Tone for incoming messages</string>
+
+<string name="p__display">Display</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>

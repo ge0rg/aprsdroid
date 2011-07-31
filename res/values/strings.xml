@@ -163,6 +163,8 @@
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>
 <string name="p_host_hint">host:port</string>
+<string name="p__position">Position Reports</string>
+<string name="p__position_summary">Configuration for sending position reports</string>
 <string name="p__location">Location Settings</string>
 <string name="p_interval">Minimum update time</string>
 <string name="p_interval_summary">Minutes between beacon transmissions</string>
@@ -183,6 +185,21 @@
 <string name="p_gps_low">Low</string>
 <string name="p_keepscreen">Keep screen awake</string>
 <string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+
+<!-- messaging -->
+<string name="p__message">Messaging</string>
+<string name="p__message_summary">Message transmission and notifications</string>
+<string name="p__msg_notify">Message Notification</string>
+<string name="p_msg_led">Blinking LED</string>
+<string name="p_msg_led_on">LED notifications are on</string>
+<string name="p_msg_led_off">LED notifications are off</string>
+<string name="p_msg_vibr">Vibration</string>
+<string name="p_msg_vibr_on">Vibration notifications are on</string>
+<string name="p_msg_vibr_off">Vibration notification are off</string>
+<string name="p_msg_ring">Ringtone</string>
+<string name="p_msg_ring_summary">Tone for incoming messages</string>
+
+<string name="p__display">Display</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>

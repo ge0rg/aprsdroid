@@ -40,6 +40,11 @@
 		android:defaultValue="5"
 		android:dialogTitle="@string/p_ssid_entry" />
 
+    <!-- sub-screen "Position Reports" -->
+    <PreferenceScreen
+	    android:title="@string/p__position"
+	    android:summary="@string/p__position_summary">
+
         <EditTextPreference
                 android:key="symbol"
 		android:hint="@string/default_symbol"
@@ -55,8 +60,6 @@
 		android:defaultValue="@string/default_status"
 		android:summary="@string/p_status_summary"
 		android:dialogTitle="@string/p_status_entry" />
-
-    </PreferenceCategory>
 
     <PreferenceCategory
 	android:title="@string/p__location">
@@ -92,13 +95,40 @@
 		android:summary="@string/p_netloc_summary" />
 
     </PreferenceCategory>
+    </PreferenceScreen>
+    <!-- sub-screen "Messaging" -->
+    <PreferenceScreen
+	    android:title="@string/p__message"
+	    android:summary="@string/p__message_summary">
+    <PreferenceCategory
+	android:title="@string/p__msg_notify">
 
-        <CheckBoxPreference
-                android:key="keepscreen"
-		android:title="@string/p_keepscreen"
-		android:summary="@string/p_keepscreen_summary" />
+	<CheckBoxPreference
+		android:key="notify_led"
+		android:title="@string/p_msg_led"
+		android:summaryOn="@string/p_msg_led_on"
+		android:summaryOff="@string/p_msg_led_off"
+		android:defaultValue="true"
+		/>
+	<CheckBoxPreference
+		android:key="notify_vibr"
+		android:title="@string/p_msg_vibr"
+		android:summaryOn="@string/p_msg_vibr_on"
+		android:summaryOff="@string/p_msg_vibr_off"
+		android:defaultValue="true"
+		/>
+	<RingtonePreference
+		android:key="notify_ringtone"
+		android:title="@string/p_msg_ring"
+		android:summary="@string/p_msg_ring_summary"
+		android:ringtoneType="notification"
+		android:showDefault="true"
+		android:showSilent="true"
+		/>
+    </PreferenceCategory>
+    </PreferenceScreen>
+    </PreferenceCategory>
 
-                
     <PreferenceCategory
 	android:title="@string/p__connection">
 
@@ -120,6 +150,14 @@
                     android:targetClass="org.aprsdroid.app.BackendPrefs" />
 
         </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+	android:title="@string/p__display">
+        <CheckBoxPreference
+                android:key="keepscreen"
+		android:title="@string/p_keepscreen"
+		android:summary="@string/p_keepscreen_summary" />
     </PreferenceCategory>
 
 </PreferenceScreen>
