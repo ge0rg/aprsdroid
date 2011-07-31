@@ -16,8 +16,9 @@ object AprsService {
 	val SERVICE = PACKAGE + ".SERVICE"
 	val SERVICE_ONCE = PACKAGE + ".ONCE"
 	// broadcast actions
-	val UPDATE = PACKAGE + ".UPDATE"
-	val MESSAGE = PACKAGE + ".MESSAGE"
+	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
+	val MESSAGE = PACKAGE + ".MESSAGE"	// we received a message/ack
+	val MESSAGETX = PACKAGE + ".MESSAGETX"	// we created a message for TX
 	// broadcast intent extras
 	val LOCATION = PACKAGE + ".LOCATION"
 	val STATUS = PACKAGE + ".STATUS"
@@ -115,7 +116,7 @@ class AprsService extends Service with LocationListener {
 			startPoster()
 
 			// register for outgoing message notifications
-			registerReceiver(msgNotifier, new IntentFilter(AprsService.MESSAGE))
+			registerReceiver(msgNotifier, new IntentFilter(AprsService.MESSAGETX))
 		}
 
 		// continuous GPS tracking for single shot mode
