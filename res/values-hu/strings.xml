@@ -157,7 +157,9 @@
 <string name="p_conn_udp">UDP (send only)</string>
 <string name="p_conn_http">HTTP POST (send only)</string>
 <string name="p_conn_afsk">AFSK via Speaker</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
 
+<!-- connection type properties -->
 <string name="p_host">Szerver</string>
 <string name="p_host_summary">APRS-IS szerver (8080-as port), amire a beaconok mennek</string>
 <string name="p_host_entry">Írd be az APRS-IS szerver hostnevét</string>
