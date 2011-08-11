@@ -157,7 +157,9 @@
 <string name="p_conn_udp">UDP (send only)</string>
 <string name="p_conn_http">HTTP POST (send only)</string>
 <string name="p_conn_afsk">AFSK via Speaker</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
 
+<!-- connection type properties -->
 <string name="p_host">服务器</string>
 <string name="p_host_summary">APRS-IS 服务器 (端口 8080) 发送信标</string>
 <string name="p_host_entry">输入 APRS-IS 服务器的主机名</string>

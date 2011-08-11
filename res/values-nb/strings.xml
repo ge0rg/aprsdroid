@@ -157,7 +157,9 @@
 <string name="p_conn_udp">UDP (send only)</string>
 <string name="p_conn_http">HTTP POST (send only)</string>
 <string name="p_conn_afsk">AFSK via Speaker</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
 
+<!-- connection type properties -->
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) for å sende beacons</string>
 <string name="p_host_entry">Skriv APRS-IS server hostnavn</string>
@@ -227,7 +229,6 @@
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Knut Ole Petersen https://launchpad.net/~la9foa
   Roger Fosland https://launchpad.net/~roger-fosland</string>
 
 </resources>

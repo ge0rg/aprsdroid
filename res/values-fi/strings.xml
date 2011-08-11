@@ -157,7 +157,9 @@
 <string name="p_conn_udp">UDP (vain lähetys)</string>
 <string name="p_conn_http">HTTP POST (vain lähetys)</string>
 <string name="p_conn_afsk">AFSK kaiuttimien kautta</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
 
+<!-- connection type properties -->
 <string name="p_host">Palvelin</string>
 <string name="p_host_summary">APRS-IS palvelin (portti 8080) to send beacons</string>
 <string name="p_host_entry">Kirjoita APRS-IS palvelimen hostname</string>

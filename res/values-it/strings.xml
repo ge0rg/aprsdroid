@@ -157,7 +157,9 @@
 <string name="p_conn_udp">UDP (invia soltanto)</string>
 <string name="p_conn_http">HTTP POST (invia soltanto)</string>
 <string name="p_conn_afsk">AFSK tramite lo Speaker</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
 
+<!-- connection type properties -->
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Inserisci l\'host del server APRS-IS</string>

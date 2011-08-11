@@ -142,7 +142,9 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_conn_udp">UDP (nur Senden)</string>
 <string name="p_conn_http">HTTP POST (nur Senden)</string>
 <string name="p_conn_afsk">AFSK über Lautsprecher</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
 
+<!-- connection type properties -->
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS Zielserver (Port 8080)</string>
 <string name="p_host_entry">Geben Sie den APRS-IS-Servernamen ein</string>
@@ -211,7 +213,6 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_sotimeout_summary">Zeit zum Zurücksetzen der Verbindung</string>
 <string name="p_sotimeout_entry">Timeout-Wert in Sekunden (0 = deaktiviert)</string>
 
-<string name="translator_credits">Launchpad Contributions:
-  Georg Lukas https://launchpad.net/~ge0rg</string>
+<string name="translator_credits">translator-credits</string>
 
 </resources>
