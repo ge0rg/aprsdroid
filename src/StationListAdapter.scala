@@ -43,9 +43,12 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 	private val BRIGHT = Array(0xff, 0xff, 0xff, 0xc0)
 	private val MAX = 30*60*1000
 	def getAgeColor(ts : Long) : Int = {
-		val delta = (System.currentTimeMillis - ts).toInt
-		val factor = if (delta < MAX) delta else MAX
+		val delta = System.currentTimeMillis - ts
+		// normalize the time difference to a value 0..30min [ms]
+		val factor = if (delta < MAX) delta.toInt else MAX
+		// linearly blend the individual RGB values using the factor
 		val mix = DARK zip BRIGHT map (t => { t._2 - (t._2 - t._1)*factor/MAX } )
+		// make a single int from the color array
 		mix.reduceLeft(_*256 + _)
 	}
 
