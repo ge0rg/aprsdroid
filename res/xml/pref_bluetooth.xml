@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	    android:title="Bluetooth">
+
+        <CheckBoxPreference
+                android:key="bt.client"
+		android:title="Client Mode"
+		android:defaultValue="true"
+		android:summary="Keep this on!" />
+
+	<de.duenndns.BluetoothDevicePreference
+		android:key="bt.mac"
+		android:dependency="bt.client"
+		android:title="TNC Bluetooth Device"
+		android:summary="You need to pair it from the system preferences"
+		android:dialogTitle="choose device" />
+        <EditTextPreference
+                android:key="bt.channel"
+		android:dependency="bt.client"
+		android:inputType="number"
+		android:title="Channel"
+		android:summary="Usually this is '1'"
+		android:dialogTitle="enter your channel" />
+
+        <EditTextPreference
+                android:key="digi_path"
+		android:hint="hop1,hop2,.."
+		android:defaultValue="WIDE1-1"
+		android:title="@string/p_aprs_path"
+		android:summary="@string/p_aprs_path_summary"
+		android:dialogTitle="@string/p_aprs_path_entry" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
+
