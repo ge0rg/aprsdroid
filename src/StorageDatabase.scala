@@ -185,10 +185,12 @@ class StorageDatabase(context : Context) extends
 
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
 		if (from <= 1 && to <= 3) {
-			db.execSQL("CREATE TABLE message") // use old name here!
+			db.execSQL(Message.TABLE_CREATE)
+		}
+		if (from == 2 && to <= 3) {
+			db.execSQL("ALTER TABLE message RENAME TO messages") // make names consistent
 		}
 		if (from <= 2 && to <= 3) {
-			db.execSQL("ALTER TABLE message RENAME TO messages") // make names consistent
 			db.execSQL("DROP TABLE position") // old name
 			db.execSQL(Station.TABLE_CREATE)
 			db.execSQL(Position.TABLE_CREATE)
