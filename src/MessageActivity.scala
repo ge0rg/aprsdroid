@@ -9,7 +9,7 @@ import _root_.android.text.{Editable, TextWatcher}
 import _root_.android.util.Log
 import _root_.android.view.{KeyEvent, Menu, MenuItem, View, Window}
 import _root_.android.view.View.{OnClickListener, OnKeyListener}
-import _root_.android.widget.{Button, EditText, ListView}
+import _root_.android.widget.{Button, EditText, ListView, Toast}
 
 class MessageActivity extends LoadingListActivity
 		with OnClickListener with OnKeyListener with TextWatcher {
@@ -99,6 +99,11 @@ class MessageActivity extends LoadingListActivity
 		storage.addMessage(cv)
 		// notify backend
 		sendBroadcast(new Intent(AprsService.MESSAGETX))
+		// notify UI about new message
+		sendBroadcast(new Intent(AprsService.MESSAGE))
+		// if not connected, notify user about postponed message
+		if (!AprsService.running)
+			Toast.makeText(this, R.string.msg_stored_offline, Toast.LENGTH_SHORT).show()
 	}
 
 	// button actions
