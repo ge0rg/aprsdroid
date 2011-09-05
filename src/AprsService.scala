@@ -150,6 +150,7 @@ class AprsService extends Service with LocationListener {
 			poster.stop()
 			showToast(getString(R.string.service_stop))
 		}
+		msgService.stop()
 		locMan.removeUpdates(this);
 		unregisterReceiver(msgNotifier)
 		ServiceNotifier.instance.stop(this)

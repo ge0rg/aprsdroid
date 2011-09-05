@@ -54,6 +54,11 @@ class MessageService(s : AprsService) {
 		s.handler.postDelayed(pendingSender, (delay+999)/1000*1000)
 	}
 
+	// called when the service is terminated, we have to clean up timers
+	def stop() {
+		s.handler.removeCallbacks(pendingSender)
+	}
+
 	def sendPendingMessages() {
 		import StorageDatabase.Message._
 
