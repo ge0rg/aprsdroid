@@ -144,15 +144,15 @@ class AprsService extends Service with LocationListener {
 	}
 
 	override def onDestroy() {
-		locMan.removeUpdates(this);
+		running = false
 		// catch FC when service is killed from outside
 		if (poster != null) {
 			poster.stop()
 			showToast(getString(R.string.service_stop))
 		}
+		locMan.removeUpdates(this);
 		unregisterReceiver(msgNotifier)
 		ServiceNotifier.instance.stop(this)
-		running = false
 	}
 
 	def getGpsInterval() : Int = {
