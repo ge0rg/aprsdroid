@@ -203,6 +203,8 @@ class StorageDatabase(context : Context) extends
 			Array(long2Long(ts)))
 		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Position.TABLE, Position.TS),
 			Array(long2Long(ts)))
+		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Station.TABLE, Station.TS),
+			Array(long2Long(ts)))
 	}
 
 	// default trim filter: 31 days in [ms]
