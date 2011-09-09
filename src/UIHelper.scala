@@ -310,7 +310,7 @@ trait UIHelper extends Activity
 	class StorageCleaner(storage : StorageDatabase) extends MyAsyncTask[Unit, Unit] {
 		override def doInBackground1(params : Array[String]) {
 			Log.d("StorageCleaner", "trimming...")
-			storage.trimPosts(System.currentTimeMillis)
+			storage.trimPosts(Long.MaxValue)
 		}
 		override def onPostExecute(x : Unit) {
 			Log.d("StorageCleaner", "broadcasting...")

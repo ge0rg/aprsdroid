@@ -203,11 +203,13 @@ class StorageDatabase(context : Context) extends
 			Array(long2Long(ts)))
 		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Position.TABLE, Position.TS),
 			Array(long2Long(ts)))
-		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Station.TABLE, Station.TS),
-			Array(long2Long(ts)))
+		// only trim stations on explicit request
+		if (ts == Long.MaxValue)
+			getWritableDatabase().execSQL("DELETE FROM %s WHERE %s < ?".format(Station.TABLE, Station.TS),
+				Array(long2Long(ts)))
 	}
 
-	// default trim filter: 31 days in [ms]
+	// default trim filter: 2 days in [ms]
 	def trimPosts() : Unit = trimPosts(System.currentTimeMillis - 2L * 24 * 3600 * 1000)
 
 	def addPosition(ts : Long, ap : APRSPacket, pos : Position, objectname : String) {
