@@ -147,6 +147,8 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 	lazy val symbolSize = (context.getResources().getDisplayMetrics().density * 16).toInt
 
+	icons.setBounds(0, 0, symbolSize, symbolSize)
+
 	override def size() = stations.size()
 	override def createItem(idx : Int) : Station = stations.get(idx)
 
