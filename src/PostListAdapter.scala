@@ -24,8 +24,8 @@ class PostListAdapter(context : Context)
 
 class PostViewBinder extends ViewBinder {
 
-	// post, info, error
-	val COLORS = Array(0xff30b030, 0xffb0b0b0, 0xffffb0b0, 0xff8080b0)
+	// post, info, error, incoming
+	val COLORS = Array(0xff30b030, 0xffc0c080, 0xffffb0b0, 0xff8080b0)
 
 	override def setViewValue (view : View, cursor : Cursor, columnIndex : Int) : Boolean = {
 		import StorageDatabase.Post._

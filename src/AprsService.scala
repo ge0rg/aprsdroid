@@ -306,19 +306,29 @@ class AprsService extends Service with LocationListener {
 		}
 		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, message))
 	}
+	// support for translated IDs
+	def addPost(t : Int, status_id : Int, message : String) {
+		addPost(t, getString(status_id), message)
+	}
 
-	def postSubmit(post : String) {
+	def postAddPost(t : Int, status_id : Int, message : String) {
+		// only log "info" if enabled in prefs
+		if (t == StorageDatabase.Post.TYPE_INFO && prefs.getBoolean("conn_log", false) == false)
+			return
 		handler.post {
-			addPost(StorageDatabase.Post.TYPE_INCMG, "incoming", post)
-			msgService.sendPendingMessages()
+			addPost(t, status_id, message)
+			if (t == StorageDatabase.Post.TYPE_INCMG)
+				msgService.sendPendingMessages()
+			else if (t == StorageDatabase.Post.TYPE_ERROR)
+				stopSelf()
 		}
+	}
+	def postSubmit(post : String) {
+		postAddPost(StorageDatabase.Post.TYPE_INCMG, R.string.post_incmg, post)
 	}
 
 	def postAbort(post : String) {
-		handler.post {
-			addPost(StorageDatabase.Post.TYPE_ERROR, "Error", post)
-			stopSelf()
-		}
+		postAddPost(StorageDatabase.Post.TYPE_ERROR, R.string.post_error, post)
 	}
 
 }
