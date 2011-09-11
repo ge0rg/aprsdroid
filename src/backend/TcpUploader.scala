@@ -11,6 +11,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 	val TAG = "APRSdroid.TcpUploader"
 	val hostname = prefs.getString("tcp.server", "euro.aprs2.net")
 	val so_timeout = prefs.getStringInt("tcp.sotimeout", 120)
+	val RECONNECT = 30
 	var conn : TcpSocketThread = null
 
 	createConnection()
@@ -58,6 +59,8 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 
 		def init_socket() {
 			Log.d(TAG, "init_socket()")
+			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
+				service.getString(R.string.post_connecting, host, port.asInstanceOf[AnyRef]))
 			this.synchronized {
 				socket = new Socket(host, port)
 				socket.setKeepAlive(true)
@@ -74,6 +77,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 		}
 
 		override def run() {
+			import StorageDatabase.Post._
 			var need_reconnect = false
 			Log.d(TAG, "TcpSocketThread.run()")
 			try {
@@ -94,11 +98,15 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 						Log.d(TAG, "recv: " + line)
 						if (line(0) != '#')
 							service.postSubmit(line)
+						else
+							service.postAddPost(TYPE_INFO, R.string.post_info, line)
 					}
 					if (running && (line == null || !socket.isConnected())) {
 						Log.d(TAG, "reconnecting in 30s")
+						service.postAddPost(TYPE_INFO, R.string.post_info,
+							service.getString(R.string.post_reconnect, RECONNECT.asInstanceOf[AnyRef]))
 						shutdown()
-						Thread.sleep(30*1000)
+						Thread.sleep(RECONNECT*1000)
 						init_socket()
 					}
 				} catch {
