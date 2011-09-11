@@ -45,6 +45,12 @@
 <string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRS Service stopped.</string>
 <string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<!-- service result codes -->
+<string name="post_error">Error</string>
+<string name="post_incmg">received</string>
+<string name="post_info"></string>
+<string name="post_connecting">Connecting to %1$s:%2$d...</string>
+<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Welcome to APRSdroid!</string>
