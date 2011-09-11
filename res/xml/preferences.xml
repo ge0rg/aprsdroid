@@ -150,6 +150,10 @@
                     android:targetClass="org.aprsdroid.app.BackendPrefs" />
 
         </PreferenceScreen>
+        <CheckBoxPreference
+                android:key="conn_log"
+		android:title="@string/p_connlog"
+		android:summary="@string/p_connlog_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -159,6 +159,8 @@
 <string name="p_conntype_entry">Choose the connection protocol</string>
 <string name="p_connsetup">Connection Preferences</string>
 <string name="p_connsetup_summary">Configuration of Connection</string>
+<string name="p_connlog">Connection Logging</string>
+<string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP connection</string>
 <string name="p_conn_udp">UDP (send only)</string>
