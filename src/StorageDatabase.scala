@@ -249,11 +249,12 @@ class StorageDatabase(context : Context) extends
 		result
 	}
 
-	def addMessage(ts : Long, srccall : String, msg : MessagePacket) {
+	// add an incoming message, returns false if duplicate
+	def addMessage(ts : Long, srccall : String, msg : MessagePacket) : Boolean = {
 		import Message._
 		if (isMessageDuplicate(srccall, msg.getMessageNumber(), msg.getMessageBody())) {
 			Log.i(TAG, "received duplicate message from %s: %s".format(srccall, msg))
-			return
+			return false
 		}
 		val cv = new ContentValues()
 		cv.put(TS, ts.asInstanceOf[java.lang.Long])
@@ -263,6 +264,7 @@ class StorageDatabase(context : Context) extends
 		cv.put(TYPE, TYPE_INCOMING.asInstanceOf[java.lang.Integer])
 		cv.put(TEXT, msg.getMessageBody())
 		addMessage(cv)
+		true
 	}
 
 	def getStations(sel : String, selArgs : Array[String], limit : String) : Cursor = {

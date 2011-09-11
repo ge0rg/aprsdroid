@@ -31,15 +31,16 @@ class MessageService(s : AprsService) {
 					StorageDatabase.Message.TYPE_OUT_REJECTED
 				s.db.updateMessageAcked(ap.getSourceCall(), msg.getMessageNumber(), new_type)
 			} else {
-				s.db.addMessage(ts, ap.getSourceCall(), msg)
+				val is_new = s.db.addMessage(ts, ap.getSourceCall(), msg)
 				if (msg.getMessageNumber() != "") {
 					// we need to send an ack
 					val ack = AprsPacket.formatMessage(callssid, s.appVersion(), ap.getSourceCall(), "ack", msg.getMessageNumber())
 					val status = s.poster.update(ack)
 					s.addPost(StorageDatabase.Post.TYPE_POST, status, ack.toString)
 				}
-				ServiceNotifier.instance.notifyMessage(s, s.prefs, 
-					ap.getSourceCall(), msg.getMessageBody())
+				if (is_new)
+					ServiceNotifier.instance.notifyMessage(s, s.prefs, 
+						ap.getSourceCall(), msg.getMessageBody())
 			}
 			s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, ap.toString))
 		}
