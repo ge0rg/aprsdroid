@@ -117,9 +117,9 @@ class MapAct extends MapActivity with UIHelper {
 	}
 }
 
-class Station(val movelog : ArrayBuffer[GeoPoint], val point : GeoPoint,
+class Station(val movelog : ArrayBuffer[GeoPoint], val pt : GeoPoint,
 	val call : String, val message : String, val symbol : String)
-	extends OverlayItem(point, call, message) {
+	extends OverlayItem(pt, call, message) {
 
 }
 
@@ -149,7 +149,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		(symbol(0) != '/' && symbol(0) != '\\')
 	}
 
-	def drawTrace(c : Canvas, m : MapView, s : Station) : Unit = {
+	def drawTrace(c : Canvas, proj : Projection, s : Station) : Unit = {
 		//Log.d(TAG, "drawing trace of %s".format(call))
 
 		val tracePaint = new Paint()
@@ -169,7 +169,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		}
 		var first = true
 		for (p <- s.movelog) {
-			m.getProjection().toPixels(p, point)
+			proj.toPixels(p, point)
 			if (first) {
 				path.moveTo(point.x, point.y)
 				first = false
@@ -209,16 +209,16 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		val p = new Point()
 		val proj = m.getProjection()
 		val zoom = m.getZoomLevel()
-		val (width, height) = (m.getWidth(), m.getHeight())
+		val (width, height) = (c.getWidth(), c.getHeight())
 		val ss = symbolSize/2
 		for (s <- stations) {
-			proj.toPixels(s.point, p)
+			proj.toPixels(s.pt, p)
 			if (p.x >= 0 && p.y >= 0 && p.x < width && p.y < height) {
 				val srcRect = symbol2rect(s.symbol)
 				val destRect = new Rect(p.x-ss, p.y-ss, p.x+ss, p.y+ss)
 				// first draw callsign and trace
 				if (zoom >= 10) {
-					drawTrace(c, m, s)
+					drawTrace(c, proj, s)
 
 					c.drawText(s.call, p.x, p.y+ss+fontSize, strokePaint)
 					c.drawText(s.call, p.x, p.y+ss+fontSize, textPaint)
@@ -292,7 +292,6 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 	def replace_stations(s : ArrayList[Station]) {
 		stations = s
-		setLastFocusedIndex(-1)
 		Benchmark("populate") { populate() }
 		context.onPostLoad()
 	}
