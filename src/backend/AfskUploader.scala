@@ -10,6 +10,7 @@ class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	// frame prefix: bytes = milliseconds * baudrate / 8 / 1000
 	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
 	var Digis = prefs.getString("digi_path", "WIDE1-1")
+	val output = new Afsk()
 	
 	def start() {
 	}
@@ -20,8 +21,7 @@ class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 		val to = packet.getDestinationCall()
 		val data = packet.getAprsInformation().toString()
 		val msg = new APRSFrame(from,to,Digis,data,FrameLength).getMessage()
-		val mod = new Afsk()
-		mod.sendMessage(msg)
+		output.sendMessage(msg)
 		Log.d(TAG, "update(): From: " + from +" To: "+ to +" Via: " + Digis + " telling " + data)
 		"AFSK OK"
 	}
