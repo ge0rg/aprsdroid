@@ -65,6 +65,11 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		var reader : KissReader = null
 		var writer : KissWriter = null
 
+		def log(s : String) {
+			Log.i(TAG, s)
+			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
+		}
+
 		def init_socket() {
 			Log.d(TAG, "init_socket()")
 			if (socket != null) {
@@ -72,16 +77,16 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			}
 				if (tnc == null) {
 					// we are a host
-					Log.d(TAG, "awaiting client connection...")
+					log("Awaiting client...")
 					socket = ba.listenUsingRfcommWithServiceRecord("SPP", SPP).accept(-1)
-					Log.d(TAG, "client connected.")
+					log("Client connected.")
 				} else
 				if (tncchannel == -1) {
-					Log.d(TAG, "Connecting to SPP service...")
+					log("Connecting to SPP service on %s...".format(tncmac))
 					socket = tnc.createRfcommSocketToServiceRecord(SPP)
 					socket.connect()
 				} else {
-					Log.d(TAG, "Connecting to channel %d...".format(tncchannel))
+					log("Connecting to channel %d...".format(tncchannel))
 					val m = tnc.getClass().getMethod("createRfcommSocket", classOf[Int])
 					socket = m.invoke(tnc, tncchannel.asInstanceOf[AnyRef]).asInstanceOf[BluetoothSocket]
 					socket.connect()
@@ -113,7 +118,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				} catch {
 					case e : Exception => 
 						e.printStackTrace()
-						Log.d(TAG, "reconnecting in 3s")
+						log("Reconnecting in 3s...")
 						try {
 							Thread.sleep(3*1000)
 							init_socket()
