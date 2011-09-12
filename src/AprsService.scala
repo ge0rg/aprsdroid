@@ -194,12 +194,47 @@ class AprsService extends Service with LocationListener {
 		return true
 	}
 
+	def smartBeaconSpeedRate(speed : Float) : Int = {
+		val SB_FAST_SPEED = 14 // [m/s] = ~50km/h
+		val SB_FAST_RATE = 60
+		val SB_SLOW_SPEED = 1 // [m/s] = 3.6km/h
+		val SB_SLOW_RATE = 600
+		if (speed <= SB_SLOW_SPEED)
+			SB_SLOW_RATE
+		else if (speed >= SB_FAST_SPEED)
+			SB_FAST_RATE
+		else
+			((SB_SLOW_RATE - SB_FAST_RATE) * (SB_FAST_SPEED - speed) / (SB_FAST_SPEED-SB_SLOW_SPEED)).toInt
+	}
+
+	// return true if current position is "new enough" vs. lastLoc
+	def smartBeaconCheck(location : Location) : Boolean = {
+		if (lastLoc == null)
+			return true
+		val dist = location.distanceTo(lastLoc)
+		val t_diff = location.getTime - lastLoc.getTime
+		// obtain max speed from moved distance, last and current location
+		val speed = math.max(math.max(dist*1000/t_diff, location.getSpeed), lastLoc.getSpeed)
+		//if (location.hasSpeed && location.hasBearing)
+		val speed_rate = smartBeaconSpeedRate(speed)
+		Log.d(TAG, "smartBeaconCheck: %1.0fm, %1.2fm/s -> %d/%ds - %s".format(dist, speed,
+			t_diff/1000, speed_rate, (t_diff/1000 >= speed_rate).toString))
+		if (t_diff/1000 >= speed_rate)
+			true
+		else
+			false
+	}
+
 	// LocationListener interface
 	override def onLocationChanged(location : Location) {
 		val upd_int = prefs.getStringInt("interval", 10) * 60000
 		val upd_dist = prefs.getStringInt("distance", 10) * 1000
 		//Log.d(TAG, "onLocationChanged: n=" + location)
 		//Log.d(TAG, "onLocationChanged: l=" + lastLoc)
+		if (/* smart beaconing == */ true) {
+			if (!smartBeaconCheck(location))
+				return
+		} else
 		if (lastLoc != null &&
 		    (location.getTime - lastLoc.getTime < (upd_int  - getGpsInterval()) ||
 		     location.distanceTo(lastLoc) < upd_dist)) {
