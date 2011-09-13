@@ -182,9 +182,9 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	override def draw(c : Canvas, m : MapView, shadow : Boolean) : Unit = {
 		if (shadow) return;
 
-		val fontSize = symbolSize*3/4
+		val fontSize = symbolSize*7/8
 		val textPaint = new Paint()
-		textPaint.setARGB(255, 200, 255, 200)
+		textPaint.setColor(0xff000000)
 		textPaint.setTextAlign(Paint.Align.CENTER)
 		textPaint.setTextSize(fontSize)
 		textPaint.setTypeface(Typeface.MONOSPACE)
@@ -192,17 +192,18 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 		val symbPaint = new Paint(textPaint)
 		symbPaint.setARGB(255, 255, 255, 255)
-		symbPaint.setTextSize(fontSize - 1)
+		symbPaint.setTextSize(symbolSize*3/4 - 1)
 
 		val strokePaint = new Paint(textPaint)
-		strokePaint.setARGB(255, 0, 0, 0)
+		strokePaint.setColor(0xffc8ffc8)
 		strokePaint.setStyle(Paint.Style.STROKE)
 		strokePaint.setStrokeWidth(2)
 
 		val symbStrPaint = new Paint(strokePaint)
-		symbStrPaint.setTextSize(fontSize - 1)
+		symbStrPaint.setColor(0xff000000)
+		symbStrPaint.setTextSize(symbolSize*3/4 - 1)
 
-		strokePaint.setShadowLayer(0.5f, 0, 0, 0xff000000)
+		strokePaint.setShadowLayer(2, 0, 0, 0xffc8ffc8)
 
 		val iconbitmap = icons.asInstanceOf[BitmapDrawable].getBitmap
 
