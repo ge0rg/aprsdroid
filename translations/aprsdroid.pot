@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: APRSdroid 0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 21:20+0200\n"
+"POT-Creation-Date: 2011-09-13 20:23+0200\n"
 "PO-Revision-Date: 2010-03-17 18:33+0100\n"
 "Last-Translator: Georg Lukas <georg@op-co.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -473,260 +473,309 @@ msgstr ""
 msgid "Configuration of Connection"
 msgstr ""
 
-#. array of connection types
+#: res/values/strings.xml:162(string)
+msgid "Connection Logging"
+msgstr ""
+
 #: res/values/strings.xml:163(string)
+msgid "Verbose status output in Log"
+msgstr ""
+
+#. array of connection types
+#: res/values/strings.xml:165(string)
 msgid "TCP connection"
 msgstr ""
 
-#: res/values/strings.xml:164(string)
+#: res/values/strings.xml:166(string)
 msgid "UDP (send only)"
 msgstr ""
 
-#: res/values/strings.xml:165(string)
+#: res/values/strings.xml:167(string)
 msgid "HTTP POST (send only)"
 msgstr ""
 
-#: res/values/strings.xml:166(string)
+#: res/values/strings.xml:168(string)
 msgid "AFSK via Speaker"
 msgstr ""
 
-#: res/values/strings.xml:167(string)
+#: res/values/strings.xml:169(string)
 msgid "Bluetooth TNC"
 msgstr ""
 
 #. connection type properties
-#: res/values/strings.xml:170(string)
+#: res/values/strings.xml:172(string)
 msgid "Server"
 msgstr ""
 
-#: res/values/strings.xml:171(string)
+#: res/values/strings.xml:173(string)
 msgid "APRS-IS server (port 8080) to send beacons"
 msgstr ""
 
-#: res/values/strings.xml:172(string)
+#: res/values/strings.xml:174(string)
 msgid "Enter the APRS-IS server hostname"
 msgstr ""
 
-#: res/values/strings.xml:173(string)
+#: res/values/strings.xml:175(string)
 msgid "host:port"
 msgstr ""
 
-#: res/values/strings.xml:174(string)
+#: res/values/strings.xml:176(string)
 msgid "Position Reports"
 msgstr ""
 
-#: res/values/strings.xml:175(string)
+#: res/values/strings.xml:177(string)
 msgid "Configuration for sending position reports"
 msgstr ""
 
-#: res/values/strings.xml:176(string)
+#: res/values/strings.xml:178(string)
 msgid "Location Settings"
 msgstr ""
 
-#: res/values/strings.xml:177(string)
+#: res/values/strings.xml:179(string)
 msgid "Minimum update time"
 msgstr ""
 
-#: res/values/strings.xml:178(string)
+#: res/values/strings.xml:180(string)
 msgid "Minutes between beacon transmissions"
 msgstr ""
 
-#: res/values/strings.xml:179(string)
+#: res/values/strings.xml:181(string)
 msgid "Enter the update interval [min]"
 msgstr ""
 
-#: res/values/strings.xml:180(string)
+#: res/values/strings.xml:182(string)
 msgid "Minimum update distance"
 msgstr ""
 
-#: res/values/strings.xml:181(string)
+#: res/values/strings.xml:183(string)
 msgid "Kilometers before beacon transmission (set to 0 for time-only)"
 msgstr ""
 
-#: res/values/strings.xml:182(string)
+#: res/values/strings.xml:184(string)
 msgid "Enter the update distance [km]"
 msgstr ""
 
-#: res/values/strings.xml:183(string)
+#: res/values/strings.xml:185(string)
 msgid "Await speed &amp; bearing"
 msgstr ""
 
-#: res/values/strings.xml:184(string)
+#: res/values/strings.xml:186(string)
 msgid "Keep GPS on longer to get more precise data"
 msgstr ""
 
-#: res/values/strings.xml:185(string)
+#: res/values/strings.xml:187(string)
 msgid "Use network location"
 msgstr ""
 
-#: res/values/strings.xml:186(string)
+#: res/values/strings.xml:188(string)
 msgid "Acquire position from the cellular network"
 msgstr ""
 
-#: res/values/strings.xml:187(string)
+#: res/values/strings.xml:189(string)
 msgid "GPS Precision"
 msgstr ""
 
-#: res/values/strings.xml:188(string)
+#: res/values/strings.xml:190(string)
 msgid "Battery usage vs. position quality"
 msgstr ""
 
-#: res/values/strings.xml:189(string)
+#: res/values/strings.xml:191(string)
 msgid "Please set the GPS Precision"
 msgstr ""
 
 #. array of GPS precisions
-#: res/values/strings.xml:191(string)
+#: res/values/strings.xml:193(string)
 msgid "High (Always on)"
 msgstr ""
 
-#: res/values/strings.xml:192(string)
+#: res/values/strings.xml:194(string)
 msgid "Medium"
 msgstr ""
 
-#: res/values/strings.xml:193(string)
+#: res/values/strings.xml:195(string)
 msgid "Low"
 msgstr ""
 
-#: res/values/strings.xml:194(string)
+#: res/values/strings.xml:196(string)
 msgid "Keep screen awake"
 msgstr ""
 
-#: res/values/strings.xml:195(string)
+#: res/values/strings.xml:197(string)
 msgid "Do not turn off screen when APRSdroid is in the foreground"
 msgstr ""
 
 #. messaging
-#: res/values/strings.xml:198(string)
+#: res/values/strings.xml:200(string)
 msgid "Messaging"
 msgstr ""
 
-#: res/values/strings.xml:199(string)
+#: res/values/strings.xml:201(string)
 msgid "Message transmission and notifications"
 msgstr ""
 
-#: res/values/strings.xml:200(string)
+#: res/values/strings.xml:202(string)
 msgid "Message Notification"
 msgstr ""
 
-#: res/values/strings.xml:201(string)
+#: res/values/strings.xml:203(string)
 msgid "Blinking LED"
 msgstr ""
 
-#: res/values/strings.xml:202(string)
+#: res/values/strings.xml:204(string)
 msgid "LED notifications are on"
 msgstr ""
 
-#: res/values/strings.xml:203(string)
+#: res/values/strings.xml:205(string)
 msgid "LED notifications are off"
 msgstr ""
 
-#: res/values/strings.xml:204(string)
+#: res/values/strings.xml:206(string)
 msgid "Vibration"
 msgstr ""
 
-#: res/values/strings.xml:205(string)
+#: res/values/strings.xml:207(string)
 msgid "Vibration notifications are on"
 msgstr ""
 
-#: res/values/strings.xml:206(string)
+#: res/values/strings.xml:208(string)
 msgid "Vibration notification are off"
 msgstr ""
 
-#: res/values/strings.xml:207(string)
+#: res/values/strings.xml:209(string)
 msgid "Ringtone"
 msgstr ""
 
-#: res/values/strings.xml:208(string)
+#: res/values/strings.xml:210(string)
 msgid "Tone for incoming messages"
 msgstr ""
 
-#: res/values/strings.xml:210(string)
+#: res/values/strings.xml:212(string)
 msgid "Display"
 msgstr ""
 
 #. AFSK settings
-#: res/values/strings.xml:213(string)
+#: res/values/strings.xml:215(string)
 msgid "APRS digi path"
 msgstr ""
 
-#: res/values/strings.xml:214(string)
+#: res/values/strings.xml:216(string)
 msgid "hop 1, hop 2, ..."
 msgstr ""
 
-#: res/values/strings.xml:215(string)
+#: res/values/strings.xml:217(string)
 msgid "Sequence of digipeaters"
 msgstr ""
 
-#: res/values/strings.xml:216(string)
+#: res/values/strings.xml:218(string)
 msgid "Enter the comma separated digi path"
 msgstr ""
 
-#: res/values/strings.xml:217(string)
+#: res/values/strings.xml:219(string)
 msgid "Frame Sync Prefix"
 msgstr ""
 
-#: res/values/strings.xml:218(string)
+#: res/values/strings.xml:220(string)
 msgid "No-Op Preamble (e.g. for VOX control)"
 msgstr ""
 
-#: res/values/strings.xml:219(string)
+#: res/values/strings.xml:221(string)
 msgid "Enter the prefix time [ms]"
 msgstr ""
 
 #. TCP server settings
-#: res/values/strings.xml:222(string)
+#: res/values/strings.xml:224(string)
 msgid "APRS-IS TCP server (port 14580) to contact"
 msgstr ""
 
-#: res/values/strings.xml:223(string)
+#: res/values/strings.xml:225(string)
 msgid "Neighbor radius"
 msgstr ""
 
-#: res/values/strings.xml:224(string)
+#: res/values/strings.xml:226(string)
 msgid "Receive packets from stations in this radius"
 msgstr ""
 
-#: res/values/strings.xml:225(string)
+#: res/values/strings.xml:227(string)
 msgid "Radius around you to monitor for packets [km]"
 msgstr ""
 
-#: res/values/strings.xml:226(string)
+#: res/values/strings.xml:228(string)
 msgid "Message filter"
 msgstr ""
 
-#: res/values/strings.xml:227(string)
+#: res/values/strings.xml:229(string)
 msgid "b/BUDDY o/OBJECT ..."
 msgstr ""
 
-#: res/values/strings.xml:228(string)
+#: res/values/strings.xml:230(string)
 msgid "Filter for incoming packets"
 msgstr ""
 
-#: res/values/strings.xml:229(string)
+#: res/values/strings.xml:231(string)
 msgid "Enter a filter for incoming messages"
 msgstr ""
 
-#: res/values/strings.xml:231(string)
+#: res/values/strings.xml:233(string)
 msgid "Message filter help"
 msgstr ""
 
-#: res/values/strings.xml:232(string)
+#: res/values/strings.xml:234(string)
 msgid "Online reference for APRS-IS filters"
 msgstr ""
 
-#: res/values/strings.xml:234(string)
+#: res/values/strings.xml:236(string)
 msgid "TCP socket timeout"
 msgstr ""
 
-#: res/values/strings.xml:235(string)
+#: res/values/strings.xml:237(string)
 msgid "Time before resetting the connection"
 msgstr ""
 
-#: res/values/strings.xml:236(string)
+#: res/values/strings.xml:238(string)
 msgid "Timeout value in seconds (0 = disable)"
 msgstr ""
 
-#: res/values/strings.xml:238(string)
+#: res/values/strings.xml:240(string)
 msgid "translator-credits"
+msgstr ""
+
+#. Bluetooth TNC settings
+#: res/values/strings.xml:243(string)
+msgid "Client Mode"
+msgstr ""
+
+#: res/values/strings.xml:244(string)
+msgid "APRSdroid establishes the connection (Keep this on!)"
+msgstr ""
+
+#: res/values/strings.xml:245(string)
+msgid "TNC Bluetooth Device"
+msgstr ""
+
+#: res/values/strings.xml:246(string)
+msgid "Choose your TNC from paired devices"
+msgstr ""
+
+#: res/values/strings.xml:247(string)
+msgid "Choose device"
+msgstr ""
+
+#: res/values/strings.xml:248(string)
+msgid "Channel"
+msgstr ""
+
+#: res/values/strings.xml:249(string)
+msgid "Bluetooth channel on the TNC"
+msgstr ""
+
+#: res/values/strings.xml:250(string)
+msgid "Enter channel (most often: \"1\"; empty for SPP)"
+msgstr ""
+
+#: res/values/strings.xml:252(string)
+msgid "Bluetooth settings"
+msgstr ""
+
+#: res/values/strings.xml:253(string)
+msgid "Enable Bluetooth, pair devices..."
 msgstr ""
