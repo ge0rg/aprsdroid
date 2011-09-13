@@ -11,7 +11,10 @@
 
 		public BluetoothDevicePreference(Context context, AttributeSet attrs) {
 			super(context, attrs);
+		}
 
+		protected void onPrepareDialogBuilder(android.app.AlertDialog.Builder builder) {
+			// hook into the builder to refresh the list
 			BluetoothAdapter bta = BluetoothAdapter.getDefaultAdapter();
 			Set<BluetoothDevice> pairedDevices = bta.getBondedDevices();
 			CharSequence[] entries = new CharSequence[pairedDevices.size()];
@@ -24,6 +27,8 @@
 			}
 			setEntries(entries);
 			setEntryValues(entryValues);
+
+			super.onPrepareDialogBuilder(builder);
 		}
 
 		public BluetoothDevicePreference(Context context) {
