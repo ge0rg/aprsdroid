@@ -118,8 +118,8 @@ class MapAct extends MapActivity with UIHelper {
 }
 
 class Station(val movelog : ArrayBuffer[GeoPoint], val pt : GeoPoint,
-	val call : String, val message : String, val symbol : String)
-	extends OverlayItem(pt, call, message) {
+	val call : String, val origin : String, val symbol : String)
+	extends OverlayItem(pt, call, origin) {
 
 }
 
@@ -243,7 +243,9 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 	override def onTap(index : Int) : Boolean = {
 		val s = stations(index)
-		Log.d(TAG, "user clicked on " + s.call)
+		val target = if (s.origin != null && s.origin != "") s.origin
+			else s.call
+		Log.d(TAG, "user clicked on " + s.call + "/" + target)
 		context.openDetails(s.call)
 		true
 	}
@@ -279,9 +281,10 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 			val lat = c.getInt(COLUMN_MAP_LAT)
 			val lon = c.getInt(COLUMN_MAP_LON)
 			val symbol = c.getString(COLUMN_MAP_SYMBOL)
+			val origin = c.getString(COLUMN_MAP_ORIGIN)
 			val p = new GeoPoint(lat, lon)
 			val m = fetchStaPositions(call, pos_c)
-			s.add(new Station(m, p, call, null, symbol))
+			s.add(new Station(m, p, call, origin, symbol))
 			c.moveToNext()
 		}
 		c.close()

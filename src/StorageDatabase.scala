@@ -80,11 +80,12 @@ object StorageDatabase {
 		val COLUMN_QRG		= 11
 		val COLUMN_FLAGS	= 12
 
-		lazy val COLUMNS_MAP = Array(_ID, CALL, LAT, LON, SYMBOL)
+		lazy val COLUMNS_MAP = Array(_ID, CALL, LAT, LON, SYMBOL, ORIGIN)
 		val COLUMN_MAP_CALL	= 1
 		val COLUMN_MAP_LAT	= 2
 		val COLUMN_MAP_LON	= 3
 		val COLUMN_MAP_SYMBOL	= 4
+		val COLUMN_MAP_ORIGIN	= 5
 
 		lazy val TABLE_INDEX = "CREATE INDEX idx_stations_%s ON stations (%s)"
 
