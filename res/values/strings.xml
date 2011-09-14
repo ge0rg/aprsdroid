@@ -95,6 +95,7 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTranslation:</string>
 <string name="ad_homepage">Home Page</string>
 
@@ -183,6 +184,8 @@
 <string name="p__position">Position Reports</string>
 <string name="p__position_summary">Configuration for sending position reports</string>
 <string name="p__location">Location Settings</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_smartbeaconing_summary">fully automatic beacon config. ignores interval and distance</string>
 <string name="p_interval">Minimum update time</string>
 <string name="p_interval_summary">Minutes between beacon transmissions</string>
 <string name="p_interval_entry">Enter the update interval [min]</string>

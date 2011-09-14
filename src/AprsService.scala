@@ -260,12 +260,10 @@ class AprsService extends Service with LocationListener {
 	override def onLocationChanged(location : Location) {
 		val upd_int = prefs.getStringInt("interval", 10) * 60000
 		val upd_dist = prefs.getStringInt("distance", 10) * 1000
-		//Log.d(TAG, "onLocationChanged: n=" + location)
-		//Log.d(TAG, "onLocationChanged: l=" + lastLoc)
-		if (/* smart beaconing == */ true) {
+		if (prefs.getBoolean("smartbeaconing", true)) {
 			if (!smartBeaconCheck(location))
 				return
-		} else
+		} else /* no smartbeaconing */
 		if (lastLoc != null &&
 		    (location.getTime - lastLoc.getTime < (upd_int  - getGpsInterval()) ||
 		     location.distanceTo(lastLoc) < upd_dist)) {

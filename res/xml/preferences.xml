@@ -64,6 +64,12 @@
     <PreferenceCategory
 	android:title="@string/p__location">
 
+        <CheckBoxPreference
+                android:key="smartbeaconing"
+		android:defaultValue="true"
+		android:title="@string/p_smartbeaconing"
+		android:summary="@string/p_smartbeaconing_summary" />
+
         <EditTextPreference
                 android:key="interval"
 		android:inputType="number"
