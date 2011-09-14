@@ -1,0 +1,19 @@
+1.1.1:
+* Map: larger, better readable callsigns
+* No more notification for retransmitted messages
+* New "Connection Log" option
+* Fixes for GPS, AFSK issues
+
+1.1:
+* APRS Messaging support (send and receive)
+* preliminary Bluetooth TNC support (beta)
+* New "Keep screen awake" option
+* Hub and Map performance improved
+* Fix application hang on "Stop Tracking"
+
+1.0.3:
+* Remember preferred main activity
+* Long-press menu for stations in Hub and Log
+* Implemented new SSID recommendations
+* Optimizations
+* UI improvements
