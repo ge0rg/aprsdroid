@@ -35,6 +35,7 @@
 <string name="msg_send_new">Send message to...</string>
 <string name="msg_message_text">Message text</string>
 <string name="msg_empty_list">There are no stored conversations.</string>
+<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 
 <!-- AprsService -->
 <string name="aprsservice">Service APRSdroid</string>
@@ -42,6 +43,12 @@
 <string name="service_start">Service APRS  démarré. m.a.j. tous les %1$d minutes, %2$d km.</string>
 <string name="service_stop">service APRS arrêté</string>
 <string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<!-- service result codes -->
+<string name="post_error">Error</string>
+<string name="post_incmg">received</string>
+<string name="post_info"/>
+<string name="post_connecting">Connecting to %1$s:%2$d...</string>
+<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Bienvenue dans APRSdroid!</string>
@@ -129,6 +136,8 @@
 <string name="p_conntype_entry">Choisissez le protocole de connexion</string>
 <string name="p_connsetup">Préférences de connexion</string>
 <string name="p_connsetup_summary">configuration de la connexion</string>
+<string name="p_connlog">Connection Logging</string>
+<string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">connection TCP</string>
 <string name="p_conn_udp">UDP envoi seulement</string>
@@ -211,5 +220,18 @@
   Francois Magimel https://launchpad.net/~linkid
   Gabriel U. https://launchpad.net/~gabriel-ull
   gabaye bruno https://launchpad.net/~f1mbc</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">Client Mode</string>
+<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
+<string name="p_bt_tnc_device">TNC Bluetooth Device</string>
+<string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
+<string name="p_bt_tnc_device_entry">Choose device</string>
+<string name="p_bt_channel">Channel</string>
+<string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
+<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+
+<string name="p_bt_prefs">Bluetooth settings</string>
+<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
 
 </resources>

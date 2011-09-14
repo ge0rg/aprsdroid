@@ -37,6 +37,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="msg_send_new">Nachricht senden an...</string>
 <string name="msg_message_text">Nachrichtentext</string>
 <string name="msg_empty_list">Keine gespeicherten Gespräche.</string>
+<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid-Dienst</string>
@@ -44,6 +45,12 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="service_start">APRS-Dienst gestartet. Aktualisierung alle %1$d Minuten, %2$d km.</string>
 <string name="service_stop">APRS-Dienst beendet.</string>
 <string name="service_no_location">Sie müssen entweder GPS oder Netzwerklokalisierung einschalten, damit APRSdroid vollständig funktioniert.</string>
+<!-- service result codes -->
+<string name="post_error">Fehler</string>
+<string name="post_incmg">empfangen</string>
+<string name="post_info"/>
+<string name="post_connecting">Verbinde mit %1$s:%2$d...</string>
+<string name="post_reconnect">Verbindung getrennt. Neue Verbindung in %d Sekunden...</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Willkommen zu APRSdroid!</string>
@@ -137,6 +144,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_conntype_entry">Wählen Sie das Verbindungsprotokoll</string>
 <string name="p_connsetup">Verbindungseinstellungen</string>
 <string name="p_connsetup_summary">Konfiguration der Verbindung</string>
+<string name="p_connlog">Verbindungs-Logging</string>
+<string name="p_connlog_summary">Zusätzliche Ausgaben im Protokoll</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP-Verbindung</string>
 <string name="p_conn_udp">UDP (nur Senden)</string>
@@ -215,5 +224,18 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">Client-Modus</string>
+<string name="p_bt_client_summary">APRSdoid baut die Verbindung auf (Nicht ausschalten!)</string>
+<string name="p_bt_tnc_device">TNC-Bluetooth-Gerät</string>
+<string name="p_bt_tnc_device_summary">Auswahl des TNC aus den gepaarten Geräten</string>
+<string name="p_bt_tnc_device_entry">Gerät auswählen</string>
+<string name="p_bt_channel">Kanal</string>
+<string name="p_bt_channel_summary">Bluetooth-Kanal auf dem TNC</string>
+<string name="p_bt_channel_entry">Kanal eingeben (meist "1"; leer für SPP)</string>
+
+<string name="p_bt_prefs">Bluetooth-Einstellungen</string>
+<string name="p_bt_prefs_summary">Bluetooth aktivieren, Geräte paaren...</string>
 
 </resources>
