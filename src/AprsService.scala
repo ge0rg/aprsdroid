@@ -220,14 +220,22 @@ class AprsService extends Service with LocationListener {
 	}
 
 	def smartBeaconCornerPeg(location : Location) : Boolean = {
-		val speed = getSpeed(location)
-		if (!location.hasBearing || !lastLoc.hasBearing || speed == 0)
-			return false
-		val SB_TURN_TIME = 30
+		val SB_TURN_TIME = 15
 		val SB_TURN_MIN = 10
 		val SB_TURN_SLOPE = 240.0
+
+		val speed = getSpeed(location)
 		val t_diff = location.getTime - lastLoc.getTime
 		val turn = getBearingAngle(location.getBearing, lastLoc.getBearing)
+
+		// no bearing / stillstand -> no corner pegging
+		if (!location.hasBearing || speed == 0)
+			return false
+
+		// if last bearing unknown, deploy turn_time
+		if (!lastLoc.hasBearing)
+			return (t_diff/1000 >= SB_TURN_TIME)
+
 		// threshold depends on slope/speed [mph]
 		val threshold = SB_TURN_MIN + SB_TURN_SLOPE/(speed*2.23693629)
 
