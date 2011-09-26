@@ -30,36 +30,6 @@
 		android:layout_weight="1"
 		android:descendantFocusability="blocksDescendants"
 		/>
-	<LinearLayout
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		>
-		<Button
-			android:id="@+id/mapbutton"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="@string/sta_map"
-			>
-		</Button>
-		<Button
-			android:id="@+id/aprsfibutton"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="@string/sta_aprsfi"
-			>
-		</Button>
-		<Button
-			android:id="@+id/qrzcombutton"
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:text="@string/sta_qrzcom"
-			>
-		</Button>
-	</LinearLayout>
+	<include layout="@layout/stationbuttons" />
 </LinearLayout>
 
