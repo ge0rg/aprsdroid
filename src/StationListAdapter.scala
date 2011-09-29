@@ -67,6 +67,7 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		val lat = cursor.getInt(COLUMN_LAT)
 		val lon = cursor.getInt(COLUMN_LON)
 		val qrg = cursor.getString(COLUMN_QRG)
+		val symbol = cursor.getString(COLUMN_SYMBOL)
 		val dist = Array[Float](0, 0)
 
 		if (call == mycall) {
@@ -85,6 +86,7 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		android.location.Location.distanceBetween(my_lat/MCD, my_lon/MCD,
 			lat/MCD, lon/MCD, dist)
 		distage.setText("%1.1f km %s\n%s".format(dist(0)/1000., getBearing(dist(1)), age))
+		view.findViewById(R.id.station_symbol).asInstanceOf[SymbolView].setSymbol(symbol)
 		super.bindView(view, context, cursor)
 	}
 

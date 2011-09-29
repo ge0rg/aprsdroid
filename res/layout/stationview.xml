@@ -8,20 +8,29 @@
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:orientation="horizontal">
+		<org.aprsdroid.app.SymbolView
+		android:id="@+id/station_symbol"
+		android:layout_width="24dp"
+		android:layout_height="24dp"
+		android:layout_marginLeft="1dp"
+		android:layout_marginRight="3dp"
+		android:layout_marginTop="1dp"
+		android:layout_marginBottom="1dp"
+		/>
 		<TextView
 		android:id="@+id/station_call"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginRight="5dp"
+		android:layout_marginRight="3dp"
 		android:textColor="#b0b080"
-		android:textSize="24dp"
+		android:textSize="23dp"
 		android:typeface="monospace"
 		/>
 		<TextView
 		android:id="@+id/station_distage"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginRight="5dp"
+		android:layout_marginRight="3dp"
 		android:layout_weight="1"
 		android:gravity="center"
 		android:textStyle="bold"
@@ -34,7 +43,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginRight="5dp"
 		android:textColor="#b0b080"
-		android:textSize="24dp"
+		android:textSize="23dp"
 		android:typeface="monospace"
 		/>
 	</LinearLayout>
