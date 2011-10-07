@@ -87,10 +87,13 @@ object AprsPacket {
 	}
 
 	def parseHostPort(hostport : String, defaultport : Int) : (String, Int) = {
-		val splits = hostport.split(":")
-		if (splits.length == 2)
+		val splits = hostport.trim().split(":")
+		try {
+			// assume string:int
 			return (splits(0), splits(1).toInt)
-		else
-			return (splits(0), defaultport)
+		} catch {
+			// fallback to default port if none/bad one given
+			case _ => return (splits(0), defaultport)
+		}
 	}
 }
