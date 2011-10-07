@@ -39,6 +39,8 @@
 <string name="msg_empty_list">There are no stored conversations.</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 <!-- Message activity -->
+<string name="msg_from">Message from %s</string>
+<string name="msg_to">Message to %s</string>
 <string name="msg_abort">Abort transmission</string>
 <string name="msg_restart">Restart transmission</string>
 <string name="msg_type_rejected">rejected</string>

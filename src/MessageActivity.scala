@@ -100,9 +100,14 @@ class MessageActivity extends LoadingListActivity
 	}
 	override def onCreateContextMenu(menu : ContextMenu, v : View,
 			menuInfo : ContextMenu.ContextMenuInfo) {
+		import StorageDatabase.Message._
 		//super.onCreateContextMenu(menu, v, menuInfo)
+		val c = menuMessageCursor(menuInfo)
+		val msg_type = c.getInt(COLUMN_TYPE)
+		val title_id = if (msg_type == TYPE_INCOMING) R.string.msg_from else R.string.msg_to
 		getMenuInflater().inflate(R.menu.context_msg, menu)
-		menu.setHeaderTitle("Message #" + menuMessageCursor(menuInfo).getLong(0))
+		menu.setGroupVisible(R.id.msg_menu_out, msg_type != TYPE_INCOMING)
+		menu.setHeaderTitle(getString(title_id, c.getString(COLUMN_CALL)))
 	}
 
 	override def onContextItemSelected(item : MenuItem) : Boolean = {
