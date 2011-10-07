@@ -143,6 +143,7 @@ object StorageDatabase {
 		val TYPE_OUT_NEW	= 2
 		val TYPE_OUT_ACKED	= 3
 		val TYPE_OUT_REJECTED	= 4
+		val TYPE_OUT_ABORTED	= 5
 
 	}
 
@@ -395,6 +396,11 @@ class StorageDatabase(context : Context) extends
 	}
 	def updateMessage(id : Long, cv : ContentValues) = {
 		getWritableDatabase().update(Message.TABLE, cv, "_id = ?", Array(id.toString))
+	}
+	def updateMessageType(id : Long, msg_type : Int) = {
+		val cv = new ContentValues()
+		cv.put(Message.TYPE, msg_type.asInstanceOf[java.lang.Integer])
+		updateMessage(id, cv)
 	}
 
 	def updateMessageAcked(call : String, msgid : String, new_type : Int) = {

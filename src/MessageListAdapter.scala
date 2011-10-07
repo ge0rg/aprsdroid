@@ -15,8 +15,8 @@ object MessageListAdapter {
 	val LIST_TO = Array(R.id.listts, R.id.liststatus, R.id.listmessage)
 
 	val NUM_OF_RETRIES = 7
-	// null, incoming, out-new, out-acked, out-rejected
-	val COLORS = Array(0, 0xff8080b0, 0xff80a080, 0xff30b030, 0xffb03030)
+	// null, incoming, out-new, out-acked, out-rejected, out-aborted
+	val COLORS = Array(0, 0xff8080b0, 0xff80a080, 0xff30b030, 0xffb03030, 0xffa08080)
 }
 
 class MessageListAdapter(context : Context, prefs : PrefsWrapper,
@@ -41,17 +41,19 @@ class MessageListAdapter(context : Context, prefs : PrefsWrapper,
 		val statusview = view.findViewById(R.id.liststatus).asInstanceOf[TextView]
 		statusview.setTextColor(MessageListAdapter.COLORS(msgtype))
 		super.bindView(view, context, cursor)
-		msgtype match {
+		val status = msgtype match {
 		case TYPE_INCOMING =>
-			statusview.setText(targetcall)
+			targetcall
 		case TYPE_OUT_NEW =>
-			statusview.setText("%s %d/%d".format(mycall, retrycnt, MessageListAdapter.NUM_OF_RETRIES))
+			"%s %d/%d".format(mycall, retrycnt, MessageListAdapter.NUM_OF_RETRIES)
 		case TYPE_OUT_ACKED =>
-			//statusview.setText("%s ack #%d".format(mycall, retrycnt))
-			statusview.setText(mycall)
+			mycall
 		case TYPE_OUT_REJECTED =>
-			statusview.setText("%s rej #%d".format(mycall, retrycnt))
+			"%s %s".format(mycall, context.getString(R.string.msg_type_rejected))
+		case TYPE_OUT_ABORTED =>
+			"%s %s".format(mycall, context.getString(R.string.msg_type_aborted))
 		}
+		statusview.setText(status)
 	}
 
 	def load_cursor(i : Intent) = {
