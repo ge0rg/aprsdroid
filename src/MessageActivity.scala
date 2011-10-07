@@ -5,11 +5,12 @@ import _root_.android.content._
 import _root_.android.database.Cursor
 import _root_.android.net.Uri
 import _root_.android.os.{Bundle, Handler}
-import _root_.android.text.{Editable, TextWatcher}
+import _root_.android.text.{ClipboardManager, Editable, TextWatcher}
 import _root_.android.util.Log
-import _root_.android.view.{KeyEvent, Menu, MenuItem, View, Window}
+import _root_.android.view.{ContextMenu, KeyEvent, Menu, MenuItem, View, Window}
 import _root_.android.view.View.{OnClickListener, OnKeyListener}
 import _root_.android.widget.{Button, EditText, ListView, Toast}
+import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 
 class MessageActivity extends LoadingListActivity
 		with OnClickListener with OnKeyListener with TextWatcher {
@@ -28,7 +29,7 @@ class MessageActivity extends LoadingListActivity
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.message_act)
 
-		//getListView().setOnCreateContextMenuListener(this);
+		getListView().setOnCreateContextMenuListener(this);
 
 		onStartLoading()
 		setListAdapter(pla)
@@ -60,6 +61,55 @@ class MessageActivity extends LoadingListActivity
 		getMenuInflater().inflate(R.menu.options, menu);
 		true
 	}
+
+	// return message cursor for a given context menu
+	def menuMessageCursor(menuInfo : ContextMenu.ContextMenuInfo) = {
+		val i = menuInfo.asInstanceOf[AdapterContextMenuInfo]
+		// a listview with a database backend gives out a cursor :D
+		getListView().getItemAtPosition(i.position)
+				.asInstanceOf[android.database.Cursor]
+	}
+
+	def messageAction(id : Int, c : Cursor) : Boolean = {
+		import StorageDatabase.Message._
+		val msg_id = c.getLong(/* COLUMN_ID */ 0)
+		val msg_type = c.getInt(COLUMN_TYPE)
+		id match {
+		case R.id.copy =>
+			getSystemService(Context.CLIPBOARD_SERVICE).asInstanceOf[ClipboardManager]
+				.setText(c.getString(COLUMN_TEXT))
+			true
+		case R.id.abort =>
+			if (msg_type == TYPE_OUT_NEW) {
+				storage.updateMessageType(msg_id, TYPE_OUT_ABORTED)
+				sendBroadcast(new Intent(AprsService.MESSAGE))
+			}
+			true
+		case R.id.resend =>
+			if (msg_type != TYPE_INCOMING) {
+				val cv = new ContentValues()
+				cv.put(TYPE, TYPE_OUT_NEW.asInstanceOf[java.lang.Integer])
+				cv.put(RETRYCNT, 0.asInstanceOf[java.lang.Integer])
+				cv.put(TS, System.currentTimeMillis.asInstanceOf[java.lang.Long])
+				storage.updateMessage(msg_id, cv)
+				sendBroadcast(new Intent(AprsService.MESSAGETX))
+			}
+			true
+		case _ => false
+		}
+	}
+	override def onCreateContextMenu(menu : ContextMenu, v : View,
+			menuInfo : ContextMenu.ContextMenuInfo) {
+		//super.onCreateContextMenu(menu, v, menuInfo)
+		getMenuInflater().inflate(R.menu.context_msg, menu)
+		menu.setHeaderTitle("Message #" + menuMessageCursor(menuInfo).getLong(0))
+	}
+
+	override def onContextItemSelected(item : MenuItem) : Boolean = {
+		Log.d(TAG, "menu for " + menuMessageCursor(item.getMenuInfo).getLong(0))
+		messageAction(item.getItemId, menuMessageCursor(item.getMenuInfo))
+	}
+
 
 	// TextWatcher for msginput
 	override def afterTextChanged(s : Editable) {

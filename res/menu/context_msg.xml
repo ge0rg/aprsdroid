@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/copy" android:title="@android:string/copy" />
+	<group android:id="@+id/msg_menu_out">
+		<item android:id="@+id/abort" android:title="@string/msg_abort" />
+		<item android:id="@+id/resend" android:title="@string/msg_restart" />
+	</group>
+</menu>
