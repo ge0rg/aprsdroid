@@ -39,8 +39,8 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 
 	context.registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 
-	private val DARK = Array(0xff, 0x60, 0x60, 0x40)
-	private val BRIGHT = Array(0xff, 0xff, 0xff, 0xc0)
+	private val DARK = Array(0xff, 0x80, 0x80, 0x50)
+	private val BRIGHT = Array(0xff, 0xff, 0xff, 0xe8)
 	private val MAX = 30*60*1000
 	def getAgeColor(ts : Long) : Int = {
 		val delta = System.currentTimeMillis - ts
