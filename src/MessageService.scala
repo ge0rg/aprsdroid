@@ -83,7 +83,12 @@ class MessageService(s : AprsService) {
 			val t_send = ts + getRetryDelayMS(retrycnt) - System.currentTimeMillis()
 			Log.d(TAG, "pending message: %d/%d (%ds) ->%s '%s'".format(retrycnt, NUM_OF_RETRIES,
 				t_send/1000, call, text))
-			if (retrycnt < NUM_OF_RETRIES && t_send <= 0) {
+			if (retrycnt == NUM_OF_RETRIES && t_send <= 0) {
+				// this message timed out
+				s.db.updateMessageType(c.getLong(/* COLUMN_ID */ 0), TYPE_OUT_ABORTED)
+				s.sendBroadcast(new Intent(AprsService.MESSAGE))
+			} else if (retrycnt < NUM_OF_RETRIES && t_send <= 0) {
+				// this message needs to be transmitted
 				val msg = AprsPacket.formatMessage(callssid, s.appVersion(), call, text, msgid)
 				val status = s.poster.update(msg)
 				s.addPost(StorageDatabase.Post.TYPE_POST, status, msg.toString)
