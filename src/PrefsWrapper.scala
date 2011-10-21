@@ -5,7 +5,7 @@ import _root_.android.preference.PreferenceManager
 
 class PrefsWrapper(val context : Context) {
 	val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-	
+
 	// wrap the "dumb" methods
 	def getString(key : String, defValue : String) = prefs.getString(key, defValue)
 	def getBoolean(key : String, defValue : Boolean) = prefs.getBoolean(key, defValue)
@@ -35,7 +35,7 @@ class PrefsWrapper(val context : Context) {
 	def getShowSatellite() = prefs.getBoolean("show_satellite", false)
 
 	def getShowAge() = getStringInt("show_age", 30)*60L*1000
-	
+
 	// this is actually a hack!
 	def getVersion() = context.getString(R.string.build_version).split(" ").take(2).mkString(" ")
 

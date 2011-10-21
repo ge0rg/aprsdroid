@@ -16,7 +16,7 @@ class StationActivity extends LoadingListActivity
 
 	lazy val storage = StorageDatabase.open(this)
 	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
-			
+
 	lazy val mycall = prefs.getCallSsid()
 	lazy val pla = new StationListAdapter(this, prefs, mycall, targetcall, StationListAdapter.SSIDS)
 	lazy val la = new PostListAdapter(this)

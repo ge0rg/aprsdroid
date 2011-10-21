@@ -116,7 +116,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 						service.postSubmit(line)
 					}
 				} catch {
-					case e : Exception => 
+					case e : Exception =>
 						e.printStackTrace()
 						log("Reconnecting in 3s...")
 						try {
