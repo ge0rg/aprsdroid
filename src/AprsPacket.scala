@@ -23,7 +23,7 @@ object AprsPacket {
 		case _ => (passcode(callssid).toString() == pass)
 		}
 	}
-		
+
 
 	def formatCallSsid(callsign : String, ssid : String) : String = {
 		if (ssid != null && ssid != "")

@@ -12,7 +12,7 @@ import _root_.android.widget.{EditText, Toast}
 
 trait UIHelper extends Activity
 		with LoadingIndicator
-		with DialogInterface.OnClickListener 
+		with DialogInterface.OnClickListener
 		with DialogInterface.OnCancelListener {
 
 	var menu_id : Int = -1
@@ -77,7 +77,7 @@ trait UIHelper extends Activity
 	def saveFirstRun(call : String, passcode : String) {
 		val pe = prefs.prefs.edit()
 		call.split("-") match {
-		case Array(callsign) => 
+		case Array(callsign) =>
 			pe.putString("callsign", callsign)
 		case Array(callsign, ssid) =>
 			pe.putString("callsign", callsign)
@@ -258,7 +258,7 @@ trait UIHelper extends Activity
 		case _ => false
 		}
 	}
-	
+
 	abstract override def onCreateContextMenu(menu : ContextMenu, v : View,
 			menuInfo : ContextMenu.ContextMenuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo)

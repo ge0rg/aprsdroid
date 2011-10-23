@@ -11,7 +11,7 @@ class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
 	var Digis = prefs.getString("digi_path", "WIDE1-1")
 	val output = new Afsk()
-	
+
 	def start() {
 	}
 

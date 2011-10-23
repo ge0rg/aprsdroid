@@ -18,7 +18,7 @@ class MessageActivity extends LoadingListActivity
 	lazy val targetcall = getIntent().getDataString()
 
 	lazy val storage = StorageDatabase.open(this)
-			
+
 	lazy val mycall = prefs.getCallSsid()
 	lazy val pla = new MessageListAdapter(this, prefs, mycall, targetcall)
 

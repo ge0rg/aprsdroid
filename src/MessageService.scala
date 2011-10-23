@@ -39,7 +39,7 @@ class MessageService(s : AprsService) {
 					s.addPost(StorageDatabase.Post.TYPE_POST, status, ack.toString)
 				}
 				if (is_new)
-					ServiceNotifier.instance.notifyMessage(s, s.prefs, 
+					ServiceNotifier.instance.notifyMessage(s, s.prefs,
 						ap.getSourceCall(), msg.getMessageBody())
 			}
 			s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, ap.toString))
