@@ -37,7 +37,14 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="msg_send_new">Nachricht senden an...</string>
 <string name="msg_message_text">Nachrichtentext</string>
 <string name="msg_empty_list">Keine gespeicherten Gespräche.</string>
-<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<string name="msg_stored_offline">Die Nachricht wird versendet, wenn Sie das Tracking starten.</string>
+<!-- Message activity -->
+<string name="msg_from">Mitteilung von %s</string>
+<string name="msg_to">Mitteilung an %s</string>
+<string name="msg_abort">Versand abbrechen</string>
+<string name="msg_restart">Versand wiederholen</string>
+<string name="msg_type_rejected">abgelehnt</string>
+<string name="msg_type_aborted">abgebrochen</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid-Dienst</string>
@@ -73,6 +80,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="ad_thanks_2">Dirk, DB5OY: Motivation und Unterstützung</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK-Implementierung</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ von HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nÜbersetzung:</string>
 <string name="ad_homepage">Homepage</string>
 
@@ -161,6 +169,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p__position">Positionsmeldungen</string>
 <string name="p__position_summary">Einstellungen für den Versand der eigenen Position</string>
 <string name="p__location">Standorteinstellungen</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_smartbeaconing_summary">Ignoriert Update-Zeit und -Intervall. GPS-Genauigkeit \"Immer an\" empfohlen.</string>
 <string name="p_interval">Minimale Updatezeit</string>
 <string name="p_interval_summary">Minuten zwischen Baken</string>
 <string name="p_interval_entry">Geben Sie das Update-Intervall ein [min]</string>

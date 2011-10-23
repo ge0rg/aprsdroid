@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: APRSdroid 0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-23 17:12+0200\n"
+"POT-Creation-Date: 2011-10-23 17:45+0200\n"
 "PO-Revision-Date: 2010-03-17 18:33+0100\n"
 "Last-Translator: Georg Lukas <georg@op-co.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -565,7 +565,7 @@ msgid "SmartBeaconing™"
 msgstr ""
 
 #: res/values/strings.xml:188(string)
-msgid "Ignores update time and interval. Best used with GPS \"always on\"."
+msgid "Ignores update time and interval. Best used with GPS \\\"always on\\\"."
 msgstr ""
 
 #: res/values/strings.xml:189(string)

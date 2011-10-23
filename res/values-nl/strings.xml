@@ -2,121 +2,108 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_prefs">APRSdroid voorkeuren</string>
 <string name="app_map">APRSdroid Map</string>
 <string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Station Info</string>
-<string name="app_messages">Messages</string>
+<string name="app_sta">Station gegevens</string>
+<string name="app_messages">Berichten</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Je moet APRSdroid configureren met je callsign en passcode!</string>
-<string name="wrongpasscode">Je passcode is niet geldig voor je callsign!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
+<string name="wrongpasscode">Je passcode komt niet overeen met je callsign!</string>
+<string name="anon_warning">Zonder een wachtwoord zullen uw rapporten niet verzonden worden</string>
 <string name="mininterval">Minimum update tijd is 1 minuut!</string>
 <string name="singlelog">Positie verzenden</string>
 <string name="startlog">Tracking starten</string>
 <string name="stoplog">Tracking stoppen</string>
 
-<string name="empty_logview">You have not yet sent or received any packets.\n\n
-	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
-	You can also change the application preferences from the menu.</string>
+<string name="empty_logview">Je hebt nog geen pakketten ontvangen of verzonden.
+Druk de \"Menu\" knop om een positie te verzenden of om de tracking te starten.
+Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
+<string name="sta_lastreport">%s Laatst ontvangen pakket</string>
 <string name="map_track_call">Tracking %s...</string>
 
-<string name="map_loading">Loading...</string>
+<string name="map_loading">Bezig met laden...</string>
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Station SSIDs</string>
-<string name="sta_history">Station History</string>
-<string name="sta_map">Map</string>
+<string name="sta_history">Station historiek</string>
+<string name="sta_map">Kaart</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
-<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<string name="msg_send_new">Bericht verzenden aan...</string>
+<string name="msg_message_text">Bericht txt</string>
+<string name="msg_empty_list">Er zijn geen berichten opgeslagen.</string>
+<string name="msg_stored_offline">Dit bericht zal verzonden worden zodra je de tracking start</string>
+<!-- Message activity -->
+<string name="msg_from">Message from %s</string>
+<string name="msg_to">Message to %s</string>
+<string name="msg_abort">Abort transmission</string>
+<string name="msg_restart">Restart transmission</string>
+<string name="msg_type_rejected">rejected</string>
+<string name="msg_type_aborted">aborted</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">APRS Service positie zenden.</string>
-<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
+<string name="service_start">APRS Service gestart. Vernieuwd elke %1$d minuten, %2$d km.</string>
 <string name="service_stop">APRS Service is gestopt.</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_no_location">GPS of Netwerk locatie aanzetten voor de goede werking van APRSdroid!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_error">FOUT</string>
+<string name="post_incmg">ontvangen</string>
 <string name="post_info"/>
-<string name="post_connecting">Connecting to %1$s:%2$d...</string>
-<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+<string name="post_connecting">verbinden met %1$s:%2$d...</string>
+<string name="post_reconnect">Verbinding verbroken. Herverbinden in %d seconden...</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Welkom bij APRSdroid!</string>
-<string name="fr_text">This software may only be used by licensed amateur radio
-	operators!</string>
-<string name="fr_text2">You need to enter your callsign to use this software.
-	To forward your packets, an APRS-IS passcode is required as well.</string>
+<string name="fr_text">Deze software mag enkel gebruikt worden door gelicenseerde Radio Amateur Operators</string>
+<string name="fr_text2">Geef je call in om de software te gebruiken. Om pakketten te versturen is het APRS-IS paswoord vereist.</string>
 
 <!-- about dialog -->
 <string name="ad_title">Over APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
-<string name="ad_gpl">This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	\n\n
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	\n\n
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-	\n\n
-	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-	</string>
-<string name="ad_thanks">Thanks to:</string>
-<string name="ad_thanks_0">My YL ♥♥♥</string>
-<string name="ad_thanks_1">Michael, DO3BOX: idea</string>
-<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
+<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_gpl">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. \n\n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \n\n You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_thanks">Met dank aan:</string>
+<string name="ad_thanks_0">Mijn YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: idee</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivatie en ondersteuning</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nVertaling:</string>
 <string name="ad_homepage">Startpagina</string>
 
 <!-- map view -->
-<string name="map_overlays">Overlays</string>
-<string name="map_satellite">Satellite</string>
-<string name="map_objects">APRS Objects</string>
+<string name="map_overlays">Dekking</string>
+<string name="map_satellite">Satelliet</string>
+<string name="map_objects">APRS voorwerp</string>
 
 <!-- map view -->
-<string name="age">Show last...</string>
-<string name="age_30">30 minutes</string>
-<string name="age_2h">2 hours</string>
-<string name="age_12h">12 hours</string>
-<string name="age_1d">1 day</string>
-<string name="age_2d">2 days</string>
+<string name="age">Laatst onvangen...</string>
+<string name="age_30">30 minuten</string>
+<string name="age_2h">2 uur</string>
+<string name="age_12h">12 uur</string>
+<string name="age_1d">1 dag</string>
+<string name="age_2d">2 dagen</string>
 
 
 <!-- options menu -->
 <string name="about">Info</string>
-<string name="show_hub">Show Hub</string>
-<string name="show_map">Show Map</string>
-<string name="show_log">Show Log</string>
-<string name="clear_log">Clear Log</string>
-<string name="quit">Afsluiten</string>
+<string name="show_hub">Hub weergeven</string>
+<string name="show_map">Toon kaart</string>
+<string name="show_log">Toon logbestand</string>
+<string name="clear_log">Logbestand wissen</string>
+<string name="quit">afsluiten</string>
 <string name="preferences">Voorkeuren</string>
 <!-- preferences -->
 <string name="p__ham">Amateur Radio</string>
 <string name="p_callsign">Callsign</string>
-<string name="p_callsign_nossid">Callsign (without SSID)</string>
+<string name="p_callsign_nossid">Callsign (zonder SSID)</string>
 <string name="p_callsign_summary">Je Amateur Radio callsign</string>
 <string name="p_callsign_entry">Geef je callsign op</string>
 <string name="p_passcode">APRS-IS Passcode</string>
@@ -130,52 +117,54 @@
 <string name="p_ssid_entry">Geef het SSID voor je station</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
-	<item>(none) Primary Station</item>
-	<item>1: Generic additional station</item>
-	<item>2: Generic additional station</item>
-	<item>3: Generic additional station</item>
-	<item>4: Generic additional station</item>
-	<item>5: Other network (D-Star, 3G)</item>
+	<item>(geen) Voorkeurs Station</item>
+	<item>1: Bijkomend station</item>
+	<item>2: Bijkomend station</item>
+	<item>3: Bijkomend station</item>
+	<item>4: Bijkomend station</item>
+	<item>5: Ander netwerk (D-Star, 3G)</item>
 	<item>6: Satelliet</item>
 	<item>7: portofoon</item>
 	<item>8: Boot / schip</item>
 	<item>9: Mobiel station</item>
 	<item>10: IGate</item>
-	<item>11: Balloon, aircraft, spacecraft</item>
-	<item>12: APRStt, DTMF, ... (one way)</item>
-	<item>13: Weather station</item>
+	<item>11: Luchtballon, vliegtuig, ruimtetuig</item>
+	<item>12: APRStt, DTMF, ... (éénweg)</item>
+	<item>13: Weerstation</item>
 	<item>14: Vrachtwagen</item>
-	<item>15: Generic additional station</item>
+	<item>16: Bijkomend station</item>
 </string-array>
 <string name="p_symbol">APRS symbool</string>
 <string name="p_symbol_summary">Jouw symbool voor map weergave</string>
 <string name="p_symbol_entry">Geef het symbool op als 2 karakters</string>
-<string name="p_status">Comment field</string>
+<string name="p_status">Commentaar venster</string>
 <string name="p_status_summary">Text na je coördinaten</string>
-<string name="p_status_entry">Enter your beacon comment</string>
-<string name="p__connection">APRS Connection</string>
+<string name="p_status_entry">Geef je baken commentaar</string>
+<string name="p__connection">APRS Verbinding</string>
 <string name="p_conntype">Connectie Protocol</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP of UDP</string>
 <string name="p_conntype_entry">Kies het connectie protocol</string>
-<string name="p_connsetup">Connection Preferences</string>
-<string name="p_connsetup_summary">Configuration of Connection</string>
-<string name="p_connlog">Connection Logging</string>
-<string name="p_connlog_summary">Verbose status output in Log</string>
+<string name="p_connsetup">Verbindingsinstellingen</string>
+<string name="p_connsetup_summary">Verbindingsconfiguratie</string>
+<string name="p_connlog">Verbindingslog</string>
+<string name="p_connlog_summary">Status weeergave in de Log</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP connectie</string>
-<string name="p_conn_udp">UDP (send only)</string>
-<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_udp">UDP (alleen zenden)</string>
+<string name="p_conn_http">HTTP POST (alleen zenden)</string>
 <string name="p_conn_afsk">AFSK via luidspreker</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_bt">Bleutooth TNC</string>
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) voor het versturen van bakens</string>
 <string name="p_host_entry">Geef de APRS-IS server hostnaam</string>
-<string name="p_host_hint">host:port</string>
-<string name="p__position">Position Reports</string>
-<string name="p__position_summary">Configuration for sending position reports</string>
+<string name="p_host_hint">host:poort</string>
+<string name="p__position">Positierapporten</string>
+<string name="p__position_summary">Instellingen voor het verzenden van rapporten</string>
 <string name="p__location">Lokatie instellingen</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">Minimum update tijd</string>
 <string name="p_interval_summary">Minuten tussen baken uitzendingen</string>
 <string name="p_interval_entry">Geef het update interval [min]</string>
@@ -186,71 +175,73 @@
 <string name="p_speedbrg_summary">Laat GPS langer actief voor meer preciese data</string>
 <string name="p_netloc">Gebruik netwerk locatie</string>
 <string name="p_netloc_summary">Verkrijg positie van het GSM netwerk</string>
-<string name="p_gps">GPS Precision</string>
-<string name="p_gps_summary">Battery usage vs. position quality</string>
-<string name="p_gps_entry">Please set the GPS Precision</string>
+<string name="p_gps">GPS juistheid</string>
+<string name="p_gps_summary">Batterij gebruik t.o.v. positie kwaliteit</string>
+<string name="p_gps_entry">Gelieve de GPS juistheid in te stellen</string>
 <!-- array of GPS precisions -->
-<string name="p_gps_always">High (Always on)</string>
-<string name="p_gps_med">Medium</string>
-<string name="p_gps_low">Low</string>
-<string name="p_keepscreen">Keep screen awake</string>
-<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+<string name="p_gps_always">Hoog (Altijd aan)</string>
+<string name="p_gps_med">Gemiddeld</string>
+<string name="p_gps_low">Laag</string>
+<string name="p_keepscreen">Scherm actief houden</string>
+<string name="p_keepscreen_summary">Sluit het scherm niet wanneer APRSdroid actief is</string>
 
 <!-- messaging -->
-<string name="p__message">Messaging</string>
-<string name="p__message_summary">Message transmission and notifications</string>
-<string name="p__msg_notify">Message Notification</string>
-<string name="p_msg_led">Blinking LED</string>
-<string name="p_msg_led_on">LED notifications are on</string>
-<string name="p_msg_led_off">LED notifications are off</string>
-<string name="p_msg_vibr">Vibration</string>
-<string name="p_msg_vibr_on">Vibration notifications are on</string>
-<string name="p_msg_vibr_off">Vibration notification are off</string>
-<string name="p_msg_ring">Ringtone</string>
-<string name="p_msg_ring_summary">Tone for incoming messages</string>
+<string name="p__message">Berichten</string>
+<string name="p__message_summary">Bericht versturen en bevestigingen</string>
+<string name="p__msg_notify">Bericht bevestigen</string>
+<string name="p_msg_led">Knipper LED</string>
+<string name="p_msg_led_on">LED weergave staan aan</string>
+<string name="p_msg_led_off">LED weergave staan uit</string>
+<string name="p_msg_vibr">Trilling</string>
+<string name="p_msg_vibr_on">Trilweergave actief</string>
+<string name="p_msg_vibr_off">Trillweergave uit</string>
+<string name="p_msg_ring">Beltoon</string>
+<string name="p_msg_ring_summary">Geluid voor inkomende berichten</string>
 
-<string name="p__display">Display</string>
+<string name="p__display">Weergave</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
 <string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
-<string name="p_aprs_path_summary">Sequence of digipeaters</string>
-<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+<string name="p_aprs_path_summary">Opeenvolging van de digipeaters</string>
+<string name="p_aprs_path_entry">Geef een comma in om het digi pad te scheiden</string>
 <string name="p_afsk_prefix">Frame Sync Prefix</string>
-<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
-<string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
+<string name="p_afsk_prefix_summary">No-Op Voorversterker (e.g. voor VOX controle)</string>
+<string name="p_afsk_prefix_entry">Geef de prefix in [ms]</string>
 
 <!-- TCP server settings -->
-<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) om te verbinden</string>
 <string name="p_filterdist">Buur radius</string>
 <string name="p_filterdist_summary">Ontvangen packets van stations in deze radius</string>
 <string name="p_filterdist_entry">Radius om je heen om op packets te monitoren [km]</string>
-<string name="p_filter">Message filter</string>
+<string name="p_filter">Berichten filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
-<string name="p_filter_summary">Filter for incoming packets</string>
-<string name="p_filter_entry">Enter a filter for incoming messages</string>
+<string name="p_filter_summary">Filter voor inkomende pakketten</string>
+<string name="p_filter_entry">Geef een filter in vor inkomende berichten</string>
 
-<string name="p_filterhelp">Message filter help</string>
-<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+<string name="p_filterhelp">Berichten filter help</string>
+<string name="p_filterhelp_summary">Online verwijzing naar de APRS-IS filters</string>
 
 <string name="p_sotimeout">TCP socket timeout</string>
-<string name="p_sotimeout_summary">Time before resetting the connection</string>
-<string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+<string name="p_sotimeout_summary">Tijd om de connectie te resetten</string>
+<string name="p_sotimeout_entry">Timout waarde in seconden (0 = uit)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  H.F.P. Pit https://launchpad.net/~pd5dp</string>
+  Eddy Vaesen https://launchpad.net/~a-eddy-n
+  H.F.P. Pit https://launchpad.net/~pd5dp
+  Robbie De Lise https://launchpad.net/~robbie-delise</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>
-<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
-<string name="p_bt_tnc_device">TNC Bluetooth Device</string>
-<string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
-<string name="p_bt_tnc_device_entry">Choose device</string>
-<string name="p_bt_channel">Channel</string>
-<string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
-<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+<string name="p_bt_client_summary">Verbinding gemaakt door APRSdroid (Laat dit aanstaan!)</string>
+<string name="p_bt_tnc_device">TNC Bluetooth Apparaat</string>
+<string name="p_bt_tnc_device_summary">Kies je TNC van paired apparaten</string>
+<string name="p_bt_tnc_device_entry">Kies het apparaat</string>
+<string name="p_bt_channel">Kanaal</string>
+<string name="p_bt_channel_summary">Bleutooth kanaal van je TNC</string>
+<string name="p_bt_channel_entry">Geef kanaal (meestal: "1"; of leeg voor SPP)</string>
 
-<string name="p_bt_prefs">Bluetooth settings</string>
-<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+<string name="p_bt_prefs">Bleutooth instellingen</string>
+<string name="p_bt_prefs_summary">Bleutooth inschakelen, apparaten pairen</string>
 
 </resources>

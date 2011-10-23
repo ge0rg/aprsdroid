@@ -38,6 +38,13 @@
 <string name="msg_message_text">Message text</string>
 <string name="msg_empty_list">There are no stored conversations.</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<!-- Message activity -->
+<string name="msg_from">Message from %s</string>
+<string name="msg_to">Message to %s</string>
+<string name="msg_abort">Abort transmission</string>
+<string name="msg_restart">Restart transmission</string>
+<string name="msg_type_rejected">rejected</string>
+<string name="msg_type_aborted">aborted</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
@@ -88,6 +95,7 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTranslation:</string>
 <string name="ad_homepage">Home Page</string>
 
@@ -176,6 +184,8 @@
 <string name="p__position">Position Reports</string>
 <string name="p__position_summary">Configuration for sending position reports</string>
 <string name="p__location">Location Settings</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">Minimum update time</string>
 <string name="p_interval_summary">Minutes between beacon transmissions</string>
 <string name="p_interval_entry">Enter the update interval [min]</string>

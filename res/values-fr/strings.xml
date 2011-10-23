@@ -2,8 +2,8 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Préférences</string>
-<string name="app_map">APRSdroid carte</string>
+<string name="app_prefs">Préférences APRSdroid</string>
+<string name="app_map">Carte APRSdroid</string>
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Infos sur la station</string>
 <string name="app_messages">Messages</string>
@@ -11,7 +11,7 @@
 <string name="firstrun">Vous devez configurer APRSdroid avec votre indicatif et votre mot de passe</string>
 <string name="wrongpasscode">Le mot de passe ne correspond pas a votre indicatif!</string>
 <string name="anon_warning">Sans mot de passe vos positions ne seront pas transmises!</string>
-<string name="mininterval">Le délais de rafraichissement est d\'une minute minimum!</string>
+<string name="mininterval">Le délai minimum d\'actualisation est d\'une minute!</string>
 <string name="singlelog">Envoyer ma position</string>
 <string name="startlog">Commencer la localisation</string>
 <string name="stoplog">Arrêter la localisation</string>
@@ -33,21 +33,28 @@
 
 <!-- Conversations activity -->
 <string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
+<string name="msg_message_text">Texte du message</string>
+<string name="msg_empty_list">Aucune conversations enregistrées</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<!-- Message activity -->
+<string name="msg_from">Message from %s</string>
+<string name="msg_to">Message to %s</string>
+<string name="msg_abort">Abort transmission</string>
+<string name="msg_restart">Restart transmission</string>
+<string name="msg_type_rejected">rejected</string>
+<string name="msg_type_aborted">aborted</string>
 
 <!-- AprsService -->
 <string name="aprsservice">Service APRSdroid</string>
 <string name="service_once">Service APRS notification unique</string>
 <string name="service_start">Service APRS  démarré. m.a.j. tous les %1$d minutes, %2$d km.</string>
 <string name="service_stop">service APRS arrêté</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_no_location">Vous devez activer l\'option GPS ou localisation par le réseau pour qu\'APRSdroid fonctionne correctement!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_error">Erreur</string>
+<string name="post_incmg">Reçu</string>
 <string name="post_info"/>
-<string name="post_connecting">Connecting to %1$s:%2$d...</string>
+<string name="post_connecting">Connexion à %1$s:%2$d...</string>
 <string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
 
 <!-- first run dialog -->
@@ -65,6 +72,7 @@
 <string name="ad_thanks_2">Dirk, DB5OY: pour son support et sa motivation</string>
 <string name="ad_thanks_3">Bastian, DB1BM: implementation AFSK</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTraduction:</string>
 <string name="ad_homepage">Page d\'accueil</string>
 
@@ -150,9 +158,11 @@
 <string name="p_host_summary">serveur APRS-IS (port 8080) pour envoi des balises</string>
 <string name="p_host_entry">Entrez le nom du serveur APRS-IS</string>
 <string name="p_host_hint">host:port</string>
-<string name="p__position">Position Reports</string>
-<string name="p__position_summary">Configuration for sending position reports</string>
+<string name="p__position">Rapports de position</string>
+<string name="p__position_summary">Configuration pour l\'envoi des rapports de position</string>
 <string name="p__location">Paramètres de localisation</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">Délais minimum de mise à jour</string>
 <string name="p_interval_summary">minutes entre l\'envoi des balises</string>
 <string name="p_interval_entry">Entrer l\'intervale de mise à jour [min]</string>
@@ -219,6 +229,7 @@
   F8ANZ https://launchpad.net/~matromat
   Francois Magimel https://launchpad.net/~linkid
   Gabriel U. https://launchpad.net/~gabriel-ull
+  VE2ER https://launchpad.net/~ve2er
   gabaye bruno https://launchpad.net/~f1mbc</string>
 
 <!-- Bluetooth TNC settings -->

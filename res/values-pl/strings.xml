@@ -36,6 +36,13 @@
 <string name="msg_message_text">Tekst wiadomości</string>
 <string name="msg_empty_list">Brak zapisanych rozmów.</string>
 <string name="msg_stored_offline">Wiadomość zostanie wysłana wkrótce po rozpoczęciu śledzenia</string>
+<!-- Message activity -->
+<string name="msg_from">Message from %s</string>
+<string name="msg_to">Message to %s</string>
+<string name="msg_abort">Abort transmission</string>
+<string name="msg_restart">Restart transmission</string>
+<string name="msg_type_rejected">rejected</string>
+<string name="msg_type_aborted">aborted</string>
 
 <!-- AprsService -->
 <string name="aprsservice">Usługa APRSdroid</string>
@@ -66,6 +73,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="ad_thanks_2">Dirk, DB5OY: motywacja i wsparcie</string>
 <string name="ad_thanks_3">Bastian, DB1BM: Implementacja AFSK</string>
 <string name="ad_thanks_4">Matti, OH2MQK oraz John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTłumaczenie:</string>
 <string name="ad_homepage">Strona domowa</string>
 
@@ -154,6 +162,8 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p__position">Raporty położenia</string>
 <string name="p__position_summary">Konfiguracja wysyłania raportów położenia</string>
 <string name="p__location">Ustawienia Lokalizacji</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">Minimalny czas aktualizacji</string>
 <string name="p_interval_summary">Minuty pomiędzy transmisjami beacon-u</string>
 <string name="p_interval_entry">Podaj częstotliwość aktualizacji [min]</string>
