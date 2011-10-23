@@ -1,3 +1,9 @@
+1.1.2:
+* Station symbols in Hub
+* Experimental SmartBeaconing™
+* Fixed AFSK encoder (frequency was off, #16)
+* Messaging: support for resending/aborting messages (long-press menu)
+
 1.1.1:
 * Map: larger, better readable callsigns
 * No more notification for retransmitted messages
