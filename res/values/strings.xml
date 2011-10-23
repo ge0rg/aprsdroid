@@ -185,7 +185,7 @@
 <string name="p__position_summary">Configuration for sending position reports</string>
 <string name="p__location">Location Settings</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_smartbeaconing_summary">fully automatic beacon config. ignores interval and distance</string>
+<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS "always on".</string>
 <string name="p_interval">Minimum update time</string>
 <string name="p_interval_summary">Minutes between beacon transmissions</string>
 <string name="p_interval_entry">Enter the update interval [min]</string>
