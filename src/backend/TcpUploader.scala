@@ -1,6 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.android.app.Service
+import _root_.android.content.Context
 import _root_.android.location.{Location, LocationManager}
 import _root_.android.util.Log
 import _root_.java.io.{BufferedReader, InputStreamReader, OutputStreamWriter, PrintWriter}
@@ -23,7 +24,8 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 		val filterdist = prefs.getStringInt("tcp.filterdist", 50)
 		val userfilter = prefs.getString("tcp.filter", "")
 		val lastloc = AprsPacket.formatRangeFilter(
-			service.locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER), filterdist)
+			service.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
+				.getLastKnownLocation(LocationManager.GPS_PROVIDER), filterdist)
 		if (filterdist == 0) return " filter %s %s".format(userfilter, lastloc)
 				else return " filter m/%d %s %s".format(filterdist, userfilter, lastloc)
 	}
