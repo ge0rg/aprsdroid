@@ -152,6 +152,14 @@
 <string name="p_conn_http">HTTP POST (solo envio)</string>
 <string name="p_conn_afsk">AFSK vía altavoz</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitude</string>
+<string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
 
 <!-- connection type properties -->
 <string name="p_host">Servidor</string>
@@ -159,10 +167,11 @@
 <string name="p_host_entry">Introduce el nombre del servidor de APRS-IS</string>
 <string name="p_host_hint">servidor:puerto</string>
 <string name="p__position">Reportes de Posición</string>
-<string name="p__position_summary">Configuración para enviar los reportes de posición</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Preferencias de la ubicación</string>
+<string name="p__location_summary">Configuración para enviar los reportes de posición</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_smartbeaconing_summary">Ignorar el tiempo de actualización y de intervalo. Mejores resultados con GPS \ "siempre encendido\".</string>
 <string name="p_interval">Tiempo mínimo de actualización</string>
 <string name="p_interval_summary">Minutos entre el envio de baliza</string>
 <string name="p_interval_entry">Introduce el intervalo de actualización (min)</string>

@@ -160,6 +160,14 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_conn_http">HTTP POST (nur Senden)</string>
 <string name="p_conn_afsk">AFSK über Lautsprecher</string>
 <string name="p_conn_bt">Bluetooth-TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitude</string>
+<string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>
@@ -167,10 +175,11 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_host_entry">Geben Sie den APRS-IS-Servernamen ein</string>
 <string name="p_host_hint">host:port</string>
 <string name="p__position">Positionsmeldungen</string>
-<string name="p__position_summary">Einstellungen für den Versand der eigenen Position</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Standorteinstellungen</string>
+<string name="p__location_summary">Einstellungen für den Versand der eigenen Position</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">Minimale Updatezeit</string>
 <string name="p_interval_summary">Minuten zwischen Baken</string>
 <string name="p_interval_entry">Geben Sie das Update-Intervall ein [min]</string>

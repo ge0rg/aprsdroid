@@ -167,6 +167,14 @@
 <string name="p_conn_http">HTTP POST (送信のみ）</string>
 <string name="p_conn_afsk">AFSK音声出力</string>
 <string name="p_conn_bt">ブルートゥース TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitude</string>
+<string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
 
 <!-- connection type properties -->
 <string name="p_host">送信先サーバ名</string>
@@ -174,10 +182,11 @@
 <string name="p_host_entry">APRS-ISサーバホスト名を入力</string>
 <string name="p_host_hint">ホスト名:ポート番号</string>
 <string name="p__position">レポート内容設定</string>
-<string name="p__position_summary">レポート内容設定</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">位置情報設定</string>
+<string name="p__location_summary">レポート内容設定</string>
 <string name="p_smartbeaconing">スマートビーコニング™</string>
-<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">位置情報取得間隔</string>
 <string name="p_interval_summary">GPSから位置情報を取得する間隔</string>
 <string name="p_interval_entry">取得する間隔[分]を入力</string>

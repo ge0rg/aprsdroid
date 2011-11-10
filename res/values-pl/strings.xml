@@ -153,6 +153,14 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_conn_http">HTTP POST (tylko wysyłanie)</string>
 <string name="p_conn_afsk">AFSK przez głośnik</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitude</string>
+<string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
 
 <!-- connection type properties -->
 <string name="p_host">Serwer</string>
@@ -160,10 +168,11 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_host_entry">Wprowadź nazwę hosta serwera APRS-IS</string>
 <string name="p_host_hint">host:port</string>
 <string name="p__position">Raporty położenia</string>
-<string name="p__position_summary">Konfiguracja wysyłania raportów położenia</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Ustawienia Lokalizacji</string>
+<string name="p__location_summary">Konfiguracja wysyłania raportów położenia</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">Minimalny czas aktualizacji</string>
 <string name="p_interval_summary">Minuty pomiędzy transmisjami beacon-u</string>
 <string name="p_interval_entry">Podaj częstotliwość aktualizacji [min]</string>

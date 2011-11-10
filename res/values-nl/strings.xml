@@ -154,6 +154,14 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_conn_http">HTTP POST (alleen zenden)</string>
 <string name="p_conn_afsk">AFSK via luidspreker</string>
 <string name="p_conn_bt">Bleutooth TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitude</string>
+<string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>
@@ -161,10 +169,11 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_host_entry">Geef de APRS-IS server hostnaam</string>
 <string name="p_host_hint">host:poort</string>
 <string name="p__position">Positierapporten</string>
-<string name="p__position_summary">Instellingen voor het verzenden van rapporten</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Lokatie instellingen</string>
+<string name="p__location_summary">Instellingen voor het verzenden van rapporten</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">Minimum update tijd</string>
 <string name="p_interval_summary">Minuten tussen baken uitzendingen</string>
 <string name="p_interval_entry">Geef het update interval [min]</string>

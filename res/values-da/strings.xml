@@ -175,6 +175,14 @@
 <string name="p_conn_http">HTTP POST (send only)</string>
 <string name="p_conn_afsk">AFSK igennem højtaler</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitude</string>
+<string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>
@@ -182,10 +190,11 @@
 <string name="p_host_entry">Indtast APRS-IS server hostname</string>
 <string name="p_host_hint">host:port</string>
 <string name="p__position">Position Reports</string>
-<string name="p__position_summary">Configuration for sending position reports</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Lokations indstillinger</string>
+<string name="p__location_summary">Configuration for sending position reports</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">Minimum opdaterings tid</string>
 <string name="p_interval_summary">Minutter mellem beacon transmissioner</string>
 <string name="p_interval_entry">Indtast opdateringen intervallet [min]</string>

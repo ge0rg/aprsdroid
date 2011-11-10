@@ -152,6 +152,14 @@
 <string name="p_conn_http">HTTP POST (只发送)</string>
 <string name="p_conn_afsk">ASFK 喇叭输出</string>
 <string name="p_conn_bt">蓝牙TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitude</string>
+<string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
 
 <!-- connection type properties -->
 <string name="p_host">服务器</string>
@@ -159,10 +167,11 @@
 <string name="p_host_entry">输入 APRS-IS 服务器的主机名</string>
 <string name="p_host_hint">服务器:端口</string>
 <string name="p__position">位置报告</string>
-<string name="p__position_summary">位置报告配置</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">位置设置</string>
+<string name="p__location_summary">位置报告配置</string>
 <string name="p_smartbeaconing">SmartBeaconing™(智慧信标™)</string>
-<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">最小更新时间</string>
 <string name="p_interval_summary">分钟信标传送间隔</string>
 <string name="p_interval_entry">输入更新间隔［分钟］</string>
