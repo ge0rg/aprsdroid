@@ -6,7 +6,7 @@
 <string name="app_map">APRSdroid：地図</string>
 <string name="app_hub">APRSdroid：局一覧</string>
 <string name="app_sta">局情報</string>
-<string name="app_messages">Messages</string>
+<string name="app_messages">メッセージ</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroidの使用前にコールサインとパスコードの設定が必要です</string>
 <string name="wrongpasscode">コールサインとパスコードが一致しません</string>
@@ -32,30 +32,30 @@
 <string name="sta_qrzcom">QRZ.com接続</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
+<string name="msg_send_new">メッセージを送信する</string>
+<string name="msg_message_text">内容</string>
 <string name="msg_empty_list">There are no stored conversations.</string>
-<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<string name="msg_stored_offline">あなたがトラッキングを始めると、メッセージが送信されます。</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">%s からのメッセージ</string>
+<string name="msg_to">%s さんへ送信</string>
+<string name="msg_abort">送信中止</string>
+<string name="msg_restart">送信再開</string>
+<string name="msg_type_rejected">拒否された</string>
+<string name="msg_type_aborted">中断しました</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroidサービス</string>
 <string name="service_once">ARPSサービス １回送信</string>
 <string name="service_start">APRSサービス開始。 %1$d 分、 %2$d kmごとに位置情報を更新します。</string>
 <string name="service_stop">APRSサービス停止</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_no_location">GPS又はネットワーク・ロケーションの何れかの動作を可能にする必要があります!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_error">エラー</string>
+<string name="post_incmg">受信</string>
 <string name="post_info"/>
-<string name="post_connecting">Connecting to %1$s:%2$d...</string>
-<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+<string name="post_connecting">接続中 %1$s:%2$d...</string>
+<string name="post_reconnect">接続を失いました。 %d 秒後に再接続を試みます...</string>
 
 <!-- first run dialog -->
 <string name="fr_title">ようこそAPRSdroidへ！</string>
@@ -64,11 +64,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroidについて v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">著作権 © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®は Bob Bruninga (WB4APR) の登録商標です。</string>
 <string name="ad_gpl">This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
 	as published by the Free Software Foundation; either version 2
@@ -86,12 +82,12 @@
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
 <string name="ad_thanks">協力:</string>
-<string name="ad_thanks_0">My YL ♥♥♥</string>
-<string name="ad_thanks_1">Michael, DO3BOX: idea</string>
-<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
-<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
-<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_thanks_0">私の彼女♥♥♥</string>
+<string name="ad_thanks_1">マイケル, DO3BOX: アイデア</string>
+<string name="ad_thanks_2">Dirk, DB5OY: サポート</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK機能充足</string>
+<string name="ad_thanks_4">マティ, OH2MQK and ジョーン, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">スマートビーコニング™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">翻訳:</string>
 <string name="ad_homepage">ホームページ</string>
 
@@ -163,24 +159,24 @@
 <string name="p_conntype_entry">使用する送信方式を選択</string>
 <string name="p_connsetup">接続詳細設定</string>
 <string name="p_connsetup_summary">接続に関する設定</string>
-<string name="p_connlog">Connection Logging</string>
+<string name="p_connlog">接続情報を記録</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP接続</string>
 <string name="p_conn_udp">UDP (送信のみ）</string>
 <string name="p_conn_http">HTTP POST (送信のみ）</string>
 <string name="p_conn_afsk">AFSK音声出力</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_bt">ブルートゥース TNC</string>
 
 <!-- connection type properties -->
 <string name="p_host">送信先サーバ名</string>
 <string name="p_host_summary">ビーコン情報を送信するAPRS-ISサーバ名（デフォルトポート:8080）</string>
 <string name="p_host_entry">APRS-ISサーバホスト名を入力</string>
 <string name="p_host_hint">ホスト名:ポート番号</string>
-<string name="p__position">Position Reports</string>
-<string name="p__position_summary">Configuration for sending position reports</string>
+<string name="p__position">レポート内容設定</string>
+<string name="p__position_summary">レポート内容設定</string>
 <string name="p__location">位置情報設定</string>
-<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_smartbeaconing">スマートビーコニング™</string>
 <string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
 <string name="p_interval">位置情報取得間隔</string>
 <string name="p_interval_summary">GPSから位置情報を取得する間隔</string>
@@ -199,24 +195,24 @@
 <string name="p_gps_always">高精度（常に測位）</string>
 <string name="p_gps_med">中精度</string>
 <string name="p_gps_low">低精度</string>
-<string name="p_keepscreen">Keep screen awake</string>
-<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+<string name="p_keepscreen">画面消灯しない</string>
+<string name="p_keepscreen_summary">APRSdroid画面が表示中の場合、画面をオフにしません。</string>
 
 <!-- messaging -->
 <string name="p__display">Display and Notifications</string>
 <string name="p__notification">Notifications</string>
 <string name="p__notification_summary">Alert for messages and position reports</string>
 <string name="p_msg">Incoming Messages</string>
-<string name="p_msg_led">Blinking LED</string>
-<string name="p_msg_led_on">LED notifications are on</string>
-<string name="p_msg_led_off">LED notifications are off</string>
-<string name="p_msg_vibr">Vibration</string>
-<string name="p_msg_vibr_on">Vibration notifications are on</string>
-<string name="p_msg_vibr_off">Vibration notification are off</string>
-<string name="p_msg_ring">Ringtone</string>
-<string name="p_msg_ring_summary">Tone for incoming messages</string>
+<string name="p_msg_led">LED点滅</string>
+<string name="p_msg_led_on">LED通知ON</string>
+<string name="p_msg_led_off">LED通知OFF</string>
+<string name="p_msg_vibr">バイブレーション(振動)</string>
+<string name="p_msg_vibr_on">バイブレーションON</string>
+<string name="p_msg_vibr_off">バイブレーションOFF</string>
+<string name="p_msg_ring">着信音選択</string>
+<string name="p_msg_ring_summary">メッセージ受信時の着信音を選択します。</string>
 <string name="p_pos">Own Position Reports</string>
-<string name="p_pos_ring">Ringtone</string>
+<string name="p_pos_ring">着信音選択</string>
 <string name="p_pos_ring_summary">Tone for sent position reports</string>
 
 <!-- AFSK settings -->
@@ -246,19 +242,20 @@
 <string name="p_sotimeout_entry">タイムアウト時間[秒]を入力 (0でタイムアウトしない）</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Yoshihisa Tanda https://launchpad.net/~jn4oqt
   Yoshikazu AKAGI https://launchpad.net/~7k4owm</string>
 
 <!-- Bluetooth TNC settings -->
-<string name="p_bt_client">Client Mode</string>
-<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
-<string name="p_bt_tnc_device">TNC Bluetooth Device</string>
-<string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
-<string name="p_bt_tnc_device_entry">Choose device</string>
-<string name="p_bt_channel">Channel</string>
-<string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
+<string name="p_bt_client">クライアント(子機)モード</string>
+<string name="p_bt_client_summary">APRSdroidは接続確立状態を維持する。</string>
+<string name="p_bt_tnc_device">BT-TNCデバイス選択</string>
+<string name="p_bt_tnc_device_summary">ブルートゥースTNCデバイスを選択</string>
+<string name="p_bt_tnc_device_entry">デバイスを選択して下さい。</string>
+<string name="p_bt_channel">チャンネル選択</string>
+<string name="p_bt_channel_summary">Bluetooth信号チャンネルを選択</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
-<string name="p_bt_prefs">Bluetooth settings</string>
-<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+<string name="p_bt_prefs">Bluetooth設定</string>
+<string name="p_bt_prefs_summary">有効なブルートゥース・ペアデバイスの選択</string>
 
 </resources>

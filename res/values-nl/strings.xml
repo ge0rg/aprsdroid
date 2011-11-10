@@ -4,7 +4,7 @@
 <string name="app_name">APRSdroid</string>
 <string name="app_prefs">APRSdroid voorkeuren</string>
 <string name="app_map">APRSdroid Map</string>
-<string name="app_hub">APRSdroid Hub</string>
+<string name="app_hub">APRSdroid Kaart</string>
 <string name="app_sta">Station gegevens</string>
 <string name="app_messages">Berichten</string>
 <!-- APRSdroid activity -->
@@ -39,12 +39,12 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="msg_empty_list">Er zijn geen berichten opgeslagen.</string>
 <string name="msg_stored_offline">Dit bericht zal verzonden worden zodra je de tracking start</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">Bericht van %s</string>
+<string name="msg_to">Bericht naar %s</string>
+<string name="msg_abort">Stop verzenden</string>
+<string name="msg_restart">Herstart verzenden</string>
+<string name="msg_type_rejected">geweigerd</string>
+<string name="msg_type_aborted">afgebroken</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
@@ -231,7 +231,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="translator_credits">Launchpad Contributions:
   Eddy Vaesen https://launchpad.net/~a-eddy-n
   H.F.P. Pit https://launchpad.net/~pd5dp
-  Robbie De Lise https://launchpad.net/~robbie-delise</string>
+  Robbie De Lise https://launchpad.net/~robbie-delise
+  doomer https://launchpad.net/~doomer</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

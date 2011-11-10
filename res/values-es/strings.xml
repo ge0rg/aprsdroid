@@ -37,12 +37,12 @@
 <string name="msg_empty_list">No hay conversaciones guardadas</string>
 <string name="msg_stored_offline">El mensaje será enviado cuando comiences el seguimiento.</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">Mensaje de %s</string>
+<string name="msg_to">Mensaje para %</string>
+<string name="msg_abort">Abortar la transmisión</string>
+<string name="msg_restart">Reiniciar la transmisión</string>
+<string name="msg_type_rejected">rechazado</string>
+<string name="msg_type_aborted">abortado</string>
 
 <!-- AprsService -->
 <string name="aprsservice">Servicio de APRSdroid</string>
@@ -72,7 +72,7 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivación y soporte</string>
 <string name="ad_thanks_3">Bastian, DB1BM: Implementacion del AFSK</string>
 <string name="ad_thanks_4">Matti, OH2MQK y John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_thanks_5">SmartBeaconing™por HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTraducción:</string>
 <string name="ad_homepage">Página de Inicio</string>
 
@@ -162,7 +162,7 @@
 <string name="p__position_summary">Configuración para enviar los reportes de posición</string>
 <string name="p__location">Preferencias de la ubicación</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_smartbeaconing_summary">Ignores update time and interval. Best used with GPS \"always on\".</string>
+<string name="p_smartbeaconing_summary">Ignorar el tiempo de actualización y de intervalo. Mejores resultados con GPS \ "siempre encendido\".</string>
 <string name="p_interval">Tiempo mínimo de actualización</string>
 <string name="p_interval_summary">Minutos entre el envio de baliza</string>
 <string name="p_interval_entry">Introduce el intervalo de actualización (min)</string>
@@ -170,9 +170,9 @@
 <string name="p_distance_summary">Kilometros antes del envio de baliza (ponlo a 0 para solo tiempo)</string>
 <string name="p_distance_entry">Introduce la distancia de actualización [km]</string>
 <string name="p_speedbrg">Await speed &amp; bearing</string>
-<string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
+<string name="p_speedbrg_summary">Mantener el GPS encendido para obtener datos más precisos</string>
 <string name="p_netloc">Usar localización vía red</string>
-<string name="p_netloc_summary">Acquire position from the cellular network</string>
+<string name="p_netloc_summary">Adquirir localización via 3G. GPRS, etc...</string>
 <string name="p_gps">Precisión del GPS</string>
 <string name="p_gps_summary">Uso de la batería VS Calidad de la precisión</string>
 <string name="p_gps_entry">Por favor, defina la precisión del GPS</string>
@@ -184,10 +184,10 @@
 <string name="p_keepscreen_summary">No apagar la pantalla cuando APRSdroid este ejecutándose en primer plano</string>
 
 <!-- messaging -->
-<string name="p__display">Display and Notifications</string>
-<string name="p__notification">Notifications</string>
-<string name="p__notification_summary">Alert for messages and position reports</string>
-<string name="p_msg">Incoming Messages</string>
+<string name="p__display">Pantalla y Notificaciones</string>
+<string name="p__notification">Notificaciones</string>
+<string name="p__notification_summary">Alerta para los mensajes y los informes de posición</string>
+<string name="p_msg">Mensajes entrantes</string>
 <string name="p_msg_led">LED parpadeante</string>
 <string name="p_msg_led_on">Las notificaciones por LED están encendidas</string>
 <string name="p_msg_led_off">Las notificaciones por LED están desactivadas</string>
@@ -196,9 +196,9 @@
 <string name="p_msg_vibr_off">Las notificaciones por vibración están desactivadas</string>
 <string name="p_msg_ring">Tono de aviso</string>
 <string name="p_msg_ring_summary">Tono de aviso para mensajes entrantes</string>
-<string name="p_pos">Own Position Reports</string>
+<string name="p_pos">Informes de posición propia</string>
 <string name="p_pos_ring">Tono de aviso</string>
-<string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_pos_ring_summary">Tono de los informes de posición enviados</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -210,7 +210,7 @@
 <string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
 
 <!-- TCP server settings -->
-<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_tcp_server_summary">Servidor APRS-IS TCP (puerto 14580) para contactar</string>
 <string name="p_filterdist">Radio de acción de estaciones cercanas</string>
 <string name="p_filterdist_summary">Recibir paquetes desde estaciones cercanas en este radio de acción</string>
 <string name="p_filterdist_entry">Radio de acción de alrededor para monitorizar los paquetes [km]</string>
@@ -235,7 +235,7 @@
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Modo Cliente</string>
-<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
+<string name="p_bt_client_summary">APRSdroid establece la conexión (¡Mantenga esto encendido!)</string>
 <string name="p_bt_tnc_device">Dispositivo TNC Bluetooth</string>
 <string name="p_bt_tnc_device_summary">Elige tu TNC de los dispositivos vinculados</string>
 <string name="p_bt_tnc_device_entry">Elige el dispositivo</string>
@@ -244,6 +244,6 @@
 <string name="p_bt_channel_entry">Introduce el canal (con mayor frecuencia: "1"; vacío para SPP)</string>
 
 <string name="p_bt_prefs">Preferencias de Bluetooth</string>
-<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+<string name="p_bt_prefs_summary">Activar Bluetooth, emparejar dispositivos ...</string>
 
 </resources>
