@@ -58,26 +58,38 @@ abstract class ServiceNotifier {
 	def start(ctx : Service, status : String)
 	def stop(ctx : Service)
 
-	def notifyMessage(ctx : Service, prefs : PrefsWrapper,
-			call : String, message : String) {
-		val n = newMessageNotification(ctx, call, message)
+	def setupNotification(n : Notification, prefs : PrefsWrapper, prefix : String) {
 		// set notification LED
-		if (prefs.getBoolean("notify_led", true)) {
+		if (prefs.getBoolean(prefix + "notify_led", true)) {
 			n.ledARGB = Color.YELLOW
 			n.ledOnMS = 300
 			n.ledOffMS = 1000
 			n.flags |= Notification.FLAG_SHOW_LIGHTS
 		}
-		if (prefs.getBoolean("notify_vibr", true)) {
-			n.vibrate = Array[Long](200, 10000)
+		if (prefs.getBoolean(prefix + "notify_vibr", true)) {
+			n.vibrate = Array[Long](0, 200, 200)
 		}
-		n.sound = Uri.parse(prefs.getString("notify_ringtone", null))
+		n.sound = Uri.parse(prefs.getString(prefix + "notify_ringtone", null))
+	}
+
+	def notifyMessage(ctx : Service, prefs : PrefsWrapper,
+			call : String, message : String) {
+		val n = newMessageNotification(ctx, call, message)
+		// set notification LED
+		setupNotification(n, prefs, "")
 		getNotificationMgr(ctx).notify(getCallNumber(call),
 			n)
 	}
 
 	def cancelMessage(ctx : Context, call : String) {
 		getNotificationMgr(ctx).cancel(getCallNumber(call))
+	}
+
+	def notifyPosition(ctx : Service, prefs : PrefsWrapper,
+			status : String) {
+		val n = newNotification(ctx, status)
+		setupNotification(n, prefs, "pos_")
+		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, n)
 	}
 }
 

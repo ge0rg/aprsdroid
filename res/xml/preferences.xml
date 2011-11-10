@@ -102,37 +102,6 @@
 
     </PreferenceCategory>
     </PreferenceScreen>
-    <!-- sub-screen "Messaging" -->
-    <PreferenceScreen
-	    android:title="@string/p__message"
-	    android:summary="@string/p__message_summary">
-    <PreferenceCategory
-	android:title="@string/p__msg_notify">
-
-	<CheckBoxPreference
-		android:key="notify_led"
-		android:title="@string/p_msg_led"
-		android:summaryOn="@string/p_msg_led_on"
-		android:summaryOff="@string/p_msg_led_off"
-		android:defaultValue="true"
-		/>
-	<CheckBoxPreference
-		android:key="notify_vibr"
-		android:title="@string/p_msg_vibr"
-		android:summaryOn="@string/p_msg_vibr_on"
-		android:summaryOff="@string/p_msg_vibr_off"
-		android:defaultValue="true"
-		/>
-	<RingtonePreference
-		android:key="notify_ringtone"
-		android:title="@string/p_msg_ring"
-		android:summary="@string/p_msg_ring_summary"
-		android:ringtoneType="notification"
-		android:showDefault="true"
-		android:showSilent="true"
-		/>
-    </PreferenceCategory>
-    </PreferenceScreen>
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -162,12 +131,71 @@
 		android:summary="@string/p_connlog_summary" />
     </PreferenceCategory>
 
+    <!-- sub-screen "display and notifications" -->
     <PreferenceCategory
 	android:title="@string/p__display">
-        <CheckBoxPreference
-                android:key="keepscreen"
-		android:title="@string/p_keepscreen"
-		android:summary="@string/p_keepscreen_summary" />
+    <CheckBoxPreference
+	    android:key="keepscreen"
+	    android:title="@string/p_keepscreen"
+	    android:summary="@string/p_keepscreen_summary" />
+    <PreferenceScreen
+	    android:title="@string/p__notification"
+	    android:summary="@string/p__notification_summary">
+    <!-- incoming messages -->
+    <PreferenceCategory
+	android:title="@string/p_msg">
+
+	<CheckBoxPreference
+		android:key="notify_led"
+		android:title="@string/p_msg_led"
+		android:summaryOn="@string/p_msg_led_on"
+		android:summaryOff="@string/p_msg_led_off"
+		android:defaultValue="true"
+		/>
+	<CheckBoxPreference
+		android:key="notify_vibr"
+		android:title="@string/p_msg_vibr"
+		android:summaryOn="@string/p_msg_vibr_on"
+		android:summaryOff="@string/p_msg_vibr_off"
+		android:defaultValue="true"
+		/>
+	<RingtonePreference
+		android:key="notify_ringtone"
+		android:title="@string/p_msg_ring"
+		android:summary="@string/p_msg_ring_summary"
+		android:ringtoneType="notification"
+		android:showDefault="true"
+		android:showSilent="true"
+		/>
+    </PreferenceCategory>
+    <!-- position reports -->
+    <PreferenceCategory
+	android:title="@string/p_pos">
+
+	<CheckBoxPreference
+		android:key="pos_notify_led"
+		android:title="@string/p_msg_led"
+		android:summaryOn="@string/p_msg_led_on"
+		android:summaryOff="@string/p_msg_led_off"
+		android:defaultValue="false"
+		/>
+	<CheckBoxPreference
+		android:key="pos_notify_vibr"
+		android:title="@string/p_msg_vibr"
+		android:summaryOn="@string/p_msg_vibr_on"
+		android:summaryOff="@string/p_msg_vibr_off"
+		android:defaultValue="false"
+		/>
+	<RingtonePreference
+		android:key="pos_notify_ringtone"
+		android:title="@string/p_pos_ring"
+		android:summary="@string/p_pos_ring_summary"
+		android:ringtoneType="notification"
+		android:showDefault="true"
+		android:showSilent="true"
+		/>
+    </PreferenceCategory>
+    </PreferenceScreen>
     </PreferenceCategory>
 
 </PreferenceScreen>

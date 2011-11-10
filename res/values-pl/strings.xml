@@ -185,9 +185,10 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_keepscreen_summary">Nie wyłączaj ekranu, gdy APRSdroid jest włączony i nie zminimalizowany</string>
 
 <!-- messaging -->
-<string name="p__message">Komunikacja</string>
-<string name="p__message_summary">Przesyłanie wiadomości i powiadomień</string>
-<string name="p__msg_notify">Powiadamianie o zdarzeniach</string>
+<string name="p__display">Display and Notifications</string>
+<string name="p__notification">Notifications</string>
+<string name="p__notification_summary">Alert for messages and position reports</string>
+<string name="p_msg">Incoming Messages</string>
 <string name="p_msg_led">Powiadomienie diodą LED</string>
 <string name="p_msg_led_on">Powiadomienia LED są włączone</string>
 <string name="p_msg_led_off">Powiadomienia LED są wyłączone</string>
@@ -196,8 +197,9 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_msg_vibr_off">Powiadomienia za pomocą wibracji są wyłączone</string>
 <string name="p_msg_ring">Dzwonek</string>
 <string name="p_msg_ring_summary">Dzwonek dla przychodzących wiadomości</string>
-
-<string name="p__display">Wyświetlanie</string>
+<string name="p_pos">Own Position Reports</string>
+<string name="p_pos_ring">Dzwonek</string>
+<string name="p_pos_ring_summary">Tone for sent position reports</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS ścieżka digi</string>

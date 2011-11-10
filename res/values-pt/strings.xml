@@ -184,9 +184,10 @@
 <string name="p_keepscreen_summary">Não desligue o ecrâ quando o APRSDroid está em funcionamento</string>
 
 <!-- messaging -->
-<string name="p__message">Mensagens</string>
-<string name="p__message_summary">Transmissão de mensagens e notificações</string>
-<string name="p__msg_notify">Notificação de mensagens</string>
+<string name="p__display">Display and Notifications</string>
+<string name="p__notification">Notifications</string>
+<string name="p__notification_summary">Alert for messages and position reports</string>
+<string name="p_msg">Incoming Messages</string>
 <string name="p_msg_led">Led PIsca-Pisca</string>
 <string name="p_msg_led_on">Notificações de LED ligadas</string>
 <string name="p_msg_led_off">Notificações de LED desligadas</string>
@@ -195,8 +196,9 @@
 <string name="p_msg_vibr_off">Notificações por vibração estão desligadas</string>
 <string name="p_msg_ring">Tom de chamada</string>
 <string name="p_msg_ring_summary">Tom para mensagens de entrada</string>
-
-<string name="p__display">Monitor</string>
+<string name="p_pos">Own Position Reports</string>
+<string name="p_pos_ring">Tom de chamada</string>
+<string name="p_pos_ring_summary">Tone for sent position reports</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi patch ("caminho"Ex: wide2-2)</string>

@@ -167,7 +167,7 @@ class AprsService extends Service {
 			stopSelf()
 		} else {
 			val message = "%s: %s".format(callssid, result)
-			ServiceNotifier.instance.start(this, message)
+			ServiceNotifier.instance.notifyPosition(this, prefs, message)
 		}
 	}
 

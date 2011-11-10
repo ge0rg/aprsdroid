@@ -184,9 +184,10 @@
 <string name="p_keepscreen_summary">No apagar la pantalla cuando APRSdroid este ejecutándose en primer plano</string>
 
 <!-- messaging -->
-<string name="p__message">Mensajería</string>
-<string name="p__message_summary">Transmisión de mensajes y notificaciones</string>
-<string name="p__msg_notify">Notificación de mensajes</string>
+<string name="p__display">Display and Notifications</string>
+<string name="p__notification">Notifications</string>
+<string name="p__notification_summary">Alert for messages and position reports</string>
+<string name="p_msg">Incoming Messages</string>
 <string name="p_msg_led">LED parpadeante</string>
 <string name="p_msg_led_on">Las notificaciones por LED están encendidas</string>
 <string name="p_msg_led_off">Las notificaciones por LED están desactivadas</string>
@@ -195,8 +196,9 @@
 <string name="p_msg_vibr_off">Las notificaciones por vibración están desactivadas</string>
 <string name="p_msg_ring">Tono de aviso</string>
 <string name="p_msg_ring_summary">Tono de aviso para mensajes entrantes</string>
-
-<string name="p__display">Pantalla</string>
+<string name="p_pos">Own Position Reports</string>
+<string name="p_pos_ring">Tono de aviso</string>
+<string name="p_pos_ring_summary">Tone for sent position reports</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>

@@ -186,9 +186,10 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_keepscreen_summary">Sluit het scherm niet wanneer APRSdroid actief is</string>
 
 <!-- messaging -->
-<string name="p__message">Berichten</string>
-<string name="p__message_summary">Bericht versturen en bevestigingen</string>
-<string name="p__msg_notify">Bericht bevestigen</string>
+<string name="p__display">Display and Notifications</string>
+<string name="p__notification">Notifications</string>
+<string name="p__notification_summary">Alert for messages and position reports</string>
+<string name="p_msg">Incoming Messages</string>
 <string name="p_msg_led">Knipper LED</string>
 <string name="p_msg_led_on">LED weergave staan aan</string>
 <string name="p_msg_led_off">LED weergave staan uit</string>
@@ -197,8 +198,9 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_msg_vibr_off">Trillweergave uit</string>
 <string name="p_msg_ring">Beltoon</string>
 <string name="p_msg_ring_summary">Geluid voor inkomende berichten</string>
-
-<string name="p__display">Weergave</string>
+<string name="p_pos">Own Position Reports</string>
+<string name="p_pos_ring">Beltoon</string>
+<string name="p_pos_ring_summary">Tone for sent position reports</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
