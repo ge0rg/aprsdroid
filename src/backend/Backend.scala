@@ -9,23 +9,23 @@ object Backend {
 	val backend_collection = Map(
 		"udp" -> new BackendInfo(
 			(s, p) => new UdpUploader(p),
-			R.xml.pref_udp,
+			R.xml.backend_udp,
 			PASSCODE_REQUIRED),
 		"http" -> new BackendInfo(
 			(s, p) => new HttpPostUploader(p),
-			R.xml.pref_http,
+			R.xml.backend_http,
 			PASSCODE_REQUIRED),
 		"afsk" -> new BackendInfo(
 			(s, p) => new AfskUploader(p),
-			R.xml.pref_afsk,
+			R.xml.backend_afsk,
 			PASSCODE_NONE),
 		"tcp" -> new BackendInfo(
 			(s, p) => new TcpUploader(s, p),
-			R.xml.pref_tcp,
+			R.xml.backend_tcp,
 			PASSCODE_OPTIONAL),
 		"bluetooth" -> new BackendInfo(
 			(s, p) => new BluetoothTnc(s, p),
-			R.xml.pref_bluetooth,
+			R.xml.backend_bluetooth,
 			PASSCODE_NONE)
 		)
 
