@@ -4,6 +4,7 @@ import _root_.android.app.{Notification, NotificationManager, PendingIntent, Ser
 import _root_.android.content.{Context, Intent}
 import _root_.android.net.Uri
 import _root_.android.os.Build
+import _root_.android.os.Vibrator
 import _root_.android.graphics.Color
 
 
@@ -58,7 +59,7 @@ abstract class ServiceNotifier {
 	def start(ctx : Service, status : String)
 	def stop(ctx : Service)
 
-	def setupNotification(n : Notification, prefs : PrefsWrapper, prefix : String) {
+	def setupNotification(n : Notification, ctx : Context, prefs : PrefsWrapper, prefix : String) {
 		// set notification LED
 		if (prefs.getBoolean(prefix + "notify_led", true)) {
 			n.ledARGB = Color.YELLOW
@@ -67,7 +68,8 @@ abstract class ServiceNotifier {
 			n.flags |= Notification.FLAG_SHOW_LIGHTS
 		}
 		if (prefs.getBoolean(prefix + "notify_vibr", true)) {
-			n.vibrate = Array[Long](0, 200, 200)
+			 ctx.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
+				.vibrate(Array[Long](0, 200, 200), -1)
 		}
 		n.sound = Uri.parse(prefs.getString(prefix + "notify_ringtone", null))
 	}
@@ -76,7 +78,7 @@ abstract class ServiceNotifier {
 			call : String, message : String) {
 		val n = newMessageNotification(ctx, call, message)
 		// set notification LED
-		setupNotification(n, prefs, "")
+		setupNotification(n, ctx, prefs, "")
 		getNotificationMgr(ctx).notify(getCallNumber(call),
 			n)
 	}
@@ -88,7 +90,7 @@ abstract class ServiceNotifier {
 	def notifyPosition(ctx : Service, prefs : PrefsWrapper,
 			status : String) {
 		val n = newNotification(ctx, status)
-		setupNotification(n, prefs, "pos_")
+		setupNotification(n, ctx, prefs, "pos_")
 		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, n)
 	}
 }
