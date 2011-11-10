@@ -15,6 +15,11 @@ class PrefsWrapper(val context : Context) {
 		try { prefs.getString(key, null).trim.toInt } catch { case _ => defValue }
 	}
 
+	// safely read integers
+	def getStringFloat(key : String, defValue : Float) = {
+		try { prefs.getString(key, null).trim.toFloat } catch { case _ => defValue }
+	}
+
 	// return commonly used prefs
 	def getCallsign() = prefs.getString("callsign", "").trim()
 
