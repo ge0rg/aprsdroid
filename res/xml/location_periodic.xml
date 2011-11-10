@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	android:title="@string/p_source_periodic">
+
+        <EditTextPreference
+                android:key="interval"
+		android:inputType="number"
+		android:defaultValue="10"
+		android:title="@string/p_interval"
+		android:summary="@string/p_interval_summary"
+		android:dialogTitle="@string/p_interval_entry" />
+                
+        <EditTextPreference
+                android:key="distance"
+		android:inputType="number"
+		android:defaultValue="10"
+		android:title="@string/p_distance"
+		android:summary="@string/p_distance_summary"
+		android:dialogTitle="@string/p_distance_entry" />
+
+        <ListPreference
+                android:key="gps_activation"
+		android:title="@string/p_gps"
+		android:summary="@string/p_gps_summary"
+                android:entries="@array/p_gps_e"
+                android:entryValues="@array/p_gps_ev"
+		android:defaultValue="med"
+		android:dialogTitle="@string/p_gps_entry" />
+
+        <CheckBoxPreference
+                android:key="netloc"
+		android:title="@string/p_netloc"
+		android:summary="@string/p_netloc_summary" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
+

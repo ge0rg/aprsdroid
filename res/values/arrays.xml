@@ -15,6 +15,17 @@
 		<item>bluetooth</item>
 	</string-array>
 
+	<string-array name="p_locsource_e">
+		<item>@string/p_source_smart</item>
+		<item>@string/p_source_periodic</item>
+		<item>@string/p_source_manual</item>
+	</string-array>
+	<string-array name="p_locsource_ev">
+		<item>smartbeaconing</item>
+		<item>periodic</item>
+		<item>manual</item>
+	</string-array>
+
 	<string-array name="p_gps_e">
 		<item>@string/p_gps_always</item>
 		<item>@string/p_gps_med</item>

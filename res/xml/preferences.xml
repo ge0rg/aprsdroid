@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-	    android:title="@string/p__ham">
+	    android:title="@string/p__aprs">
             
         <EditTextPreference
                 android:key="callsign"
@@ -26,11 +26,6 @@
 			android:data="@string/passcode_url" />
 	</Preference>
 
-    </PreferenceCategory>
-
-    <PreferenceCategory
-	android:title="@string/p__aprs">
-
         <ListPreference
                 android:key="ssid"
 		android:title="@string/p_ssid"
@@ -39,12 +34,10 @@
                 android:entryValues="@array/p_ssid_ev"
 		android:defaultValue="5"
 		android:dialogTitle="@string/p_ssid_entry" />
+    </PreferenceCategory>
 
-    <!-- sub-screen "Position Reports" -->
-    <PreferenceScreen
-	    android:title="@string/p__position"
-	    android:summary="@string/p__position_summary">
-
+    <PreferenceCategory
+	android:title="@string/p__position">
         <EditTextPreference
                 android:key="symbol"
 		android:hint="@string/default_symbol"
@@ -61,47 +54,25 @@
 		android:summary="@string/p_status_summary"
 		android:dialogTitle="@string/p_status_entry" />
 
-    <PreferenceCategory
-	android:title="@string/p__location">
-
-        <CheckBoxPreference
-                android:key="smartbeaconing"
-		android:defaultValue="true"
-		android:title="@string/p_smartbeaconing"
-		android:summary="@string/p_smartbeaconing_summary" />
-
-        <EditTextPreference
-                android:key="interval"
-		android:inputType="number"
-		android:defaultValue="10"
-		android:title="@string/p_interval"
-		android:summary="@string/p_interval_summary"
-		android:dialogTitle="@string/p_interval_entry" />
-                
-        <EditTextPreference
-                android:key="distance"
-		android:inputType="number"
-		android:defaultValue="10"
-		android:title="@string/p_distance"
-		android:summary="@string/p_distance_summary"
-		android:dialogTitle="@string/p_distance_entry" />
-
+    <!-- sub-screen "Position Reports" -->
         <ListPreference
-                android:key="gps_activation"
-		android:title="@string/p_gps"
-		android:summary="@string/p_gps_summary"
-                android:entries="@array/p_gps_e"
-                android:entryValues="@array/p_gps_ev"
-		android:defaultValue="med"
-		android:dialogTitle="@string/p_gps_entry" />
+                android:key="loc_source"
+		android:title="@string/p_locsource"
+		android:summary="@string/p_locsource_summary"
+                android:entries="@array/p_locsource_e"
+                android:entryValues="@array/p_locsource_ev"
+		android:defaultValue="smartbeaconing"
+		android:dialogTitle="@string/p_locsource" />
 
-        <CheckBoxPreference
-                android:key="netloc"
-		android:title="@string/p_netloc"
-		android:summary="@string/p_netloc_summary" />
+    <PreferenceScreen
+	    android:title="@string/p__location"
+	    android:summary="@string/p__location_summary">
 
-    </PreferenceCategory>
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.LocationPrefs" />
     </PreferenceScreen>
+
     </PreferenceCategory>
 
     <PreferenceCategory

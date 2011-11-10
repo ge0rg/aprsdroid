@@ -45,6 +45,7 @@
 		/>
 	<activity android:name=".PrefsAct" android:label="@string/app_prefs" />
 	<activity android:name=".BackendPrefs" android:label="@string/app_prefs" />
+	<activity android:name=".LocationPrefs" android:label="@string/app_prefs" />
         <activity android:name=".MapAct" android:label="@string/app_map"
 		android:launchMode="singleTop"
 		android:configChanges="orientation|keyboardHidden"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	android:title="@string/p_source_manual">
+
+        <EditTextPreference
+                android:key="manual_lat"
+		android:inputType="number|numberSigned|numberDecimal"
+		android:defaultValue="0.000"
+		android:title="@string/p_source_lat"
+		android:summary=""
+		android:dialogTitle="@string/p_source_lat" />
+                
+        <EditTextPreference
+                android:key="manual_lon"
+		android:inputType="number|numberSigned|numberDecimal"
+		android:defaultValue="0.000"
+		android:title="@string/p_source_lon"
+		android:summary=""
+		android:dialogTitle="@string/p_source_lon" />
+                
+        <EditTextPreference
+                android:key="interval"
+		android:inputType="number"
+		android:defaultValue="10"
+		android:title="@string/p_interval"
+		android:summary="@string/p_interval_summary"
+		android:dialogTitle="@string/p_interval_entry" />
+                
+    </PreferenceCategory>
+</PreferenceScreen>
+
+

@@ -48,7 +48,7 @@ class AprsService extends Service {
 	lazy val db = StorageDatabase.open(this)
 
 	lazy val msgService = new MessageService(this)
-	lazy val locSource = new PeriodicGPS(this, prefs)
+	lazy val locSource = LocationSource.instanciateLocation(this, prefs)
 	lazy val msgNotifier = msgService.createMessageNotifier()
 
 	var poster : AprsIsUploader = null

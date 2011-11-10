@@ -32,6 +32,8 @@ class FixedPosition(service : AprsService, prefs : PrefsWrapper) extends Locatio
 
 	def postPosition() {
 		val location = new Location("manual")
+		location.setLatitude(prefs.getStringFloat("manual_lat", 0))
+		location.setLongitude(prefs.getStringFloat("manual_lon", 0))
 		service.postLocation(location)
 	}
 }

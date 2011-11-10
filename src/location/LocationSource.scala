@@ -7,11 +7,16 @@ object LocationSource {
 		prefs.getString("loc_source", DEFAULT_CONNTYPE) match {
 			case "smartbeaconing" => new SmartBeaconing(service, prefs)
 			case "periodic" => new PeriodicGPS(service, prefs)
-			case "fixed" => new FixedPosition(service, prefs)
+			case "manual" => new FixedPosition(service, prefs)
 		}
 		
 	}
 	def instanciatePrefsAct(prefs : PrefsWrapper) = {
+		prefs.getString("loc_source", DEFAULT_CONNTYPE) match {
+			case "smartbeaconing" => R.xml.location_periodic
+			case "periodic" => R.xml.location_periodic
+			case "manual" => R.xml.location_manual
+		}
 	}
 }
 
