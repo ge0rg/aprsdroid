@@ -6,7 +6,8 @@ import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
 import _root_.android.widget.Toast
 
-class PeriodicGPS(service : AprsService, prefs : PrefsWrapper) extends LocationListener {
+class PeriodicGPS(service : AprsService, prefs : PrefsWrapper) extends LocationSource
+		with LocationListener {
 	val TAG = "APRSdroid.PeriodicGPS"
 
 	val FAST_LANE_ACT = 30000
@@ -88,84 +89,10 @@ class PeriodicGPS(service : AprsService, prefs : PrefsWrapper) extends LocationL
 		return true
 	}
 
-	def smartBeaconSpeedRate(speed : Float) : Int = {
-		val SB_FAST_SPEED = 28 // [m/s] = ~100km/h
-		val SB_FAST_RATE = 60
-		val SB_SLOW_SPEED = 1 // [m/s] = 3.6km/h
-		val SB_SLOW_RATE = 1200
-		if (speed <= SB_SLOW_SPEED)
-			SB_SLOW_RATE
-		else if (speed >= SB_FAST_SPEED)
-			SB_FAST_RATE
-		else
-			((SB_SLOW_RATE - SB_FAST_RATE) * (SB_FAST_SPEED - speed) / (SB_FAST_SPEED-SB_SLOW_SPEED)).toInt
-	}
-
-	// returns the angle between two bearings
-	def getBearingAngle(alpha : Float, beta : Float) : Float = {
-		val delta = math.abs(alpha-beta)%360
-		if (delta <= 180) delta else (360-delta)
-	}
-	// obtain max speed in [m/s] from moved distance, last and current location
-	def getSpeed(location : Location) : Float = {
-		val dist = location.distanceTo(lastLoc)
-		val t_diff = location.getTime - lastLoc.getTime
-		math.max(math.max(dist*1000/t_diff, location.getSpeed), lastLoc.getSpeed)
-	}
-
-	def smartBeaconCornerPeg(location : Location) : Boolean = {
-		val SB_TURN_TIME = 15
-		val SB_TURN_MIN = 10
-		val SB_TURN_SLOPE = 240.0
-
-		val speed = getSpeed(location)
-		val t_diff = location.getTime - lastLoc.getTime
-		val turn = getBearingAngle(location.getBearing, lastLoc.getBearing)
-
-		// no bearing / stillstand -> no corner pegging
-		if (!location.hasBearing || speed == 0)
-			return false
-
-		// if last bearing unknown, deploy turn_time
-		if (!lastLoc.hasBearing)
-			return (t_diff/1000 >= SB_TURN_TIME)
-
-		// threshold depends on slope/speed [mph]
-		val threshold = SB_TURN_MIN + SB_TURN_SLOPE/(speed*2.23693629)
-
-		Log.d(TAG, "smartBeaconCornerPeg: %1.0f < %1.0f %d/%d".format(turn, threshold,
-			t_diff/1000, SB_TURN_TIME))
-		// need to corner peg if turn time reached and turn > threshold
-		(t_diff/1000 >= SB_TURN_TIME && turn > threshold)
-	}
-
-	// return true if current position is "new enough" vs. lastLoc
-	def smartBeaconCheck(location : Location) : Boolean = {
-		if (lastLoc == null)
-			return true
-		if (smartBeaconCornerPeg(location))
-			return true
-		val dist = location.distanceTo(lastLoc)
-		val t_diff = location.getTime - lastLoc.getTime
-		val speed = getSpeed(location)
-		//if (location.hasSpeed && location.hasBearing)
-		val speed_rate = smartBeaconSpeedRate(speed)
-		Log.d(TAG, "smartBeaconCheck: %1.0fm, %1.2fm/s -> %d/%ds - %s".format(dist, speed,
-			t_diff/1000, speed_rate, (t_diff/1000 >= speed_rate).toString))
-		if (t_diff/1000 >= speed_rate)
-			true
-		else
-			false
-	}
-
 	// LocationListener interface
 	override def onLocationChanged(location : Location) {
 		val upd_int = prefs.getStringInt("interval", 10) * 60000
 		val upd_dist = prefs.getStringInt("distance", 10) * 1000
-		if (prefs.getBoolean("smartbeaconing", true)) {
-			if (!smartBeaconCheck(location))
-				return
-		} else /* no smartbeaconing */
 		if (lastLoc != null &&
 		    (location.getTime - lastLoc.getTime < (upd_int  - getGpsInterval()) ||
 		     location.distanceTo(lastLoc) < upd_dist)) {
