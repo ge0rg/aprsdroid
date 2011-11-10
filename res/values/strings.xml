@@ -182,6 +182,7 @@
 <!-- manual position -->
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>

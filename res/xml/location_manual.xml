@@ -20,6 +20,16 @@
 		android:title="@string/p_source_lon"
 		android:summary=""
 		android:dialogTitle="@string/p_source_lon" />
+
+    <PreferenceScreen
+	    android:title="@string/p_source_get_last"
+	    android:summary="">
+
+            <intent android:action="android.intent.action.MAIN"
+		    android:data="gps2manual"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.LocationPrefs" />
+    </PreferenceScreen>
                 
         <EditTextPreference
                 android:key="interval"
