@@ -71,7 +71,9 @@ abstract class ServiceNotifier {
 			 ctx.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
 				.vibrate(Array[Long](0, 200, 200), -1)
 		}
-		n.sound = Uri.parse(prefs.getString(prefix + "notify_ringtone", null))
+		val sound = prefs.getString(prefix + "notify_ringtone", null)
+		if (sound != null)
+			n.sound = Uri.parse(sound)
 	}
 
 	def notifyMessage(ctx : Service, prefs : PrefsWrapper,
