@@ -14,6 +14,8 @@ download() {
 	pushd "$TRAN"
 	wget "$1" -O "$FN"
 	tar xvzf "$FN"
+	mv translations/*.po $PACKAGE/
+	rename 's/@[^.]*//' $PACKAGE/*.po
 	popd
 }
 
