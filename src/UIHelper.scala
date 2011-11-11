@@ -54,7 +54,7 @@ trait UIHelper extends Activity
 	}
 
 	def passcodeWarning(call : String, pass : String) {
-		import Backend._
+		import AprsIsUploader._
 		if ((defaultBackendInfo(prefs).need_passcode == PASSCODE_OPTIONAL) &&
 				!AprsPacket.passcodeAllowed(call, pass, false))
 			Toast.makeText(this, R.string.anon_warning, Toast.LENGTH_LONG).show()
@@ -62,7 +62,7 @@ trait UIHelper extends Activity
 
 
 	def passcodeConfigRequired(call : String, pass : String) : Boolean = {
-		import Backend._
+		import AprsIsUploader._
 		// a valid passcode must be entered for "required",
 		// "" and "-1" are accepted as well for "optional"
 		defaultBackendInfo(prefs).need_passcode match {
