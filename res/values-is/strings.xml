@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">Stillingar</string>
+<string name="app_map">Kort</string>
+<string name="app_hub">miðdepill</string>
+<string name="app_sta">Stöð Upplýsingar</string>
+<string name="app_messages">Messages</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Virkni</string>
+<string name="wrongpasscode">Aðgangsorð passar ekki við kallmerki</string>
+<string name="anon_warning">Án aðgangsorð verður staðsetningin þín ekki send</string>
+<string name="mininterval">Lágmarks endurnýjunar tími er 1 mínúta!</string>
+<string name="singlelog">Ein staðsetning send</string>
+<string name="startlog">Sjálfvirk staðsetning</string>
+<string name="stoplog">Sjálfvirk staðsetning stöðvuð</string>
+
+<string name="empty_logview">You have not yet sent or received any packets.\n\n
+	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
+	You can also change the application preferences from the menu.</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">% Síðasta tilkynning</string>
+<string name="map_track_call">Staða púntar %</string>
+
+<string name="map_loading">Hleð inn...</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">Stöð SSID</string>
+<string name="sta_history">Stöð saga</string>
+<string name="sta_map">Kort</string>
+<string name="sta_aprsfi">http://aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
+
+<!-- Conversations activity -->
+<string name="msg_send_new">Send message to...</string>
+<string name="msg_message_text">Message text</string>
+<string name="msg_empty_list">There are no stored conversations.</string>
+<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<!-- Message activity -->
+<string name="msg_from">Message from %s</string>
+<string name="msg_to">Message to %s</string>
+<string name="msg_abort">Abort transmission</string>
+<string name="msg_restart">Restart transmission</string>
+<string name="msg_type_rejected">rejected</string>
+<string name="msg_type_aborted">aborted</string>
+
+<!-- AprsService -->
+<string name="aprsservice">APRS þjónusta</string>
+<string name="service_once">Eitt skeiti sent út á ARPS</string>
+<string name="service_start">APRS þjónusta hafin. Sjálfvirk uppfærsla á hverri %1$d mínutu, %2$d km.</string>
+<string name="service_stop">APRS sjálfvirk þjónusta stöðvuð.</string>
+<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<!-- service result codes -->
+<string name="post_error">Error</string>
+<string name="post_incmg">received</string>
+<string name="post_info"/>
+<string name="post_connecting">Connecting to %1$s:%2$d...</string>
+<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Velkomin á APRSdroid!</string>
+<string name="fr_text">Þennan hugbúnað má aðeins notast af radíóamatörum með leyfi.</string>
+<string name="fr_text2">Þú verður að skrá kallmerkið þitt til að nota þennan hugbúnað. Til að senda út staðsetningar þarftu einnig APRS-IS aðgangsorðið.</string>
+
+<!-- about dialog -->
+<string name="ad_title">Um APRSdroid v%s</string>
+<string name="ad_copyright">Höfundaréttur © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® er skráð vörumerki Bob Bruninga (WB4APR) Íslensk þýðing TF3ARI</string>
+<string name="ad_gpl">This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_thanks">Þakkir fá:</string>
+<string name="ad_thanks_0">YL ♥♥♥ mín</string>
+<string name="ad_thanks_1">Michael, DO3BOX: Ari, TF3ARI</string>
+<string name="ad_thanks_2">Dirk, DB5OY: hvatningar og stuðning</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK útgáfa</string>
+<string name="ad_thanks_4">Matti, OH2MQK og John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_trans">\n\nÞýðing: Ari, TF3ARI</string>
+<string name="ad_homepage">Heimasíða</string>
+
+<!-- map view -->
+<string name="map_overlays">Yfirlag</string>
+<string name="map_satellite">Gervitungl</string>
+<string name="map_objects">APRS hlutir</string>
+
+<!-- map view -->
+<string name="age">Sýna síðasta...</string>
+<string name="age_30">30 mínutur</string>
+<string name="age_2h">2 tímar</string>
+<string name="age_12h">12 tímar</string>
+<string name="age_1d">1 dagur</string>
+<string name="age_2d">2 dagar</string>
+
+
+<!-- options menu -->
+<string name="about">Upplýsingar</string>
+<string name="show_hub">Sýna miðjur</string>
+<string name="show_map">Sýna kort</string>
+<string name="show_log">Sýna sögu</string>
+<string name="clear_log">Hreinsa sögu</string>
+<string name="quit">Hætta</string>
+<string name="preferences">Valmöguleikar</string>
+<!-- preferences -->
+<string name="p__ham">Amatör Radíó</string>
+<string name="p_callsign">Kallmerki</string>
+<string name="p_callsign_nossid">Kallmerki (án SSID)</string>
+<string name="p_callsign_summary">Kallmerkið þitt</string>
+<string name="p_callsign_entry">Skrifaðu kallmerkið</string>
+<string name="p_passcode">APRS-IS Aðgangsorð</string>
+<string name="p_passcode_summary">APRS-IS Löglegt aðgangsorð</string>
+<string name="p_passcode_entry">Skrifaðu aðgangsorð fyrir kallmerkið</string>
+<string name="p_passreq">Biðja um aðgangsorð</string>
+<string name="p_passreq_summary">Biðja um APRS-IS aðgangsrð á netinu</string>
+<string name="p__aprs">APRS styllingar</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Stöðva tegund (1..15; 9=Farsími, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Veldu SSID fyrir þína stöð</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(ekkert) Aðal stöðin</item>
+	<item>Búa til viðbótar stöðvar</item>
+	<item>2: búa til viðbóta stöðvar</item>
+	<item>3: Búa til enn fleiri stöðvar</item>
+	<item>4: Generic additional station</item>
+	<item>5: Aðrar stövar eins og (D-Star, 3G)</item>
+	<item>6: Gervitungl</item>
+	<item>7: Handstöðvar</item>
+	<item>8: Bátur / skip</item>
+	<item>9: Bíll</item>
+	<item>10: APRS-IS (Engin stöð)</item>
+	<item>11: Loftbelgur, Loftfar, Geimflaug :-)</item>
+	<item>12: APRStt, DTMF, ... (Ein átta)</item>
+	<item>13: Veður stöð</item>
+	<item>14: Flutninga tæki</item>
+	<item>15: Almenn viðbótar stöð</item>
+</string-array>
+<string name="p_symbol">APRS tákn</string>
+<string name="p_symbol_summary">Tákn þitt á kortinu er</string>
+<string name="p_symbol_entry">Veldur tákn skrifað sem 2 stafir</string>
+<string name="p_status">Svæði fyrir athugasemdir</string>
+<string name="p_status_summary">Texti sem kemur fyrir aftan staðsetningu</string>
+<string name="p_status_entry">Skrifaðu vita texta</string>
+<string name="p__connection">APRS tenging</string>
+<string name="p_conntype">Samskipta regla</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP eða UDP</string>
+<string name="p_conntype_entry">Veldu samskiptareglu</string>
+<string name="p_connsetup">Eiginleikar tengingar</string>
+<string name="p_connsetup_summary">Stillingar á Tengingu</string>
+<string name="p_connlog">Connection Logging</string>
+<string name="p_connlog_summary">Verbose status output in Log</string>
+<!-- array of connection types -->
+<string name="p_conn_tcp">TCP tenging</string>
+<string name="p_conn_udp">UDP (aðeins sending)</string>
+<string name="p_conn_http">HTTP POST (aðeins sending)</string>
+<string name="p_conn_afsk">AFSK gegnum hátalara</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitude</string>
+<string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
+
+<!-- connection type properties -->
+<string name="p_host">Miðlari</string>
+<string name="p_host_summary">APRS-IS miðlari (port 8080) til að senda vita signal</string>
+<string name="p_host_entry">Skrifaðu APRS-IS miðlara net nafn</string>
+<string name="p_host_hint">host:port</string>
+<string name="p__position">Position Reports</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
+<string name="p__location">Staðarstillingar</string>
+<string name="p__location_summary">Configuration for sending position reports</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_interval">Minnsti uppfærslu tími</string>
+<string name="p_interval_summary">Mínútur milli vita sendingar</string>
+<string name="p_interval_entry">Veldu uppfærslu tíman í mínútum</string>
+<string name="p_distance">Minnsti uppfærslu tíminn í fjarlægð</string>
+<string name="p_distance_summary">Kílametrar áður en vitinn sendir (veldu 0 fyrir aðeins tíma sendingu)</string>
+<string name="p_distance_entry">Veldu fjarlægð í Km á milli vitasendingar</string>
+<string name="p_speedbrg">Bíð eftir speed &amp; bearing</string>
+<string name="p_speedbrg_summary">Halda inni GPS á lengur til að fá nákvæmari staðsetningu</string>
+<string name="p_netloc">nota staðarnet staðsetningu</string>
+<string name="p_netloc_summary">Nota staðsetningu eftir farsíma senda staðsetningu</string>
+<string name="p_gps">GPS Staðar nákvæmni</string>
+<string name="p_gps_summary">Rafhlöðu notkunn á móti staðar nákvæmni</string>
+<string name="p_gps_entry">Veldu GPS nákvæmni (Staðsetningu)</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">Hátt (Alltaf á)</string>
+<string name="p_gps_med">Miðlungs</string>
+<string name="p_gps_low">Lítil</string>
+<string name="p_keepscreen">Keep screen awake</string>
+<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+
+<!-- messaging -->
+<string name="p__display">Display and Notifications</string>
+<string name="p__notification">Notifications</string>
+<string name="p__notification_summary">Alert for messages and position reports</string>
+<string name="p_msg">Incoming Messages</string>
+<string name="p_msg_led">Blinking LED</string>
+<string name="p_msg_led_on">LED notifications are on</string>
+<string name="p_msg_led_off">LED notifications are off</string>
+<string name="p_msg_vibr">Vibration</string>
+<string name="p_msg_vibr_on">Vibration notifications are on</string>
+<string name="p_msg_vibr_off">Vibration notification are off</string>
+<string name="p_msg_ring">Ringtone</string>
+<string name="p_msg_ring_summary">Tone for incoming messages</string>
+<string name="p_pos">Own Position Reports</string>
+<string name="p_pos_ring">Ringtone</string>
+<string name="p_pos_ring_summary">Tone for sent position reports</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Tíðni á digipeaters (uppfærsla)</string>
+<string name="p_aprs_path_entry">Veldu "," milli digi path</string>
+<string name="p_afsk_prefix">Frame Sync Prefix</string>
+<string name="p_afsk_prefix_summary">No-Op Preamble (t.d. fyrir VOX stjórn)</string>
+<string name="p_afsk_prefix_entry">Veldu prefix tíma [ms]</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP miðlara (port 14580) til að tengjast</string>
+<string name="p_filterdist">Hringur fyrir sambönd</string>
+<string name="p_filterdist_summary">Móttekin pakkar frá stöðvum í þessum hring</string>
+<string name="p_filterdist_entry">Hringur í kringum þig til að fylgjast með pökkum í Km</string>
+<string name="p_filter">texta sía</string>
+<string name="p_filter_hint">b/BUDDY o/hlutir ...</string>
+<string name="p_filter_summary">Sía fyrir innkomandi pakka</string>
+<string name="p_filter_entry">Veldu síu fyir innkomandi skilaboð</string>
+
+<string name="p_filterhelp">Texta sía hjalp</string>
+<string name="p_filterhelp_summary">Online ráðgjöf fyrir APRS-IS síu</string>
+
+<string name="p_sotimeout">TCP socket timeout</string>
+<string name="p_sotimeout_summary">Timi áður en tenging er endursett</string>
+<string name="p_sotimeout_entry">Timeout stærð í sec (0 = ekki valið)</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Ari Thor https://launchpad.net/~ari-a</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">Client Mode</string>
+<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
+<string name="p_bt_tnc_device">TNC Bluetooth Device</string>
+<string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
+<string name="p_bt_tnc_device_entry">Choose device</string>
+<string name="p_bt_channel">Channel</string>
+<string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
+<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+
+<string name="p_bt_prefs">Bluetooth settings</string>
+<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+
+</resources>

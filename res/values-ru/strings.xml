@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid предпочтения</string>
+<string name="app_map">APRSdroid карта</string>
+<string name="app_hub">APRSdroid Хаб</string>
+<string name="app_sta">Информация о станции</string>
+<string name="app_messages">Сообщения</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Необходимо настроить APRSdroid введите свой ​​позывной и код-пароль!</string>
+<string name="wrongpasscode">Ваш код-пароль не соответствует вашему позывнному!</string>
+<string name="anon_warning">Без пароля, ваши отчеты не будут отправляться!</string>
+<string name="mininterval">Минимальное время обновления 1 минута!</string>
+<string name="singlelog">Одиночный кадр</string>
+<string name="startlog">Запустить отслеживание</string>
+<string name="stoplog">Остановить отслеживание</string>
+
+<string name="empty_logview">You have not yet sent or received any packets.\n\n
+	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
+	You can also change the application preferences from the menu.</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Последний отчет</string>
+<string name="map_track_call">Отслеживание %s...</string>
+
+<string name="map_loading">Загрузка...</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">SSID станции</string>
+<string name="sta_history">История по станции</string>
+<string name="sta_map">Карта</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
+
+<!-- Conversations activity -->
+<string name="msg_send_new">Отправить сообщение</string>
+<string name="msg_message_text">Текст сообщения</string>
+<string name="msg_empty_list">There are no stored conversations.</string>
+<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<!-- Message activity -->
+<string name="msg_from">Message from %s</string>
+<string name="msg_to">Message to %s</string>
+<string name="msg_abort">Abort transmission</string>
+<string name="msg_restart">Restart transmission</string>
+<string name="msg_type_rejected">rejected</string>
+<string name="msg_type_aborted">aborted</string>
+
+<!-- AprsService -->
+<string name="aprsservice">APRSdroid сервис</string>
+<string name="service_once">APRSdroid Сервис отметить точку.</string>
+<string name="service_start">APRS Сервис запущен. Обновление каждую %1$d минуту, %2$d км.</string>
+<string name="service_stop">APRS сервис остановлен.</string>
+<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<!-- service result codes -->
+<string name="post_error">Error</string>
+<string name="post_incmg">received</string>
+<string name="post_info"/>
+<string name="post_connecting">Connecting to %1$s:%2$d...</string>
+<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Вас приветствует APRSdroid!</string>
+<string name="fr_text">Это программное обеспечение может использоваться при наличии лицензии радиолюбителя.</string>
+<string name="fr_text2">Вам необходимо ввести свой позывной, чтобы использовать это программное обеспечение. Чтобы отправлять пакеты на APRS-IS сервер требуется код-пароль.</string>
+
+<!-- about dialog -->
+<string name="ad_title">О APRSdroid v%s</string>
+<string name="ad_copyright">© 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® зарегистрированная торговая марка Bob Bruninga (WB4APR)</string>
+<string name="ad_gpl">This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_thanks">Благодарности:</string>
+<string name="ad_thanks_0">Моей YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: идея</string>
+<string name="ad_thanks_2">Dirk, DB5OY:мотивация и поддержка</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK реализация</string>
+<string name="ad_thanks_4">Matti, OH2MQK и John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_trans">\n\nПеревод:</string>
+<string name="ad_homepage">Домашняя страница</string>
+
+<!-- map view -->
+<string name="map_overlays">Виды карт</string>
+<string name="map_satellite">Спутник</string>
+<string name="map_objects">APRS Объекты</string>
+
+<!-- map view -->
+<string name="age">Показать последние ...</string>
+<string name="age_30">30 минут</string>
+<string name="age_2h">2 часа</string>
+<string name="age_12h">12 часов</string>
+<string name="age_1d">1 день</string>
+<string name="age_2d">2 дня</string>
+
+
+<!-- options menu -->
+<string name="about">О программе</string>
+<string name="show_hub">Показать хаб</string>
+<string name="show_map">Показать карту</string>
+<string name="show_log">Показать журнал</string>
+<string name="clear_log">Очистить журнал</string>
+<string name="quit">Выход</string>
+<string name="preferences">Параметры</string>
+<!-- preferences -->
+<string name="p__ham">Любительское радио</string>
+<string name="p_callsign">Позывной</string>
+<string name="p_callsign_nossid">Позывной (без SSID)00</string>
+<string name="p_callsign_summary">Ваш позывной</string>
+<string name="p_callsign_entry">Введите Ваш позывной</string>
+<string name="p_passcode">APRS-IS код-пароль</string>
+<string name="p_passcode_summary">APRS-IS повтор код-пароль</string>
+<string name="p_passcode_entry">Введите код-парольдля вашего позывного</string>
+<string name="p_passreq">Запрос код-пароль</string>
+<string name="p_passreq_summary">Он-Лайн запрос APRS-IS код-пароля</string>
+<string name="p__aprs">APRS Установки</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Тип станции (1..15; 9=Подвижная, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Введите SSID для вашей станции</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(нет) Первичная станция</item>
+	<item>1: Общие дополнительные станции</item>
+	<item>2: Общие дополнительные станции</item>
+	<item>3: Общие дополнительные станции</item>
+	<item>4: Общие дополнительные станции</item>
+	<item>5: Другие сети (D-Star, 3G)</item>
+	<item>Спутник</item>
+	<item>Носимая станция</item>
+	<item>8: Корабль / лодка</item>
+	<item>Подвижная станция</item>
+	<item>10: APRS-IS (нет радио)</item>
+	<item>11: Воздушный шар, самолет, космический аппарат</item>
+	<item>12: APRStt, DTMF, ... (на прием)</item>
+	<item>Метеостанция</item>
+	<item>Метеостанция</item>
+	<item>15: Общие дополнительные станции</item>
+</string-array>
+<string name="p_symbol">APRS символ</string>
+<string name="p_symbol_summary">Ваш символ для отображения карты</string>
+<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
+<string name="p_status">Комментарий</string>
+<string name="p_status_summary">Текст после ваших координат</string>
+<string name="p_status_entry">Введите сообщение маяка</string>
+<string name="p__connection">APRS подключение</string>
+<string name="p_conntype">Протокол подключения</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP или UDP</string>
+<string name="p_conntype_entry">Выбор протокола подключючения</string>
+<string name="p_connsetup">Параметры подключения</string>
+<string name="p_connsetup_summary">Конфигурация подключения</string>
+<string name="p_connlog">Connection Logging</string>
+<string name="p_connlog_summary">Verbose status output in Log</string>
+<!-- array of connection types -->
+<string name="p_conn_tcp">TCP-соединение</string>
+<string name="p_conn_udp">UDP (только отсылка)</string>
+<string name="p_conn_http">HTTP POST (только отсылка)</string>
+<string name="p_conn_afsk">AFSK через Динамики</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitude</string>
+<string name="p_source_lon">Longitude</string>
+<string name="p_source_get_last">Use last GPS position</string>
+
+<!-- connection type properties -->
+<string name="p_host">Сервер</string>
+<string name="p_host_summary">APRS-IS сервер (порт 8080) для отправки сообщений маяка</string>
+<string name="p_host_entry">Введите APRS-IS имя хоста сервера</string>
+<string name="p_host_hint">host:port</string>
+<string name="p__position">Извещения о местонахождении</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
+<string name="p__location">Местоположение</string>
+<string name="p__location_summary">Конфигурация для отправки сообщения о местоположении</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_interval">Минимальное время обновления</string>
+<string name="p_interval_summary">Минут между передачей сообщения радиомаяка</string>
+<string name="p_interval_entry">Введите интервал обновления [мин]</string>
+<string name="p_distance">Минимальное расстояние обновления</string>
+<string name="p_distance_summary">Километры для повтора сообщений маяка (0 предача через временные промежутки)</string>
+<string name="p_distance_entry">Введите расстояние для обновления [км]</string>
+<string name="p_speedbrg">Await speed &amp; bearing</string>
+<string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
+<string name="p_netloc">Использование сетевого расположения</string>
+<string name="p_netloc_summary">Запрос местонаходжения через сотовую сеть</string>
+<string name="p_gps">GPS точность</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Пожалуйста, установите Точность GPS</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">Высокий (Всегда включен)</string>
+<string name="p_gps_med">Средний</string>
+<string name="p_gps_low">Низкий</string>
+<string name="p_keepscreen">Держать экран включенным</string>
+<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+
+<!-- messaging -->
+<string name="p__display">Display and Notifications</string>
+<string name="p__notification">Notifications</string>
+<string name="p__notification_summary">Alert for messages and position reports</string>
+<string name="p_msg">Incoming Messages</string>
+<string name="p_msg_led">Мигающий светодиод</string>
+<string name="p_msg_led_on">Уведомления с помощью LED включены</string>
+<string name="p_msg_led_off">Уведомления с помощью LED отключены</string>
+<string name="p_msg_vibr">Вибрация</string>
+<string name="p_msg_vibr_on">Уведомления при помощи вибрации включены</string>
+<string name="p_msg_vibr_off">Уведомления при помощи вибрации отключены</string>
+<string name="p_msg_ring">Мелодия</string>
+<string name="p_msg_ring_summary">Мелодия для входящих сообщений</string>
+<string name="p_pos">Own Position Reports</string>
+<string name="p_pos_ring">Мелодия</string>
+<string name="p_pos_ring_summary">Tone for sent position reports</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS путь</string>
+<string name="p_aprs_path_hint">путь 1, путь 2, ...</string>
+<string name="p_aprs_path_summary">Последовательность репитеров</string>
+<string name="p_aprs_path_entry">Введите через запятую Digi пути</string>
+<string name="p_afsk_prefix">Frame Sync Prefix</string>
+<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
+<string name="p_afsk_prefix_entry">Введите префикс [мс]</string>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_filterdist">Рядом в радиусе</string>
+<string name="p_filterdist_summary">Получить пакеты от станций в этом радиусе</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p_filter">Фильтр сообщений</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Фильтр для входящих пакетов</string>
+<string name="p_filter_entry">Введите фильтр для входящих сообщений</string>
+
+<string name="p_filterhelp">Помочь Фильтр сообщений</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="p_sotimeout">TCP тайм-аут</string>
+<string name="p_sotimeout_summary">Время до сброса соединения</string>
+<string name="p_sotimeout_entry">Тайм-аут в секундах (0 = отключить)</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  RN3DLL https://launchpad.net/~rn3dll</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">Client Mode</string>
+<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
+<string name="p_bt_tnc_device">TNC Bluetooth Device</string>
+<string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
+<string name="p_bt_tnc_device_entry">Choose device</string>
+<string name="p_bt_channel">Channel</string>
+<string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
+<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+
+<string name="p_bt_prefs">Bluetooth settings</string>
+<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+
+</resources>
