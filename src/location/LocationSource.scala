@@ -13,7 +13,7 @@ object LocationSource {
 	}
 	def instanciatePrefsAct(prefs : PrefsWrapper) = {
 		prefs.getString("loc_source", DEFAULT_CONNTYPE) match {
-			case "smartbeaconing" => R.xml.location_periodic
+			case "smartbeaconing" => R.xml.location_smartbeaconing
 			case "periodic" => R.xml.location_periodic
 			case "manual" => R.xml.location_manual
 		}
