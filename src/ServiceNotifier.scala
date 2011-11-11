@@ -59,15 +59,15 @@ abstract class ServiceNotifier {
 	def start(ctx : Service, status : String)
 	def stop(ctx : Service)
 
-	def setupNotification(n : Notification, ctx : Context, prefs : PrefsWrapper, prefix : String) {
+	def setupNotification(n : Notification, ctx : Context, prefs : PrefsWrapper, default: Boolean, prefix : String) {
 		// set notification LED
-		if (prefs.getBoolean(prefix + "notify_led", true)) {
+		if (prefs.getBoolean(prefix + "notify_led", default)) {
 			n.ledARGB = Color.YELLOW
 			n.ledOnMS = 300
 			n.ledOffMS = 1000
 			n.flags |= Notification.FLAG_SHOW_LIGHTS
 		}
-		if (prefs.getBoolean(prefix + "notify_vibr", true)) {
+		if (prefs.getBoolean(prefix + "notify_vibr", default)) {
 			 ctx.getSystemService(Context.VIBRATOR_SERVICE).asInstanceOf[Vibrator]
 				.vibrate(Array[Long](0, 200, 200), -1)
 		}
@@ -80,7 +80,7 @@ abstract class ServiceNotifier {
 			call : String, message : String) {
 		val n = newMessageNotification(ctx, call, message)
 		// set notification LED
-		setupNotification(n, ctx, prefs, "")
+		setupNotification(n, ctx, prefs, true, "")
 		getNotificationMgr(ctx).notify(getCallNumber(call),
 			n)
 	}
@@ -92,7 +92,7 @@ abstract class ServiceNotifier {
 	def notifyPosition(ctx : Service, prefs : PrefsWrapper,
 			status : String) {
 		val n = newNotification(ctx, status)
-		setupNotification(n, ctx, prefs, "pos_")
+		setupNotification(n, ctx, prefs, false, "pos_")
 		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, n)
 	}
 }
