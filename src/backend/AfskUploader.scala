@@ -12,8 +12,7 @@ class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	var Digis = prefs.getString("digi_path", "WIDE1-1")
 	val output = new Afsk()
 	
-	def start() {
-	}
+	def start() = true
 
 	def update(packet : APRSPacket) : String = {
 		// Need to "parse" the packet in order to replace the Digipeaters

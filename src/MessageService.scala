@@ -12,9 +12,6 @@ class MessageService(s : AprsService) {
 	val NUM_OF_RETRIES = 7
 	val pendingSender = new Runnable() { override def run() { sendPendingMessages() } }
 
-	// lets start transmitting 30s after creation
-	scheduleNextSend(30*1000)
-
 	def createMessageNotifier() = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
 			sendPendingMessages()

@@ -59,7 +59,9 @@ object AprsIsUploader {
 abstract class AprsIsUploader(prefs : PrefsWrapper) {
 	val login = prefs.getLoginString()
 
-	def start()
+	// returns true if successfully started.
+	// when returning false, AprsService.postPosterStarted() must be called
+	def start() : Boolean
 
 	def update(packet : APRSPacket) : String
 

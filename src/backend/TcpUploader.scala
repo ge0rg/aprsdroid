@@ -15,9 +15,10 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 	val RECONNECT = 30
 	var conn : TcpSocketThread = null
 
-	createConnection()
-
-	def start() {
+	def start() = {
+		if (conn == null)
+			createConnection()
+		false
 	}
 
 	def setupFilter() : String = {
@@ -87,6 +88,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 			} catch {
 				case e : Exception => service.postAbort(e.toString())
 			}
+			service.postPosterStarted()
 			while (running) {
 				try {
 					if (need_reconnect) {

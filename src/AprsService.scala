@@ -84,6 +84,9 @@ class AprsService extends Service {
 		} else
 			showToast(getString(R.string.service_start).format(upd_int, upd_dist))
 
+		val callssid = prefs.getCallSsid()
+		ServiceNotifier.instance.start(this, callssid)
+
 		// the poster needs to be running before location updates come in
 		if (!running) {
 			running = true
@@ -91,21 +94,28 @@ class AprsService extends Service {
 
 			// register for outgoing message notifications
 			registerReceiver(msgNotifier, new IntentFilter(AprsService.MESSAGETX))
-		}
-
-		// continuous GPS tracking for single shot mode
-		val loc_info = locSource.start(singleShot)
-
-		val callssid = prefs.getCallSsid()
-		val message = "%s: %s".format(callssid, loc_info)
-		ServiceNotifier.instance.start(this, message)
+		} else
+			onPosterStarted()
 	}
 
 	def startPoster() {
 		if (poster != null)
 			poster.stop()
 		poster = AprsIsUploader.instanciateUploader(this, prefs)
-		poster.start()
+		if (poster.start())
+			onPosterStarted()
+	}
+
+	def onPosterStarted() {
+		Log.d(TAG, "onPosterStarted")
+		// (re)start location source, get location source name
+		val loc_info = locSource.start(singleShot)
+
+		val callssid = prefs.getCallSsid()
+		val message = "%s: %s".format(callssid, loc_info)
+		ServiceNotifier.instance.start(this, message)
+
+		msgService.sendPendingMessages()
 	}
 
 	override def onBind(i : Intent) : IBinder = null
@@ -225,6 +235,11 @@ class AprsService extends Service {
 
 	def postAbort(post : String) {
 		postAddPost(StorageDatabase.Post.TYPE_ERROR, R.string.post_error, post)
+	}
+	def postPosterStarted() {
+		handler.post {
+			onPosterStarted()
+		}
 	}
 
 }

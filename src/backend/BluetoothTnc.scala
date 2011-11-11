@@ -21,9 +21,10 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	var digipath = prefs.getString("digi_path", "WIDE1-1")
 	var conn : BtSocketThread = null
 
-	createConnection()
-
-	def start() {
+	def start() = {
+		if (conn == null)
+			createConnection()
+		false
 	}
 
 	def createConnection() {
@@ -107,6 +108,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			} catch {
 				case e : Exception => e.printStackTrace(); service.postAbort(e.toString())
 			}
+			service.postPosterStarted()
 			while (running) {
 				try {
 					Log.d(TAG, "waiting for data...")

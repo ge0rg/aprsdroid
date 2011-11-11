@@ -12,8 +12,7 @@ class HttpPostUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	val TAG = "APRSdroid.HttpPost"
 	val host = prefs.getString("http.server", "srvr.aprs-is.net")
 
-	def start() {
-	}
+	def start() = true
 
 	def doPost(urlString : String, content : String) : String = {
 		val client = new DefaultHttpClient()

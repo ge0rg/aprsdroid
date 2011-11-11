@@ -10,8 +10,7 @@ class UdpUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	lazy val socket = new DatagramSocket()
 	val host = prefs.getString("udp.server", "srvr.aprs-is.net")
 
-	def start() {
-	}
+	def start() = true
 
 	def update(packet : APRSPacket) : String = {
 		val (h, port) = AprsPacket.parseHostPort(host, 8080)
