@@ -8,16 +8,14 @@ import _root_.android.util.Log
 class FixedPosition(service : AprsService, prefs : PrefsWrapper) extends LocationSource {
 	val TAG = "APRSdroid.FixedPosition"
 	val periodicPoster = new Runnable() { override def run() { postPosition(); postRefresh(); } }
-	//val handler = new Handler(service)
 
-	override def start(singleShot : Boolean) {
+	override def start(singleShot : Boolean) = {
+		stop()
 		postPosition()
 		if (!singleShot)
 			postRefresh()
-	}
 
-	override def restart() {
-		stop()
+		service.getString(R.string.p_source_manual)
 	}
 
 	override def stop() {

@@ -14,13 +14,12 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 
 	var lastLoc : Location = null
 
-	def start(singleShot : Boolean) {
+	def start(singleShot : Boolean) = {
+		lastLoc = null
+		stop()
 		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 			0, 0, this)
-	}
-
-	def restart() {
-		lastLoc = null
+		service.getString(R.string.p_source_smart)
 	}
 
 	def stop() {

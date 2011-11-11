@@ -21,7 +21,7 @@ object LocationSource {
 }
 
 abstract class LocationSource {
-	def start(singleShot : Boolean)
-	def restart()
+	// the start function might be called multiple times!
+	def start(singleShot : Boolean) : String
 	def stop()
 }

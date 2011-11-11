@@ -77,7 +77,6 @@ class AprsService extends Service {
 		if (i.getAction() == SERVICE_ONCE) {
 			// if already running, we want to send immediately and continue;
 			// otherwise, we finish after a single position report
-			locSource.restart()
 			// set to true if not yet running or already running singleShot
 			singleShot = !running || singleShot
 			if (singleShot)
@@ -95,10 +94,10 @@ class AprsService extends Service {
 		}
 
 		// continuous GPS tracking for single shot mode
-		locSource.start(singleShot)
+		val loc_info = locSource.start(singleShot)
 
 		val callssid = prefs.getCallSsid()
-		val message = "%s: %d min, %d km".format(callssid, upd_int, upd_dist)
+		val message = "%s: %s".format(callssid, loc_info)
 		ServiceNotifier.instance.start(this, message)
 	}
 

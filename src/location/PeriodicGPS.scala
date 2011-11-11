@@ -17,13 +17,12 @@ class PeriodicGPS(service : AprsService, prefs : PrefsWrapper) extends LocationS
 	var lastLoc : Location = null
 	var fastLaneLoc : Location = null
 
-	def start(singleShot : Boolean) {
-		requestLocations(singleShot)
-	}
-
-	def restart() {
+	def start(singleShot : Boolean) = {
 		fastLaneLoc = null
 		lastLoc = null
+		stop()
+		requestLocations(singleShot)
+		service.getString(R.string.p_source_periodic)
 	}
 
 	def requestLocations(stay_on : Boolean) {
