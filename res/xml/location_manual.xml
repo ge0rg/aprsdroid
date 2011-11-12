@@ -5,7 +5,7 @@
     <PreferenceCategory
 	android:title="@string/p_source_manual">
 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="manual_lat"
 		android:inputType="number|numberSigned|numberDecimal"
 		android:defaultValue="0.000"
@@ -13,7 +13,7 @@
 		android:summary=""
 		android:dialogTitle="@string/p_source_lat" />
                 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="manual_lon"
 		android:inputType="number|numberSigned|numberDecimal"
 		android:defaultValue="0.000"
@@ -31,7 +31,7 @@
                     android:targetClass="org.aprsdroid.app.LocationPrefs" />
     </PreferenceScreen>
                 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="interval"
 		android:inputType="number"
 		android:defaultValue="10"

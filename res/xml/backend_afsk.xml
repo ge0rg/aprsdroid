@@ -5,7 +5,7 @@
     <PreferenceCategory
 	    android:title="@string/p_conn_afsk">
 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="digi_path"
 		android:hint="hop1,hop2,.."
 		android:defaultValue="WIDE1-1"
@@ -13,7 +13,7 @@
 		android:summary="@string/p_aprs_path_summary"
 		android:dialogTitle="@string/p_aprs_path_entry" />
 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="afsk.prefix"
 		android:inputType="number"
 		android:defaultValue="1000"

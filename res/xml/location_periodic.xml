@@ -5,7 +5,7 @@
     <PreferenceCategory
 	android:title="@string/p_source_periodic">
 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="interval"
 		android:inputType="number"
 		android:defaultValue="10"
@@ -13,7 +13,7 @@
 		android:summary="@string/p_interval_summary"
 		android:dialogTitle="@string/p_interval_entry" />
                 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="distance"
 		android:inputType="number"
 		android:defaultValue="10"
@@ -21,7 +21,7 @@
 		android:summary="@string/p_distance_summary"
 		android:dialogTitle="@string/p_distance_entry" />
 
-        <ListPreference
+        <de.duenndns.ListPreferenceWithValue
                 android:key="gps_activation"
 		android:title="@string/p_gps"
 		android:summary="@string/p_gps_summary"

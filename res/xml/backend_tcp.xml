@@ -5,7 +5,7 @@
     <PreferenceCategory
 	    android:title="@string/p_conn_tcp">
 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="tcp.server"
 		android:inputType="textUri"
 		android:title="@string/p_host"
@@ -14,7 +14,7 @@
 		android:defaultValue="euro.aprs2.net"
 		android:dialogTitle="@string/p_host_entry" />
 
-	<EditTextPreference
+	<de.duenndns.EditTextPreferenceWithValue
 		android:key="tcp.filterdist"
 		android:inputType="number"
 		android:title="@string/p_filterdist"
@@ -22,7 +22,7 @@
 		android:defaultValue="50"
 		android:dialogTitle="@string/p_filterdist_entry" />
 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="tcp.filter"
 		android:title="@string/p_filter"
 		android:summary="@string/p_filter_summary"
@@ -36,7 +36,7 @@
 		<intent android:action="android.intent.action.VIEW"
 			android:data="http://www.aprs-is.net/javAPRSFilter.aspx" />
 	</Preference>
-	<EditTextPreference
+	<de.duenndns.EditTextPreferenceWithValue
 		android:key="tcp.sotimeout"
 		android:inputType="number"
 		android:title="@string/p_sotimeout"

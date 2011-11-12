@@ -5,7 +5,7 @@
     <PreferenceCategory
 	    android:title="@string/p_conn_http">
 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="http.server"
 		android:defaultValue="@string/aprs_server"
 		android:hint="@string/p_host_hint"

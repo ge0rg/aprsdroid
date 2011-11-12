@@ -17,7 +17,7 @@
 		android:title="@string/p_bt_tnc_device"
 		android:summary="@string/p_bt_tnc_device_summary"
 		android:dialogTitle="@string/p_bt_tnc_device_entry" />
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="bt.channel"
 		android:dependency="bt.client"
 		android:inputType="number"
@@ -33,7 +33,7 @@
 			android:targetClass="com.android.settings.bluetooth.BluetoothSettings" />
 	</Preference>
 
-        <EditTextPreference
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="digi_path"
 		android:hint="hop1,hop2,.."
 		android:defaultValue="WIDE1-1"
