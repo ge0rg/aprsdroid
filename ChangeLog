@@ -1,3 +1,10 @@
+1.1.3:
+* Manual location support
+* Notifications for own position reports
+* Preferences display inline
+* Improvement for slow connections
+* New translations: Afrikaans, Icelandic, Romanian, Russian, Thai
+
 1.1.2:
 * Station symbols in Hub
 * Experimental SmartBeaconing™
