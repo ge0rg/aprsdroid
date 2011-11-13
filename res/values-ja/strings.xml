@@ -34,7 +34,7 @@
 <!-- Conversations activity -->
 <string name="msg_send_new">メッセージを送信する</string>
 <string name="msg_message_text">内容</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
+<string name="msg_empty_list">まだ格納された会話はありません。</string>
 <string name="msg_stored_offline">あなたがトラッキングを始めると、メッセージが送信されます。</string>
 <!-- Message activity -->
 <string name="msg_from">%s からのメッセージ</string>
@@ -42,7 +42,7 @@
 <string name="msg_abort">送信中止</string>
 <string name="msg_restart">送信再開</string>
 <string name="msg_type_rejected">拒否された</string>
-<string name="msg_type_aborted">中断しました</string>
+<string name="msg_type_aborted">不達</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroidサービス</string>
@@ -65,26 +65,11 @@
 <!-- about dialog -->
 <string name="ad_title">APRSdroidについて v%s</string>
 <string name="ad_copyright">著作権 © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®は Bob Bruninga (WB4APR) の登録商標です。</string>
-<string name="ad_gpl">This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	\n\n
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	\n\n
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-	\n\n
-	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-	</string>
+<string name="ad_gpl">このプログラムはフリー・ソフトウェアです。; 再分配あるいはフリー・ソフトウェア・ファウンデーションによって公表されるようなGNU一般ライセンスの条件下で修正する事が出来ます。ライセンスver.2あるいは(貴方のオプションで)以降のバージョンの何れか。\n\n このプログラムは有用であることを願い,しかし一切の保証なしに提供されています。;特定の目的に対する商品性もしくは適合性についての暗黙の保証すらありません。 詳細についてはGNU一般ライセンスを参照してください。 \n\n あなたはこのプログラムと共にGNU一般公衆利用許諾契約書のコピーを受け取り承諾しているはずです。; そうでなければ、フリー・ソフトウェア財団に手紙を書いてください。, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">協力:</string>
 <string name="ad_thanks_0">私の彼女♥♥♥</string>
 <string name="ad_thanks_1">マイケル, DO3BOX: アイデア</string>
-<string name="ad_thanks_2">Dirk, DB5OY: サポート</string>
+<string name="ad_thanks_2">Dirk, DB5OY: モチベーション と サポート</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK機能充足</string>
 <string name="ad_thanks_4">マティ, OH2MQK and ジョーン, AB0OO: Java APRS</string>
 <string name="ad_thanks_5">スマートビーコニング™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
@@ -160,21 +145,21 @@
 <string name="p_connsetup">接続詳細設定</string>
 <string name="p_connsetup_summary">接続に関する設定</string>
 <string name="p_connlog">接続情報を記録</string>
-<string name="p_connlog_summary">Verbose status output in Log</string>
+<string name="p_connlog_summary">冗長状態をログに出力する(デバック)</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP接続</string>
 <string name="p_conn_udp">UDP (送信のみ）</string>
 <string name="p_conn_http">HTTP POST (送信のみ）</string>
 <string name="p_conn_afsk">AFSK音声出力</string>
-<string name="p_conn_bt">ブルートゥース TNC</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
-<string name="p_source_manual">Manual Position</string>
-<string name="p_source_periodic">Periodic GPS/Network Position</string>
-<string name="p_source_smart">SmartBeaconing™ Position</string>
+<string name="p_source_manual">手動位置設定</string>
+<string name="p_source_periodic">周期的に GPS/ネットワーク で測位</string>
+<string name="p_source_smart">SmartBeaconing™測位</string>
 <!-- manual position -->
-<string name="p_source_lat">Latitude</string>
-<string name="p_source_lon">Longitude</string>
-<string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_lat">緯度</string>
+<string name="p_source_lon">経度</string>
+<string name="p_source_get_last">最後のGPS位置を使用</string>
 
 <!-- connection type properties -->
 <string name="p_host">送信先サーバ名</string>
@@ -182,11 +167,11 @@
 <string name="p_host_entry">APRS-ISサーバホスト名を入力</string>
 <string name="p_host_hint">ホスト名:ポート番号</string>
 <string name="p__position">レポート内容設定</string>
-<string name="p_locsource">Location Source</string>
-<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
+<string name="p_locsource">測位方法の選択</string>
+<string name="p_locsource_summary">固定,周期的 又は SmartBeaconing™</string>
 <string name="p__location">位置情報設定</string>
-<string name="p__location_summary">レポート内容設定</string>
-<string name="p_smartbeaconing">スマートビーコニング™</string>
+<string name="p__location_summary">測位方法の詳細設定</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_interval">位置情報取得間隔</string>
 <string name="p_interval_summary">GPSから位置情報を取得する間隔</string>
 <string name="p_interval_entry">取得する間隔[分]を入力</string>
@@ -208,10 +193,10 @@
 <string name="p_keepscreen_summary">APRSdroid画面が表示中の場合、画面をオフにしません。</string>
 
 <!-- messaging -->
-<string name="p__display">Display and Notifications</string>
-<string name="p__notification">Notifications</string>
-<string name="p__notification_summary">Alert for messages and position reports</string>
-<string name="p_msg">Incoming Messages</string>
+<string name="p__display">画面と通知</string>
+<string name="p__notification">通知の設定</string>
+<string name="p__notification_summary">メッセージと位置のアラート</string>
+<string name="p_msg">メッセージ受信時</string>
 <string name="p_msg_led">LED点滅</string>
 <string name="p_msg_led_on">LED通知ON</string>
 <string name="p_msg_led_off">LED通知OFF</string>
@@ -220,9 +205,9 @@
 <string name="p_msg_vibr_off">バイブレーションOFF</string>
 <string name="p_msg_ring">着信音選択</string>
 <string name="p_msg_ring_summary">メッセージ受信時の着信音を選択します。</string>
-<string name="p_pos">Own Position Reports</string>
+<string name="p_pos">位置ビーコン発信時</string>
 <string name="p_pos_ring">着信音選択</string>
-<string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_pos_ring_summary">ビーコン発信時の音を選択</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRSデジピートパス</string>
@@ -239,7 +224,7 @@
 <string name="p_filterdist_summary">ここで指定した範囲内にある局のビーコンを受信表示する</string>
 <string name="p_filterdist_entry">ビーコンを受信する範囲[km]を指定</string>
 <string name="p_filter">メッセージフィルタ</string>
-<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_hint">b/仲間 o/オブジェクト ...</string>
 <string name="p_filter_summary">受信パケットをフィルタリングする</string>
 <string name="p_filter_entry">受信文フィルタ構文を入力</string>
 
@@ -258,13 +243,13 @@
 <string name="p_bt_client">クライアント(子機)モード</string>
 <string name="p_bt_client_summary">APRSdroidは接続確立状態を維持する。</string>
 <string name="p_bt_tnc_device">BT-TNCデバイス選択</string>
-<string name="p_bt_tnc_device_summary">ブルートゥースTNCデバイスを選択</string>
+<string name="p_bt_tnc_device_summary">Bluetooth TNCデバイスを選択</string>
 <string name="p_bt_tnc_device_entry">デバイスを選択して下さい。</string>
 <string name="p_bt_channel">チャンネル選択</string>
 <string name="p_bt_channel_summary">Bluetooth信号チャンネルを選択</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
 <string name="p_bt_prefs">Bluetooth設定</string>
-<string name="p_bt_prefs_summary">有効なブルートゥース・ペアデバイスの選択</string>
+<string name="p_bt_prefs_summary">有効なBluetoothペア機器</string>
 
 </resources>
