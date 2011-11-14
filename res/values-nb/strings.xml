@@ -184,6 +184,22 @@
 <string name="p_source_lon">Longitude</string>
 <string name="p_source_get_last">Use last GPS position</string>
 
+
+<!-- privacy settings -->
+<string name="p_privacy">Position privacy</string>
+<string name="p_privacy_summary">Position ambiguity and more</string>
+<string name="p_priv_ambiguity">Position Ambiguity</string>
+<string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
+<string name="p_ambiguity_off">Off (DD° MM.mm\\')</string>
+<string name="p_ambiguity_ddmmm">1 (DD° MM.m\\')</string>
+<string name="p_ambiguity_ddmm">2 (DD° MM\\')</string>
+<string name="p_ambiguity_ddm">3 (DD° Mx\\')</string>
+<string name="p_ambiguity_dd">4 (DD°)</string>
+<string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
+<string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
+<string name="p_priv_altitude">Send Altitude</string>
+<string name="p_priv_altitude_summary">Include altitude in position reports</string>
+
 <!-- connection type properties -->
 <string name="p_host">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) for å sende beacons</string>
