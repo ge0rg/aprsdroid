@@ -73,6 +73,35 @@
                     android:targetClass="org.aprsdroid.app.LocationPrefs" />
     </PreferenceScreen>
 
+    <PreferenceScreen
+	    android:title="@string/p_privacy"
+	    android:summary="@string/p_privacy_summary">
+    <!-- incoming messages -->
+    <PreferenceCategory
+	    android:title="@string/p_privacy">
+
+        <de.duenndns.ListPreferenceWithValue
+                android:key="priv_ambiguity"
+		android:title="@string/p_priv_ambiguity"
+		android:summary="@string/p_priv_ambiguity_summary"
+                android:entries="@array/p_ambiguity_e"
+                android:entryValues="@array/p_ambiguity_ev"
+		android:defaultValue="0"
+		android:dialogTitle="@string/p_priv_ambiguity" />
+        <CheckBoxPreference
+                android:key="priv_spdbear"
+		android:title="@string/p_priv_spdbear"
+		android:summary="@string/p_priv_spdbear_summary"
+		android:defaultValue="true"
+		/>
+        <CheckBoxPreference
+                android:key="priv_altitude"
+		android:title="@string/p_priv_altitude"
+		android:summary="@string/p_priv_altitude_summary"
+		android:defaultValue="true"
+		/>
+    </PreferenceCategory>
+    </PreferenceScreen>
     </PreferenceCategory>
 
     <PreferenceCategory

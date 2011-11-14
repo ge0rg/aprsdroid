@@ -145,6 +145,19 @@ class AprsService extends Service {
 		"APDR%s".format(pi.versionName filter (_.isDigit) take 2)
 	}
 
+	def formatLoc(callssid : String, toCall : String, symbol : String,
+			status : String, location : Location) = {
+		val pos = new Position(location.getLatitude, location.getLongitude, 0,
+				     symbol(0), symbol(1))
+		pos.setPositionAmbiguity(prefs.getStringInt("priv_ambiguity", 0))
+		val status_spd = if (prefs.getBoolean("priv_spdbear", true))
+			AprsPacket.formatCourseSpeed(location) else ""
+		val status_alt = if (prefs.getBoolean("priv_altitude", true))
+			AprsPacket.formatAltitude(location) else ""
+		new APRSPacket(callssid, toCall, null, new PositionPacket(
+			pos, status_spd + status_alt + " " + status, /* messaging = */ true))
+	}
+
 	def postLocation(location : Location) {
 		val i = new Intent(UPDATE)
 		i.putExtra(LOCATION, location)
@@ -154,7 +167,7 @@ class AprsService extends Service {
 		if (symbol.length != 2)
 			symbol = getString(R.string.default_symbol)
 		val status = prefs.getString("status", getString(R.string.default_status))
-		val packet = AprsPacket.formatLoc(callssid, appVersion(), symbol, status, location)
+		val packet = formatLoc(callssid, appVersion(), symbol, status, location)
 
 		Log.d(TAG, "packet: " + packet)
 		val result = try {

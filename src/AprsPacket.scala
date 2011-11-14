@@ -53,15 +53,6 @@ object AprsPacket {
 			""
 	}
 
-	def formatLoc(callssid : String, toCall : String, symbol : String,
-			status : String, location : Location) = {
-		new APRSPacket(callssid, toCall, null, new PositionPacket(
-			new Position(location.getLatitude, location.getLongitude, 0,
-				     symbol(0), symbol(1)),
-			formatCourseSpeed(location) + formatAltitude(location) +
-			" " + status, /* messaging = */ true))
-	}
-
 	def formatMessage(callssid : String, toCall : String, dest : String,
 			message : String, msgid : String) = {
 		new APRSPacket(callssid, toCall, null, new MessagePacket(dest,

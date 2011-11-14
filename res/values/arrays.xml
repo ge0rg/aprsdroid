@@ -37,6 +37,21 @@
 		<item>low</item>
 	</string-array>
 
+	<string-array name="p_ambiguity_e">
+		<item>@string/p_ambiguity_off</item>
+		<item>@string/p_ambiguity_ddmmm</item>
+		<item>@string/p_ambiguity_ddmm</item>
+		<item>@string/p_ambiguity_ddm</item>
+		<item>@string/p_ambiguity_dd</item>
+	</string-array>
+	<string-array name="p_ambiguity_ev">
+		<item>0</item>
+		<item>4</item>
+		<item>3</item>
+		<item>2</item>
+		<item>1</item>
+	</string-array>
+
 	<string-array name="p_ssid_ev">
 		<item></item> <item>1</item> <item>2</item> <item>3</item>
 		<item>4</item> <item>5</item> <item>6</item> <item>7</item>
