@@ -32,8 +32,7 @@ class FixedPosition(service : AprsService, prefs : PrefsWrapper) extends Locatio
 	var alreadyRunning = false
 
 	override def start(singleShot : Boolean) = {
-		if (alreadyRunning)
-			stop()
+		stop()
 		alreadyRunning = true
 
 		service.registerReceiver(receiver, new IntentFilter(ALARM_ACTION))
@@ -47,7 +46,8 @@ class FixedPosition(service : AprsService, prefs : PrefsWrapper) extends Locatio
 
 	override def stop() {
 		manager.cancel(pendingIntent)
-		service.unregisterReceiver(receiver)
+		if (alreadyRunning)
+			service.unregisterReceiver(receiver)
 	}
 
 	def postRefresh() {
