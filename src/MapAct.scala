@@ -347,9 +347,6 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 	def replace_stations(s : ArrayList[Station]) {
 		stations = s
-		// work around NullPointerException in ItemizedOverlay
-		// http://groups.google.com/group/android-developers/browse_thread/thread/38b11314e34714c3
-		setLastFocusedIndex(-1)
 		Benchmark("populate") { populate() }
 		context.onPostLoad()
 	}
