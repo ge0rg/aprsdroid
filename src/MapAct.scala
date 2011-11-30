@@ -140,6 +140,9 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	def symbol2rect(symbol : String) : Rect = {
 		val alt_offset = if (symbol(0) == '/') 0 else symbolSize*6
 		val index = symbol(1) - 32
+		// check for overflow
+		if (index < 0 || index >= 6*16)
+			return new Rect(0, 0, symbolSize, symbolSize)
 		val x = (index / 16) * symbolSize + alt_offset
 		val y = (index % 16) * symbolSize
 		new Rect(x, y, x+symbolSize, y+symbolSize)
