@@ -16,6 +16,7 @@ download() {
 	tar xvzf "$FN"
 	mv translations/*.po $PACKAGE/
 	rename -f 's/@[^.]*//' $PACKAGE/*.po
+	sed -i 's/\\\\'\''/\\'\''/g' res/values-*/strings.xml
 	popd
 }
 
