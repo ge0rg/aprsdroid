@@ -171,19 +171,19 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 
 
 <!-- privacy settings -->
-<string name="p_privacy">Position privacy</string>
-<string name="p_privacy_summary">Position ambiguity and more</string>
-<string name="p_priv_ambiguity">Position Ambiguity</string>
-<string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
-<string name="p_ambiguity_off">Off (DD° MM.mm\\')</string>
+<string name="p_privacy">Privatsphäre</string>
+<string name="p_privacy_summary">Positionsungenauigkeit und mehr</string>
+<string name="p_priv_ambiguity">Positionsungenauigkeit</string>
+<string name="p_priv_ambiguity_summary">Verringerte Genauigkeit für eigene Positionsmeldungen</string>
+<string name="p_ambiguity_off">Aus (DD° MM.mm\\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\\')</string>
 <string name="p_ambiguity_ddmm">2 (DD° MM\\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
-<string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
-<string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
-<string name="p_priv_altitude">Send Altitude</string>
-<string name="p_priv_altitude_summary">Include altitude in position reports</string>
+<string name="p_priv_spdbear">Geschwindigkeit &amp; Richtung senden</string>
+<string name="p_priv_spdbear_summary">Geschwindigkeit und Richtung in Positionsmeldungen einschließen</string>
+<string name="p_priv_altitude">Höhe senden</string>
+<string name="p_priv_altitude_summary">Höhe in Positionsmeldungen einschließen</string>
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>
@@ -275,4 +275,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_bt_prefs">Bluetooth-Einstellungen</string>
 <string name="p_bt_prefs_summary">Bluetooth aktivieren, Geräte paaren...</string>
 
+<string name="bt_error_unsupported">Bluetooth is not supported!</string>
+<string name="bt_error_disabled">Please enable Bluetooth!</string>
+<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 </resources>

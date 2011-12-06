@@ -8,26 +8,24 @@
 <string name="app_sta">Πληροφορίες Σταθμού</string>
 <string name="app_messages">Μηνύματα</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
-<string name="wrongpasscode">Ο κωδικός σας δεν αντιστοιχεί στο διακριτικό κλήσης σας!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">Minimum update time is 1 minute!</string>
-<string name="singlelog">Single Shot</string>
-<string name="startlog">Start Tracking</string>
-<string name="stoplog">Stop Tracking</string>
+<string name="firstrun">Πρέπει να ρυθμίσετε το APRSdroid με το διακριτικό και τον κωδικό πρόσβασής σας!</string>
+<string name="wrongpasscode">Ο κωδικός πρόσβασης σας δεν αντιστοιχεί στο διακριτικό κλήσης σας!</string>
+<string name="anon_warning">Χωρίς κωδικό πρόσβασης, οι αναφορές σας δεν θα μεταδοθούν!</string>
+<string name="mininterval">Ελάχιστος χρόνος ενημέρωσης είναι 1 λεπτό!</string>
+<string name="singlelog">Μεμονωμένη Μετάδοση</string>
+<string name="startlog">Έναρξη Παρακολούθησης</string>
+<string name="stoplog">Διακοπή Παρακολούθησης</string>
 
-<string name="empty_logview">You have not yet sent or received any packets.\n\n
-	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
-	You can also change the application preferences from the menu.</string>
+<string name="empty_logview">Δεν έχετε στείλει ακόμη ή λάβει πακέτα. \n\n Πατήστε το κουμπί \"Μενού\" για να στείλετε μια ενιαία αναφορά ή να αρχίσετε να παρακολουθείτε την τοποθεσία σας. \n\n Μπορείτε επίσης να αλλάξετε τις προτιμήσεις εφαρμογής από το μενού.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
-<string name="map_track_call">Tracking %s...</string>
+<string name="sta_lastreport">%s Τελευταία Αναφορά</string>
+<string name="map_track_call">Παρακολούθηση %s</string>
 
 <string name="map_loading">Φόρτωση…</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">Station SSIDs</string>
+<string name="sta_ssids">SSIDs Σταθμού</string>
 <string name="sta_history">Ιστορικό Σταθμού</string>
 <string name="sta_map">Χάρτης</string>
 <string name="sta_aprsfi">aprs.fi</string>
@@ -35,76 +33,56 @@
 
 <!-- Conversations activity -->
 <string name="msg_send_new">Αποστολή μηνύματος σε...</string>
-<string name="msg_message_text">Message text</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
-<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<string name="msg_message_text">Κείμενο μηνύματος</string>
+<string name="msg_empty_list">Δεν υπάρχουν αποθηκευμένες συνομιλίες.</string>
+<string name="msg_stored_offline">Το μήνυμα θα σταλεί αμέσως μόλις ξεκινήσετε την παρακολούθηση.</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">Μήνυμα από %s</string>
+<string name="msg_to">Μήνυμα σε %s</string>
+<string name="msg_abort">Ματαίωση μετάδοσης</string>
+<string name="msg_restart">Επανεκκίνηση μετάδοσης</string>
+<string name="msg_type_rejected">απορρίφθηκε</string>
+<string name="msg_type_aborted">ματαιώθηκε</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid Service</string>
-<string name="service_once">APRS Service single shot.</string>
-<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
+<string name="aprsservice">Υπηρεσία APRSdroid</string>
+<string name="service_once">Υπηρεσία APRS μεμονωμενής μετάδοσης.</string>
+<string name="service_start">Η Υπηρεσία APRS ξεκίνησε. Ανανεώσεις κάθε %1$d λεπτά, %2$d km.</string>
 <string name="service_stop">Διακοπή υπηρεσίας APRS.</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_no_location">Χρειάζεται να ενεργοποιήσετε το GPS ή την Χρήση Ασύρματων Δικτύων για να λειτουργήσει σωστά το APRSdroid!</string>
 <!-- service result codes -->
 <string name="post_error">Σφάλμα</string>
-<string name="post_incmg">received</string>
+<string name="post_incmg">ελήφθη</string>
 <string name="post_info"/>
-<string name="post_connecting">Connecting to %1$s:%2$d...</string>
+<string name="post_connecting">Σύνδεση με %1$s:%2$d...</string>
 <string name="post_reconnect">Η σύνδεση διεκόπηκε. Επανασύνδεση σε %d δευτερόλεπτα...</string>
 
 <!-- first run dialog -->
-<string name="fr_title">Καλως ήλθατε στο APRSdroid!</string>
+<string name="fr_title">Καλώς ήλθατε στο APRSdroid!</string>
 <string name="fr_text">Η χρήση της εφαρμογής επιτρέπεται μόνο σε αδειούχους ραδιοερασιτέχνες!</string>
-<string name="fr_text2">You need to enter your callsign to use this software.
-	To forward your packets, an APRS-IS passcode is required as well.</string>
+<string name="fr_text2">Πρέπει να εισάγετε το διακριτικό σας για να χρησιμοποιήσετε αυτό το λογισμικό. Για να προωθήσετε πακέτα σας, απαιτείται επίσης ένας κωδικός πρόσβασης APRS-IS.</string>
 
 <!-- about dialog -->
-<string name="ad_title">Περί APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
-<string name="ad_gpl">This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	\n\n
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	\n\n
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-	\n\n
-	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-	</string>
+<string name="ad_title">Σχετικά με APRSdroid v%s</string>
+<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® είναι σήμα κατατεθέν του Bob Bruninga (WB4APR)</string>
+<string name="ad_gpl">Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό; Μπορείτε να το αναδιανέμετε ή/και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή δημοσιεύεται από το Ίδρυμα Ελεύθερου Λογισμικού; είτε της έκδοσης 2 της Άδειας, είτε (κατ\'επιλογή σας) οποιαδήποτε μεταγενέστερη έκδοση. \n\n Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ; χωρίς καν την υπονοούμενη εγγύηση της ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε την GNU Γενική Άδεια Δημόσιας Χρήσης για περισσότερες λεπτομέρειες. \n\n Θα πρέπει να έχετε λάβει ένα αντίγραφο της GNU General Public License μαζί με αυτό το πρόγραμμα; αν όχι, γράψτε στο Ίδρυμα Ελεύθερου Λογισμικού, Inc, 51 Franklin Street, πέμπτο όροφο, Boston, MA 02110-1301, ΗΠΑ. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Ευχαριστίες σε:</string>
-<string name="ad_thanks_0">My YL ♥♥♥</string>
-<string name="ad_thanks_1">Michael, DO3BOX: idea</string>
-<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
-<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
+<string name="ad_thanks_0">Η YL μου ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: ιδέα</string>
+<string name="ad_thanks_2">Dirk, DB5OY: κίνητρα και υποστήριξη</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK εκτέλεση</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nΜετάφραση:</string>
-<string name="ad_homepage">Ιστοσελίδα</string>
+<string name="ad_homepage">Αρχική Σελίδα</string>
 
 <!-- map view -->
-<string name="map_overlays">Overlays</string>
+<string name="map_overlays">Επικαλύψεις</string>
 <string name="map_satellite">Δορυφόρος</string>
 <string name="map_objects">Αντικείμενα APRS</string>
 
 <!-- map view -->
-<string name="age">Εμφάνιση πιο πρόσφατων...</string>
+<string name="age">Εμφάνιση των τελευταίων...</string>
 <string name="age_30">30 λεπτά</string>
 <string name="age_2h">2 ώρες</string>
 <string name="age_12h">12 ώρες</string>
@@ -113,61 +91,61 @@
 
 
 <!-- options menu -->
-<string name="about">Περί</string>
+<string name="about">Σχετικά</string>
 <string name="show_hub">Εμφάνιση Κόμβου</string>
 <string name="show_map">Εμφάνιση Χάρτη</string>
-<string name="show_log">Εμφάνιση Αρχείου Καταγραφής</string>
-<string name="clear_log">Καθαρισμός αρχείου καταγραφής</string>
+<string name="show_log">Εμφάνιση αρχείου Καταγραφής</string>
+<string name="clear_log">Καθαρισμός αρχείου Καταγραφής</string>
 <string name="quit">Έξοδος</string>
 <string name="preferences">Προτιμήσεις</string>
 <!-- preferences -->
-<string name="p__ham">Amateur Radio</string>
+<string name="p__ham">Ραδιοερασιτεχνισμός</string>
 <string name="p_callsign">Διακριτικό Κλήσης</string>
 <string name="p_callsign_nossid">Διακριτικό Κλήσης (χωρίς SSID)</string>
 <string name="p_callsign_summary">Το ραδιοερασιτεχνικό διακριτικό κλήσης σας</string>
 <string name="p_callsign_entry">Εισάγετε το διακριτικό κλήσης σας</string>
-<string name="p_passcode">APRS-IS Passcode</string>
-<string name="p_passcode_summary">APRS-IS validation passcode</string>
-<string name="p_passcode_entry">Enter the passcode for your call</string>
-<string name="p_passreq">Αίτηση για κωδικό πρόσβασης</string>
-<string name="p_passreq_summary">Request APRS-IS passcode online</string>
+<string name="p_passcode">Κωδικός Πρόσβασης APRS-IS</string>
+<string name="p_passcode_summary">Επικύρωση Κωδικού Πρόσβασης APRS-IS</string>
+<string name="p_passcode_entry">Πληκτρολογήστε τον κωδικό πρόσβασης για το διακριτικό κλήση σας</string>
+<string name="p_passreq">Αίτηση Κωδικού Πρόσβασης</string>
+<string name="p_passreq_summary">Online αίτηση κωδικού πρόσβασης APRS-IS</string>
 <string name="p__aprs">Ρυθμίσεις APRS</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Τύπος σταθμού (1..15; 9=φορητός, 10=APRS-IS)</string>
-<string name="p_ssid_entry">Enter the SSID for your station</string>
+<string name="p_ssid_entry">Πληκτρολογήστε το SSID τού σταθμού σας</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
-	<item>(none) Primary Station</item>
-	<item>1: Generic additional station</item>
-	<item>2: Generic additional station</item>
-	<item>3: Generic additional station</item>
-	<item>4: Generic additional station</item>
+	<item>(κανένας) Βασικός Σταθμός</item>
+	<item>1: Γενικός επιπλέον σταθμός</item>
+	<item>2: Γενικός επιπλέον σταθμός</item>
+	<item>3: Γενικός επιπλέον σταθμός</item>
+	<item>4: Γενικός επιπλέον σταθμός</item>
 	<item>5: Λοιπά δίκτυα (D-Star, 3G)</item>
 	<item>6: Δορυφόρος</item>
-	<item>7: Handheld radio</item>
-	<item>8: Σκάθος / πλοίο</item>
+	<item>7: Ραδιοσύστημα χειρός</item>
+	<item>8: Σκάφος / πλοίο</item>
 	<item>9: Κινητός σταθμός</item>
-	<item>10: APRS-IS (no radio)</item>
+	<item>10: APRS-IS (χωρίς ραδιοσύστημα)</item>
 	<item>11: Αερόστατο, αεροσκάφος, διαστημόπλοιο</item>
-	<item>12: APRStt, DTMF, ... (one way)</item>
+	<item>12: APRStt, DTMF, ... (μονής διαδρομής)</item>
 	<item>13: Μετεωρολογικός σταθμός</item>
-	<item>14: Freight vehicle</item>
-	<item>15: Generic additional station</item>
+	<item>14: Όχημα εμπορευματικών</item>
+	<item>15: Γενικός επιπλέον σταθμός</item>
 </string-array>
 <string name="p_symbol">Σύμβολο APRS</string>
 <string name="p_symbol_summary">Το εικονίδιό σας για εμφάνιση στο χάρτη</string>
 <string name="p_symbol_entry">Εισάγετε το σύμβολο κωδικοποιημένο ως δύο χαρακτήρες</string>
 <string name="p_status">Πεδίο περιγραφής</string>
-<string name="p_status_summary">The text after your coordinates</string>
-<string name="p_status_entry">Enter your beacon comment</string>
+<string name="p_status_summary">Το κείμενο μετά τις συντεταγμένες σας</string>
+<string name="p_status_entry">Πληκτρολογήστε το σχόλιο του beacon σας</string>
 <string name="p__connection">Σύνδεση APRS</string>
 <string name="p_conntype">Πρωτόκολλο Σύνδεσης</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP ή UDP</string>
-<string name="p_conntype_entry">Επιλογή πρωτοκόλλου σύνδεσης</string>
+<string name="p_conntype_entry">Επιλέξτε το πρωτόκολλο σύνδεσης</string>
 <string name="p_connsetup">Προτιμήσεις Σύνδεσης</string>
 <string name="p_connsetup_summary">Ρυθμίσεις Σύνδεσης</string>
-<string name="p_connlog">Connection Logging</string>
-<string name="p_connlog_summary">Verbose status output in Log</string>
+<string name="p_connlog">Σύνδεση Καταγραφής</string>
+<string name="p_connlog_summary">Λεπτομερής κατάσταση εξόδου στο Μητρώο</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">Σύνδεση TCP</string>
 <string name="p_conn_udp">UDP (μόνο αποστολή)</string>
@@ -175,119 +153,123 @@
 <string name="p_conn_afsk">AFSK μέσω Μεγαφώνου</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
-<string name="p_source_manual">Manual Position</string>
-<string name="p_source_periodic">Periodic GPS/Network Position</string>
-<string name="p_source_smart">SmartBeaconing™ Position</string>
+<string name="p_source_manual">Χειροκίνητη Τοποθεσία</string>
+<string name="p_source_periodic">Περιοδική Τοποθεσία GPS/Δικτύου</string>
+<string name="p_source_smart">Τοποθεσία SmartBeaconing™</string>
 <!-- manual position -->
-<string name="p_source_lat">Latitude</string>
-<string name="p_source_lon">Longitude</string>
-<string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_lat">Γεωγραφικό Πλάτος</string>
+<string name="p_source_lon">Γεωγραφικό Μήκος</string>
+<string name="p_source_get_last">Χρησιμοποιήστε την τελευταία τοποθεσία GPS</string>
 
 
 <!-- privacy settings -->
-<string name="p_privacy">Position privacy</string>
-<string name="p_privacy_summary">Position ambiguity and more</string>
-<string name="p_priv_ambiguity">Position Ambiguity</string>
-<string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
+<string name="p_privacy">Προστασία τοποθεσίας</string>
+<string name="p_privacy_summary">Ασάφεια τοποθεσίας και περισσότερα</string>
+<string name="p_priv_ambiguity">Ασάφεια Τοποθεσίας</string>
+<string name="p_priv_ambiguity_summary">Μειωμένη ακριβεία για τις αναφορές της τοποθεσίας σας</string>
 <string name="p_ambiguity_off">Off (DD° MM.mm\\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\\')</string>
 <string name="p_ambiguity_ddmm">2 (DD° MM\\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
-<string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
-<string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
-<string name="p_priv_altitude">Send Altitude</string>
-<string name="p_priv_altitude_summary">Include altitude in position reports</string>
+<string name="p_priv_spdbear">Αποστολή Ταχύτητας &amp; Κατεύθυνση</string>
+<string name="p_priv_spdbear_summary">Συμπεριλάβετε ταχύτητα και κατεύθυνση στις αναφορές τοποθεσίας</string>
+<string name="p_priv_altitude">Αποστολή Υψόμετρου</string>
+<string name="p_priv_altitude_summary">Συμπεριλάβετε το υψόμετρο στις αναφορές τοποθεσίας</string>
 
 <!-- connection type properties -->
 <string name="p_host">Διακομιστής</string>
-<string name="p_host_summary">Διακομιστής APRS-IS (port 8080) για αποστολή beacon</string>
-<string name="p_host_entry">Enter the APRS-IS server hostname</string>
+<string name="p_host_summary">Διακομιστής APRS-IS (port 8080) για αποστολή beacons</string>
+<string name="p_host_entry">Πληκτρολογήστε το hostname του διακομιστή APRS-IS</string>
 <string name="p_host_hint">host:port</string>
-<string name="p__position">Position Reports</string>
-<string name="p_locsource">Location Source</string>
-<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
+<string name="p__position">Αναφορές Τοποθεσίας</string>
+<string name="p_locsource">Προέλευση Τοποθεσίας</string>
+<string name="p_locsource_summary">Χειροκίνητο, Περιοδικό ή SmartBeaconing™</string>
 <string name="p__location">Ρυθμίσεις Τοποθεσίας</string>
-<string name="p__location_summary">Configuration for sending position reports</string>
+<string name="p__location_summary">Ρύθμιση για την αποστολή των αναφορών τοποθεσίας</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_interval">Minimum update time</string>
-<string name="p_interval_summary">Minutes between beacon transmissions</string>
-<string name="p_interval_entry">Enter the update interval [min]</string>
-<string name="p_distance">Minimum update distance</string>
-<string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
-<string name="p_distance_entry">Enter the update distance [km]</string>
-<string name="p_speedbrg">Await speed &amp; bearing</string>
-<string name="p_speedbrg_summary">Αφήστε το GPS ανοικτό για να λάβετε περισσότερο ακριβή δεδομένα</string>
+<string name="p_interval">Ελάχιστος χρόνος ενημέρωσης</string>
+<string name="p_interval_summary">Λεπτά μεταξύ των μεταδόσεων του beacon</string>
+<string name="p_interval_entry">Πληκτρολογήστε το χρονικό διάστημα ενημέρωσης [min]</string>
+<string name="p_distance">Ελάχιστη απόσταση ενημέρωσης</string>
+<string name="p_distance_summary">Χιλιόμετρα πριν από τη μετάδοση του beacon (ορίστε σε 0 για χρόνο-μόνο)</string>
+<string name="p_distance_entry">Εισάγετε την απόσταση ενημέρωσης [km]</string>
+<string name="p_speedbrg">Ταχύτητα αναμονής &amp; Κατεύθυνση</string>
+<string name="p_speedbrg_summary">Κρατήστε το GPS ενεργό περισσότερο χρόνο για να πάρετε πιο ακριβή δεδομένα</string>
 <string name="p_netloc">Χρήση τοποθεσίας δικτύου</string>
-<string name="p_netloc_summary">Acquire position from the cellular network</string>
+<string name="p_netloc_summary">Αποκτήστε την τοποθεσία από το δίκτυο κινητής τηλεφωνίας</string>
 <string name="p_gps">Ακρίβεια GPS</string>
-<string name="p_gps_summary">Battery usage vs. position quality</string>
-<string name="p_gps_entry">Παρακαλώ εισάγετε την ακρίβεια του GPS</string>
+<string name="p_gps_summary">Χρήση μπαταρίας vs. ποιότητα τοποθεσίας</string>
+<string name="p_gps_entry">Παρακαλώ ορίστε την Ακρίβεια του GPS</string>
 <!-- array of GPS precisions -->
 <string name="p_gps_always">Υψηλή (πάντα ενεργό)</string>
 <string name="p_gps_med">Μέση</string>
 <string name="p_gps_low">Χαμηλή</string>
-<string name="p_keepscreen">Διατήρηση της οθόνης ενεργής</string>
-<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+<string name="p_keepscreen">Διατήρηση ενεργής οθόνης</string>
+<string name="p_keepscreen_summary">Μην απενεργοποιήσετε την οθόνη όταν το APRSdroid είναι σε πρώτο πλάνο</string>
 
 <!-- messaging -->
-<string name="p__display">Display and Notifications</string>
-<string name="p__notification">Notifications</string>
-<string name="p__notification_summary">Alert for messages and position reports</string>
-<string name="p_msg">Incoming Messages</string>
-<string name="p_msg_led">Blinking LED</string>
-<string name="p_msg_led_on">Ειδοποιήσεις μέσω LED ενεργές</string>
+<string name="p__display">Οθόνη και Ειδοποιήσεις</string>
+<string name="p__notification">Ειδοποιήσεις</string>
+<string name="p__notification_summary">Ειδοποίηση για μηνύματα και αναφορές τοποθεσίας</string>
+<string name="p_msg">Εισερχόμενα μηνύματα</string>
+<string name="p_msg_led">Ειδοποίηση μέσω LED</string>
+<string name="p_msg_led_on">Ειδοποιήσεις μέσω LED ενεργοποιημένες</string>
 <string name="p_msg_led_off">Ειδοποιήσεις μέσω LED απενεργοποιημένες</string>
 <string name="p_msg_vibr">Δόνηση</string>
-<string name="p_msg_vibr_on">Ειδοποιήσεις μέσω δόνησης ενεργές</string>
+<string name="p_msg_vibr_on">Ειδοποιήσεις μέσω δόνησης ενεργοποιημένες</string>
 <string name="p_msg_vibr_off">Ειδοποιήσεις μέσω δόνησης απενεργοποιημένες</string>
 <string name="p_msg_ring">Ήχος ειδοποιήσεων</string>
-<string name="p_msg_ring_summary">Tone for incoming messages</string>
-<string name="p_pos">Own Position Reports</string>
+<string name="p_msg_ring_summary">Ήχος για εισερχόμενα μηνύματα</string>
+<string name="p_pos">Οι Αναφορές Τοποθεσίας μου</string>
 <string name="p_pos_ring">Ήχος ειδοποιήσεων</string>
-<string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_pos_ring_summary">Ήχος αποσταλμένων αναφορών τοποθεσίας</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
 <string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
-<string name="p_aprs_path_summary">Sequence of digipeaters</string>
-<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
-<string name="p_afsk_prefix">Frame Sync Prefix</string>
-<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
-<string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
+<string name="p_aprs_path_summary">Ακολουθία ψηφιακών αναμεταδοτών</string>
+<string name="p_aprs_path_entry">Πληκτρολογήστε με κόμμα, χωριστά τα digi path</string>
+<string name="p_afsk_prefix">Συγχρονισμένο Πλαίσιο Προθέματος</string>
+<string name="p_afsk_prefix_summary">Εισαγωγή No-Op (π.χ. για τον έλεγχο του VOX)</string>
+<string name="p_afsk_prefix_entry">Εισάγετε το πρόθεμα ώρας [ms]</string>
 
 <!-- TCP server settings -->
-<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
-<string name="p_filterdist">Neighbor radius</string>
-<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
-<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p_tcp_server_summary">Διακομιστής TCP APRS-IS (port 14580) για επαφή</string>
+<string name="p_filterdist">Τοπική ακτίνα δράσης</string>
+<string name="p_filterdist_summary">Λάβετε πακέτα από σταθμούς σε αυτή την ακτίνα δράσης</string>
+<string name="p_filterdist_entry">Ακτίνα δράσης γύρω σας για παρακολούθηση πακέτων [km]</string>
 <string name="p_filter">Φίλτρο μηνύματος</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
-<string name="p_filter_summary">Φιλτράρισμα εισερχόμενων πακέτων</string>
+<string name="p_filter_summary">Φίλτρο εισερχόμενων πακέτων</string>
 <string name="p_filter_entry">Εισάγετε φίλτρο για τα εισερχόμενα μηνύματα</string>
 
-<string name="p_filterhelp">Βοήθεια για φίλτρα μηνυμάτων</string>
-<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+<string name="p_filterhelp">Βοήθεια φίλτρου μηνυμάτων</string>
+<string name="p_filterhelp_summary">Σύσταση online για φίλτρα APRS-IS</string>
 
-<string name="p_sotimeout">TCP socket timeout</string>
-<string name="p_sotimeout_summary">Time before resetting the connection</string>
-<string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+<string name="p_sotimeout">Χρονικό όριο TCP socket</string>
+<string name="p_sotimeout_summary">Χρόνος πριν την επαναφορά της σύνδεσης</string>
+<string name="p_sotimeout_entry">Τιμή χρονικού ορίου σε δευτερόλεπτα (0 = απενεργοποίηση)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Ath.Bouliakoudis https://launchpad.net/~sv2ctv
   Ioannis K https://launchpad.net/~kioan20
   Stathis Iosifidis https://launchpad.net/~diamond-gr</string>
 
 <!-- Bluetooth TNC settings -->
-<string name="p_bt_client">Client Mode</string>
-<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
+<string name="p_bt_client">Λειτουργία Πελάτη</string>
+<string name="p_bt_client_summary">Το APRSdroid καθιερώνει τη σύνδεση (Κρατήστε το ενεργοποιημένο!)</string>
 <string name="p_bt_tnc_device">Συσκευή Bluetooth TNC</string>
-<string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
+<string name="p_bt_tnc_device_summary">Επιλέξτε το TNC σας από τις αξιόπιστες συσκευές</string>
 <string name="p_bt_tnc_device_entry">Επιλέξτε συσκευή</string>
 <string name="p_bt_channel">Κανάλι</string>
-<string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
-<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+<string name="p_bt_channel_summary">Κανάλι Bluetooth στο TNC</string>
+<string name="p_bt_channel_entry">Πληκτρολογήστε το κανάλι (πιο συχνά: "1"; άδειο για SPP)</string>
 
 <string name="p_bt_prefs">Ρυθμίσεις Bluetooth</string>
-<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+<string name="p_bt_prefs_summary">Ενεργοποίηση Bluetooth, αντιστοίχιση συσκευών...</string>
 
+<string name="bt_error_unsupported">Bluetooth is not supported!</string>
+<string name="bt_error_disabled">Please enable Bluetooth!</string>
+<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 </resources>

@@ -53,7 +53,7 @@
 <string name="service_stop">APRS сервис остановлен.</string>
 <string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
+<string name="post_error">Oшибка</string>
 <string name="post_incmg">received</string>
 <string name="post_info"/>
 <string name="post_connecting">Connecting to %1$s:%2$d...</string>
@@ -174,8 +174,8 @@
 <string name="p_source_periodic">Periodic GPS/Network Position</string>
 <string name="p_source_smart">SmartBeaconing™ Position</string>
 <!-- manual position -->
-<string name="p_source_lat">Latitude</string>
-<string name="p_source_lon">Longitude</string>
+<string name="p_source_lat">Широта</string>
+<string name="p_source_lon">Долгота</string>
 <string name="p_source_get_last">Use last GPS position</string>
 
 
@@ -229,7 +229,7 @@
 <string name="p__display">Display and Notifications</string>
 <string name="p__notification">Notifications</string>
 <string name="p__notification_summary">Alert for messages and position reports</string>
-<string name="p_msg">Incoming Messages</string>
+<string name="p_msg">Входящие сообщения</string>
 <string name="p_msg_led">Мигающий светодиод</string>
 <string name="p_msg_led_on">Уведомления с помощью LED включены</string>
 <string name="p_msg_led_off">Уведомления с помощью LED отключены</string>
@@ -269,6 +269,7 @@
 <string name="p_sotimeout_entry">Тайм-аут в секундах (0 = отключить)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Aleksey Kabanov https://launchpad.net/~ak099
   RN3DLL https://launchpad.net/~rn3dll</string>
 
 <!-- Bluetooth TNC settings -->
@@ -277,11 +278,14 @@
 <string name="p_bt_tnc_device">TNC Bluetooth Device</string>
 <string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
 <string name="p_bt_tnc_device_entry">Choose device</string>
-<string name="p_bt_channel">Channel</string>
+<string name="p_bt_channel">Канал</string>
 <string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
 <string name="p_bt_prefs">Bluetooth settings</string>
 <string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
 
+<string name="bt_error_unsupported">Bluetooth is not supported!</string>
+<string name="bt_error_disabled">Please enable Bluetooth!</string>
+<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 </resources>

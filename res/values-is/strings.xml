@@ -284,4 +284,7 @@
 <string name="p_bt_prefs">Bluetooth settings</string>
 <string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
 
+<string name="bt_error_unsupported">Bluetooth is not supported!</string>
+<string name="bt_error_disabled">Please enable Bluetooth!</string>
+<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 </resources>

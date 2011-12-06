@@ -2,7 +2,7 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_prefs">Preferències APRSdroid</string>
 <string name="app_map">APRSdroid Mapa</string>
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Informació de l\'estació</string>
@@ -27,9 +27,9 @@
 <string name="map_loading">Loading...</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">Station SSIDs</string>
+<string name="sta_ssids">SSID d\'estació</string>
 <string name="sta_history">Station History</string>
-<string name="sta_map">Map</string>
+<string name="sta_map">Mapa</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -290,4 +290,7 @@
 <string name="p_bt_prefs">Bluetooth settings</string>
 <string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
 
+<string name="bt_error_unsupported">Bluetooth is not supported!</string>
+<string name="bt_error_disabled">Please enable Bluetooth!</string>
+<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 </resources>

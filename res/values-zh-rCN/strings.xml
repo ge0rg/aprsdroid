@@ -268,4 +268,7 @@
 <string name="p_bt_prefs">蓝牙设置</string>
 <string name="p_bt_prefs_summary">打开蓝牙，配对设备...</string>
 
+<string name="bt_error_unsupported">Bluetooth is not supported!</string>
+<string name="bt_error_disabled">Please enable Bluetooth!</string>
+<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 </resources>

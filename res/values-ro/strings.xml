@@ -2,16 +2,16 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">Configurare APRSdroid</string>
-<string name="app_map">APRSdroid Map</string>
+<string name="app_prefs">Preferinte APRSdroid</string>
+<string name="app_map">Harta APRSdroid</string>
 <string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Station Info</string>
-<string name="app_messages">Messages</string>
+<string name="app_sta">Info statie</string>
+<string name="app_messages">Mesaje</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
-<string name="wrongpasscode">Your passcode does not match your callsign!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">Minimum update time is 1 minute!</string>
+<string name="firstrun">Trebuie sa configurati APRSdroid cu indicativul si parola dvs.!</string>
+<string name="wrongpasscode">Parola dvs. nu se potriveste cu indicativul dvs.!</string>
+<string name="anon_warning">Fara parola dvs. rapoartele dvs. nu se propaga!</string>
+<string name="mininterval">Timpul minim pentru actualizare este de 1 min.!</string>
 <string name="singlelog">Single Shot</string>
 <string name="startlog">Start Tracking</string>
 <string name="stoplog">Stop Tracking</string>
@@ -21,53 +21,52 @@
 	You can also change the application preferences from the menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
-<string name="map_track_call">Tracking %s...</string>
+<string name="sta_lastreport">%s Ultimul raport</string>
+<string name="map_track_call">Urmarire %s...</string>
 
 <string name="map_loading">Se încarcă...</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">Station SSIDs</string>
-<string name="sta_history">Station History</string>
-<string name="sta_map">Hartă</string>
-<string name="sta_aprsfi">aaa</string>
+<string name="sta_ssids">SSIDuri statie</string>
+<string name="sta_history">Istoric statie</string>
+<string name="sta_map">Harta</string>
+<string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
+<string name="msg_send_new">Trimite mesaj catre...</string>
+<string name="msg_message_text">Text mesaj</string>
+<string name="msg_empty_list">Nu există conversaţii stocate.</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">Mesaj de la %s</string>
+<string name="msg_to">Mesaj catre %s</string>
+<string name="msg_abort">Opreste transmisia</string>
+<string name="msg_restart">Reporneste transmisia</string>
+<string name="msg_type_rejected">respinsa</string>
+<string name="msg_type_aborted">abandonat</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid Service</string>
+<string name="aprsservice">Serviciu APRSdroid</string>
 <string name="service_once">APRS Service single shot.</string>
-<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
-<string name="service_stop">APRS Service stopped.</string>
+<string name="service_start">Serviciu APRS pornit. Actualizare la %1$d min., %2$d km.</string>
+<string name="service_stop">Serviciu APRS oprit.</string>
 <string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_error">Eroare</string>
+<string name="post_incmg">receptionat</string>
 <string name="post_info"/>
-<string name="post_connecting">Connecting to %1$s:%2$d...</string>
-<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+<string name="post_connecting">Conectare la %1$s:%2$d...</string>
+<string name="post_reconnect">Conexiune pierduta. Reconectare in %d secunde...</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Welcome to APRSdroid!</string>
-<string name="fr_text">This software may only be used by licensed amateur radio
-	operators!</string>
+<string name="fr_text">Acest software poate fi utilizat numai de către radioamatorii licenţiaţi !</string>
 <string name="fr_text2">You need to enter your callsign to use this software.
 	To forward your packets, an APRS-IS passcode is required as well.</string>
 
 <!-- about dialog -->
-<string name="ad_title">About APRSdroid v%s</string>
+<string name="ad_title">Despre APRSdroid v%s</string>
 <string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
@@ -96,16 +95,16 @@
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
-<string name="ad_trans">\n\nTranslation:</string>
+<string name="ad_trans">\n\nTraducere:</string>
 <string name="ad_homepage">Pagină de start</string>
 
 <!-- map view -->
 <string name="map_overlays">Overlays</string>
 <string name="map_satellite">Satelit</string>
-<string name="map_objects">APRS Objects</string>
+<string name="map_objects">Obiecte APRS</string>
 
 <!-- map view -->
-<string name="age">Show last...</string>
+<string name="age">Arata ultimele...</string>
 <string name="age_30">30 minute</string>
 <string name="age_2h">2 ore</string>
 <string name="age_12h">12 ore</string>
@@ -114,28 +113,28 @@
 
 
 <!-- options menu -->
-<string name="about">Despre aplicaţie</string>
+<string name="about">Despre aplicație</string>
 <string name="show_hub">Show Hub</string>
-<string name="show_map">Show Map</string>
-<string name="show_log">Arată Jurnal</string>
-<string name="clear_log">Clear Log</string>
-<string name="quit">Ieşire</string>
-<string name="preferences">Preferinţe</string>
+<string name="show_map">Arata Harta</string>
+<string name="show_log">Arata Jurnal</string>
+<string name="clear_log">Sterge Jurnal</string>
+<string name="quit">Închide</string>
+<string name="preferences">Configurare</string>
 <!-- preferences -->
-<string name="p__ham">Radio amator</string>
-<string name="p_callsign">Identificator</string>
-<string name="p_callsign_nossid">Callsign (without SSID)</string>
-<string name="p_callsign_summary">Your HAM radio callsign</string>
-<string name="p_callsign_entry">Enter your callsign</string>
-<string name="p_passcode">APRS-IS Passcode</string>
-<string name="p_passcode_summary">APRS-IS validation passcode</string>
-<string name="p_passcode_entry">Enter the passcode for your call</string>
+<string name="p__ham">Radioamator</string>
+<string name="p_callsign">Indicativ</string>
+<string name="p_callsign_nossid">Indicativ (fara SSID)</string>
+<string name="p_callsign_summary">Indicativul dvs. de radioamator</string>
+<string name="p_callsign_entry">Introduceti indicativul dvs.</string>
+<string name="p_passcode">Parola APRS-IS</string>
+<string name="p_passcode_summary">Parola validare APRS-IS</string>
+<string name="p_passcode_entry">Introduceti parola pentru indicativul dvs.</string>
 <string name="p_passreq">Request Passcode</string>
 <string name="p_passreq_summary">Request APRS-IS passcode online</string>
-<string name="p__aprs">APRS Settings</string>
+<string name="p__aprs">Configurare APRS</string>
 <string name="p_ssid">SSID</string>
-<string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
-<string name="p_ssid_entry">Enter the SSID for your station</string>
+<string name="p_ssid_summary">Tip Statie (1..15; 9=Mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Introduceti SSID pentru statia dvs.</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
 	<item>(none) Primary Station</item>
@@ -155,11 +154,11 @@
 	<item>14: Freight vehicle</item>
 	<item>15: Generic additional station</item>
 </string-array>
-<string name="p_symbol">APRS symbol</string>
-<string name="p_symbol_summary">Your symbol for map display</string>
+<string name="p_symbol">Simbol APRS</string>
+<string name="p_symbol_summary">Simbolul dvs. pentru afisarea pe Harta</string>
 <string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
-<string name="p_status">Comment field</string>
-<string name="p_status_summary">The text after your coordinates</string>
+<string name="p_status">Cimpul Comentariu</string>
+<string name="p_status_summary">Textul de dupa coordonatele dvs.</string>
 <string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Connection Protocol</string>
@@ -291,4 +290,7 @@
 <string name="p_bt_prefs">Bluetooth settings</string>
 <string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
 
+<string name="bt_error_unsupported">Bluetooth is not supported!</string>
+<string name="bt_error_disabled">Please enable Bluetooth!</string>
+<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 </resources>
