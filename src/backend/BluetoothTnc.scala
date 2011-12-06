@@ -31,11 +31,15 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		Log.d(TAG, "BluetoothTnc.createConnection: " + tncmac)
 		val adapter = BluetoothAdapter.getDefaultAdapter()
 		if (adapter == null) {
-			service.postAbort("Bluetooth not supported!")
+			service.postAbort(service.getString(R.string.bt_error_unsupported))
 			return
 		}
 		if (!adapter.isEnabled()) {
-			service.postAbort("Bluetooth not enabled!")
+			service.postAbort(service.getString(R.string.bt_error_disabled))
+			return
+		}
+		if (bt_client && tncmac == null) {
+			service.postAbort(service.getString(R.string.bt_error_no_tnc))
 			return
 		}
 
