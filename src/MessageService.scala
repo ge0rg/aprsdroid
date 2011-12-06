@@ -18,6 +18,12 @@ class MessageService(s : AprsService) {
 		}
 	}
 
+	def storeNotifyMessage(ts : Long, srccall : String, msg : MessagePacket) {
+		val is_new = s.db.addMessage(ts, srccall, msg)
+		if (is_new)
+			ServiceNotifier.instance.notifyMessage(s, s.prefs, srccall, msg.getMessageBody())
+	}
+
 	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
 		val callssid = s.prefs.getCallSsid()
 		if (msg.getTargetCallsign() == callssid) {
@@ -28,17 +34,20 @@ class MessageService(s : AprsService) {
 					StorageDatabase.Message.TYPE_OUT_REJECTED
 				s.db.updateMessageAcked(ap.getSourceCall(), msg.getMessageNumber(), new_type)
 			} else {
-				val is_new = s.db.addMessage(ts, ap.getSourceCall(), msg)
+				storeNotifyMessage(ts, ap.getSourceCall(), msg)
 				if (msg.getMessageNumber() != "") {
 					// we need to send an ack
 					val ack = AprsPacket.formatMessage(callssid, s.appVersion(), ap.getSourceCall(), "ack", msg.getMessageNumber())
 					val status = s.poster.update(ack)
 					s.addPost(StorageDatabase.Post.TYPE_POST, status, ack.toString)
 				}
-				if (is_new)
-					ServiceNotifier.instance.notifyMessage(s, s.prefs, 
-						ap.getSourceCall(), msg.getMessageBody())
 			}
+			s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, ap.toString))
+		} else if (msg.getTargetCallsign().split("-")(0) == s.prefs.getCallsign() &&
+				!msg.isAck() && !msg.isRej()) {
+			// incoming message for a different ssid of our callsign
+			Log.d(TAG, "incoming message for " + msg.getTargetCallsign())
+			storeNotifyMessage(ts, ap.getSourceCall(), msg)
 			s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, ap.toString))
 		}
 	}
