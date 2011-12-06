@@ -61,7 +61,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	class BtSocketThread(ba : BluetoothAdapter, tnc : BluetoothDevice)
 			extends Thread("APRSdroid Bluetooth connection") {
 		val TAG = "BtSocketThread"
-		var running = false
+		var running = true
 		var socket : BluetoothSocket = null
 		var reader : KissReader = null
 		var writer : KissWriter = null
@@ -96,7 +96,6 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			this.synchronized {
 				reader = new KissReader(socket.getInputStream())
 				writer = new KissWriter(socket.getOutputStream())
-				running = true
 			}
 			Log.d(TAG, "init_socket() done")
 		}
@@ -105,10 +104,10 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			Log.d(TAG, "BtSocketThread.run()")
 			try {
 				init_socket()
+				service.postPosterStarted()
 			} catch {
-				case e : Exception => e.printStackTrace(); service.postAbort(e.toString())
+				case e : Exception => e.printStackTrace(); service.postAbort(e.toString()); running = false;
 			}
-			service.postPosterStarted()
 			while (running) {
 				try {
 					Log.d(TAG, "waiting for data...")

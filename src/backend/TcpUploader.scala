@@ -55,7 +55,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 	class TcpSocketThread(host : String, port : Int)
 			extends Thread("APRSdroid TCP connection") {
 		val TAG = "APRSdroid.TcpSocketThread"
-		var running = false
+		var running = true
 		var socket : Socket = null
 		var reader : BufferedReader = null
 		var writer : PrintWriter = null
@@ -65,6 +65,10 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
 				service.getString(R.string.post_connecting, host, port.asInstanceOf[AnyRef]))
 			this.synchronized {
+				if (!running) {
+					Log.d(TAG, "init_socket() aborted")
+					return;
+				}
 				socket = new Socket(host, port)
 				socket.setKeepAlive(true)
 				socket.setSoTimeout(so_timeout*1000)
@@ -74,7 +78,6 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 						socket.getOutputStream()), true)
 				Log.d(TAG, login + setupFilter())
 				writer.println(login + setupFilter())
-				running = true
 			}
 			Log.d(TAG, "init_socket() done")
 		}
@@ -85,10 +88,10 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 			Log.d(TAG, "TcpSocketThread.run()")
 			try {
 				init_socket()
+				service.postPosterStarted()
 			} catch {
-				case e : Exception => service.postAbort(e.toString())
+				case e : Exception => service.postAbort(e.toString()); running = false
 			}
-			service.postPosterStarted()
 			while (running) {
 				try {
 					if (need_reconnect) {
