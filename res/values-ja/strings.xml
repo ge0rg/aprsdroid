@@ -150,7 +150,7 @@
 <string name="p_conn_tcp">TCP接続</string>
 <string name="p_conn_udp">UDP (送信のみ）</string>
 <string name="p_conn_http">HTTP POST (送信のみ）</string>
-<string name="p_conn_afsk">AFSK音声出力</string>
+<string name="p_conn_afsk">AFSK信号スピーカー出力</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">手動位置設定</string>
@@ -167,13 +167,13 @@
 <string name="p_privacy_summary">位置を曖昧にする設定</string>
 <string name="p_priv_ambiguity">位置を曖昧に</string>
 <string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
-<string name="p_ambiguity_off">Off (度度° 分分.mm\\')形式</string>
-<string name="p_ambiguity_ddmmm">1 (度度° 分分.m\\')</string>
-<string name="p_ambiguity_ddmm">2 (度度° 分分\\')</string>
-<string name="p_ambiguity_ddm">3 (度度° 分x\\')</string>
+<string name="p_ambiguity_off">Off (度度° 分分.mm\')形式</string>
+<string name="p_ambiguity_ddmmm">1 (度度° 分分.m\')</string>
+<string name="p_ambiguity_ddmm">2 (度度° 分分\')</string>
+<string name="p_ambiguity_ddm">3 (度度° 分x\')</string>
 <string name="p_ambiguity_dd">4 (度度°)</string>
-<string name="p_priv_spdbear">スピード &amp; 関係 を含める</string>
-<string name="p_priv_spdbear_summary">位置情報に速度関係を含みます</string>
+<string name="p_priv_spdbear">スピード &amp; 方位 を含める</string>
+<string name="p_priv_spdbear_summary">位置情報に速度&amp;方位を含めます</string>
 <string name="p_priv_altitude">高度を含める</string>
 <string name="p_priv_altitude_summary">位置情報に高度を含みます</string>
 
@@ -268,7 +268,7 @@
 <string name="p_bt_prefs">Bluetooth設定</string>
 <string name="p_bt_prefs_summary">有効なBluetoothペア機器</string>
 
-<string name="bt_error_unsupported">Bluetooth is not supported!</string>
-<string name="bt_error_disabled">Please enable Bluetooth!</string>
-<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+<string name="bt_error_unsupported">Bluetoothはサポートされていません!</string>
+<string name="bt_error_disabled">Bluetoothを有効にしてください!</string>
+<string name="bt_error_no_tnc">Bluetooth-TNCの設定をして下さい!</string>
 </resources>

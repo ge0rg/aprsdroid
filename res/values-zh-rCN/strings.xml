@@ -167,10 +167,10 @@
 <string name="p_privacy_summary">Position ambiguity and more</string>
 <string name="p_priv_ambiguity">Position Ambiguity</string>
 <string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
-<string name="p_ambiguity_off">Off (DD° MM.mm\\')</string>
-<string name="p_ambiguity_ddmmm">1 (DD° MM.m\\')</string>
-<string name="p_ambiguity_ddmm">2 (DD° MM\\')</string>
-<string name="p_ambiguity_ddm">3 (DD° Mx\\')</string>
+<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
+<string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
+<string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
 <string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
 <string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
@@ -252,6 +252,7 @@
 <string name="p_sotimeout_entry">超时值(0为关闭，单位:秒)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  BG7NQF https://launchpad.net/~nijia
   bg6jji https://launchpad.net/~bg6jji
   zhuye https://launchpad.net/~zhuye</string>
 
@@ -268,7 +269,7 @@
 <string name="p_bt_prefs">蓝牙设置</string>
 <string name="p_bt_prefs_summary">打开蓝牙，配对设备...</string>
 
-<string name="bt_error_unsupported">Bluetooth is not supported!</string>
-<string name="bt_error_disabled">Please enable Bluetooth!</string>
-<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+<string name="bt_error_unsupported">蓝牙未被支持!</string>
+<string name="bt_error_disabled">请启用蓝牙!</string>
+<string name="bt_error_no_tnc">请配置蓝牙TNC设备!</string>
 </resources>

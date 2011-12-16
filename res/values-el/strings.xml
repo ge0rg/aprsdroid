@@ -167,10 +167,10 @@
 <string name="p_privacy_summary">Ασάφεια τοποθεσίας και περισσότερα</string>
 <string name="p_priv_ambiguity">Ασάφεια Τοποθεσίας</string>
 <string name="p_priv_ambiguity_summary">Μειωμένη ακριβεία για τις αναφορές της τοποθεσίας σας</string>
-<string name="p_ambiguity_off">Off (DD° MM.mm\\')</string>
-<string name="p_ambiguity_ddmmm">1 (DD° MM.m\\')</string>
-<string name="p_ambiguity_ddmm">2 (DD° MM\\')</string>
-<string name="p_ambiguity_ddm">3 (DD° Mx\\')</string>
+<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
+<string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
+<string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
 <string name="p_priv_spdbear">Αποστολή Ταχύτητας &amp; Κατεύθυνση</string>
 <string name="p_priv_spdbear_summary">Συμπεριλάβετε ταχύτητα και κατεύθυνση στις αναφορές τοποθεσίας</string>
@@ -269,7 +269,7 @@
 <string name="p_bt_prefs">Ρυθμίσεις Bluetooth</string>
 <string name="p_bt_prefs_summary">Ενεργοποίηση Bluetooth, αντιστοίχιση συσκευών...</string>
 
-<string name="bt_error_unsupported">Bluetooth is not supported!</string>
-<string name="bt_error_disabled">Please enable Bluetooth!</string>
-<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+<string name="bt_error_unsupported">Το Bluetooth δεν υποστηρίζεται!</string>
+<string name="bt_error_disabled">Παρακαλούμε ενεργοποιήστε το Bluetooth!</string>
+<string name="bt_error_no_tnc">Παρακαλούμε διαμορφώστε το TNC Bluetooth!</string>
 </resources>

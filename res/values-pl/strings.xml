@@ -168,10 +168,10 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_privacy_summary">Position ambiguity and more</string>
 <string name="p_priv_ambiguity">Position Ambiguity</string>
 <string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
-<string name="p_ambiguity_off">Off (DD° MM.mm\\')</string>
-<string name="p_ambiguity_ddmmm">1 (DD° MM.m\\')</string>
-<string name="p_ambiguity_ddmm">2 (DD° MM\\')</string>
-<string name="p_ambiguity_ddm">3 (DD° Mx\\')</string>
+<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
+<string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
+<string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
 <string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
 <string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
