@@ -36,8 +36,7 @@ class HubActivity extends MainListActivity("hub", R.id.hub) {
 	override def onListItemClick(l : ListView, v : View, position : Int, id : Long) {
 		//super.onListItemClick(l, v, position, id)
 		val c = getListView().getItemAtPosition(position).asInstanceOf[Cursor]
-		val call = c.getString(StorageDatabase.Station.COLUMN_CALL)
-		openDetails(call)
+		openDetails(StorageDatabase.cursor2call(c))
 	}
 
 }

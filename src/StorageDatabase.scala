@@ -159,14 +159,22 @@ object StorageDatabase {
 	def cursor2call(c : Cursor) : String = {
 		val msgidx = c.getColumnIndex(Post.MESSAGE)
 		val callidx = c.getColumnIndex(Station.CALL)
+		val originidx = c.getColumnIndex(Station.ORIGIN)
 		if (msgidx != -1 && callidx == -1) { // Post table
 			val t = c.getInt(Post.COLUMN_TYPE)
 			if (t == Post.TYPE_POST || t == Post.TYPE_INCMG)
 				c.getString(msgidx).split(">")(0)
 			else
 				null
-		} else
+		} else if (callidx != -1 && originidx == -1) { // Message table
 			c.getString(callidx)
+		} else { // Station table
+			val origin = c.getString(Station.COLUMN_ORIGIN)
+			if (origin != null)
+				"%s/%s".format(origin, c.getString(callidx))
+			else
+				c.getString(callidx)
+		}
 	}
 }
 
