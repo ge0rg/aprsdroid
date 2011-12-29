@@ -17,7 +17,7 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 	def start(singleShot : Boolean) = {
 		lastLoc = null
 		stop()
-		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+		locMan.requestLocationUpdates(PeriodicGPS.bestProvider(locMan),
 			0, 0, this)
 		service.getString(R.string.p_source_smart)
 	}

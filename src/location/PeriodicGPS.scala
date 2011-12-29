@@ -6,6 +6,16 @@ import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
 import _root_.android.widget.Toast
 
+object PeriodicGPS {
+
+	def bestProvider(locman : LocationManager) = {
+		val cr = new Criteria()
+		cr.setAccuracy(Criteria.ACCURACY_FINE)
+		Log.d("FAILGPS", "best. provider. ever. " + locman.getBestProvider(cr, false))
+		locman.getBestProvider(cr, false)
+	}
+}
+
 class PeriodicGPS(service : AprsService, prefs : PrefsWrapper) extends LocationSource
 		with LocationListener {
 	val TAG = "APRSdroid.PeriodicGPS"
@@ -31,11 +41,11 @@ class PeriodicGPS(service : AprsService, prefs : PrefsWrapper) extends LocationS
 		val upd_dist = prefs.getStringInt("distance", 10)
 		val gps_act = prefs.getString("gps_activation", "med")
 		if (stay_on || (gps_act == "always")) {
-			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+			locMan.requestLocationUpdates(PeriodicGPS.bestProvider(locMan),
 				0, 0, this)
 		} else {
 			// for GPS precision == medium, we use getGpsInterval()
-			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+			locMan.requestLocationUpdates(PeriodicGPS.bestProvider(locMan),
 				upd_int * 60000 - getGpsInterval(), upd_dist * 1000, this)
 		}
 		if (prefs.getBoolean("netloc", false)) {
