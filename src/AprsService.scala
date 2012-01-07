@@ -195,7 +195,7 @@ class AprsService extends Service {
 
 	def parsePacket(ts : Long, message : String) {
 		try {
-			val fap = new Parser().parse(message)
+			val fap = Parser.parse(message)
 			if (fap.getAprsInformation() == null) {
 				Log.d(TAG, "parsePacket() misses payload: " + message)
 				return
