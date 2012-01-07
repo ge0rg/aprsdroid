@@ -101,6 +101,11 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				reader = new KissReader(socket.getInputStream())
 				writer = new KissWriter(socket.getOutputStream())
 			}
+			val initstring = prefs.getString("bt.init", null)
+			if (initstring != null && initstring != "") {
+				log("Sending init: " + initstring)
+				socket.getOutputStream().write(initstring.getBytes())
+			}
 			Log.d(TAG, "init_socket() done")
 		}
 

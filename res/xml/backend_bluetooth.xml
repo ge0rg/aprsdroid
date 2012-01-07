@@ -24,6 +24,13 @@
 		android:title="@string/p_bt_channel"
 		android:summary="@string/p_bt_channel_summary"
 		android:dialogTitle="@string/p_bt_channel_entry" />
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="bt.init"
+		android:defaultValue=""
+		android:singleLine="false"
+		android:title="@string/p_bt_tnc_init"
+		android:summary="@string/p_bt_tnc_init_summary"
+		android:dialogTitle="@string/p_bt_tnc_init" />
 
 	<Preference
 		android:title="@string/p_bt_prefs"
