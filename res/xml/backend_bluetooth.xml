@@ -31,6 +31,14 @@
 		android:title="@string/p_bt_tnc_init"
 		android:summary="@string/p_bt_tnc_init_summary"
 		android:dialogTitle="@string/p_bt_tnc_init" />
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="bt.delay"
+		android:inputType="number"
+		android:hint="300"
+		android:defaultValue="300"
+		android:title="@string/p_bt_tnc_delay"
+		android:summary="@string/p_bt_tnc_delay_summary"
+		android:dialogTitle="@string/p_bt_tnc_delay_entry" />
 
 	<Preference
 		android:title="@string/p_bt_prefs"

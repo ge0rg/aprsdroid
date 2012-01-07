@@ -289,6 +289,10 @@
 <string name="p_bt_tnc_init">TNC init string</string>
 <string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
 
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
 <string name="p_bt_prefs">Bluetooth settings</string>
 <string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
 

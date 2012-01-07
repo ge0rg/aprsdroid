@@ -102,9 +102,16 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				writer = new KissWriter(socket.getOutputStream())
 			}
 			val initstring = prefs.getString("bt.init", null)
+			val initdelay = prefs.getStringInt("bt.delay", 300)
 			if (initstring != null && initstring != "") {
 				log("Sending init: " + initstring)
-				socket.getOutputStream().write(initstring.getBytes())
+				val os = socket.getOutputStream()
+				for (line <- initstring.split("\n")) {
+					os.write(line.getBytes())
+					os.write('\r')
+					os.write('\n')
+					Thread.sleep(initdelay)
+				}
 			}
 			Log.d(TAG, "init_socket() done")
 		}
