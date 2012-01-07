@@ -146,10 +146,10 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		}
 
 		def update(packet : APRSPacket) : String = {
-			if (socket != null) {
+			try {
 				writer.writePacket(packet.toAX25Frame())
 				"Bluetooth OK"
-			} else "Bluetooth disconnected"
+			} catch { case e => e.printStackTrace(); "Bluetooth disconnected" }
 		}
 
 		def catchLog(tag : String, fun : ()=>Unit) {
