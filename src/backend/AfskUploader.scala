@@ -2,7 +2,7 @@ package org.aprsdroid.app
 
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
-import _root_.net.ab0oo.aprs.parser.APRSPacket
+import _root_.net.ab0oo.aprs.parser.{APRSPacket, Digipeater}
 import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 
 class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
@@ -16,6 +16,7 @@ class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 
 	def update(packet : APRSPacket) : String = {
 		// Need to "parse" the packet in order to replace the Digipeaters
+		packet.setDigipeaters(Digipeater.parseList(Digis, true))
 		val from = packet.getSourceCall()
 		val to = packet.getDestinationCall()
 		val data = packet.getAprsInformation().toString()
