@@ -220,7 +220,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 
 	class KissWriter(os : OutputStream) {
 		def writePacket(p : Array[Byte]) {
-			Log.d(TAG, "KissWriter.writePacket: %s".format(p))
+			Log.d(TAG, "KissWriter.writePacket: %s".format(new String(p)))
 			os.write(Kiss.FEND)
 			os.write(Kiss.CMD_DATA)
 			os.write(p)
