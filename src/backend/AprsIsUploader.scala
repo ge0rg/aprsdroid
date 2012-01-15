@@ -27,7 +27,7 @@ object AprsIsUploader {
 			R.xml.backend_http,
 			PASSCODE_REQUIRED),
 		"afsk" -> new BackendInfo(
-			(s, p) => new AfskUploader(p),
+			(s, p) => new AfskUploader(s, p),
 			R.xml.backend_afsk,
 			PASSCODE_NONE),
 		"tcp" -> new BackendInfo(

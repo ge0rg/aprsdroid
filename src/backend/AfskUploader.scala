@@ -2,17 +2,24 @@ package org.aprsdroid.app
 
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
-import _root_.net.ab0oo.aprs.parser.{APRSPacket, Digipeater}
+import _root_.net.ab0oo.aprs.parser.{APRSPacket, Digipeater, Parser}
 import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 
-class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
+import com.jazzido.PacketDroid.{AudioBufferProcessor, PacketCallback}
+
+class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs)
+		with PacketCallback {
 	val TAG = "APRSdroid.Afsk"
 	// frame prefix: bytes = milliseconds * baudrate / 8 / 1000
 	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
 	var Digis = prefs.getString("digi_path", "WIDE1-1")
 	val output = new Afsk()
+	val abp = new AudioBufferProcessor(this)
 	
-	def start() = true
+	def start() = {
+		abp.start()
+		true
+	}
 
 	def update(packet : APRSPacket) : String = {
 		// Need to "parse" the packet in order to replace the Digipeaters
@@ -27,6 +34,10 @@ class AfskUploader(prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
 	}
 
 	def stop() {
+		abp.stopRecording()
 	}
 
+	def received(data : Array[Byte]) {
+		service.postSubmit(Parser.parseAX25(data).toString().trim())
+	}
 }
