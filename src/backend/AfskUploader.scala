@@ -38,6 +38,10 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	}
 
 	def received(data : Array[Byte]) {
-		service.postSubmit(Parser.parseAX25(data).toString().trim())
+		try {
+			service.postSubmit(Parser.parseAX25(data).toString().trim())
+		} catch {
+			case e : Exception => Log.e(TAG, "bad packet: %s".format(new String(data))); e.printStackTrace()
+		}
 	}
 }
