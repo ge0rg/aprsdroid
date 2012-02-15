@@ -52,6 +52,7 @@
 <string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
 <string name="service_stop">APRS Service stopped.</string>
 <string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Error</string>
 <string name="post_incmg">received</string>

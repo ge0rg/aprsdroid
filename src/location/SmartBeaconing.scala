@@ -17,8 +17,14 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 	def start(singleShot : Boolean) = {
 		lastLoc = null
 		stop()
-		locMan.requestLocationUpdates(PeriodicGPS.bestProvider(locMan),
-			0, 0, this)
+		try {
+			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				0, 0, this)
+		} catch {
+			case e : IllegalArgumentException =>
+				// this device does not have GPS. Oops.
+				service.postAbort(service.getString(R.string.service_sm_no_gps))
+		}
 		service.getString(R.string.p_source_smart)
 	}
 
@@ -106,7 +112,7 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 		Log.d(TAG, "onProviderDisabled: " + provider)
 		if (provider == LocationManager.GPS_PROVIDER) {
 			// GPS was our last data source, we have to complain!
-			Toast.makeText(service, R.string.service_no_location, Toast.LENGTH_LONG).show()
+			Toast.makeText(service, R.string.service_sm_no_gps, Toast.LENGTH_LONG).show()
 		}
 	}
 	override def onProviderEnabled(provider : String) {
