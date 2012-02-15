@@ -17,7 +17,6 @@ download() {
 	mv translations/*.po $PACKAGE/
 	rename -f 's/@[^.]*//' $PACKAGE/*.po
 	popd
-	sed -i 's/\\\\'\''/\\'\''/g' res/values-*/strings.xml
 }
 
 translate_xml2pot() {
@@ -44,6 +43,7 @@ translate_po2xml() {
 		mkdir -p $dir
 		xml2po -a -l $lang -p $po $RES/strings.xml | sed "s/'/\\\\'/g" > $dir/strings.xml
 	done
+	sed -i 's/\\\\'\''/\\'\''/g' res/values-*/strings.xml
 	{
 		cat <<EOF
 <?xml version="1.0" encoding="utf-8"?>
