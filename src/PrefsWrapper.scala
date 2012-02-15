@@ -1,6 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.android.content.Context
+import _root_.android.media.AudioManager
 import _root_.android.preference.PreferenceManager
 
 class PrefsWrapper(val context : Context) {
@@ -46,4 +47,7 @@ class PrefsWrapper(val context : Context) {
 
 	def getLoginString() = AprsPacket.formatLogin(getCallsign(), getSsid(),
 		getPasscode(), getVersion())
+	
+	def getAfskBluetooth() = getBoolean("afsk.btsco", false)
+	def getAfskOutput() = if (getAfskBluetooth()) AudioManager.STREAM_VOICE_CALL else getStringInt("afsk.output", 0)
 }
