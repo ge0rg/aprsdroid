@@ -257,6 +257,15 @@
 <string name="p_afsk_prefix">Frame Sync Prefix</string>
 <string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
 <string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
+<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
+<string name="p_afsk_output">Audio Output</string>
+<string-array name="p_afsk_out_e">
+	<item>Voice Call</item>
+	<item>Ringtone</item>
+	<item>Music</item>
+	<item>Alarm</item>
+</string-array>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
@@ -300,4 +309,7 @@
 <string name="bt_error_unsupported">Bluetooth is not supported!</string>
 <string name="bt_error_disabled">Please enable Bluetooth!</string>
 <string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
 </resources>

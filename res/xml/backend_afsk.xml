@@ -5,13 +5,21 @@
     <PreferenceCategory
 	    android:title="@string/p_conn_afsk">
 
-        <de.duenndns.EditTextPreferenceWithValue
-                android:key="digi_path"
-		android:hint="hop1,hop2,.."
-		android:defaultValue="WIDE1-1"
-		android:title="@string/p_aprs_path"
-		android:summary="@string/p_aprs_path_summary"
-		android:dialogTitle="@string/p_aprs_path_entry" />
+        <CheckBoxPreference
+                android:key="afsk.btsco"
+		android:title="@string/p_afsk_btsco"
+		android:summary="@string/p_afsk_btsco_summary"
+		android:defaultValue="false"
+		/>
+
+        <de.duenndns.ListPreferenceWithValue
+                android:key="afsk.output"
+		android:title="@string/p_afsk_output"
+                android:entries="@array/p_afsk_out_e"
+                android:entryValues="@array/p_afsk_out_ev"
+		android:defaultValue="0"
+		android:dialogTitle="@string/p_afsk_output"
+		/>
 
         <de.duenndns.EditTextPreferenceWithValue
                 android:key="afsk.prefix"
@@ -21,6 +29,14 @@
 		android:title="@string/p_afsk_prefix"
 		android:summary="@string/p_afsk_prefix_summary"
 		android:dialogTitle="@string/p_afsk_prefix_entry" />
+
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="digi_path"
+		android:hint="hop1,hop2,.."
+		android:defaultValue="WIDE1-1"
+		android:title="@string/p_aprs_path"
+		android:summary="@string/p_aprs_path_summary"
+		android:dialogTitle="@string/p_aprs_path_entry" />
 
     </PreferenceCategory>
 

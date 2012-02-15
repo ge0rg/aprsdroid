@@ -1,5 +1,7 @@
 package org.aprsdroid.app
 
+import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
+import _root_.android.media.AudioManager
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 import _root_.net.ab0oo.aprs.parser.{APRSPacket, Digipeater, Parser}
@@ -13,12 +15,36 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	// frame prefix: bytes = milliseconds * baudrate / 8 / 1000
 	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
 	var Digis = prefs.getString("digi_path", "WIDE1-1")
-	val output = new Afsk()
+	val use_bt = prefs.getAfskBluetooth()
+	val out_type = prefs.getAfskOutput()
+	val output = new Afsk(out_type)
 	val abp = new AudioBufferProcessor(this)
 	
+	val btScoReceiver = new BroadcastReceiver() {
+		override def onReceive(ctx : Context, i : Intent) {
+			val state = i.getIntExtra(AudioManager.EXTRA_SCO_AUDIO_STATE, -1)
+			Log.d(TAG, "AudioManager SCO event: " + state)
+			if (state == AudioManager.SCO_AUDIO_STATE_CONNECTED) {
+				// we are connected, perform actual start
+				log(service.getString(R.string.afsk_info_sco_est))
+				abp.start()
+				service.unregisterReceiver(this)
+				service.postPosterStarted()
+			}
+		}
+	}
+
 	def start() = {
-		abp.start()
-		true
+		if (use_bt) {
+			log(service.getString(R.string.afsk_info_sco_req))
+			service.getSystemService(Context.AUDIO_SERVICE)
+				.asInstanceOf[AudioManager].startBluetoothSco()
+			service.registerReceiver(btScoReceiver, new IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_CHANGED))
+			false
+		} else {
+			abp.start()
+			true
+		}
 	}
 
 	def update(packet : APRSPacket) : String = {
@@ -35,6 +61,9 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 
 	def stop() {
 		abp.stopRecording()
+		if (use_bt)
+			service.getSystemService(Context.AUDIO_SERVICE)
+				.asInstanceOf[AudioManager].stopBluetoothSco()
 	}
 
 	def received(data : Array[Byte]) {
@@ -45,4 +74,10 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				Log.e(TAG, "bad packet: %s".format(data.map("%02x".format(_)).mkString(" "))); e.printStackTrace()
 		}
 	}
+
+	def log(s : String) {
+		Log.i(TAG, s)
+		service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
+	}
+
 }
