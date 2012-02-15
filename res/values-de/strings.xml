@@ -48,10 +48,11 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid-Dienst</string>
-<string name="service_once">APRS-Dienst Einzelmeldung.</string>
-<string name="service_start">APRS-Dienst gestartet. Aktualisierung alle %1$d Minuten, %2$d km.</string>
+<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_start">APRS Service started: %1$s, %2$s.</string>
 <string name="service_stop">APRS-Dienst beendet.</string>
 <string name="service_no_location">Sie müssen entweder GPS oder Netzwerklokalisierung einschalten, damit APRSdroid vollständig funktioniert.</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Fehler</string>
 <string name="post_incmg">empfangen</string>
@@ -241,6 +242,15 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_afsk_prefix">Frame-Sync-Präfix</string>
 <string name="p_afsk_prefix_summary">No-Op-Präambel (z.B. für VOX-Steuerung)</string>
 <string name="p_afsk_prefix_entry">Präfix-Zeit eingeben [ms]</string>
+<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
+<string name="p_afsk_output">Audio Output</string>
+<string-array name="p_afsk_out_e">
+	<item>Voice Call</item>
+	<item>Klingelton</item>
+	<item>Music</item>
+	<item>Alarm</item>
+</string-array>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP-Server (Port 14580) zum Verbinden</string>
@@ -272,10 +282,20 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_bt_channel_summary">Bluetooth-Kanal auf dem TNC</string>
 <string name="p_bt_channel_entry">Kanal eingeben (meist "1"; leer für SPP)</string>
 
+<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
 <string name="p_bt_prefs">Bluetooth-Einstellungen</string>
 <string name="p_bt_prefs_summary">Bluetooth aktivieren, Geräte paaren...</string>
 
 <string name="bt_error_unsupported">Bluetooth nicht unterstützt!</string>
 <string name="bt_error_disabled">Bitte Bluetooth einschalten!</string>
 <string name="bt_error_no_tnc">Bitte einen Bluetooth-TNC einstellen!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
 </resources>

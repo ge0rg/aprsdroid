@@ -48,10 +48,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
-<string name="service_once">APRS tjeneste enkel posisjonsoppdatering</string>
-<string name="service_start">APRS Service started. Updates every %1$d minutes, %2$d km.</string>
+<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_start">APRS Service started: %1$s, %2$s.</string>
 <string name="service_stop">APRS tjeneste stoppet.</string>
 <string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Error</string>
 <string name="post_incmg">received</string>
@@ -256,6 +257,15 @@
 <string name="p_afsk_prefix">Frame Sync Prefix</string>
 <string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
 <string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
+<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
+<string name="p_afsk_output">Audio Output</string>
+<string-array name="p_afsk_out_e">
+	<item>Voice Call</item>
+	<item>Ringtone</item>
+	<item>Music</item>
+	<item>Alarm</item>
+</string-array>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
@@ -287,10 +297,20 @@
 <string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
+<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
 <string name="p_bt_prefs">Bluetooth settings</string>
 <string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
 
 <string name="bt_error_unsupported">Bluetooth is not supported!</string>
 <string name="bt_error_disabled">Please enable Bluetooth!</string>
 <string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
 </resources>

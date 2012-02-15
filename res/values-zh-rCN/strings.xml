@@ -46,10 +46,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid 服务</string>
-<string name="service_once">APRS 服务单次启动</string>
-<string name="service_start">APRS 服务已启动。每 %1$d 或 %2$d km 更新。</string>
+<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_start">APRS Service started: %1$s, %2$s.</string>
 <string name="service_stop">APRS 服务已停止。</string>
 <string name="service_no_location">你需要打开GPS或基站定位才能正常工作!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">错误</string>
 <string name="post_incmg">已收到</string>
@@ -233,6 +234,15 @@
 <string name="p_afsk_prefix">帧同步前缀</string>
 <string name="p_afsk_prefix_summary">No-Op Preamble (比如:声控发射)</string>
 <string name="p_afsk_prefix_entry">输入同步前缀时间</string>
+<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
+<string name="p_afsk_output">Audio Output</string>
+<string-array name="p_afsk_out_e">
+	<item>Voice Call</item>
+	<item>铃声</item>
+	<item>Music</item>
+	<item>Alarm</item>
+</string-array>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">TCP 服务器设置</string>
@@ -266,10 +276,20 @@
 <string name="p_bt_channel_summary">TNC蓝牙频道</string>
 <string name="p_bt_channel_entry">输入频道(通常为1;SPP模式为空)</string>
 
+<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
 <string name="p_bt_prefs">蓝牙设置</string>
 <string name="p_bt_prefs_summary">打开蓝牙，配对设备...</string>
 
 <string name="bt_error_unsupported">蓝牙未被支持!</string>
 <string name="bt_error_disabled">请启用蓝牙!</string>
 <string name="bt_error_no_tnc">请配置蓝牙TNC设备!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
 </resources>

@@ -46,10 +46,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroidサービス</string>
-<string name="service_once">ARPSサービス １回送信</string>
-<string name="service_start">APRSサービス開始。 %1$d 分、 %2$d kmごとに位置情報を更新します。</string>
+<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_start">APRS Service started: %1$s, %2$s.</string>
 <string name="service_stop">APRSサービス停止</string>
 <string name="service_no_location">GPS又はネットワーク・ロケーションの何れかの動作を可能にする必要があります!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">エラー</string>
 <string name="post_incmg">受信</string>
@@ -233,6 +234,15 @@
 <string name="p_afsk_prefix">フレーム同期送信時間</string>
 <string name="p_afsk_prefix_summary">データの前に付加する同期信号の送信時間（VOX制御など頭切れの防止）</string>
 <string name="p_afsk_prefix_entry">同期信号送信時間[ミリ秒]</string>
+<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
+<string name="p_afsk_output">Audio Output</string>
+<string-array name="p_afsk_out_e">
+	<item>Voice Call</item>
+	<item>着信音選択</item>
+	<item>Music</item>
+	<item>Alarm</item>
+</string-array>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">接続するAPRS-IS TCPサーバ名(デフォルトポート:14580)</string>
@@ -265,10 +275,20 @@
 <string name="p_bt_channel_summary">Bluetooth信号チャンネルを選択</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
+<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
 <string name="p_bt_prefs">Bluetooth設定</string>
 <string name="p_bt_prefs_summary">有効なBluetoothペア機器</string>
 
 <string name="bt_error_unsupported">Bluetoothはサポートされていません!</string>
 <string name="bt_error_disabled">Bluetoothを有効にしてください!</string>
 <string name="bt_error_no_tnc">Bluetooth-TNCの設定をして下さい!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
 </resources>

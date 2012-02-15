@@ -46,10 +46,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">Υπηρεσία APRSdroid</string>
-<string name="service_once">Υπηρεσία APRS μεμονωμενής μετάδοσης.</string>
-<string name="service_start">Η Υπηρεσία APRS ξεκίνησε. Ανανεώσεις κάθε %1$d λεπτά, %2$d km.</string>
+<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_start">APRS Service started: %1$s, %2$s.</string>
 <string name="service_stop">Διακοπή υπηρεσίας APRS.</string>
 <string name="service_no_location">Χρειάζεται να ενεργοποιήσετε το GPS ή την Χρήση Ασύρματων Δικτύων για να λειτουργήσει σωστά το APRSdroid!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Σφάλμα</string>
 <string name="post_incmg">ελήφθη</string>
@@ -233,6 +234,15 @@
 <string name="p_afsk_prefix">Συγχρονισμένο Πλαίσιο Προθέματος</string>
 <string name="p_afsk_prefix_summary">Εισαγωγή No-Op (π.χ. για τον έλεγχο του VOX)</string>
 <string name="p_afsk_prefix_entry">Εισάγετε το πρόθεμα ώρας [ms]</string>
+<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
+<string name="p_afsk_output">Audio Output</string>
+<string-array name="p_afsk_out_e">
+	<item>Voice Call</item>
+	<item>Ήχος ειδοποιήσεων</item>
+	<item>Music</item>
+	<item>Alarm</item>
+</string-array>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">Διακομιστής TCP APRS-IS (port 14580) για επαφή</string>
@@ -266,10 +276,20 @@
 <string name="p_bt_channel_summary">Κανάλι Bluetooth στο TNC</string>
 <string name="p_bt_channel_entry">Πληκτρολογήστε το κανάλι (πιο συχνά: "1"; άδειο για SPP)</string>
 
+<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
 <string name="p_bt_prefs">Ρυθμίσεις Bluetooth</string>
 <string name="p_bt_prefs_summary">Ενεργοποίηση Bluetooth, αντιστοίχιση συσκευών...</string>
 
 <string name="bt_error_unsupported">Το Bluetooth δεν υποστηρίζεται!</string>
 <string name="bt_error_disabled">Παρακαλούμε ενεργοποιήστε το Bluetooth!</string>
 <string name="bt_error_no_tnc">Παρακαλούμε διαμορφώστε το TNC Bluetooth!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
 </resources>

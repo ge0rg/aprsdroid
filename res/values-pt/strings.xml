@@ -46,10 +46,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">Serviço APRSdroid</string>
-<string name="service_once">APRS apenas um pacote.</string>
-<string name="service_start">Serviço de APRS iniciado.  Atualizações todos os %1$d minutos, %2$d km.</string>
+<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_start">APRS Service started: %1$s, %2$s.</string>
 <string name="service_stop">Serviço de APRS terminado.</string>
 <string name="service_no_location">Para APRSdroid funcionar correctamente deve ligar o seu GPS ou verificar cobertura de rede.</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Erro</string>
 <string name="post_incmg">recebido</string>
@@ -233,6 +234,15 @@
 <string name="p_afsk_prefix">Sincronização de prefixo</string>
 <string name="p_afsk_prefix_summary">Sem operador predefinido (Ex: para VOX controlo)</string>
 <string name="p_afsk_prefix_entry">Coloque o tempo predefenido  [ms]</string>
+<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
+<string name="p_afsk_output">Audio Output</string>
+<string-array name="p_afsk_out_e">
+	<item>Voice Call</item>
+	<item>Tom de chamada</item>
+	<item>Music</item>
+	<item>Alarm</item>
+</string-array>
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) para contacto</string>
@@ -266,10 +276,20 @@
 <string name="p_bt_channel_summary">Canal bluetooth çigado no TNC</string>
 <string name="p_bt_channel_entry">Coloque canal</string>
 
+<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
 <string name="p_bt_prefs">Sem propagação</string>
 <string name="p_bt_prefs_summary">Lige bluetoooth nos dois disositivso</string>
 
 <string name="bt_error_unsupported">Bluetooth is not supported!</string>
 <string name="bt_error_disabled">Please enable Bluetooth!</string>
 <string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
 </resources>
