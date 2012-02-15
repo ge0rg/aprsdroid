@@ -42,6 +42,22 @@ class PrefsWrapper(val context : Context) {
 
 	def getShowAge() = getStringInt("show_age", 30)*60L*1000
 	
+	// get the array index for a given list pref
+	def getListItemIndex(pref : String, default : String, values : Int) = {
+		android.util.Log.d("getLII", getString(pref, default))
+		android.util.Log.d("getLII", "values: " + context.getResources().getStringArray(values).mkString(" "))
+		context.getResources().getStringArray(values).indexOf(getString(pref, default))
+	}
+
+	def getListItemName(pref : String, default : String, values : Int, names : Int) = {
+		val id = getListItemIndex(pref, default, values)
+		android.util.Log.d("getLIN", "id is " + id)
+		if (id < 0)
+			"<not in list>"
+		else
+			context.getResources().getStringArray(names)(id)
+	}
+
 	// this is actually a hack!
 	def getVersion() = context.getString(R.string.build_version).split(" ").take(2).mkString(" ")
 

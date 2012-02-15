@@ -68,21 +68,26 @@ class AprsService extends Service {
 	}
 
 	def handleStart(i : Intent) {
-		// get update interval and distance
-		val upd_int = prefs.getStringInt("interval", 10)
-		val upd_dist = prefs.getStringInt("distance", 10)
-
 		// display notification (even though we are not actually started yet,
 		// but we need this to prevent error message reordering)
-		if (i.getAction() == SERVICE_ONCE) {
+		val toastString = if (i.getAction() == SERVICE_ONCE) {
 			// if already running, we want to send immediately and continue;
 			// otherwise, we finish after a single position report
 			// set to true if not yet running or already running singleShot
 			singleShot = !running || singleShot
 			if (singleShot)
-					showToast(getString(R.string.service_once))
-		} else
-			showToast(getString(R.string.service_start).format(upd_int, upd_dist))
+					getString(R.string.service_once)
+			else null
+		} else {
+			getString(R.string.service_start)
+		}
+		// only show toast on newly started service
+		if (toastString != null)
+			showToast(toastString.format(
+				prefs.getListItemName("loc_source", LocationSource.DEFAULT_CONNTYPE,
+					R.array.p_locsource_ev, R.array.p_locsource_e),
+				prefs.getListItemName("backend", AprsIsUploader.DEFAULT_CONNTYPE,
+					R.array.p_conntype_ev, R.array.p_conntype_e)))
 
 		val callssid = prefs.getCallSsid()
 		ServiceNotifier.instance.start(this, callssid)
