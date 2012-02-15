@@ -51,6 +51,7 @@ class MapAct extends MapActivity with UIHelper {
 		if (targetcall == "")
 			makeLaunchActivity("map")
 		setKeepScreenOn()
+		setVolumeControls()
 	}
 
 	override def onDestroy() {

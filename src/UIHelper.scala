@@ -141,6 +141,13 @@ trait UIHelper extends Activity
 		}
 	}
 
+	// for AFSK, set the right volume controls
+	def setVolumeControls() {
+		if (prefs.getString("backend", AprsIsUploader.DEFAULT_CONNTYPE) == "afsk") {
+			setVolumeControlStream(prefs.getAfskOutput())
+		}
+	}
+
 	def checkConfig() : Boolean = {
 		val callsign = prefs.getCallsign()
 		val passcode = prefs.getPasscode()
