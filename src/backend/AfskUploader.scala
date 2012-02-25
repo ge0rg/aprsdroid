@@ -16,8 +16,9 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
 	var Digis = prefs.getString("digi_path", "WIDE1-1")
 	val use_bt = prefs.getAfskBluetooth()
+	val samplerate = if (use_bt) 16000 else 22050
 	val out_type = prefs.getAfskOutput()
-	val output = new Afsk(out_type)
+	val output = new Afsk(out_type, samplerate)
 	val abp = new AudioBufferProcessor(this)
 	
 	val btScoReceiver = new BroadcastReceiver() {
