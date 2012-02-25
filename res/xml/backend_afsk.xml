@@ -5,12 +5,12 @@
     <PreferenceCategory
 	    android:title="@string/p_conn_afsk">
 
-        <CheckBoxPreference
+        <!--CheckBoxPreference
                 android:key="afsk.btsco"
 		android:title="@string/p_afsk_btsco"
 		android:summary="@string/p_afsk_btsco_summary"
 		android:defaultValue="false"
-		/>
+		/-->
 
         <de.duenndns.ListPreferenceWithValue
                 android:key="afsk.output"
