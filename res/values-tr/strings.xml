@@ -8,9 +8,9 @@
 <string name="app_sta">İstasyon Bilgisi</string>
 <string name="app_messages">İletiler</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">APRSdroid programını çağrı işaretiniz  ve şifrenizle konfigüre etmeniz gerekiyor!</string>
+<string name="firstrun">APRSdroid\'i çağrıişaretiniz ve APRS kayıt numaranızla yapılandırmalısınız!</string>
 <string name="wrongpasscode">Şifreniz çağrı işaretinizle eşleşmiyor!</string>
-<string name="anon_warning">Şifrenizi girmemeniz durumunda, bildirimleriniz dağıtılmayacaktır.</string>
+<string name="anon_warning">APRS kayıt numarası olmadan bilgileriniz gönderilmez!</string>
 <string name="mininterval">Asgari güncelleme zamanı 1 dakikadır!</string>
 <string name="singlelog">Bir Kerelik</string>
 <string name="startlog">İzlemeyi Başlat</string>
@@ -32,24 +32,24 @@
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">İleti gönder...</string>
+<string name="msg_send_new">Şuna ileti gönder:</string>
 <string name="msg_message_text">İleti metni</string>
 <string name="msg_empty_list">Kaydedilmiş sohbet yok.</string>
 <string name="msg_stored_offline">İleti izlemeyi başlattığınızda gönderilecek.</string>
 <!-- Message activity -->
-<string name="msg_from">%s \'dan İleti</string>
-<string name="msg_to">%s \'a İleti</string>
+<string name="msg_from">Şundan ileti: %s</string>
+<string name="msg_to">Şuna ileti: %s</string>
 <string name="msg_abort">Göndermeyi durdur</string>
 <string name="msg_restart">Göndermeyi tekrar başlat</string>
 <string name="msg_type_rejected">reddedildi</string>
 <string name="msg_type_aborted">durduruldu</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid Servisi</string>
+<string name="aprsservice">APRSdroid hizmeti</string>
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
 <string name="service_start">APRS Service started: %1$s, %2$s.</string>
-<string name="service_stop">APRS servisi durduruldu.</string>
-<string name="service_no_location">APRSdroid\'in düzgün çalışabilmesi için GPS ya da Ağ Konumu \'nu etkinleştirmelisiniz!</string>
+<string name="service_stop">APRS hizmeti durduruldu.</string>
+<string name="service_no_location">APRSdroid\'in işini yapabilmesi için GPS\'i ya da Ağ Konumunu etkinleştirmelisiniz!</string>
 <string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Hata</string>
@@ -68,12 +68,12 @@
 <string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Bu program ücretsizdir; Free Software Foundation tarafından yayımlanan  GNU General Public License 2. sürüm ya da (tercih ederseniz) daha sonraki sürümde yer alan şartlar altında dağıtabilir ve değiştirebilirsiniz. \n\n Bu program kullanıcıya faydalı olması beklentisiyle, HERHANGİ BİR GARANTİ olmaksızın; hatta SATILABİLİRLİK ya da BELİRLİ BİR AMACA UYGUNLUK imasında bulunulmaksızın dağıtılmaktadır. Daha fazla detay için GNU General Public License dokümanına bakınız. \n\n Bu programla birlikte tarafınıza GNU General Public License dokümanının bir kopyası iletilmiş olmalıdır; aksi takdirde durumu, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresine yazılı olarak bildiriniz. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Teşekkürler:</string>
-<string name="ad_thanks_0">Benim YL ♥♥♥</string>
+<string name="ad_thanks_0">YL\'me ♥♥♥</string>
 <string name="ad_thanks_1">Michael, DO3BOX: fikir</string>
 <string name="ad_thanks_2">Dirk, DB5OY: motivasyon ve destek</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK uygulaması</string>
-<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_thanks_4">Matti, OH2MQK ve John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ HamHUD Nichetronix tarafından, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nÇeviri:</string>
 <string name="ad_homepage">Ana Sayfa</string>
 
@@ -97,19 +97,19 @@
 <string name="show_map">Haritayı Göster</string>
 <string name="show_log">Günlüğü Göster</string>
 <string name="clear_log">Günlüğü Temizle</string>
-<string name="quit">Çık</string>
+<string name="quit">Çıkış</string>
 <string name="preferences">Tercihler</string>
 <!-- preferences -->
 <string name="p__ham">Amatör Telsiz</string>
 <string name="p_callsign">Çağrı işareti</string>
-<string name="p_callsign_nossid">Çağrı işareti (SSID yazmayın)</string>
-<string name="p_callsign_summary">Amatör çağrı işaretiniz</string>
+<string name="p_callsign_nossid">Çağrı işareti (SSID olmadan)</string>
+<string name="p_callsign_summary">Amatör telsizci çağrı işaretiniz</string>
 <string name="p_callsign_entry">Çağrı işaretinizi girin</string>
-<string name="p_passcode">APRS-IS şifresi</string>
+<string name="p_passcode">APRS-IS kayıt numarası</string>
 <string name="p_passcode_summary">APRS-IS doğrulama şifresi</string>
-<string name="p_passcode_entry">Çağrı işaretinize verilmiş şifreyi giriniz</string>
-<string name="p_passreq">Şifre Talebi</string>
-<string name="p_passreq_summary">APRS-IS şifresi çevrimiçi talep</string>
+<string name="p_passcode_entry">Çağrı işaretinize verilen APRS kayıt numarasını girin</string>
+<string name="p_passreq">APRS kayıt numarası iste</string>
+<string name="p_passreq_summary">Çevrimiçi APRS-IS kayıt numarası iste</string>
 <string name="p__aprs">APRS Ayarları</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">İstasyon türü (1..15; 9=mobil, 10=APRS-IS)</string>
@@ -117,10 +117,10 @@
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
 	<item>(yok) Ana İstasyon</item>
-	<item>1: Genel ek istasyon</item>
-	<item>2: Genel ek istasyon</item>
-	<item>3: Genel ek istasyon</item>
-	<item>4: Genel ek istasyon</item>
+	<item>1: İlave istasyon</item>
+	<item>2: İlave istasyon</item>
+	<item>3: İlave istasyon</item>
+	<item>4: İlave istasyon</item>
 	<item>5: Diğer ağ (D-Star, 3G)</item>
 	<item>6: Uydu</item>
 	<item>7: El telsizi</item>
@@ -129,14 +129,14 @@
 	<item>10: APRS-IS (telsiz yok)</item>
 	<item>11: Balon, hava taşıtı, uzay taşıtı</item>
 	<item>12: APRStt, DTMF, ... (tek yönlü)</item>
-	<item>13: Meteoroloji balonu</item>
-	<item>14: Kamyon</item>
-	<item>15: Genel ek istasyon</item>
+	<item>Meteoroloji istasyonu</item>
+	<item>Yük taşıtı</item>
+	<item>15: İlave istasyon</item>
 </string-array>
-<string name="p_symbol">APRS sembolü</string>
-<string name="p_symbol_summary">Haritada görünecek sembolünüz</string>
-<string name="p_symbol_entry">Sembolü kodlanmış iki karakter halinde giriniz</string>
-<string name="p_status">Ek bilgi alanı</string>
+<string name="p_symbol">APRS simgesi</string>
+<string name="p_symbol_summary">Haritada gösterilecek simgeniz</string>
+<string name="p_symbol_entry">Simgeyi kodlanmış 2 karakter olarak giriniz</string>
+<string name="p_status">Yorum alanı</string>
 <string name="p_status_summary">Koordinatlarınızdan sonra gönderilecek metin</string>
 <string name="p_status_entry">Pozisyonunuzla birlikte gönderilecek ek bilgiyi giriniz</string>
 <string name="p__connection">APRS Bağlantısı</string>
@@ -145,13 +145,13 @@
 <string name="p_conntype_entry">Bağlantı protokolünü seçiniz</string>
 <string name="p_connsetup">Bağlantı Tercihleri</string>
 <string name="p_connsetup_summary">Bağlantı yapılandırması</string>
-<string name="p_connlog">Bağlantı Kayıtları</string>
+<string name="p_connlog">Bağlantı kaydı</string>
 <string name="p_connlog_summary">Durum çıktısı detaylarını kaydet</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP bağlantısı</string>
 <string name="p_conn_udp">UDP (sadece gönderme)</string>
 <string name="p_conn_http">HTTP POST (sadece gönderme)</string>
-<string name="p_conn_afsk">Hoparlör üzerinden AFSK</string>
+<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">El ile pozisyon girişi</string>
@@ -248,32 +248,33 @@
 <string name="p_tcp_server_summary">Bağlanılacak APRS-IS TCP sunucusu (port 14580)</string>
 <string name="p_filterdist">Komşu istasyon yarıçapı</string>
 <string name="p_filterdist_summary">Bu yarıçaptaki istasyonlardan paket verisi al</string>
-<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
-<string name="p_filter">Message filter</string>
+<string name="p_filterdist_entry">[km] çevredeki paketleri izle</string>
+<string name="p_filter">İleti süzme</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
-<string name="p_filter_summary">Filter for incoming packets</string>
-<string name="p_filter_entry">Enter a filter for incoming messages</string>
+<string name="p_filter_summary">Gelen paketler için süzme</string>
+<string name="p_filter_entry">Gelen paketler için bir süzgeç girin</string>
 
-<string name="p_filterhelp">Message filter help</string>
-<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+<string name="p_filterhelp">İleti süzgeci yardımı</string>
+<string name="p_filterhelp_summary">Çevrimiçi APRS-IS süzgeçleri için referans</string>
 
-<string name="p_sotimeout">TCP socket timeout</string>
-<string name="p_sotimeout_summary">Time before resetting the connection</string>
-<string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+<string name="p_sotimeout">TCP socket için zamanaşımı</string>
+<string name="p_sotimeout_summary">Bağlantıyı sıfırlamadan önceki süre</string>
+<string name="p_sotimeout_entry">Saniye olarak zamanaşımı süresi (0=devredışı)</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Hüseyin Odabaş https://launchpad.net/~ta1df
+  Recep Aydin Gulec https://launchpad.net/~ragulec
   zeugma https://launchpad.net/~sunder67</string>
 
 <!-- Bluetooth TNC settings -->
-<string name="p_bt_client">Client Mode</string>
-<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
-<string name="p_bt_tnc_device">TNC Bluetooth Device</string>
+<string name="p_bt_client">istemci modu</string>
+<string name="p_bt_client_summary">APRSdroid bağlantı kurar (Muhafaza ediniz)</string>
+<string name="p_bt_tnc_device">TNC Bluetooth cihaz</string>
 <string name="p_bt_tnc_device_summary">Eşlenmiş cihazlar içinden TNC\'nizi seçin</string>
 <string name="p_bt_tnc_device_entry">Cihaz seçin</string>
 <string name="p_bt_channel">Kanal</string>
 <string name="p_bt_channel_summary">TNC üzerindeki Bluetooth kanalı</string>
-<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+<string name="p_bt_channel_entry">Kanalı giriniz (sıklıkla "1"; SPP için boş)</string>
 
 <string name="p_bt_tnc_init">TNC init string</string>
 <string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
@@ -282,12 +283,12 @@
 <string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
 <string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
 
-<string name="p_bt_prefs">Bluetooth settings</string>
-<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+<string name="p_bt_prefs">Bluetooth ayarları</string>
+<string name="p_bt_prefs_summary">Bluetooth\'u etkinleştir, cihazları eşleştir...</string>
 
-<string name="bt_error_unsupported">Bluetooth is not supported!</string>
-<string name="bt_error_disabled">Please enable Bluetooth!</string>
-<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+<string name="bt_error_unsupported">Bluetooth desteklenmiyor!</string>
+<string name="bt_error_disabled">Lütfen Bluetooth\'u etkinleştirin!</string>
+<string name="bt_error_no_tnc">Lütfen bir Bluetooth TNC yapılandırınız!</string>
 
 <string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO link established.</string>

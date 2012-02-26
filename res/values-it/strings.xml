@@ -174,7 +174,7 @@
 <string name="p_conn_tcp">Connessione TCP</string>
 <string name="p_conn_udp">UDP (invia soltanto)</string>
 <string name="p_conn_http">HTTP POST (invia soltanto)</string>
-<string name="p_conn_afsk">AFSK tramite lo Speaker</string>
+<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>

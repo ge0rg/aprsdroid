@@ -168,7 +168,7 @@
 <string name="p_conn_tcp">TCP tenging</string>
 <string name="p_conn_udp">UDP (aðeins sending)</string>
 <string name="p_conn_http">HTTP POST (aðeins sending)</string>
-<string name="p_conn_afsk">AFSK gegnum hátalara</string>
+<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>

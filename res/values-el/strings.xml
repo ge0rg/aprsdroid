@@ -46,11 +46,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">Υπηρεσία APRSdroid</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_once">Υπηρεσία APRS μεμονωμένη μετάδοση: %1$s, %2$s.</string>
+<string name="service_start">Η Υπηρεσία APRS ξεκίνησε: %1$s, %2$s.</string>
 <string name="service_stop">Διακοπή υπηρεσίας APRS.</string>
 <string name="service_no_location">Χρειάζεται να ενεργοποιήσετε το GPS ή την Χρήση Ασύρματων Δικτύων για να λειτουργήσει σωστά το APRSdroid!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_sm_no_gps">Το SmartBeaconing™ απαιτεί GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Σφάλμα</string>
 <string name="post_incmg">ελήφθη</string>
@@ -151,7 +151,7 @@
 <string name="p_conn_tcp">Σύνδεση TCP</string>
 <string name="p_conn_udp">UDP (μόνο αποστολή)</string>
 <string name="p_conn_http">HTTP POST (μόνο αποστολή)</string>
-<string name="p_conn_afsk">AFSK μέσω Μεγαφώνου</string>
+<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Χειροκίνητη Τοποθεσία</string>
@@ -234,14 +234,14 @@
 <string name="p_afsk_prefix">Συγχρονισμένο Πλαίσιο Προθέματος</string>
 <string name="p_afsk_prefix_summary">Εισαγωγή No-Op (π.χ. για τον έλεγχο του VOX)</string>
 <string name="p_afsk_prefix_entry">Εισάγετε το πρόθεμα ώρας [ms]</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_btsco">Ακουστικό Bluetooth</string>
+<string name="p_afsk_btsco_summary">Χρήση Bluetooth (SCO), ακουστικά για AFSK</string>
+<string name="p_afsk_output">Έξοδος Ήχου</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
+	<item>Φωνητική Κλήση</item>
 	<item>Ήχος ειδοποιήσεων</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>Μουσική</item>
+	<item>Συναγερμός</item>
 </string-array>
 
 <!-- TCP server settings -->
@@ -262,7 +262,7 @@
 <string name="p_sotimeout_entry">Τιμή χρονικού ορίου σε δευτερόλεπτα (0 = απενεργοποίηση)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Ath.Bouliakoudis https://launchpad.net/~sv2ctv
+  Ath. Bouliakoudis https://launchpad.net/~sv2ctv
   Ioannis K https://launchpad.net/~kioan20
   Stathis Iosifidis https://launchpad.net/~diamond-gr</string>
 
@@ -276,12 +276,12 @@
 <string name="p_bt_channel_summary">Κανάλι Bluetooth στο TNC</string>
 <string name="p_bt_channel_entry">Πληκτρολογήστε το κανάλι (πιο συχνά: "1"; άδειο για SPP)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init">TNC init σειρά</string>
+<string name="p_bt_tnc_init_summary">Αρχικοποίηση για εντολές TNC</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_bt_tnc_delay">TNC init καθυστέρηση</string>
+<string name="p_bt_tnc_delay_summary">Χρόνος αναμονής μετά από κάθε γραμμή</string>
+<string name="p_bt_tnc_delay_entry">TNC init καθυστέρηση [ms]</string>
 
 <string name="p_bt_prefs">Ρυθμίσεις Bluetooth</string>
 <string name="p_bt_prefs_summary">Ενεργοποίηση Bluetooth, αντιστοίχιση συσκευών...</string>
@@ -290,6 +290,6 @@
 <string name="bt_error_disabled">Παρακαλούμε ενεργοποιήστε το Bluetooth!</string>
 <string name="bt_error_no_tnc">Παρακαλούμε διαμορφώστε το TNC Bluetooth!</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">Αίτηση SCO σύνδεσης Bluetooth...</string>
+<string name="afsk_info_sco_est">SCO σύνδεση Bluetooth επιβεβαιώθηκε.</string>
 </resources>

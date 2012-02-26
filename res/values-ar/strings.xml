@@ -2,34 +2,34 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
-<string name="app_map">APRSdroid Map</string>
+<string name="app_prefs">التفضيلات</string>
+<string name="app_map">الخريطة</string>
 <string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Station Info</string>
-<string name="app_messages">Messages</string>
+<string name="app_sta">معلومات المحطة</string>
+<string name="app_messages">الرسائل</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
-<string name="wrongpasscode">Your passcode does not match your callsign!</string>
+<string name="wrongpasscode">الرقم السري غير متطابق</string>
 <string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">Minimum update time is 1 minute!</string>
+<string name="mininterval">إقصر مدة للتحديث دقيقة واحدة!</string>
 <string name="singlelog">Single Shot</string>
-<string name="startlog">Start Tracking</string>
-<string name="stoplog">Stop Tracking</string>
+<string name="startlog">بدء التتبع</string>
+<string name="stoplog">إيقاف التتبع</string>
 
 <string name="empty_logview">You have not yet sent or received any packets.\n\n
 	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
 	You can also change the application preferences from the menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
+<string name="sta_lastreport">آخر تقرير</string>
 <string name="map_track_call">Tracking %s...</string>
 
-<string name="map_loading">Loading...</string>
+<string name="map_loading">جاري التحميل...</string>
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Station SSIDs</string>
-<string name="sta_history">Station History</string>
-<string name="sta_map">Map</string>
+<string name="sta_history">تاريخ المحطة</string>
+<string name="sta_map">الخريطة</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -284,7 +284,8 @@
 <string name="p_sotimeout_summary">Time before resetting the connection</string>
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
-<string name="translator_credits">translator-credits</string>
+<string name="translator_credits">Launchpad Contributions:
+  Said Mohammed AlRamadhani https://launchpad.net/~darknesscore0</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

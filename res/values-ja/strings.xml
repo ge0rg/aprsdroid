@@ -46,11 +46,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroidサービス</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_once">APRSサービス１回のみ送信: %1$s, %2$s.</string>
+<string name="service_start">APRSサービス開始: %1$s, %2$s.</string>
 <string name="service_stop">APRSサービス停止</string>
 <string name="service_no_location">GPS又はネットワーク・ロケーションの何れかの動作を可能にする必要があります!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_sm_no_gps">SmartBeaconing™GPS!要求</string>
 <!-- service result codes -->
 <string name="post_error">エラー</string>
 <string name="post_incmg">受信</string>
@@ -151,7 +151,7 @@
 <string name="p_conn_tcp">TCP接続</string>
 <string name="p_conn_udp">UDP (送信のみ）</string>
 <string name="p_conn_http">HTTP POST (送信のみ）</string>
-<string name="p_conn_afsk">AFSK信号スピーカー出力</string>
+<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">手動位置設定</string>
@@ -173,8 +173,8 @@
 <string name="p_ambiguity_ddmm">2 (度度° 分分\')</string>
 <string name="p_ambiguity_ddm">3 (度度° 分x\')</string>
 <string name="p_ambiguity_dd">4 (度度°)</string>
-<string name="p_priv_spdbear">スピード &amp; 方位 を含める</string>
-<string name="p_priv_spdbear_summary">位置情報に速度&amp;方位を含めます</string>
+<string name="p_priv_spdbear">速度&amp;進路を含める</string>
+<string name="p_priv_spdbear_summary">位置情報に速度&amp;進路を含めます</string>
 <string name="p_priv_altitude">高度を含める</string>
 <string name="p_priv_altitude_summary">位置情報に高度を含みます</string>
 
@@ -220,10 +220,10 @@
 <string name="p_msg_vibr">バイブレーション(振動)</string>
 <string name="p_msg_vibr_on">バイブレーションON</string>
 <string name="p_msg_vibr_off">バイブレーションOFF</string>
-<string name="p_msg_ring">着信音選択</string>
+<string name="p_msg_ring">着信スピーカー</string>
 <string name="p_msg_ring_summary">メッセージ受信時の着信音を選択します。</string>
 <string name="p_pos">位置ビーコン発信時</string>
-<string name="p_pos_ring">着信音選択</string>
+<string name="p_pos_ring">着信スピーカー</string>
 <string name="p_pos_ring_summary">ビーコン発信時の音を選択</string>
 
 <!-- AFSK settings -->
@@ -234,14 +234,14 @@
 <string name="p_afsk_prefix">フレーム同期送信時間</string>
 <string name="p_afsk_prefix_summary">データの前に付加する同期信号の送信時間（VOX制御など頭切れの防止）</string>
 <string name="p_afsk_prefix_entry">同期信号送信時間[ミリ秒]</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_btsco">Bluetoothヘッドセット</string>
+<string name="p_afsk_btsco_summary">Bluetooth(SCO)ﾍｯﾄﾞｾｯﾄをAFSK出力に使用</string>
+<string name="p_afsk_output">信号出力先選択</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
-	<item>着信音選択</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>受話器</item>
+	<item>着信スピーカー</item>
+	<item>音楽用出力先</item>
+	<item>アラーム用出力先</item>
 </string-array>
 
 <!-- TCP server settings -->
@@ -275,12 +275,12 @@
 <string name="p_bt_channel_summary">Bluetooth信号チャンネルを選択</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init">TNC初期化設定</string>
+<string name="p_bt_tnc_init_summary">TNC初期化コマンド設定</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_bt_tnc_delay">TNC初期化遅れ</string>
+<string name="p_bt_tnc_delay_summary">各ラインの待ち時間</string>
+<string name="p_bt_tnc_delay_entry">TNC初期化遅れ[ミリ秒]</string>
 
 <string name="p_bt_prefs">Bluetooth設定</string>
 <string name="p_bt_prefs_summary">有効なBluetoothペア機器</string>
@@ -289,6 +289,6 @@
 <string name="bt_error_disabled">Bluetoothを有効にしてください!</string>
 <string name="bt_error_no_tnc">Bluetooth-TNCの設定をして下さい!</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">Bluetooth(SCO)リンク要求</string>
+<string name="afsk_info_sco_est">Bluetooth(SCO)リンク確立</string>
 </resources>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">Nastavení APRSdroid</string>
+<string name="app_map">Mapa APRSdroid</string>
+<string name="app_hub">APRSdroid: Seznam stanic</string>
+<string name="app_sta">Informace stanice</string>
+<string name="app_messages">Zprávy</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Musíte nastavit svoji značku a kód!</string>
+<string name="wrongpasscode">Váš kód nesouhlasí s vaší značkou!</string>
+<string name="anon_warning">Bez kódu nebudou šéřeny vaše zprávy a informace!</string>
+<string name="mininterval">Minimalní čas obnovy polohy je 1 minuta!</string>
+<string name="singlelog">Jednorázově</string>
+<string name="startlog">Spustit sledování</string>
+<string name="stoplog">Zastavit sledování</string>
+
+<string name="empty_logview">Ještě jste neodeslal ani nepřijmul žádný packet.\n\n Stiskni tlačítko \"Menu\" pro odeslání jednoho majáku nebo spusť sledovaní vaší polohy.\n\n Můžete také změnit nastavení aplikace v menu.</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Poslední pozice/</string>
+<string name="map_track_call">Sledování %s...</string>
+
+<string name="map_loading">Nahrávání...</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">SSID Stanice</string>
+<string name="sta_history">Historie stanice</string>
+<string name="sta_map">Mapa</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
+
+<!-- Conversations activity -->
+<string name="msg_send_new">Poslat zprávu</string>
+<string name="msg_message_text">Text Zprávy</string>
+<string name="msg_empty_list">Žádné uložené zprávy</string>
+<string name="msg_stored_offline">Zpráva bude odeslána jakmile spustíte sledování.</string>
+<!-- Message activity -->
+<string name="msg_from">Zpráva od %s</string>
+<string name="msg_to">Zpráva pro %s</string>
+<string name="msg_abort">Přerušit odesílání</string>
+<string name="msg_restart">Obnovit odesílání</string>
+<string name="msg_type_rejected">zamítnuto</string>
+<string name="msg_type_aborted">přerušeno</string>
+
+<!-- AprsService -->
+<string name="aprsservice">Služba APRSdroid</string>
+<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_stop">Služba APRS zastavena.</string>
+<string name="service_no_location">Musíte povolit buď GPS nebo polohu sítě aby APRSdroid pracoval správně!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<!-- service result codes -->
+<string name="post_error">Chyba</string>
+<string name="post_incmg">přijato</string>
+<string name="post_info"/>
+<string name="post_connecting">Připojování k %1$s:%2$d...</string>
+<string name="post_reconnect">Připojení ztraceno. Obnovení za %d sekund...</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Vítejte v programu APRSdroid!</string>
+<string name="fr_text">Tento program může být používán pouze licensovanými radioamatéry!</string>
+<string name="fr_text2">Pro použávání tohoto programu musíte vložit vaši volací značku. Pro odesílání vašich packetů musíte zadat kód APRS-IS.</string>
+
+<!-- about dialog -->
+<string name="ad_title">O APRSdroid v%s</string>
+<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® je registrovaná značka Boba Bruningy (WB4APR)</string>
+<string name="ad_gpl">This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_thanks">Poděkování:</string>
+<string name="ad_thanks_0">Moje YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: idea</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
+<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_trans">\n\nPřeklad:</string>
+<string name="ad_homepage">Domovská stránka</string>
+
+<!-- map view -->
+<string name="map_overlays">Překryvy</string>
+<string name="map_satellite">Satelit</string>
+<string name="map_objects">APRS Objekt</string>
+
+<!-- map view -->
+<string name="age">Zobrazit poslední...</string>
+<string name="age_30">30 minut</string>
+<string name="age_2h">2 hodiny</string>
+<string name="age_12h">12  hodin</string>
+<string name="age_1d">1 den</string>
+<string name="age_2d">2 Dny</string>
+
+
+<!-- options menu -->
+<string name="about">O aplikaci</string>
+<string name="show_hub">Zobrazit seznam stanic</string>
+<string name="show_map">Zobrazit mapu</string>
+<string name="show_log">Zobrazit log</string>
+<string name="clear_log">Smazat log</string>
+<string name="quit">Ukončit</string>
+<string name="preferences">Nastavení</string>
+<!-- preferences -->
+<string name="p__ham">Amatérské Rádio</string>
+<string name="p_callsign">Volací značka</string>
+<string name="p_callsign_nossid">Volací značka (bez SSID)</string>
+<string name="p_callsign_summary">Vaše volací značka</string>
+<string name="p_callsign_entry">Zadejte volací značku</string>
+<string name="p_passcode">Kód APRS-IS</string>
+<string name="p_passcode_summary">Validační kód do sítě APRS-IS</string>
+<string name="p_passcode_entry">Zadejte kód pro vaši značku</string>
+<string name="p_passreq">Zažádat o kód</string>
+<string name="p_passreq_summary">Zažádat o APRS-IS kód online</string>
+<string name="p__aprs">Nastavení APRS</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Typ stanice (1..15;  10=APRS-IS)</string>
+<string name="p_ssid_entry">Zadej SSID pro vaši stanici</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(bez) Stanice s obsluhou</item>
+	<item>1: Digipeater s iGate</item>
+	<item>2: Digipeater</item>
+	<item>3: Sekundární Digipeater</item>
+	<item>4: Terciální WX stanice</item>
+	<item>5: Sekundární WX stanice</item>
+	<item>6: Primární WX stanice</item>
+	<item>7: Ruční radiostanice</item>
+	<item>8: Sekundární nebo speciální mobilní stanice</item>
+	<item>9: Neobsluhovaná mobilní stanice</item>
+	<item>10: Stanice pracující pouze přes internet</item>
+	<item>11: neurčeno (balón,letadlo,vesmírný objekt)</item>
+	<item>12: neurčeno</item>
+	<item>13: Vyhrazeno pro mimořádné nouzové události</item>
+	<item>14: neurčeno</item>
+	<item>15: Pro testovací účely</item>
+</string-array>
+<string name="p_symbol">Symbol APRS</string>
+<string name="p_symbol_summary">Váš symbol pro zobrazení na mapě</string>
+<string name="p_symbol_entry">Zadejte symbol pomocí dvou znaků z tabulky symbolů</string>
+<string name="p_status">Text majáku</string>
+<string name="p_status_summary">Text uvedený v majáku za souřadnicemi</string>
+<string name="p_status_entry">Vložte text majáku</string>
+<string name="p__connection">Připojení k APRS</string>
+<string name="p_conntype">Protokol připojení</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP nebo UDP</string>
+<string name="p_conntype_entry">Zvolte protokol připojení</string>
+<string name="p_connsetup">Nastavení připojení</string>
+<string name="p_connsetup_summary">Konfigurace připojení</string>
+<string name="p_connlog">Logovaní připojení</string>
+<string name="p_connlog_summary">Záznam stavu v logu</string>
+<!-- array of connection types -->
+<string name="p_conn_tcp">Připojení TCP</string>
+<string name="p_conn_udp">UDP (pouze odesílání)</string>
+<string name="p_conn_http">HTTP POST (pouze odesílání)</string>
+<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manuální pozice</string>
+<string name="p_source_periodic">Pravidelně GPS/poloha sítě</string>
+<string name="p_source_smart">Pozice SmartBeaconing™</string>
+<!-- manual position -->
+<string name="p_source_lat">Zeměpisná šířka</string>
+<string name="p_source_lon">Zeměpisná délka</string>
+<string name="p_source_get_last">Použít poslední GPS polohu</string>
+
+
+<!-- privacy settings -->
+<string name="p_privacy">Soukromí polohy</string>
+<string name="p_privacy_summary">Nepřesná poloha a více</string>
+<string name="p_priv_ambiguity">Nepřesná poloha</string>
+<string name="p_priv_ambiguity_summary">Snížení přesnosti vlastní polohy</string>
+<string name="p_ambiguity_off">Vypnuto (DD° MM.mm\')</string>
+<string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
+<string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
+<string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
+<string name="p_ambiguity_dd">4 (DD°)</string>
+<string name="p_priv_spdbear">Odeslat rychlost &amp; Směr</string>
+<string name="p_priv_spdbear_summary">Zahrnout rychlost a směr v majáku</string>
+<string name="p_priv_altitude">Odeslat výšku</string>
+<string name="p_priv_altitude_summary">Zahrnout výšku v majáku</string>
+
+<!-- connection type properties -->
+<string name="p_host">Server</string>
+<string name="p_host_summary">APRS-IS server (port 8080) pro posíláni majáků</string>
+<string name="p_host_entry">Zadejte adresu APRS-IS serveru</string>
+<string name="p_host_hint">host:port</string>
+<string name="p__position">Odesílání pozic</string>
+<string name="p_locsource">Způsob odesílání polohy</string>
+<string name="p_locsource_summary">Manuální, pravidelné, SmartBeaconing™</string>
+<string name="p__location">Nastavení odesílání</string>
+<string name="p__location_summary">Nastavení pro odesílání majáků</string>
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_interval">Minimální čas odesílání</string>
+<string name="p_interval_summary">Čas mezi odvysíláním majáků</string>
+<string name="p_interval_entry">Zadejte interval obnovování [min]</string>
+<string name="p_distance">Minimální vzdálenost pro odesílání</string>
+<string name="p_distance_summary">Vzdálenost pro odeslání majáku (nastav 0 pouze pro čas)</string>
+<string name="p_distance_entry">Zadejte vzdálenost [km]</string>
+<string name="p_speedbrg">Čekat na rychlost &amp; směr</string>
+<string name="p_speedbrg_summary">Ponechat GPS zapnutou pro získání přesnější polohy</string>
+<string name="p_netloc">Použít polohu sítě</string>
+<string name="p_netloc_summary">Získat polohu ze sítě GSM</string>
+<string name="p_gps">Přesnost GPS</string>
+<string name="p_gps_summary">Využití baterie vs. přesnost polohy</string>
+<string name="p_gps_entry">Nastavte přesnost GPS prosím</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">Vysoká (vždy zapnuto)</string>
+<string name="p_gps_med">Střední</string>
+<string name="p_gps_low">Nízká</string>
+<string name="p_keepscreen">Ponechat zapnutou obrazovku</string>
+<string name="p_keepscreen_summary">Nevypínat obrazovku když je APRSdroid v popředí</string>
+
+<!-- messaging -->
+<string name="p__display">Displej a upozornění</string>
+<string name="p__notification">Upozornění</string>
+<string name="p__notification_summary">Upozornění na zprávy a hlášení pozic</string>
+<string name="p_msg">Příchozí zprávy</string>
+<string name="p_msg_led">Blikající LED</string>
+<string name="p_msg_led_on">LED upozornění zapnuté</string>
+<string name="p_msg_led_off">LED upozornění vypnuté</string>
+<string name="p_msg_vibr">Vibrace</string>
+<string name="p_msg_vibr_on">Upozornění vibracemi zapnuté</string>
+<string name="p_msg_vibr_off">Upozornění vibracemi vypnuté</string>
+<string name="p_msg_ring">Zvuk</string>
+<string name="p_msg_ring_summary">Zvuk pro příchozí zprávy</string>
+<string name="p_pos">Odeslání vlastní polohy</string>
+<string name="p_pos_ring">Zvuk</string>
+<string name="p_pos_ring_summary">Zvuk pro odeslání polohy</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS cesta</string>
+<string name="p_aprs_path_hint">skok 1, skok 2</string>
+<string name="p_aprs_path_summary">Pořadí digipeaterů</string>
+<string name="p_aprs_path_entry">Vložte čárku pro oddělení</string>
+<string name="p_afsk_prefix">Frame Sync Prefix</string>
+<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
+<string name="p_afsk_prefix_entry">Zadejte čas [ms]</string>
+<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
+<string name="p_afsk_output">Audio Output</string>
+<string-array name="p_afsk_out_e">
+	<item>Voice Call</item>
+	<item>Zvuk</item>
+	<item>Music</item>
+	<item>Alarm</item>
+</string-array>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) pro připojení</string>
+<string name="p_filterdist">Vzdálenost</string>
+<string name="p_filterdist_summary">Příjem stanic do této vzdálenosti</string>
+<string name="p_filterdist_entry">Zadejte vzdálenost pro příjem stanic</string>
+<string name="p_filter">APRS-IS Filtr</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filtr pro příjem dat z APRS-IS serveru</string>
+<string name="p_filter_entry">Zadejte parametry filtru</string>
+
+<string name="p_filterhelp">Nápověda filtru</string>
+<string name="p_filterhelp_summary">Online nápověda pro filtr APRS-IS serveru</string>
+
+<string name="p_sotimeout">TCP socket  timeout</string>
+<string name="p_sotimeout_summary">Čas před obnovením připojení</string>
+<string name="p_sotimeout_entry">Čas prodlevy v sekundách (0 = zakázat)</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Libor, OK1ALX https://launchpad.net/~ok1alx</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">Režim klient</string>
+<string name="p_bt_client_summary">APRSdroid navazuje spojení (Keep this on!)</string>
+<string name="p_bt_tnc_device">Zařízení Bluetooth TNC</string>
+<string name="p_bt_tnc_device_summary">Zvolte vaše TNC z párovaných zařízení</string>
+<string name="p_bt_tnc_device_entry">Zvolte zařízení</string>
+<string name="p_bt_channel">Kanál</string>
+<string name="p_bt_channel_summary">Kanál Bluetooth na TNC</string>
+<string name="p_bt_channel_entry">Zadejte kanál (nejčastěji "1"; prazdné pro SPP)</string>
+
+<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
+<string name="p_bt_prefs">Nastavení Bluetooth</string>
+<string name="p_bt_prefs_summary">Povolit Bluetooth, párované zařízení</string>
+
+<string name="bt_error_unsupported">Bluetooth není podporován!</string>
+<string name="bt_error_disabled">Prosím zapněte Bluetooth!</string>
+<string name="bt_error_no_tnc">Nastavte Bluetooth TNC prosím!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+</resources>

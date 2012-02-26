@@ -5,7 +5,7 @@
 <string name="app_prefs">APRSdroid Asetukset</string>
 <string name="app_map">APRSdroid Kartta</string>
 <string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Station Info</string>
+<string name="app_sta">Aseman tiedot</string>
 <string name="app_messages">Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Sinun pitää asettaa kutsu ja passcode!</string>
@@ -28,7 +28,7 @@
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Aseman SSID:t</string>
-<string name="sta_history">Station History</string>
+<string name="sta_history">Aseman historia</string>
 <string name="sta_map">Kartta</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
@@ -90,7 +90,7 @@
 	\n\n
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
-<string name="ad_thanks">Thanks to:</string>
+<string name="ad_thanks">Kiitokset:</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
 <string name="ad_thanks_1">Michael, DO3BOX: idea</string>
 <string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
@@ -101,7 +101,7 @@
 <string name="ad_homepage">Etusivu</string>
 
 <!-- map view -->
-<string name="map_overlays">Overlays</string>
+<string name="map_overlays">Peitto</string>
 <string name="map_satellite">Satelliitti</string>
 <string name="map_objects">APRS Objektit</string>
 
@@ -168,13 +168,13 @@
 <string name="p_conntype_entry">Valitse yhdistämisen protokolla</string>
 <string name="p_connsetup">Yhteyksen Asetukset</string>
 <string name="p_connsetup_summary">Yhteyden Kokoonpano</string>
-<string name="p_connlog">Connection Logging</string>
+<string name="p_connlog">Yhteyden kirjaus</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP yhteys</string>
 <string name="p_conn_udp">UDP (vain lähetys)</string>
 <string name="p_conn_http">HTTP POST (vain lähetys)</string>
-<string name="p_conn_afsk">AFSK kaiuttimien kautta</string>
+<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>
@@ -196,7 +196,7 @@
 <string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
-<string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
+<string name="p_priv_spdbear">Lähetä Nopeus &amp; Suunta</string>
 <string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
 <string name="p_priv_altitude">Send Altitude</string>
 <string name="p_priv_altitude_summary">Include altitude in position reports</string>
@@ -229,19 +229,19 @@
 <string name="p_gps_always">Suuri (Aina päällä)</string>
 <string name="p_gps_med">Keskitaso</string>
 <string name="p_gps_low">Pieni</string>
-<string name="p_keepscreen">Keep screen awake</string>
+<string name="p_keepscreen">Pidä näyttö päällä</string>
 <string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
 
 <!-- messaging -->
 <string name="p__display">Display and Notifications</string>
-<string name="p__notification">Notifications</string>
+<string name="p__notification">Ilmoituksia</string>
 <string name="p__notification_summary">Alert for messages and position reports</string>
 <string name="p_msg">Incoming Messages</string>
 <string name="p_msg_led">Blinking LED</string>
 <string name="p_msg_led_on">LED notifications are on</string>
-<string name="p_msg_led_off">LED notifications are off</string>
-<string name="p_msg_vibr">Vibration</string>
-<string name="p_msg_vibr_on">Vibration notifications are on</string>
+<string name="p_msg_led_off">LED ilmoitukset pois</string>
+<string name="p_msg_vibr">Värinä</string>
+<string name="p_msg_vibr_on">Värinähälytys päällä</string>
 <string name="p_msg_vibr_off">Vibration notification are off</string>
 <string name="p_msg_ring">Ringtone</string>
 <string name="p_msg_ring_summary">Tone for incoming messages</string>
@@ -286,7 +286,8 @@
 
 <string name="translator_credits">Launchpad Contributions:
   Lasse Kurkela https://launchpad.net/~oh3jaj
-  Ville Filpus https://launchpad.net/~oh6fse</string>
+  Ville Filpus https://launchpad.net/~oh6fse
+  oh1hfv https://launchpad.net/~oh1hfv</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>
