@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: APRSdroid 0.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-15 22:43+0100\n"
+"POT-Creation-Date: 2012-02-26 18:51+0100\n"
 "PO-Revision-Date: 2010-03-17 18:33+0100\n"
 "Last-Translator: Georg Lukas <georg@op-co.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -528,7 +528,7 @@ msgid "HTTP POST (send only)"
 msgstr ""
 
 #: res/values/strings.xml:177(string)
-msgid "AFSK via Speaker"
+msgid "AFSK via Speaker/Mic"
 msgstr ""
 
 #: res/values/strings.xml:178(string)
