@@ -33,11 +33,17 @@ class FixedPosition(service : AprsService, prefs : PrefsWrapper) extends Locatio
 
 	override def start(singleShot : Boolean) = {
 		stop()
-		alreadyRunning = true
 
 		service.registerReceiver(receiver, new IntentFilter(ALARM_ACTION))
-		postPosition()
-		if (!singleShot)
+		val periodic = prefs.getBoolean("periodicposition", true)
+		Log.d(TAG, "start: periodic=" + periodic + " single=" + singleShot)
+
+		if (singleShot || alreadyRunning || periodic)
+			postPosition()
+
+		alreadyRunning = true
+
+		if (periodic && !singleShot)
 			postRefresh()
 
 

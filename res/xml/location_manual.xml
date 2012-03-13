@@ -10,7 +10,7 @@
 		android:inputType="number|numberSigned|numberDecimal"
 		android:defaultValue="0.000"
 		android:title="@string/p_source_lat"
-		android:summary=""
+		android:summary="@string/p_source_coord"
 		android:dialogTitle="@string/p_source_lat" />
                 
         <de.duenndns.EditTextPreferenceWithValue
@@ -18,7 +18,7 @@
 		android:inputType="number|numberSigned|numberDecimal"
 		android:defaultValue="0.000"
 		android:title="@string/p_source_lon"
-		android:summary=""
+		android:summary="@string/p_source_coord"
 		android:dialogTitle="@string/p_source_lon" />
 
     <PreferenceScreen
@@ -31,7 +31,14 @@
                     android:targetClass="org.aprsdroid.app.LocationPrefs" />
     </PreferenceScreen>
                 
+        <CheckBoxPreference
+                android:key="periodicposition"
+		android:title="@string/p_source_auto"
+		android:summary="@string/p_source_auto_summary"
+		android:defaultValue="true"
+		/>
         <de.duenndns.EditTextPreferenceWithValue
+		android:dependency="periodicposition"
                 android:key="interval"
 		android:inputType="number"
 		android:defaultValue="10"
