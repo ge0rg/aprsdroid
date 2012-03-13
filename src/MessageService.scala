@@ -26,11 +26,11 @@ class MessageService(s : AprsService) {
 
 	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
 		val callssid = s.prefs.getCallSsid()
-		if (ap.getSourceCall() == callssid) {
+		if (ap.getSourceCall().equalsIgnoreCase(callssid)) {
 			Log.i(TAG, "ignoring own digipeated message")
 			return
 		}
-		if (msg.getTargetCallsign() == callssid) {
+		if (msg.getTargetCallsign().equalsIgnoreCase(callssid)) {
 			if (msg.isAck() || msg.isRej()) {
 				val new_type = if (msg.isAck())
 					StorageDatabase.Message.TYPE_OUT_ACKED
@@ -47,8 +47,8 @@ class MessageService(s : AprsService) {
 				}
 			}
 			s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, ap.toString))
-		} else if (msg.getTargetCallsign().split("-")(0) == s.prefs.getCallsign() &&
-				!msg.isAck() && !msg.isRej()) {
+		} else if (msg.getTargetCallsign().split("-")(0).equalsIgnoreCase(
+				s.prefs.getCallsign()) && !msg.isAck() && !msg.isRej()) {
 			// incoming message for a different ssid of our callsign
 			Log.d(TAG, "incoming message for " + msg.getTargetCallsign())
 			storeNotifyMessage(ts, ap.getSourceCall(), msg)
