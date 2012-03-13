@@ -7,10 +7,10 @@ import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 import _root_.net.ab0oo.aprs.parser.{APRSPacket, Digipeater, Parser}
 import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 
-import com.jazzido.PacketDroid.{AudioBufferProcessor, PacketCallback}
+import sivantoledo.ax25.PacketHandler
 
 class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs)
-		with PacketCallback {
+		with PacketHandler {
 	val TAG = "APRSdroid.Afsk"
 	// frame prefix: bytes = milliseconds * baudrate / 8 / 1000
 	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
@@ -19,7 +19,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	val samplerate = if (use_bt) 16000 else 22050
 	val out_type = prefs.getAfskOutput()
 	val output = new Afsk(out_type, samplerate)
-	val abp = new AudioBufferProcessor(this)
+	val ad = new AfskDemodulator(this, 11025)
 	
 	val btScoReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
@@ -28,7 +28,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			if (state == AudioManager.SCO_AUDIO_STATE_CONNECTED) {
 				// we are connected, perform actual start
 				log(service.getString(R.string.afsk_info_sco_est))
-				abp.start()
+				ad.start()
 				service.unregisterReceiver(this)
 				service.postPosterStarted()
 			}
@@ -43,7 +43,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			service.registerReceiver(btScoReceiver, new IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_CHANGED))
 			false
 		} else {
-			abp.start()
+			ad.start()
 			true
 		}
 	}
@@ -61,13 +61,13 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	}
 
 	def stop() {
-		abp.stopRecording()
+		ad.close()
 		if (use_bt)
 			service.getSystemService(Context.AUDIO_SERVICE)
 				.asInstanceOf[AudioManager].stopBluetoothSco()
 	}
 
-	def received(data : Array[Byte]) {
+	def handlePacket(data : Array[Byte]) {
 		try {
 			service.postSubmit(Parser.parseAX25(data).toString().trim())
 		} catch {
@@ -81,4 +81,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
 	}
 
+	def postAbort(s : String) {
+		service.postAbort(s)
+	}
 }
