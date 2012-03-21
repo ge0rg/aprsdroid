@@ -200,7 +200,12 @@ class AprsService extends Service {
 
 	def parsePacket(ts : Long, message : String) {
 		try {
-			val fap = Parser.parse(message)
+			var fap = Parser.parse(message)
+			if (fap.getType() == APRSTypes.T_THIRDPARTY) {
+				Log.d(TAG, "parsePacket: third-party packet from " + fap.getSourceCall())
+				fap = Parser.parse(fap.getAprsInformation().toString())
+			}
+
 			if (fap.getAprsInformation() == null) {
 				Log.d(TAG, "parsePacket() misses payload: " + message)
 				return
