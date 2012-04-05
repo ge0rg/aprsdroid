@@ -27,7 +27,7 @@ class AfskDemodulator(au : AfskUploader, samplerate : Int) extends Thread("AFSK 
 		Log.d(TAG, "running...")
 		try {
 			recorder.startRecording();
-			while (recorder.getRecordingState() != AudioRecord.RECORDSTATE_STOPPED) {
+			while (!isInterrupted() && (recorder.getRecordingState() != AudioRecord.RECORDSTATE_STOPPED)) {
 				val count = recorder.read(buffer_s, 0, BUF_SIZE)
 				Log.d(TAG, "read " + count + " samples")
 				if (count <= 0)
@@ -49,7 +49,9 @@ class AfskDemodulator(au : AfskUploader, samplerate : Int) extends Thread("AFSK 
 
 	def close() {
 		try {
+			this.interrupt()
 			recorder.stop()
+			this.join(50)
 		} catch {
 		case e : IllegalStateException => Log.w(TAG, "close(): " + e)
 		}
