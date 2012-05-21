@@ -134,7 +134,11 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 					}
 				} catch {
 					case e : Exception => 
-						e.printStackTrace()
+						try {
+							Log.e(TAG, "reader exception: " + e)
+							e.printStackTrace()
+						} catch { case _ => Log.d(TAG, "Yo dawg! I got an exception while getting an exception!")
+						}
 						log("Reconnecting in 3s...")
 						try {
 							Thread.sleep(3*1000)
