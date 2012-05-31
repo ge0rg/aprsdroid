@@ -394,7 +394,7 @@ class StorageDatabase(context : Context) extends
 	}
 
 	def createMsgId(call : String) = {
-		val c = getReadableDatabase().query(Message.TABLE, Array("max(msgid)"),
+		val c = getReadableDatabase().query(Message.TABLE, Array("MAX(CAST(msgid AS INTEGER))"),
 			"call = ? AND type != ?", Array(call, Message.TYPE_INCOMING.toString),
 			null, null,
 			null, null)
