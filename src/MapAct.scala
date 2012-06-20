@@ -12,7 +12,10 @@ import _root_.android.widget.SimpleCursorAdapter
 import _root_.android.widget.Spinner
 import _root_.android.widget.TextView
 import _root_.org.mapsforge.android.maps._
+import _root_.org.mapsforge.core.GeoPoint
+import _root_.org.mapsforge.android.maps.overlay.{ItemizedOverlay, OverlayItem}
 import _root_.scala.collection.mutable.ArrayBuffer
+import _root_.java.io.File
 import _root_.java.util.ArrayList
 
 // to make scala-style iterating over arraylist possible
@@ -42,7 +45,7 @@ class MapAct extends MapActivity with UIHelper {
 		locReceiver.startTask(null)
 		showObjects = prefs.getShowObjects()
 		//mapview.setSatellite(prefs.getShowSatellite())
-		mapview.setMapFile("/sdcard/aprsdroid.map")
+		mapview.setMapFile(new File("/sdcard/aprsdroid.map"))
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
