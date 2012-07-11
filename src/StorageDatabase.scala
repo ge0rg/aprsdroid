@@ -277,7 +277,10 @@ class StorageDatabase(context : Context) extends
 
 	def getRectStations(lat1 : Int, lon1 : Int, lat2 : Int, lon2 : Int, limit : String) : Cursor = {
 		Log.d(TAG, "StorageDatabase.getRectStations: %d,%d - %d,%d".format(lat1, lon1, lat2, lon2))
-		getStations("LAT >= ? AND LAT <= ? AND LON >= ? AND LON <= ?",
+		// check for areas overflowing between +180 and -180 degrees
+		val QUERY = if (lon1 <= lon2) "LAT >= ? AND LAT <= ? AND LON >= ? AND LON <= ?"
+					else  "LAT >= ? AND LAT <= ? AND (LON <= ? OR LON >= ?)"
+		getStations(QUERY,
 			Array(lat1, lat2, lon1, lon2).map(_.toString), limit)
 	}
 

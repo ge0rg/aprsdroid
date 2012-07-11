@@ -1,12 +1,15 @@
 package org.aprsdroid.app
 
-import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
+import _root_.android.app.AlertDialog
+import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
 import _root_.android.database.Cursor
 import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
 import _root_.android.view.{Menu, MenuItem, View}
+import _root_.android.widget.SimpleCursorAdapter
+import _root_.android.widget.Spinner
 import _root_.android.widget.TextView
 import _root_.com.google.android.maps._
 import _root_.scala.collection.mutable.ArrayBuffer
@@ -122,6 +125,14 @@ class Station(val movelog : ArrayBuffer[GeoPoint], val pt : GeoPoint,
 	val call : String, val origin : String, val symbol : String)
 	extends OverlayItem(pt, call, origin) {
 
+	def inArea(bl : GeoPoint, tr : GeoPoint) = {
+		val lat_ok = (bl.latitudeE6 <= pt.latitudeE6 && pt.latitudeE6 <= tr.latitudeE6)
+		val lon_ok = if (bl.longitudeE6 <= tr.longitudeE6)
+				     (bl.longitudeE6 <= pt.longitudeE6 && pt.longitudeE6 <= tr.longitudeE6)
+			     else
+				     (bl.longitudeE6 <= pt.longitudeE6 || pt.longitudeE6 <= tr.longitudeE6)
+		lat_ok && lon_ok
+	}
 }
 
 class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) extends ItemizedOverlay[Station](icons) {
@@ -244,6 +255,42 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		//	return
 		//calls.add(sta.getTitle(), true)
 		stations.add(sta)
+	}
+
+	override def onTap(gp : GeoPoint, mv : MapView) : Boolean = {
+		//Log.d(TAG, "user tapped " + gp)
+		//Log.d(TAG, "icon bounds: " + icons.getBounds())
+		// convert geopoint to pixels
+		val proj = mv.getProjection()
+		val p = proj.toPixels(gp, null)
+		// ... to pixel area ... to geo area
+		//Log.d(TAG, "coords: " + p)
+		val botleft = proj.fromPixels(p.x - 16, p.y + 16)
+		val topright = proj.fromPixels(p.x + 16, p.y - 16)
+		Log.d(TAG, "from " + botleft + " to " + topright)
+		// fetch stations in the tap
+		val list = stations.filter(_.inArea(botleft, topright)).map(_.call)
+		Log.d(TAG, "found " + list.size() + " stations")
+		val result = if (list.size() == 0)
+			false // nothing found, do not revert to superclass
+		else if (list.size() == 1) {
+			// found one entry
+			val call = list.get(0)
+			Log.d(TAG, "user clicked on " + call)
+			context.openDetails(call)
+			true
+		} else {
+			// TODO: replace simple adapter with StationListAdapter for better UI
+			new AlertDialog.Builder(context).setTitle(R.string.map_select)
+				.setItems(list.toArray.asInstanceOf[Array[CharSequence]], new DialogInterface.OnClickListener() {
+					override def onClick(di : DialogInterface, item : Int) {
+						context.openDetails(list.get(item))
+					}})
+				.setNegativeButton(android.R.string.cancel, null)
+				.show()
+			true
+		}
+		result
 	}
 
 	override def onTap(index : Int) : Boolean = {
