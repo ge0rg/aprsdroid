@@ -120,7 +120,7 @@
 	    classpath="tools/scala-compiler.jar:tools/scala-library.jar" />
 	<scalac force="changed" deprecation="on"
 	    srcdir="${source.absolute.dir}" includes="**/*.scala"
-	    bootclasspathref="android.target.classpath"
+	    bootclasspathref="project.target.class.path"
 	    destdir="${out.classes.absolute.dir}">
 	    <classpath>
 		<pathelement location="${out.classes.absolute.dir}"/>
@@ -143,7 +143,7 @@
 	<proguard configuration="proguard.cfg">
 	    -injars ${out.classes.absolute.dir}:${jar.libs.dir}:tools/scala-library.jar(!META-INF/MANIFEST.MF,!library.properties)
 	    -outjars ${out.absolute.dir}/classes.min.jar
-	    -libraryjars ${toString:android.target.classpath}
+	    -libraryjars ${toString:project.target.class.path}
 	    -printusage ${optimized.dir}/proguard.usage
 	</proguard>
     </target>
