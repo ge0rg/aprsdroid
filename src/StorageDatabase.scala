@@ -409,6 +409,10 @@ class StorageDatabase(context : Context) extends
 		c.close()
 		result
 	}
+	def deleteMessages(call : String) {
+		getWritableDatabase().execSQL("DELETE FROM %s WHERE %s = ?".format(Message.TABLE, Message.CALL),
+			Array(call))
+	}
 
 	def getConversations() = {
 		getReadableDatabase().query(Message.TABLE, Message.COLUMNS,

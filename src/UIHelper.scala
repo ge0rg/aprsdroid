@@ -32,6 +32,10 @@ trait UIHelper extends Activity
 		startActivity(new Intent(this, classOf[MessageActivity]).setData(Uri.parse(call)))
 	}
 
+	def clearMessages(call : String) {
+		new MessageCleaner(StorageDatabase.open(this), call).execute()
+	}
+
 	def openMessageSend(call : String, message : String) {
 		startActivity(new Intent(this, classOf[MessageActivity]).setData(Uri.parse(call)).putExtra("message", message))
 	}
@@ -291,6 +295,9 @@ trait UIHelper extends Activity
 		case R.id.message =>
 			openMessaging(targetcall)
 			true
+		case R.id.messagesclear =>
+			clearMessages(targetcall)
+			true
 		case R.id.mapbutton =>
 			trackOnMap(targetcall)
 			true
@@ -322,6 +329,16 @@ trait UIHelper extends Activity
 		override def onPostExecute(x : Unit) {
 			Log.d("StorageCleaner", "broadcasting...")
 			sendBroadcast(new Intent(AprsService.UPDATE))
+		}
+	}
+	class MessageCleaner(storage : StorageDatabase, call : String) extends MyAsyncTask[Unit, Unit] {
+		override def doInBackground1(params : Array[String]) {
+			Log.d("MessageCleaner", "deleting...")
+			storage.deleteMessages(call)
+		}
+		override def onPostExecute(x : Unit) {
+			Log.d("MessageCleaner", "broadcasting...")
+			sendBroadcast(new Intent(AprsService.MESSAGE))
 		}
 	}
 }
