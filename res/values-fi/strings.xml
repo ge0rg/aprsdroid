@@ -4,25 +4,25 @@
 <string name="app_name">APRSdroid</string>
 <string name="app_prefs">APRSdroid Asetukset</string>
 <string name="app_map">APRSdroid Kartta</string>
-<string name="app_hub">APRSdroid Hub</string>
+<string name="app_hub">APRSdroid Läheiset</string>
 <string name="app_sta">Aseman tiedot</string>
-<string name="app_messages">Messages</string>
+<string name="app_messages">Viestit</string>
+<string name="app_messages_clear">Tyhjennä viestit</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">Sinun pitää asettaa kutsu ja passcode!</string>
-<string name="wrongpasscode">Passcode ei vastaa asemakutsuasi!</string>
-<string name="anon_warning">Ilman passcodea , raportteja ei lisätä!</string>
+<string name="firstrun">APRSdroid:n asetuksista puuttuvat kutsu sekä passcode!</string>
+<string name="wrongpasscode">Passcode ei vastaa kutsumerkkiäsi!</string>
+<string name="anon_warning">Paikkatietoraporttejasi ei välitetä edelleen mikäli passcode ei ole asetettu!</string>
 <string name="mininterval">Pienin päivitysväli on 1 minuutti!</string>
-<string name="singlelog">Single Shot</string>
+<string name="singlelog">Yksittäinen lähetys</string>
 <string name="startlog">Aloita seuranta</string>
 <string name="stoplog">Lopeta seuranta</string>
 
-<string name="empty_logview">You have not yet sent or received any packets.\n\n
-	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
-	You can also change the application preferences from the menu.</string>
+<string name="empty_logview">Et ole vielä lähettänyt tai vastaanottanut yhtään pakettia.\n\n Paina \"Menu\”-painiketta lähettääksesi yksittäisen raportin tai aloittaaksesi sijaintisi seurannan.\n\n Voit myös muuttaa sovelluksen asetuksia valikosta.</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Viimeisin Raportti</string>
-<string name="map_track_call">Tracking %s...</string>
+<string name="map_track_call">Seuraa asemaa %s...</string>
+<string name="map_select">Valitse asema</string>
 
 <string name="map_loading">Ladataan...</string>
 
@@ -34,76 +34,55 @@
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
-<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<string name="msg_send_new">Lähetä viesti asemalle</string>
+<string name="msg_message_text">Viestin teksti</string>
+<string name="msg_empty_list">Ei tallennettuja keskusteluja</string>
+<string name="msg_stored_offline">Viesti lähetetään heti, kun käynnistät seurannan.</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">Viesti asemalta %s</string>
+<string name="msg_to">Viesti asemalle %s</string>
+<string name="msg_abort">Keskeytä lähetys</string>
+<string name="msg_restart">Lähetä uudelleen</string>
+<string name="msg_type_rejected">hylätty</string>
+<string name="msg_type_aborted">keskeytetty</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid Service</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
-<string name="service_stop">APRS Palvelu pysäytetty.</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="aprsservice">APRSdroid-palvelu</string>
+<string name="service_once">APRS-palvelu yksittäinen lähetys: %1$s, %2$s.</string>
+<string name="service_start">APRS-palvelu käynnistetty: %1$s, %2$s.</string>
+<string name="service_stop">APRS-palvelu pysäytetty.</string>
+<string name="service_no_location">Joko GPS- tai verkkopohjainen paikannus on käynnistettävä, jotta APRSdroid saisi paikkatiedot puhelimelta!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ edellyttää GPS:n käyttöä!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_error">Virhe</string>
+<string name="post_incmg">vastaanotettu</string>
 <string name="post_info"/>
-<string name="post_connecting">Connecting to %1$s:%2$d...</string>
-<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+<string name="post_connecting">Yhdistää %1$s:%2$d...</string>
+<string name="post_reconnect">Yhteys katkennut. Yhdistää uudelleen %d sekunnin kuluttua...</string>
 
 <!-- first run dialog -->
-<string name="fr_title">Tervettuloa APRSdroid!</string>
-<string name="fr_text">This software may only be used by licensed amateur radio
-	operators!</string>
-<string name="fr_text2">You need to enter your callsign to use this software.
-	To forward your packets, an APRS-IS passcode is required as well.</string>
+<string name="fr_title">Tervetuloa APRSdroid:iin!</string>
+<string name="fr_text">Ohjelman käyttö on sallittua vain pätevyystodistuksen omaaville radioamatööreille!</string>
+<string name="fr_text2">Ohjelman käyttäminen edellyttää oman kutsumerkkisi asettamista. Jotta paikkatietosi välitettäisiin edelleen, myös oikea APRS-IS passcode on asetettava.</string>
 
 <!-- about dialog -->
-<string name="ad_title">About APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
-<string name="ad_gpl">This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	\n\n
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	\n\n
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-	\n\n
-	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-	</string>
+<string name="ad_title">Tietoja APRSdroid v%s:sta</string>
+<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® on Bob Bruningan (WB4APR) rekisteröimä tavaramerkki</string>
+<string name="ad_gpl">Tämä ohjelmisto on vapaa; voit jakaa sitä ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public License ehtojen mukaisesti; joko Lisenssin 2-version tai myöhemmän version mukaisesti. \n\n Tätä ohjelmaa jaetaan siten, että siitä olisi jotain hyötyä, mutta EHDOTTOMASTI ILMAN MITÄÄN TAKUUTA; ilman vähäisintäkään takuuta KAUPALLISUUDESTA tai SOPIVUUDESTA ERITYISIIN TARKOITUKSIIN. Katso GNU General Public License tarkemista yksityiskohdista. \n\n Olet saanut kopion GNU General Public License:stä tämän ohjelman mukana; jos et, niin otayhteyttä Free Software Foundation:iin , Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Kiitokset:</string>
-<string name="ad_thanks_0">My YL ♥♥♥</string>
+<string name="ad_thanks_0">Oma YL:ni ♥♥♥</string>
 <string name="ad_thanks_1">Michael, DO3BOX: idea</string>
-<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
-<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
-<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivaatio ja  tuki</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK-toteutus</string>
+<string name="ad_thanks_4">Matti, OH2MQK ja John, AB0OO: Java APRS</string>
 <string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nKäännös:</string>
 <string name="ad_homepage">Etusivu</string>
 
 <!-- map view -->
-<string name="map_overlays">Peitto</string>
+<string name="map_overlays">Kartan peitteet</string>
 <string name="map_satellite">Satelliitti</string>
-<string name="map_objects">APRS Objektit</string>
+<string name="map_objects">APRS-objektit</string>
 
 <!-- map view -->
 <string name="age">Näytä viimeiset...</string>
@@ -116,203 +95,207 @@
 
 <!-- options menu -->
 <string name="about">Tietoja</string>
-<string name="show_hub">Show Hub</string>
+<string name="show_hub">Näytä Läheiset</string>
 <string name="show_map">Näytä Kartta</string>
 <string name="show_log">Näytä loki</string>
 <string name="clear_log">Tyhjennä loki</string>
-<string name="quit">Lopeta</string>
+<string name="quit">Poistu</string>
 <string name="preferences">Asetukset</string>
 <!-- preferences -->
-<string name="p__ham">Amatööri Radio</string>
-<string name="p_callsign">Kutsu</string>
-<string name="p_callsign_nossid">Callsign (without SSID)</string>
-<string name="p_callsign_summary">Sinun Radioamatööri kutsu</string>
-<string name="p_callsign_entry">Enter callsign</string>
-<string name="p_passcode">APRS-IS Passcode</string>
+<string name="p__ham">Amatööriradio</string>
+<string name="p_callsign">Kutsumerkki</string>
+<string name="p_callsign_nossid">Kutsumerkki (ilman SSID:tä)</string>
+<string name="p_callsign_summary">Oma radioamatöörikutsusi</string>
+<string name="p_callsign_entry">Aseta kutsumerkkisi</string>
+<string name="p_passcode">APRS-IS passcode</string>
 <string name="p_passcode_summary">APRS-IS varmennus passcode</string>
-<string name="p_passcode_entry">Kirjoita kutsusi passcode</string>
+<string name="p_passcode_entry">Aseta kutsuasi vastaava passcode</string>
 <string name="p_passreq">Pyydä Passcode</string>
 <string name="p_passreq_summary">Pyydä APRS-IS passcode verkossa</string>
 <string name="p__aprs">APRS Asetukset</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Aseman tyyppi (1..15; 9=mobile, 10=APRS-IS)</string>
-<string name="p_ssid_entry">Kirjoita asemasi SSID</string>
+<string name="p_ssid_entry">Aseta asemasi SSID</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
-	<item>(none) Primary Station</item>
-	<item>1: Generic additional station</item>
-	<item>2: Generic additional station</item>
-	<item>3: Generic additional station</item>
-	<item>4: Generic additional station</item>
-	<item>5: Other network (D-Star, 3G)</item>
+	<item>(0) Ensisijainen asema</item>
+	<item>1: Yleinen lisäasema</item>
+	<item>2: Yleinen lisäasema</item>
+	<item>3: Yleinen lisäasema</item>
+	<item>4: Yleinen lisäasema</item>
+	<item>5: Muu verkko (D-Star, 3G)</item>
 	<item>6: Satelliitti</item>
 	<item>7: Käsikapula</item>
 	<item>8: Vene / Laiva</item>
 	<item>9: Mobile asema</item>
 	<item>10: APRS-IS (ei radio)</item>
-	<item>11: Balloon, aircraft, spacecraft</item>
-	<item>12: APRStt, DTMF, ... (one way)</item>
-	<item>13: Weather station</item>
-	<item>14: Freight vehicle</item>
-	<item>15: Generic additional station</item>
+	<item>11: Ilmapallo, lentokone, avaruusalus</item>
+	<item>12: APRStt, DTMF, ... (yksisuuntainen)</item>
+	<item>13: Sääasema</item>
+	<item>14: Rahtiliikenne</item>
+	<item>15: Yleinen lisäasema</item>
 </string-array>
 <string name="p_symbol">APRS symboli</string>
 <string name="p_symbol_summary">Asemasi symboli</string>
-<string name="p_symbol_entry">Aseta symboli joka on koodattu kahteen merkkiin</string>
-<string name="p_status">Comment field</string>
-<string name="p_status_summary">Koordinaattejen jälkeinen teksti</string>
-<string name="p_status_entry">Enter your beacon comment</string>
+<string name="p_symbol_entry">Aseta symboli kahdella merkillä koodattuna</string>
+<string name="p_status">Kommettikenttä</string>
+<string name="p_status_summary">Koordinaattien jälkeinen teksti</string>
+<string name="p_status_entry">Syötä kommentti majakallesi</string>
 <string name="p__connection">APRS Yhteys</string>
-<string name="p_conntype">Yhdistämisen Protokolla</string>
+<string name="p_conntype">Yhteyden protokolla</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP tai UDP</string>
-<string name="p_conntype_entry">Valitse yhdistämisen protokolla</string>
-<string name="p_connsetup">Yhteyksen Asetukset</string>
-<string name="p_connsetup_summary">Yhteyden Kokoonpano</string>
+<string name="p_conntype_entry">Valitse yhteydellä käytetty protokolla</string>
+<string name="p_connsetup">Yhteysasetukset</string>
+<string name="p_connsetup_summary">Yhteyden asetukset</string>
 <string name="p_connlog">Yhteyden kirjaus</string>
-<string name="p_connlog_summary">Verbose status output in Log</string>
+<string name="p_connlog_summary">Laajemmat tilatiedot lokiin</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP yhteys</string>
+<string name="p_conn_tcp">TCP-yhteys</string>
 <string name="p_conn_udp">UDP (vain lähetys)</string>
 <string name="p_conn_http">HTTP POST (vain lähetys)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_afsk">AFSK-modeemi kaiuttimen/mikrofonin kautta</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
-<string name="p_source_manual">Manual Position</string>
-<string name="p_source_periodic">Periodic GPS/Network Position</string>
-<string name="p_source_smart">SmartBeaconing™ Position</string>
+<string name="p_source_manual">Manuaalinen sijainti</string>
+<string name="p_source_periodic">Jaksottainen GPS-/Verkkosijainti</string>
+<string name="p_source_smart">SmartBeaconing™ Sijainti</string>
 <!-- manual position -->
-<string name="p_source_lat">Latitude</string>
-<string name="p_source_lon">Longitude</string>
-<string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_lat">Leveyspiiri</string>
+<string name="p_source_lon">Pituuspiiri</string>
+<string name="p_source_coord">Koordinaatit</string>
+<string name="p_source_get_last">Käytä viimeisintä GPS-sijaintia</string>
+<string name="p_source_auto">Automaattinen lähetys</string>
+<string name="p_source_auto_summary">Jaksottainen sijainnin lähetys</string>
 
 
 <!-- privacy settings -->
-<string name="p_privacy">Position privacy</string>
-<string name="p_privacy_summary">Position ambiguity and more</string>
-<string name="p_priv_ambiguity">Position Ambiguity</string>
-<string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
-<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_privacy">Sijainnin yksityisyys</string>
+<string name="p_privacy_summary">Sijainnin tarkkuuden vähentäminen, ym.</string>
+<string name="p_priv_ambiguity">Sijainnin tarkkuuden vähentäminen</string>
+<string name="p_priv_ambiguity_summary">Vähennä omien sijantitietojen tarkkuutta</string>
+<string name="p_ambiguity_off">Pois (DD° MM.mm\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
 <string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
-<string name="p_priv_spdbear">Lähetä Nopeus &amp; Suunta</string>
-<string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
-<string name="p_priv_altitude">Send Altitude</string>
-<string name="p_priv_altitude_summary">Include altitude in position reports</string>
+<string name="p_priv_spdbear">Lähetä nopeus ja suunta</string>
+<string name="p_priv_spdbear_summary">Sisällytä nopeus ja suunta sijaintiraporttiin</string>
+<string name="p_priv_altitude">Lähetä korkeus</string>
+<string name="p_priv_altitude_summary">Sisällytä korkeus sijaintiraporttiin</string>
 
 <!-- connection type properties -->
 <string name="p_host">Palvelin</string>
-<string name="p_host_summary">APRS-IS palvelin (portti 8080) to send beacons</string>
-<string name="p_host_entry">Kirjoita APRS-IS palvelimen hostname</string>
+<string name="p_host_summary">APRS-IS-palvelin (portti 8080) pakettien lähettämiseen</string>
+<string name="p_host_entry">Kirjoita APRS-IS-palvelimen nimi</string>
 <string name="p_host_hint">host:port</string>
-<string name="p__position">Position Reports</string>
-<string name="p_locsource">Location Source</string>
-<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
+<string name="p__position">Sijaintiraportit</string>
+<string name="p_locsource">Sijainnin lähde</string>
+<string name="p_locsource_summary">Manuaalinen, Jaksottainen tai SmartBeaconing™</string>
 <string name="p__location">Sijaintiasetukset</string>
-<string name="p__location_summary">Configuration for sending position reports</string>
+<string name="p__location_summary">Sijaintiraportin lähetyksen asetukset</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_interval">Pienin päivitys aika</string>
-<string name="p_interval_summary">Minutes between beacon transmissions</string>
+<string name="p_interval">Pienin päivitysaika</string>
+<string name="p_interval_summary">Minuutteja lähetysten välillä</string>
 <string name="p_interval_entry">Aseta päivityksen aikaväli [min]</string>
-<string name="p_distance">Pienin päivitysmatka</string>
-<string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
-<string name="p_distance_entry">Aseta päiviyksen matka [km]</string>
+<string name="p_distance">Pienin etäisyys lähetysten välillä</string>
+<string name="p_distance_summary">Kilometrejä ennen paikkatiedon lähetystä (aseta arvoon 0 käyttääksesi vain aikaan perustuvaa lähetystä)</string>
+<string name="p_distance_entry">Aseta matka päivitysten välillä (km)</string>
 <string name="p_speedbrg">Odota speed &amp; bearing</string>
 <string name="p_speedbrg_summary">Pidä GPS päällä kauemmin saadaksesi tarkempia tietoja</string>
 <string name="p_netloc">Käytä verkon paikannusta</string>
 <string name="p_netloc_summary">Käytä puhelinverkon paikannusta</string>
 <string name="p_gps">GPS tarkkuus</string>
 <string name="p_gps_summary">Akun käyttö vs. paikannuksen tarkkuus</string>
-<string name="p_gps_entry">Please set the GPS Precision</string>
+<string name="p_gps_entry">Ole hyvä ja aseta GPS-tarkkuus</string>
 <!-- array of GPS precisions -->
 <string name="p_gps_always">Suuri (Aina päällä)</string>
 <string name="p_gps_med">Keskitaso</string>
 <string name="p_gps_low">Pieni</string>
 <string name="p_keepscreen">Pidä näyttö päällä</string>
-<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+<string name="p_keepscreen_summary">Älä sammuta näyttöä, kun APRSdroid on päällä</string>
 
 <!-- messaging -->
-<string name="p__display">Display and Notifications</string>
+<string name="p__display">Näyttö ja Ilmoitukset</string>
 <string name="p__notification">Ilmoituksia</string>
-<string name="p__notification_summary">Alert for messages and position reports</string>
-<string name="p_msg">Incoming Messages</string>
-<string name="p_msg_led">Blinking LED</string>
-<string name="p_msg_led_on">LED notifications are on</string>
-<string name="p_msg_led_off">LED ilmoitukset pois</string>
+<string name="p__notification_summary">Hälytä viestin tai paikkatiedon saapuessa</string>
+<string name="p_msg">Saapuvat viestit</string>
+<string name="p_msg_led">Vilkkuva LED</string>
+<string name="p_msg_led_on">LED-ilmoitukset ovat päällä</string>
+<string name="p_msg_led_off">LED-ilmoitukset ovat poissa päältä</string>
 <string name="p_msg_vibr">Värinä</string>
-<string name="p_msg_vibr_on">Värinähälytys päällä</string>
-<string name="p_msg_vibr_off">Vibration notification are off</string>
-<string name="p_msg_ring">Ringtone</string>
-<string name="p_msg_ring_summary">Tone for incoming messages</string>
-<string name="p_pos">Own Position Reports</string>
-<string name="p_pos_ring">Ringtone</string>
-<string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_msg_vibr_on">Värinähälytys on päällä</string>
+<string name="p_msg_vibr_off">Värinähälytys on poissa päältä</string>
+<string name="p_msg_ring">Soittoääni</string>
+<string name="p_msg_ring_summary">Vastaanotettujen viestien hälytysääni</string>
+<string name="p_pos">Omat sijaintiraportit</string>
+<string name="p_pos_ring">Soittoääni</string>
+<string name="p_pos_ring_summary">Lähetettyjen sijaintiraporttien ääni</string>
 
 <!-- AFSK settings -->
-<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path">APRS-toistinpolku</string>
 <string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
-<string name="p_aprs_path_summary">Digitoistinten järjestys</string>
-<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+<string name="p_aprs_path_summary">Digipiittereiden järjestys</string>
+<string name="p_aprs_path_entry">Aseta digipeater-polku pilkuilla erotettuna</string>
 <string name="p_afsk_prefix">Frame Sync Prefix</string>
-<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
-<string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_prefix_summary">No-Op Preamble (esim. VOX:n ohjaukseen)</string>
+<string name="p_afsk_prefix_entry">Aseta prefixin pituus (ms)</string>
+<string name="p_afsk_btsco">Bluetooth-kuuloke</string>
+<string name="p_afsk_btsco_summary">Käytä bluetooth-kuuloketta (SCO) AFSK-modeemin kanssa</string>
+<string name="p_afsk_output">Äänilähtö</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
-	<item>Ringtone</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>Puhelu</item>
+	<item>Soittoääni</item>
+	<item>Musiikki</item>
+	<item>Hälytys</item>
 </string-array>
 
 <!-- TCP server settings -->
-<string name="p_tcp_server_summary">APRS-IS TCP palvelin (port 14580) to contact</string>
+<string name="p_tcp_server_summary">Käytetty APRS-IS TCP-palvelin (portti 14580)</string>
 <string name="p_filterdist">Vastaanoton säde</string>
 <string name="p_filterdist_summary">Vastaanota paketteja säteen sisäpuolelta</string>
-<string name="p_filterdist_entry">Seuraa ympäilläsi olevia paketteja [km]</string>
-<string name="p_filter">Viesti suodatin</string>
+<string name="p_filterdist_entry">Seuraa asemia määrätyn säteen sisällä (km)</string>
+<string name="p_filter">Viestien suodatus</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
-<string name="p_filter_summary">Tulevien pakettejen suodatus</string>
-<string name="p_filter_entry">Aseta suodatus tuleville viesteille</string>
+<string name="p_filter_summary">Vastaanotettujen pakettien suodatin</string>
+<string name="p_filter_entry">Aseta suodatin vastaanotetuille viesteille</string>
 
 <string name="p_filterhelp">Viestien suodatuksen ohje</string>
-<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+<string name="p_filterhelp_summary">Viestien suodatuksen ohje verkkosivulla</string>
 
 <string name="p_sotimeout">TCP-yhteyden aikakatkaisu</string>
-<string name="p_sotimeout_summary">Time before resetting the connection</string>
+<string name="p_sotimeout_summary">Hyytyneen yhteyden katkaisuviive</string>
 <string name="p_sotimeout_entry">Aikakatkaisu sekunneissa (0 = ei käytössä)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Heikki Hannikainen https://launchpad.net/~hessu
   Lasse Kurkela https://launchpad.net/~oh3jaj
   Ville Filpus https://launchpad.net/~oh6fse
   oh1hfv https://launchpad.net/~oh1hfv</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>
-<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
-<string name="p_bt_tnc_device">TNC Bluetooth Device</string>
-<string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
-<string name="p_bt_tnc_device_entry">Choose device</string>
-<string name="p_bt_channel">Channel</string>
-<string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
-<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+<string name="p_bt_client_summary">APRSdroid muodostaa yhteyden (pidä tämä päällä!)</string>
+<string name="p_bt_tnc_device">TNC Bluetooth-laite</string>
+<string name="p_bt_tnc_device_summary">Valitse TNC paritetuista laitteista</string>
+<string name="p_bt_tnc_device_entry">Valitse laite</string>
+<string name="p_bt_channel">Kanava</string>
+<string name="p_bt_channel_summary">Bluetooth-kanava TNC:ssä</string>
+<string name="p_bt_channel_entry">Aseta kanava (yleensä "1", tyhjä SPP:lle)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init">TNC:n alustuskomento</string>
+<string name="p_bt_tnc_init_summary">TNC:n alustuskomennot</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_bt_tnc_delay">TNC:n alustusviive</string>
+<string name="p_bt_tnc_delay_summary">Rivien välinen viive</string>
+<string name="p_bt_tnc_delay_entry">TNC:n alustusviive (ms)</string>
 
-<string name="p_bt_prefs">Bluetooth settings</string>
-<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+<string name="p_bt_prefs">Bluetooth-asetukset</string>
+<string name="p_bt_prefs_summary">Kytke Bluetooth päälle, parita laitteet...</string>
 
-<string name="bt_error_unsupported">Bluetooth is not supported!</string>
-<string name="bt_error_disabled">Please enable Bluetooth!</string>
-<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+<string name="bt_error_unsupported">Laite ei tue Bluetoothia!</string>
+<string name="bt_error_disabled">Ole hyvä ja kytke Bluetooth päälle!</string>
+<string name="bt_error_no_tnc">Ole hyvä jä määritä Bluetooth TNC:n asetukset!</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">Pyydän Bluetooth SCO-yhteyttä...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO-yhteys muodostettu.</string>
 </resources>

@@ -2,60 +2,60 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_prefs">APRSdroid Indstillinger</string>
 <string name="app_map">APRSdroid Kort</string>
 <string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Station Info</string>
-<string name="app_messages">Messages</string>
+<string name="app_sta">Stations Info</string>
+<string name="app_messages">Meddelelser</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid skal konfigureres med Amatør kaldesignal og adgangskode!</string>
 <string name="wrongpasscode">Din adgangskode matcher ikke dit kaldesignal!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
+<string name="anon_warning">Uden en adgangskode, vil dine rapporter ikke blive sendt</string>
 <string name="mininterval">Minimum opdaterings tid er 1 minut!</string>
 <string name="singlelog">Send engangs Sporing.</string>
 <string name="startlog">Start Sporing</string>
 <string name="stoplog">Stop Sporing</string>
 
-<string name="empty_logview">You have not yet sent or received any packets.\n\n
-	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
-	You can also change the application preferences from the menu.</string>
+<string name="empty_logview">Du har endnu ikke sendt eller modtaget nogen pakker. \ n \ n Tryk på \ "Menu \" knappen for at sende en enkelt rapport eller at begynde at spore din position. \ n \ n Du kan også ændre programmets indstillinger fra menuen.</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Sidste Rapport</string>
-<string name="map_track_call">Tracking %s...</string>
+<string name="map_track_call">Sporing %s...</string>
+<string name="map_select">Select station</string>
 
-<string name="map_loading">Loading...</string>
+<string name="map_loading">Indlæser...</string>
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Station SSIDs</string>
 <string name="sta_history">Station History</string>
-<string name="sta_map">Map</string>
+<string name="sta_map">Kort</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
+<string name="msg_send_new">Send meddelse til...</string>
+<string name="msg_message_text">Besked tekst</string>
+<string name="msg_empty_list">Der er ingen gemte samtaler.</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
+<string name="msg_from">Meddelse fra %s</string>
+<string name="msg_to">Meddelse til %s</string>
+<string name="msg_abort">Afbryd transmission</string>
 <string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_type_rejected">afvist</string>
+<string name="msg_type_aborted">afbrudt</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_start">APRS Service startede: %1$s, %2$s.</string>
 <string name="service_stop">APRS Service stoppet.</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_no_location">Du skal aktivere enten GPS eller netværk for APRSdroid kan fungere korrekt</string>
+<string name="service_sm_no_gps">SmartBeaconing™ kræver GPS!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_error">Fejl!</string>
+<string name="post_incmg">Modtaget</string>
 <string name="post_info"/>
 <string name="post_connecting">Connecting to %1$s:%2$d...</string>
 <string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
@@ -183,7 +183,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->
@@ -285,7 +288,9 @@
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Finn Leslie https://launchpad.net/~idestrup</string>
+  Alexandru Csete https://launchpad.net/~alexc
+  Finn Leslie https://launchpad.net/~idestrup
+  Kim Eggert https://launchpad.net/~kim-s-eggert</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

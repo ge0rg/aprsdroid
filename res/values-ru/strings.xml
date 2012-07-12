@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid Хаб</string>
 <string name="app_sta">Информация о станции</string>
 <string name="app_messages">Сообщения</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Необходимо настроить APRSdroid введите свой ​​позывной и код-пароль!</string>
 <string name="wrongpasscode">Ваш код-пароль не соответствует вашему позывнному!</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Последний отчет</string>
 <string name="map_track_call">Отслеживание %s...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Загрузка...</string>
 
@@ -160,7 +162,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Широта</string>
 <string name="p_source_lon">Долгота</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Использовать последнюю позицию, полученную от GPS</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->

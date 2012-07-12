@@ -7,6 +7,7 @@
 <string name="app_hub">Κόμβος APRSdroid</string>
 <string name="app_sta">Πληροφορίες Σταθμού</string>
 <string name="app_messages">Μηνύματα</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Πρέπει να ρυθμίσετε το APRSdroid με το διακριτικό και τον κωδικό πρόσβασής σας!</string>
 <string name="wrongpasscode">Ο κωδικός πρόσβασης σας δεν αντιστοιχεί στο διακριτικό κλήσης σας!</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Τελευταία Αναφορά</string>
 <string name="map_track_call">Παρακολούθηση %s</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Φόρτωση…</string>
 
@@ -160,7 +162,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Γεωγραφικό Πλάτος</string>
 <string name="p_source_lon">Γεωγραφικό Μήκος</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Χρησιμοποιήστε την τελευταία τοποθεσία GPS</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->

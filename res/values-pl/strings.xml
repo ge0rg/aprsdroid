@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Info Stacji</string>
 <string name="app_messages">Wiadomości</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Należy skonfigurować APRSdroid swoim znakiem i hasłem!</string>
 <string name="wrongpasscode">Hasło nie pasuje do znaku!</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">Ostatni raport %s</string>
 <string name="map_track_call">Śledzenie %s...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Ładowanie...</string>
 
@@ -161,7 +163,10 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <!-- manual position -->
 <string name="p_source_lat">Szer. geogr.</string>
 <string name="p_source_lon">Dł. geogr.</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Użyj ostatniej pozycji z GPS</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->

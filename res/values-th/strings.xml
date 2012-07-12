@@ -7,6 +7,7 @@
 <string name="app_hub">เชื่อมต่อ</string>
 <string name="app_sta">ข้อมูลสถานี</string>
 <string name="app_messages">Messages</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">คุณต้องกำหนดค่านามเรียกขานและรหัสผ่านของคุณ</string>
 <string name="wrongpasscode">รหัสผ่านไม่ตรงกับนามเรียกขานของคุณ!</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">% ข้อมูลล่าสุด</string>
 <string name="map_track_call">ติดตาม %s...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">กำลังโหลด...</string>
 
@@ -179,7 +181,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->

@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Jaama info</string>
 <string name="app_messages">Sõnumid</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
 <string name="wrongpasscode">Teie parool ei sobi kutsungiga!</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s viimasest raportist</string>
 <string name="map_track_call">Tracking %s...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Laadimine...</string>
 
@@ -175,7 +177,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Laiuskraad</string>
 <string name="p_source_lon">Pikkuskraad</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Kasuta viimast GPS positsioneerimist</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->

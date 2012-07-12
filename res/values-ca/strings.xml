@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Informació de l\'estació</string>
 <string name="app_messages">Missatges</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">¡Has de configurar APRSdroid amb el teu indicatiu  i la contrasenya!</string>
 <string name="wrongpasscode">¡El codi d\'accés no coincideix amb el teu indicatiu!</string>
@@ -23,6 +24,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
 <string name="map_track_call">Tracking %s...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Loading...</string>
 
@@ -183,7 +185,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->

@@ -7,6 +7,7 @@
 <string name="app_hub">Réseau APRSdroid</string>
 <string name="app_sta">Infos sur la station</string>
 <string name="app_messages">Messages</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Vous devez configurer APRSdroid avec votre indicatif et votre mot de passe</string>
 <string name="wrongpasscode">Le mot de passe ne correspond pas a votre indicatif!</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s dernier Report</string>
 <string name="map_track_call">Suivi %s...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Chargement en cours ...</string>
 
@@ -160,7 +162,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Utilisez dernière position GPS connu</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->
@@ -234,14 +239,14 @@
 <string name="p_afsk_prefix">Cadre du Préfix de Syncronisation</string>
 <string name="p_afsk_prefix_summary">Aucune message d\'entrée (Ex. pour le contrôle VOX)</string>
 <string name="p_afsk_prefix_entry">Entrez le temp de départ [ms]</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco">Casque Bluetooth</string>
 <string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_output">Sortie audio</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
+	<item>Appel audio</item>
 	<item>Sonnerie</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>Musique</item>
+	<item>Alarme</item>
 </string-array>
 
 <!-- TCP server settings -->

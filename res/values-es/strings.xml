@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Información de estación</string>
 <string name="app_messages">Mensajes</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">¡Debes configurar APRSdroid con tu distintivo de llamada y contraseña!</string>
 <string name="wrongpasscode">¡Tu contraseña no se corresponde con tu distintivo de llamada!</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s ultimo reporte</string>
 <string name="map_track_call">seguimiento</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Cargando…</string>
 
@@ -47,10 +49,10 @@
 <!-- AprsService -->
 <string name="aprsservice">Servicio de APRSdroid</string>
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_start">Servicio APRS iniciado: %1$s, %2$s.</string>
 <string name="service_stop">Servicio APRS detenido.</string>
 <string name="service_no_location">¡Es necesario que habilites el GPS o la localización via red para que APRSdroid funcione correctamente!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requiere un GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Error</string>
 <string name="post_incmg">recibido</string>
@@ -68,7 +70,7 @@
 <string name="ad_copyright">Derechos de autor © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® es una marca registrada de Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Este programa es software libre, puede redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, versión 2 de la Licencia, o (a su elección) cualquier versión posterior. \ n \ n Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA, incluso sin la garantía implícita de COMERCIALIZACIÓN o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General de GNU para más detalles. \ n \ n Usted debe haber recibido una copia de la Licencia Pública General de GNU junto con este programa, si no, escriba a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, EE.UU.. \ n \ n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Gracias a:</string>
-<string name="ad_thanks_0">My YL ♥♥♥</string>
+<string name="ad_thanks_0">Mi novia ♥♥♥</string>
 <string name="ad_thanks_1">Michael, DO3BOX: idea</string>
 <string name="ad_thanks_2">Dirk, DB5OY: motivación y soporte</string>
 <string name="ad_thanks_3">Bastian, DB1BM: Implementacion del AFSK</string>
@@ -160,21 +162,24 @@
 <!-- manual position -->
 <string name="p_source_lat">Latitud</string>
 <string name="p_source_lon">Longitud</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Usar última posición del GPS</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->
 <string name="p_privacy">Privacidad en la posición</string>
-<string name="p_privacy_summary">Position ambiguity and more</string>
-<string name="p_priv_ambiguity">Position Ambiguity</string>
+<string name="p_privacy_summary">Formato de coordenadas y otros</string>
+<string name="p_priv_ambiguity">Formato de las coordenadas</string>
 <string name="p_priv_ambiguity_summary">Menor precisión de los informes en la posición propia</string>
 <string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
-<string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
+<string name="p_ambiguity_ddmm">Copy text 	 2 (DD° MM\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
-<string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
-<string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
+<string name="p_priv_spdbear">Enviar velocidad y rumbo</string>
+<string name="p_priv_spdbear_summary">Incluir Velocidad y Rumbo en los reportes de posición</string>
 <string name="p_priv_altitude">Enviar altitud</string>
 <string name="p_priv_altitude_summary">Incluir altitud en los reportes de posición</string>
 
@@ -195,7 +200,7 @@
 <string name="p_distance">Distancia mínima de actualización</string>
 <string name="p_distance_summary">Kilometros antes del envio de baliza (ponlo a 0 para solo tiempo)</string>
 <string name="p_distance_entry">Introduce la distancia de actualización [km]</string>
-<string name="p_speedbrg">Await speed &amp; bearing</string>
+<string name="p_speedbrg">Esperando Velocidad y Rumbo</string>
 <string name="p_speedbrg_summary">Mantener el GPS encendido para obtener datos más precisos</string>
 <string name="p_netloc">Usar localización vía red</string>
 <string name="p_netloc_summary">Adquirir localización via 3G. GPRS, etc...</string>
@@ -230,18 +235,18 @@
 <string name="p_aprs_path">APRS digi path</string>
 <string name="p_aprs_path_hint">pimer salto, segundo salto, ...</string>
 <string name="p_aprs_path_summary">Secuencia de repetidores digitales</string>
-<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
-<string name="p_afsk_prefix">Frame Sync Prefix</string>
-<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
-<string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_aprs_path_entry">Ingresar DigiPath´s separados por ","</string>
+<string name="p_afsk_prefix">Trama de sincronía</string>
+<string name="p_afsk_prefix_summary">Señal sin datos (ej. para activar Control VOX)</string>
+<string name="p_afsk_prefix_entry">Ingrese duración de la trama (ms)</string>
+<string name="p_afsk_btsco">Manos libres BlueTooth</string>
+<string name="p_afsk_btsco_summary">Usar manos libres BlueTooth (SCO) para AFSK</string>
+<string name="p_afsk_output">Salida de audio</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
+	<item>Llamada de voz</item>
 	<item>Tono de aviso</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>Música</item>
+	<item>Alarma</item>
 </string-array>
 
 <!-- TCP server settings -->
@@ -257,12 +262,14 @@
 <string name="p_filterhelp">Ayuda para filtro de mensajes</string>
 <string name="p_filterhelp_summary">Referencia en línea para filtros APRS-IS</string>
 
-<string name="p_sotimeout">TCP socket timeout</string>
+<string name="p_sotimeout">Socket TCP: Tiempo de espera agotado</string>
 <string name="p_sotimeout_summary">Tiempo antes de restablecer la conexión</string>
 <string name="p_sotimeout_entry">Valor de tiempo de espera en segundos (0 = desactivar)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Fitoschido https://launchpad.net/~fitoschido
+  Adolfo Jayme Barrientos https://launchpad.net/~fitoschido
+  Aeoris https://launchpad.net/~aeoris
+  Carlos Martinez https://launchpad.net/~cx5cba
   Georg Lukas https://launchpad.net/~ge0rg
   Miguel https://launchpad.net/~nobody-su
   Paco-EB5TC https://launchpad.net/~paco-eb5tc
@@ -279,19 +286,19 @@
 <string name="p_bt_channel_entry">Introduce el canal (con mayor frecuencia: "1"; vacío para SPP)</string>
 
 <string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init_summary">Comandos de inicialización del TNC</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_bt_tnc_delay">Retardo de inicio del TNC</string>
+<string name="p_bt_tnc_delay_summary">Tiempo de espera luego de cada linea</string>
+<string name="p_bt_tnc_delay_entry">Retardo de inicio del TNC (ms)</string>
 
 <string name="p_bt_prefs">Preferencias de Bluetooth</string>
 <string name="p_bt_prefs_summary">Activar Bluetooth, emparejar dispositivos ...</string>
 
-<string name="bt_error_unsupported">Bluetooth is not supported!</string>
-<string name="bt_error_disabled">Please enable Bluetooth!</string>
-<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+<string name="bt_error_unsupported">BlueThooth no soportado!</string>
+<string name="bt_error_disabled">Por favor habilite BlueTooth!</string>
+<string name="bt_error_no_tnc">Por favor configure un TNC via BlueTooth</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">Solisitando emparejamiento via BlueTooth</string>
+<string name="afsk_info_sco_est">Emparejamiento BlueTooth establecido!</string>
 </resources>

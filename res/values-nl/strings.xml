@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid Kaart</string>
 <string name="app_sta">Station gegevens</string>
 <string name="app_messages">Berichten</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Je moet APRSdroid configureren met je callsign en passcode!</string>
 <string name="wrongpasscode">Je passcode komt niet overeen met je callsign!</string>
@@ -23,6 +24,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Laatst ontvangen pakket</string>
 <string name="map_track_call">Tracking %s...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Bezig met laden...</string>
 
@@ -48,11 +50,11 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_once">APRS Service enkel baken: %1$s, %2$s.</string>
+<string name="service_start">APRS Service gestart: %1$s, %2$s.</string>
 <string name="service_stop">APRS Service is gestopt.</string>
 <string name="service_no_location">GPS of Netwerk locatie aanzetten voor de goede werking van APRSdroid!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ heeft GPS nodig!</string>
 <!-- service result codes -->
 <string name="post_error">FOUT</string>
 <string name="post_incmg">ontvangen</string>
@@ -156,29 +158,32 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bleutooth TNC</string>
 <!-- array of location sources -->
-<string name="p_source_manual">Manual Position</string>
-<string name="p_source_periodic">Periodic GPS/Network Position</string>
-<string name="p_source_smart">SmartBeaconing™ Position</string>
+<string name="p_source_manual">Manuele Positie</string>
+<string name="p_source_periodic">Periodieke GPS/Netwerk Positie</string>
+<string name="p_source_smart">SmartBeaconing™ Positie</string>
 <!-- manual position -->
-<string name="p_source_lat">Latitude</string>
-<string name="p_source_lon">Longitude</string>
-<string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_lat">Breedtegraad</string>
+<string name="p_source_lon">Lengtegraad</string>
+<string name="p_source_coord">Coordinate</string>
+<string name="p_source_get_last">Laatst gebruikte GPS positie</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->
-<string name="p_privacy">Position privacy</string>
-<string name="p_privacy_summary">Position ambiguity and more</string>
-<string name="p_priv_ambiguity">Position Ambiguity</string>
-<string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
-<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_privacy">Private positie</string>
+<string name="p_privacy_summary">Naukeurigheid van positie en meer...</string>
+<string name="p_priv_ambiguity">Positie naukeurigheid</string>
+<string name="p_priv_ambiguity_summary">Verminderde precisie van de eigen reporten</string>
+<string name="p_ambiguity_off">UIT (DD° MM.mm\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
 <string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
-<string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
-<string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
-<string name="p_priv_altitude">Send Altitude</string>
-<string name="p_priv_altitude_summary">Include altitude in position reports</string>
+<string name="p_priv_spdbear">Snelheid verzenden &amp; Richting</string>
+<string name="p_priv_spdbear_summary">Snelheid en richting in de positie rapporten</string>
+<string name="p_priv_altitude">Hoogte versturen</string>
+<string name="p_priv_altitude_summary">Hoogte in de positie rapporten plaatsen</string>
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>
@@ -186,8 +191,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_host_entry">Geef de APRS-IS server hostnaam</string>
 <string name="p_host_hint">host:poort</string>
 <string name="p__position">Positierapporten</string>
-<string name="p_locsource">Location Source</string>
-<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
+<string name="p_locsource">Bron van de locatie</string>
+<string name="p_locsource_summary">Manueel, Periodiek of SmartBeaconing™</string>
 <string name="p__location">Lokatie instellingen</string>
 <string name="p__location_summary">Instellingen voor het verzenden van rapporten</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
@@ -212,10 +217,10 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_keepscreen_summary">Sluit het scherm niet wanneer APRSdroid actief is</string>
 
 <!-- messaging -->
-<string name="p__display">Display and Notifications</string>
-<string name="p__notification">Notifications</string>
-<string name="p__notification_summary">Alert for messages and position reports</string>
-<string name="p_msg">Incoming Messages</string>
+<string name="p__display">Scherm en meldingen</string>
+<string name="p__notification">Meldingen</string>
+<string name="p__notification_summary">Melding voor berichten en positie rapporten</string>
+<string name="p_msg">Inkomende berichten</string>
 <string name="p_msg_led">Knipper LED</string>
 <string name="p_msg_led_on">LED weergave staan aan</string>
 <string name="p_msg_led_off">LED weergave staan uit</string>
@@ -224,9 +229,9 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_msg_vibr_off">Trillweergave uit</string>
 <string name="p_msg_ring">Beltoon</string>
 <string name="p_msg_ring_summary">Geluid voor inkomende berichten</string>
-<string name="p_pos">Own Position Reports</string>
+<string name="p_pos">Eigen positie rapporten</string>
 <string name="p_pos_ring">Beltoon</string>
-<string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_pos_ring_summary">Toon voor de positie rapporten te versturen</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -237,12 +242,12 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_afsk_prefix_summary">No-Op Voorversterker (e.g. voor VOX controle)</string>
 <string name="p_afsk_prefix_entry">Geef de prefix in [ms]</string>
 <string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_btsco_summary">Gebruik de Bluetooth (SCO) headset voor AFSK</string>
+<string name="p_afsk_output">Geluidsweergave</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
+	<item>Audiogesprek</item>
 	<item>Beltoon</item>
-	<item>Music</item>
+	<item>Muziek</item>
 	<item>Alarm</item>
 </string-array>
 
@@ -265,8 +270,10 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Eddy Vaesen https://launchpad.net/~a-eddy-n
+  Georg Lukas https://launchpad.net/~ge0rg
   H.F.P. Pit https://launchpad.net/~pd5dp
   Robbie De Lise https://launchpad.net/~robbie-delise
+  Selly https://launchpad.net/~salpatxot
   doomer https://launchpad.net/~doomer</string>
 
 <!-- Bluetooth TNC settings -->
@@ -280,19 +287,19 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_bt_channel_entry">Geef kanaal (meestal: "1"; of leeg voor SPP)</string>
 
 <string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init_summary">Initialisatie commando\'s voor TNC</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_bt_tnc_delay">TNC init vertraging</string>
+<string name="p_bt_tnc_delay_summary">vertragingstijd na elke regel</string>
+<string name="p_bt_tnc_delay_entry">TNC init vertraging [ms]</string>
 
 <string name="p_bt_prefs">Bleutooth instellingen</string>
 <string name="p_bt_prefs_summary">Bleutooth inschakelen, apparaten pairen</string>
 
-<string name="bt_error_unsupported">Bluetooth is not supported!</string>
-<string name="bt_error_disabled">Please enable Bluetooth!</string>
-<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+<string name="bt_error_unsupported">Bluetooth wordt niet ondersteund!</string>
+<string name="bt_error_disabled">Bleutooth inschakelen!</string>
+<string name="bt_error_no_tnc">Bleutooth TNC configureren aub!</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">Maken van bleutooth SCO link...</string>
+<string name="afsk_info_sco_est">Bleutooth SCO link verbonden.</string>
 </resources>

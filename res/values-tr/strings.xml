@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid Ana Sayfa</string>
 <string name="app_sta">İstasyon Bilgisi</string>
 <string name="app_messages">İletiler</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid\'i çağrıişaretiniz ve APRS kayıt numaranızla yapılandırmalısınız!</string>
 <string name="wrongpasscode">Şifreniz çağrı işaretinizle eşleşmiyor!</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Son Bildirim</string>
 <string name="map_track_call">%s izleniliyor...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Yükleniyor...</string>
 
@@ -160,7 +162,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Enlem</string>
 <string name="p_source_lon">Boylam</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Son GPS konumunu kullan</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->

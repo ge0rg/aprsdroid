@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid-Hub</string>
 <string name="app_sta">Stationsinfo</string>
 <string name="app_messages">Mitteilungen</string>
+<string name="app_messages_clear">Mitteilungen löschen</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Sie müssen Ihr Rufzeichen und den dazugehörigen Passcode eingeben!</string>
 <string name="wrongpasscode">Der Passcode für Ihr Rufzeichen ist nicht korrekt!</string>
@@ -23,6 +24,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <!-- Maps activity -->
 <string name="sta_lastreport">%s: Letzte Meldung</string>
 <string name="map_track_call">Verfolge %s...</string>
+<string name="map_select">Station wählen</string>
 
 <string name="map_loading">Laden…</string>
 
@@ -159,7 +161,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_conn_tcp">TCP-Verbindung</string>
 <string name="p_conn_udp">UDP (nur Senden)</string>
 <string name="p_conn_http">HTTP POST (nur Senden)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_afsk">AFSK über Lautsprecher/Mikro</string>
 <string name="p_conn_bt">Bluetooth-TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuelle Position</string>
@@ -168,7 +170,10 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <!-- manual position -->
 <string name="p_source_lat">Breitengrad</string>
 <string name="p_source_lon">Längengrad</string>
+<string name="p_source_coord">Koordinate</string>
 <string name="p_source_get_last">Letzte GPS-Position verwenden</string>
+<string name="p_source_auto">Automatisches Senden</string>
+<string name="p_source_auto_summary">Periodisch die eigene Position aussenden</string>
 
 
 <!-- privacy settings -->

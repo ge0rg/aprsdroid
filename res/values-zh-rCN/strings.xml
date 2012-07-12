@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid 列表中心</string>
 <string name="app_sta">台站信息</string>
 <string name="app_messages">信息</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">您需要在APRSdroid中配置您的呼号和验证码！</string>
 <string name="wrongpasscode">您的呼号验证码不正确！</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">近期报告</string>
 <string name="map_track_call">记录中</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">加载中...</string>
 
@@ -46,11 +48,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid 服务</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_once">APRS服务单次发射: %1$s, %2$s.</string>
+<string name="service_start">APRS服务已启动: %1$s, %2$s.</string>
 <string name="service_stop">APRS 服务已停止。</string>
 <string name="service_no_location">你需要打开GPS或基站定位才能正常工作!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_sm_no_gps">智能信标™需要GPS支持！</string>
 <!-- service result codes -->
 <string name="post_error">错误</string>
 <string name="post_incmg">已收到</string>
@@ -154,29 +156,32 @@
 <string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">蓝牙TNC</string>
 <!-- array of location sources -->
-<string name="p_source_manual">Manual Position</string>
-<string name="p_source_periodic">Periodic GPS/Network Position</string>
-<string name="p_source_smart">SmartBeaconing™ Position</string>
+<string name="p_source_manual">手动设定坐标</string>
+<string name="p_source_periodic">周期性启动GPS或基站定位</string>
+<string name="p_source_smart">智能信标™定位</string>
 <!-- manual position -->
-<string name="p_source_lat">Latitude</string>
-<string name="p_source_lon">Longitude</string>
-<string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_lat">纬度</string>
+<string name="p_source_lon">经度</string>
+<string name="p_source_coord">Coordinate</string>
+<string name="p_source_get_last">使用最后一次GPS位置</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->
-<string name="p_privacy">Position privacy</string>
-<string name="p_privacy_summary">Position ambiguity and more</string>
-<string name="p_priv_ambiguity">Position Ambiguity</string>
-<string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
+<string name="p_privacy">位置隐私</string>
+<string name="p_privacy_summary">定位精准度及其他</string>
+<string name="p_priv_ambiguity">定位精准度</string>
+<string name="p_priv_ambiguity_summary">使用降低精度的位置报告</string>
 <string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
 <string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
-<string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
-<string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
-<string name="p_priv_altitude">Send Altitude</string>
-<string name="p_priv_altitude_summary">Include altitude in position reports</string>
+<string name="p_priv_spdbear">发送速度 &amp; 方位</string>
+<string name="p_priv_spdbear_summary">在位置报告中包括速度和方位</string>
+<string name="p_priv_altitude">发送海拔</string>
+<string name="p_priv_altitude_summary">位置报告中包括海拔</string>
 
 <!-- connection type properties -->
 <string name="p_host">服务器</string>
@@ -184,8 +189,8 @@
 <string name="p_host_entry">输入 APRS-IS 服务器的主机名</string>
 <string name="p_host_hint">服务器:端口</string>
 <string name="p__position">位置报告</string>
-<string name="p_locsource">Location Source</string>
-<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
+<string name="p_locsource">定位源</string>
+<string name="p_locsource_summary">手动,定时或智能信标™</string>
 <string name="p__location">位置设置</string>
 <string name="p__location_summary">位置报告配置</string>
 <string name="p_smartbeaconing">SmartBeaconing™(智慧信标™)</string>
@@ -210,10 +215,10 @@
 <string name="p_keepscreen_summary">APRSdroid在前台时不要关闭屏幕</string>
 
 <!-- messaging -->
-<string name="p__display">Display and Notifications</string>
-<string name="p__notification">Notifications</string>
-<string name="p__notification_summary">Alert for messages and position reports</string>
-<string name="p_msg">Incoming Messages</string>
+<string name="p__display">显示和通知</string>
+<string name="p__notification">通知</string>
+<string name="p__notification_summary">告警信息和位置报告</string>
+<string name="p_msg">收到的消息</string>
 <string name="p_msg_led">闪动 LED</string>
 <string name="p_msg_led_on">LED 通知打开</string>
 <string name="p_msg_led_off">LED 通知关闭</string>
@@ -222,9 +227,9 @@
 <string name="p_msg_vibr_off">振动通知关闭</string>
 <string name="p_msg_ring">铃声</string>
 <string name="p_msg_ring_summary">来信息时响铃</string>
-<string name="p_pos">Own Position Reports</string>
+<string name="p_pos">我的位置报告</string>
 <string name="p_pos_ring">铃声</string>
-<string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_pos_ring_summary">已发送位置报告提示音</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS 中继路径</string>
@@ -234,14 +239,14 @@
 <string name="p_afsk_prefix">帧同步前缀</string>
 <string name="p_afsk_prefix_summary">No-Op Preamble (比如:声控发射)</string>
 <string name="p_afsk_prefix_entry">输入同步前缀时间</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_btsco">蓝牙耳机</string>
+<string name="p_afsk_btsco_summary">使用蓝牙(SCO)耳机发射AFSK</string>
+<string name="p_afsk_output">音频输出</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
+	<item>语音通话</item>
 	<item>铃声</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>音乐</item>
+	<item>警告</item>
 </string-array>
 
 <!-- TCP server settings -->
@@ -276,12 +281,12 @@
 <string name="p_bt_channel_summary">TNC蓝牙频道</string>
 <string name="p_bt_channel_entry">输入频道(通常为1;SPP模式为空)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init">TNC初始化字符串</string>
+<string name="p_bt_tnc_init_summary">TNC初始化命令</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_bt_tnc_delay">TNC 初始化延迟</string>
+<string name="p_bt_tnc_delay_summary">每次连线后等待时间</string>
+<string name="p_bt_tnc_delay_entry">TNC 初始化延迟[毫秒]</string>
 
 <string name="p_bt_prefs">蓝牙设置</string>
 <string name="p_bt_prefs_summary">打开蓝牙，配对设备...</string>
@@ -290,6 +295,6 @@
 <string name="bt_error_disabled">请启用蓝牙!</string>
 <string name="bt_error_no_tnc">请配置蓝牙TNC设备!</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">正在请求蓝牙SCO连接...</string>
+<string name="afsk_info_sco_est">蓝牙SCO链路已建立。</string>
 </resources>

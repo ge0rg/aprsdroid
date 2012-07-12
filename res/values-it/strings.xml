@@ -6,7 +6,8 @@
 <string name="app_map">Mappa APRSdroid</string>
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Informazioni Stazione</string>
-<string name="app_messages">Messages</string>
+<string name="app_messages">Messaggi</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Devi conifigurare APRSdroid con il tuo nominativo e la password!</string>
 <string name="wrongpasscode">La password non è corretta!</string>
@@ -16,13 +17,12 @@
 <string name="startlog">Inizia a trasmettere</string>
 <string name="stoplog">Interrompi trasmissione</string>
 
-<string name="empty_logview">You have not yet sent or received any packets.\n\n
-	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
-	You can also change the application preferences from the menu.</string>
+<string name="empty_logview">Non sei in grado di ricevere o trasmettere dati-\n\n Premi il tasto \"Menu\" per inviare una singola trasmissione o inizia a trasmettere la Tua posizione.\n\n Puoi anche cambiare le preferenze dell\'applicazione  dal menù.</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Ultimo Rapporto</string>
 <string name="map_track_call">Tracciando %s...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Caricamento...</string>
 
@@ -34,17 +34,17 @@
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
+<string name="msg_send_new">Invia un messaggio a ....</string>
 <string name="msg_message_text">Messaggio di testo</string>
 <string name="msg_empty_list">Non ci sono conversazioni salvate.</string>
 <string name="msg_stored_offline">Il messaggio verrà inviato appena inizi a trasmettere.</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">Messaggio da %s</string>
+<string name="msg_to">Messaggi per %s</string>
+<string name="msg_abort">Trasmissione interrotta</string>
+<string name="msg_restart">Riavvia trasmissione</string>
+<string name="msg_type_rejected">respinto</string>
+<string name="msg_type_aborted">annullato</string>
 
 <!-- AprsService -->
 <string name="aprsservice">Servizio APRSdroid</string>
@@ -183,7 +183,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->

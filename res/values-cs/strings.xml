@@ -7,6 +7,7 @@
 <string name="app_hub">APRSdroid: Seznam stanic</string>
 <string name="app_sta">Informace stanice</string>
 <string name="app_messages">Zprávy</string>
+<string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Musíte nastavit svoji značku a kód!</string>
 <string name="wrongpasscode">Váš kód nesouhlasí s vaší značkou!</string>
@@ -21,6 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Poslední pozice/</string>
 <string name="map_track_call">Sledování %s...</string>
+<string name="map_select">Select station</string>
 
 <string name="map_loading">Nahrávání...</string>
 
@@ -175,7 +177,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Zeměpisná šířka</string>
 <string name="p_source_lon">Zeměpisná délka</string>
+<string name="p_source_coord">Coordinate</string>
 <string name="p_source_get_last">Použít poslední GPS polohu</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
 
 
 <!-- privacy settings -->
