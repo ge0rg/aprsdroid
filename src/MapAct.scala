@@ -130,11 +130,11 @@ class Station(val movelog : ArrayBuffer[GeoPoint], val pt : GeoPoint,
 	extends OverlayItem(pt, call, origin) {
 
 	def inArea(bl : GeoPoint, tr : GeoPoint) = {
-		val lat_ok = (bl.getLatitudeE6 <= pt.getLatitudeE6 && pt.getLatitudeE6 <= tr.getLatitudeE6)
-		val lon_ok = if (bl.getLongitudeE6 <= tr.getLongitudeE6)
-				     (bl.getLongitudeE6 <= pt.getLongitudeE6 && pt.getLongitudeE6 <= tr.getLongitudeE6)
+		val lat_ok = (bl.latitudeE6 <= pt.latitudeE6 && pt.latitudeE6 <= tr.latitudeE6)
+		val lon_ok = if (bl.longitudeE6 <= tr.longitudeE6)
+				     (bl.longitudeE6 <= pt.longitudeE6 && pt.longitudeE6 <= tr.longitudeE6)
 			     else
-				     (bl.getLongitudeE6 <= pt.getLongitudeE6 || pt.getLongitudeE6 <= tr.getLongitudeE6)
+				     (bl.longitudeE6 <= pt.longitudeE6 || pt.longitudeE6 <= tr.longitudeE6)
 		lat_ok && lon_ok
 	}
 }
