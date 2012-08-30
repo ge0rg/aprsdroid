@@ -5,7 +5,7 @@ import _root_.android.app.Service
 import _root_.android.content.Intent
 import _root_.android.location.Location
 import _root_.android.util.Log
-import _root_.java.io.{InputStream, OutputStream}
+import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStream}
 import _root_.java.net.{InetAddress, Socket}
 import _root_.java.util.UUID
 
@@ -67,8 +67,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		val TAG = "BtSocketThread"
 		var running = true
 		var socket : BluetoothSocket = null
-		var reader : KissReader = null
-		var writer : KissWriter = null
+		var reader : KenwoodReader = null
+		var writer : KenwoodWriter = null
 
 		def log(s : String) {
 			Log.i(TAG, s)
@@ -98,8 +98,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				}
 
 			this.synchronized {
-				reader = new KissReader(socket.getInputStream())
-				writer = new KissWriter(socket.getOutputStream())
+				reader = new KenwoodReader(socket.getInputStream())
+				writer = new KenwoodWriter(socket.getOutputStream())
 			}
 			val initstring = prefs.getString("bt.init", null)
 			val initdelay = prefs.getStringInt("bt.delay", 300)
@@ -183,6 +183,27 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 
 		// commands
 		val CMD_DATA = 0x00
+	}
+
+	class KenwoodReader(is : InputStream) {
+		val br = new BufferedReader(new InputStreamReader(is))
+		def readPacket() : String = {
+			val line = br.readLine()
+			Log.d("KenwoodReader", "got " + line)
+			val s = line.split("[,*]") // get and split nmea
+			val lat = "%s%s".format(s(3), s(4))
+			Log.d("KenwoodReader", "lat " + lat)
+			val lon = "%s%s".format(s(5), s(6))
+			Log.d("KenwoodReader", "lon " + lon)
+			val call = s(11)
+			val sym = s(12)
+			return call + ">APKWD:!" + lat + sym(0) + lon + sym(1)
+		}
+	}
+	class KenwoodWriter(os : OutputStream) {
+		def writePacket(p : Array[Byte]) {
+			// don't do anything. yet.
+		}
 	}
 
 	class KissReader(is : InputStream) {
