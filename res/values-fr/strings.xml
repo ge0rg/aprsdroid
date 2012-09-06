@@ -80,7 +80,7 @@
 <string name="ad_homepage">Page d\'accueil</string>
 
 <!-- map view -->
-<string name="map_overlays">Couches cartographique</string>
+<string name="map_overlays">Couches cartographiques</string>
 <string name="map_satellite">Satellite</string>
 <string name="map_objects">Objets APRS</string>
 
@@ -273,6 +273,7 @@
   Francois Magimel https://launchpad.net/~linkid
   Gabriel U. https://launchpad.net/~gabriel-ull
   Jonathan https://launchpad.net/~va2loj
+  Olivier Maury https://launchpad.net/~olivier-maury
   VE2ER https://launchpad.net/~ve2er
   gabaye bruno https://launchpad.net/~f1mbc</string>
 

@@ -7,7 +7,7 @@
 <string name="app_hub">APRSdroid：局一覧</string>
 <string name="app_sta">局情報</string>
 <string name="app_messages">メッセージ</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">メッセージ消去</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroidの使用前にコールサインとパスコードの設定が必要です</string>
 <string name="wrongpasscode">コールサインとパスコードが一致しません</string>
@@ -22,7 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s 最終受信情報</string>
 <string name="map_track_call">%sを追跡...</string>
-<string name="map_select">Select station</string>
+<string name="map_select">局 選択</string>
 
 <string name="map_loading">読み込み中...</string>
 
@@ -82,7 +82,7 @@
 <!-- map view -->
 <string name="map_overlays">オーバーレイ</string>
 <string name="map_satellite">航空写真</string>
-<string name="map_objects">APRS局アイコン</string>
+<string name="map_objects">APRS オブジェクト</string>
 
 <!-- map view -->
 <string name="age">情報表示期間</string>
@@ -153,7 +153,7 @@
 <string name="p_conn_tcp">TCP接続</string>
 <string name="p_conn_udp">UDP (送信のみ）</string>
 <string name="p_conn_http">HTTP POST (送信のみ）</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_afsk">AFSK via スピーカー/マイク</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">手動位置設定</string>
@@ -162,10 +162,10 @@
 <!-- manual position -->
 <string name="p_source_lat">緯度</string>
 <string name="p_source_lon">経度</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_coord">座標</string>
 <string name="p_source_get_last">最後のGPS位置を使用</string>
-<string name="p_source_auto">Automatic Posting</string>
-<string name="p_source_auto_summary">Perform periodic position posting</string>
+<string name="p_source_auto">自動位置情報取得・送信</string>
+<string name="p_source_auto_summary">周期的な位置取得(送信)をします。</string>
 
 
 <!-- privacy settings -->

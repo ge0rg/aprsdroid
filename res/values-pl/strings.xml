@@ -7,13 +7,13 @@
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Info Stacji</string>
 <string name="app_messages">Wiadomości</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">Usuń wiadomości</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Należy skonfigurować APRSdroid swoim znakiem i hasłem!</string>
 <string name="wrongpasscode">Hasło nie pasuje do znaku!</string>
-<string name="anon_warning">Bez hasła, twoje raporty nie będą rozpowszechniane!</string>
+<string name="anon_warning">Bez hasła, twoje raporty nie będą wysyłane!</string>
 <string name="mininterval">Minimalny czas aktualizacji wynosi 1 minutę!</string>
-<string name="singlelog">Pojedyńczy Strzał</string>
+<string name="singlelog">Pojedynczy raport</string>
 <string name="startlog">Rozpoczęcie Śledzenia</string>
 <string name="stoplog">Zatrzymanie Śledzenia</string>
 
@@ -22,7 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">Ostatni raport %s</string>
 <string name="map_track_call">Śledzenie %s...</string>
-<string name="map_select">Select station</string>
+<string name="map_select">Wybierz stację</string>
 
 <string name="map_loading">Ładowanie...</string>
 
@@ -41,18 +41,18 @@
 <!-- Message activity -->
 <string name="msg_from">Wiadomość od %s</string>
 <string name="msg_to">Wiadomość do %s</string>
-<string name="msg_abort">Wstrzymaj transmisje</string>
+<string name="msg_abort">Przerwij transmisję</string>
 <string name="msg_restart">Zrestartuj transmisje</string>
 <string name="msg_type_rejected">odrzucono</string>
 <string name="msg_type_aborted">przerwano</string>
 
 <!-- AprsService -->
 <string name="aprsservice">Usługa APRSdroid</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_once">Pojedynczy raport usługi APRS: %1$s, %2$s.</string>
+<string name="service_start">Usługa APRS uruchomiona: %1$s, %2$s.</string>
 <string name="service_stop">Zatrzymano usługę APRS</string>
 <string name="service_no_location">Musisz włączyć GPS lub Lokalizację Sieci by APRSdroid pracował poprawnie!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_sm_no_gps">Funkcja SmartBeaconing™ wymaga włączonego odbiornika GPS</string>
 <!-- service result codes -->
 <string name="post_error">Błąd</string>
 <string name="post_incmg">otrzymano</string>
@@ -83,7 +83,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <!-- map view -->
 <string name="map_overlays">Powłoki</string>
 <string name="map_satellite">Satelita</string>
-<string name="map_objects">Objekty APRS</string>
+<string name="map_objects">Obiekty APRS</string>
 
 <!-- map view -->
 <string name="age">Zobacz ostatnie...</string>
@@ -154,7 +154,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_conn_tcp">Połączenie TCP</string>
 <string name="p_conn_udp">UDP (tylko wysyłanie)</string>
 <string name="p_conn_http">HTTP POST (tylko wysyłanie)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_afsk">AFSK przez głośnik/mikrofon</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manualna Pozycja</string>
@@ -163,18 +163,18 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <!-- manual position -->
 <string name="p_source_lat">Szer. geogr.</string>
 <string name="p_source_lon">Dł. geogr.</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_coord">Współrzędna</string>
 <string name="p_source_get_last">Użyj ostatniej pozycji z GPS</string>
-<string name="p_source_auto">Automatic Posting</string>
-<string name="p_source_auto_summary">Perform periodic position posting</string>
+<string name="p_source_auto">Automatyczne wysyłanie</string>
+<string name="p_source_auto_summary">Przeprowadzaj okresowe pozycjonowanie</string>
 
 
 <!-- privacy settings -->
 <string name="p_privacy">Prywatność Pozycji</string>
-<string name="p_privacy_summary">Niejasność pozycji i inne</string>
-<string name="p_priv_ambiguity">Niejasność Pozycji</string>
+<string name="p_privacy_summary">Dokładność pozycji i inne</string>
+<string name="p_priv_ambiguity">Dokładność pozycji</string>
 <string name="p_priv_ambiguity_summary">Zmniejszona dokładność dla własnych raportów pozycji</string>
-<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_ambiguity_off">Wyłącz (DD° MM.mm\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
 <string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
@@ -240,14 +240,14 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_afsk_prefix">Prefix Ramki Sync</string>
 <string name="p_afsk_prefix_summary">Preambuła No-Op (np. dla VOX control)</string>
 <string name="p_afsk_prefix_entry">wpisz czas prefix-u [ms]</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_btsco">Słuchawka Bluetooth</string>
+<string name="p_afsk_btsco_summary">Używaj słuchawki Bluetooth do AFSK</string>
+<string name="p_afsk_output">Wyjście audio</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
+	<item>Połączenie głosowe</item>
 	<item>Dzwonek</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>Muzyka</item>
+	<item>Przypomnienie</item>
 </string-array>
 
 <!-- TCP server settings -->
@@ -270,6 +270,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="translator_credits">Launchpad Contributions:
   Adam Czabara https://launchpad.net/~adam-czabara
   Georg Lukas https://launchpad.net/~ge0rg
+  Michał Czarniecki https://launchpad.net/~sq9mcs
   Piotr Gąska https://launchpad.net/~pejotr
   Piotr Kozica ("koza") https://launchpad.net/~koza91
   andy https://launchpad.net/~info-funk24</string>
@@ -284,12 +285,12 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_bt_channel_summary">Kanał Bluetooth w TNC</string>
 <string name="p_bt_channel_entry">Wpisz kanał (najczęściej: "1"; pusty dla SPP)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init">Komenda incjalizacji TNC</string>
+<string name="p_bt_tnc_init_summary">Polecenia incjalizacji dla TNC</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_bt_tnc_delay">Opóźnienie incjalizacji TNC</string>
+<string name="p_bt_tnc_delay_summary">Czas iczekiwania pomiędzy liniami</string>
+<string name="p_bt_tnc_delay_entry">Opóźnienie incjalizacji TNC [ms]</string>
 
 <string name="p_bt_prefs">Ustawienia Bluetooth</string>
 <string name="p_bt_prefs_summary">Aktywuj Bluetooth, sparuj urządzenia...</string>
@@ -298,6 +299,6 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="bt_error_disabled">Proszę uaktywnić Bluetooth!</string>
 <string name="bt_error_no_tnc">Proszę skonfigurować Bluetooth TNC!</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">Nawiązywanie połączenia Bluetooth SCO</string>
+<string name="afsk_info_sco_est">Połączenie Bluetooth SCO nawiązane</string>
 </resources>

@@ -7,7 +7,7 @@
 <string name="app_hub">Κόμβος APRSdroid</string>
 <string name="app_sta">Πληροφορίες Σταθμού</string>
 <string name="app_messages">Μηνύματα</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">Διαγραφή Μηνυμάτων</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Πρέπει να ρυθμίσετε το APRSdroid με το διακριτικό και τον κωδικό πρόσβασής σας!</string>
 <string name="wrongpasscode">Ο κωδικός πρόσβασης σας δεν αντιστοιχεί στο διακριτικό κλήσης σας!</string>
@@ -22,7 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Τελευταία Αναφορά</string>
 <string name="map_track_call">Παρακολούθηση %s</string>
-<string name="map_select">Select station</string>
+<string name="map_select">Επιλέξτε σταθμό</string>
 
 <string name="map_loading">Φόρτωση…</string>
 
@@ -153,7 +153,7 @@
 <string name="p_conn_tcp">Σύνδεση TCP</string>
 <string name="p_conn_udp">UDP (μόνο αποστολή)</string>
 <string name="p_conn_http">HTTP POST (μόνο αποστολή)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_afsk">AFSK μέσω Ηχείου/Μικροφώνου</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Χειροκίνητη Τοποθεσία</string>
@@ -162,10 +162,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Γεωγραφικό Πλάτος</string>
 <string name="p_source_lon">Γεωγραφικό Μήκος</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_coord">Συντεταγμένη</string>
 <string name="p_source_get_last">Χρησιμοποιήστε την τελευταία τοποθεσία GPS</string>
-<string name="p_source_auto">Automatic Posting</string>
-<string name="p_source_auto_summary">Perform periodic position posting</string>
+<string name="p_source_auto">Αυτόματη Δημοσίευση</string>
+<string name="p_source_auto_summary">Εκτελέστε περιοδική δημοσίευση θέσης</string>
 
 
 <!-- privacy settings -->

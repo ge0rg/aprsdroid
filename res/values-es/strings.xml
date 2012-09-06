@@ -7,7 +7,7 @@
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Información de estación</string>
 <string name="app_messages">Mensajes</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">Borrar mensajes</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">¡Debes configurar APRSdroid con tu distintivo de llamada y contraseña!</string>
 <string name="wrongpasscode">¡Tu contraseña no se corresponde con tu distintivo de llamada!</string>
@@ -22,7 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s ultimo reporte</string>
 <string name="map_track_call">seguimiento</string>
-<string name="map_select">Select station</string>
+<string name="map_select">Seleccionar estación</string>
 
 <string name="map_loading">Cargando…</string>
 
@@ -162,7 +162,7 @@
 <!-- manual position -->
 <string name="p_source_lat">Latitud</string>
 <string name="p_source_lon">Longitud</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_coord">Coordenada</string>
 <string name="p_source_get_last">Usar última posición del GPS</string>
 <string name="p_source_auto">Automatic Posting</string>
 <string name="p_source_auto_summary">Perform periodic position posting</string>
@@ -270,6 +270,7 @@
   Adolfo Jayme Barrientos https://launchpad.net/~fitoschido
   Aeoris https://launchpad.net/~aeoris
   Carlos Martinez https://launchpad.net/~cx5cba
+  Eduardo Alberto Calvo https://launchpad.net/~edu5800
   Georg Lukas https://launchpad.net/~ge0rg
   Miguel https://launchpad.net/~nobody-su
   Paco-EB5TC https://launchpad.net/~paco-eb5tc

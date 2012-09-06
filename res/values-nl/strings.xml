@@ -7,7 +7,7 @@
 <string name="app_hub">APRSdroid Kaart</string>
 <string name="app_sta">Station gegevens</string>
 <string name="app_messages">Berichten</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">Berichten wissen</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Je moet APRSdroid configureren met je callsign en passcode!</string>
 <string name="wrongpasscode">Je passcode komt niet overeen met je callsign!</string>
@@ -24,7 +24,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Laatst ontvangen pakket</string>
 <string name="map_track_call">Tracking %s...</string>
-<string name="map_select">Select station</string>
+<string name="map_select">Station selecteren</string>
 
 <string name="map_loading">Bezig met laden...</string>
 
@@ -155,7 +155,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_conn_tcp">TCP connectie</string>
 <string name="p_conn_udp">UDP (alleen zenden)</string>
 <string name="p_conn_http">HTTP POST (alleen zenden)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_afsk">AFSK via luidspreker/microfoon</string>
 <string name="p_conn_bt">Bleutooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuele Positie</string>
@@ -164,7 +164,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <!-- manual position -->
 <string name="p_source_lat">Breedtegraad</string>
 <string name="p_source_lon">Lengtegraad</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_coord">Coördinaat</string>
 <string name="p_source_get_last">Laatst gebruikte GPS positie</string>
 <string name="p_source_auto">Automatic Posting</string>
 <string name="p_source_auto_summary">Perform periodic position posting</string>
@@ -274,7 +274,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
   H.F.P. Pit https://launchpad.net/~pd5dp
   Robbie De Lise https://launchpad.net/~robbie-delise
   Selly https://launchpad.net/~salpatxot
-  doomer https://launchpad.net/~doomer</string>
+  doomer https://launchpad.net/~doomer
+  xatr0z https://launchpad.net/~xatr0z</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>
