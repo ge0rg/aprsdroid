@@ -187,17 +187,29 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 
 	class KenwoodReader(is : InputStream) {
 		val br = new BufferedReader(new InputStreamReader(is))
+
+		def wpl2aprs(line : String) = {
+			val s = line.split("[,*]") // get and split nmea
+			s(0) match {
+			case "$PKWDWPL" =>
+				val lat = "%s%s".format(s(3), s(4))
+				val lon = "%s%s".format(s(5), s(6))
+				val call = s(11)
+				val sym = s(12)
+				"%s>APRS:!%s%s%s%s".format(call, lat, sym(0), lon, sym(1))
+			case "$GPWPL" =>
+				val lat = "%s%s".format(s(1), s(2))
+				val lon = "%s%s".format(s(3), s(4))
+				val call = s(5)
+				"%s>APRS:!%s/%s/".format(call, lat, lon)
+			case _ => line
+			}
+		}
+
 		def readPacket() : String = {
 			val line = br.readLine()
 			Log.d("KenwoodReader", "got " + line)
-			val s = line.split("[,*]") // get and split nmea
-			val lat = "%s%s".format(s(3), s(4))
-			Log.d("KenwoodReader", "lat " + lat)
-			val lon = "%s%s".format(s(5), s(6))
-			Log.d("KenwoodReader", "lon " + lon)
-			val call = s(11)
-			val sym = s(12)
-			return call + ">APKWD:!" + lat + sym(0) + lon + sym(1)
+			return wpl2aprs(line)
 		}
 	}
 	class KenwoodWriter(os : OutputStream) {
