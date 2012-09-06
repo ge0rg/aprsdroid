@@ -1,3 +1,8 @@
+1.2.1:
+* Map: tap on overlapping stations opens list
+* Messaging: fix for Message-ID duplication
+* Messaging: "Clear messages" in callsign long-press menu
+
 1.2.0:
 * AFSK encoding and decoding
 * Position privacy support
