@@ -37,6 +37,7 @@ class AfskDemodulator(au : AfskUploader, samplerate : Int) extends Thread("AFSK 
 					buffer_f(i) = buffer_s(i).asInstanceOf[Float] / 32768.0f
 
 				demod.addSamples(buffer_f, count)
+				au.notifyMicLevel(demod.peak())
 			}
 		} catch {
 		case e : Exception =>

@@ -1,5 +1,6 @@
 package org.aprsdroid.app
 
+import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
 import _root_.android.graphics.PorterDuff
 import _root_.android.view.View.OnClickListener
 import _root_.android.view.{ContextMenu, Menu, MenuItem, View, Window}
@@ -11,6 +12,13 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 
 	lazy val singleBtn = findViewById(R.id.singlebtn).asInstanceOf[Button]
 	lazy val startstopBtn = findViewById(R.id.startstopbtn).asInstanceOf[Button]
+
+	lazy val miclReceiver = new BroadcastReceiver() {
+		override def onReceive(ctx : Context, i : Intent) {
+			setProgress(i.getIntExtra("level", 100)*99)
+		}
+	}
+
 
 	def onContentViewLoaded() {
 		singleBtn.setOnClickListener(this);
@@ -26,6 +34,12 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 		makeLaunchActivity(actname)
 		setKeepScreenOn()
 		setVolumeControls()
+
+		registerReceiver(miclReceiver, new IntentFilter(AprsService.MICLEVEL))
+	}
+	override def onPause() {
+		super.onPause()
+		unregisterReceiver(miclReceiver)
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {

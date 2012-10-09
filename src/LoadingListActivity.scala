@@ -10,6 +10,7 @@ class LoadingListActivity extends ListActivity
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS)
+		requestWindowFeature(Window.FEATURE_PROGRESS)
 	}
 
 	override def onStartLoading() {

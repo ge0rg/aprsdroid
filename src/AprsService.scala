@@ -23,6 +23,7 @@ object AprsService {
 	val LOCATION = PACKAGE + ".LOCATION"
 	val STATUS = PACKAGE + ".STATUS"
 	val PACKET = PACKAGE + ".PACKET"
+	val MICLEVEL = PACKAGE + ".MICLEVEL"
 
 	def intent(ctx : Context, action : String) : Intent = {
 		new Intent(action, null, ctx, classOf[AprsService])

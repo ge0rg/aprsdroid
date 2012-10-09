@@ -76,6 +76,12 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		}
 	}
 
+	def notifyMicLevel(level : Int) {
+		val i = new Intent(AprsService.MICLEVEL)
+		i.putExtra("level", level)
+		service.sendBroadcast(i)
+	}
+
 	def log(s : String) {
 		Log.i(TAG, s)
 		service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
