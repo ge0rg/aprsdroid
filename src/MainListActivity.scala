@@ -28,8 +28,8 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 
 	override def onResume() {
 		super.onResume()
-		if (!checkConfig())
-			return
+		checkConfig()
+
 		setupButtons(AprsService.running)
 		makeLaunchActivity(actname)
 		setKeepScreenOn()
