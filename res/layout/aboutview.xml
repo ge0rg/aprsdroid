@@ -49,6 +49,10 @@
 			android:text="@string/ad_thanks_5" />
 		<TextView
 			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:autoLink="web"
+			android:text="@string/ad_thanks_6" />
+		<TextView
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
 			android:textStyle="bold"
 			android:text="@string/ad_trans" />
 		<TextView
