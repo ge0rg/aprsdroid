@@ -7,19 +7,21 @@ import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 import _root_.net.ab0oo.aprs.parser.{APRSPacket, Digipeater, Parser}
 import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 
+import com.jazzido.PacketDroid.{AudioBufferProcessor, PacketCallback}
 import sivantoledo.ax25.PacketHandler
 
 class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs)
-		with PacketHandler {
+		with PacketHandler with PacketCallback {
 	val TAG = "APRSdroid.Afsk"
 	// frame prefix: bytes = milliseconds * baudrate / 8 / 1000
 	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
 	var Digis = prefs.getString("digi_path", "WIDE1-1")
+	val use_hq = prefs.getAfskHQ()
 	val use_bt = prefs.getAfskBluetooth()
 	val samplerate = if (use_bt) 16000 else 22050
 	val out_type = prefs.getAfskOutput()
 	val output = new Afsk(out_type, samplerate)
-	val ad = new AfskDemodulator(this, 11025)
+	val aw = new AfskInWrapper(use_hq, this, samplerate/2) // 8000 / 11025
 	
 	val btScoReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
@@ -28,7 +30,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			if (state == AudioManager.SCO_AUDIO_STATE_CONNECTED) {
 				// we are connected, perform actual start
 				log(service.getString(R.string.afsk_info_sco_est))
-				ad.start()
+				aw.start()
 				service.unregisterReceiver(this)
 				service.postPosterStarted()
 			}
@@ -43,7 +45,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			service.registerReceiver(btScoReceiver, new IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_CHANGED))
 			false
 		} else {
-			ad.start()
+			aw.start()
 			true
 		}
 	}
@@ -61,11 +63,15 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	}
 
 	def stop() {
-		ad.close()
-		if (use_bt)
+		aw.close()
+		if (use_bt) {
 			service.getSystemService(Context.AUDIO_SERVICE)
 				.asInstanceOf[AudioManager].stopBluetoothSco()
+			service.unregisterReceiver(btScoReceiver)
+		}
 	}
+
+	def received(data : Array[Byte]) = handlePacket(data)
 
 	def handlePacket(data : Array[Byte]) {
 		try {
