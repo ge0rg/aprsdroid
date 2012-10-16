@@ -82,6 +82,8 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		}
 	}
 
+	def peak(peak_value : Short) = notifyMicLevel(peak_value / 330)
+
 	def notifyMicLevel(level : Int) {
 		val i = new Intent(AprsService.MICLEVEL)
 		i.putExtra("level", level)
