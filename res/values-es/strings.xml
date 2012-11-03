@@ -75,7 +75,8 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivación y soporte</string>
 <string name="ad_thanks_3">Bastian, DB1BM: Implementacion del AFSK</string>
 <string name="ad_thanks_4">Matti, OH2MQK y John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">SmartBeaconing™por HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™por HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTraducción:</string>
 <string name="ad_homepage">Página de Inicio</string>
 
@@ -153,7 +154,7 @@
 <string name="p_conn_tcp">Conexión TCP</string>
 <string name="p_conn_udp">UDP (solo envio)</string>
 <string name="p_conn_http">HTTP POST (solo envio)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_afsk">AFSK via Parlante/Microfono</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Posición Manual</string>
@@ -164,8 +165,8 @@
 <string name="p_source_lon">Longitud</string>
 <string name="p_source_coord">Coordenada</string>
 <string name="p_source_get_last">Usar última posición del GPS</string>
-<string name="p_source_auto">Automatic Posting</string>
-<string name="p_source_auto_summary">Perform periodic position posting</string>
+<string name="p_source_auto">Publicacion Automatica</string>
+<string name="p_source_auto_summary">Ejecuta publicacion de posicion periodicamente</string>
 
 
 <!-- privacy settings -->
@@ -239,6 +240,8 @@
 <string name="p_afsk_prefix">Trama de sincronía</string>
 <string name="p_afsk_prefix_summary">Señal sin datos (ej. para activar Control VOX)</string>
 <string name="p_afsk_prefix_entry">Ingrese duración de la trama (ms)</string>
+<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
 <string name="p_afsk_btsco">Manos libres BlueTooth</string>
 <string name="p_afsk_btsco_summary">Usar manos libres BlueTooth (SCO) para AFSK</string>
 <string name="p_afsk_output">Salida de audio</string>
@@ -274,6 +277,7 @@
   Georg Lukas https://launchpad.net/~ge0rg
   Miguel https://launchpad.net/~nobody-su
   Paco-EB5TC https://launchpad.net/~paco-eb5tc
+  R R https://launchpad.net/~kf5fvf
   Ryan Schultz https://launchpad.net/~rschultz82</string>
 
 <!-- Bluetooth TNC settings -->
@@ -286,7 +290,7 @@
 <string name="p_bt_channel_summary">Canal de Bluetooth en la TNC</string>
 <string name="p_bt_channel_entry">Introduce el canal (con mayor frecuencia: "1"; vacío para SPP)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init">Comando de inicio del TNC</string>
 <string name="p_bt_tnc_init_summary">Comandos de inicialización del TNC</string>
 
 <string name="p_bt_tnc_delay">Retardo de inicio del TNC</string>

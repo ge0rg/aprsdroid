@@ -83,7 +83,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="ad_thanks_2">Dirk, DB5OY: Motivation und Unterstützung</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK-Implementierung</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">SmartBeaconing™ von HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK-Demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™ von HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nÜbersetzung:</string>
 <string name="ad_homepage">Homepage</string>
 
@@ -247,6 +248,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_afsk_prefix">Frame-Sync-Präfix</string>
 <string name="p_afsk_prefix_summary">No-Op-Präambel (z.B. für VOX-Steuerung)</string>
 <string name="p_afsk_prefix_entry">Präfix-Zeit eingeben [ms]</string>
+<string name="p_afsk_hqdemod">Hochqualitativer Demodulator</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 800-MHz-CPU erforderlich</string>
 <string name="p_afsk_btsco">Bluetooth-Headset</string>
 <string name="p_afsk_btsco_summary">Bluetooth-Headset (SCO) für AFSK nutzen</string>
 <string name="p_afsk_output">Audio-Ausgabe</string>
@@ -275,6 +278,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_sotimeout_entry">Timeout-Wert in Sekunden (0 = deaktiviert)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Dennis Baudys https://launchpad.net/~thecondordb
   Georg Lukas https://launchpad.net/~ge0rg</string>
 
 <!-- Bluetooth TNC settings -->

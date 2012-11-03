@@ -75,7 +75,8 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivasyon ve destek</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK uygulaması</string>
 <string name="ad_thanks_4">Matti, OH2MQK ve John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">SmartBeaconing™ HamHUD Nichetronix tarafından, LLC, http://hamhud.net</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™ HamHUD Nichetronix tarafından, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nÇeviri:</string>
 <string name="ad_homepage">Ana Sayfa</string>
 
@@ -239,6 +240,8 @@
 <string name="p_afsk_prefix">Frame senkronizasyonu için prefix</string>
 <string name="p_afsk_prefix_summary">No-Op Önvurgulama (örn. VOX kontrolü için)</string>
 <string name="p_afsk_prefix_entry">Prefix zamanını girin [ms]</string>
+<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
 <string name="p_afsk_btsco">Bluetooth Headset</string>
 <string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
 <string name="p_afsk_output">Audio Output</string>

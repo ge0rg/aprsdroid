@@ -7,7 +7,7 @@
 <string name="app_hub">Réseau APRSdroid</string>
 <string name="app_sta">Infos sur la station</string>
 <string name="app_messages">Messages</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">Effacer les messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Vous devez configurer APRSdroid avec votre indicatif et votre mot de passe</string>
 <string name="wrongpasscode">Le mot de passe ne correspond pas a votre indicatif!</string>
@@ -75,7 +75,8 @@
 <string name="ad_thanks_2">Dirk, DB5OY: pour son support et sa motivation</string>
 <string name="ad_thanks_3">Bastian, DB1BM: implementation AFSK</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTraduction:</string>
 <string name="ad_homepage">Page d\'accueil</string>
 
@@ -239,6 +240,8 @@
 <string name="p_afsk_prefix">Cadre du Préfix de Syncronisation</string>
 <string name="p_afsk_prefix_summary">Aucune message d\'entrée (Ex. pour le contrôle VOX)</string>
 <string name="p_afsk_prefix_entry">Entrez le temp de départ [ms]</string>
+<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
 <string name="p_afsk_btsco">Casque Bluetooth</string>
 <string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
 <string name="p_afsk_output">Sortie audio</string>

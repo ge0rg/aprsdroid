@@ -7,7 +7,7 @@
 <string name="app_hub">Eixo APRSdroid</string>
 <string name="app_sta">Informação da Estação</string>
 <string name="app_messages">Mensagens</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">Limpar as mensagens</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Deve configurar o APRSdroid com o seu indicativo e password!</string>
 <string name="wrongpasscode">A palavra-passe está incorrecta.</string>
@@ -22,7 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Ultimo controlo.</string>
 <string name="map_track_call">Seguindo %s...</string>
-<string name="map_select">Select station</string>
+<string name="map_select">Selecionar estação</string>
 
 <string name="map_loading">A carregar...</string>
 
@@ -48,11 +48,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">Serviço APRSdroid</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_once">Serviço APRS numa transmissão: %1$s, %2$s.</string>
+<string name="service_start">Serviço APRS começado: %1$s, %2$s.</string>
 <string name="service_stop">Serviço de APRS terminado.</string>
 <string name="service_no_location">Para APRSdroid funcionar correctamente deve ligar o seu GPS ou verificar cobertura de rede.</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requer GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Erro</string>
 <string name="post_incmg">recebido</string>
@@ -75,7 +75,8 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivação e suporte</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK implementação</string>
 <string name="ad_thanks_4">Matti, OH2MQK e John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: detector de AFSK, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™ por HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTradução:</string>
 <string name="ad_homepage">Página inicial</string>
 
@@ -156,32 +157,32 @@
 <string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
 <!-- array of location sources -->
-<string name="p_source_manual">Manual Position</string>
-<string name="p_source_periodic">Periodic GPS/Network Position</string>
-<string name="p_source_smart">SmartBeaconing™ Position</string>
+<string name="p_source_manual">Posição manual</string>
+<string name="p_source_periodic">Posição periódica de GPS/Network</string>
+<string name="p_source_smart">Posição SmartBeaconing™</string>
 <!-- manual position -->
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
-<string name="p_source_coord">Coordinate</string>
-<string name="p_source_get_last">Use last GPS position</string>
-<string name="p_source_auto">Automatic Posting</string>
-<string name="p_source_auto_summary">Perform periodic position posting</string>
+<string name="p_source_coord">Coordenada</string>
+<string name="p_source_get_last">Use a última posição GPS</string>
+<string name="p_source_auto">Endereço automático</string>
+<string name="p_source_auto_summary">Realiza endereço periódico de posição</string>
 
 
 <!-- privacy settings -->
-<string name="p_privacy">Position privacy</string>
-<string name="p_privacy_summary">Position ambiguity and more</string>
-<string name="p_priv_ambiguity">Position Ambiguity</string>
-<string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
-<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_privacy">Posição privada</string>
+<string name="p_privacy_summary">Posição ambígua e mais</string>
+<string name="p_priv_ambiguity">Posição ambígua</string>
+<string name="p_priv_ambiguity_summary">Precisão reduzida para o seu próprio reporte</string>
+<string name="p_ambiguity_off">Desligar (DD° MM.mm\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
 <string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
 <string name="p_ambiguity_dd">4 (DD°)</string>
-<string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
-<string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
-<string name="p_priv_altitude">Send Altitude</string>
-<string name="p_priv_altitude_summary">Include altitude in position reports</string>
+<string name="p_priv_spdbear">Velocidade enviada &amp; Orientação</string>
+<string name="p_priv_spdbear_summary">Velocidade incluída e posição de reporte de posição</string>
+<string name="p_priv_altitude">Altitude enviada</string>
+<string name="p_priv_altitude_summary">Altitude incluída em reportes de posição</string>
 
 <!-- connection type properties -->
 <string name="p_host">Servidor</string>
@@ -189,11 +190,11 @@
 <string name="p_host_entry">Escreva o nome do servidor APRS-IS</string>
 <string name="p_host_hint">host:porta</string>
 <string name="p__position">Pacotes de posição</string>
-<string name="p_locsource">Location Source</string>
-<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
+<string name="p_locsource">Fonte localizada</string>
+<string name="p_locsource_summary">Manual, periódica ou SmartBeaconing™</string>
 <string name="p__location">Configurações da localização</string>
 <string name="p__location_summary">Configuração de envio de pacotes de localização</string>
-<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_smartbeaconing">Copy text 	 SmartBeaconing™</string>
 <string name="p_interval">Tempo mínimo de actualização</string>
 <string name="p_interval_summary">Minutos entre transmissões de beacon</string>
 <string name="p_interval_entry">Escreva o tempo entre actualizações [min]</string>
@@ -215,10 +216,10 @@
 <string name="p_keepscreen_summary">Não desligue o ecrâ quando o APRSDroid está em funcionamento</string>
 
 <!-- messaging -->
-<string name="p__display">Display and Notifications</string>
-<string name="p__notification">Notifications</string>
-<string name="p__notification_summary">Alert for messages and position reports</string>
-<string name="p_msg">Incoming Messages</string>
+<string name="p__display">Mostrar e notificações</string>
+<string name="p__notification">Notificações</string>
+<string name="p__notification_summary">Alerta para mensagens e reportes de posição</string>
+<string name="p_msg">Mensagens recebidas</string>
 <string name="p_msg_led">Led PIsca-Pisca</string>
 <string name="p_msg_led_on">Notificações de LED ligadas</string>
 <string name="p_msg_led_off">Notificações de LED desligadas</string>
@@ -227,9 +228,9 @@
 <string name="p_msg_vibr_off">Notificações por vibração estão desligadas</string>
 <string name="p_msg_ring">Tom de chamada</string>
 <string name="p_msg_ring_summary">Tom para mensagens de entrada</string>
-<string name="p_pos">Own Position Reports</string>
+<string name="p_pos">O próprio reporte de posição</string>
 <string name="p_pos_ring">Tom de chamada</string>
-<string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_pos_ring_summary">Tonalidade para envio de reportes de posição</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi patch ("caminho"Ex: wide2-2)</string>
@@ -239,14 +240,16 @@
 <string name="p_afsk_prefix">Sincronização de prefixo</string>
 <string name="p_afsk_prefix_summary">Sem operador predefinido (Ex: para VOX controlo)</string>
 <string name="p_afsk_prefix_entry">Coloque o tempo predefenido  [ms]</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_hqdemod">Detector de alta qualidade</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: requer CPU de 800 MHz</string>
+<string name="p_afsk_btsco">Auricular bluetooth</string>
+<string name="p_afsk_btsco_summary">Use um auricular bluetooth para o AFSK</string>
+<string name="p_afsk_output">Saída de audio</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
+	<item>Chamada de voz</item>
 	<item>Tom de chamada</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>Música</item>
+	<item>Alarme</item>
 </string-array>
 
 <!-- TCP server settings -->
@@ -267,6 +270,7 @@
 <string name="p_sotimeout_entry">Tempo maximo em segundos (0 = desligado)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  David Quental https://launchpad.net/~ct1drb
   Jon Amil https://launchpad.net/~amilgz
   Jose Carlos Moreira https://launchpad.net/~ct1dhm
   Paulo Mendes https://launchpad.net/~ct2hqt</string>
@@ -281,20 +285,20 @@
 <string name="p_bt_channel_summary">Canal bluetooth çigado no TNC</string>
 <string name="p_bt_channel_entry">Coloque canal</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init">Cadeia de inicialização do TNC</string>
+<string name="p_bt_tnc_init_summary">Comandos de inicialização para o TNC</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_bt_tnc_delay">Atraso da inicialização do TNC</string>
+<string name="p_bt_tnc_delay_summary">Tempo de espera depois de cada linha</string>
+<string name="p_bt_tnc_delay_entry">Atraso de inicialização do TNC [ms]</string>
 
 <string name="p_bt_prefs">Sem propagação</string>
 <string name="p_bt_prefs_summary">Lige bluetoooth nos dois disositivso</string>
 
-<string name="bt_error_unsupported">Bluetooth is not supported!</string>
-<string name="bt_error_disabled">Please enable Bluetooth!</string>
-<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+<string name="bt_error_unsupported">O bluetooth não é suportado!</string>
+<string name="bt_error_disabled">Por favor active o bluetooth</string>
+<string name="bt_error_no_tnc">Por favor configure o TNC bluetooth</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">A pedir ligação do SCO bluetooth...</string>
+<string name="afsk_info_sco_est">Ligação do SCO bluetooth estabelecida.</string>
 </resources>

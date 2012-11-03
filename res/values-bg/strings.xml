@@ -2,73 +2,75 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Indstillinger</string>
-<string name="app_map">APRSdroid Kort</string>
-<string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Stations Info</string>
-<string name="app_messages">Meddelelser</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_prefs">APRSdroid Настройки</string>
+<string name="app_map">APRSdroid Карта</string>
+<string name="app_hub">APRSdroid Хъб</string>
+<string name="app_sta">Station Info</string>
+<string name="app_messages">Съобщения</string>
+<string name="app_messages_clear">Изчистване на съобщенията</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">APRSdroid skal konfigureres med Amatør kaldesignal og adgangskode!</string>
-<string name="wrongpasscode">Din adgangskode matcher ikke dit kaldesignal!</string>
-<string name="anon_warning">Uden en adgangskode, vil dine rapporter ikke blive sendt</string>
-<string name="mininterval">Minimum opdaterings tid er 1 minut!</string>
-<string name="singlelog">Send engangs Sporing.</string>
-<string name="startlog">Start Sporing</string>
-<string name="stoplog">Stop Sporing</string>
+<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
+<string name="wrongpasscode">Your passcode does not match your callsign!</string>
+<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
+<string name="mininterval">Minimum update time is 1 minute!</string>
+<string name="singlelog">Single Shot</string>
+<string name="startlog">Start Tracking</string>
+<string name="stoplog">Stop Tracking</string>
 
-<string name="empty_logview">Du har endnu ikke sendt eller modtaget nogen pakker. \ n \ n Tryk på \ "Menu \" knappen for at sende en enkelt rapport eller at begynde at spore din position. \ n \ n Du kan også ændre programmets indstillinger fra menuen.</string>
+<string name="empty_logview">You have not yet sent or received any packets.\n\n
+	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
+	You can also change the application preferences from the menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Sidste Rapport</string>
-<string name="map_track_call">Sporing %s...</string>
+<string name="sta_lastreport">%s Last Report</string>
+<string name="map_track_call">Tracking %s...</string>
 <string name="map_select">Select station</string>
 
-<string name="map_loading">Indlæser...</string>
+<string name="map_loading">Loading...</string>
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Station SSIDs</string>
 <string name="sta_history">Station History</string>
-<string name="sta_map">Kort</string>
+<string name="sta_map">Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send meddelse til...</string>
-<string name="msg_message_text">Besked tekst</string>
-<string name="msg_empty_list">Der er ingen gemte samtaler.</string>
+<string name="msg_send_new">Send message to...</string>
+<string name="msg_message_text">Message text</string>
+<string name="msg_empty_list">There are no stored conversations.</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 <!-- Message activity -->
-<string name="msg_from">Meddelse fra %s</string>
-<string name="msg_to">Meddelse til %s</string>
-<string name="msg_abort">Afbryd transmission</string>
+<string name="msg_from">Message from %s</string>
+<string name="msg_to">Message to %s</string>
+<string name="msg_abort">Abort transmission</string>
 <string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">afvist</string>
-<string name="msg_type_aborted">afbrudt</string>
+<string name="msg_type_rejected">rejected</string>
+<string name="msg_type_aborted">aborted</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service startede: %1$s, %2$s.</string>
-<string name="service_stop">APRS Service stoppet.</string>
-<string name="service_no_location">Du skal aktivere enten GPS eller netværk for APRSdroid kan fungere korrekt</string>
-<string name="service_sm_no_gps">SmartBeaconing™ kræver GPS!</string>
+<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_stop">APRS Service stopped.</string>
+<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
-<string name="post_error">Fejl!</string>
-<string name="post_incmg">Modtaget</string>
+<string name="post_error">Error</string>
+<string name="post_incmg">received</string>
 <string name="post_info"/>
 <string name="post_connecting">Connecting to %1$s:%2$d...</string>
 <string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
 
 <!-- first run dialog -->
-<string name="fr_title">Velkommen til APRSdroid!</string>
+<string name="fr_title">Welcome to APRSdroid!</string>
 <string name="fr_text">This software may only be used by licensed amateur radio
 	operators!</string>
 <string name="fr_text2">You need to enter your callsign to use this software.
 	To forward your packets, an APRS-IS passcode is required as well.</string>
 
 <!-- about dialog -->
-<string name="ad_title">Om APRSdroid v%s</string>
+<string name="ad_title">About APRSdroid v%s</string>
 <string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
@@ -98,8 +100,8 @@
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
-<string name="ad_trans">\n\nOversættelse:</string>
-<string name="ad_homepage">Hjemmeside</string>
+<string name="ad_trans">\n\nTranslation:</string>
+<string name="ad_homepage">Home Page</string>
 
 <!-- map view -->
 <string name="map_overlays">Overlays</string>
@@ -116,28 +118,28 @@
 
 
 <!-- options menu -->
-<string name="about">Om...</string>
+<string name="about">About</string>
 <string name="show_hub">Show Hub</string>
-<string name="show_map">Vis kort</string>
-<string name="show_log">Vis Log</string>
+<string name="show_map">Show Map</string>
+<string name="show_log">Show Log</string>
 <string name="clear_log">Clear Log</string>
-<string name="quit">Afslut</string>
-<string name="preferences">Indstillinger</string>
+<string name="quit">Quit</string>
+<string name="preferences">Preferences</string>
 <!-- preferences -->
-<string name="p__ham">Amatørradio</string>
-<string name="p_callsign">Kaldesignal</string>
+<string name="p__ham">Amateur Radio</string>
+<string name="p_callsign">Callsign</string>
 <string name="p_callsign_nossid">Callsign (without SSID)</string>
-<string name="p_callsign_summary">Dit Radioamatør Kaldesignal</string>
-<string name="p_callsign_entry">Indtast dit kaldesignal</string>
+<string name="p_callsign_summary">Your HAM radio callsign</string>
+<string name="p_callsign_entry">Enter your callsign</string>
 <string name="p_passcode">APRS-IS Passcode</string>
-<string name="p_passcode_summary">APRS-IS validering af adgangskode</string>
-<string name="p_passcode_entry">Indtast adgangskoden for dit kaldesignal</string>
-<string name="p_passreq">Anmod om adgangskode</string>
-<string name="p_passreq_summary">Anmod om APRS-IS adgangskode fra nettet</string>
-<string name="p__aprs">APRS Indstillinger</string>
+<string name="p_passcode_summary">APRS-IS validation passcode</string>
+<string name="p_passcode_entry">Enter the passcode for your call</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
+<string name="p__aprs">APRS Settings</string>
 <string name="p_ssid">SSID</string>
-<string name="p_ssid_summary">Stations type (1 .. 15; 9 = Mobil, 10 = APRS-IS)</string>
-<string name="p_ssid_entry">Indtast SSID for din station</string>
+<string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Enter the SSID for your station</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
 	<item>(none) Primary Station</item>
@@ -147,32 +149,32 @@
 	<item>4: Generic additional station</item>
 	<item>5: Other network (D-Star, 3G)</item>
 	<item>6: Satellite</item>
-	<item>Håndholdt radio</item>
-	<item>8: Båd/Skib</item>
-	<item>9: Mobil station</item>
-	<item>10: APRS-IS (ingen radio)</item>
+	<item>7: Handheld radio</item>
+	<item>8: Boat / ship</item>
+	<item>9: Mobile station</item>
+	<item>10: APRS-IS (no radio)</item>
 	<item>11: Balloon, aircraft, spacecraft</item>
 	<item>12: APRStt, DTMF, ... (one way)</item>
 	<item>13: Weather station</item>
-	<item>14: Fragtbil/Lastvogn</item>
+	<item>14: Freight vehicle</item>
 	<item>15: Generic additional station</item>
 </string-array>
 <string name="p_symbol">APRS symbol</string>
-<string name="p_symbol_summary">Din symbol for kortvisning</string>
-<string name="p_symbol_entry">Indtast symbol kode med to karakterer</string>
+<string name="p_symbol_summary">Your symbol for map display</string>
+<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
 <string name="p_status">Comment field</string>
-<string name="p_status_summary">Tekst som kommer efter dine koordinater</string>
+<string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your beacon comment</string>
-<string name="p__connection">APRS Forbindelse</string>
-<string name="p_conntype">Forbindelses-protokol</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP eller UDP</string>
-<string name="p_conntype_entry">Vælg forbindelses-protokol</string>
-<string name="p_connsetup">Indstillinger af forbindelse</string>
+<string name="p__connection">APRS Connection</string>
+<string name="p_conntype">Connection Protocol</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
+<string name="p_conntype_entry">Choose the connection protocol</string>
+<string name="p_connsetup">Connection Preferences</string>
 <string name="p_connsetup_summary">Configuration of Connection</string>
 <string name="p_connlog">Connection Logging</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP forbindelse</string>
+<string name="p_conn_tcp">TCP connection</string>
 <string name="p_conn_udp">UDP (send only)</string>
 <string name="p_conn_http">HTTP POST (send only)</string>
 <string name="p_conn_afsk">AFSK via Speaker/Mic</string>
@@ -207,25 +209,25 @@
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>
-<string name="p_host_summary">APRS-IS server (port 8080) til at sende beacons</string>
-<string name="p_host_entry">Indtast APRS-IS server hostname</string>
+<string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
+<string name="p_host_entry">Enter the APRS-IS server hostname</string>
 <string name="p_host_hint">host:port</string>
 <string name="p__position">Position Reports</string>
 <string name="p_locsource">Location Source</string>
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
-<string name="p__location">Lokations indstillinger</string>
+<string name="p__location">Location Settings</string>
 <string name="p__location_summary">Configuration for sending position reports</string>
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_interval">Minimum opdaterings tid</string>
-<string name="p_interval_summary">Minutter mellem beacon transmissioner</string>
-<string name="p_interval_entry">Indtast opdateringen intervallet [min]</string>
-<string name="p_distance">Mindste afstands opdatering</string>
-<string name="p_distance_summary">Antal kørte kilometer før beacon transmission (sættes til 0 for tid-alene)</string>
-<string name="p_distance_entry">Indtast afstands opdatering [km]</string>
-<string name="p_speedbrg">Afventer hastighed og retning</string>
-<string name="p_speedbrg_summary">Holder GPS tændt længere for at få mere præcise data</string>
-<string name="p_netloc">Brug Mobil netværksplacering</string>
-<string name="p_netloc_summary">Modtage position fra det mobile netværk</string>
+<string name="p_interval">Minimum update time</string>
+<string name="p_interval_summary">Minutes between beacon transmissions</string>
+<string name="p_interval_entry">Enter the update interval [min]</string>
+<string name="p_distance">Minimum update distance</string>
+<string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
+<string name="p_distance_entry">Enter the update distance [km]</string>
+<string name="p_speedbrg">Await speed &amp; bearing</string>
+<string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
+<string name="p_netloc">Use network location</string>
+<string name="p_netloc_summary">Acquire position from the cellular network</string>
 <string name="p_gps">GPS Precision</string>
 <string name="p_gps_summary">Battery usage vs. position quality</string>
 <string name="p_gps_entry">Please set the GPS Precision</string>
@@ -275,8 +277,8 @@
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
-<string name="p_filterdist">Nabo radius</string>
-<string name="p_filterdist_summary">Modtag pakker fra stationer i denne radius</string>
+<string name="p_filterdist">Neighbor radius</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
 <string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
 <string name="p_filter">Message filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
@@ -291,9 +293,7 @@
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Alexandru Csete https://launchpad.net/~alexc
-  Finn Leslie https://launchpad.net/~idestrup
-  Kim Eggert https://launchpad.net/~kim-s-eggert</string>
+  Zlatan Dimitrov https://launchpad.net/~z-dimitrov</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

@@ -75,7 +75,8 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivaatio ja  tuki</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK-toteutus</string>
 <string name="ad_thanks_4">Matti, OH2MQK ja John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nKäännös:</string>
 <string name="ad_homepage">Etusivu</string>
 
@@ -239,6 +240,8 @@
 <string name="p_afsk_prefix">Frame Sync Prefix</string>
 <string name="p_afsk_prefix_summary">No-Op Preamble (esim. VOX:n ohjaukseen)</string>
 <string name="p_afsk_prefix_entry">Aseta prefixin pituus (ms)</string>
+<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
 <string name="p_afsk_btsco">Bluetooth-kuuloke</string>
 <string name="p_afsk_btsco_summary">Käytä bluetooth-kuuloketta (SCO) AFSK-modeemin kanssa</string>
 <string name="p_afsk_output">Äänilähtö</string>
