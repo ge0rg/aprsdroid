@@ -1,3 +1,8 @@
+1.2.2:
+* AFSK: Mic level now displayed in UI
+* AFSK: Integration of High-Quality demodulator, javAX25 by Sivan, 4X6IZ
+* AFSK: Bluetooth audio support
+
 1.2.1:
 * Map: tap on overlapping stations opens list
 * Messaging: fix for Message-ID duplication
