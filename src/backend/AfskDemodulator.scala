@@ -26,12 +26,19 @@ class AfskDemodulator(au : AfskUploader, samplerate : Int) extends Thread("AFSK 
 	override def run() {
 		Log.d(TAG, "running...")
 		try {
+			var zero_reads = 0
 			recorder.startRecording();
 			while (!isInterrupted() && (recorder.getRecordingState() != AudioRecord.RECORDSTATE_STOPPED)) {
 				val count = recorder.read(buffer_s, 0, BUF_SIZE)
 				Log.d(TAG, "read " + count + " samples")
-				if (count <= 0)
+				if (count == 0) {
+					zero_reads+=1
+					if (zero_reads == 10)
+						throw new RuntimeException("recorder.read() not delivering data!")
+				} else if (count < 0)
 					throw new RuntimeException("recorder.read() = " + count)
+				else
+					zero_reads=0
 
 				for (i <- 0 to count-1)
 					buffer_f(i) = buffer_s(i).asInstanceOf[Float] / 32768.0f
