@@ -7,7 +7,7 @@ import android.util.Log
 
 import sivantoledo.ax25.Afsk1200Demodulator
 
-class AfskDemodulator(au : AfskUploader, samplerate : Int) extends Thread("AFSK demodulator") {
+class AfskDemodulator(au : AfskUploader, in_type : Int, samplerate : Int) extends Thread("AFSK demodulator") {
 	val TAG = "APRSdroid.AfskDemod"
 
 	val BUF_SIZE = 8192
@@ -15,9 +15,7 @@ class AfskDemodulator(au : AfskUploader, samplerate : Int) extends Thread("AFSK 
 	val buffer_f = new Array[Float](BUF_SIZE)
 
 	val demod = new Afsk1200Demodulator(samplerate, 1, 6, au)
-	val recorder = new AudioRecord(/*MediaRecorder.AudioSource.MIC = */ 1, samplerate,
-				AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT,
-				4*BUF_SIZE)
+	var recorder : AudioRecord = null
 
 	// we process incoming audio
 	android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO)
@@ -27,6 +25,9 @@ class AfskDemodulator(au : AfskUploader, samplerate : Int) extends Thread("AFSK 
 		Log.d(TAG, "running...")
 		try {
 			var zero_reads = 0
+			recorder = new AudioRecord(in_type, samplerate,
+				AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT,
+				4*BUF_SIZE)
 			recorder.startRecording();
 			while (!isInterrupted() && (recorder.getRecordingState() != AudioRecord.RECORDSTATE_STOPPED)) {
 				val count = recorder.read(buffer_s, 0, BUF_SIZE)

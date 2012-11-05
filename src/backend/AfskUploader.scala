@@ -20,8 +20,9 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	val use_bt = prefs.getAfskBluetooth()
 	val samplerate = if (use_bt) 16000 else 22050
 	val out_type = prefs.getAfskOutput()
+	val in_type = if (use_bt) /*VOICE_CALL*/1 else /*MIC*/1
 	val output = new Afsk(out_type, samplerate)
-	val aw = new AfskInWrapper(use_hq, this, samplerate/2) // 8000 / 11025
+	val aw = new AfskInWrapper(use_hq, this, in_type, samplerate/2) // 8000 / 11025
 	
 	val btScoReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
