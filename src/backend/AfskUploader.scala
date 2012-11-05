@@ -67,7 +67,11 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		if (use_bt) {
 			service.getSystemService(Context.AUDIO_SERVICE)
 				.asInstanceOf[AudioManager].stopBluetoothSco()
-			service.unregisterReceiver(btScoReceiver)
+			try {
+				service.unregisterReceiver(btScoReceiver)
+			} catch {
+				case e : RuntimeException => // ignore, receiver already unregistered
+			}
 		}
 	}
 

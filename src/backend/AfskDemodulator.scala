@@ -55,6 +55,7 @@ class AfskDemodulator(au : AfskUploader, samplerate : Int) extends Thread("AFSK 
 			this.join(50)
 		} catch {
 		case e : IllegalStateException => Log.w(TAG, "close(): " + e)
+		case e : NullPointerException => // no recorder yet, ignore.
 		}
 	}
 }
