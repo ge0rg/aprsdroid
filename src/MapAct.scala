@@ -45,7 +45,8 @@ class MapAct extends MapActivity with UIHelper {
 		locReceiver.startTask(null)
 		showObjects = prefs.getShowObjects()
 		//mapview.setSatellite(prefs.getShowSatellite())
-		mapview.setMapFile(new File("/sdcard/aprsdroid.map"))
+		val mapfile = new File(android.os.Environment.getExternalStorageDirectory(), "aprsdroid.map")
+		mapview.setMapFile(mapfile)
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
