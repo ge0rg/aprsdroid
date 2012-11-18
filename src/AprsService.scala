@@ -204,7 +204,9 @@ class AprsService extends Service {
 			var fap = Parser.parse(message)
 			if (fap.getType() == APRSTypes.T_THIRDPARTY) {
 				Log.d(TAG, "parsePacket: third-party packet from " + fap.getSourceCall())
-				fap = Parser.parse(fap.getAprsInformation().toString())
+				val inner = fap.getAprsInformation().toString()
+				// strip away leading "}"
+				fap = Parser.parse(inner.substring(1, inner.length()))
 			}
 
 			if (fap.getAprsInformation() == null) {
