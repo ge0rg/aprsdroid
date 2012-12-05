@@ -47,6 +47,11 @@ object AprsIsUploader {
 			(s, p) => new BluetoothTnc(s, p),
 			R.xml.backend_bluetooth,
 			CAN_DUPLEX,
+			PASSCODE_NONE),
+		"kenwood" -> new BackendInfo(
+			(s, p) => new KenwoodTnc(s, p),
+			R.xml.backend_kenwood,
+			CAN_RECEIVE,
 			PASSCODE_NONE)
 		)
 

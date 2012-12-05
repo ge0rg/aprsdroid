@@ -179,6 +179,7 @@
 <string name="p_conn_http">HTTP POST (send only)</string>
 <string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_kwd">Kenwood PKWDWPL</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>
 <string name="p_source_periodic">Periodic GPS/Network Position</string>

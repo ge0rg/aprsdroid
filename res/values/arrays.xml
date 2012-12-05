@@ -6,6 +6,7 @@
 		<item>@string/p_conn_http</item>
 		<item>@string/p_conn_afsk</item>
 		<item>@string/p_conn_bt</item>
+		<item>@string/p_conn_kwd</item>
 	</string-array>
 	<string-array name="p_conntype_ev">
 		<item>tcp</item>
@@ -13,6 +14,7 @@
 		<item>http</item>
 		<item>afsk</item>
 		<item>bluetooth</item>
+		<item>kenwood</item>
 	</string-array>
 	<string-array name="p_afsk_out_ev">
 		<item>0</item>
