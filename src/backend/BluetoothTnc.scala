@@ -5,7 +5,7 @@ import _root_.android.app.Service
 import _root_.android.content.Intent
 import _root_.android.location.Location
 import _root_.android.util.Log
-import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStream}
+import _root_.java.io.{InputStream, OutputStream}
 import _root_.java.net.{InetAddress, Socket}
 import _root_.java.util.UUID
 
@@ -26,6 +26,9 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 			createConnection()
 		false
 	}
+
+	def createTncProto(is : InputStream, os : OutputStream) : TncProto =
+		new KissProto(is, os)
 
 	def createConnection() {
 		Log.d(TAG, "BluetoothTnc.createConnection: " + tncmac)
@@ -67,8 +70,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		val TAG = "BtSocketThread"
 		var running = true
 		var socket : BluetoothSocket = null
-		var reader : KenwoodReader = null
-		var writer : KenwoodWriter = null
+		var proto : TncProto = null
 
 		def log(s : String) {
 			Log.i(TAG, s)
@@ -98,8 +100,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				}
 
 			this.synchronized {
-				reader = new KenwoodReader(socket.getInputStream())
-				writer = new KenwoodWriter(socket.getOutputStream())
+				proto = createTncProto(socket.getInputStream(), socket.getOutputStream())
 			}
 			val initstring = prefs.getString("bt.init", null)
 			val initdelay = prefs.getStringInt("bt.delay", 300)
@@ -128,7 +129,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 				try {
 					Log.d(TAG, "waiting for data...")
 					while (running) {
-						val line = reader.readPacket()
+						val line = proto.readPacket()
 						Log.d(TAG, "recv: " + line)
 						service.postSubmit(line)
 					}
@@ -151,7 +152,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 
 		def update(packet : APRSPacket) : String = {
 			try {
-				writer.writePacket(packet.toAX25Frame())
+				proto.writePacket(packet)
 				"Bluetooth OK"
 			} catch { case e => e.printStackTrace(); "Bluetooth disconnected" }
 		}
@@ -174,95 +175,5 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 		}
 	}
 
-	object Kiss {
-		// escape sequences
-		val FEND  = 0xC0
-		val FESC  = 0xDB
-		val TFEND = 0xDC
-		val TFESC = 0xDD
 
-		// commands
-		val CMD_DATA = 0x00
-	}
-
-	class KenwoodReader(is : InputStream) {
-		val br = new BufferedReader(new InputStreamReader(is))
-
-		def wpl2aprs(line : String) = {
-			val s = line.split("[,*]") // get and split nmea
-			s(0) match {
-			case "$PKWDWPL" =>
-				val lat = "%s%s".format(s(3), s(4))
-				val lon = "%s%s".format(s(5), s(6))
-				val call = s(11)
-				val sym = s(12)
-				"%s>APRS:!%s%s%s%s".format(call, lat, sym(0), lon, sym(1))
-			case "$GPWPL" =>
-				val lat = "%s%s".format(s(1), s(2))
-				val lon = "%s%s".format(s(3), s(4))
-				val call = s(5)
-				"%s>APRS:!%s/%s/".format(call, lat, lon)
-			case _ => line
-			}
-		}
-
-		def readPacket() : String = {
-			val line = br.readLine()
-			Log.d("KenwoodReader", "got " + line)
-			return wpl2aprs(line)
-		}
-	}
-	class KenwoodWriter(os : OutputStream) {
-		def writePacket(p : Array[Byte]) {
-			// don't do anything. yet.
-		}
-	}
-
-	class KissReader(is : InputStream) {
-		def readPacket() : String = {
-			import Kiss._
-			val buf = scala.collection.mutable.ListBuffer[Byte]()
-			do {
-				var ch = is.read()
-				Log.d(TAG, "KissReader.readPacket: %02X '%c'".format(ch, ch))
-				ch match {
-				case FEND =>
-					if (buf.length > 0) {
-						Log.d(TAG, "KissReader.readPacket: sending back %s".format(new String(buf.toArray)))
-						try {
-							return Parser.parseAX25(buf.toArray).toString().trim()
-						} catch {
-							case e => buf.clear()
-						}
-					}
-				case FESC => is.read() match {
-					case TFEND => buf.append(FEND.toByte)
-					case TFESC => buf.append(FESC.toByte)
-					case _ =>
-					}
-				case -1	=> throw new java.io.IOException("KissReader out of data")
-				case 0 =>
-					// hack: ignore 0x00 byte at start of frame, this is the command
-					if (buf.length != 0)
-						buf.append(ch.toByte)
-					else
-						Log.d(TAG, "KissReader.readPacket: ignoring command byte")
-				case _ =>
-					buf.append(ch.toByte)
-				}
-			} while (true)
-			""
-		}
-	}
-
-	class KissWriter(os : OutputStream) {
-		def writePacket(p : Array[Byte]) {
-			Log.d(TAG, "KissWriter.writePacket: %s".format(new String(p)))
-			os.write(Kiss.FEND)
-			os.write(Kiss.CMD_DATA)
-			os.write(p)
-			os.write(Kiss.FEND)
-			os.flush()
-		}
-	}
 }
