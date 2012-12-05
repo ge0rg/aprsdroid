@@ -5,7 +5,7 @@ import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStr
 
 import _root_.net.ab0oo.aprs.parser._
 
-class KenwoodProto(is : InputStream, os : OutputStream) extends TncProto(is, os) {
+class KenwoodProto(is : InputStream) extends TncProto(is, null) {
 	val TAG = "APRSdroid.KenwoodProto"
 	val br = new BufferedReader(new InputStreamReader(is))
 
