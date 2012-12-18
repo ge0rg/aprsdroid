@@ -57,8 +57,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 		val TAG = "APRSdroid.TcpSocketThread"
 		var running = true
 		var socket : Socket = null
-		var reader : BufferedReader = null
-		var writer : PrintWriter = null
+		var tnc : TncProto = null
 
 		def init_socket() {
 			Log.d(TAG, "init_socket()")
@@ -72,12 +71,9 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 				socket = new Socket(host, port)
 				socket.setKeepAlive(true)
 				socket.setSoTimeout(so_timeout*1000)
-				reader = new BufferedReader(new InputStreamReader(
-						socket.getInputStream()), 256)
-				writer = new PrintWriter(new OutputStreamWriter(
-						socket.getOutputStream()), true)
 				Log.d(TAG, login + setupFilter())
-				writer.println(login + setupFilter())
+				tnc = new AprsIsProto(socket.getInputStream(), socket.getOutputStream(),
+					login + setupFilter())
 			}
 			Log.d(TAG, "init_socket() done")
 		}
@@ -101,7 +97,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 					}
 					Log.d(TAG, "waiting for data...")
 					var line : String = null
-					while (running && { line = reader.readLine(); line != null }) {
+					while (running && { line = tnc.readPacket(); line != null }) {
 						Log.d(TAG, "recv: " + line)
 						if (line(0) != '#')
 							service.postSubmit(line)
@@ -128,7 +124,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 
 		def update(packet : APRSPacket) : String = {
 			if (socket != null && socket.isConnected()) {
-				writer.println(packet)
+				tnc.writePacket(packet)
 				"TCP OK"
 			} else "TCP disconnected"
 		}
