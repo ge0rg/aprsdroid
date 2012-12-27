@@ -5,7 +5,7 @@ import _root_.java.io.{InputStream, OutputStream}
 
 import _root_.net.ab0oo.aprs.parser._
 
-class KissProto(is : InputStream, os : OutputStream) extends TncProto(is, os) {
+class KissProto(is : InputStream, os : OutputStream, digipath : String) extends TncProto(is, os) {
 	val TAG = "APRSdroid.KissProto"
 
 	object Kiss {
@@ -55,6 +55,7 @@ class KissProto(is : InputStream, os : OutputStream) extends TncProto(is, os) {
 	}
 
 	def writePacket(p : APRSPacket) {
+		p.setDigipeaters(Digipeater.parseList(digipath, true))
 		Log.d(TAG, "writePacket: " + p)
 		os.write(Kiss.FEND)
 		os.write(Kiss.CMD_DATA)

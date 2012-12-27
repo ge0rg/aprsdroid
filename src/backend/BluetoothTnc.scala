@@ -28,7 +28,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	}
 
 	def createTncProto(is : InputStream, os : OutputStream) : TncProto =
-		new KissProto(is, os)
+		new KissProto(is, os, digipath)
 
 	def createConnection() {
 		Log.d(TAG, "BluetoothTnc.createConnection: " + tncmac)
@@ -52,6 +52,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	}
 
 	def update(packet : APRSPacket) : String = {
+		// the digipeater setting here is a duplicate just for log purpose
 		packet.setDigipeaters(Digipeater.parseList(digipath, true))
 		Log.d(TAG, "BluetoothTnc.update: " + packet)
 		conn.update(packet)
