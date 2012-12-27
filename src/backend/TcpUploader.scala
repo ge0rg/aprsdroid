@@ -4,7 +4,7 @@ import _root_.android.app.Service
 import _root_.android.content.Context
 import _root_.android.location.{Location, LocationManager}
 import _root_.android.util.Log
-import _root_.java.io.{BufferedReader, InputStreamReader, OutputStreamWriter, PrintWriter}
+import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStream, OutputStreamWriter, PrintWriter}
 import _root_.java.net.{InetAddress, Socket}
 import _root_.net.ab0oo.aprs.parser.APRSPacket
 
@@ -36,6 +36,11 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 		Log.d(TAG, "TcpUploader.createConnection: " + host + ":" + port)
 		conn = new TcpSocketThread(host, port)
 		conn.start()
+	}
+
+	def createTncProto(is : InputStream, os : OutputStream) : TncProto = {
+		Log.d(TAG, login + setupFilter())
+		new AprsIsProto(is, os, login + setupFilter())
 	}
 
 	def update(packet : APRSPacket) : String = {
@@ -71,9 +76,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUpl
 				socket = new Socket(host, port)
 				socket.setKeepAlive(true)
 				socket.setSoTimeout(so_timeout*1000)
-				Log.d(TAG, login + setupFilter())
-				tnc = new AprsIsProto(socket.getInputStream(), socket.getOutputStream(),
-					login + setupFilter())
+				tnc = createTncProto(socket.getInputStream(), socket.getOutputStream())
 			}
 			Log.d(TAG, "init_socket() done")
 		}
