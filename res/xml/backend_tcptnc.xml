@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	    android:title="@string/p_conn_tcptnc">
+
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="tcp.server"
+		android:inputType="textUri"
+		android:title="@string/p_host"
+		android:summary="@string/p_tcptnc_server_summary"
+		android:hint="@string/p_host_hint"
+		android:defaultValue="euro.aprs2.net"
+		android:dialogTitle="@string/p_tcptnc_entry" />
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="tcp.sotimeout"
+		android:inputType="number"
+		android:title="@string/p_sotimeout"
+		android:summary="@string/p_sotimeout_summary"
+		android:defaultValue="120"
+		android:dialogTitle="@string/p_sotimeout_entry" />
+
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="bt.init"
+		android:defaultValue=""
+		android:singleLine="false"
+		android:title="@string/p_bt_tnc_init"
+		android:summary="@string/p_bt_tnc_init_summary"
+		android:dialogTitle="@string/p_bt_tnc_init" />
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="bt.delay"
+		android:inputType="number"
+		android:hint="300"
+		android:defaultValue="300"
+		android:title="@string/p_bt_tnc_delay"
+		android:summary="@string/p_bt_tnc_delay_summary"
+		android:dialogTitle="@string/p_bt_tnc_delay_entry" />
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="digi_path"
+		android:hint="hop1,hop2,.."
+		android:defaultValue="WIDE1-1"
+		android:title="@string/p_aprs_path"
+		android:summary="@string/p_aprs_path_summary"
+		android:dialogTitle="@string/p_aprs_path_entry" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
+

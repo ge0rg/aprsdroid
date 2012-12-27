@@ -52,6 +52,11 @@ object AprsIsUploader {
 			(s, p) => new KenwoodTnc(s, p),
 			R.xml.backend_kenwood,
 			CAN_RECEIVE,
+			PASSCODE_NONE),
+		"tcptnc" -> new BackendInfo(
+			(s, p) => new TcpTnc(s, p),
+			R.xml.backend_tcptnc,
+			CAN_DUPLEX,
 			PASSCODE_NONE)
 		)
 
