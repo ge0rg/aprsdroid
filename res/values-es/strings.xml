@@ -75,7 +75,7 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivación y soporte</string>
 <string name="ad_thanks_3">Bastian, DB1BM: Implementacion del AFSK</string>
 <string name="ad_thanks_4">Matti, OH2MQK y John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: demulador AFSK, https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™por HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTraducción:</string>
 <string name="ad_homepage">Página de Inicio</string>
@@ -156,6 +156,8 @@
 <string name="p_conn_http">HTTP POST (solo envio)</string>
 <string name="p_conn_afsk">AFSK via Parlante/Microfono</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Posición Manual</string>
 <string name="p_source_periodic">GPS periódicamente/Posición via red</string>
@@ -240,8 +242,8 @@
 <string name="p_afsk_prefix">Trama de sincronía</string>
 <string name="p_afsk_prefix_summary">Señal sin datos (ej. para activar Control VOX)</string>
 <string name="p_afsk_prefix_entry">Ingrese duración de la trama (ms)</string>
-<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
-<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
+<string name="p_afsk_hqdemod">Demodulador en alta calidad.</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: Se requiere CPU de 800 MHz</string>
 <string name="p_afsk_btsco">Manos libres BlueTooth</string>
 <string name="p_afsk_btsco_summary">Usar manos libres BlueTooth (SCO) para AFSK</string>
 <string name="p_afsk_output">Salida de audio</string>
@@ -306,4 +308,8 @@
 
 <string name="afsk_info_sco_req">Solisitando emparejamiento via BlueTooth</string>
 <string name="afsk_info_sco_est">Emparejamiento BlueTooth establecido!</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
 </resources>

@@ -156,6 +156,8 @@
 <string name="p_conn_http">HTTP POST (vain lähetys)</string>
 <string name="p_conn_afsk">AFSK-modeemi kaiuttimen/mikrofonin kautta</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuaalinen sijainti</string>
 <string name="p_source_periodic">Jaksottainen GPS-/Verkkosijainti</string>
@@ -301,4 +303,8 @@
 
 <string name="afsk_info_sco_req">Pyydän Bluetooth SCO-yhteyttä...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO-yhteys muodostettu.</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
 </resources>

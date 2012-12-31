@@ -7,7 +7,7 @@
 <string name="app_hub">APRSdroid 列表中心</string>
 <string name="app_sta">台站信息</string>
 <string name="app_messages">信息</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">清除消息</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">您需要在APRSdroid中配置您的呼号和验证码！</string>
 <string name="wrongpasscode">您的呼号验证码不正确！</string>
@@ -22,7 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">近期报告</string>
 <string name="map_track_call">记录中</string>
-<string name="map_select">Select station</string>
+<string name="map_select">选择台站</string>
 
 <string name="map_loading">加载中...</string>
 
@@ -75,7 +75,7 @@
 <string name="ad_thanks_2">Dirk, DB5OY: 鼓励和支持</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK 协议实施</string>
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java  APRS</string>
-<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK 解码, https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™(智慧信标) by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\n 翻译:</string>
 <string name="ad_homepage">主页</string>
@@ -154,8 +154,10 @@
 <string name="p_conn_tcp">TCP 连接</string>
 <string name="p_conn_udp">UDP (只发送)</string>
 <string name="p_conn_http">HTTP POST (只发送)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_afsk">耳麦输出AFSK</string>
 <string name="p_conn_bt">蓝牙TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">手动设定坐标</string>
 <string name="p_source_periodic">周期性启动GPS或基站定位</string>
@@ -163,10 +165,10 @@
 <!-- manual position -->
 <string name="p_source_lat">纬度</string>
 <string name="p_source_lon">经度</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_coord">坐标</string>
 <string name="p_source_get_last">使用最后一次GPS位置</string>
-<string name="p_source_auto">Automatic Posting</string>
-<string name="p_source_auto_summary">Perform periodic position posting</string>
+<string name="p_source_auto">自动报告</string>
+<string name="p_source_auto_summary">执行周期位置报告</string>
 
 
 <!-- privacy settings -->
@@ -240,7 +242,7 @@
 <string name="p_afsk_prefix">帧同步前缀</string>
 <string name="p_afsk_prefix_summary">No-Op Preamble (比如:声控发射)</string>
 <string name="p_afsk_prefix_entry">输入同步前缀时间</string>
-<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
+<string name="p_afsk_hqdemod">高质量解码</string>
 <string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
 <string name="p_afsk_btsco">蓝牙耳机</string>
 <string name="p_afsk_btsco_summary">使用蓝牙(SCO)耳机发射AFSK</string>
@@ -300,4 +302,8 @@
 
 <string name="afsk_info_sco_req">正在请求蓝牙SCO连接...</string>
 <string name="afsk_info_sco_est">蓝牙SCO链路已建立。</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
 </resources>

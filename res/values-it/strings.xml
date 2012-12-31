@@ -51,7 +51,7 @@
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
 <string name="service_start">APRS Service started: %1$s, %2$s.</string>
 <string name="service_stop">Servizio APRS fermato.</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_no_location">Bisogna abilitare il GPS o inserire le coordinate tramite internet affinché APRSdroid funzioni correttamente!</string>
 <string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Error</string>
@@ -177,6 +177,8 @@
 <string name="p_conn_http">HTTP POST (invia soltanto)</string>
 <string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>
 <string name="p_source_periodic">Periodic GPS/Network Position</string>
@@ -294,6 +296,7 @@
   IK2RXU https://launchpad.net/~gilandin
   IZ5MSM https://launchpad.net/~iz5msm
   Martino Barbon https://launchpad.net/~martins999
+  Maurizio Di Mattia https://launchpad.net/~i0dzr
   simone.sandri https://launchpad.net/~lexluxsox</string>
 
 <!-- Bluetooth TNC settings -->
@@ -322,4 +325,8 @@
 
 <string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
 </resources>

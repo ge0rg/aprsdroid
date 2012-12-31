@@ -164,6 +164,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_conn_http">HTTP POST (nur Senden)</string>
 <string name="p_conn_afsk">AFSK über Lautsprecher/Mikro</string>
 <string name="p_conn_bt">Bluetooth-TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuelle Position</string>
 <string name="p_source_periodic">Periodische GPS/Netzwerk-Position</string>
@@ -307,4 +309,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 
 <string name="afsk_info_sco_req">Fordere Bluetooth-SCO-Verbindung an...</string>
 <string name="afsk_info_sco_est">Bluetooth-SCO-Verbindung aufgebaut.</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
 </resources>

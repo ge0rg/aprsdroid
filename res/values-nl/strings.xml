@@ -158,6 +158,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_conn_http">HTTP POST (alleen zenden)</string>
 <string name="p_conn_afsk">AFSK via luidspreker/microfoon</string>
 <string name="p_conn_bt">Bleutooth TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuele Positie</string>
 <string name="p_source_periodic">Periodieke GPS/Netwerk Positie</string>
@@ -306,4 +308,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <string name="afsk_info_sco_req">Maken van bleutooth SCO link...</string>
 <string name="afsk_info_sco_est">Bleutooth SCO link verbonden.</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
 </resources>

@@ -123,15 +123,15 @@
 	<item>1: 1200bpsの挟中域デジピータ・固定局</item>
 	<item>2: 9600bpsのデジピータ・固定局</item>
 	<item>3: 1200bpsの広域デジピータ・固定局</item>
-	<item>4: 固定（常置場所）局・移動局・気象局</item>
-	<item>携帯機器（スマホ等）による運用局 (D-Star, 3Gなど使用)</item>
-	<item>6: 衛星・イベント局・実験局</item>
+	<item>4: HFゲートウェイ局,固定（常置場所）局</item>
+	<item>5:携帯機器（スマホ,D-Star, その他回線等)</item>
+	<item>6: 衛星・イベント局・キャンプ中</item>
 	<item>7: ハンディー機</item>
 	<item>8: ボード/船</item>
 	<item>9: モービル</item>
-	<item>10: インターネット接続局 （無線機無し）</item>
+	<item>10: インターネット接続局 （I-Gate局等）</item>
 	<item>11: 気球・航空機・宇宙船等</item>
-	<item>メッセージ受信不可（一方送信）なトラッカー機器</item>
+	<item>12:一方的送信なトラッカー機器等</item>
 	<item>13: 気象局</item>
 	<item>14: 貨物トラック移動局</item>
 	<item>15: 固定（常置場所）局・移動局・気象局</item>
@@ -156,6 +156,8 @@
 <string name="p_conn_http">HTTP POST (送信のみ）</string>
 <string name="p_conn_afsk">AFSK via スピーカー/マイク</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">手動位置設定</string>
 <string name="p_source_periodic">周期的に GPS/ネットワーク で測位</string>
@@ -281,7 +283,7 @@
 <string name="p_bt_tnc_device_entry">デバイスを選択して下さい。</string>
 <string name="p_bt_channel">チャンネル選択</string>
 <string name="p_bt_channel_summary">Bluetooth信号チャンネルを選択</string>
-<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+<string name="p_bt_channel_entry">チャンネルに入る(普段は:"1"; SPPが空)</string>
 
 <string name="p_bt_tnc_init">TNC初期化設定</string>
 <string name="p_bt_tnc_init_summary">TNC初期化コマンド設定</string>
@@ -299,4 +301,8 @@
 
 <string name="afsk_info_sco_req">Bluetooth(SCO)リンク要求</string>
 <string name="afsk_info_sco_est">Bluetooth(SCO)リンク確立</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
 </resources>

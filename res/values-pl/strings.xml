@@ -157,6 +157,8 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_conn_http">HTTP POST (tylko wysyłanie)</string>
 <string name="p_conn_afsk">AFSK przez głośnik/mikrofon</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manualna Pozycja</string>
 <string name="p_source_periodic">Pozycja z GPS/Sieci</string>
@@ -304,4 +306,8 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 
 <string name="afsk_info_sco_req">Nawiązywanie połączenia Bluetooth SCO</string>
 <string name="afsk_info_sco_est">Połączenie Bluetooth SCO nawiązane</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
 </resources>
