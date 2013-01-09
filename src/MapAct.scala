@@ -11,6 +11,7 @@ import _root_.android.view.{Menu, MenuItem, View}
 import _root_.android.widget.SimpleCursorAdapter
 import _root_.android.widget.Spinner
 import _root_.android.widget.TextView
+import _root_.android.widget.Toast
 import _root_.org.mapsforge.android.maps._
 import _root_.org.mapsforge.core.GeoPoint
 import _root_.org.mapsforge.android.maps.overlay.{ItemizedOverlay, OverlayItem}
@@ -46,7 +47,10 @@ class MapAct extends MapActivity with UIHelper {
 		showObjects = prefs.getShowObjects()
 		//mapview.setSatellite(prefs.getShowSatellite())
 		val mapfile = new File(android.os.Environment.getExternalStorageDirectory(), "aprsdroid.map")
-		mapview.setMapFile(mapfile)
+		if (mapfile.exists())
+			mapview.setMapFile(mapfile)
+		else
+			Toast.makeText(this, "Error loading " + mapfile, Toast.LENGTH_SHORT).show()
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
