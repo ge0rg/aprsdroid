@@ -62,7 +62,7 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 		val SB_TURN_MIN = 10
 		val SB_TURN_SLOPE = 240.0
 
-		val speed = getSpeed(location)
+		val speed = location.getSpeed
 		val t_diff = location.getTime - lastLoc.getTime
 		val turn = getBearingAngle(location.getBearing, lastLoc.getBearing)
 
