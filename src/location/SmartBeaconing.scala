@@ -33,10 +33,10 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 	}
 
 	def smartBeaconSpeedRate(speed : Float) : Int = {
-		val SB_FAST_SPEED = 28 // [m/s] = ~100km/h
-		val SB_FAST_RATE = 60
-		val SB_SLOW_SPEED = 1 // [m/s] = 3.6km/h
-		val SB_SLOW_RATE = 1200
+		val SB_FAST_SPEED = prefs.getStringInt("sb.fastspeed", 100)/3.6 // [m/s]
+		val SB_FAST_RATE = prefs.getStringInt("sb.fastrate", 60)
+		val SB_SLOW_SPEED = prefs.getStringInt("sb.slowspeed", 5)/3.6 // [m/s]
+		val SB_SLOW_RATE = prefs.getStringInt("sb.slowrate", 1200)
 		if (speed <= SB_SLOW_SPEED)
 			SB_SLOW_RATE
 		else if (speed >= SB_FAST_SPEED)
@@ -58,9 +58,9 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 	}
 
 	def smartBeaconCornerPeg(location : Location) : Boolean = {
-		val SB_TURN_TIME = 15
-		val SB_TURN_MIN = 10
-		val SB_TURN_SLOPE = 240.0
+		val SB_TURN_TIME = prefs.getStringInt("sb.turntime", 15)
+		val SB_TURN_MIN = prefs.getStringInt("sb.turnmin", 10)
+		val SB_TURN_SLOPE = prefs.getStringInt("sb.turnslope", 240)*1.0
 
 		val speed = location.getSpeed
 		val t_diff = location.getTime - lastLoc.getTime

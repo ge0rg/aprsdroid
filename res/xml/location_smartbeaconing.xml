@@ -5,5 +5,65 @@
     <PreferenceCategory
 	android:title="@string/p_source_smart">
 
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="sb.fastspeed"
+		android:inputType="number"
+		android:defaultValue="100"
+		android:title="@string/p_sb_fast_speed"
+		android:summary="@string/p_sb_fast_speed_summary" />
+                
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="sb.fastrate"
+		android:inputType="number"
+		android:defaultValue="60"
+		android:title="@string/p_sb_fast_rate"
+		android:summary="@string/p_sb_fast_rate_summary" />
+                
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="sb.slowspeed"
+		android:inputType="number"
+		android:defaultValue="5"
+		android:title="@string/p_sb_slow_speed"
+		android:summary="@string/p_sb_slow_speed_summary" />
+                
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="sb.slowrate"
+		android:inputType="number"
+		android:defaultValue="1200"
+		android:title="@string/p_sb_slow_rate"
+		android:summary="@string/p_sb_slow_rate_summary" />
+                
+    </PreferenceCategory>
+    <PreferenceCategory
+	android:title="@string/p_corner_pegging">
+
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="sb.turntime"
+		android:inputType="number"
+		android:defaultValue="15"
+		android:title="@string/p_cp_turn_time"
+		android:summary="@string/p_cp_turn_time_summary" />
+                
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="sb.turnmin"
+		android:inputType="number"
+		android:defaultValue="10"
+		android:title="@string/p_cp_turn_angle"
+		android:summary="@string/p_cp_turn_angle_summary" />
+                
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="sb.turnslope"
+		android:inputType="number"
+		android:defaultValue="240"
+		android:title="@string/p_cp_turn_slope"
+		android:summary="@string/p_cp_turn_slope_summary" />
+                
+	<Preference
+		android:key="sb.help"
+		android:title="@string/p_sb_help"
+		android:summary="@string/sb_help_url" >
+		<intent android:action="android.intent.action.VIEW"
+			android:data="@string/sb_help_url" />
+	</Preference>
     </PreferenceCategory>
 </PreferenceScreen>
