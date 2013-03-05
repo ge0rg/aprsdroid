@@ -6,6 +6,8 @@ import _root_.android.location.{Location, LocationManager}
 import _root_.android.util.Log
 import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStream, OutputStreamWriter, PrintWriter}
 import _root_.java.net.{InetAddress, Socket}
+import _root_.java.security.cert.X509Certificate
+import _root_.javax.net.ssl.{SSLContext, X509TrustManager}
 import _root_.net.ab0oo.aprs.parser.APRSPacket
 
 class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(prefs) {
@@ -73,7 +75,9 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 					Log.d(TAG, "init_socket() aborted")
 					return;
 				}
-				socket = new Socket(host, port)
+				val sc = SSLContext.getInstance("TLS")
+				sc.init(null, Array(new NaiveTrustManager()), null)
+				socket = sc.getSocketFactory().createSocket(host, port)
 				socket.setKeepAlive(true)
 				socket.setSoTimeout(so_timeout*1000)
 				tnc = createTncProto(socket.getInputStream(), socket.getOutputStream())
@@ -151,5 +155,16 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 				socket = null
 			}
 		}
+	}
+
+	class NaiveTrustManager extends X509TrustManager {
+
+		override def checkClientTrusted(cert: Array[X509Certificate], authType: String) {
+		}
+
+		override def checkServerTrusted(cert: Array[X509Certificate], authType: String) {
+		}
+
+		override def getAcceptedIssuers = null
 	}
 }
