@@ -4,10 +4,11 @@ import _root_.android.app.Service
 import _root_.android.content.Context
 import _root_.android.location.{Location, LocationManager}
 import _root_.android.util.Log
-import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStream, OutputStreamWriter, PrintWriter}
+import _root_.java.io.{BufferedReader, File, InputStream, InputStreamReader, OutputStream, OutputStreamWriter, PrintWriter}
 import _root_.java.net.{InetAddress, Socket}
+import _root_.java.security.KeyStore
 import _root_.java.security.cert.X509Certificate
-import _root_.javax.net.ssl.{SSLContext, X509TrustManager}
+import _root_.javax.net.ssl.{KeyManagerFactory, SSLContext, SSLSocket, X509TrustManager}
 import _root_.net.ab0oo.aprs.parser.APRSPacket
 
 class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(prefs) {
@@ -66,6 +67,34 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 		var socket : Socket = null
 		var tnc : TncProto = null
 
+		val KEYSTORE_DIR = "keystore"
+		val KEYSTORE_FILE = "keys.bks"
+		val KEYSTORE_PASS = "APRS-IS".toCharArray()
+
+		def init_ssl_socket(host : String, port : Int) : Socket = {
+			val dir = service.getApplicationContext().getDir(KEYSTORE_DIR, Context.MODE_PRIVATE)
+			val keyStoreFile = new File(dir + File.separator + prefs.getCallsign() + ".bks")
+
+			val ks = KeyStore.getInstance("BKS")
+			val kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm())
+
+			try {
+				ks.load(new java.io.FileInputStream(keyStoreFile), KEYSTORE_PASS)
+				kmf.init(ks, KEYSTORE_PASS)
+				service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, "Loaded Client certs: " + ks.size())
+			} catch {
+				case e : Exception =>
+					e.printStackTrace()
+					service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, e.toString())
+					return null
+			}
+
+			val sc = SSLContext.getInstance("TLS")
+			sc.init(kmf.getKeyManagers(), Array(new NaiveTrustManager()), null)
+			val socket = sc.getSocketFactory().createSocket(host, port).asInstanceOf[SSLSocket]
+			socket
+		}
+
 		def init_socket() {
 			Log.d(TAG, "init_socket()")
 			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
@@ -75,9 +104,9 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 					Log.d(TAG, "init_socket() aborted")
 					return;
 				}
-				val sc = SSLContext.getInstance("TLS")
-				sc.init(null, Array(new NaiveTrustManager()), null)
-				socket = sc.getSocketFactory().createSocket(host, port)
+				socket = init_ssl_socket(host, port)
+				if (socket == null)
+					socket = new Socket(host, port)
 				socket.setKeepAlive(true)
 				socket.setSoTimeout(so_timeout*1000)
 				tnc = createTncProto(socket.getInputStream(), socket.getOutputStream())
