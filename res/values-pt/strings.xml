@@ -67,7 +67,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Sobre o APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® é uma marca registada por Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® é uma marca registada por Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Este programa é software livre, você pode redistribuí-lo e / ou modificá-lo sob os termos da GNU General Public License conforme publicada pela Free Software Foundation, tanto a versão 2 da Licença, ou (a seu critério) qualquer versão posterior. \ n \ n Este programa é distribuído na esperança que será útil, mas SEM QUALQUER GARANTIA, sem mesmo a garantia implícita de COMERCIALIZAÇÃO ou ADEQUAÇÃO PARA UM DETERMINADO PROPÓSITO. Veja a GNU General Public License para mais detalhes. \ n \ n Você deve ter recebido uma cópia da Licença Pública Geral GNU junto com este programa, se não, escreva para a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, EUA. \ n \ n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Agradecimentos a:</string>
 <string name="ad_thanks_0">Minha YL ♥♥♥</string>
@@ -156,8 +156,8 @@
 <string name="p_conn_http">HTTP POST (apenas envio)</string>
 <string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_kwd">Porta do GPS do Kenwood</string>
+<string name="p_conn_tcptnc">TNC TCP/IP</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Posição manual</string>
 <string name="p_source_periodic">Posição periódica de GPS/Network</string>
@@ -196,7 +196,26 @@
 <string name="p_locsource_summary">Manual, periódica ou SmartBeaconing™</string>
 <string name="p__location">Configurações da localização</string>
 <string name="p__location_summary">Configuração de envio de pacotes de localização</string>
+
 <string name="p_smartbeaconing">Copy text 	 SmartBeaconing™</string>
+<string name="p_sb_help">Ajuda do SmartBeaconing</string>
+<string name="p_sb_fast_speed">Velocidade rapida [km/h]</string>
+<string name="p_sb_fast_speed_summary">Velocidada minima  para actualizar posicoes rapidas</string>
+<string name="p_sb_fast_rate">Ritmo rapido [s]</string>
+<string name="p_sb_fast_rate_summary">Ritmo do beacon com velocidade rapida</string>
+<string name="p_sb_slow_speed">Velocidade lenta [km/h]</string>
+<string name="p_sb_slow_speed_summary">Velocidade maxima para actualizar posicoes lentas</string>
+<string name="p_sb_slow_rate">Ritmo lento [s]</string>
+<string name="p_sb_slow_rate_summary">Ritmo do beacon com velocidade lenta</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">Tempo de viragem minimo</string>
+<string name="p_cp_turn_time_summary">Ritmo minimo do beacon quando a direccao muda</string>
+<string name="p_cp_turn_angle">Angulo de viragem minimo</string>
+<string name="p_cp_turn_angle_summary">Angulo minimo com velocidade alta</string>
+<string name="p_cp_turn_slope">Turn Slope</string>
+<string name="p_cp_turn_slope_summary">Influencia da velocidade no angulo minimo</string>
+
 <string name="p_interval">Tempo mínimo de actualização</string>
 <string name="p_interval_summary">Minutos entre transmissões de beacon</string>
 <string name="p_interval_entry">Escreva o tempo entre actualizações [min]</string>
@@ -273,9 +292,10 @@
 
 <string name="translator_credits">Launchpad Contributions:
   David Quental https://launchpad.net/~ct1drb
-  Jon Amil https://launchpad.net/~amilgz
+  David Quental https://launchpad.net/~ct1drb-1
   Jose Carlos Moreira https://launchpad.net/~ct1dhm
-  Paulo Mendes https://launchpad.net/~ct2hqt</string>
+  Paulo Mendes https://launchpad.net/~ct2hqt
+  amilgz https://launchpad.net/~amilgz</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Modo cliente (com virtual)</string>
@@ -305,6 +325,6 @@
 <string name="afsk_info_sco_est">Ligação do SCO bluetooth estabelecida.</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">Contactar o servidor do TNC TCP/IP</string>
+<string name="p_tcptnc_entry">Escrever o servidor do KISS</string>
 </resources>

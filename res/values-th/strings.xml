@@ -67,7 +67,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -215,7 +215,26 @@
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">ตั้งค่าที่ตั้ง</string>
 <string name="p__location_summary">Configuration for sending position reports</string>
+
 <string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">SmartBeaconing™ help</string>
+<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
+<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_rate">Fast Rate [s]</string>
+<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
+<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
+<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
+<string name="p_sb_slow_rate">Slow Rate [s]</string>
+<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">Min Turn Time [s]</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
+<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
+<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
+<string name="p_cp_turn_slope">Turn Slope</string>
+<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+
 <string name="p_interval">อับเดทเวลาน้อยสุด</string>
 <string name="p_interval_summary">นาทีระหว่างการส่งสัญญาณ</string>
 <string name="p_interval_entry">ใส่การอับเดทช่วงเวลา [min]</string>
@@ -291,6 +310,7 @@
 <string name="p_sotimeout_entry">ค่าหมดเวลาในไม่กี่วินาที (0 = ปิดการใช้งาน)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   HS5TQA https://launchpad.net/~somkiat</string>
 
 <!-- Bluetooth TNC settings -->

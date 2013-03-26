@@ -3,7 +3,7 @@
 <resources>
 <string name="app_name">APRSdroid</string>
 <string name="app_prefs">Preferencias de APRSdroid</string>
-<string name="app_map">APRSdroid Map</string>
+<string name="app_map">Mapa APRSdroid</string>
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_sta">Información de estación</string>
 <string name="app_messages">Mensajes</string>
@@ -11,23 +11,23 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">¡Debes configurar APRSdroid con tu distintivo de llamada y contraseña!</string>
 <string name="wrongpasscode">¡Tu contraseña no se corresponde con tu distintivo de llamada!</string>
-<string name="anon_warning">¡Sin contraseña, tus reportes no seran distribuidos!</string>
+<string name="anon_warning">¡Sin contraseña, tus reportes no serán distribuidos!</string>
 <string name="mininterval">¡El tiempo mínimo de la actualización es 1 minuto!</string>
-<string name="singlelog">instantáneo</string>
+<string name="singlelog">Instantáneo</string>
 <string name="startlog">Iniciar el seguimiento</string>
 <string name="stoplog">Detener el seguimiento</string>
 
 <string name="empty_logview">Todavía no has recibido o enviado ningún paquete.\n\n Pulsa el botón de \"Menú\" para enviar un reporte instantáneo o para comenzar el seguimiento de tu posición.\n\n También puedes cambiar las preferencias de la aplicación desde el menú.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s ultimo reporte</string>
-<string name="map_track_call">seguimiento</string>
-<string name="map_select">Seleccionar estación</string>
+<string name="sta_lastreport">%s Último Reporte</string>
+<string name="map_track_call">Seguimiento</string>
+<string name="map_select">Seleccione estación</string>
 
 <string name="map_loading">Cargando…</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">SSIDs de estacíon</string>
+<string name="sta_ssids">SSIDs de estación</string>
 <string name="sta_history">Historia de estación</string>
 <string name="sta_map">Mapa</string>
 <string name="sta_aprsfi">aprs.fi</string>
@@ -48,7 +48,7 @@
 
 <!-- AprsService -->
 <string name="aprsservice">Servicio de APRSdroid</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_once">APRS disparo único: %1$s, %2$s</string>
 <string name="service_start">Servicio APRS iniciado: %1$s, %2$s.</string>
 <string name="service_stop">Servicio APRS detenido.</string>
 <string name="service_no_location">¡Es necesario que habilites el GPS o la localización via red para que APRSdroid funcione correctamente!</string>
@@ -67,7 +67,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Sobre APRSdroid v%s</string>
-<string name="ad_copyright">Derechos de autor © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® es una marca registrada de Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Derechos de autor © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® es una marca registrada de Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Este programa es software libre, puede redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, versión 2 de la Licencia, o (a su elección) cualquier versión posterior. \ n \ n Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA, incluso sin la garantía implícita de COMERCIALIZACIÓN o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General de GNU para más detalles. \ n \ n Usted debe haber recibido una copia de la Licencia Pública General de GNU junto con este programa, si no, escriba a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, EE.UU.. \ n \ n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Gracias a:</string>
 <string name="ad_thanks_0">Mi novia ♥♥♥</string>
@@ -149,7 +149,7 @@
 <string name="p_connsetup">Preferencias de conexión</string>
 <string name="p_connsetup_summary">Configuración de la conexión</string>
 <string name="p_connlog">Registro de conexiones</string>
-<string name="p_connlog_summary">Verbose status output in Log</string>
+<string name="p_connlog_summary">Estado detallado en logs</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">Conexión TCP</string>
 <string name="p_conn_udp">UDP (solo envio)</string>
@@ -196,7 +196,26 @@
 <string name="p_locsource_summary">Manual, Periódico o SmartBeaconing™</string>
 <string name="p__location">Preferencias de la ubicación</string>
 <string name="p__location_summary">Configuración para enviar los reportes de posición</string>
+
 <string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">Ayuda de SmartBeaconing[tm]</string>
+<string name="p_sb_fast_speed">Velocidad Rápida [km/h]</string>
+<string name="p_sb_fast_speed_summary">Velocidad mínima para actualizaciones de cambios de posición rápidos</string>
+<string name="p_sb_fast_rate">Rango Rápido</string>
+<string name="p_sb_fast_rate_summary">Actualización Radiofaro a fuerte velicitad</string>
+<string name="p_sb_slow_speed">Velocidad Lenta [km/h]</string>
+<string name="p_sb_slow_speed_summary">Velocidad máxima para actualizaciones lentas</string>
+<string name="p_sb_slow_rate">Lenta Actualización  [s]</string>
+<string name="p_sb_slow_rate_summary">Actualización Radiofaro aa baja velicitad</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Vinculación de esquinas</string>
+<string name="p_cp_turn_time">Tiempo mínimo de doblaje</string>
+<string name="p_cp_turn_time_summary">Minima Actualización Radiofaro en cambio de dirección</string>
+<string name="p_cp_turn_angle">Ángulo mínimo de doblaje</string>
+<string name="p_cp_turn_angle_summary">Ángulo mínimo a alta velocidad</string>
+<string name="p_cp_turn_slope">Pendiente de doblaje</string>
+<string name="p_cp_turn_slope_summary">Influencia  velocidad en ángulo mas pequeño</string>
+
 <string name="p_interval">Tiempo mínimo de actualización</string>
 <string name="p_interval_summary">Minutos entre el envio de baliza</string>
 <string name="p_interval_entry">Introduce el intervalo de actualización (min)</string>
@@ -260,7 +279,7 @@
 <string name="p_filterdist_summary">Recibir paquetes desde estaciones cercanas en este radio de acción</string>
 <string name="p_filterdist_entry">Radio de acción de alrededor para monitorizar los paquetes [km]</string>
 <string name="p_filter">Filtro de mensajes</string>
-<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_hint">b/AMIGOS  o/OBJETO</string>
 <string name="p_filter_summary">Filtro para mensajes entrantes</string>
 <string name="p_filter_entry">Introduzca un filtro para mensajes entrantes</string>
 
@@ -277,10 +296,12 @@
   Carlos Martinez https://launchpad.net/~cx5cba
   Eduardo Alberto Calvo https://launchpad.net/~edu5800
   Georg Lukas https://launchpad.net/~ge0rg
+  Javier Henderson https://launchpad.net/~javier-3
   Miguel https://launchpad.net/~nobody-su
   Paco-EB5TC https://launchpad.net/~paco-eb5tc
   R R https://launchpad.net/~kf5fvf
-  Ryan Schultz https://launchpad.net/~rschultz82</string>
+  Ryan Schultz https://launchpad.net/~rschultz82
+  SILVIO BARLETTA https://launchpad.net/~ik1bqd</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Modo Cliente</string>
@@ -310,6 +331,6 @@
 <string name="afsk_info_sco_est">Emparejamiento BlueTooth establecido!</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">KISS TCP  server de conexión</string>
+<string name="p_tcptnc_entry">Entrar el nombre  Server kiSS</string>
 </resources>

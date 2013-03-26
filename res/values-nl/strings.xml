@@ -69,7 +69,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <!-- about dialog -->
 <string name="ad_title">Over APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. \n\n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \n\n You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Met dank aan:</string>
 <string name="ad_thanks_0">Mijn YL ♥♥♥</string>
@@ -198,7 +198,26 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_locsource_summary">Manueel, Periodiek of SmartBeaconing™</string>
 <string name="p__location">Lokatie instellingen</string>
 <string name="p__location_summary">Instellingen voor het verzenden van rapporten</string>
+
 <string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">SmartBeaconing™ help</string>
+<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
+<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_rate">Fast Rate [s]</string>
+<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
+<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
+<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
+<string name="p_sb_slow_rate">Slow Rate [s]</string>
+<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">Min Turn Time [s]</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
+<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
+<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
+<string name="p_cp_turn_slope">Turn Slope</string>
+<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+
 <string name="p_interval">Minimum update tijd</string>
 <string name="p_interval_summary">Minuten tussen baken uitzendingen</string>
 <string name="p_interval_entry">Geef het update interval [min]</string>

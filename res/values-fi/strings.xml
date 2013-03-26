@@ -67,7 +67,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Tietoja APRSdroid v%s:sta</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® on Bob Bruningan (WB4APR) rekisteröimä tavaramerkki</string>
+<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® on Bob Bruningan (WB4APR) rekisteröimä tavaramerkki</string>
 <string name="ad_gpl">Tämä ohjelmisto on vapaa; voit jakaa sitä ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public License ehtojen mukaisesti; joko Lisenssin 2-version tai myöhemmän version mukaisesti. \n\n Tätä ohjelmaa jaetaan siten, että siitä olisi jotain hyötyä, mutta EHDOTTOMASTI ILMAN MITÄÄN TAKUUTA; ilman vähäisintäkään takuuta KAUPALLISUUDESTA tai SOPIVUUDESTA ERITYISIIN TARKOITUKSIIN. Katso GNU General Public License tarkemista yksityiskohdista. \n\n Olet saanut kopion GNU General Public License:stä tämän ohjelman mukana; jos et, niin otayhteyttä Free Software Foundation:iin , Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Kiitokset:</string>
 <string name="ad_thanks_0">Oma YL:ni ♥♥♥</string>
@@ -196,7 +196,26 @@
 <string name="p_locsource_summary">Manuaalinen, Jaksottainen tai SmartBeaconing™</string>
 <string name="p__location">Sijaintiasetukset</string>
 <string name="p__location_summary">Sijaintiraportin lähetyksen asetukset</string>
+
 <string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">SmartBeaconing™ help</string>
+<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
+<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_rate">Fast Rate [s]</string>
+<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
+<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
+<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
+<string name="p_sb_slow_rate">Slow Rate [s]</string>
+<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">Min Turn Time [s]</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
+<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
+<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
+<string name="p_cp_turn_slope">Turn Slope</string>
+<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+
 <string name="p_interval">Pienin päivitysaika</string>
 <string name="p_interval_summary">Minuutteja lähetysten välillä</string>
 <string name="p_interval_entry">Aseta päivityksen aikaväli [min]</string>
@@ -272,6 +291,7 @@
 <string name="p_sotimeout_entry">Aikakatkaisu sekunneissa (0 = ei käytössä)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   Heikki Hannikainen https://launchpad.net/~hessu
   Lasse Kurkela https://launchpad.net/~oh3jaj
   Ville Filpus https://launchpad.net/~oh6fse

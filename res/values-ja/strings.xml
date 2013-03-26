@@ -34,7 +34,7 @@
 <string name="sta_qrzcom">QRZ.com接続</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">メッセージを送信する</string>
+<string name="msg_send_new">メッセージ送信</string>
 <string name="msg_message_text">内容</string>
 <string name="msg_empty_list">まだ格納された会話はありません。</string>
 <string name="msg_stored_offline">あなたがトラッキングを始めると、メッセージが送信されます。</string>
@@ -67,7 +67,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroidについて v%s</string>
-<string name="ad_copyright">著作権 © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®は Bob Bruninga (WB4APR) の登録商標です。</string>
+<string name="ad_copyright">著作権 © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®は Bob Bruninga (WB4APR) の登録商標です。</string>
 <string name="ad_gpl">このプログラムはフリー・ソフトウェアです。; 再分配あるいはフリー・ソフトウェア・ファウンデーションによって公表されるようなGNU一般ライセンスの条件下で修正する事が出来ます。ライセンスver.2あるいは(貴方のオプションで)以降のバージョンの何れか。\n\n このプログラムは有用であることを願い,しかし一切の保証なしに提供されています。;特定の目的に対する商品性もしくは適合性についての暗黙の保証すらありません。 詳細についてはGNU一般ライセンスを参照してください。 \n\n あなたはこのプログラムと共にGNU一般公衆利用許諾契約書のコピーを受け取り承諾しているはずです。; そうでなければ、フリー・ソフトウェア財団に手紙を書いてください。, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">協力:</string>
 <string name="ad_thanks_0">私の彼女♥♥♥</string>
@@ -143,9 +143,9 @@
 <string name="p_status_summary">位置情報と共に送信するメッセージ</string>
 <string name="p_status_entry">ビーコンコメントを入力</string>
 <string name="p__connection">APRS接続設定</string>
-<string name="p_conntype">データ送信方式</string>
+<string name="p_conntype">通信方式</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP または UDP</string>
-<string name="p_conntype_entry">使用する送信方式を選択</string>
+<string name="p_conntype_entry">使用する通信方式を選択</string>
 <string name="p_connsetup">接続詳細設定</string>
 <string name="p_connsetup_summary">接続に関する設定</string>
 <string name="p_connlog">接続情報を記録</string>
@@ -156,8 +156,8 @@
 <string name="p_conn_http">HTTP POST (送信のみ）</string>
 <string name="p_conn_afsk">AFSK via スピーカー/マイク</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_kwd">KENWOOD GPS ポート</string>
+<string name="p_conn_tcptnc">TCP/IP 接続 TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">手動位置設定</string>
 <string name="p_source_periodic">周期的に GPS/ネットワーク で測位</string>
@@ -187,7 +187,7 @@
 <string name="p_priv_altitude_summary">位置情報に高度を含みます</string>
 
 <!-- connection type properties -->
-<string name="p_host">送信先サーバ名</string>
+<string name="p_host">接続先サーバ名</string>
 <string name="p_host_summary">ビーコン情報を送信するAPRS-ISサーバ名（デフォルトポート:8080）</string>
 <string name="p_host_entry">APRS-ISサーバホスト名を入力</string>
 <string name="p_host_hint">ホスト名:ポート番号</string>
@@ -196,7 +196,26 @@
 <string name="p_locsource_summary">固定,周期的 又は SmartBeaconing™</string>
 <string name="p__location">位置情報設定</string>
 <string name="p__location_summary">測位方法の詳細設定</string>
+
 <string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">SmartBeaconing™ヘルプ</string>
+<string name="p_sb_fast_speed">速い速度 [km/h]</string>
+<string name="p_sb_fast_speed_summary">低速時に早く位置を更新</string>
+<string name="p_sb_fast_rate">速いレート [秒]</string>
+<string name="p_sb_fast_rate_summary">高速時のビーコン間隔</string>
+<string name="p_sb_slow_speed">遅い速度 [km/h]</string>
+<string name="p_sb_slow_speed_summary">最高速度の時は遅く位置情報を更新</string>
+<string name="p_sb_slow_rate">遅いレート [秒]</string>
+<string name="p_sb_slow_rate_summary">低速時のビーコン間隔</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">カーブでビーコン</string>
+<string name="p_cp_turn_time">最少回転時間 [秒]</string>
+<string name="p_cp_turn_time_summary">方向変更する場合の最小ビーコン間隔</string>
+<string name="p_cp_turn_angle">最少回転角度 [°]</string>
+<string name="p_cp_turn_angle_summary">高速時の最小角度</string>
+<string name="p_cp_turn_slope">回転角度 (初期値:255)</string>
+<string name="p_cp_turn_slope_summary">最小角度は速度に影響</string>
+
 <string name="p_interval">位置情報取得間隔</string>
 <string name="p_interval_summary">GPSから位置情報を取得する間隔</string>
 <string name="p_interval_entry">取得する間隔[分]を入力</string>
@@ -283,7 +302,7 @@
 <string name="p_bt_tnc_device_entry">デバイスを選択して下さい。</string>
 <string name="p_bt_channel">チャンネル選択</string>
 <string name="p_bt_channel_summary">Bluetooth信号チャンネルを選択</string>
-<string name="p_bt_channel_entry">チャンネルに入る(普段は:"1"; SPPが空)</string>
+<string name="p_bt_channel_entry">チャンネルを入力(普通は:"1"; SPPは空)</string>
 
 <string name="p_bt_tnc_init">TNC初期化設定</string>
 <string name="p_bt_tnc_init_summary">TNC初期化コマンド設定</string>
@@ -303,6 +322,6 @@
 <string name="afsk_info_sco_est">Bluetooth(SCO)リンク確立</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">KISS TCP サーバー接続先</string>
+<string name="p_tcptnc_entry">KISSサーバーホスト名</string>
 </resources>

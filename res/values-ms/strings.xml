@@ -2,17 +2,17 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">Preferències APRSdroid</string>
-<string name="app_map">APRSdroid Mapa</string>
+<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_map">Peta APRSdroid</string>
 <string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Informació de l\'estació</string>
-<string name="app_messages">Missatges</string>
+<string name="app_sta">Maklumat stesen</string>
+<string name="app_messages">Messages</string>
 <string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">¡Has de configurar APRSdroid amb el teu indicatiu  i la contrasenya!</string>
-<string name="wrongpasscode">¡El codi d\'accés no coincideix amb el teu indicatiu!</string>
+<string name="firstrun">Anda perlu untuk menatarajah APRSdroid dengan Isyarat Panggilan dan kod laluan anda!</string>
+<string name="wrongpasscode">Kod laluan anda tidak sepadan dengan Isyarat Panggilan anda!</string>
 <string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">Minimum update time is 1 minute!</string>
+<string name="mininterval">Kemaskini masa minimum adalah 1 minit!</string>
 <string name="singlelog">Single Shot</string>
 <string name="startlog">Start Tracking</string>
 <string name="stoplog">Stop Tracking</string>
@@ -22,114 +22,93 @@
 	You can also change the application preferences from the menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
+<string name="sta_lastreport">%s Laporan Akhir</string>
 <string name="map_track_call">Tracking %s...</string>
 <string name="map_select">Select station</string>
 
 <string name="map_loading">Loading...</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">SSID d\'estació</string>
+<string name="sta_ssids">Station SSIDs</string>
 <string name="sta_history">Station History</string>
-<string name="sta_map">Mapa</string>
+<string name="sta_map">Peta</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
+<string name="msg_send_new">Hantar pesanan kepada ...</string>
+<string name="msg_message_text">Teks pesanan</string>
 <string name="msg_empty_list">There are no stored conversations.</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">Pesanan dari %s</string>
+<string name="msg_to">Pesanan kepada %s</string>
+<string name="msg_abort">membatalkan pemancaran</string>
+<string name="msg_restart">Mulakan semula pemancaran</string>
+<string name="msg_type_rejected">ditolak</string>
+<string name="msg_type_aborted">Dibatalkan</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid Service</string>
+<string name="aprsservice">Perkhidmatan APRSdroid</string>
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
-<string name="service_stop">APRS Service stopped.</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_start">Memulakan Perkhidmatan APRS: %1$s, %2$s.</string>
+<string name="service_stop">Memberhentikan Perkhidmatan APRS.</string>
+<string name="service_no_location">Anda perlu untuk membolehkan sama ada GPS atau Lokasi Rangkaian untuk APRSdroid berfungsi dengan baik!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ memerlukan GPS!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_error">Ralat</string>
+<string name="post_incmg">diterima</string>
 <string name="post_info"/>
-<string name="post_connecting">Connecting to %1$s:%2$d...</string>
-<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+<string name="post_connecting">menyambungkan ke %1$s:%2$d...</string>
+<string name="post_reconnect">Sambungan terputus. Sambung semula dalam %d saat ...</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Welcome to APRSdroid!</string>
-<string name="fr_text">This software may only be used by licensed amateur radio
-	operators!</string>
-<string name="fr_text2">You need to enter your callsign to use this software.
-	To forward your packets, an APRS-IS passcode is required as well.</string>
+<string name="fr_text">Perisian ini hanya boleh digunakan oleh pengendali radio amatur berlesen!</string>
+<string name="fr_text2">Anda perlu memasukkan Isyarat Panggilan anda untuk menggunakan perisian ini. Untuk mengemukakan paket anda, kod laluan APRS-IS perlukan diserta.</string>
 
 <!-- about dialog -->
-<string name="ad_title">About APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
-<string name="ad_gpl">This program is free software; you can redistribute it and/or
-	modify it under the terms of the GNU General Public License
-	as published by the Free Software Foundation; either version 2
-	of the License, or (at your option) any later version.
-	\n\n
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-	\n\n
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-	\n\n
-	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
-	</string>
-<string name="ad_thanks">Thanks to:</string>
-<string name="ad_thanks_0">My YL ♥♥♥</string>
+<string name="ad_title">Mengenai APRSdroid v%s</string>
+<string name="ad_copyright">Hakcipta © 2009-2013 Georg Lukas (DO1GL\n http://aprsdroid.org \n\n APRS ® adalah tanda dagangan berdaftar Bob Bruninga (WB4APR)</string>
+<string name="ad_gpl">Program ini adalah perisian bebas; anda boleh mengedarkannya semula dan/atau mengubah suai di bawah syarat-syarat GNU General Public License seperti yang diterbitkan oleh Free Software Foundation; sama ada versi 2 Lesen, atau (pada pilihan anda) mana-mana versi selepas ini. \n\n Program ini diedarkan dengan harapan bahawa ia akan menjadi berguna, tetapi TANPA SEBARANG WARANTI; tanpa jaminan yang tersirat KEBOLEHDAGANGAN atau KESESUAIAN UNTUK TUJUAN TERTENTU. Lihat GNU General Public License untuk maklumat lanjut. \n\n Anda harus telah menerima salinan GNU General Public License bersama-sama dengan program ini, jika tidak, menulis kepada Free Software Foundation, Inc, 51 Franklin Street, Tingkat Kelima, Boston, MA 02110-1301, Amerika Syarikat. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_thanks">Terima kasih kepada:</string>
+<string name="ad_thanks_0">YL Saya ♥♥♥</string>
 <string name="ad_thanks_1">Michael, DO3BOX: idea</string>
-<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
-<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
-<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
-<string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
-<string name="ad_trans">\n\nTranslation:</string>
-<string name="ad_homepage">Home Page</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivasi dan sokongan</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK pelaksanaan</string>
+<string name="ad_thanks_4">Matti, OH2MQK dan John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK penyahmodulat, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™ oleh HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_trans">\n\nTerjemahan</string>
+<string name="ad_homepage">Laman Utama</string>
 
 <!-- map view -->
-<string name="map_overlays">Overlays</string>
-<string name="map_satellite">Satellite</string>
-<string name="map_objects">APRS Objects</string>
+<string name="map_overlays">Lapisan</string>
+<string name="map_satellite">Satelit</string>
+<string name="map_objects">APRS Objek</string>
 
 <!-- map view -->
-<string name="age">Show last...</string>
-<string name="age_30">30 minutes</string>
-<string name="age_2h">2 hours</string>
-<string name="age_12h">12 hours</string>
-<string name="age_1d">1 day</string>
-<string name="age_2d">2 days</string>
+<string name="age">Paparkan terkini...</string>
+<string name="age_30">30 minit</string>
+<string name="age_2h">2 jam</string>
+<string name="age_12h">12 jam</string>
+<string name="age_1d">1 hari</string>
+<string name="age_2d">2 hari</string>
 
 
 <!-- options menu -->
-<string name="about">About</string>
+<string name="about">Mengenai</string>
 <string name="show_hub">Show Hub</string>
 <string name="show_map">Show Map</string>
 <string name="show_log">Show Log</string>
-<string name="clear_log">Clear Log</string>
-<string name="quit">Quit</string>
-<string name="preferences">Preferences</string>
+<string name="clear_log">Kosongkan log</string>
+<string name="quit">Keluar</string>
+<string name="preferences">Keutamaan</string>
 <!-- preferences -->
-<string name="p__ham">Amateur Radio</string>
+<string name="p__ham">Radio Amatur</string>
 <string name="p_callsign">Callsign</string>
-<string name="p_callsign_nossid">Callsign (without SSID)</string>
-<string name="p_callsign_summary">Your HAM radio callsign</string>
+<string name="p_callsign_nossid">Isyarat Panggilan (tanpa SSID)</string>
+<string name="p_callsign_summary">Isyarat Panggilan Ham Radio anda</string>
 <string name="p_callsign_entry">Enter your callsign</string>
 <string name="p_passcode">APRS-IS Passcode</string>
 <string name="p_passcode_summary">APRS-IS validation passcode</string>
@@ -314,8 +293,7 @@
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Georg Lukas https://launchpad.net/~ge0rg
-  Paco-EB5TC https://launchpad.net/~paco-eb5tc</string>
+  Abdullah https://launchpad.net/~azi88</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

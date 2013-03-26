@@ -69,7 +69,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 
 <!-- about dialog -->
 <string name="ad_title">Über APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® ist ein eingetragenes Warenzeichen von Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® ist ein eingetragenes Warenzeichen von Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
 \n\n
 Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
@@ -164,8 +164,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_conn_http">HTTP POST (nur Senden)</string>
 <string name="p_conn_afsk">AFSK über Lautsprecher/Mikro</string>
 <string name="p_conn_bt">Bluetooth-TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_kwd">Kenwood GPS-Port</string>
+<string name="p_conn_tcptnc">TCP/IP-TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuelle Position</string>
 <string name="p_source_periodic">Periodische GPS/Netzwerk-Position</string>
@@ -204,7 +204,26 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_locsource_summary">Manuell, periodisch oder SmartBeaconing™</string>
 <string name="p__location">Standorteinstellungen</string>
 <string name="p__location_summary">Einstellungen für den Versand der eigenen Position</string>
+
 <string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">SmartBeaconing™-Hilfe</string>
+<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
+<string name="p_sb_fast_speed_summary">Mindestgeschwindigkeit für schnelle Positionsbaken</string>
+<string name="p_sb_fast_rate">Fast Rate [s]</string>
+<string name="p_sb_fast_rate_summary">Bakenrate bei schneller Geschwindigkeit</string>
+<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
+<string name="p_sb_slow_speed_summary">Höchste Geschwindigkeit für langsame Positionsbaken</string>
+<string name="p_sb_slow_rate">Slow Rate [s]</string>
+<string name="p_sb_slow_rate_summary">Bakenrate bei langsamer Geschwindigkeit</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">Min Turn Time [s]</string>
+<string name="p_cp_turn_time_summary">Bakenrate bei Richtungswechseln</string>
+<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
+<string name="p_cp_turn_angle_summary">Mindestwinkel bei hoher Geschwindigkeit</string>
+<string name="p_cp_turn_slope">Turn Slope</string>
+<string name="p_cp_turn_slope_summary">Einfluss der Geschwindigkeit auf Mindestwinkel</string>
+
 <string name="p_interval">Minimale Updatezeit</string>
 <string name="p_interval_summary">Minuten zwischen Baken</string>
 <string name="p_interval_entry">Geben Sie das Update-Intervall ein [min]</string>
@@ -311,6 +330,6 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="afsk_info_sco_est">Bluetooth-SCO-Verbindung aufgebaut.</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">KISS TCP-Server zum verbinden</string>
+<string name="p_tcptnc_entry">KISS-TCP-Servername eingeben</string>
 </resources>

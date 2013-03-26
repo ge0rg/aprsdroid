@@ -67,7 +67,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Om APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® är ett registrerat varumärke tillhörande Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® är ett registrerat varumärke tillhörande Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Detta program är fri mjukvara; du kan omdistribuera det och/eller ändra det enligt villkoren i GNU General Public License som publicerats av Free Software Foundation; antingen version 2 av licensen, eller (om du så önskar) en senare version. \n\n Detta program distruberas med förhoppningen att det ska göra nytta, men UTAN NÅGRA GARANTIER; utan ens den implicita garantin om SÄLJBARHET eller DUGLIGHET FÖR ETT SÄRSKILT SYFTE. Se GNU General Public License för fler detaljer. \n\n Du bör ha tagit emot en kopia av GNU General Public License tillsammans med programmet; skriv annars till Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Tack till:</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
@@ -196,7 +196,26 @@
 <string name="p_locsource_summary">Manuell, periodisk, eller SmartBeaconing™</string>
 <string name="p__location">Platsinställningar</string>
 <string name="p__location_summary">Inställningar för att skicka positionsrapporter</string>
+
 <string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">SmartBeaconing™ help</string>
+<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
+<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_rate">Fast Rate [s]</string>
+<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
+<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
+<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
+<string name="p_sb_slow_rate">Slow Rate [s]</string>
+<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">Min Turn Time [s]</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
+<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
+<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
+<string name="p_cp_turn_slope">Turn Slope</string>
+<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+
 <string name="p_interval">Lägsta tid för uppdatering</string>
 <string name="p_interval_summary">Minuter mellan sändning av beacon</string>
 <string name="p_interval_entry">Ange uppdateringsintervall [min]</string>
@@ -273,6 +292,7 @@
 
 <string name="translator_credits">Launchpad Contributions:
   Arve Eriksson https://launchpad.net/~031299870-telia
+  Georg Lukas https://launchpad.net/~ge0rg
   Mikael Karlsson https://launchpad.net/~mr-lima</string>
 
 <!-- Bluetooth TNC settings -->

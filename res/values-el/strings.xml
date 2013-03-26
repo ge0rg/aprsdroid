@@ -67,7 +67,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Σχετικά με APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2011 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® είναι σήμα κατατεθέν του Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® είναι σήμα κατατεθέν του Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό; Μπορείτε να το αναδιανέμετε ή/και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή δημοσιεύεται από το Ίδρυμα Ελεύθερου Λογισμικού; είτε της έκδοσης 2 της Άδειας, είτε (κατ\'επιλογή σας) οποιαδήποτε μεταγενέστερη έκδοση. \n\n Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ; χωρίς καν την υπονοούμενη εγγύηση της ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε την GNU Γενική Άδεια Δημόσιας Χρήσης για περισσότερες λεπτομέρειες. \n\n Θα πρέπει να έχετε λάβει ένα αντίγραφο της GNU General Public License μαζί με αυτό το πρόγραμμα; αν όχι, γράψτε στο Ίδρυμα Ελεύθερου Λογισμικού, Inc, 51 Franklin Street, πέμπτο όροφο, Boston, MA 02110-1301, ΗΠΑ. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Ευχαριστίες σε:</string>
 <string name="ad_thanks_0">Η YL μου ♥♥♥</string>
@@ -156,7 +156,7 @@
 <string name="p_conn_http">HTTP POST (μόνο αποστολή)</string>
 <string name="p_conn_afsk">AFSK μέσω Ηχείου/Μικροφώνου</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_kwd">GPS θύρα Kenwood</string>
 <string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Χειροκίνητη Τοποθεσία</string>
@@ -196,7 +196,26 @@
 <string name="p_locsource_summary">Χειροκίνητο, Περιοδικό ή SmartBeaconing™</string>
 <string name="p__location">Ρυθμίσεις Τοποθεσίας</string>
 <string name="p__location_summary">Ρύθμιση για την αποστολή των αναφορών τοποθεσίας</string>
+
 <string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">SmartBeaconing™ βοήθεια</string>
+<string name="p_sb_fast_speed">Γρήγορη Ταχύτητα [km/h]</string>
+<string name="p_sb_fast_speed_summary">Ελάχιστη ταχύτητα για γρήγορες ενημερώσεις θέσης</string>
+<string name="p_sb_fast_rate">Γρήγορη Τιμή [s]</string>
+<string name="p_sb_fast_rate_summary">Τιμή Beacon σε γρήγορη ταχύτητα</string>
+<string name="p_sb_slow_speed">Αργή Ταχύτητα [km/h]</string>
+<string name="p_sb_slow_speed_summary">Μέγιστη ταχύτητα για αργές ενημερώσεις θέσης</string>
+<string name="p_sb_slow_rate">Αργή Τιμή [s]</string>
+<string name="p_sb_slow_rate_summary">Τιμή Beacon σε αργή ταχύτητα</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">Ελάχιστος Χρόνος Στροφής [s]</string>
+<string name="p_cp_turn_time_summary">Ελάχιστη τιμή beacon όταν αλλάζει κατευθύνσεις</string>
+<string name="p_cp_turn_angle">Ελάχιστη Γωνία Στροφής [°]</string>
+<string name="p_cp_turn_angle_summary">Ελάχιστη γωνία σε υψηλή ταχύτητα</string>
+<string name="p_cp_turn_slope">Γυρίστε Κλίση</string>
+<string name="p_cp_turn_slope_summary">Επίδραση ταχύτητας σε ελάχιστη γωνία</string>
+
 <string name="p_interval">Ελάχιστος χρόνος ενημέρωσης</string>
 <string name="p_interval_summary">Λεπτά μεταξύ των μεταδόσεων του beacon</string>
 <string name="p_interval_entry">Πληκτρολογήστε το χρονικό διάστημα ενημέρωσης [min]</string>
@@ -304,6 +323,6 @@
 <string name="afsk_info_sco_est">SCO σύνδεση Bluetooth επιβεβαιώθηκε.</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">KISS TCP διακομιστής επικοινωνίας</string>
+<string name="p_tcptnc_entry">Πληκτρολογήστε το όνομα του διακομιστή KISS</string>
 </resources>
