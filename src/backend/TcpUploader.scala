@@ -11,6 +11,8 @@ import _root_.java.security.cert.X509Certificate
 import _root_.javax.net.ssl.{KeyManagerFactory, SSLContext, SSLSocket, X509TrustManager}
 import _root_.net.ab0oo.aprs.parser.APRSPacket
 
+import scala.collection.JavaConversions._ // for enumeration of keystore aliases
+
 class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(prefs) {
 	val TAG = "APRSdroid.TcpUploader"
 	val hostname = prefs.getString("tcp.server", "euro.aprs2.net")
@@ -80,8 +82,17 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 
 			try {
 				ks.load(new java.io.FileInputStream(keyStoreFile), KEYSTORE_PASS)
+				for (alias <- ks.aliases()) {
+					if (ks.isKeyEntry(alias)) {
+						val c = ks.getCertificate(alias).asInstanceOf[X509Certificate]
+						// work around missing X500Principal.getName(String, Map<String, String) on SDK<9:
+						val dn = c.getSubjectX500Principal().toString()
+							.replace("OID.1.3.6.1.4.1.12348.1.1=", "CALLSIGN=")
+						service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
+							"Loaded key: " + dn)
+					}
+				}
 				kmf.init(ks, KEYSTORE_PASS)
-				service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, "Loaded Client certs: " + ks.size())
 			} catch {
 				case e : Exception =>
 					e.printStackTrace()
