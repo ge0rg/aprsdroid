@@ -350,4 +350,10 @@
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
 <string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">Import keyfile into APRSdroid</string>
+<string name="ssl_no_keyfile">No keyfile for %s! Using plaintext.</string>
+<string name="ssl_import_ok">Imported keyfile for %s.</string>
+<string name="ssl_import_error">Error importing keyfile: %s!</string>
 </resources>

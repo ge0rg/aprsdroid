@@ -100,7 +100,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 			} catch {
 				case e : java.io.FileNotFoundException =>
 					service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
-						"No keyfile for '%s'! Using plaintext.".format(prefs.getCallsign()))
+						service.getString(R.string.ssl_no_keyfile, prefs.getCallsign()))
 					return null
 				case e : Exception =>
 					e.printStackTrace()

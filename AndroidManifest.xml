@@ -68,6 +68,17 @@
 		<category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 	</activity>
+	<activity android:name=".KeyfileImportActivity" android:label="@string/ssl_import_activity">
+	    <intent-filter>
+		<action android:name="android.intent.action.VIEW" />
+		<category android:name="android.intent.category.DEFAULT" />
+		<category android:name="android.intent.category.BROWSABLE" />
+		<data android:scheme="file" />
+		<data android:mimeType="*/*" />
+		<data android:pathPattern=".*\\.bks" />
+		<data android:host="*" />
+	    </intent-filter>
+	</activity>
 	<service android:name=".AprsService" android:label="@string/aprsservice">
 	    <intent-filter>
 		<action android:name="org.aprsdroid.app.SERVICE" />
