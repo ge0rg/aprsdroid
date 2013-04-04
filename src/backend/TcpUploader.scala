@@ -93,17 +93,20 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 					}
 				}
 				kmf.init(ks, KEYSTORE_PASS)
+				val sc = SSLContext.getInstance("TLS")
+				sc.init(kmf.getKeyManagers(), Array(new NaiveTrustManager()), null)
+				val socket = sc.getSocketFactory().createSocket(host, port).asInstanceOf[SSLSocket]
+				socket
 			} catch {
+				case e : java.io.FileNotFoundException =>
+					service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
+						"No keyfile for '%s'! Using plaintext.".format(prefs.getCallsign()))
+					return null
 				case e : Exception =>
 					e.printStackTrace()
 					service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, e.toString())
 					return null
 			}
-
-			val sc = SSLContext.getInstance("TLS")
-			sc.init(kmf.getKeyManagers(), Array(new NaiveTrustManager()), null)
-			val socket = sc.getSocketFactory().createSocket(host, port).asInstanceOf[SSLSocket]
-			socket
 		}
 
 		def init_socket() {
