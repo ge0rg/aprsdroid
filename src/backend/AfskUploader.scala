@@ -1,7 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
-import _root_.android.media.AudioManager
+import _root_.android.media.{AudioManager, AudioTrack}
 import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 import _root_.net.ab0oo.aprs.parser.{APRSPacket, Digipeater, Parser}
@@ -23,6 +23,8 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUp
 	val in_type = if (use_bt) /*VOICE_CALL*/1 else /*MIC*/1
 	val output = new Afsk(out_type, samplerate)
 	val aw = new AfskInWrapper(use_hq, this, in_type, samplerate/2) // 8000 / 11025
+
+	output.setVolume(AudioTrack.getMaxVolume())
 	
 	val btScoReceiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
