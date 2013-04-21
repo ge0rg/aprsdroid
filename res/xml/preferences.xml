@@ -197,6 +197,16 @@
 		/>
     </PreferenceCategory>
     </PreferenceScreen>
+
+    <PreferenceScreen
+	    android:key="mapfile"
+	    android:title="@string/p_mapfile"
+	    android:summary="@string/p_mapfile_summary">
+
+	    <intent android:action="android.intent.action.GET_CONTENT"
+		    android:mimeType="*/*" />
+    </PreferenceScreen>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

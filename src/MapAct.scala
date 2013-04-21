@@ -46,11 +46,13 @@ class MapAct extends MapActivity with UIHelper {
 		locReceiver.startTask(null)
 		showObjects = prefs.getShowObjects()
 		//mapview.setSatellite(prefs.getShowSatellite())
-		val mapfile = new File(android.os.Environment.getExternalStorageDirectory(), "aprsdroid.map")
+		val mapfile = new File(prefs.getString("mapfile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.map"))
 		if (mapfile.exists())
 			mapview.setMapFile(mapfile)
-		else
-			Toast.makeText(this, "Error loading " + mapfile, Toast.LENGTH_SHORT).show()
+		else {
+			Toast.makeText(this, getString(R.string.mapfile_error, mapfile), Toast.LENGTH_SHORT).show()
+			finish()
+		}
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions
