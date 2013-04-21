@@ -162,7 +162,7 @@ trait UIHelper extends Activity
 		if (passcodeConfigRequired(callsign, passcode)) {
 			openPrefs(R.string.wrongpasscode)
 			return false
-		} else passcodeWarning(callsign, passcode)
+		}
 
 		if (prefs.getStringInt("interval", 10) < 1) {
 			openPrefs(R.string.mininterval)
