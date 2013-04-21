@@ -11,7 +11,7 @@ import _root_.java.util.UUID
 
 import _root_.net.ab0oo.aprs.parser._
 
-class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs) {
+class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(prefs) {
 	val TAG = "APRSdroid.Bluetooth"
 	val SPP = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
 

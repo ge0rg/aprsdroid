@@ -52,7 +52,7 @@ class AprsService extends Service {
 	lazy val locSource = LocationSource.instanciateLocation(this, prefs)
 	lazy val msgNotifier = msgService.createMessageNotifier()
 
-	var poster : AprsIsUploader = null
+	var poster : AprsBackend = null
 
 	var singleShot = false
 
@@ -87,7 +87,7 @@ class AprsService extends Service {
 			showToast(toastString.format(
 				prefs.getListItemName("loc_source", LocationSource.DEFAULT_CONNTYPE,
 					R.array.p_locsource_ev, R.array.p_locsource_e),
-				prefs.getListItemName("backend", AprsIsUploader.DEFAULT_CONNTYPE,
+				prefs.getListItemName("backend", AprsBackend.DEFAULT_CONNTYPE,
 					R.array.p_conntype_ev, R.array.p_conntype_e)))
 
 		val callssid = prefs.getCallSsid()
@@ -107,7 +107,7 @@ class AprsService extends Service {
 	def startPoster() {
 		if (poster != null)
 			poster.stop()
-		poster = AprsIsUploader.instanciateUploader(this, prefs)
+		poster = AprsBackend.instanciateUploader(this, prefs)
 		if (poster.start())
 			onPosterStarted()
 	}

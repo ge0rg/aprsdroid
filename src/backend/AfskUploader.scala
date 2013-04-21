@@ -10,7 +10,7 @@ import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 import com.jazzido.PacketDroid.{AudioBufferProcessor, PacketCallback}
 import sivantoledo.ax25.PacketHandler
 
-class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsIsUploader(prefs)
+class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(prefs)
 		with PacketHandler with PacketCallback {
 	val TAG = "APRSdroid.Afsk"
 	// frame prefix: bytes = milliseconds * baudrate / 8 / 1000

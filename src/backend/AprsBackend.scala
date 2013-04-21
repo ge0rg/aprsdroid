@@ -2,7 +2,7 @@ package org.aprsdroid.app
 
 import _root_.net.ab0oo.aprs.parser.APRSPacket
 
-object AprsIsUploader {
+object AprsBackend {
 	val DEFAULT_CONNTYPE = "tcp"
 
 	val PASSCODE_NONE	= 0
@@ -15,7 +15,7 @@ object AprsIsUploader {
 
 	// "struct" for APRS backend information
 	class BackendInfo(
-		val create : (AprsService, PrefsWrapper) => AprsIsUploader,
+		val create : (AprsService, PrefsWrapper) => AprsBackend,
 		val prefxml : Int,
 		val duplex : Int,
 		val need_passcode : Int
@@ -67,7 +67,7 @@ object AprsIsUploader {
 		}
 	}
 
-	def instanciateUploader(service : AprsService, prefs : PrefsWrapper) : AprsIsUploader = {
+	def instanciateUploader(service : AprsService, prefs : PrefsWrapper) : AprsBackend = {
 		defaultBackendInfo(prefs).create(service, prefs)
 	}
 	def instanciatePrefsAct(prefs : PrefsWrapper) = {
@@ -76,7 +76,7 @@ object AprsIsUploader {
 
 }
 
-abstract class AprsIsUploader(prefs : PrefsWrapper) {
+abstract class AprsBackend(prefs : PrefsWrapper) {
 	val login = prefs.getLoginString()
 
 	// returns true if successfully started.
