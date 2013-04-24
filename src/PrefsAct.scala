@@ -22,11 +22,28 @@ class PrefsAct extends PreferenceActivity {
 	override def onActivityResult(reqCode : Int, resultCode : Int, data : Intent) {
 		android.util.Log.d("PrefsAct", "onActResult: request=" + reqCode + " result=" + resultCode + " " + data)
 		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123456) {
-			if (data.getData().getScheme() == "file") {
+			val mapfile = data.getData().getScheme() match {
+			case "file" =>
+				data.getData().getPath()
+			case "content" =>
+				val cursor = getContentResolver().query(data.getData(), null, null, null, null)
+				cursor.moveToFirst()
+				val idx = cursor.getColumnIndex("_data")
+				val result = if (idx != -1) cursor.getString(idx) else null
+				cursor.close()
+				result
+			case _ =>
+				null
+			}
+			if (mapfile != null) {
 				PreferenceManager.getDefaultSharedPreferences(this)
-					.edit().putString("mapfile", data.getData().getPath()).commit()
-			} else android.widget.Toast.makeText(this, "Invalid file name. Try a different chooser",
-				android.widget.Toast.LENGTH_SHORT).show()
+					.edit().putString("mapfile", mapfile).commit()
+				android.widget.Toast.makeText(this, mapfile,
+					android.widget.Toast.LENGTH_SHORT).show()
+			} else {
+				android.widget.Toast.makeText(this, getString(R.string.mapfile_error, mapfile),
+					android.widget.Toast.LENGTH_SHORT).show()
+			}
 		}
 	}
 }
