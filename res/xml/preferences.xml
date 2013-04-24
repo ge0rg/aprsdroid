@@ -8,6 +8,7 @@
         <de.duenndns.EditTextPreferenceWithValue
                 android:key="callsign"
 		android:inputType="textCapCharacters"
+		android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		android:title="@string/p_callsign_nossid"
 		android:summary="@string/p_callsign_summary"
 		android:hint="@string/p_callsign_nossid"
