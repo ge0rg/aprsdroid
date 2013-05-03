@@ -119,7 +119,9 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 					case se : java.net.SocketTimeoutException =>
 						Log.i(TAG, "restarting due to timeout")
 						need_reconnect = true
-					case e : Exception => Log.d(TAG, "Exception " + e)
+					case e : Exception =>
+						Log.d(TAG, "Exception " + e)
+						need_reconnect = true
 				}
 			}
 			Log.d(TAG, "TcpSocketThread.terminate()")
