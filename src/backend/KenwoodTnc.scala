@@ -23,7 +23,13 @@ class KenwoodTnc(service : AprsService, prefs : PrefsWrapper) extends BluetoothT
 	def onNmeaReceived(timestamp : Long, nmea : String) {
 		if (output != null && (nmea.startsWith("$GPGGA") || nmea.startsWith("$GPRMC"))) {
 			Log.d(TAG, "NMEA >>> " + nmea)
-			output.write(nmea)
+			try {
+				output.write(nmea)
+			} catch {
+			case e : Exception =>
+				Log.e(TAG, "error sending NMEA to Kenwood: " + e)
+				e.printStackTrace()
+			}
 		} else
 			Log.d(TAG, "NMEA --- " + nmea)
 	}
