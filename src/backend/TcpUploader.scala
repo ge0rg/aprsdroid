@@ -70,14 +70,13 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 		var tnc : TncProto = null
 
 		val KEYSTORE_DIR = "keystore"
-		val KEYSTORE_FILE = "keys.bks"
-		val KEYSTORE_PASS = "APRS-IS".toCharArray()
+		val KEYSTORE_PASS = "APRS".toCharArray()
 
 		def init_ssl_socket(host : String, port : Int) : Socket = {
 			val dir = service.getApplicationContext().getDir(KEYSTORE_DIR, Context.MODE_PRIVATE)
-			val keyStoreFile = new File(dir + File.separator + prefs.getCallsign() + ".bks")
+			val keyStoreFile = new File(dir + File.separator + prefs.getCallsign() + ".p12")
 
-			val ks = KeyStore.getInstance("BKS")
+			val ks = KeyStore.getInstance("PKCS12")
 			val kmf = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm())
 
 			try {

@@ -16,7 +16,7 @@ import scala.collection.JavaConversions._ // for enumeration of keystore aliases
 
 class KeyfileImportActivity extends Activity {
 	val TAG = "APRSdroid.KeyImport"
-	val KEYSTORE_PASS = "APRS-IS".toCharArray()
+	val KEYSTORE_PASS = "APRS".toCharArray()
 	val KEYSTORE_DIR = "keystore"
 
 	val CALL_RE = ".*CALLSIGN=([0-9A-Za-z]+).*".r
@@ -25,7 +25,7 @@ class KeyfileImportActivity extends Activity {
 		super.onCreate(savedInstanceState)
 		Log.d(TAG, "created: " + getIntent())
 		try {
-			val ks = KeyStore.getInstance("BKS")
+			val ks = KeyStore.getInstance("PKCS12")
 			ks.load(getContentResolver().openInputStream(getIntent.getData()), KEYSTORE_PASS)
 			var callsign : String = null
 			for (alias <- ks.aliases()) {
@@ -43,7 +43,7 @@ class KeyfileImportActivity extends Activity {
 			}
 			if (callsign != null) {
 				val dir = getApplicationContext().getDir(KEYSTORE_DIR, Context.MODE_PRIVATE)
-				val keyStoreFile = new File(dir + File.separator + callsign + ".bks")
+				val keyStoreFile = new File(dir + File.separator + callsign + ".p12")
 				ks.store(new FileOutputStream(keyStoreFile), KEYSTORE_PASS)
 
 				PreferenceManager.getDefaultSharedPreferences(this)

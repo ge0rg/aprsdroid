@@ -75,7 +75,7 @@
 		<category android:name="android.intent.category.BROWSABLE" />
 		<data android:scheme="file" />
 		<data android:mimeType="*/*" />
-		<data android:pathPattern=".*\\.bks" />
+		<data android:pathPattern=".*\\.p12" />
 		<data android:host="*" />
 	    </intent-filter>
 	</activity>
