@@ -117,7 +117,7 @@
 
     <target name="scalac" depends="-compile, check-scalalib, check-scalac">
 	<taskdef resource="scala/tools/ant/antlib.xml"
-	    classpath="tools/scala-compiler.jar:tools/scala-library.jar" />
+	    classpath="tools/scala-compiler.jar:tools/scala-library.jar:tools/scala-reflect.jar" />
 	<scalac force="changed" deprecation="on"
 	    srcdir="${source.absolute.dir}" includes="**/*.scala"
 	    bootclasspathref="project.target.class.path"
