@@ -302,7 +302,7 @@ trait UIHelper extends Activity
 			trackOnMap(targetcall)
 			true
 		case R.id.aprsfibutton =>
-			val url = "http://aprs.fi/?call=%s".format(targetcall)
+			val url = "http://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)
 			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
 			true
