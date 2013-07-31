@@ -95,7 +95,11 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 				try {
 					if (need_reconnect) {
 						need_reconnect = false
+						Log.d(TAG, "reconnecting in " + RECONNECT + "s")
+						service.postAddPost(TYPE_INFO, R.string.post_info,
+							service.getString(R.string.post_reconnect, RECONNECT.asInstanceOf[AnyRef]))
 						shutdown()
+						Thread.sleep(RECONNECT*1000)
 						init_socket()
 					}
 					Log.d(TAG, "waiting for data...")
@@ -108,12 +112,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 							service.postAddPost(TYPE_INFO, R.string.post_info, line)
 					}
 					if (running && (line == null || !socket.isConnected())) {
-						Log.d(TAG, "reconnecting in 30s")
-						service.postAddPost(TYPE_INFO, R.string.post_info,
-							service.getString(R.string.post_reconnect, RECONNECT.asInstanceOf[AnyRef]))
-						shutdown()
-						Thread.sleep(RECONNECT*1000)
-						init_socket()
+						need_reconnect = true
 					}
 				} catch {
 					case se : java.net.SocketTimeoutException =>
