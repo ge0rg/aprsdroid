@@ -199,7 +199,7 @@ class AprsService extends Service {
 		}
 	}
 
-	def parsePacket(ts : Long, message : String) {
+	def parsePacket(ts : Long, message : String, source : Int) {
 		try {
 			var fap = Parser.parse(message)
 			if (fap.getType() == APRSTypes.T_THIRDPARTY) {
@@ -207,6 +207,15 @@ class AprsService extends Service {
 				val inner = fap.getAprsInformation().toString()
 				// strip away leading "}"
 				fap = Parser.parse(inner.substring(1, inner.length()))
+			}
+
+			val callssid = prefs.getCallSsid()
+			if (source == StorageDatabase.Post.TYPE_INCMG &&
+			    fap.getSourceCall().equalsIgnoreCase(callssid)) {
+				Log.i(TAG, "got digipeated own packet")
+				val message = getString(R.string.got_digipeated, fap.getLastUsedDigi())
+				ServiceNotifier.instance.notifyPosition(this, prefs, message, "dgp_")
+				return
 			}
 
 			if (fap.getAprsInformation() == null) {
@@ -231,7 +240,7 @@ class AprsService extends Service {
 		val ts = System.currentTimeMillis()
 		db.addPost(ts, t, status, message)
 		if (t == StorageDatabase.Post.TYPE_POST || t == StorageDatabase.Post.TYPE_INCMG) {
-			parsePacket(ts, message)
+			parsePacket(ts, message, t)
 		} else {
 			// only log status messages
 			Log.d(TAG, "addPost: " + status + " - " + message)

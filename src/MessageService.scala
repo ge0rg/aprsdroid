@@ -26,10 +26,6 @@ class MessageService(s : AprsService) {
 
 	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
 		val callssid = s.prefs.getCallSsid()
-		if (ap.getSourceCall().equalsIgnoreCase(callssid)) {
-			Log.i(TAG, "ignoring own digipeated message")
-			return
-		}
 		if (msg.getTargetCallsign().equalsIgnoreCase(callssid)) {
 			if (msg.isAck() || msg.isRej()) {
 				val new_type = if (msg.isAck())

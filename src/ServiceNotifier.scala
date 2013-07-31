@@ -90,9 +90,9 @@ abstract class ServiceNotifier {
 	}
 
 	def notifyPosition(ctx : Service, prefs : PrefsWrapper,
-			status : String) {
+			status : String, prefix : String = "pos_") {
 		val n = newNotification(ctx, status)
-		setupNotification(n, ctx, prefs, false, "pos_")
+		setupNotification(n, ctx, prefs, false, prefix)
 		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, n)
 	}
 }

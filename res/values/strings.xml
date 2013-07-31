@@ -275,6 +275,11 @@
 <string name="p_pos">Own Position Reports</string>
 <string name="p_pos_ring">Ringtone</string>
 <string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">Ringtone</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
