@@ -151,8 +151,9 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 						Log.d(TAG, "exception, reconnecting...")
 						need_reconnect = true
 						try {
-							service.postAddPost(StorageDatabase.Post.TYPE_INFO,
-								R.string.post_error, e.toString())
+							if (running) // only bother the user if not yet quitting
+								service.postAddPost(StorageDatabase.Post.TYPE_INFO,
+									R.string.post_error, e.toString())
 							e.printStackTrace()
 						} catch { case _ => Log.d(TAG, "Yo dawg! I got an exception while getting an exception!")
 						}
