@@ -42,7 +42,7 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 		else if (speed >= SB_FAST_SPEED)
 			SB_FAST_RATE
 		else
-			((SB_SLOW_RATE - SB_FAST_RATE) * (SB_FAST_SPEED - speed) / (SB_FAST_SPEED-SB_SLOW_SPEED)).toInt
+			(SB_FAST_RATE + (SB_SLOW_RATE - SB_FAST_RATE) * (SB_FAST_SPEED - speed) / (SB_FAST_SPEED-SB_SLOW_SPEED)).toInt
 	}
 
 	// returns the angle between two bearings
