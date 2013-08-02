@@ -1,11 +1,13 @@
 package org.aprsdroid.app
 
 import _root_.android.app.Activity
-import _root_.android.content.Context
+import _root_.android.app.AlertDialog
+import _root_.android.content._
 import _root_.android.os.Bundle
 import _root_.android.preference.PreferenceManager
+import _root_.android.text.InputType
 import _root_.android.util.Log
-import _root_.android.widget.Toast
+import _root_.android.widget.{EditText, Toast}
 
 import _root_.java.io.File
 import _root_.java.io.FileOutputStream
@@ -24,9 +26,37 @@ class KeyfileImportActivity extends Activity {
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		Log.d(TAG, "created: " + getIntent())
+		query_for_password()
+	}
+
+	def query_for_password() {
+		val pwd = new EditText(this)
+		pwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)
+		val listener = new DialogInterface.OnClickListener() {
+				override def onClick(d : DialogInterface, which : Int) {
+					which match {
+						case DialogInterface.BUTTON_POSITIVE =>
+							import_key(pwd.getText().toString())
+						case _ =>
+							finish()
+					}
+				}}
+		new AlertDialog.Builder(this).setTitle(R.string.ssl_import_activity)
+			.setMessage(R.string.ssl_import_password)
+			.setView(pwd)
+			.setPositiveButton(android.R.string.ok, listener)
+			.setNegativeButton(android.R.string.cancel, listener)
+			.setOnCancelListener(new DialogInterface.OnCancelListener() {
+				override def onCancel(d : DialogInterface) {
+					finish()
+				}})
+			.create.show
+	}
+
+	def import_key(password : String) {
 		try {
 			val ks = KeyStore.getInstance("PKCS12")
-			ks.load(getContentResolver().openInputStream(getIntent.getData()), KEYSTORE_PASS)
+			ks.load(getContentResolver().openInputStream(getIntent.getData()), password.toCharArray)
 			var callsign : String = null
 			for (alias <- ks.aliases()) {
 				if (ks.isKeyEntry(alias)) {
@@ -53,7 +83,7 @@ class KeyfileImportActivity extends Activity {
 			}
 		} catch {
 		case e : Exception =>
-			Toast.makeText(this, getString(R.string.ssl_import_error, e.getMessage()), Toast.LENGTH_SHORT).show()
+			Toast.makeText(this, getString(R.string.ssl_import_error, e.getMessage()), Toast.LENGTH_LONG).show()
 			e.printStackTrace()
 		}
 		finish()
