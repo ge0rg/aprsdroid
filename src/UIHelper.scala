@@ -235,16 +235,16 @@ trait UIHelper extends Activity
 			true
 		// switch between activities
 		case R.id.hub =>
-			startActivity(new Intent(this, classOf[HubActivity]));
+			startActivity(new Intent(this, classOf[HubActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		case R.id.map =>
-			startActivity(new Intent(this, classOf[MapAct]));
+			startActivity(new Intent(this, classOf[MapAct]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		case R.id.log =>
-			startActivity(new Intent(this, classOf[LogActivity]));
+			startActivity(new Intent(this, classOf[LogActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		case R.id.conversations =>
-			startActivity(new Intent(this, classOf[ConversationsActivity]));
+			startActivity(new Intent(this, classOf[ConversationsActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		// toggle service
 		case R.id.startstopbtn =>
