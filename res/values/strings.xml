@@ -352,9 +352,11 @@
 <string name="p_tcptnc_entry">Enter the KISS server hostname</string>
 
 <!-- SSL strings -->
-<string name="ssl_import_activity">SSL keyfile import</string>
-<string name="ssl_import_password">Please enter the keystore password:</string>
-<string name="ssl_no_keyfile">No keyfile for %s! Using plaintext.</string>
-<string name="ssl_import_ok">Imported keyfile for %s.</string>
-<string name="ssl_import_error">Error importing keyfile: %s!</string>
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate is expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
 </resources>
