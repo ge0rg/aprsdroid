@@ -279,7 +279,7 @@
 <string name="p_dgp_ring">Ringtone</string>
 <string name="p_dgp_ring_summary">Tone for digipeated packets</string>
 
-<string name="got_digipeated">Digipeated by %s</string>
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>

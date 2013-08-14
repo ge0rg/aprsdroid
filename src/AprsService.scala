@@ -213,7 +213,8 @@ class AprsService extends Service {
 			if (source == StorageDatabase.Post.TYPE_INCMG &&
 			    fap.getSourceCall().equalsIgnoreCase(callssid)) {
 				Log.i(TAG, "got digipeated own packet")
-				val message = getString(R.string.got_digipeated, fap.getLastUsedDigi())
+				val message = getString(R.string.got_digipeated, fap.getLastUsedDigi(),
+					fap.getAprsInformation().toString())
 				ServiceNotifier.instance.notifyPosition(this, prefs, message, "dgp_")
 				return
 			}
