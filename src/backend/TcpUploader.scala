@@ -15,7 +15,7 @@ import scala.collection.JavaConversions._ // for enumeration of keystore aliases
 
 class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(prefs) {
 	val TAG = "APRSdroid.TcpUploader"
-	val hostname = prefs.getString("tcp.server", "euro.aprs2.net")
+	val hostport = prefs.getString("tcp.server", "euro.aprs2.net")
 	val so_timeout = prefs.getStringInt("tcp.sotimeout", 120)
 	val RECONNECT = 30
 	var conn : TcpSocketThread = null
@@ -37,9 +37,8 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 	}
 
 	def createConnection() {
-		val (host, port) = AprsPacket.parseHostPort(hostname, 14580)
-		Log.d(TAG, "TcpUploader.createConnection: " + host + ":" + port)
-		conn = new TcpSocketThread(host, port)
+		Log.d(TAG, "TcpUploader.createConnection: " + hostport)
+		conn = new TcpSocketThread(hostport)
 		conn.start()
 	}
 
@@ -62,7 +61,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 		conn.join(50)
 	}
 
-	class TcpSocketThread(host : String, port : Int)
+	class TcpSocketThread(hostport : String)
 			extends Thread("APRSdroid TCP connection") {
 		val TAG = "APRSdroid.TcpSocketThread"
 		var running = true
@@ -72,7 +71,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 		val KEYSTORE_DIR = "keystore"
 		val KEYSTORE_PASS = "APRS".toCharArray()
 
-		def init_ssl_socket(host : String, port : Int) : Socket = {
+		def init_ssl_socket(hostport : String) : Socket = {
 			val dir = service.getApplicationContext().getDir(KEYSTORE_DIR, Context.MODE_PRIVATE)
 			val keyStoreFile = new File(dir + File.separator + prefs.getCallsign() + ".p12")
 
@@ -94,6 +93,11 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 				kmf.init(ks, KEYSTORE_PASS)
 				val sc = SSLContext.getInstance("TLS")
 				sc.init(kmf.getKeyManagers(), Array(new NaiveTrustManager()), null)
+
+				val (host, port) = AprsPacket.parseHostPort(hostport, 24580)
+				service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
+					service.getString(R.string.post_connecting, host, port.asInstanceOf[AnyRef]))
+
 				val socket = sc.getSocketFactory().createSocket(host, port).asInstanceOf[SSLSocket]
 				socket
 			} catch {
@@ -110,16 +114,18 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 
 		def init_socket() {
 			Log.d(TAG, "init_socket()")
-			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
-				service.getString(R.string.post_connecting, host, port.asInstanceOf[AnyRef]))
 			this.synchronized {
 				if (!running) {
 					Log.d(TAG, "init_socket() aborted")
 					return;
 				}
-				socket = init_ssl_socket(host, port)
-				if (socket == null)
+				socket = init_ssl_socket(hostport)
+				if (socket == null) {
+					val (host, port) = AprsPacket.parseHostPort(hostport, 14580)
+					service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
+						service.getString(R.string.post_connecting, host, port.asInstanceOf[AnyRef]))
 					socket = new Socket(host, port)
+				}
 				socket.setKeepAlive(true)
 				socket.setSoTimeout(so_timeout*1000)
 				tnc = createTncProto(socket.getInputStream(), socket.getOutputStream())
