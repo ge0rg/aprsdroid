@@ -57,12 +57,6 @@ trait UIHelper extends Activity
 		}
 	}
 
-	def passcodeWarning(call : String, pass : String) {
-		import AprsBackend._
-		if ((defaultBackendInfo(prefs).need_passcode == PASSCODE_OPTIONAL) &&
-				!AprsPacket.passcodeAllowed(call, pass, false))
-			Toast.makeText(this, R.string.anon_warning, Toast.LENGTH_LONG).show()
-	}
 
 
 	def passcodeConfigRequired(call : String, pass : String) : Boolean = {
@@ -250,14 +244,12 @@ trait UIHelper extends Activity
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
-				passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
 				startService(AprsService.intent(this, AprsService.SERVICE))
 			} else {
 				stopService(AprsService.intent(this, AprsService.SERVICE))
 			}
 			true
 		case R.id.singlebtn =>
-			passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
 			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 			true
 		// quit the app

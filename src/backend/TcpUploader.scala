@@ -4,6 +4,7 @@ import _root_.android.app.Service
 import _root_.android.content.Context
 import _root_.android.location.{Location, LocationManager}
 import _root_.android.util.Log
+import _root_.android.widget.Toast
 import _root_.java.io.{BufferedReader, File, InputStream, InputStreamReader, OutputStream, OutputStreamWriter, PrintWriter}
 import _root_.java.net.{InetAddress, Socket}
 import _root_.java.security.KeyStore
@@ -124,6 +125,11 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 					val (host, port) = AprsPacket.parseHostPort(hostport, 14580)
 					service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
 						service.getString(R.string.post_connecting, host, port.asInstanceOf[AnyRef]))
+					// hack: let the UI thread post a Toast with a passcode warning - only needed in non-SSL mode
+					import AprsService.block2runnable
+					if (prefs.getPasscode() == "-1") service.handler.post {
+						Toast.makeText(service, R.string.anon_warning, Toast.LENGTH_LONG).show()
+					}
 					socket = new Socket(host, port)
 				}
 				socket.setKeepAlive(true)
