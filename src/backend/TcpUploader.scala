@@ -84,6 +84,8 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 				for (alias <- ks.aliases()) {
 					if (ks.isKeyEntry(alias)) {
 						val c = ks.getCertificate(alias).asInstanceOf[X509Certificate]
+						// check if the cert is valid, throw up otherwise
+						c.checkValidity()
 						// work around missing X500Principal.getName(String, Map<String, String) on SDK<9:
 						val dn = c.getSubjectX500Principal().toString()
 							.replace("OID.1.3.6.1.4.1.12348.1.1=", "CALLSIGN=")
