@@ -210,7 +210,7 @@
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Angle de stabilisation</string>
 <string name="p_cp_turn_time">Min temp de virage[s]</string>
-<string name="p_cp_turn_time_summary">Minimum emission du Radiophare alors que on change  la direction</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
 <string name="p_cp_turn_angle">Min Angle de virage [°]</string>
 <string name="p_cp_turn_angle_summary">Min Angle a  haute vitesse</string>
 <string name="p_cp_turn_slope">Angle de virage</string>
@@ -252,6 +252,11 @@
 <string name="p_pos">Notre Rapport de Position</string>
 <string name="p_pos_ring">Sonnerie</string>
 <string name="p_pos_ring_summary">Sonnerie pour rapport de position envoyé</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">Sonnerie</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">chemin du digi APRS</string>
@@ -278,10 +283,10 @@
 <string name="p_filterdist">rayon voisinage</string>
 <string name="p_filterdist_summary">Recevoir les paquets des stations dans ce rayon</string>
 <string name="p_filterdist_entry">Rayon de surveillance des paquets autour de vous [km]</string>
-<string name="p_filter">Filtre de messages</string>
+<string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/ami o/OBJET ...</string>
 <string name="p_filter_summary">Filtrer les paquets entrants</string>
-<string name="p_filter_entry">Entrer un filtre pour les messages entrants</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
 
 <string name="p_filterhelp">Aide fitre de messages</string>
 <string name="p_filterhelp_summary">Référence en ligne pour les filtres APRS-IS</string>
@@ -296,13 +301,13 @@
   F8ANZ https://launchpad.net/~matromat
   Francois Magimel https://launchpad.net/~linkid
   Gabriel U. https://launchpad.net/~gabriel-ull
-  Hélion du Mas des Bourboux https://launchpad.net/~helion331990
   Jonathan https://launchpad.net/~va2loj
   Olivier Maury https://launchpad.net/~olivier-maury
   Remi Chateauneu https://launchpad.net/~remi-chateauneu
   SILVIO BARLETTA https://launchpad.net/~ik1bqd
   VE2ER https://launchpad.net/~ve2er
-  gabaye bruno https://launchpad.net/~f1mbc</string>
+  gabaye bruno https://launchpad.net/~f1mbc
+  londumas https://launchpad.net/~helion331990</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Paramètres Bluetooth TNC</string>
@@ -334,4 +339,13 @@
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">Server KISS TCP à contacter</string>
 <string name="p_tcptnc_entry">Entrè le noun du server KISS</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
 </resources>

@@ -2,12 +2,12 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid предпочтения</string>
+<string name="app_prefs">APRSdroid параметры</string>
 <string name="app_map">APRSdroid карта</string>
-<string name="app_hub">APRSdroid Хаб</string>
+<string name="app_hub">APRSdroid узел</string>
 <string name="app_sta">Информация о станции</string>
 <string name="app_messages">Сообщения</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">Очистить сообщения</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Необходимо настроить APRSdroid введите свой ​​позывной и код-пароль!</string>
 <string name="wrongpasscode">Ваш код-пароль не соответствует вашему позывнному!</string>
@@ -15,7 +15,7 @@
 <string name="mininterval">Минимальное время обновления 1 минута!</string>
 <string name="singlelog">Одиночный кадр</string>
 <string name="startlog">Запустить отслеживание</string>
-<string name="stoplog">Остановить отслеживание</string>
+<string name="stoplog">остановить слежение</string>
 
 <string name="empty_logview">Вы не отправили и не получили ни одного пакета. \n\n Воспользуйтесь кнопкой \"Меню \", чтобы отправить одиночный кадр или начать отслеживание вашей позиции. \n\n Так же через меню вы можете изменить настройки и предпочтения.</string>
 
@@ -43,7 +43,7 @@
 <string name="msg_to">Сообщение для %s</string>
 <string name="msg_abort">Прервать передачу</string>
 <string name="msg_restart">Продолжить передачу</string>
-<string name="msg_type_rejected">отклонена</string>
+<string name="msg_type_rejected">отклонено</string>
 <string name="msg_type_aborted">прервано</string>
 
 <!-- AprsService -->
@@ -75,7 +75,7 @@
 <string name="ad_thanks_2">Dirk, DB5OY:мотивация и поддержка</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK реализация</string>
 <string name="ad_thanks_4">Matti, OH2MQK и John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK демодулятор, https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nПеревод:</string>
 <string name="ad_homepage">Домашняя страница</string>
@@ -153,10 +153,10 @@
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP-соединение</string>
 <string name="p_conn_udp">UDP (только отсылка)</string>
-<string name="p_conn_http">HTTP POST (только отсылка)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_http">HTTP POST (только отправка)</string>
+<string name="p_conn_afsk">AFSK через динамик/микрофон</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_kwd">Kenwood GPS Порт</string>
 <string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Задать вручную</string>
@@ -165,18 +165,18 @@
 <!-- manual position -->
 <string name="p_source_lat">Широта</string>
 <string name="p_source_lon">Долгота</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_coord">Координата</string>
 <string name="p_source_get_last">Использовать последнюю позицию, полученную от GPS</string>
 <string name="p_source_auto">Automatic Posting</string>
-<string name="p_source_auto_summary">Perform periodic position posting</string>
+<string name="p_source_auto_summary">Периодически отправлять позицию</string>
 
 
 <!-- privacy settings -->
 <string name="p_privacy">Position privacy</string>
-<string name="p_privacy_summary">Position ambiguity and more</string>
-<string name="p_priv_ambiguity">Position Ambiguity</string>
-<string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
-<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_privacy_summary">многозначность позиции</string>
+<string name="p_priv_ambiguity">двусмысленность позиции</string>
+<string name="p_priv_ambiguity_summary">недостаточная точность для отправки позиции</string>
+<string name="p_ambiguity_off">выкл. (DD° MM.mm\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
 <string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
 <string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
@@ -198,29 +198,29 @@
 <string name="p__location_summary">Конфигурация для отправки сообщения о местоположении</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_sb_help">SmartBeaconing™ help</string>
-<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
-<string name="p_sb_fast_rate">Fast Rate [s]</string>
-<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
-<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
-<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
-<string name="p_sb_slow_rate">Slow Rate [s]</string>
-<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<string name="p_sb_help">SmartBeaconing™ помощь</string>
+<string name="p_sb_fast_speed">Высокая скорость</string>
+<string name="p_sb_fast_speed_summary">Минимальная скорость для быстрого обновления позиции</string>
+<string name="p_sb_fast_rate">Короткий интервал</string>
+<string name="p_sb_fast_rate_summary">Интервал маяка на высокой скорости</string>
+<string name="p_sb_slow_speed">Низкая скорость</string>
+<string name="p_sb_slow_speed_summary">Максимальная скорость для медленного обновления позиции</string>
+<string name="p_sb_slow_rate">Длинный интервал</string>
+<string name="p_sb_slow_rate_summary">Интервал маяка на низкой скорости</string>
 <!-- corner pegging should not be translated -->
-<string name="p_corner_pegging">Corner Pegging</string>
-<string name="p_cp_turn_time">Min Turn Time [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
-<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
-<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
-<string name="p_cp_turn_slope">Turn Slope</string>
-<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+<string name="p_corner_pegging">Угловая привязка</string>
+<string name="p_cp_turn_time">Минимальное время поворота</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
+<string name="p_cp_turn_angle">Минимальный угол поворота</string>
+<string name="p_cp_turn_angle_summary">Минимальный угол на высокой скорости</string>
+<string name="p_cp_turn_slope">Уклон поворота</string>
+<string name="p_cp_turn_slope_summary">Влияние скорости на минимальный угол</string>
 
 <string name="p_interval">Минимальное время обновления</string>
 <string name="p_interval_summary">Минут между передачей сообщения радиомаяка</string>
 <string name="p_interval_entry">Введите интервал обновления [мин]</string>
 <string name="p_distance">Минимальное расстояние обновления</string>
-<string name="p_distance_summary">Километры для повтора сообщений маяка (0 предача через временные промежутки)</string>
+<string name="p_distance_summary">Километры до передачи маяка (0 для передачи по времени)</string>
 <string name="p_distance_entry">Введите расстояние для обновления [км]</string>
 <string name="p_speedbrg">Ждите скорость &amp; курс</string>
 <string name="p_speedbrg_summary">GPS постоянно вкл. для большей точности</string>
@@ -239,7 +239,7 @@
 <!-- messaging -->
 <string name="p__display">Экран и уведомления</string>
 <string name="p__notification">Уведомления</string>
-<string name="p__notification_summary">Alert for messages and position reports</string>
+<string name="p__notification_summary">Оповещение о сообщениях или позициях</string>
 <string name="p_msg">Входящие сообщения</string>
 <string name="p_msg_led">Мигающий светодиод</string>
 <string name="p_msg_led_on">Уведомления с помощью LED включены</string>
@@ -247,30 +247,35 @@
 <string name="p_msg_vibr">Вибрация</string>
 <string name="p_msg_vibr_on">Уведомления при помощи вибрации включены</string>
 <string name="p_msg_vibr_off">Уведомления при помощи вибрации отключены</string>
-<string name="p_msg_ring">Мелодия</string>
+<string name="p_msg_ring">Мелодия вызова</string>
 <string name="p_msg_ring_summary">Мелодия для входящих сообщений</string>
 <string name="p_pos">Свои пакеты о местоположении</string>
-<string name="p_pos_ring">Мелодия</string>
-<string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_pos_ring">Мелодия вызова</string>
+<string name="p_pos_ring_summary">Звук отправки позиции</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">Мелодия вызова</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS путь</string>
 <string name="p_aprs_path_hint">путь 1, путь 2, ...</string>
-<string name="p_aprs_path_summary">Последовательность репитеров</string>
-<string name="p_aprs_path_entry">Введите через запятую Digi пути</string>
-<string name="p_afsk_prefix">Frame Sync Prefix</string>
+<string name="p_aprs_path_summary">Последовательность дигипитеров</string>
+<string name="p_aprs_path_entry">Введите путь, разделяя запятой</string>
+<string name="p_afsk_prefix">Префикс синхронизации кадра</string>
 <string name="p_afsk_prefix_summary">Преамбула (для отработки VOX)</string>
 <string name="p_afsk_prefix_entry">Введите префикс [мс]</string>
-<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
-<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_hqdemod">Качественный декодер</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: Необходим процессор 800 MHz или более</string>
+<string name="p_afsk_btsco">Гарнитура Bluetooth</string>
+<string name="p_afsk_btsco_summary">Использовать гарнитуру Bluetooth (SCO) для AFSK</string>
+<string name="p_afsk_output">Аудиовыход</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
-	<item>Мелодия</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>Голосовой вызов</item>
+	<item>Мелодия вызова</item>
+	<item>Музыка</item>
+	<item>Сигнал</item>
 </string-array>
 
 <!-- TCP server settings -->
@@ -278,12 +283,12 @@
 <string name="p_filterdist">Рядом в радиусе</string>
 <string name="p_filterdist_summary">Получить пакеты от станций в этом радиусе</string>
 <string name="p_filterdist_entry">Наблюдать станции в радиусе [КМ]</string>
-<string name="p_filter">Фильтр сообщений</string>
+<string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
-<string name="p_filter_summary">Фильтр для входящих пакетов</string>
-<string name="p_filter_entry">Введите фильтр для входящих сообщений</string>
+<string name="p_filter_summary">Фильтр входящих пакетов</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
 
-<string name="p_filterhelp">Помочь Фильтр сообщений</string>
+<string name="p_filterhelp">Помощь Фильтра сообщений</string>
 <string name="p_filterhelp_summary">Online документация по фильтрам APRS-IS</string>
 
 <string name="p_sotimeout">TCP тайм-аут</string>
@@ -292,12 +297,13 @@
 
 <string name="translator_credits">Launchpad Contributions:
   Aleksey Kabanov https://launchpad.net/~ak099
+  R1AIT https://launchpad.net/~l-keo-d
   RN3DLL https://launchpad.net/~rn3dll
   UT2UU https://launchpad.net/~andr-x</string>
 
 <!-- Bluetooth TNC settings -->
-<string name="p_bt_client">Client Mode</string>
-<string name="p_bt_client_summary">APRSdroid инициирует соединение (оставьте вкл.)</string>
+<string name="p_bt_client">Режим Клиент</string>
+<string name="p_bt_client_summary">APRSdroid устанавливает соединение (оставьте вкл.)</string>
 <string name="p_bt_tnc_device">Устройство TNC Bluetooth</string>
 <string name="p_bt_tnc_device_summary">Выберите ваш TNC из списка устройств</string>
 <string name="p_bt_tnc_device_entry">Выберите устройство</string>
@@ -305,24 +311,33 @@
 <string name="p_bt_channel_summary">Bluetooth канал на TNC</string>
 <string name="p_bt_channel_entry">Номер канала (обычно: "1";для SPP оставьте пустое)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init">строка команд TNC</string>
+<string name="p_bt_tnc_init_summary">Команды для TNC</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_bt_tnc_delay">Задержка запуска TNC</string>
+<string name="p_bt_tnc_delay_summary">Время ожидания после каждой строки</string>
+<string name="p_bt_tnc_delay_entry">Задержка запуска TNC [мс]</string>
 
 <string name="p_bt_prefs">Настройки Bluetooth</string>
-<string name="p_bt_prefs_summary">Включить Bluetooth, подружить устройства..</string>
+<string name="p_bt_prefs_summary">Разрешить Bluetooth, подружить устройства..</string>
 
-<string name="bt_error_unsupported">Отсутствует поддержка Bluetooth!</string>
+<string name="bt_error_unsupported">Bluetooth не поддерживается!</string>
 <string name="bt_error_disabled">Пожалуйста включите Bluetooth!</string>
 <string name="bt_error_no_tnc">Пожалуйста настройте Bluetooth TNC!</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">Запрос соединения bluetooth</string>
+<string name="afsk_info_sco_est">Соединение Bluetooth установлено.</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">KISS TCP сервер для соединения</string>
+<string name="p_tcptnc_entry">Введите имя сервера KISS</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
 </resources>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
-<string name="app_name">APRSdroid</string>
-<string name="app_prefs">Preferencias APRSdroid</string>
+<string name="app_name">ãAPRSdroid</string>
+<string name="app_prefs">Preferências do APRSdroid</string>
 <string name="app_map">Mapa APRSdroid</string>
 <string name="app_hub">Eixo APRSdroid</string>
-<string name="app_sta">Informação da Estação</string>
+<string name="app_sta">Informação da estação</string>
 <string name="app_messages">Mensagens</string>
 <string name="app_messages_clear">Limpar as mensagens</string>
 <!-- APRSdroid activity -->
@@ -208,12 +208,12 @@
 <string name="p_sb_slow_rate">Ritmo lento [s]</string>
 <string name="p_sb_slow_rate_summary">Ritmo do beacon com velocidade lenta</string>
 <!-- corner pegging should not be translated -->
-<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_corner_pegging">Rotina CornerPegging</string>
 <string name="p_cp_turn_time">Tempo de viragem minimo</string>
-<string name="p_cp_turn_time_summary">Ritmo minimo do beacon quando a direccao muda</string>
+<string name="p_cp_turn_time_summary">Minimo tempo de beacon quando mudar de direcção</string>
 <string name="p_cp_turn_angle">Angulo de viragem minimo</string>
 <string name="p_cp_turn_angle_summary">Angulo minimo com velocidade alta</string>
-<string name="p_cp_turn_slope">Turn Slope</string>
+<string name="p_cp_turn_slope">Virar o slope</string>
 <string name="p_cp_turn_slope_summary">Influencia da velocidade no angulo minimo</string>
 
 <string name="p_interval">Tempo mínimo de actualização</string>
@@ -252,11 +252,16 @@
 <string name="p_pos">O próprio reporte de posição</string>
 <string name="p_pos_ring">Tom de chamada</string>
 <string name="p_pos_ring_summary">Tonalidade para envio de reportes de posição</string>
+<string name="p_dgp">Proprias transmissoes retransmitidas</string>
+<string name="p_dgp_ring">Tom de chamada</string>
+<string name="p_dgp_ring_summary">Tones para transmissoes retransmitidas</string>
+
+<string name="got_digipeated">Retransmitidas por %1$s: %2$s</string>
 
 <!-- AFSK settings -->
-<string name="p_aprs_path">APRS digi patch ("caminho"Ex: wide2-2)</string>
-<string name="p_aprs_path_hint">salto 1, salto 2, ...</string>
-<string name="p_aprs_path_summary">Sequencia de digipeters</string>
+<string name="p_aprs_path">Caminho do digi APRS</string>
+<string name="p_aprs_path_hint">salto1, salto 2, ...</string>
+<string name="p_aprs_path_summary">Sequencia de digipeaters</string>
 <string name="p_aprs_path_entry">Coloque o caminho(digi patch) separado por virgulas</string>
 <string name="p_afsk_prefix">Sincronização de prefixo</string>
 <string name="p_afsk_prefix_summary">Sem operador predefinido (Ex: para VOX controlo)</string>
@@ -278,10 +283,10 @@
 <string name="p_filterdist">Raio de recepção</string>
 <string name="p_filterdist_summary">Receber packet das estações dentro deste raio</string>
 <string name="p_filterdist_entry">Raio, a partir da sua estação, para monitorizar packet [Km]</string>
-<string name="p_filter">Filtro de mensagens</string>
+<string name="p_filter">Filtro de packet</string>
 <string name="p_filter_hint">b/Colega o/Objecto</string>
 <string name="p_filter_summary">Filtro para mensagens de entrada</string>
-<string name="p_filter_entry">Escreva o filtro para mensagens de entrada</string>
+<string name="p_filter_entry">Fazer um filtro para packets recebidos</string>
 
 <string name="p_filterhelp">Ajudade filtro de mensagens</string>
 <string name="p_filterhelp_summary">Ajuda online para filtros APRS-IS</string>
@@ -293,9 +298,9 @@
 <string name="translator_credits">Launchpad Contributions:
   David Quental https://launchpad.net/~ct1drb
   David Quental https://launchpad.net/~ct1drb-1
+  Jon Amil https://launchpad.net/~amilgz
   Jose Carlos Moreira https://launchpad.net/~ct1dhm
-  Paulo Mendes https://launchpad.net/~ct2hqt
-  amilgz https://launchpad.net/~amilgz</string>
+  Paulo Mendes https://launchpad.net/~ct2hqt</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Modo cliente (com virtual)</string>
@@ -327,4 +332,13 @@
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">Contactar o servidor do TNC TCP/IP</string>
 <string name="p_tcptnc_entry">Escrever o servidor do KISS</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">Importar certificado SSL</string>
+<string name="ssl_import_password">Por favor escreva a password do certificado importado:</string>
+<string name="ssl_no_keyfile">Nenhum certificado para %s! Nao estar a usar o SSL.</string>
+<string name="ssl_import_ok">Certificado importado para %s.</string>
+<string name="ssl_import_error">Erro na importacao do certificado: %s!</string>
+<string name="ssl_expired">O seu certificado expirou</string>
+<string name="ssl_expire_in">O seu certificado expirará em %d dias!</string>
 </resources>

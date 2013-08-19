@@ -145,7 +145,7 @@
 <string name="p__connection">APRS接続設定</string>
 <string name="p_conntype">通信方式</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP または UDP</string>
-<string name="p_conntype_entry">使用する通信方式を選択</string>
+<string name="p_conntype_entry">通信方式を選択</string>
 <string name="p_connsetup">接続詳細設定</string>
 <string name="p_connsetup_summary">接続に関する設定</string>
 <string name="p_connlog">接続情報を記録</string>
@@ -184,7 +184,7 @@
 <string name="p_priv_spdbear">速度&amp;進路を含める</string>
 <string name="p_priv_spdbear_summary">位置情報に速度&amp;進路を含めます</string>
 <string name="p_priv_altitude">高度を含める</string>
-<string name="p_priv_altitude_summary">位置情報に高度を含みます</string>
+<string name="p_priv_altitude_summary">位置情報に高度を含めます</string>
 
 <!-- connection type properties -->
 <string name="p_host">接続先サーバ名</string>
@@ -210,7 +210,7 @@
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">カーブでビーコン</string>
 <string name="p_cp_turn_time">最少回転時間 [秒]</string>
-<string name="p_cp_turn_time_summary">方向変更する場合の最小ビーコン間隔</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
 <string name="p_cp_turn_angle">最少回転角度 [°]</string>
 <string name="p_cp_turn_angle_summary">高速時の最小角度</string>
 <string name="p_cp_turn_slope">回転角度 (初期値:255)</string>
@@ -247,11 +247,16 @@
 <string name="p_msg_vibr">バイブレーション(振動)</string>
 <string name="p_msg_vibr_on">バイブレーションON</string>
 <string name="p_msg_vibr_off">バイブレーションOFF</string>
-<string name="p_msg_ring">着信スピーカー</string>
-<string name="p_msg_ring_summary">メッセージ受信時の着信音を選択します。</string>
+<string name="p_msg_ring">着信音</string>
+<string name="p_msg_ring_summary">メッセージ受信時の着信音を選択</string>
 <string name="p_pos">位置ビーコン発信時</string>
-<string name="p_pos_ring">着信スピーカー</string>
+<string name="p_pos_ring">着信音</string>
 <string name="p_pos_ring_summary">ビーコン発信時の音を選択</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">着信音</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRSデジピートパス</string>
@@ -268,7 +273,7 @@
 <string name="p_afsk_output">信号出力先選択</string>
 <string-array name="p_afsk_out_e">
 	<item>受話器</item>
-	<item>着信スピーカー</item>
+	<item>着信音</item>
 	<item>音楽用出力先</item>
 	<item>アラーム用出力先</item>
 </string-array>
@@ -278,10 +283,10 @@
 <string name="p_filterdist">近隣局ビーコン表示範囲</string>
 <string name="p_filterdist_summary">ここで指定した範囲内にある局のビーコンを受信表示する</string>
 <string name="p_filterdist_entry">ビーコンを受信する範囲[km]を指定</string>
-<string name="p_filter">メッセージフィルタ</string>
+<string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/仲間 o/オブジェクト ...</string>
 <string name="p_filter_summary">受信パケットをフィルタリングする</string>
-<string name="p_filter_entry">受信文フィルタ構文を入力</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
 
 <string name="p_filterhelp">メッセージフィルタ 説明</string>
 <string name="p_filterhelp_summary">APRS-ISフィルタの説明サイトへ接続</string>
@@ -324,4 +329,13 @@
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">KISS TCP サーバー接続先</string>
 <string name="p_tcptnc_entry">KISSサーバーホスト名</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
 </resources>

@@ -210,7 +210,7 @@
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Vinculación de esquinas</string>
 <string name="p_cp_turn_time">Tiempo mínimo de doblaje</string>
-<string name="p_cp_turn_time_summary">Minima Actualización Radiofaro en cambio de dirección</string>
+<string name="p_cp_turn_time_summary">Velocidad mínima de baliza cuando cambia dirección</string>
 <string name="p_cp_turn_angle">Ángulo mínimo de doblaje</string>
 <string name="p_cp_turn_angle_summary">Ángulo mínimo a alta velocidad</string>
 <string name="p_cp_turn_slope">Pendiente de doblaje</string>
@@ -252,6 +252,11 @@
 <string name="p_pos">Informes de posición propia</string>
 <string name="p_pos_ring">Tono de aviso</string>
 <string name="p_pos_ring_summary">Tono de los informes de posición enviados</string>
+<string name="p_dgp">Packets propios que han sido repetidos</string>
+<string name="p_dgp_ring">Tono de aviso</string>
+<string name="p_dgp_ring_summary">Tono para paquetes repetidos</string>
+
+<string name="got_digipeated">Repetido por %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -278,10 +283,10 @@
 <string name="p_filterdist">Radio de acción de estaciones cercanas</string>
 <string name="p_filterdist_summary">Recibir paquetes desde estaciones cercanas en este radio de acción</string>
 <string name="p_filterdist_entry">Radio de acción de alrededor para monitorizar los paquetes [km]</string>
-<string name="p_filter">Filtro de mensajes</string>
+<string name="p_filter">Filtro de paquetes</string>
 <string name="p_filter_hint">b/AMIGOS  o/OBJETO</string>
 <string name="p_filter_summary">Filtro para mensajes entrantes</string>
-<string name="p_filter_entry">Introduzca un filtro para mensajes entrantes</string>
+<string name="p_filter_entry">Ingrese filtro para paquetes entrantes</string>
 
 <string name="p_filterhelp">Ayuda para filtro de mensajes</string>
 <string name="p_filterhelp_summary">Referencia en línea para filtros APRS-IS</string>
@@ -333,4 +338,13 @@
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">KISS TCP  server de conexión</string>
 <string name="p_tcptnc_entry">Entrar el nombre  Server kiSS</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">Importe de certificado SSL</string>
+<string name="ssl_import_password">Ingrese la contraseña para el certificado a importar:</string>
+<string name="ssl_no_keyfile">No hay certificado para %s! SSL no está en uso.</string>
+<string name="ssl_import_ok">Certificado para %s imporado.</string>
+<string name="ssl_import_error">Error importando certificado: %s!</string>
+<string name="ssl_expired">Su certificado ha expirado!</string>
+<string name="ssl_expire_in">Su certificado expirará en %d días!</string>
 </resources>

@@ -6,8 +6,8 @@
 <string name="app_map">แผนที่</string>
 <string name="app_hub">เชื่อมต่อ</string>
 <string name="app_sta">ข้อมูลสถานี</string>
-<string name="app_messages">Messages</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages">ข้อความ</string>
+<string name="app_messages_clear">ล้างข้อความ</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">คุณต้องกำหนดค่านามเรียกขานและรหัสผ่านของคุณ</string>
 <string name="wrongpasscode">รหัสผ่านไม่ตรงกับนามเรียกขานของคุณ!</string>
@@ -22,7 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">% ข้อมูลล่าสุด</string>
 <string name="map_track_call">ติดตาม %s...</string>
-<string name="map_select">Select station</string>
+<string name="map_select">เลือกสถานี</string>
 
 <string name="map_loading">กำลังโหลด...</string>
 
@@ -34,31 +34,31 @@
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
-<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<string name="msg_send_new">ส่งข้อความ ถึง....</string>
+<string name="msg_message_text">อักษรข้อความ</string>
+<string name="msg_empty_list">ไม่มีการสนทนาที่ถูกเก็บไว้</string>
+<string name="msg_stored_offline">ข้อความจะถูกส่งทันทีที่คุณเริ่มการติดตาม</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">ข้อความจาก %s</string>
+<string name="msg_to">ข้อความถึง  %s</string>
+<string name="msg_abort">การส่งถูกยกเลิก</string>
+<string name="msg_restart">ส่งใหม่อีกครั้ง</string>
+<string name="msg_type_rejected">ถูกปฏิเสธ</string>
+<string name="msg_type_aborted">ยกเลิก</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid Service</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="aprsservice">การบริการAPRSdroid</string>
+<string name="service_once">APRS ทำงานครั้งเดียว : %1$s, %2$s.</string>
+<string name="service_start">APRS เริ่มทำงาน : %1$s, %2$s.</string>
 <string name="service_stop">APRS หยุดทำงาน.</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_no_location">แต่คุณต้องเปิดการใช้งานจีพีเอสหรือที่อยู่เครือข่ายสำหรับ APRSdroid ทำงานอย่างถูกต้อง!</string>
 <string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_error">ผิดพลาด</string>
+<string name="post_incmg">ได้รับ</string>
 <string name="post_info"/>
-<string name="post_connecting">Connecting to %1$s:%2$d...</string>
-<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+<string name="post_connecting">กำลังเชื่อมต่อ %1$s:%2$d...</string>
+<string name="post_reconnect">เชื่อมต่อล้มเหลว ให้เชื่อมต่อใหม่ใน %d วินาที...</string>
 
 <!-- first run dialog -->
 <string name="fr_title">ยินดีต้อนรับสู่ APRSdroid!</string>
@@ -66,7 +66,7 @@
 <string name="fr_text2">คุณจำเป็นต้องใส่นามเรียกขานของคุณเพื่อใช้ซอฟต์แวร์นี้ ในต้องการส่งต่อข้อมูลของคุณ และในเซิร์ฟเวอร์ APRS-IS จะต้องระบุรหัสผ่านเท่านั้น</string>
 
 <!-- about dialog -->
-<string name="ad_title">About APRSdroid v%s</string>
+<string name="ad_title">เกี่ยวกับ APRSdroid% v s</string>
 <string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
@@ -88,7 +88,7 @@
 	\n\n
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
-<string name="ad_thanks">Thanks to:</string>
+<string name="ad_thanks">ขอบคุณ</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
 <string name="ad_thanks_1">Michael, DO3BOX: idea</string>
 <string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
@@ -102,7 +102,7 @@
 <!-- map view -->
 <string name="map_overlays">ซ้อนทับ</string>
 <string name="map_satellite">ดาวเทียม</string>
-<string name="map_objects">APRS Objects</string>
+<string name="map_objects">วัตถุประสงค์ APRS</string>
 
 <!-- map view -->
 <string name="age">แสดงล่าสุด...</string>
@@ -129,45 +129,45 @@
 <string name="p_callsign_entry">ใส่นามเรียกขาน</string>
 <string name="p_passcode">รหัสผ่าน APRS-IS</string>
 <string name="p_passcode_summary">APRS-IS validation passcode</string>
-<string name="p_passcode_entry">Enter the passcode for your call</string>
-<string name="p_passreq">Request Passcode</string>
-<string name="p_passreq_summary">Request APRS-IS passcode online</string>
+<string name="p_passcode_entry">ใส่รหัสผ่านของท่าน</string>
+<string name="p_passreq">ต้องการรหัสผ่าน</string>
+<string name="p_passreq_summary">ต้องการรหัสผ่าน APRS-IS  ออนไลน์</string>
 <string name="p__aprs">ปรับตั้งค่า APRS</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">ชนิดของสถานี (1..15; 9=Mobile, 10=APRS-IS)</string>
 <string name="p_ssid_entry">ใส่ SSID สถานีของท่าน</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
-	<item>(none) Primary Station</item>
-	<item>1: Generic additional station</item>
-	<item>2: Generic additional station</item>
-	<item>3: Generic additional station</item>
-	<item>4: Generic additional station</item>
-	<item>5: Other network (D-Star, 3G)</item>
+	<item>สถานีเริ่มต้น</item>
+	<item>1.สถานีเพิ่มเติมทั่วไป</item>
+	<item>2.สถานีเพิ่มเติมทั่วไป</item>
+	<item>3.สถานีเพิ่มเติมทั่วไป</item>
+	<item>4.สถานีเพิ่มเติมทั่วไป</item>
+	<item>5.เครือข่ายอื่นๆ(D-Star, 3G)</item>
 	<item>สถานีดาวเทียม</item>
 	<item>วิทยุมือถือ</item>
 	<item>สถานีในเรือ</item>
 	<item>สถานีรถยนต์/จักรยานยนต์</item>
 	<item>APRS-IS (เซิร์ฟเวอร์)</item>
-	<item>11: Balloon, aircraft, spacecraft</item>
+	<item>บอลลูน,แอร์คราฟ,ยานอวกาศ,</item>
 	<item>12: APRStt, DTMF, ... (one way)</item>
-	<item>13: Weather station</item>
+	<item>สถานีตรวจอากาศ</item>
 	<item>สถานีรถบรรทุก</item>
-	<item>15: Generic additional station</item>
+	<item>15.สถานีเพิ่มเติมทั่วไป</item>
 </string-array>
 <string name="p_symbol">สัญญลักษณ์ APRS</string>
 <string name="p_symbol_summary">สัญญลักษณ์ของคุณที่แสดงบนแผนที่</string>
 <string name="p_symbol_entry">ใส่สัญลักษณ์ที่เข้ารหัส 2 ตัวอักษร</string>
-<string name="p_status">Comment field</string>
+<string name="p_status">เติมความคิดเห็น</string>
 <string name="p_status_summary">ข้อความของคุณหลังจากที่พิกัด</string>
-<string name="p_status_entry">Enter your beacon comment</string>
+<string name="p_status_entry">ใส่ความคิดเห็นสัญญาณของคุณ</string>
 <string name="p__connection">การเชื่อมต่อ APRS</string>
 <string name="p_conntype">รูปแบบการเชื่อมต่อ</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">เลือกโปรโตคอลการเชื่อมต่อ</string>
 <string name="p_connsetup">ปรับแต่งการเชื่อมต่อ</string>
 <string name="p_connsetup_summary">ตั้งค่าการเชื่อมต่อ</string>
-<string name="p_connlog">Connection Logging</string>
+<string name="p_connlog">การเชื่อมต่อ การเข้าสู่ระบบ</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">การเชื่อต่อแบบ TCP</string>
@@ -182,10 +182,10 @@
 <string name="p_source_periodic">Periodic GPS/Network Position</string>
 <string name="p_source_smart">SmartBeaconing™ Position</string>
 <!-- manual position -->
-<string name="p_source_lat">Latitude</string>
-<string name="p_source_lon">Longitude</string>
+<string name="p_source_lat">ละติจูด</string>
+<string name="p_source_lon">ลองจิจูด</string>
 <string name="p_source_coord">Coordinate</string>
-<string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_get_last">พิกัดจีพีเอสล่าสุด</string>
 <string name="p_source_auto">Automatic Posting</string>
 <string name="p_source_auto_summary">Perform periodic position posting</string>
 
@@ -229,7 +229,7 @@
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
 <string name="p_cp_turn_time">Min Turn Time [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
 <string name="p_cp_turn_angle">Min Turn Angle [°]</string>
 <string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
 <string name="p_cp_turn_slope">Turn Slope</string>
@@ -271,6 +271,11 @@
 <string name="p_pos">Own Position Reports</string>
 <string name="p_pos_ring">Ringtone</string>
 <string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">Ringtone</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS ดิจิพาธ</string>
@@ -297,10 +302,10 @@
 <string name="p_filterdist">ใกล้เคียงรัศมี</string>
 <string name="p_filterdist_summary">รับแพ็คเก็ตจากสถานีในรัศมีนี้</string>
 <string name="p_filterdist_entry">รัศมีรอบ ๆ ตัวคุณในการแสดงผลแพ็กเกจ [km]</string>
-<string name="p_filter">กรองข้อความ</string>
+<string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">กรองแพ็คเก็ตที่เข้ามา</string>
-<string name="p_filter_entry">ใส่กรองสำหรับข้อความขาเข้า</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
 
 <string name="p_filterhelp">ช่วยเหลือกรองข้อความ</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
@@ -311,7 +316,8 @@
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg
-  HS5TQA https://launchpad.net/~somkiat</string>
+  HS5TQA https://launchpad.net/~somkiat
+  Peemphol Tansakul https://launchpad.net/~ptansakul</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>
@@ -343,4 +349,13 @@
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
 <string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
 </resources>

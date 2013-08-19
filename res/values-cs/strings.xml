@@ -225,7 +225,7 @@
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
 <string name="p_cp_turn_time">Min Turn Time [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
 <string name="p_cp_turn_angle">Min Turn Angle [°]</string>
 <string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
 <string name="p_cp_turn_slope">Turn Slope</string>
@@ -267,6 +267,11 @@
 <string name="p_pos">Odeslání vlastní polohy</string>
 <string name="p_pos_ring">Zvuk</string>
 <string name="p_pos_ring_summary">Zvuk pro odeslání polohy</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">Zvuk</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS cesta</string>
@@ -293,10 +298,10 @@
 <string name="p_filterdist">Vzdálenost</string>
 <string name="p_filterdist_summary">Příjem stanic do této vzdálenosti</string>
 <string name="p_filterdist_entry">Zadejte vzdálenost pro příjem stanic</string>
-<string name="p_filter">APRS-IS Filtr</string>
+<string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Filtr pro příjem dat z APRS-IS serveru</string>
-<string name="p_filter_entry">Zadejte parametry filtru</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
 
 <string name="p_filterhelp">Nápověda filtru</string>
 <string name="p_filterhelp_summary">Online nápověda pro filtr APRS-IS serveru</string>
@@ -339,4 +344,13 @@
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
 <string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
 </resources>
