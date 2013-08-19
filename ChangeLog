@@ -1,3 +1,15 @@
+1.2.3:
+* Many fixes in APRS parsing (KISS, 3rd party, objects/items, ACKs, Mic-E, ...)
+* SmartBeaconing: fix excessive flooding error, add preferences
+* Experimental Kenwood GPS port mode: http://aprsdroid.org/kenwood/
+* Bluetooth: fix Android 4.1 issues, TNC reconnection
+* Bluetooth: display RXed plain-text data
+* Notification / vibration when you get digipeated
+* AFSK: send with maximum volume
+* aprs.fi: link to station info, not map
+* OSM version: crash fixes, larger labels, map scale, file chooser for map
+* APRS-IS: support for experimental SSL authentication
+
 1.2.2:
 * AFSK: Mic level now displayed in UI
 * AFSK: Integration of High-Quality demodulator, javAX25 by Sivan, 4X6IZ
