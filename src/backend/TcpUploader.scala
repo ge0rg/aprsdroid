@@ -30,9 +30,13 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 	def setupFilter() : String = {
 		val filterdist = prefs.getStringInt("tcp.filterdist", 50)
 		val userfilter = prefs.getString("tcp.filter", "")
-		val lastloc = AprsPacket.formatRangeFilter(
-			service.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
-				.getLastKnownLocation(LocationManager.GPS_PROVIDER), filterdist)
+		val lastloc = try {
+			val locMan = service.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
+			AprsPacket.formatRangeFilter(
+				locMan.getLastKnownLocation(PeriodicGPS.bestProvider(locMan)), filterdist)
+		} catch {
+			case e : IllegalArgumentException => ""
+		}
 		if (filterdist == 0) return " filter %s %s".format(userfilter, lastloc)
 				else return " filter m/%d %s %s".format(filterdist, userfilter, lastloc)
 	}
