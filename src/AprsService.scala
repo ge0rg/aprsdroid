@@ -15,6 +15,7 @@ object AprsService {
 	// intent actions
 	val SERVICE = PACKAGE + ".SERVICE"
 	val SERVICE_ONCE = PACKAGE + ".ONCE"
+	val SERVICE_SEND_PACKET = PACKAGE + ".SEND_PACKET"
 	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
 	val MESSAGE = PACKAGE + ".MESSAGE"	// we received a message/ack
@@ -73,6 +74,22 @@ class AprsService extends Service {
 	}
 
 	def handleStart(i : Intent) {
+		if (i.getAction() == SERVICE_SEND_PACKET) {
+			if (!running) {
+				Log.d(TAG, "SEND_PACKET ignored, service not running.")
+				return
+			}
+			val data_field = i.getStringExtra("data")
+			if (data_field == null) {
+				Log.d(TAG, "SEND_PACKET ignored, data extra is empty.")
+				return
+			}
+			val p = Parser.parseBody(prefs.getCallSsid(), APP_VERSION, null,
+				data_field)
+			sendPacket(p)
+			return
+		}
+
 		// display notification (even though we are not actually started yet,
 		// but we need this to prevent error message reordering)
 		val toastString = if (i.getAction() == SERVICE_ONCE) {
