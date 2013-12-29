@@ -164,10 +164,22 @@ class AprsService extends Service {
 			pos, status_spd + status_alt + " " + status, /* messaging = */ true))
 	}
 
-	def postLocation(location : Location) {
-		val i = new Intent(UPDATE)
-		i.putExtra(LOCATION, location)
+	def sendPacket(packet : APRSPacket, status_postfix : String) = {
+		try {
+			val status = poster.update(packet)
+			val full_status = status + status_postfix
+			addPost(StorageDatabase.Post.TYPE_POST, full_status, packet.toString)
+			full_status
+		} catch {
+			case e : Exception =>
+				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
+				e.printStackTrace()
+				e.getMessage()
+		}
+	}
+	def sendPacket(packet : APRSPacket) : String = sendPacket(packet, "")
 
+	def postLocation(location : Location) {
 		val callssid = prefs.getCallSsid()
 		var symbol = prefs.getString("symbol", "")
 		if (symbol.length != 2)
@@ -176,20 +188,7 @@ class AprsService extends Service {
 		val packet = formatLoc(callssid, appVersion(), symbol, status, location)
 
 		Log.d(TAG, "packet: " + packet)
-		val result = try {
-			val status = poster.update(packet)
-			i.putExtra(STATUS, status)
-			i.putExtra(PACKET, packet.toString)
-			val prec_status = "%s (±%dm)".format(status, location.getAccuracy.asInstanceOf[Int])
-			addPost(StorageDatabase.Post.TYPE_POST, prec_status, packet.toString)
-			prec_status
-		} catch {
-			case e : Exception =>
-				i.putExtra(PACKET, e.getMessage())
-				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
-				e.printStackTrace()
-				e.getMessage()
-		}
+		val result = sendPacket(packet, " (±%dm)".format(location.getAccuracy.asInstanceOf[Int]))
 		if (singleShot) {
 			singleShot = false
 			stopSelf()
