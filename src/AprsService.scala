@@ -42,6 +42,10 @@ class AprsService extends Service {
 	import AprsService._
 	val TAG = "APRSdroid.Service"
 
+	lazy val APP_VERSION = "APDR%s".format(
+		getPackageManager().getPackageInfo(getPackageName(), 0).versionName
+			filter (_.isDigit) take 2)
+
 	lazy val prefs = new PrefsWrapper(this)
 
 	val handler = new Handler()
@@ -146,13 +150,12 @@ class AprsService extends Service {
 		ServiceNotifier.instance.stop(this)
 	}
 
-	def appVersion() : String = {
-		val pi = getPackageManager().getPackageInfo(getPackageName(), 0)
-		"APDR%s".format(pi.versionName filter (_.isDigit) take 2)
+	def newPacket(payload : InformationField) = {
+		// TODO: obtain digi path from prefs
+		new APRSPacket(prefs.getCallSsid(), APP_VERSION, null, payload)
 	}
 
-	def formatLoc(callssid : String, toCall : String, symbol : String,
-			status : String, location : Location) = {
+	def formatLoc(symbol : String, status : String, location : Location) = {
 		val pos = new Position(location.getLatitude, location.getLongitude, 0,
 				     symbol(0), symbol(1))
 		pos.setPositionAmbiguity(prefs.getStringInt("priv_ambiguity", 0))
@@ -160,7 +163,7 @@ class AprsService extends Service {
 			AprsPacket.formatCourseSpeed(location) else ""
 		val status_alt = if (prefs.getBoolean("priv_altitude", true))
 			AprsPacket.formatAltitude(location) else ""
-		new APRSPacket(callssid, toCall, null, new PositionPacket(
+		newPacket(new PositionPacket(
 			pos, status_spd + status_alt + " " + status, /* messaging = */ true))
 	}
 
@@ -185,7 +188,7 @@ class AprsService extends Service {
 		if (symbol.length != 2)
 			symbol = getString(R.string.default_symbol)
 		val status = prefs.getString("status", getString(R.string.default_status))
-		val packet = formatLoc(callssid, appVersion(), symbol, status, location)
+		val packet = formatLoc(symbol, status, location)
 
 		Log.d(TAG, "packet: " + packet)
 		val result = sendPacket(packet, " (±%dm)".format(location.getAccuracy.asInstanceOf[Int]))

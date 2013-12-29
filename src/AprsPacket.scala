@@ -53,12 +53,6 @@ object AprsPacket {
 			""
 	}
 
-	def formatMessage(callssid : String, toCall : String, dest : String,
-			message : String, msgid : String) = {
-		new APRSPacket(callssid, toCall, null, new MessagePacket(dest,
-			message, msgid))
-	}
-
 	def formatLogin(callsign : String, ssid : String, passcode : String, version : String) : String = {
 		"user %s pass %s vers %s".format(formatCallSsid(callsign, ssid), passcode, version)
 	}

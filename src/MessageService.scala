@@ -37,9 +37,8 @@ class MessageService(s : AprsService) {
 				storeNotifyMessage(ts, ap.getSourceCall(), msg)
 				if (msg.getMessageNumber() != "") {
 					// we need to send an ack
-					val ack = AprsPacket.formatMessage(callssid, s.appVersion(), ap.getSourceCall(), "ack", msg.getMessageNumber())
-					val status = s.poster.update(ack)
-					s.addPost(StorageDatabase.Post.TYPE_POST, status, ack.toString)
+					val ack = s.newPacket(new MessagePacket(ap.getSourceCall(), "ack", msg.getMessageNumber()))
+					s.sendPacket(ack)
 				}
 			}
 			s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, ap.toString))
@@ -74,8 +73,6 @@ class MessageService(s : AprsService) {
 		// when to schedule next send round
 		var next_run = Long.MaxValue
 
-		val callssid = s.prefs.getCallSsid()
-
 		val c = s.db.getPendingMessages(NUM_OF_RETRIES)
 		//Log.d(TAG, "sendPendingMessages")
 		c.moveToFirst()
@@ -95,9 +92,8 @@ class MessageService(s : AprsService) {
 				s.sendBroadcast(new Intent(AprsService.MESSAGE))
 			} else if (retrycnt < NUM_OF_RETRIES && t_send <= 0) {
 				// this message needs to be transmitted
-				val msg = AprsPacket.formatMessage(callssid, s.appVersion(), call, text, msgid)
-				val status = s.poster.update(msg)
-				s.addPost(StorageDatabase.Post.TYPE_POST, status, msg.toString)
+				val msg = s.newPacket(new MessagePacket(call, text, msgid))
+				s.sendPacket(msg)
 				val cv = new ContentValues()
 				cv.put(RETRYCNT, (retrycnt + 1).asInstanceOf[java.lang.Integer])
 				cv.put(TS, System.currentTimeMillis.asInstanceOf[java.lang.Long])
