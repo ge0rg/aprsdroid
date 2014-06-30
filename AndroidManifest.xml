@@ -6,7 +6,7 @@
       android:installLocation="auto">
 
     <uses-sdk android:minSdkVersion="3"
-	android:targetSdkVersion="8" />
+	android:targetSdkVersion="19" />
 
     <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
     <uses-feature android:name="android.hardware.location" android:required="false" />
@@ -63,7 +63,7 @@
         <activity android:name=".MapAct" android:label="@string/app_map"
 		android:launchMode="singleTop"
 		android:configChanges="orientation|keyboardHidden"
-		android:theme="@android:style/Theme.NoTitleBar" >
+		android:theme="@style/MapViewTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 		<category android:name="android.intent.category.DEFAULT" />

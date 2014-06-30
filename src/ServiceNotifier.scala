@@ -99,12 +99,12 @@ abstract class ServiceNotifier {
 
 class DonutNotifier extends ServiceNotifier {
 	def start(ctx : Service, status : String) = {
-		ctx.setForeground(true)
+		//ctx.setForeground(true)
 		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, newNotification(ctx, status))
 	}
 
 	def stop(ctx : Service) = {
-		ctx.setForeground(false)
+		//ctx.setForeground(false)
 		getNotificationMgr(ctx).cancel(SERVICE_NOTIFICATION)
 	}
 }
