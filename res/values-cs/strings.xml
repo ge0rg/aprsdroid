@@ -7,7 +7,7 @@
 <string name="app_hub">APRSdroid: Seznam stanic</string>
 <string name="app_sta">Informace stanice</string>
 <string name="app_messages">Zprávy</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">Vymazat zprávy</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Musíte nastavit svoji značku a kód!</string>
 <string name="wrongpasscode">Váš kód nesouhlasí s vaší značkou!</string>
@@ -22,7 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Poslední pozice/</string>
 <string name="map_track_call">Sledování %s...</string>
-<string name="map_select">Select station</string>
+<string name="map_select">Vyberte stanici</string>
 
 <string name="map_loading">Nahrávání...</string>
 
@@ -180,7 +180,7 @@
 <!-- manual position -->
 <string name="p_source_lat">Zeměpisná šířka</string>
 <string name="p_source_lon">Zeměpisná délka</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_coord">Souřadnice</string>
 <string name="p_source_get_last">Použít poslední GPS polohu</string>
 <string name="p_source_auto">Automatic Posting</string>
 <string name="p_source_auto_summary">Perform periodic position posting</string>
@@ -283,13 +283,13 @@
 <string name="p_afsk_prefix_entry">Zadejte čas [ms]</string>
 <string name="p_afsk_hqdemod">High-Quality Demodulator</string>
 <string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco">Bluetooth náhlavní sada</string>
 <string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_output">Zvukový výstup</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
+	<item>telefonní hovor</item>
 	<item>Zvuk</item>
-	<item>Music</item>
+	<item>Hudba</item>
 	<item>Alarm</item>
 </string-array>
 
@@ -301,7 +301,7 @@
 <string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Filtr pro příjem dat z APRS-IS serveru</string>
-<string name="p_filter_entry">Enter a filter for incoming packets</string>
+<string name="p_filter_entry">Vložte filtr pro příchozí pakety</string>
 
 <string name="p_filterhelp">Nápověda filtru</string>
 <string name="p_filterhelp_summary">Online nápověda pro filtr APRS-IS serveru</string>
@@ -312,7 +312,8 @@
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg
-  Libor, OK1ALX https://launchpad.net/~ok1alx</string>
+  Libor, OK1ALX https://launchpad.net/~ok1alx
+  Tomáš Bednář https://launchpad.net/~bednto</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Režim klient</string>
@@ -351,6 +352,6 @@
 <string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
 <string name="ssl_import_ok">Imported certificate for %s.</string>
 <string name="ssl_import_error">Error importing certificate: %s!</string>
-<string name="ssl_expired">Your certificate has expired!</string>
-<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+<string name="ssl_expired">Váš certifikát vypršel!</string>
+<string name="ssl_expire_in">Platnost Vašeho certifikátu vyprší za %d dní!</string>
 </resources>

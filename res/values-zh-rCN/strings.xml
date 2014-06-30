@@ -201,16 +201,16 @@
 <string name="p_sb_help">智能信标™ 帮助</string>
 <string name="p_sb_fast_speed">高速度[km/h]</string>
 <string name="p_sb_fast_speed_summary">中等速度时快速更新位置</string>
-<string name="p_sb_fast_rate">Fast Rate [s]</string>
+<string name="p_sb_fast_rate">快速(秒)</string>
 <string name="p_sb_fast_rate_summary">高速时信标率</string>
 <string name="p_sb_slow_speed">低速度[km/h]</string>
 <string name="p_sb_slow_speed_summary">最大速度时慢速更新位置</string>
-<string name="p_sb_slow_rate">Slow Rate [s]</string>
+<string name="p_sb_slow_rate">慢速(秒)</string>
 <string name="p_sb_slow_rate_summary">低速时信标率</string>
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
 <string name="p_cp_turn_time">最小调整时间 [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
+<string name="p_cp_turn_time_summary">改变方向时最小更新信标时间</string>
 <string name="p_cp_turn_angle">最小转角度 [°]</string>
 <string name="p_cp_turn_angle_summary">高速时最小角度</string>
 <string name="p_cp_turn_slope">Turn Slope</string>
@@ -252,11 +252,11 @@
 <string name="p_pos">我的位置报告</string>
 <string name="p_pos_ring">铃声</string>
 <string name="p_pos_ring_summary">已发送位置报告提示音</string>
-<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp">中继我自己的数据包</string>
 <string name="p_dgp_ring">铃声</string>
-<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+<string name="p_dgp_ring_summary">中继数据包的提示声</string>
 
-<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+<string name="got_digipeated">中继自: %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS 中继路径</string>
@@ -283,10 +283,10 @@
 <string name="p_filterdist">范围过滤</string>
 <string name="p_filterdist_summary">接收此范围内的台站信息数据包</string>
 <string name="p_filterdist_entry">过滤以您为中心范围内的数据包[单位:公里]</string>
-<string name="p_filter">Packet filter</string>
+<string name="p_filter">数据包过滤器</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">过滤收到的数据包</string>
-<string name="p_filter_entry">Enter a filter for incoming packets</string>
+<string name="p_filter_entry">为收到的数据包输入一个过滤条件</string>
 
 <string name="p_filterhelp">信息过滤帮助</string>
 <string name="p_filterhelp_summary">APRS-IS过滤器在线参考</string>
@@ -333,11 +333,11 @@
 <string name="p_tcptnc_entry">输入KISS服务器名</string>
 
 <!-- SSL strings -->
-<string name="ssl_import_activity">SSL certificate import</string>
-<string name="ssl_import_password">Please enter the certificate import password:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
-<string name="ssl_import_ok">Imported certificate for %s.</string>
-<string name="ssl_import_error">Error importing certificate: %s!</string>
-<string name="ssl_expired">Your certificate has expired!</string>
-<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+<string name="ssl_import_activity">SSL证书导入</string>
+<string name="ssl_import_password">请输入导入证书的密码:</string>
+<string name="ssl_no_keyfile">%s无证书!未使用SSL.</string>
+<string name="ssl_import_ok">%s证书已导入.</string>
+<string name="ssl_import_error">错误导入证书:%s!</string>
+<string name="ssl_expired">您的证书已过期!</string>
+<string name="ssl_expire_in">您的证书已过期%d天!</string>
 </resources>
