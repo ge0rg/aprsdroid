@@ -16,6 +16,7 @@ object AprsService {
 	val SERVICE = PACKAGE + ".SERVICE"
 	val SERVICE_ONCE = PACKAGE + ".ONCE"
 	val SERVICE_SEND_PACKET = PACKAGE + ".SEND_PACKET"
+	val SERVICE_STOP = PACKAGE + ".SERVICE_STOP"
 	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
 	val MESSAGE = PACKAGE + ".MESSAGE"	// we received a message/ack
@@ -74,6 +75,11 @@ class AprsService extends Service {
 	}
 
 	def handleStart(i : Intent) {
+		if (i.getAction() == SERVICE_STOP) {
+			if (running)
+				stopSelf()
+			return
+		} else
 		if (i.getAction() == SERVICE_SEND_PACKET) {
 			if (!running) {
 				Log.d(TAG, "SEND_PACKET ignored, service not running.")
