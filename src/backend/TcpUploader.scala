@@ -61,7 +61,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 		conn.synchronized {
 			conn.running = false
 		}
-		conn.shutdown()
+		scala.concurrent.ops.spawn { conn.shutdown() }
 		conn.interrupt()
 		conn.join(50)
 	}
@@ -192,7 +192,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 
 		def update(packet : APRSPacket) : String = {
 			if (socket != null && socket.isConnected()) {
-				tnc.writePacket(packet)
+				scala.concurrent.ops.spawn { tnc.writePacket(packet) }
 				"TCP OK"
 			} else "TCP disconnected"
 		}
