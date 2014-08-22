@@ -95,6 +95,7 @@
 		<action android:name="org.aprsdroid.app.SERVICE" />
 		<action android:name="org.aprsdroid.app.ONCE" />
 		<action android:name="org.aprsdroid.app.SEND_PACKET" />
+		<action android:name="org.aprsdroid.app.SERVICE_STOP" />
 	    </intent-filter>
 	</service>
     </application>
