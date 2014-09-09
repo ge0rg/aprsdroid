@@ -156,11 +156,11 @@
 <string name="p_conn_http">HTTP POST (envio somente)</string>
 <string name="p_conn_afsk">AFSK via Speaker/Mic</string>
 <string name="p_conn_bt">TNC Bluetooth</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_kwd">Porta do GPS Kenwood</string>
+<string name="p_conn_tcptnc">TNC TCP/IP</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Posição Manual</string>
-<string name="p_source_periodic">Posição GPS/Rede Periódica</string>
+<string name="p_source_periodic">Posição Periódica GPS/Rede</string>
 <string name="p_source_smart">Posição SmartBeaconing™</string>
 <!-- manual position -->
 <string name="p_source_lat">Latitude</string>
@@ -198,23 +198,23 @@
 <string name="p__location_summary">Configuração para envio de relatórios de posicionamento</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_sb_help">SmartBeaconing™ help</string>
-<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
-<string name="p_sb_fast_rate">Fast Rate [s]</string>
-<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
-<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
-<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
-<string name="p_sb_slow_rate">Slow Rate [s]</string>
-<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<string name="p_sb_help">Ajuda do SmartBeaconing™</string>
+<string name="p_sb_fast_speed">Velocidade rápida [km/h]</string>
+<string name="p_sb_fast_speed_summary">Velocidade mínima para atualizações rápidas de posição</string>
+<string name="p_sb_fast_rate">Taxa do Rápido [s]</string>
+<string name="p_sb_fast_rate_summary">Taxa de beacon em velocidade alta</string>
+<string name="p_sb_slow_speed">Velocidade Baixa [km/h]</string>
+<string name="p_sb_slow_speed_summary">Velocidade máxima para atualizações de posição em baixa velocidade</string>
+<string name="p_sb_slow_rate">Taxa da Baixa [s]</string>
+<string name="p_sb_slow_rate_summary">Taxa de beacon em baixa velocidade</string>
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
-<string name="p_cp_turn_time">Min Turn Time [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
-<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
-<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
-<string name="p_cp_turn_slope">Turn Slope</string>
-<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+<string name="p_cp_turn_time">Tempo mínimo para manobras [s]</string>
+<string name="p_cp_turn_time_summary">Taxa mínima de beacon quando mudar a direção</string>
+<string name="p_cp_turn_angle">Angulo Mínimo de Giro [°]</string>
+<string name="p_cp_turn_angle_summary">Angulo mínimo em alta velocidade</string>
+<string name="p_cp_turn_slope">Inclinação de giro</string>
+<string name="p_cp_turn_slope_summary">Influencia da velocidade no angulo mínimo</string>
 
 <string name="p_interval">Tempo mínimo de atualização</string>
 <string name="p_interval_summary">Minutos entre transmissões de beacon</string>
@@ -240,7 +240,7 @@
 <string name="p__display">Tela e Notificações</string>
 <string name="p__notification">Notificações</string>
 <string name="p__notification_summary">Alerta para mensagens e relatórios de posição</string>
-<string name="p_msg">Mensagens recebidas</string>
+<string name="p_msg">Mensagens Recebidas</string>
 <string name="p_msg_led">Piscar LED</string>
 <string name="p_msg_led_on">Notificações por LED ligadas</string>
 <string name="p_msg_led_off">Notificações por LED desligadas</string>
@@ -252,10 +252,15 @@
 <string name="p_pos">Relatórios de Posição</string>
 <string name="p_pos_ring">Toque de chamada</string>
 <string name="p_pos_ring_summary">Toque para relatórios de posição enviados</string>
+<string name="p_dgp">Meus Pacotes Retransmitidos</string>
+<string name="p_dgp_ring">Toque de chamada</string>
+<string name="p_dgp_ring_summary">Som para pacotes retransmitidos</string>
+
+<string name="got_digipeated">Repetido por %1$s: %2$s</string>
 
 <!-- AFSK settings -->
-<string name="p_aprs_path">APRS digi path</string>
-<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path">Caminho APRS digi</string>
+<string name="p_aprs_path_hint">nó 1, nó 2, ...</string>
 <string name="p_aprs_path_summary">Sequência de digipeaters</string>
 <string name="p_aprs_path_entry">Entre o digi path separado por vírgulas</string>
 <string name="p_afsk_prefix">Prefixo de Sincronização de Frame</string>
@@ -278,10 +283,10 @@
 <string name="p_filterdist">Raio da vizinhança</string>
 <string name="p_filterdist_summary">Receber pacotes de estações nesse raio</string>
 <string name="p_filterdist_entry">Raio ao seu redor para monitorar pacotes [km]</string>
-<string name="p_filter">Filtro de Mensagens</string>
+<string name="p_filter">Filtro de Pacotes</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Filtro de pacotes de entrada</string>
-<string name="p_filter_entry">Entre um filtro para mensagens de entrada</string>
+<string name="p_filter_entry">Entre um filtro para pacotes de entrada</string>
 
 <string name="p_filterhelp">Ajuda para filtros de mensagens</string>
 <string name="p_filterhelp_summary">Referência online para filtros APRS-IS</string>
@@ -323,6 +328,15 @@
 <string name="afsk_info_sco_est">Link SCO bluetooth estabelecido.</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">Servidor TCP KISS para contatar</string>
+<string name="p_tcptnc_entry">Entre o nome de host do servidor KISS</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">Importação de certificado SSL</string>
+<string name="ssl_import_password">Por favor entre a senha de importação do certificado:</string>
+<string name="ssl_no_keyfile">Nenhum certificado para %s! Não está usando SSL.</string>
+<string name="ssl_import_ok">Certificado importado para %s.</string>
+<string name="ssl_import_error">Erro importando certificado: %s!</string>
+<string name="ssl_expired">Seu certificado expirou!</string>
+<string name="ssl_expire_in">Seu certificado vai expirar em %d dias!</string>
 </resources>

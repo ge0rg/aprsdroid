@@ -57,12 +57,6 @@ trait UIHelper extends Activity
 		}
 	}
 
-	def passcodeWarning(call : String, pass : String) {
-		import AprsBackend._
-		if ((defaultBackendInfo(prefs).need_passcode == PASSCODE_OPTIONAL) &&
-				!AprsPacket.passcodeAllowed(call, pass, false))
-			Toast.makeText(this, R.string.anon_warning, Toast.LENGTH_LONG).show()
-	}
 
 
 	def passcodeConfigRequired(call : String, pass : String) : Boolean = {
@@ -235,29 +229,27 @@ trait UIHelper extends Activity
 			true
 		// switch between activities
 		case R.id.hub =>
-			startActivity(new Intent(this, classOf[HubActivity]));
+			startActivity(new Intent(this, classOf[HubActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		case R.id.map =>
-			startActivity(new Intent(this, classOf[MapAct]));
+			startActivity(new Intent(this, classOf[MapAct]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		case R.id.log =>
-			startActivity(new Intent(this, classOf[LogActivity]));
+			startActivity(new Intent(this, classOf[LogActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		case R.id.conversations =>
-			startActivity(new Intent(this, classOf[ConversationsActivity]));
+			startActivity(new Intent(this, classOf[ConversationsActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		// toggle service
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
-				passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
 				startService(AprsService.intent(this, AprsService.SERVICE))
 			} else {
 				stopService(AprsService.intent(this, AprsService.SERVICE))
 			}
 			true
 		case R.id.singlebtn =>
-			passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
 			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 			true
 		// quit the app
@@ -302,7 +294,7 @@ trait UIHelper extends Activity
 			trackOnMap(targetcall)
 			true
 		case R.id.aprsfibutton =>
-			val url = "http://aprs.fi/?call=%s".format(targetcall)
+			val url = "http://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)
 			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
 			true

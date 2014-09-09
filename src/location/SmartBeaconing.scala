@@ -13,13 +13,14 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 	lazy val locMan = service.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 
 	var lastLoc : Location = null
+	var started = false
 
 	def start(singleShot : Boolean) = {
 		lastLoc = null
-		stop()
-		try {
+		if (!started) try {
 			locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				0, 0, this)
+			started = true
 		} catch {
 			case e : IllegalArgumentException =>
 				// this device does not have GPS. Oops.
@@ -29,7 +30,9 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 	}
 
 	def stop() {
-		locMan.removeUpdates(this)
+		if (started)
+			locMan.removeUpdates(this)
+		started = false
 	}
 
 	def smartBeaconSpeedRate(speed : Float) : Int = {
@@ -42,7 +45,7 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 		else if (speed >= SB_FAST_SPEED)
 			SB_FAST_RATE
 		else
-			((SB_SLOW_RATE - SB_FAST_RATE) * (SB_FAST_SPEED - speed) / (SB_FAST_SPEED-SB_SLOW_SPEED)).toInt
+			(SB_FAST_RATE + (SB_SLOW_RATE - SB_FAST_RATE) * (SB_FAST_SPEED - speed) / (SB_FAST_SPEED-SB_SLOW_SPEED)).toInt
 	}
 
 	// returns the angle between two bearings

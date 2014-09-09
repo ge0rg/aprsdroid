@@ -7,7 +7,7 @@
 <string name="app_hub">APRSdroid Ana Sayfa</string>
 <string name="app_sta">İstasyon Bilgisi</string>
 <string name="app_messages">İletiler</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">İletileri Temizle</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid\'i çağrıişaretiniz ve APRS kayıt numaranızla yapılandırmalısınız!</string>
 <string name="wrongpasscode">Şifreniz çağrı işaretinizle eşleşmiyor!</string>
@@ -22,7 +22,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Son Bildirim</string>
 <string name="map_track_call">%s izleniliyor...</string>
-<string name="map_select">Select station</string>
+<string name="map_select">İstasyon Seçin</string>
 
 <string name="map_loading">Yükleniyor...</string>
 
@@ -44,15 +44,15 @@
 <string name="msg_abort">Göndermeyi durdur</string>
 <string name="msg_restart">Göndermeyi tekrar başlat</string>
 <string name="msg_type_rejected">reddedildi</string>
-<string name="msg_type_aborted">durduruldu</string>
+<string name="msg_type_aborted">iptal edildi</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid hizmeti</string>
+<string name="aprsservice">APRSdroid Servisi</string>
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
-<string name="service_stop">APRS hizmeti durduruldu.</string>
+<string name="service_start">Başlatılan APRS Servisleri: %1$s, %2$s.</string>
+<string name="service_stop">APRS Servisi Durduruldu</string>
 <string name="service_no_location">APRSdroid\'in işini yapabilmesi için GPS\'i ya da Ağ Konumunu etkinleştirmelisiniz!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ için GPS gerekir!</string>
 <!-- service result codes -->
 <string name="post_error">Hata</string>
 <string name="post_incmg">alındı</string>
@@ -154,9 +154,9 @@
 <string name="p_conn_tcp">TCP bağlantısı</string>
 <string name="p_conn_udp">UDP (sadece gönderme)</string>
 <string name="p_conn_http">HTTP POST (sadece gönderme)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_afsk">Hoparlör/Mikrofon aracılığı ile AFSK</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_kwd">Kenwood GPS Portu</string>
 <string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">El ile pozisyon girişi</string>
@@ -165,10 +165,10 @@
 <!-- manual position -->
 <string name="p_source_lat">Enlem</string>
 <string name="p_source_lon">Boylam</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_coord">Koordinat</string>
 <string name="p_source_get_last">Son GPS konumunu kullan</string>
-<string name="p_source_auto">Automatic Posting</string>
-<string name="p_source_auto_summary">Perform periodic position posting</string>
+<string name="p_source_auto">Otomatik İletim</string>
+<string name="p_source_auto_summary">Periyodik Yer İletimi Yap</string>
 
 
 <!-- privacy settings -->
@@ -198,9 +198,9 @@
 <string name="p__location_summary">Konum bildirimleri gönderme için ayar</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_sb_help">SmartBeaconing™ help</string>
+<string name="p_sb_help">SmartBeaconing™ Yardım</string>
 <string name="p_sb_fast_speed">Fast Speed [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_speed_summary">Hızlı pozisyon güncellemeleri için minimum hız</string>
 <string name="p_sb_fast_rate">Fast Rate [s]</string>
 <string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
 <string name="p_sb_slow_speed">Slow Speed [km/h]</string>
@@ -209,10 +209,10 @@
 <string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
-<string name="p_cp_turn_time">Min Turn Time [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
-<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
-<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
+<string name="p_cp_turn_time">Min Dönüş Zamanı [s]</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
+<string name="p_cp_turn_angle">Min Dönüş Açısı [°]</string>
+<string name="p_cp_turn_angle_summary">Yüksek hızda minimum açı</string>
 <string name="p_cp_turn_slope">Turn Slope</string>
 <string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
 
@@ -252,6 +252,11 @@
 <string name="p_pos">K</string>
 <string name="p_pos_ring">Melodi</string>
 <string name="p_pos_ring_summary">Konum bildirimi için sesli uyarı</string>
+<string name="p_dgp">Gönderilmiş Bireysel Paketler</string>
+<string name="p_dgp_ring">Melodi</string>
+<string name="p_dgp_ring_summary">Gönderilmiş paketler için ton</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -262,14 +267,14 @@
 <string name="p_afsk_prefix_summary">No-Op Önvurgulama (örn. VOX kontrolü için)</string>
 <string name="p_afsk_prefix_entry">Prefix zamanını girin [ms]</string>
 <string name="p_afsk_hqdemod">High-Quality Demodulator</string>
-<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
-<string name="p_afsk_btsco">Bluetooth Headset</string>
-<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU gerekli</string>
+<string name="p_afsk_btsco">Bluetooth Kulaklık</string>
+<string name="p_afsk_btsco_summary">AFSK için Bluetooth kulaklık kullanın</string>
+<string name="p_afsk_output">Ses Çıkışı</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
+	<item>Sesli Arama</item>
 	<item>Melodi</item>
-	<item>Music</item>
+	<item>Müzik</item>
 	<item>Alarm</item>
 </string-array>
 
@@ -278,10 +283,10 @@
 <string name="p_filterdist">Komşu istasyon yarıçapı</string>
 <string name="p_filterdist_summary">Bu yarıçaptaki istasyonlardan paket verisi al</string>
 <string name="p_filterdist_entry">[km] çevredeki paketleri izle</string>
-<string name="p_filter">İleti süzme</string>
+<string name="p_filter">Paket Filtresi</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Gelen paketler için süzme</string>
-<string name="p_filter_entry">Gelen paketler için bir süzgeç girin</string>
+<string name="p_filter_entry">Gelen paketler için filtre girin</string>
 
 <string name="p_filterhelp">İleti süzgeci yardımı</string>
 <string name="p_filterhelp_summary">Çevrimiçi APRS-IS süzgeçleri için referans</string>
@@ -291,6 +296,7 @@
 <string name="p_sotimeout_entry">Saniye olarak zamanaşımı süresi (0=devredışı)</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Alp Sarıca https://launchpad.net/~alpsarica
   Hüseyin Odabaş https://launchpad.net/~ta1df
   Recep Aydin Gulec https://launchpad.net/~ragulec
   zeugma https://launchpad.net/~sunder67</string>
@@ -319,10 +325,19 @@
 <string name="bt_error_disabled">Lütfen Bluetooth\'u etkinleştirin!</string>
 <string name="bt_error_no_tnc">Lütfen bir Bluetooth TNC yapılandırınız!</string>
 
-<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
-<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+<string name="afsk_info_sco_req">Bluetooth SCO linki sağlanıyor</string>
+<string name="afsk_info_sco_est">Bluettoh SCo linki sağlandı</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">Bağlanılacak KISS TCP sunucusu</string>
+<string name="p_tcptnc_entry">KISS Sunucu adını girin</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">İçe SSL sertifikası aktar</string>
+<string name="ssl_import_password">Lütfen sertifika içe aktarma parolası girin:</string>
+<string name="ssl_no_keyfile">%s için sertifika bulunamadı! SSL kullanılamıyor.</string>
+<string name="ssl_import_ok">%s için içe aktarılmış sertifikalar</string>
+<string name="ssl_import_error">Şu sertifikalar içe aktarılırken hata oluştu: %s!</string>
+<string name="ssl_expired">Sertifikanın süresi dolmuş!</string>
+<string name="ssl_expire_in">Sertifikanızın %d gün içinde süresi dolacak!</string>
 </resources>

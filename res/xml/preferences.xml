@@ -196,6 +196,33 @@
 		android:showSilent="true"
 		/>
     </PreferenceCategory>
+    <!-- digipeated position reports -->
+    <PreferenceCategory
+	android:title="@string/p_dgp">
+
+	<CheckBoxPreference
+		android:key="dgp_notify_led"
+		android:title="@string/p_msg_led"
+		android:summaryOn="@string/p_msg_led_on"
+		android:summaryOff="@string/p_msg_led_off"
+		android:defaultValue="false"
+		/>
+	<CheckBoxPreference
+		android:key="dgp_notify_vibr"
+		android:title="@string/p_msg_vibr"
+		android:summaryOn="@string/p_msg_vibr_on"
+		android:summaryOff="@string/p_msg_vibr_off"
+		android:defaultValue="false"
+		/>
+	<RingtonePreference
+		android:key="dgp_notify_ringtone"
+		android:title="@string/p_dgp_ring"
+		android:summary="@string/p_dgp_ring_summary"
+		android:ringtoneType="notification"
+		android:showDefault="true"
+		android:showSilent="true"
+		/>
+    </PreferenceCategory>
     </PreferenceScreen>
 
     <PreferenceScreen

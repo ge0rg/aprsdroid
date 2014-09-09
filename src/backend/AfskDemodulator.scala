@@ -61,6 +61,7 @@ class AfskDemodulator(au : AfskUploader, in_type : Int, samplerate : Int) extend
 			this.interrupt()
 			recorder.stop()
 			this.join(50)
+			recorder.release()
 		} catch {
 		case e : IllegalStateException => Log.w(TAG, "close(): " + e)
 		case e : NullPointerException => // no recorder yet, ignore.

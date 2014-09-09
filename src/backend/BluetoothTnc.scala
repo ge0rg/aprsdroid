@@ -61,6 +61,9 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 	def stop() {
 		if (conn == null)
 			return
+		conn.synchronized {
+			conn.running = false
+		}
 		conn.shutdown()
 		conn.interrupt()
 		conn.join(50)
@@ -87,7 +90,6 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 					// we are a host
 					log("Awaiting client...")
 					socket = ba.listenUsingRfcommWithServiceRecord("SPP", SPP).accept(-1)
-					log("Client connected.")
 				} else
 				if (tncchannel == -1) {
 					log("Connecting to SPP service on %s...".format(tncmac))
@@ -99,6 +101,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 					socket = m.invoke(tnc, tncchannel.asInstanceOf[AnyRef]).asInstanceOf[BluetoothSocket]
 					socket.connect()
 				}
+				log("Connected to TNC.")
 
 			this.synchronized {
 				proto = createTncProto(socket.getInputStream(), socket.getOutputStream())
@@ -119,6 +122,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		}
 
 		override def run() {
+			var need_reconnect = false
 			Log.d(TAG, "BtSocketThread.run()")
 			try {
 				init_socket()
@@ -128,6 +132,14 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 			}
 			while (running) {
 				try {
+					if (need_reconnect) {
+						need_reconnect = false
+						log("Reconnecting in 3s...")
+						try {
+							Thread.sleep(3*1000)
+						} catch { case _ => }
+						init_socket()
+					}
 					Log.d(TAG, "waiting for data...")
 					while (running) {
 						val line = proto.readPacket()
@@ -136,16 +148,15 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 					}
 				} catch {
 					case e : Exception => 
+						Log.d(TAG, "exception, reconnecting...")
+						need_reconnect = true
 						try {
-							Log.e(TAG, "reader exception: " + e)
+							if (running) // only bother the user if not yet quitting
+								service.postAddPost(StorageDatabase.Post.TYPE_INFO,
+									R.string.post_error, e.toString())
 							e.printStackTrace()
 						} catch { case _ => Log.d(TAG, "Yo dawg! I got an exception while getting an exception!")
 						}
-						log("Reconnecting in 3s...")
-						try {
-							Thread.sleep(3*1000)
-							init_socket()
-						} catch { case _ => }
 				}
 			}
 			Log.d(TAG, "BtSocketThread.terminate()")
@@ -155,7 +166,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 			try {
 				proto.writePacket(packet)
 				"Bluetooth OK"
-			} catch { case e => e.printStackTrace(); "Bluetooth disconnected" }
+			} catch { case e => e.printStackTrace(); conn.socket.close(); "Bluetooth disconnected" }
 		}
 
 		def catchLog(tag : String, fun : ()=>Unit) {
@@ -170,7 +181,6 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		def shutdown() {
 			Log.d(TAG, "shutdown()")
 			this.synchronized {
-				running = false
 				catchLog("socket.close", socket.close)
 			}
 		}

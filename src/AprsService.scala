@@ -15,6 +15,8 @@ object AprsService {
 	// intent actions
 	val SERVICE = PACKAGE + ".SERVICE"
 	val SERVICE_ONCE = PACKAGE + ".ONCE"
+	val SERVICE_SEND_PACKET = PACKAGE + ".SEND_PACKET"
+	val SERVICE_STOP = PACKAGE + ".SERVICE_STOP"
 	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
 	val MESSAGE = PACKAGE + ".MESSAGE"	// we received a message/ack
@@ -41,6 +43,10 @@ object AprsService {
 class AprsService extends Service {
 	import AprsService._
 	val TAG = "APRSdroid.Service"
+
+	lazy val APP_VERSION = "APDR%s".format(
+		getPackageManager().getPackageInfo(getPackageName(), 0).versionName
+			filter (_.isDigit) take 2)
 
 	lazy val prefs = new PrefsWrapper(this)
 
@@ -69,6 +75,27 @@ class AprsService extends Service {
 	}
 
 	def handleStart(i : Intent) {
+		if (i.getAction() == SERVICE_STOP) {
+			if (running)
+				stopSelf()
+			return
+		} else
+		if (i.getAction() == SERVICE_SEND_PACKET) {
+			if (!running) {
+				Log.d(TAG, "SEND_PACKET ignored, service not running.")
+				return
+			}
+			val data_field = i.getStringExtra("data")
+			if (data_field == null) {
+				Log.d(TAG, "SEND_PACKET ignored, data extra is empty.")
+				return
+			}
+			val p = Parser.parseBody(prefs.getCallSsid(), APP_VERSION, null,
+				data_field)
+			sendPacket(p)
+			return
+		}
+
 		// display notification (even though we are not actually started yet,
 		// but we need this to prevent error message reordering)
 		val toastString = if (i.getAction() == SERVICE_ONCE) {
@@ -146,13 +173,12 @@ class AprsService extends Service {
 		ServiceNotifier.instance.stop(this)
 	}
 
-	def appVersion() : String = {
-		val pi = getPackageManager().getPackageInfo(getPackageName(), 0)
-		"APDR%s".format(pi.versionName filter (_.isDigit) take 2)
+	def newPacket(payload : InformationField) = {
+		// TODO: obtain digi path from prefs
+		new APRSPacket(prefs.getCallSsid(), APP_VERSION, null, payload)
 	}
 
-	def formatLoc(callssid : String, toCall : String, symbol : String,
-			status : String, location : Location) = {
+	def formatLoc(symbol : String, status : String, location : Location) = {
 		val pos = new Position(location.getLatitude, location.getLongitude, 0,
 				     symbol(0), symbol(1))
 		pos.setPositionAmbiguity(prefs.getStringInt("priv_ambiguity", 0))
@@ -160,36 +186,35 @@ class AprsService extends Service {
 			AprsPacket.formatCourseSpeed(location) else ""
 		val status_alt = if (prefs.getBoolean("priv_altitude", true))
 			AprsPacket.formatAltitude(location) else ""
-		new APRSPacket(callssid, toCall, null, new PositionPacket(
+		newPacket(new PositionPacket(
 			pos, status_spd + status_alt + " " + status, /* messaging = */ true))
 	}
 
-	def postLocation(location : Location) {
-		val i = new Intent(UPDATE)
-		i.putExtra(LOCATION, location)
+	def sendPacket(packet : APRSPacket, status_postfix : String) = {
+		try {
+			val status = poster.update(packet)
+			val full_status = status + status_postfix
+			addPost(StorageDatabase.Post.TYPE_POST, full_status, packet.toString)
+			full_status
+		} catch {
+			case e : Exception =>
+				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
+				e.printStackTrace()
+				e.getMessage()
+		}
+	}
+	def sendPacket(packet : APRSPacket) : String = sendPacket(packet, "")
 
+	def postLocation(location : Location) {
 		val callssid = prefs.getCallSsid()
 		var symbol = prefs.getString("symbol", "")
 		if (symbol.length != 2)
 			symbol = getString(R.string.default_symbol)
 		val status = prefs.getString("status", getString(R.string.default_status))
-		val packet = formatLoc(callssid, appVersion(), symbol, status, location)
+		val packet = formatLoc(symbol, status, location)
 
 		Log.d(TAG, "packet: " + packet)
-		val result = try {
-			val status = poster.update(packet)
-			i.putExtra(STATUS, status)
-			i.putExtra(PACKET, packet.toString)
-			val prec_status = "%s (±%dm)".format(status, location.getAccuracy.asInstanceOf[Int])
-			addPost(StorageDatabase.Post.TYPE_POST, prec_status, packet.toString)
-			prec_status
-		} catch {
-			case e : Exception =>
-				i.putExtra(PACKET, e.getMessage())
-				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
-				e.printStackTrace()
-				e.getMessage()
-		}
+		val result = sendPacket(packet, " (±%dm)".format(location.getAccuracy.asInstanceOf[Int]))
 		if (singleShot) {
 			singleShot = false
 			stopSelf()
@@ -199,7 +224,7 @@ class AprsService extends Service {
 		}
 	}
 
-	def parsePacket(ts : Long, message : String) {
+	def parsePacket(ts : Long, message : String, source : Int) {
 		try {
 			var fap = Parser.parse(message)
 			if (fap.getType() == APRSTypes.T_THIRDPARTY) {
@@ -207,6 +232,16 @@ class AprsService extends Service {
 				val inner = fap.getAprsInformation().toString()
 				// strip away leading "}"
 				fap = Parser.parse(inner.substring(1, inner.length()))
+			}
+
+			val callssid = prefs.getCallSsid()
+			if (source == StorageDatabase.Post.TYPE_INCMG &&
+			    fap.getSourceCall().equalsIgnoreCase(callssid)) {
+				Log.i(TAG, "got digipeated own packet")
+				val message = getString(R.string.got_digipeated, fap.getLastUsedDigi(),
+					fap.getAprsInformation().toString())
+				ServiceNotifier.instance.notifyPosition(this, prefs, message, "dgp_")
+				return
 			}
 
 			if (fap.getAprsInformation() == null) {
@@ -231,7 +266,7 @@ class AprsService extends Service {
 		val ts = System.currentTimeMillis()
 		db.addPost(ts, t, status, message)
 		if (t == StorageDatabase.Post.TYPE_POST || t == StorageDatabase.Post.TYPE_INCMG) {
-			parsePacket(ts, message)
+			parsePacket(ts, message, t)
 		} else {
 			// only log status messages
 			Log.d(TAG, "addPost: " + status + " - " + message)

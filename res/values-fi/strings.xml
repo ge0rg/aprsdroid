@@ -20,7 +20,7 @@
 <string name="empty_logview">Et ole vielä lähettänyt tai vastaanottanut yhtään pakettia.\n\n Paina \"Menu\”-painiketta lähettääksesi yksittäisen raportin tai aloittaaksesi sijaintisi seurannan.\n\n Voit myös muuttaa sovelluksen asetuksia valikosta.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Viimeisin Raportti</string>
+<string name="sta_lastreport">%s Viimeisin raportti</string>
 <string name="map_track_call">Seuraa asemaa %s...</string>
 <string name="map_select">Valitse asema</string>
 
@@ -75,7 +75,7 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivaatio ja  tuki</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK-toteutus</string>
 <string name="ad_thanks_4">Matti, OH2MQK ja John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK-demodulaattori, https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nKäännös:</string>
 <string name="ad_homepage">Etusivu</string>
@@ -111,9 +111,9 @@
 <string name="p_passcode">APRS-IS passcode</string>
 <string name="p_passcode_summary">APRS-IS varmennus passcode</string>
 <string name="p_passcode_entry">Aseta kutsuasi vastaava passcode</string>
-<string name="p_passreq">Pyydä Passcode</string>
+<string name="p_passreq">Pyydä passcode</string>
 <string name="p_passreq_summary">Pyydä APRS-IS passcode verkossa</string>
-<string name="p__aprs">APRS Asetukset</string>
+<string name="p__aprs">APRS-asetukset</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Aseman tyyppi (1..15; 9=mobile, 10=APRS-IS)</string>
 <string name="p_ssid_entry">Aseta asemasi SSID</string>
@@ -128,7 +128,7 @@
 	<item>6: Satelliitti</item>
 	<item>7: Käsikapula</item>
 	<item>8: Vene / Laiva</item>
-	<item>9: Mobile asema</item>
+	<item>9: Mobileasema</item>
 	<item>10: APRS-IS (ei radio)</item>
 	<item>11: Ilmapallo, lentokone, avaruusalus</item>
 	<item>12: APRStt, DTMF, ... (yksisuuntainen)</item>
@@ -136,7 +136,7 @@
 	<item>14: Rahtiliikenne</item>
 	<item>15: Yleinen lisäasema</item>
 </string-array>
-<string name="p_symbol">APRS symboli</string>
+<string name="p_symbol">APRS-symboli</string>
 <string name="p_symbol_summary">Asemasi symboli</string>
 <string name="p_symbol_entry">Aseta symboli kahdella merkillä koodattuna</string>
 <string name="p_status">Kommettikenttä</string>
@@ -148,7 +148,7 @@
 <string name="p_conntype_entry">Valitse yhteydellä käytetty protokolla</string>
 <string name="p_connsetup">Yhteysasetukset</string>
 <string name="p_connsetup_summary">Yhteyden asetukset</string>
-<string name="p_connlog">Yhteyden kirjaus</string>
+<string name="p_connlog">Yhteyden kirjaus lokiin</string>
 <string name="p_connlog_summary">Laajemmat tilatiedot lokiin</string>
 <!-- array of connection types -->
 <string name="p_conn_tcp">TCP-yhteys</string>
@@ -156,11 +156,11 @@
 <string name="p_conn_http">HTTP POST (vain lähetys)</string>
 <string name="p_conn_afsk">AFSK-modeemi kaiuttimen/mikrofonin kautta</string>
 <string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_kwd">Kenwoodin GPS-portti</string>
 <string name="p_conn_tcptnc">TCP/IP TNC</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuaalinen sijainti</string>
-<string name="p_source_periodic">Jaksottainen GPS-/Verkkosijainti</string>
+<string name="p_source_periodic">Jaksottainen GPS-/verkkosijainti</string>
 <string name="p_source_smart">SmartBeaconing™ Sijainti</string>
 <!-- manual position -->
 <string name="p_source_lat">Leveyspiiri</string>
@@ -198,7 +198,7 @@
 <string name="p__location_summary">Sijaintiraportin lähetyksen asetukset</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
-<string name="p_sb_help">SmartBeaconing™ help</string>
+<string name="p_sb_help">SmartBeaconing™ ohje</string>
 <string name="p_sb_fast_speed">Fast Speed [km/h]</string>
 <string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
 <string name="p_sb_fast_rate">Fast Rate [s]</string>
@@ -208,27 +208,27 @@
 <string name="p_sb_slow_rate">Slow Rate [s]</string>
 <string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
 <!-- corner pegging should not be translated -->
-<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_corner_pegging">Corner pegging</string>
 <string name="p_cp_turn_time">Min Turn Time [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
 <string name="p_cp_turn_angle">Min Turn Angle [°]</string>
 <string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
 <string name="p_cp_turn_slope">Turn Slope</string>
 <string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
 
-<string name="p_interval">Pienin päivitysaika</string>
+<string name="p_interval">Pienin päivitysintervalli</string>
 <string name="p_interval_summary">Minuutteja lähetysten välillä</string>
 <string name="p_interval_entry">Aseta päivityksen aikaväli [min]</string>
 <string name="p_distance">Pienin etäisyys lähetysten välillä</string>
 <string name="p_distance_summary">Kilometrejä ennen paikkatiedon lähetystä (aseta arvoon 0 käyttääksesi vain aikaan perustuvaa lähetystä)</string>
 <string name="p_distance_entry">Aseta matka päivitysten välillä (km)</string>
-<string name="p_speedbrg">Odota speed &amp; bearing</string>
+<string name="p_speedbrg">Odota nopeutta ja suuntaa</string>
 <string name="p_speedbrg_summary">Pidä GPS päällä kauemmin saadaksesi tarkempia tietoja</string>
 <string name="p_netloc">Käytä verkon paikannusta</string>
 <string name="p_netloc_summary">Käytä puhelinverkon paikannusta</string>
-<string name="p_gps">GPS tarkkuus</string>
+<string name="p_gps">GPS:n tarkkuus</string>
 <string name="p_gps_summary">Akun käyttö vs. paikannuksen tarkkuus</string>
-<string name="p_gps_entry">Ole hyvä ja aseta GPS-tarkkuus</string>
+<string name="p_gps_entry">Ole hyvä ja aseta GPS:n tarkkuus</string>
 <!-- array of GPS precisions -->
 <string name="p_gps_always">Suuri (Aina päällä)</string>
 <string name="p_gps_med">Keskitaso</string>
@@ -252,6 +252,11 @@
 <string name="p_pos">Omat sijaintiraportit</string>
 <string name="p_pos_ring">Soittoääni</string>
 <string name="p_pos_ring_summary">Lähetettyjen sijaintiraporttien ääni</string>
+<string name="p_dgp">Toistetut omat paketit</string>
+<string name="p_dgp_ring">Soittoääni</string>
+<string name="p_dgp_ring_summary">Toistimilta kuultujen omien pakettien ääni</string>
+
+<string name="got_digipeated">%1$s:n toistama paketti: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS-toistinpolku</string>
@@ -261,8 +266,8 @@
 <string name="p_afsk_prefix">Frame Sync Prefix</string>
 <string name="p_afsk_prefix_summary">No-Op Preamble (esim. VOX:n ohjaukseen)</string>
 <string name="p_afsk_prefix_entry">Aseta prefixin pituus (ms)</string>
-<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
-<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
+<string name="p_afsk_hqdemod">Parempilaatuinen demodulaattori</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: vaatii 800 MHz prosessorin</string>
 <string name="p_afsk_btsco">Bluetooth-kuuloke</string>
 <string name="p_afsk_btsco_summary">Käytä bluetooth-kuuloketta (SCO) AFSK-modeemin kanssa</string>
 <string name="p_afsk_output">Äänilähtö</string>
@@ -276,15 +281,15 @@
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">Käytetty APRS-IS TCP-palvelin (portti 14580)</string>
 <string name="p_filterdist">Vastaanoton säde</string>
-<string name="p_filterdist_summary">Vastaanota paketteja säteen sisäpuolelta</string>
+<string name="p_filterdist_summary">Vastaanota paketteja tältä etäisyydeltä</string>
 <string name="p_filterdist_entry">Seuraa asemia määrätyn säteen sisällä (km)</string>
-<string name="p_filter">Viestien suodatus</string>
+<string name="p_filter">Pakettien suodatin</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Vastaanotettujen pakettien suodatin</string>
-<string name="p_filter_entry">Aseta suodatin vastaanotetuille viesteille</string>
+<string name="p_filter_entry">Aseta suodatin APRS-IS:stä tuleville paketeille</string>
 
-<string name="p_filterhelp">Viestien suodatuksen ohje</string>
-<string name="p_filterhelp_summary">Viestien suodatuksen ohje verkkosivulla</string>
+<string name="p_filterhelp">Pakettien suodatuksen ohje</string>
+<string name="p_filterhelp_summary">APRS-IS-pakettien suodatuksen ohje verkkosivulla</string>
 
 <string name="p_sotimeout">TCP-yhteyden aikakatkaisu</string>
 <string name="p_sotimeout_summary">Hyytyneen yhteyden katkaisuviive</string>
@@ -293,6 +298,7 @@
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg
   Heikki Hannikainen https://launchpad.net/~hessu
+  Herkko R https://launchpad.net/~oh7fxk
   Lasse Kurkela https://launchpad.net/~oh3jaj
   Ville Filpus https://launchpad.net/~oh6fse
   oh1hfv https://launchpad.net/~oh1hfv</string>
@@ -319,12 +325,21 @@
 
 <string name="bt_error_unsupported">Laite ei tue Bluetoothia!</string>
 <string name="bt_error_disabled">Ole hyvä ja kytke Bluetooth päälle!</string>
-<string name="bt_error_no_tnc">Ole hyvä jä määritä Bluetooth TNC:n asetukset!</string>
+<string name="bt_error_no_tnc">Ole hyvä ja määritä Bluetooth-TNC:n asetukset!</string>
 
 <string name="afsk_info_sco_req">Pyydän Bluetooth SCO-yhteyttä...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO-yhteys muodostettu.</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">KISS TCP-palvelimen osoite</string>
+<string name="p_tcptnc_entry">Aseta KISS-palvelimen nimi tai IP-osoite</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL-sertifikaatin tuonti tiedostosta</string>
+<string name="ssl_import_password">Anna sertifikaattitiedoston salasana:</string>
+<string name="ssl_no_keyfile">Kutsulle %s ei ole sertifikaattia! SSL ei käytössä.</string>
+<string name="ssl_import_ok">Sertifikaatti kutsulle %s asennettu.</string>
+<string name="ssl_import_error">Sertifikaatin tuonti epäonnistui: %s!</string>
+<string name="ssl_expired">Sertifikaattisi on vanhentunut!</string>
+<string name="ssl_expire_in">Sertifikaattisi vanhenee %d päivän kuluttua!</string>
 </resources>

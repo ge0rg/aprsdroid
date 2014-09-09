@@ -90,21 +90,21 @@ abstract class ServiceNotifier {
 	}
 
 	def notifyPosition(ctx : Service, prefs : PrefsWrapper,
-			status : String) {
+			status : String, prefix : String = "pos_") {
 		val n = newNotification(ctx, status)
-		setupNotification(n, ctx, prefs, false, "pos_")
+		setupNotification(n, ctx, prefs, false, prefix)
 		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, n)
 	}
 }
 
 class DonutNotifier extends ServiceNotifier {
 	def start(ctx : Service, status : String) = {
-		ctx.setForeground(true)
+		//ctx.setForeground(true)
 		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, newNotification(ctx, status))
 	}
 
 	def stop(ctx : Service) = {
-		ctx.setForeground(false)
+		//ctx.setForeground(false)
 		getNotificationMgr(ctx).cancel(SERVICE_NOTIFICATION)
 	}
 }

@@ -47,6 +47,14 @@ class KissProto(is : InputStream, os : OutputStream, digipath : String) extends 
 					buf.append(ch.toByte)
 				else
 					Log.d(TAG, "readPacket: ignoring command byte")
+			case 10 =>
+				// heuristic for ASCII strings:
+				//   * non-empty (including CRLF)
+				//   * starts with ASCII character (KISS starts with >=0x82)
+				//     (buf(0) > 0) does this check, as byte is [-128..127]
+				//   * ends in CRLF
+				if (buf.length > 1 && (buf(0) > 0) && buf(buf.length-1)==13)
+					return new String(buf.toArray).trim()
 			case _ =>
 				buf.append(ch.toByte)
 			}

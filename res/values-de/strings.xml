@@ -218,7 +218,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
 <string name="p_cp_turn_time">Min Turn Time [s]</string>
-<string name="p_cp_turn_time_summary">Bakenrate bei Richtungswechseln</string>
+<string name="p_cp_turn_time_summary">Minimale Bakenrate bei Richtungswechseln</string>
 <string name="p_cp_turn_angle">Min Turn Angle [°]</string>
 <string name="p_cp_turn_angle_summary">Mindestwinkel bei hoher Geschwindigkeit</string>
 <string name="p_cp_turn_slope">Turn Slope</string>
@@ -260,6 +260,11 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_pos">Eigene Positionsmeldungen</string>
 <string name="p_pos_ring">Klingelton</string>
 <string name="p_pos_ring_summary">Ton für gesendete Positionsmeldungen</string>
+<string name="p_dgp">Weitergeleitete eigene Pakete</string>
+<string name="p_dgp_ring">Klingelton</string>
+<string name="p_dgp_ring_summary">Ton für weitergeleitete Pakete</string>
+
+<string name="got_digipeated">Weitergeleitet von %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS-Digi-Pfad</string>
@@ -286,7 +291,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_filterdist">Nachbarradius</string>
 <string name="p_filterdist_summary">Pakete von Stationen in diesem Radius empfangen</string>
 <string name="p_filterdist_entry">Empfangsradius für andere Stationen [km]</string>
-<string name="p_filter">Nachrichtenfilter</string>
+<string name="p_filter">Paket-Filter</string>
 <string name="p_filter_hint">b/RUFZEICHEN o/OBJEKT</string>
 <string name="p_filter_summary">Filter für Paketempfang</string>
 <string name="p_filter_entry">Filter für Paketempfang eingeben</string>
@@ -332,4 +337,13 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">KISS TCP-Server zum verbinden</string>
 <string name="p_tcptnc_entry">KISS-TCP-Servername eingeben</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL-Zertifikat-Import</string>
+<string name="ssl_import_password">Bitte das Import-Passwort eingeben:</string>
+<string name="ssl_no_keyfile">Kein Zertifikat für %s! SSL wird nicht verwendet.</string>
+<string name="ssl_import_ok">SSL-Zertifikat für %s importiert.</string>
+<string name="ssl_import_error">Fehler beim Zertifikat-Import: %s!</string>
+<string name="ssl_expired">Ihr Zertifikat ist abgelaufen!</string>
+<string name="ssl_expire_in">Ihr Zertifikat läuft in %d Tagen ab!</string>
 </resources>

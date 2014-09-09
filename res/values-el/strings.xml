@@ -210,7 +210,7 @@
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
 <string name="p_cp_turn_time">Ελάχιστος Χρόνος Στροφής [s]</string>
-<string name="p_cp_turn_time_summary">Ελάχιστη τιμή beacon όταν αλλάζει κατευθύνσεις</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
 <string name="p_cp_turn_angle">Ελάχιστη Γωνία Στροφής [°]</string>
 <string name="p_cp_turn_angle_summary">Ελάχιστη γωνία σε υψηλή ταχύτητα</string>
 <string name="p_cp_turn_slope">Γυρίστε Κλίση</string>
@@ -252,6 +252,11 @@
 <string name="p_pos">Οι Αναφορές Τοποθεσίας μου</string>
 <string name="p_pos_ring">Ήχος ειδοποιήσεων</string>
 <string name="p_pos_ring_summary">Ήχος αποσταλμένων αναφορών τοποθεσίας</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">Ήχος ειδοποιήσεων</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -278,10 +283,10 @@
 <string name="p_filterdist">Τοπική ακτίνα δράσης</string>
 <string name="p_filterdist_summary">Λάβετε πακέτα από σταθμούς σε αυτή την ακτίνα δράσης</string>
 <string name="p_filterdist_entry">Ακτίνα δράσης γύρω σας για παρακολούθηση πακέτων [km]</string>
-<string name="p_filter">Φίλτρο μηνύματος</string>
+<string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Φίλτρο εισερχόμενων πακέτων</string>
-<string name="p_filter_entry">Εισάγετε φίλτρο για τα εισερχόμενα μηνύματα</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
 
 <string name="p_filterhelp">Βοήθεια φίλτρου μηνυμάτων</string>
 <string name="p_filterhelp_summary">Σύσταση online για φίλτρα APRS-IS</string>
@@ -325,4 +330,13 @@
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">KISS TCP διακομιστής επικοινωνίας</string>
 <string name="p_tcptnc_entry">Πληκτρολογήστε το όνομα του διακομιστή KISS</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
 </resources>

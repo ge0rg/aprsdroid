@@ -210,7 +210,7 @@
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
 <string name="p_cp_turn_time">Минимално  време за завой [s]</string>
-<string name="p_cp_turn_time_summary">Минимална честота на beacon когато се променя посоката</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
 <string name="p_cp_turn_angle">Минимален ъгъл на завой [°]</string>
 <string name="p_cp_turn_angle_summary">Минимален ъгъл при висока скорост</string>
 <string name="p_cp_turn_slope">Наклон на завоя</string>
@@ -252,6 +252,11 @@
 <string name="p_pos">Собствени рапорти за позиция</string>
 <string name="p_pos_ring">Тон звънене</string>
 <string name="p_pos_ring_summary">Тон за изпратен рапорт за позиция</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">Тон звънене</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi път</string>
@@ -278,10 +283,10 @@
 <string name="p_filterdist">радиус за съседство</string>
 <string name="p_filterdist_summary">Приемане на пакети от станции в този радиус</string>
 <string name="p_filterdist_entry">Радиус около Вас за мониторинг на пакети [km]</string>
-<string name="p_filter">Филтър за съобщения</string>
+<string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Филтър за входящи пакети</string>
-<string name="p_filter_entry">Въведете филтър за входящи съобщения</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
 
 <string name="p_filterhelp">Помощ за филтъра за съобщения</string>
 <string name="p_filterhelp_summary">Онлайн справка за APRS-IS филтри</string>
@@ -323,4 +328,13 @@
 <!-- TCP/IP TNC settings -->
 <string name="p_tcptnc_server_summary">KISS TCP сървър за контакт</string>
 <string name="p_tcptnc_entry">Въведете hostname на KISS сървър</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
 </resources>

@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">העדפות APRSdroid</string>
+<string name="app_map">מפת APRSdroid</string>
+<string name="app_hub">מוקד APRSdroid</string>
+<string name="app_sta">מידע תחנה</string>
+<string name="app_messages">הודעות</string>
+<string name="app_messages_clear">טהר הודעות</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
+<string name="wrongpasscode">ה-passcode שלך לא תואם את ה-callsign! שלך</string>
+<string name="anon_warning">ללא passcode, הדיווחים שלך לא יופצו!</string>
+<string name="mininterval">זמן עדכון נומינלי הינו דקה 1!</string>
+<string name="singlelog">Single Shot</string>
+<string name="startlog">התחל לעקוב</string>
+<string name="stoplog">הפסק לעקוב</string>
+
+<string name="empty_logview">You have not yet sent or received any packets.\n\n
+	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
+	You can also change the application preferences from the menu.</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Last Report</string>
+<string name="map_track_call">כעת עוקב אחר %s...</string>
+<string name="map_select">בחר תחנה</string>
+
+<string name="map_loading">כעת טוען...</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">Station SSIDs</string>
+<string name="sta_history">היסטוריית תחנה</string>
+<string name="sta_map">מפה</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
+
+<!-- Conversations activity -->
+<string name="msg_send_new">שליחת הודעה אל...</string>
+<string name="msg_message_text">Message text</string>
+<string name="msg_empty_list">אין דיונים מאוחסנים.</string>
+<string name="msg_stored_offline">ההודעה תישלח מיד כאשר אתה תתחיל מעקב.</string>
+<!-- Message activity -->
+<string name="msg_from">הודעה מאת %s</string>
+<string name="msg_to">מסור הודעה אל %s</string>
+<string name="msg_abort">נטוש תמסורת</string>
+<string name="msg_restart">הפעל מחדש תמסורת</string>
+<string name="msg_type_rejected">נדחה</string>
+<string name="msg_type_aborted">ננטש</string>
+
+<!-- AprsService -->
+<string name="aprsservice">שירות APRSdroid</string>
+<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_start">שירות APRS התחיל: %1$s, %2$s.</string>
+<string name="service_stop">שירות APRS הופסק.</string>
+<string name="service_no_location">עליך לאפשר GPS או מיקום רשת כדי שהאפליקציה APRSdroid תעבוד כהלכה!</string>
+<string name="service_sm_no_gps">™SmartBeaconing מחייב GPS!</string>
+<!-- service result codes -->
+<string name="post_error">שגיאה</string>
+<string name="post_incmg">נתקבל</string>
+<string name="post_info"/>
+<string name="post_connecting">כעת מתחבר אל %1$s:%2$d...</string>
+<string name="post_reconnect">חיבור אבד. מתחבר מחדש בתוך %d שניות...</string>
+
+<!-- first run dialog -->
+<string name="fr_title">ברוך בואך אל APRSdroid!</string>
+<string name="fr_text">תוכנה זו מותרת לשימוש רק על ידי מתפעלי רדיו חובבים!</string>
+<string name="fr_text2">You need to enter your callsign to use this software.
+	To forward your packets, an APRS-IS passcode is required as well.</string>
+
+<!-- about dialog -->
+<string name="ad_title">אודות APRSdroid v%s</string>
+<string name="ad_copyright">זכויות יוצרים © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® הינו סימן מסחר רשום של Bob Bruninga (WB4APR)</string>
+<string name="ad_gpl">תוכנית זו הינה תכנה חופשית; זכותכם להפיצה ו/או לשנותה בכפוף לתנאי הרשיון GNU General Public License גרסא 2 כפי שזה פורסם על ידי Free Software Foundation; או בגרסא 2 של הרשיון, או (בתור אופציה השמורה לכם) בכל גרסא מאוחרת. \n\n תוכנית זו הינה מופצת מתוך תקווה כי זו תהיה יעילה, אך ללא כל אחריות שהיא; אפילו ללא אחריות משתמעת של סחירות או כשירות לתכלית מסוימת. ראו את הרשיון GNU General Public License לשם פרטים נוספים. \n\n היתם אמורים לקבל העתק של הרשיון GNU General Public License יחד עם תוכנית זו; במידה ולא, כתבו למען Free Software Foundation, Inc.‎, רחוב פרנקלין (Franklin)‏ 51 , קומה חמישית, בוסטון (Boston), מסצ׳וסטס (MA) ‏02110-1301, ארה״ב (USA). \n\n קישור: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_thanks">תודות לכבוד:</string>
+<string name="ad_thanks_0">My YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: רעיון</string>
+<string name="ad_thanks_2">Dirk, DB5OY: מוטיבציה ותמיכה</string>
+<string name="ad_thanks_3">Bastian, DB1BM: יישום AFSK</string>
+<string name="ad_thanks_4">Matti, OH2MQK וגם John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">™SmartBeaconing מאת HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_trans">\n\nתרגום:</string>
+<string name="ad_homepage">עמוד בית</string>
+
+<!-- map view -->
+<string name="map_overlays">שכבות</string>
+<string name="map_satellite">לוויין</string>
+<string name="map_objects">אובייקטים של APRS</string>
+
+<!-- map view -->
+<string name="age">Show last...</string>
+<string name="age_30">30 דקות</string>
+<string name="age_2h">שעתיים</string>
+<string name="age_12h">12 שעות</string>
+<string name="age_1d">יום 1</string>
+<string name="age_2d">יומיים</string>
+
+
+<!-- options menu -->
+<string name="about">אודות</string>
+<string name="show_hub">הצג מוקד</string>
+<string name="show_map">הצג מפה</string>
+<string name="show_log">הצג יומן</string>
+<string name="clear_log">טהר יומן</string>
+<string name="quit">יציאה</string>
+<string name="preferences">העדפות</string>
+<!-- preferences -->
+<string name="p__ham">רדיו חובבני</string>
+<string name="p_callsign">Callsign</string>
+<string name="p_callsign_nossid">Callsign (ללא SSID)</string>
+<string name="p_callsign_summary">callsign של רדיו HAM</string>
+<string name="p_callsign_entry">הזן callsign</string>
+<string name="p_passcode">APRS-IS Passcode</string>
+<string name="p_passcode_summary">APRS-IS validation passcode</string>
+<string name="p_passcode_entry">Enter the passcode for your call</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
+<string name="p__aprs">הגדרות APRS</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">טיפוס תחנה (‎1..15; 9=Mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">הזן SSID עבור התחנה שלך</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(none) Primary Station</item>
+	<item>1: תחנה כללית נוספת</item>
+	<item>2: תחנה כללית נוספת</item>
+	<item>3: תחנה כללית נוספת</item>
+	<item>4: תחנה כללית נוספת</item>
+	<item>5: רשת אחרת (D-Star, 3G)</item>
+	<item>6: לוויין</item>
+	<item>7: רדיו נישא</item>
+	<item>8: סירה / ספינה</item>
+	<item>9: תחנה ניידת</item>
+	<item>10: APRS-IS (בלי רדיו)</item>
+	<item>11: בלון, מטוס, חללית</item>
+	<item>12: APRStt, DTMF, ... (חד סטרי)</item>
+	<item>13: תחנת מזג אויר</item>
+	<item>14: קרון משא</item>
+	<item>15: תחנה כללית נוספת</item>
+</string-array>
+<string name="p_symbol">סמל APRS</string>
+<string name="p_symbol_summary">הסמל שלך עבור תצוגת מפה</string>
+<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
+<string name="p_status">שדה הערה</string>
+<string name="p_status_summary">הטקסט לאחר השלמת תיאום</string>
+<string name="p_status_entry">הזן הערת משואה</string>
+<string name="p__connection">חיבור APRS</string>
+<string name="p_conntype">פרוטוקול חיבור</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP או UDP</string>
+<string name="p_conntype_entry">בחר את פרוטוקול החיבור</string>
+<string name="p_connsetup">העדפות חיבור</string>
+<string name="p_connsetup_summary">הגדרה של חיבור</string>
+<string name="p_connlog">רשימת חיבור</string>
+<string name="p_connlog_summary">פלט מצב מגובב בתוך יומן</string>
+<!-- array of connection types -->
+<string name="p_conn_tcp">חיבור TCP</string>
+<string name="p_conn_udp">UDP (שליחה בלבד)</string>
+<string name="p_conn_http">HTTP POST (שליחה בלבד)</string>
+<string name="p_conn_afsk">AFSK דרך Speaker/Mic</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">מיקום ידני</string>
+<string name="p_source_periodic">מיקום GPS/רשת ארעי</string>
+<string name="p_source_smart">מיקום ™SmartBeaconing</string>
+<!-- manual position -->
+<string name="p_source_lat">קו רוחב</string>
+<string name="p_source_lon">קו אורך</string>
+<string name="p_source_coord">קואורדינטה</string>
+<string name="p_source_get_last">השתמש במיקום GPS אחרון</string>
+<string name="p_source_auto">פרסום אוטומטי</string>
+<string name="p_source_auto_summary">בצע פרסום מיקום ארעי</string>
+
+
+<!-- privacy settings -->
+<string name="p_privacy">פרטיות מיקום</string>
+<string name="p_privacy_summary">ערפול מיקום ועוד</string>
+<string name="p_priv_ambiguity">ערפול מיקום</string>
+<string name="p_priv_ambiguity_summary">דיוק פחות עבור דיווחי מיקום עצמיים</string>
+<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
+<string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
+<string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
+<string name="p_ambiguity_dd">4 (DD°)</string>
+<string name="p_priv_spdbear">שלח מהירות &amp; כיוון</string>
+<string name="p_priv_spdbear_summary">הכלל מהירות וכיוון בדיווחי מיקום</string>
+<string name="p_priv_altitude">שלח גובה</string>
+<string name="p_priv_altitude_summary">הכלל גובה בדיווחי מיקום</string>
+
+<!-- connection type properties -->
+<string name="p_host">שרת</string>
+<string name="p_host_summary">שרת APRS-IS (פורט 8080) לשליחת משואה</string>
+<string name="p_host_entry">הזן שם מארח שרת APRS-IS</string>
+<string name="p_host_hint">host:port</string>
+<string name="p__position">דיווחי מיקום</string>
+<string name="p_locsource">מקור מיקום</string>
+<string name="p_locsource_summary">ידני, ארעי או ™SmartBeaconing</string>
+<string name="p__location">הגדרות מיקום</string>
+<string name="p__location_summary">תצוורה לשם שליחת דיווחי עמדה</string>
+
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">עזרה ™SmartBeaconing</string>
+<string name="p_sb_fast_speed">מהירות מהירה [km/h]</string>
+<string name="p_sb_fast_speed_summary">מהירות נומינלית עבור עדכוני מיקום מהירים</string>
+<string name="p_sb_fast_rate">שיעור מהיר [s]</string>
+<string name="p_sb_fast_rate_summary">שיעור משואה במהירות מהירה</string>
+<string name="p_sb_slow_speed">מהירות איטית [km/h]</string>
+<string name="p_sb_slow_speed_summary">מהירות מרבית עבור עדכוני מיקום איטיים</string>
+<string name="p_sb_slow_rate">שיעור איטי [s]</string>
+<string name="p_sb_slow_rate_summary">שיעור משואה במהירות איטית</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">זמן פניה נומינלי [s]</string>
+<string name="p_cp_turn_time_summary">שיעור משואה נומינלי בעת שינוי כיוון</string>
+<string name="p_cp_turn_angle">מעלת פניה נומינלית [°]</string>
+<string name="p_cp_turn_angle_summary">מעלה נומינלית במהירות גבוהה</string>
+<string name="p_cp_turn_slope">שיפוע פניה</string>
+<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+
+<string name="p_interval">זמן עדכון נומינלי</string>
+<string name="p_interval_summary">Minutes between beacon transmissions</string>
+<string name="p_interval_entry">הזן תדירות עדכון [min]</string>
+<string name="p_distance">מרחק עדכון נומינלי</string>
+<string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
+<string name="p_distance_entry">הזן מרחק עדכון [km]</string>
+<string name="p_speedbrg">Await speed &amp; bearing</string>
+<string name="p_speedbrg_summary">שמור על GPS פועל כדי לקבל מידע מדויק יותר</string>
+<string name="p_netloc">השתמש במיקום רשת</string>
+<string name="p_netloc_summary">השג עמדה מתוך הרשת הסלולרית</string>
+<string name="p_gps">דיוק GPS</string>
+<string name="p_gps_summary">ניצול סוללה נגד איכות מיקום</string>
+<string name="p_gps_entry">אנא הזן דיוק GPS</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">גבוה (פועל תמיד)</string>
+<string name="p_gps_med">בינוני</string>
+<string name="p_gps_low">נמוך</string>
+<string name="p_keepscreen">שמור על מסך ער</string>
+<string name="p_keepscreen_summary">אל תכבה מסך כאשר APRSdroid מצוי ברקע</string>
+
+<!-- messaging -->
+<string name="p__display">תצוגה והתראות</string>
+<string name="p__notification">התראות</string>
+<string name="p__notification_summary">צפצף עבור הודעות ודיווחי מיקום</string>
+<string name="p_msg">הודעות נכנסות</string>
+<string name="p_msg_led">LED מהבהב</string>
+<string name="p_msg_led_on">התראות LED פועלות</string>
+<string name="p_msg_led_off">התראות LED סגורות</string>
+<string name="p_msg_vibr">רטט</string>
+<string name="p_msg_vibr_on">התראות רטט פועלות</string>
+<string name="p_msg_vibr_off">התראות רטט סגורות</string>
+<string name="p_msg_ring">צלצול</string>
+<string name="p_msg_ring_summary">צליל להודעות נכנסות</string>
+<string name="p_pos">שיווחי מיקום עצמאים</string>
+<string name="p_pos_ring">צלצול</string>
+<string name="p_pos_ring_summary">צליל לשליחת דיווחי מיקום</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">צלצול</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+<string name="p_afsk_prefix">Frame Sync Prefix</string>
+<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
+<string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
+<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
+<string name="p_afsk_btsco">אוזניות Bluetooth</string>
+<string name="p_afsk_btsco_summary">השתמש באוזניות Bluetooth (SCO) עבור AFSK</string>
+<string name="p_afsk_output">פלט אודיו</string>
+<string-array name="p_afsk_out_e">
+	<item>שיחה קולית</item>
+	<item>צלצול</item>
+	<item>מוזיקה</item>
+	<item>צפצוף</item>
+</string-array>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">שרת APRS-IS TCP (פורט 14580) להתקשרות</string>
+<string name="p_filterdist">רדיוס שכן</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p_filter">מסנן חבילת מידע</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">מסנן עבור חבילות מידע נכנסות</string>
+<string name="p_filter_entry">הזן מסנן עבור חבילות מידע נכנסות</string>
+
+<string name="p_filterhelp">עזרת סינון הודעה</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="p_sotimeout">TCP socket timeout</string>
+<string name="p_sotimeout_summary">Time before resetting the connection</string>
+<string name="p_sotimeout_entry">זמן תפוגה בשניות (0 = מנוטרל)</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  GenghisKhan https://launchpad.net/~genghiskhan</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">מצב לקוח</string>
+<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
+<string name="p_bt_tnc_device">מכשיר TNC Bluetooth</string>
+<string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
+<string name="p_bt_tnc_device_entry">בחר מכשיר</string>
+<string name="p_bt_channel">ערוץ</string>
+<string name="p_bt_channel_summary">ערוץ Bluetooth על TNC</string>
+<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+
+<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">זמן להמתנה לאחר כל שורה</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
+<string name="p_bt_prefs">הגדרות Bluetooth</string>
+<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+
+<string name="bt_error_unsupported">Bluetooth אינו נתמך!</string>
+<string name="bt_error_disabled">אנא אפשר Bluetooth!</string>
+<string name="bt_error_no_tnc">אנא הגדר Bluetooth TNC!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">ייבוא תעודת SSL</string>
+<string name="ssl_import_password">אנא הזן את הסיסמת לשם ייבוא תעודה:</string>
+<string name="ssl_no_keyfile">אין תעודה עבור %s! לא משתמש בהצפנת SSL.</string>
+<string name="ssl_import_ok">תעודה מיובאת עבור %s.</string>
+<string name="ssl_import_error">שגיאה בייבוא תעודה: %s!</string>
+<string name="ssl_expired">התעודה שלך פקעה!</string>
+<string name="ssl_expire_in">התעודה שלך תפוג בתוך %d ימים!</string>
+</resources>

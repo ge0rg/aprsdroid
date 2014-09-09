@@ -61,7 +61,6 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 	override def onClick(view : View) {
 		view.getId match {
 		case R.id.singlebtn =>
-			passcodeWarning(prefs.getCallsign(), prefs.getPasscode())
 			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 			setupButtons(true)
 		case R.id.startstopbtn =>

@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">Podešavanja</string>
+<string name="app_map">Mapa</string>
+<string name="app_hub">APRSdroid Hub</string>
+<string name="app_sta">Podaci o stanici</string>
+<string name="app_messages">Poruke</string>
+<string name="app_messages_clear">Obriši poruke</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Treba da unesete pozivni znak i lozinku u podešavanjima programa APRSdroid!</string>
+<string name="wrongpasscode">Lozinka ne odgovara vašem pozivnom znaku</string>
+<string name="anon_warning">Bez lozinke, vaši podaci neće biti poslati!</string>
+<string name="mininterval">Najkraće vreme ažuriranja je jedan minut!</string>
+<string name="singlelog">Pošalji</string>
+<string name="startlog">Počni praćenje</string>
+<string name="stoplog">Zaustavi praćenje</string>
+
+<string name="empty_logview">Još uvek niste slali ili primali pakete.\n\n Otvorite \"Meni\" da pošaljete izveštaj ili da pokrenete praćenje svog položaja.\n\n U meniju možete takođe promeniti podešavanja programa.</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Poslednji izveštaj</string>
+<string name="map_track_call">Praćenje %s</string>
+<string name="map_select">Izaberite stanicu</string>
+
+<string name="map_loading">Učitavam...</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">SSID stanice</string>
+<string name="sta_history">Istorija stanice</string>
+<string name="sta_map">Mapa</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
+
+<!-- Conversations activity -->
+<string name="msg_send_new">Slanje poruke za...</string>
+<string name="msg_message_text">Tekst poruke</string>
+<string name="msg_empty_list">Nema sačuvanih razgovora</string>
+<string name="msg_stored_offline">Poruka će biti poslata čim pokrenete praćenje</string>
+<!-- Message activity -->
+<string name="msg_from">Poruka od %s</string>
+<string name="msg_to">Poruka za %s</string>
+<string name="msg_abort">Prekini slanje</string>
+<string name="msg_restart">Restartuj slanje</string>
+<string name="msg_type_rejected">odbijeno</string>
+<string name="msg_type_aborted">prekinuto</string>
+
+<!-- AprsService -->
+<string name="aprsservice">APRSdroid servis</string>
+<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_start">APRSdroid servis je pokrenut: %1$s, %2$s.</string>
+<string name="service_stop">APRSdroid servis je zaustavljen.</string>
+<string name="service_no_location">Potrebno je da uključite ili GPS ili mrežno lociranje da bi APRSdroid mogao da radi!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<!-- service result codes -->
+<string name="post_error">Greška</string>
+<string name="post_incmg">primljeno</string>
+<string name="post_info"/>
+<string name="post_connecting">Connecting to %1$s:%2$d...</string>
+<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Dobrodošli u APRSdroid!</string>
+<string name="fr_text">Ovaj program mogu koristiti samo licencirani radioamaterski operatori!</string>
+<string name="fr_text2">Da bi ste koristili ovaj program, morate uneti svoj pozivni znak. Da biste slali svoje pakete, neophodna vam je i APRS-IS lozinka.</string>
+
+<!-- about dialog -->
+<string name="ad_title">About APRSdroid v%s</string>
+<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_gpl">This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+	\n\n
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+	\n\n
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	\n\n
+	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+	</string>
+<string name="ad_thanks">Thanks to:</string>
+<string name="ad_thanks_0">My YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: idea</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementation</string>
+<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_trans">\n\nPrevod:</string>
+<string name="ad_homepage">Početna Strana</string>
+
+<!-- map view -->
+<string name="map_overlays">Mape</string>
+<string name="map_satellite">Satelit</string>
+<string name="map_objects">APRS Objects</string>
+
+<!-- map view -->
+<string name="age">Show last...</string>
+<string name="age_30">30 minuta</string>
+<string name="age_2h">2 sata</string>
+<string name="age_12h">12 sati</string>
+<string name="age_1d">1 dan</string>
+<string name="age_2d">2 days</string>
+
+
+<!-- options menu -->
+<string name="about">O programu</string>
+<string name="show_hub">Show Hub</string>
+<string name="show_map">Prikaži mapu</string>
+<string name="show_log">Prikaži log</string>
+<string name="clear_log">Obriši log</string>
+<string name="quit">Zatvori</string>
+<string name="preferences">Podešavanja</string>
+<!-- preferences -->
+<string name="p__ham">Amateur Radio</string>
+<string name="p_callsign">Pozivni znak</string>
+<string name="p_callsign_nossid">Pozivni znak (bez SSID)</string>
+<string name="p_callsign_summary">Vaš radio amaterski pozivni znak</string>
+<string name="p_callsign_entry">Enter your callsign</string>
+<string name="p_passcode">APRS-IS lozinka</string>
+<string name="p_passcode_summary">APRS-IS lozinka za proveru</string>
+<string name="p_passcode_entry">Enter the passcode for your call</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
+<string name="p__aprs">APRS podešavanja</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Tip stanice (1..15; 9=mobil, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Unesite SSID svoje stanice</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(none) Primary Station</item>
+	<item>1: Generic additional station</item>
+	<item>2: Generic additional station</item>
+	<item>3: Generic additional station</item>
+	<item>4: Generic additional station</item>
+	<item>5: Other network (D-Star, 3G)</item>
+	<item>6: Satellite</item>
+	<item>7: Handheld radio</item>
+	<item>8: Boat / ship</item>
+	<item>9: Mobile station</item>
+	<item>10: APRS-IS (no radio)</item>
+	<item>11: Balloon, aircraft, spacecraft</item>
+	<item>12: APRStt, DTMF, ... (one way)</item>
+	<item>13: Weather station</item>
+	<item>14: Freight vehicle</item>
+	<item>15: Generic additional station</item>
+</string-array>
+<string name="p_symbol">APRS symbol</string>
+<string name="p_symbol_summary">Your symbol for map display</string>
+<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
+<string name="p_status">Comment field</string>
+<string name="p_status_summary">The text after your coordinates</string>
+<string name="p_status_entry">Enter your beacon comment</string>
+<string name="p__connection">APRS Connection</string>
+<string name="p_conntype">Connection Protocol</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
+<string name="p_conntype_entry">Choose the connection protocol</string>
+<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup_summary">Configuration of Connection</string>
+<string name="p_connlog">Connection Logging</string>
+<string name="p_connlog_summary">Verbose status output in Log</string>
+<!-- array of connection types -->
+<string name="p_conn_tcp">TCP connection</string>
+<string name="p_conn_udp">UDP (send only)</string>
+<string name="p_conn_http">HTTP POST (send only)</string>
+<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_kwd">Kenwood GPS Port</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manual Position</string>
+<string name="p_source_periodic">Periodic GPS/Network Position</string>
+<string name="p_source_smart">SmartBeaconing™ Position</string>
+<!-- manual position -->
+<string name="p_source_lat">Geografska širina | latituda</string>
+<string name="p_source_lon">Geografska dužina | longituda</string>
+<string name="p_source_coord">Koordinata</string>
+<string name="p_source_get_last">Use last GPS position</string>
+<string name="p_source_auto">Automatic Posting</string>
+<string name="p_source_auto_summary">Perform periodic position posting</string>
+
+
+<!-- privacy settings -->
+<string name="p_privacy">Position privacy</string>
+<string name="p_privacy_summary">Position ambiguity and more</string>
+<string name="p_priv_ambiguity">Position Ambiguity</string>
+<string name="p_priv_ambiguity_summary">Reduced precision for own position reports</string>
+<string name="p_ambiguity_off">Off (DD° MM.mm\')</string>
+<string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
+<string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
+<string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
+<string name="p_ambiguity_dd">4 (DD°)</string>
+<string name="p_priv_spdbear">Send Speed &amp; Bearing</string>
+<string name="p_priv_spdbear_summary">Include speed and bearing in position reports</string>
+<string name="p_priv_altitude">Send Altitude</string>
+<string name="p_priv_altitude_summary">Include altitude in position reports</string>
+
+<!-- connection type properties -->
+<string name="p_host">Server</string>
+<string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
+<string name="p_host_entry">Enter the APRS-IS server hostname</string>
+<string name="p_host_hint">host:port</string>
+<string name="p__position">Position Reports</string>
+<string name="p_locsource">Location Source</string>
+<string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
+<string name="p__location">Location Settings</string>
+<string name="p__location_summary">Configuration for sending position reports</string>
+
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">SmartBeaconing™ help</string>
+<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
+<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_rate">Fast Rate [s]</string>
+<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
+<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
+<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
+<string name="p_sb_slow_rate">Slow Rate [s]</string>
+<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">Min Turn Time [s]</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
+<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
+<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
+<string name="p_cp_turn_slope">Turn Slope</string>
+<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+
+<string name="p_interval">Minimum update time</string>
+<string name="p_interval_summary">Minutes between beacon transmissions</string>
+<string name="p_interval_entry">Enter the update interval [min]</string>
+<string name="p_distance">Minimum update distance</string>
+<string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
+<string name="p_distance_entry">Enter the update distance [km]</string>
+<string name="p_speedbrg">Await speed &amp; bearing</string>
+<string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
+<string name="p_netloc">Use network location</string>
+<string name="p_netloc_summary">Acquire position from the cellular network</string>
+<string name="p_gps">GPS Precision</string>
+<string name="p_gps_summary">Battery usage vs. position quality</string>
+<string name="p_gps_entry">Please set the GPS Precision</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">High (Always on)</string>
+<string name="p_gps_med">Srednje</string>
+<string name="p_gps_low">Nizak</string>
+<string name="p_keepscreen">Keep screen awake</string>
+<string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
+
+<!-- messaging -->
+<string name="p__display">Display and Notifications</string>
+<string name="p__notification">Obaveštenja</string>
+<string name="p__notification_summary">Alert for messages and position reports</string>
+<string name="p_msg">Dolazne poruke</string>
+<string name="p_msg_led">Blinking LED</string>
+<string name="p_msg_led_on">LED notifications are on</string>
+<string name="p_msg_led_off">LED notifications are off</string>
+<string name="p_msg_vibr">Vibration</string>
+<string name="p_msg_vibr_on">Vibration notifications are on</string>
+<string name="p_msg_vibr_off">Vibration notification are off</string>
+<string name="p_msg_ring">Ringtone</string>
+<string name="p_msg_ring_summary">Tone for incoming messages</string>
+<string name="p_pos">Own Position Reports</string>
+<string name="p_pos_ring">Ringtone</string>
+<string name="p_pos_ring_summary">Tone for sent position reports</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">Ringtone</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS digi path</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">Sequence of digipeaters</string>
+<string name="p_aprs_path_entry">Enter the comma separated digi path</string>
+<string name="p_afsk_prefix">Frame Sync Prefix</string>
+<string name="p_afsk_prefix_summary">No-Op Preamble (e.g. for VOX control)</string>
+<string name="p_afsk_prefix_entry">Enter the prefix time [ms]</string>
+<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
+<string name="p_afsk_btsco">Bluetooth Headset</string>
+<string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
+<string name="p_afsk_output">Audio izlaz</string>
+<string-array name="p_afsk_out_e">
+	<item>Poziv glasom</item>
+	<item>Ringtone</item>
+	<item>Muzika</item>
+	<item>Alarm</item>
+</string-array>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_filterdist">Neighbor radius</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
+<string name="p_filter">Packet filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter for incoming packets</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
+
+<string name="p_filterhelp">Message filter help</string>
+<string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
+
+<string name="p_sotimeout">TCP socket timeout</string>
+<string name="p_sotimeout_summary">Time before resetting the connection</string>
+<string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  Предраг Супуровић https://launchpad.net/~pedja-3</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">Client Mode</string>
+<string name="p_bt_client_summary">APRSdroid establishes the connection (Keep this on!)</string>
+<string name="p_bt_tnc_device">TNC Bluetooth Device</string>
+<string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
+<string name="p_bt_tnc_device_entry">Choose device</string>
+<string name="p_bt_channel">Kanal</string>
+<string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
+<string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
+
+<string name="p_bt_tnc_init">TNC init string</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+
+<string name="p_bt_tnc_delay">TNC init delay</string>
+<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+
+<string name="p_bt_prefs">Bluetooth settings</string>
+<string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
+
+<string name="bt_error_unsupported">Bluetooth is not supported!</string>
+<string name="bt_error_disabled">Please enable Bluetooth!</string>
+<string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+
+<string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
+<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+</resources>

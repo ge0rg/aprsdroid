@@ -158,8 +158,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_conn_http">HTTP POST (alleen zenden)</string>
 <string name="p_conn_afsk">AFSK via luidspreker/microfoon</string>
 <string name="p_conn_bt">Bleutooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_kwd">Kenwood GPS poort</string>
+<string name="p_conn_tcptnc">TCP/IP</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuele Positie</string>
 <string name="p_source_periodic">Periodieke GPS/Netwerk Positie</string>
@@ -201,22 +201,22 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>
-<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
-<string name="p_sb_fast_rate">Fast Rate [s]</string>
-<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
-<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
-<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
-<string name="p_sb_slow_rate">Slow Rate [s]</string>
-<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<string name="p_sb_fast_speed">Hoge snelheid [km/h]</string>
+<string name="p_sb_fast_speed_summary">Minimum snelheid voor snelle positie updates</string>
+<string name="p_sb_fast_rate">Hoge ratio</string>
+<string name="p_sb_fast_rate_summary">Beacon rate bij hoge snelheid</string>
+<string name="p_sb_slow_speed">Lage snelheid [km/h]</string>
+<string name="p_sb_slow_speed_summary">Maximum snelheid voor trage positie updates</string>
+<string name="p_sb_slow_rate">Lage rate [s]</string>
+<string name="p_sb_slow_rate_summary">Baken rate bij lage snelheid</string>
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
-<string name="p_cp_turn_time">Min Turn Time [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing directions</string>
-<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
-<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
-<string name="p_cp_turn_slope">Turn Slope</string>
-<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+<string name="p_cp_turn_time">Min draai tijd</string>
+<string name="p_cp_turn_time_summary">Minimum baken rate bij richtings verandering</string>
+<string name="p_cp_turn_angle">Min draai hoek [°]</string>
+<string name="p_cp_turn_angle_summary">Minimum hoek bij hoge snelheid</string>
+<string name="p_cp_turn_slope">Draai cirkel</string>
+<string name="p_cp_turn_slope_summary">Invloed van de snelheid op de maximum hoek</string>
 
 <string name="p_interval">Minimum update tijd</string>
 <string name="p_interval_summary">Minuten tussen baken uitzendingen</string>
@@ -254,6 +254,11 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_pos">Eigen positie rapporten</string>
 <string name="p_pos_ring">Beltoon</string>
 <string name="p_pos_ring_summary">Toon voor de positie rapporten te versturen</string>
+<string name="p_dgp">Eigen digipeated pakketten</string>
+<string name="p_dgp_ring">Beltoon</string>
+<string name="p_dgp_ring_summary">Toon voor de digipeated pakketten</string>
+
+<string name="got_digipeated">Digipeated door %1$s: %2$s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -263,8 +268,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_afsk_prefix">Frame Sync Prefix</string>
 <string name="p_afsk_prefix_summary">No-Op Voorversterker (e.g. voor VOX controle)</string>
 <string name="p_afsk_prefix_entry">Geef de prefix in [ms]</string>
-<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
-<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
+<string name="p_afsk_hqdemod">Hoge kwaliteits Demodulator</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU vereist</string>
 <string name="p_afsk_btsco">Bluetooth Headset</string>
 <string name="p_afsk_btsco_summary">Gebruik de Bluetooth (SCO) headset voor AFSK</string>
 <string name="p_afsk_output">Geluidsweergave</string>
@@ -280,10 +285,10 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_filterdist">Buur radius</string>
 <string name="p_filterdist_summary">Ontvangen packets van stations in deze radius</string>
 <string name="p_filterdist_entry">Radius om je heen om op packets te monitoren [km]</string>
-<string name="p_filter">Berichten filter</string>
+<string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Filter voor inkomende pakketten</string>
-<string name="p_filter_entry">Geef een filter in vor inkomende berichten</string>
+<string name="p_filter_entry">Geef filter in voor inkomende pakketten</string>
 
 <string name="p_filterhelp">Berichten filter help</string>
 <string name="p_filterhelp_summary">Online verwijzing naar de APRS-IS filters</string>
@@ -329,6 +334,15 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="afsk_info_sco_est">Bleutooth SCO link verbonden.</string>
 
 <!-- TCP/IP TNC settings -->
-<string name="p_tcptnc_server_summary">KISS TCP server to contact</string>
-<string name="p_tcptnc_entry">Enter the KISS server hostname</string>
+<string name="p_tcptnc_server_summary">Geeef de KISS TCP server in</string>
+<string name="p_tcptnc_entry">Geef de KISS server hostname in</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">Importeer SSL certificaat</string>
+<string name="ssl_import_password">Geef het paswoord om het certificaat te importeren</string>
+<string name="ssl_no_keyfile">Geen certificaat voor %s! Je gebruikt geen SSL.</string>
+<string name="ssl_import_ok">Importeer het certificaat voor %s.</string>
+<string name="ssl_import_error">Fout bij het importeren van het certificaat: %s!</string>
+<string name="ssl_expired">Je certificaat is verlopen!</string>
+<string name="ssl_expire_in">Je certificaat verloop over %d dagen!</string>
 </resources>
