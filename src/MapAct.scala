@@ -53,6 +53,10 @@ class MapAct extends MapActivity with UIHelper {
 			Toast.makeText(this, getString(R.string.mapfile_error, mapfile), Toast.LENGTH_SHORT).show()
 			finish()
 		}
+		val themefile = new File(prefs.getString("themefile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.xml"))
+		if (themefile.exists())
+			mapview.setRenderTheme(themefile)
+
 		mapview.getOverlays().add(staoverlay)
 
 		// listen for new positions

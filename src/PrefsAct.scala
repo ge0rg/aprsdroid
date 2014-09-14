@@ -22,6 +22,7 @@ class PrefsAct extends PreferenceActivity {
 		super.onCreate(savedInstanceState)
 		addPreferencesFromResource(R.xml.preferences)
 		fileChooserPreference("mapfile", 123456)
+		fileChooserPreference("themefile", 123457)
 	}
 
 	def parseFilePickerResult(data : Intent, pref_name : String, error_id : Int) {
@@ -53,6 +54,9 @@ class PrefsAct extends PreferenceActivity {
 		android.util.Log.d("PrefsAct", "onActResult: request=" + reqCode + " result=" + resultCode + " " + data)
 		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123456) {
 			parseFilePickerResult(data, "mapfile", R.string.mapfile_error)
+		} else
+		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123457) {
+			parseFilePickerResult(data, "themefile", R.string.themefile_error)
 		}
 	}
 }

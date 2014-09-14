@@ -230,6 +230,11 @@
 	    android:title="@string/p_mapfile"
 	    android:summary="@string/p_mapfile_summary" />
 
+    <Preference
+	    android:key="themefile"
+	    android:title="@string/p_themefile"
+	    android:summary="@string/p_themefile_summary" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
