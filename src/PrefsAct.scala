@@ -24,31 +24,35 @@ class PrefsAct extends PreferenceActivity {
 		fileChooserPreference("mapfile", 123456)
 	}
 
+	def parseFilePickerResult(data : Intent, pref_name : String, error_id : Int) {
+		val file = data.getData().getScheme() match {
+		case "file" =>
+			data.getData().getPath()
+		case "content" =>
+			val cursor = getContentResolver().query(data.getData(), null, null, null, null)
+			cursor.moveToFirst()
+			val idx = cursor.getColumnIndex("_data")
+			val result = if (idx != -1) cursor.getString(idx) else null
+			cursor.close()
+			result
+		case _ =>
+			null
+		}
+		if (file != null) {
+			PreferenceManager.getDefaultSharedPreferences(this)
+				.edit().putString(pref_name, file).commit()
+			android.widget.Toast.makeText(this, file,
+				android.widget.Toast.LENGTH_SHORT).show()
+		} else {
+			android.widget.Toast.makeText(this, getString(error_id, file),
+				android.widget.Toast.LENGTH_SHORT).show()
+		}
+	}
+
 	override def onActivityResult(reqCode : Int, resultCode : Int, data : Intent) {
 		android.util.Log.d("PrefsAct", "onActResult: request=" + reqCode + " result=" + resultCode + " " + data)
 		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123456) {
-			val mapfile = data.getData().getScheme() match {
-			case "file" =>
-				data.getData().getPath()
-			case "content" =>
-				val cursor = getContentResolver().query(data.getData(), null, null, null, null)
-				cursor.moveToFirst()
-				val idx = cursor.getColumnIndex("_data")
-				val result = if (idx != -1) cursor.getString(idx) else null
-				cursor.close()
-				result
-			case _ =>
-				null
-			}
-			if (mapfile != null) {
-				PreferenceManager.getDefaultSharedPreferences(this)
-					.edit().putString("mapfile", mapfile).commit()
-				android.widget.Toast.makeText(this, mapfile,
-					android.widget.Toast.LENGTH_SHORT).show()
-			} else {
-				android.widget.Toast.makeText(this, getString(R.string.mapfile_error, mapfile),
-					android.widget.Toast.LENGTH_SHORT).show()
-			}
+			parseFilePickerResult(data, "mapfile", R.string.mapfile_error)
 		}
 	}
 }
