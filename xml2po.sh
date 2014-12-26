@@ -39,8 +39,12 @@ translate_po2xml() {
 		lang=${po##$PO}
 		lang=${lang%%.po}	# strip .po
 		lang=${lang/_/-r}	# fix up lang_Locale -> lang-rLocale
-		echo $lang:
 		dir=$RES-$lang
+		# fix Java f'ups <http://developer.android.com/reference/java/util/Locale.html>
+		[ "$lang" == "he" ] && dir=$RES-iw
+		[ "$lang" == "id" ] && dir=$RES-in
+		[ "$lang" == "yi" ] && dir=$RES-ji
+		echo $lang: $dir
 		mkdir -p $dir
 		xml2po -a -l $lang -p $po $RES/strings.xml | sed "s/'/\\\\'/g" > $dir/strings.xml
 	done
