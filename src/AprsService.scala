@@ -190,23 +190,25 @@ class AprsService extends Service {
 			pos, status_spd + status_alt + " " + status, /* messaging = */ true))
 	}
 
-	def sendPacket(packet : APRSPacket, status_postfix : String) = {
-		try {
+	def sendPacket(packet : APRSPacket, status_postfix : String) {
+		scala.concurrent.ops.spawn {
+		val status = try {
 			val status = poster.update(packet)
 			val full_status = status + status_postfix
 			addPost(StorageDatabase.Post.TYPE_POST, full_status, packet.toString)
 			full_status
 		} catch {
 			case e : Exception =>
-				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.getMessage())
+				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.toString())
 				e.printStackTrace()
-				e.getMessage()
+				e.toString()
+		}
+		handler.post { sendPacketFinished(status) }
 		}
 	}
-	def sendPacket(packet : APRSPacket) : String = sendPacket(packet, "")
+	def sendPacket(packet : APRSPacket) { sendPacket(packet, "") }
 
 	def postLocation(location : Location) {
-		val callssid = prefs.getCallSsid()
 		var symbol = prefs.getString("symbol", "")
 		if (symbol.length != 2)
 			symbol = getString(R.string.default_symbol)
@@ -214,12 +216,15 @@ class AprsService extends Service {
 		val packet = formatLoc(symbol, status, location)
 
 		Log.d(TAG, "packet: " + packet)
-		val result = sendPacket(packet, " (±%dm)".format(location.getAccuracy.asInstanceOf[Int]))
+		sendPacket(packet, " (±%dm)".format(location.getAccuracy.asInstanceOf[Int]))
+	}
+
+	def sendPacketFinished(result : String) {
 		if (singleShot) {
 			singleShot = false
 			stopSelf()
 		} else {
-			val message = "%s: %s".format(callssid, result)
+			val message = "%s: %s".format(prefs.getCallSsid(), result)
 			ServiceNotifier.instance.notifyPosition(this, prefs, message)
 		}
 	}

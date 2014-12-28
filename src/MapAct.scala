@@ -57,6 +57,8 @@ class MapAct extends MapActivity with UIHelper {
 		// only make it default if not tracking
 		if (targetcall == "")
 			makeLaunchActivity("map")
+		else
+			setTitle(getString(R.string.app_map) + ": " + targetcall)
 		setKeepScreenOn()
 		setVolumeControls()
 		reloadMapAndTheme()

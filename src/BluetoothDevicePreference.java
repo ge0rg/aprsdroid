@@ -16,7 +16,12 @@
 		protected void onPrepareDialogBuilder(android.app.AlertDialog.Builder builder) {
 			// hook into the builder to refresh the list
 			BluetoothAdapter bta = BluetoothAdapter.getDefaultAdapter();
-			Set<BluetoothDevice> pairedDevices = bta.getBondedDevices();
+			Set<BluetoothDevice> pairedDevices = (bta != null) ? bta.getBondedDevices() : null;
+			if (pairedDevices == null) {
+				super.onPrepareDialogBuilder(builder);
+				return;
+			}
+
 			CharSequence[] entries = new CharSequence[pairedDevices.size()];
 			CharSequence[] entryValues = new CharSequence[pairedDevices.size()];
 			int i = 0;
