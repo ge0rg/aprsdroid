@@ -225,12 +225,12 @@
     </PreferenceCategory>
     </PreferenceScreen>
 
-    <Preference
+    <de.duenndns.PreferenceWithValue
 	    android:key="mapfile"
 	    android:title="@string/p_mapfile"
 	    android:summary="@string/p_mapfile_summary" />
 
-    <Preference
+    <de.duenndns.PreferenceWithValue
 	    android:key="themefile"
 	    android:title="@string/p_themefile"
 	    android:summary="@string/p_themefile_summary" />
