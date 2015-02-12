@@ -71,7 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -354,7 +354,7 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL certificate import</string>
 <string name="ssl_import_password">Please enter the certificate import password:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
 <string name="ssl_import_ok">Imported certificate for %s.</string>
 <string name="ssl_import_error">Error importing certificate: %s!</string>
 <string name="ssl_expired">Your certificate has expired!</string>
