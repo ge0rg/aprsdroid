@@ -258,6 +258,12 @@ trait UIHelper extends Activity
 		//	stopService(AprsService.intent(this, AprsService.SERVICE))
 		//	finish();
 		//	true
+		case android.R.id.home =>
+			if (isTaskRoot()) {
+				startActivity(new Intent(this, classOf[HubActivity]).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+				finish();
+				true
+			} else false
 		case _ => false
 		}
 	}
