@@ -197,16 +197,21 @@ trait UIHelper extends Activity
 			.create.show
 	}
 
-	abstract override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
-		val mi = menu.findItem(R.id.startstopbtn)
-		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
-		mi.setIcon(if (AprsService.running) android.R.drawable.ic_menu_close_clear_cancel  else android.R.drawable.ic_menu_compass)
+	abstract override def onCreateOptionsMenu(menu : Menu) : Boolean = {
+		getMenuInflater().inflate(R.menu.options, menu);
 		// disable the "own" menu
 		Array(R.id.hub, R.id.map, R.id.log, R.id.conversations).map((id) => {
 			menu.findItem(id).setVisible(id != menu_id)
 		})
 		menu.findItem(R.id.age).setVisible(R.id.map == menu_id || R.id.hub == menu_id)
 		menu.findItem(R.id.overlays).setVisible(R.id.map == menu_id)
+		true
+	}
+
+	abstract override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+		val mi = menu.findItem(R.id.startstopbtn)
+		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
+		mi.setIcon(if (AprsService.running) android.R.drawable.ic_menu_close_clear_cancel  else android.R.drawable.ic_menu_compass)
 		menu.findItem(R.id.objects).setChecked(prefs.getShowObjects())
 		menu.findItem(R.id.satellite).setChecked(prefs.getShowSatellite())
 		true
