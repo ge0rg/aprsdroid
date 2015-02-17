@@ -32,7 +32,7 @@ class StationActivity extends StationHelper(R.string.app_sta)
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 		locReceiver.startTask(null)
 
-		Array(R.id.mapbutton, R.id.qrzcombutton, R.id.aprsfibutton).foreach((id) => {
+		Array(R.id.map, R.id.qrzcom, R.id.aprsfi).foreach((id) => {
 				findViewById(id).setOnClickListener(this)
 			})
 	}

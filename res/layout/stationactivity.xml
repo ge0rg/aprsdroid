@@ -37,7 +37,7 @@
 		xmlns:android="http://schemas.android.com/apk/res/android"
 		>
 		<Button
-			android:id="@+id/mapbutton"
+			android:id="@+id/map"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
@@ -45,7 +45,7 @@
 			>
 		</Button>
 		<Button
-			android:id="@+id/aprsfibutton"
+			android:id="@+id/aprsfi"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
@@ -53,7 +53,7 @@
 			>
 		</Button>
 		<Button
-			android:id="@+id/qrzcombutton"
+			android:id="@+id/qrzcom"
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"

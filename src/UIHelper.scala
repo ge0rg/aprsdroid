@@ -318,15 +318,15 @@ trait UIHelper extends Activity
 		case R.id.messagesclear =>
 			clearMessages(targetcall)
 			true
-		case R.id.mapbutton =>
+		case R.id.map =>
 			trackOnMap(targetcall)
 			true
-		case R.id.aprsfibutton =>
+		case R.id.aprsfi =>
 			val url = "http://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)
 			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
 			true
-		case R.id.qrzcombutton =>
+		case R.id.qrzcom =>
 			val url = "http://qrz.com/db/%s".format(targetcall.split("[- ]+")(0))
 			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
