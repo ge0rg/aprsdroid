@@ -1,41 +1,4 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/hub"
-		android:title="@string/show_hub"
-		android:alphabeticShortcut="h"
-		android:showAsAction="ifRoom"
-		android:icon="@android:drawable/ic_menu_sort_by_size" />
-	<item android:id="@+id/log"
-		android:title="@string/show_log"
-		android:alphabeticShortcut="l"
-		android:showAsAction="ifRoom"
-		android:icon="@android:drawable/ic_menu_recent_history" />
-	<item android:id="@+id/map"
-		android:title="@string/show_map"
-		android:alphabeticShortcut="m"
-		android:showAsAction="ifRoom"
-		android:icon="@android:drawable/ic_menu_mapmode" />
-	<item android:id="@+id/conversations"
-		android:title="@string/app_messages"
-		android:alphabeticShortcut="c"
-		android:showAsAction="ifRoom"
-		android:icon="@android:drawable/ic_menu_send" />
-	<item android:id="@+id/age"
-		android:title="@string/age"
-		android:alphabeticShortcut="a"
-		android:icon="@android:drawable/ic_menu_today" />
-	<item android:id="@+id/overlays"
-		android:title="@string/map_overlays"
-		android:alphabeticShortcut="o"
-		android:icon="@android:drawable/ic_menu_view" >
-		<menu>
-			<group android:checkableBehavior="all">
-				<item android:id="@+id/objects"
-					android:title="@string/map_objects" />
-				<item android:id="@+id/satellite"
-					android:title="@string/map_satellite" />
-			</group>
-		</menu>
-	</item>
 	<item android:id="@+id/startstopbtn"
 		android:title="@string/startlog"
 		android:alphabeticShortcut="t"

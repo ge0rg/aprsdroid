@@ -72,11 +72,6 @@ class MapAct extends MapActivity with UIHelper {
 	}
 	override def isRouteDisplayed() = false
 
-	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options, menu);
-		true
-	}
-
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
 		case R.id.objects =>
