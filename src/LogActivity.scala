@@ -48,7 +48,6 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
 		locReceiver.startTask(null)
 
-		setTitle(getString(R.string.app_name) + ": " + prefs.getCallSsid())
 		postlist.requestFocus()
 	}
 

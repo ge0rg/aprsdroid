@@ -4,7 +4,9 @@ package org.aprsdroid.app
 import _root_.android.app.{Activity, ListActivity}
 import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
+import _root_.android.content.res.Configuration
 import _root_.android.net.Uri
+import _root_.android.os.Build
 import _root_.android.util.Log
 import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View, WindowManager}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
@@ -123,6 +125,21 @@ trait UIHelper extends Activity
 	// DialogInterface.OnCancelListener
 	override def onCancel(d : DialogInterface) {
 		finish()
+	}
+
+	def setLongTitle(title_id : Int, targetcall : String) {
+		// use two-line display on holo in portrait mode
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+				new HoneycombTitleSetter(getString(title_id), targetcall)
+			else
+				new HoneycombTitleSetter(getString(title_id) + ": " + targetcall, null)
+		} else // pre-holo setTitle
+			setTitle(getString(title_id) + ": " + targetcall)
+	}
+	class HoneycombTitleSetter(t : String, st : String) {
+		UIHelper.this.setTitle(t)
+		UIHelper.this.getActionBar().setSubtitle(st)
 	}
 
 	// store the activity name for next APRSdroid launch

@@ -2,6 +2,7 @@ package org.aprsdroid.app
 
 import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
+import _root_.android.content.res.Configuration
 import _root_.android.database.Cursor
 import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
@@ -54,9 +55,15 @@ class MapAct extends MapActivity with UIHelper {
 		if (targetcall == "")
 			makeLaunchActivity("map")
 		else
-			setTitle(getString(R.string.app_map) + ": " + targetcall)
+			setLongTitle(R.string.app_map, targetcall)
 		setKeepScreenOn()
 		setVolumeControls()
+	}
+
+	override def onConfigurationChanged(c : Configuration) = {
+		super.onConfigurationChanged(c)
+		if (targetcall != "")
+			setLongTitle(R.string.app_map, targetcall)
 	}
 
 	override def onDestroy() {
