@@ -72,6 +72,29 @@ class MapAct extends MapActivity with UIHelper {
 	}
 	override def isRouteDisplayed() = false
 
+	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
+		getMenuInflater().inflate(R.menu.options_map, menu);
+		if (targetcall != "")
+			getMenuInflater().inflate(R.menu.context_call, menu);
+		else {
+			getMenuInflater().inflate(R.menu.options_activities, menu);
+			getMenuInflater().inflate(R.menu.options, menu);
+		}
+		menu.findItem(R.id.map).setVisible(false)
+		true
+	}
+
+	// override this to only call UIHelper on "bare" map
+	override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+		if (targetcall == "")
+			super.onPrepareOptionsMenu(menu)
+		else {
+			menu.findItem(R.id.objects).setChecked(prefs.getShowObjects())
+			menu.findItem(R.id.satellite).setChecked(prefs.getShowSatellite())
+			true
+		}
+	}
+
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
 		case R.id.objects =>
@@ -86,7 +109,11 @@ class MapAct extends MapActivity with UIHelper {
 			mi.setChecked(newState)
 			mapview.setSatellite(newState)
 			true
-		case _ => super.onOptionsItemSelected(mi)
+		case _ =>
+			if (targetcall != "" && callsignAction(mi.getItemId, targetcall))
+				true
+			else
+				super.onOptionsItemSelected(mi)
 		}
 	}
 
