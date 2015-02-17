@@ -12,10 +12,9 @@ import _root_.android.view.View.{OnClickListener, OnKeyListener}
 import _root_.android.widget.{Button, EditText, ListView, Toast}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 
-class MessageActivity extends LoadingListActivity
+class MessageActivity extends StationHelper(R.string.app_messages)
 		with OnClickListener with OnKeyListener with TextWatcher {
 	val TAG = "APRSdroid.Message"
-	lazy val targetcall = getIntent().getDataString()
 
 	lazy val storage = StorageDatabase.open(this)
 			
@@ -38,8 +37,6 @@ class MessageActivity extends LoadingListActivity
 		msginput.setOnKeyListener(this)
 		msgsend.setOnClickListener(this)
 
-		setTitle(getString(R.string.app_messages) + ": " + targetcall)
-
 		val message = getIntent().getStringExtra("message")
 		if (message != null) {
 			Log.d(TAG, "sending message to %s: %s".format(targetcall, message))
@@ -57,8 +54,8 @@ class MessageActivity extends LoadingListActivity
 		pla.onDestroy()
 	}
 
-	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options, menu);
+	override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+		menu.findItem(R.id.message).setVisible(false)
 		true
 	}
 

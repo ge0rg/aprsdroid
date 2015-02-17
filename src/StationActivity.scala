@@ -10,10 +10,8 @@ import _root_.android.view.{Menu, MenuItem, View, Window}
 import _root_.android.view.View.OnClickListener
 import _root_.android.widget.{ListView,SimpleCursorAdapter}
 
-class StationActivity extends LoadingListActivity
+class StationActivity extends StationHelper(R.string.app_sta)
 		with OnClickListener {
-	lazy val targetcall = getIntent().getDataString()
-
 	lazy val storage = StorageDatabase.open(this)
 	lazy val postlist = findViewById(R.id.postlist).asInstanceOf[ListView]
 			
@@ -37,8 +35,6 @@ class StationActivity extends LoadingListActivity
 		Array(R.id.mapbutton, R.id.qrzcombutton, R.id.aprsfibutton).foreach((id) => {
 				findViewById(id).setOnClickListener(this)
 			})
-
-		setTitle(getString(R.string.app_sta) + ": " + targetcall)
 	}
 
 	override def onDestroy() {
@@ -48,8 +44,9 @@ class StationActivity extends LoadingListActivity
 		la.changeCursor(null)
 	}
 
-	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options, menu);
+	override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+		menu.findItem(R.id.details).setVisible(false)
+		menu.findItem(R.id.messagesclear).setVisible(false)
 		true
 	}
 
