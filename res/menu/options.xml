@@ -2,18 +2,22 @@
 	<item android:id="@+id/hub"
 		android:title="@string/show_hub"
 		android:alphabeticShortcut="h"
-		android:icon="@android:drawable/ic_menu_mylocation" />
-	<item android:id="@+id/map"
-		android:title="@string/show_map"
-		android:alphabeticShortcut="m"
-		android:icon="@android:drawable/ic_menu_mapmode" />
+		android:showAsAction="ifRoom"
+		android:icon="@android:drawable/ic_menu_sort_by_size" />
 	<item android:id="@+id/log"
 		android:title="@string/show_log"
 		android:alphabeticShortcut="l"
+		android:showAsAction="ifRoom"
 		android:icon="@android:drawable/ic_menu_recent_history" />
+	<item android:id="@+id/map"
+		android:title="@string/show_map"
+		android:alphabeticShortcut="m"
+		android:showAsAction="ifRoom"
+		android:icon="@android:drawable/ic_menu_mapmode" />
 	<item android:id="@+id/conversations"
 		android:title="@string/app_messages"
 		android:alphabeticShortcut="c"
+		android:showAsAction="ifRoom"
 		android:icon="@android:drawable/ic_menu_send" />
 	<item android:id="@+id/age"
 		android:title="@string/age"
@@ -22,7 +26,7 @@
 	<item android:id="@+id/overlays"
 		android:title="@string/map_overlays"
 		android:alphabeticShortcut="o"
-		android:icon="@android:drawable/ic_menu_mapmode" >
+		android:icon="@android:drawable/ic_menu_view" >
 		<menu>
 			<group android:checkableBehavior="all">
 				<item android:id="@+id/objects"
