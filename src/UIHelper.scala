@@ -287,7 +287,7 @@ trait UIHelper extends Activity
 				startActivity(new Intent(this, classOf[HubActivity]).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
 				finish();
 				true
-			} else false
+			} else super.onOptionsItemSelected(mi)
 		case _ => false
 		}
 	}
