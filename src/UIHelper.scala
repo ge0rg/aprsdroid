@@ -114,7 +114,6 @@ trait UIHelper extends Activity
 						}
 					}})
 				.setNeutralButton(R.string.p_passreq, new UrlOpener(this, getString(R.string.passcode_url)))
-				.setNegativeButton(android.R.string.cancel, this)
 				.setOnCancelListener(this)
 				.create.show
 	}
