@@ -12,20 +12,20 @@ import _root_.net.ab0oo.aprs.parser._
 
 object AprsService {
 	val PACKAGE = "org.aprsdroid.app"
-	// intent actions
+	// action intents
 	val SERVICE = PACKAGE + ".SERVICE"
 	val SERVICE_ONCE = PACKAGE + ".ONCE"
 	val SERVICE_SEND_PACKET = PACKAGE + ".SEND_PACKET"
 	val SERVICE_STOP = PACKAGE + ".SERVICE_STOP"
+	// event intents
+	val MICLEVEL = PACKAGE + ".MICLEVEL" // internal volume event intent
 	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
 	val MESSAGE = PACKAGE + ".MESSAGE"	// we received a message/ack
 	val MESSAGETX = PACKAGE + ".MESSAGETX"	// we created a message for TX
 	// broadcast intent extras
-	val LOCATION = PACKAGE + ".LOCATION"
-	val STATUS = PACKAGE + ".STATUS"
-	val PACKET = PACKAGE + ".PACKET"
-	val MICLEVEL = PACKAGE + ".MICLEVEL"
+	val TYPE = "type"			// UPDATE type
+	val STATUS = "status"			// UPDATE content
 
 	def intent(ctx : Context, action : String) : Intent = {
 		new Intent(action, null, ctx, classOf[AprsService])
@@ -276,7 +276,9 @@ class AprsService extends Service {
 			// only log status messages
 			Log.d(TAG, "addPost: " + status + " - " + message)
 		}
-		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, message))
+		sendBroadcast(new Intent(UPDATE)
+			.putExtra(TYPE, t)
+			.putExtra(STATUS, message))
 	}
 	// support for translated IDs
 	def addPost(t : Int, status_id : Int, message : String) {
