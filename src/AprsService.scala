@@ -20,6 +20,7 @@ object AprsService {
 	// event intents
 	val SERVICE_STARTED = PACKAGE + ".SERVICE_STARTED"
 	val SERVICE_STOPPED = PACKAGE + ".SERVICE_STOPPED"
+	val POSITION = PACKAGE + ".POSITION"
 	val MICLEVEL = PACKAGE + ".MICLEVEL" // internal volume event intent
 	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
@@ -32,6 +33,10 @@ object AprsService {
 	// UPDATE
 	val TYPE = "type"			// type
 	val STATUS = "status"			// content
+	// POSITION
+	val LOCATION = "location"		// Location object
+	val SOURCE = "source"			// sender callsign
+	val PACKET = "packet"			// raw packet content
 
 	// APRSdroid API version
 	val API_VERSION_CODE = 1
@@ -291,6 +296,13 @@ class AprsService extends Service {
 	def addPosition(ts : Long, ap : APRSPacket, field : InformationField, pos : Position, objectname : String) {
 		val cse = getCSE(field)
 		db.addPosition(ts, ap, pos, cse, objectname)
+
+		sendBroadcast(new Intent(POSITION)
+			.putExtra(SOURCE, ap.getSourceCall())
+			.putExtra(LOCATION, AprsPacket.position2location(ts, pos, cse))
+			.putExtra(CALLSIGN, if (objectname != null) objectname else ap.getSourceCall())
+			.putExtra(PACKET, ap.toString())
+		)
 	}
 
 	def addPost(t : Int, status : String, message : String) {
