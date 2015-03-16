@@ -214,7 +214,7 @@ class StorageDatabase(context : Context) extends
 	// default trim filter: 2 days in [ms]
 	def trimPosts() : Unit = trimPosts(System.currentTimeMillis - 2L * 24 * 3600 * 1000)
 
-	def addPosition(ts : Long, ap : APRSPacket, pos : Position, objectname : String) {
+	def addPosition(ts : Long, ap : APRSPacket, pos : Position, cse : CourseAndSpeedExtension, objectname : String) {
 		import Station._
 		val cv = new ContentValues()
 		val call = ap.getSourceCall()
@@ -235,6 +235,10 @@ class StorageDatabase(context : Context) extends
 		cv.put(SYMBOL, sym)
 		cv.put(COMMENT, comment)
 		cv.put(QRG, qrg)
+		if (cse != null) {
+			cv.put(SPEED, cse.getSpeed().asInstanceOf[java.lang.Integer])
+			cv.put(COURSE, cse.getCourse().asInstanceOf[java.lang.Integer])
+		}
 		Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
 		// replace the full station info in stations table
 		getWritableDatabase().replaceOrThrow(TABLE, CALL, cv)

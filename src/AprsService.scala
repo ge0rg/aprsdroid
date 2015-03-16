@@ -271,8 +271,8 @@ class AprsService extends Service {
 			if (fap.hasFault())
 				throw new Exception("FAP fault")
 			fap.getAprsInformation() match {
-				case pp : PositionPacket => db.addPosition(ts, fap, pp.getPosition(), null)
-				case op : ObjectPacket => db.addPosition(ts, fap, op.getPosition(), op.getObjectName())
+				case pp : PositionPacket => addPosition(ts, fap, pp, pp.getPosition(), null)
+				case op : ObjectPacket => addPosition(ts, fap, op, op.getPosition(), op.getObjectName())
 				case msg : MessagePacket => msgService.handleMessage(ts, fap, msg)
 			}
 		} catch {
@@ -280,6 +280,17 @@ class AprsService extends Service {
 			Log.d(TAG, "parsePacket() unsupported packet: " + message)
 			e.printStackTrace()
 		}
+	}
+
+	def getCSE(field : InformationField) : CourseAndSpeedExtension = {
+		field.getExtension() match {
+			case cse : CourseAndSpeedExtension => cse
+			case _ => null
+		}
+	}
+	def addPosition(ts : Long, ap : APRSPacket, field : InformationField, pos : Position, objectname : String) {
+		val cse = getCSE(field)
+		db.addPosition(ts, ap, pos, cse, objectname)
 	}
 
 	def addPost(t : Int, status : String, message : String) {

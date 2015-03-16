@@ -81,4 +81,28 @@ object AprsPacket {
 			case _ => return (splits(0), defaultport)
 		}
 	}
+
+	// position ambiguity re-defined as 67% (Android's Location)
+	// of the worst-case error from the ambiguity field
+	//
+	// Best possible APRS precision at the equator is ~18m, we assume
+	// proper rounding (so max. 9m between actual and reported position)
+	// and take 67% of that.
+	val APRS_AMBIGUITY_METERS = Array(6, 37185, 6200, 620, 62)
+
+	def position2location(ts : Long, p : Position, cse : CourseAndSpeedExtension = null) = {
+		val l = new Location("APRS")
+		l.setLatitude(p.getLatitude())
+		l.setLongitude(p.getLongitude())
+		l.setTime(ts)
+		l.setAccuracy(APRS_AMBIGUITY_METERS(p.getPositionAmbiguity()))
+		if (cse != null) {
+			// course == bearing?
+			l.setBearing(cse.getCourse)
+			// APRS uses knots, Location expects m/s
+			l.setSpeed(cse.getSpeed / 1.94384449f)
+		}
+		// todo: bearing, speed
+		l
+	}
 }
