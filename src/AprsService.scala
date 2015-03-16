@@ -18,14 +18,23 @@ object AprsService {
 	val SERVICE_SEND_PACKET = PACKAGE + ".SEND_PACKET"
 	val SERVICE_STOP = PACKAGE + ".SERVICE_STOP"
 	// event intents
+	val SERVICE_STARTED = PACKAGE + ".SERVICE_STARTED"
+	val SERVICE_STOPPED = PACKAGE + ".SERVICE_STOPPED"
 	val MICLEVEL = PACKAGE + ".MICLEVEL" // internal volume event intent
 	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
 	val MESSAGE = PACKAGE + ".MESSAGE"	// we received a message/ack
 	val MESSAGETX = PACKAGE + ".MESSAGETX"	// we created a message for TX
 	// broadcast intent extras
-	val TYPE = "type"			// UPDATE type
-	val STATUS = "status"			// UPDATE content
+	// SERVICE_STARTED
+	val API_VERSION = "api_version"		// API version
+	val CALLSIGN = "callsign"		// callsign + ssid of the user
+	// UPDATE
+	val TYPE = "type"			// type
+	val STATUS = "status"			// content
+
+	// APRSdroid API version
+	val API_VERSION_CODE = 1
 
 	def intent(ctx : Context, action : String) : Intent = {
 		new Intent(action, null, ctx, classOf[AprsService])
@@ -149,6 +158,10 @@ class AprsService extends Service {
 		ServiceNotifier.instance.start(this, message)
 
 		msgService.sendPendingMessages()
+
+		sendBroadcast(new Intent(SERVICE_STARTED)
+			.putExtra(API_VERSION, API_VERSION_CODE)
+			.putExtra(CALLSIGN, callssid))
 	}
 
 	override def onBind(i : Intent) : IBinder = null
@@ -166,6 +179,8 @@ class AprsService extends Service {
 		if (poster != null) {
 			poster.stop()
 			showToast(getString(R.string.service_stop))
+
+			sendBroadcast(new Intent(SERVICE_STOPPED))
 		}
 		msgService.stop()
 		locSource.stop()
