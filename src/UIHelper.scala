@@ -213,6 +213,14 @@ trait UIHelper extends Activity
 			.create.show
 	}
 
+	def sendMessageBroadcast(dest : String, body : String) {
+		sendBroadcast(new Intent(AprsService.MESSAGETX)
+			.putExtra(AprsService.SOURCE, prefs.getCallSsid())
+			.putExtra(AprsService.DEST, dest)
+			.putExtra(AprsService.BODY, body)
+			)
+	}
+
 	abstract override def onCreateOptionsMenu(menu : Menu) : Boolean = {
 		getMenuInflater().inflate(R.menu.options_activities, menu);
 		getMenuInflater().inflate(R.menu.options_map, menu);
@@ -359,7 +367,7 @@ trait UIHelper extends Activity
 		}
 		override def onPostExecute(x : Unit) {
 			Log.d("MessageCleaner", "broadcasting...")
-			sendBroadcast(new Intent(AprsService.MESSAGE))
+			sendBroadcast(AprsService.MSG_PRIV_INTENT)
 		}
 	}
 }

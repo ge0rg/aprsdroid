@@ -22,6 +22,12 @@ class MessageService(s : AprsService) {
 		val is_new = s.db.addMessage(ts, srccall, msg)
 		if (is_new)
 			ServiceNotifier.instance.notifyMessage(s, s.prefs, srccall, msg.getMessageBody())
+
+		s.sendBroadcast(new Intent(AprsService.MESSAGE)
+			.putExtra(AprsService.SOURCE, srccall)
+			.putExtra(AprsService.DEST, msg.getTargetCallsign())
+			.putExtra(AprsService.BODY, msg.getMessageBody())
+			)
 	}
 
 	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
@@ -33,6 +39,7 @@ class MessageService(s : AprsService) {
 				else
 					StorageDatabase.Message.TYPE_OUT_REJECTED
 				s.db.updateMessageAcked(ap.getSourceCall(), msg.getMessageNumber(), new_type)
+				s.sendBroadcast(AprsService.MSG_PRIV_INTENT)
 			} else {
 				storeNotifyMessage(ts, ap.getSourceCall(), msg)
 				if (msg.getMessageNumber() != "") {
@@ -41,13 +48,11 @@ class MessageService(s : AprsService) {
 					s.sendPacket(ack)
 				}
 			}
-			s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, ap.toString))
 		} else if (msg.getTargetCallsign().split("-")(0).equalsIgnoreCase(
 				s.prefs.getCallsign()) && !msg.isAck() && !msg.isRej()) {
 			// incoming message for a different ssid of our callsign
 			Log.d(TAG, "incoming message for " + msg.getTargetCallsign())
 			storeNotifyMessage(ts, ap.getSourceCall(), msg)
-			s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, ap.toString))
 		}
 	}
 
@@ -89,7 +94,7 @@ class MessageService(s : AprsService) {
 			if (retrycnt == NUM_OF_RETRIES && t_send <= 0) {
 				// this message timed out
 				s.db.updateMessageType(c.getLong(/* COLUMN_ID */ 0), TYPE_OUT_ABORTED)
-				s.sendBroadcast(new Intent(AprsService.MESSAGE))
+				s.sendBroadcast(AprsService.MSG_PRIV_INTENT)
 			} else if (retrycnt < NUM_OF_RETRIES && t_send <= 0) {
 				// this message needs to be transmitted
 				val msg = s.newPacket(new MessagePacket(call, text, msgid))
@@ -99,7 +104,7 @@ class MessageService(s : AprsService) {
 				cv.put(TS, System.currentTimeMillis.asInstanceOf[java.lang.Long])
 				// XXX: do not ack until acked
 				s.db.updateMessage(c.getLong(/* COLUMN_ID */ 0), cv)
-				s.sendBroadcast(new Intent(AprsService.MESSAGE).putExtra(AprsService.STATUS, msg.toString))
+				s.sendBroadcast(AprsService.MSG_PRIV_INTENT)
 				// schedule potential re-transmission
 				next_run = math.min(next_run, getRetryDelayMS(retrycnt + 1))
 			} else if (retrycnt < NUM_OF_RETRIES) {

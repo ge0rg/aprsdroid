@@ -37,9 +37,17 @@ object AprsService {
 	val LOCATION = "location"		// Location object
 	val SOURCE = "source"			// sender callsign
 	val PACKET = "packet"			// raw packet content
+	// MESSAGE
+	//  +- SOURCE
+	val DEST = "dest"			// destination callsign
+	val BODY = "body"			// body of the message
 
 	// APRSdroid API version
 	val API_VERSION_CODE = 1
+
+	// private intents for message handling
+	lazy val MSG_PRIV_INTENT = new Intent(MESSAGE).setPackage("org.aprsdroid.app")
+	lazy val MSG_TX_PRIV_INTENT = new Intent(MESSAGETX).setPackage("org.aprsdroid.app")
 
 	def intent(ctx : Context, action : String) : Intent = {
 		new Intent(action, null, ctx, classOf[AprsService])

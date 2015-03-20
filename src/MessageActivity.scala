@@ -79,7 +79,7 @@ class MessageActivity extends StationHelper(R.string.app_messages)
 		case R.id.abort =>
 			if (msg_type == TYPE_OUT_NEW) {
 				storage.updateMessageType(msg_id, TYPE_OUT_ABORTED)
-				sendBroadcast(new Intent(AprsService.MESSAGE))
+				sendBroadcast(AprsService.MSG_PRIV_INTENT)
 			}
 			true
 		case R.id.resend =>
@@ -89,7 +89,7 @@ class MessageActivity extends StationHelper(R.string.app_messages)
 				cv.put(RETRYCNT, 0.asInstanceOf[java.lang.Integer])
 				cv.put(TS, System.currentTimeMillis.asInstanceOf[java.lang.Long])
 				storage.updateMessage(msg_id, cv)
-				sendBroadcast(new Intent(AprsService.MESSAGETX))
+				sendBroadcast(AprsService.MSG_TX_PRIV_INTENT)
 			}
 			true
 		case _ => false
@@ -150,9 +150,9 @@ class MessageActivity extends StationHelper(R.string.app_messages)
 		cv.put(TEXT, msg)
 		storage.addMessage(cv)
 		// notify backend
-		sendBroadcast(new Intent(AprsService.MESSAGETX))
+		sendMessageBroadcast(targetcall, msg)
 		// notify UI about new message
-		sendBroadcast(new Intent(AprsService.MESSAGE))
+		sendBroadcast(AprsService.MSG_PRIV_INTENT)
 		// if not connected, notify user about postponed message
 		if (!AprsService.running)
 			Toast.makeText(this, R.string.msg_stored_offline, Toast.LENGTH_SHORT).show()
