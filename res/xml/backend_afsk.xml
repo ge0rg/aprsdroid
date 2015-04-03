@@ -9,14 +9,14 @@
                 android:key="afsk.hqdemod"
 		android:title="@string/p_afsk_hqdemod"
 		android:summary="@string/p_afsk_hqdemod_summary"
-		android:defaultValue="false"
+		android:defaultValue="true"
 		/>
 
         <CheckBoxPreference
                 android:key="afsk.btsco"
 		android:title="@string/p_afsk_btsco"
 		android:summary="@string/p_afsk_btsco_summary"
-		android:defaultValue="true"
+		android:defaultValue="false"
 		android:dependency="afsk.hqdemod"
 		/>
 
