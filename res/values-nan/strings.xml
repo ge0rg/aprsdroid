@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid 偏好设置</string>
+<string name="app_map">APRSdroid 地图</string>
+<string name="app_hub">APRSdroid 列表中心</string>
+<string name="app_sta">台站信息</string>
+<string name="app_messages">讯息</string>
+<string name="app_messages_clear">清除消息</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">您需要在APRSdroid中配置您的呼号和验证码！</string>
+<string name="wrongpasscode">您的呼号验证码不正确！</string>
+<string name="anon_warning">没有验证码，您的数据包将不会被发出！</string>
+<string name="mininterval">最小的更新时间是1分钟！</string>
+<string name="singlelog">單次發送</string>
+<string name="startlog">开始记录路径</string>
+<string name="stoplog">停止记录路径</string>
+
+<string name="empty_logview">您还没有发送或接收任何数据包。\n\n 按​​ \“菜单\”按钮发送一个报告或开始记录你的位置。\n\n 您也可以从菜单更改应用程序首选项。</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">近期报告</string>
+<string name="map_track_call">记录中</string>
+<string name="map_select">选择台站</string>
+
+<string name="map_loading">載入中</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">台站SSID</string>
+<string name="sta_history">已發現台站</string>
+<string name="sta_map">地图</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
+
+<!-- Conversations activity -->
+<string name="msg_send_new">發送訊息至...</string>
+<string name="msg_message_text">訊息內容</string>
+<string name="msg_empty_list">没有存储的对话</string>
+<string name="msg_stored_offline">只要你开始跟踪记录该信息就开始发送。</string>
+<!-- Message activity -->
+<string name="msg_from">来自 %s 的訊息</string>
+<string name="msg_to">发訊息至 %s</string>
+<string name="msg_abort">中止传送</string>
+<string name="msg_restart">重新启动传送</string>
+<string name="msg_type_rejected">已驳回</string>
+<string name="msg_type_aborted">已终止</string>
+
+<!-- AprsService -->
+<string name="aprsservice">APRSdroid 服务</string>
+<string name="service_once">APRS服務單次發射: %1$s, %2$s.</string>
+<string name="service_start">APRS服務已啟動: %1$s, %2$s.</string>
+<string name="service_stop">APRS 服務已停止。</string>
+<string name="service_no_location">你需要打开GPS或基站定位才能正常工作!</string>
+<string name="service_sm_no_gps">智能信標™需要GPS支持！</string>
+<!-- service result codes -->
+<string name="post_error">錯誤</string>
+<string name="post_incmg">已收到</string>
+<string name="post_info"/>
+<string name="post_connecting">連接至 %1$s:%2$d ...</string>
+<string name="post_reconnect">连接失败。%d 后重新连接...</string>
+
+<!-- first run dialog -->
+<string name="fr_title">歡迎使用 APRSdroid！</string>
+<string name="fr_text">此軟件僅提供給擁有業餘無線電執照的愛好者使用。</string>
+<string name="fr_text2">你需要在软件中输入呼号以及APRS-IS呼号验证码才能转发您的数据包。</string>
+
+<!-- about dialog -->
+<string name="ad_title">关于 APRSdroid v%s</string>
+<string name="ad_copyright">版权所有 © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® 注册商标归 Bob Bruninga (WB4APR)所有</string>
+<string name="ad_gpl">这是一个免费软件;你可以在GNU 通用公共授权(或第二版授权)的条款下进行修改. \n\n 希望这个程序的发布是有用的,但是它是没有任何承诺性担保或保证的，甚至没有商业或其它特定目的而隐含的担保。有关详细信息，请参阅GNU通用公共许可证。 \n\n 您应该已经收到随着这项计划的GNU通用公共许可证的副本，如果没有，写信给自由软件基金会,51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_thanks">鸣谢：</string>
+<string name="ad_thanks_0">我的 YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: 创意</string>
+<string name="ad_thanks_2">Dirk, DB5OY: 鼓励和支持</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK 协议实施</string>
+<string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java  APRS</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK 解码, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™(智慧信标) by HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_trans">\n\n 翻译: BG2XVP</string>
+<string name="ad_homepage">首页</string>
+
+<!-- map view -->
+<string name="map_overlays">图层</string>
+<string name="map_satellite">卫星图</string>
+<string name="map_objects">APRS 对象</string>
+
+<!-- map view -->
+<string name="age">显示最近...</string>
+<string name="age_30">30 分钟</string>
+<string name="age_2h">2 小时</string>
+<string name="age_12h">12 小时</string>
+<string name="age_1d">1 天</string>
+<string name="age_2d">2 天</string>
+
+
+<!-- options menu -->
+<string name="about">关于</string>
+<string name="show_hub">显示列表中心</string>
+<string name="show_map">显示地图</string>
+<string name="show_log">显示日志</string>
+<string name="clear_log">清除日志</string>
+<string name="quit">退出</string>
+<string name="preferences">偏好设定</string>
+<!-- preferences -->
+<string name="p__ham">業餘無線電愛好者</string>
+<string name="p_callsign">呼号</string>
+<string name="p_callsign_nossid">呼號（無子辨識符）</string>
+<string name="p_callsign_summary">您的业余无线电呼号</string>
+<string name="p_callsign_entry">請輸入您的呼號</string>
+<string name="p_passcode">APRS-IS 验证码</string>
+<string name="p_passcode_summary">ARPS-IS 检验验证码</string>
+<string name="p_passcode_entry">请输入您的呼号验证码</string>
+<string name="p_passreq">申请验证码</string>
+<string name="p_passreq_summary">在线申请验证码</string>
+<string name="p__aprs">APRS 设置</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">激戰類型 (1..15; 9=移動台站, 10=APRS-IS)</string>
+<string name="p_ssid_entry">输入你的基站的SSID</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(无后缀)主台站</item>
+	<item>通用增设台站</item>
+	<item>通用增设台站</item>
+	<item>通用增设台站</item>
+	<item>通用增设台站</item>
+	<item>其他网络(如:D-Star,3G移動網絡)</item>
+	<item>卫星</item>
+	<item>手持无线电台</item>
+	<item>海航艦載</item>
+	<item>移动基站</item>
+	<item>APRS-IS (非无线电台)</item>
+	<item>气球，飞机，航天器</item>
+	<item>12: APRStt, DTMF, ... (单路)</item>
+	<item>气象站</item>
+	<item>货运车辆</item>
+	<item>通用增设台站</item>
+</string-array>
+<string name="p_symbol">APRS 符号</string>
+<string name="p_symbol_summary">您用作在地图中显示的符号</string>
+<string name="p_symbol_entry">输入表示双角色的符号</string>
+<string name="p_status">注释字段</string>
+<string name="p_status_summary">匹配后的文本</string>
+<string name="p_status_entry">输入您的信标注释信息</string>
+<string name="p__connection">APRS 连接</string>
+<string name="p_conntype">连接协议</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
+<string name="p_conntype_entry">选择连接协议</string>
+<string name="p_connsetup">连接首选项</string>
+<string name="p_connsetup_summary">连接配置</string>
+<string name="p_connlog">连接记录中</string>
+<string name="p_connlog_summary">記錄詳細登入登出日誌</string>
+<!-- array of connection types -->
+<string name="p_conn_tcp">TCP 连接</string>
+<string name="p_conn_udp">UDP (僅發送)</string>
+<string name="p_conn_http">HTTP POST (僅發送)</string>
+<string name="p_conn_afsk">耳麦输出AFSK</string>
+<string name="p_conn_bt">藍牙TNC</string>
+<string name="p_conn_kwd">建伍GPS端口</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">手动设定坐标</string>
+<string name="p_source_periodic">周期性启动GPS或基站定位</string>
+<string name="p_source_smart">智能信標™定位</string>
+<!-- manual position -->
+<string name="p_source_lat">纬度</string>
+<string name="p_source_lon">经度</string>
+<string name="p_source_coord">座標點</string>
+<string name="p_source_get_last">使用最后一次GPS位置</string>
+<string name="p_source_auto">自动报告</string>
+<string name="p_source_auto_summary">执行周期位置报告</string>
+
+
+<!-- privacy settings -->
+<string name="p_privacy">位置隐私</string>
+<string name="p_privacy_summary">定位精准度及其他</string>
+<string name="p_priv_ambiguity">定位精准度</string>
+<string name="p_priv_ambiguity_summary">使用降低精度的位置报告</string>
+<string name="p_ambiguity_off">原設置 (DD° MM.mm\')</string>
+<string name="p_ambiguity_ddmmm">使用 1 (DD° MM.m\')</string>
+<string name="p_ambiguity_ddmm">使用 2 (DD° MM\')</string>
+<string name="p_ambiguity_ddm">使用 3 (DD° Mx\')</string>
+<string name="p_ambiguity_dd">使用 4 (DD°)</string>
+<string name="p_priv_spdbear">发送速度 &amp; 方位</string>
+<string name="p_priv_spdbear_summary">在位置报告中包括速度和方位</string>
+<string name="p_priv_altitude">发送海拔</string>
+<string name="p_priv_altitude_summary">位置报告中包括海拔</string>
+
+<!-- connection type properties -->
+<string name="p_host">伺服器</string>
+<string name="p_host_summary">APRS-IS 服务器 (端口 8080) 发送信标</string>
+<string name="p_host_entry">输入 APRS-IS 服务器的主机名</string>
+<string name="p_host_hint">服务器:端口</string>
+<string name="p__position">位置报告</string>
+<string name="p_locsource">定位源</string>
+<string name="p_locsource_summary">手动,定时或智能信标™</string>
+<string name="p__location">位置设置</string>
+<string name="p__location_summary">位置报告配置</string>
+
+<string name="p_smartbeaconing">SmartBeaconing™(智能信標™)</string>
+<string name="p_sb_help">SmartBeaconing™ help</string>
+<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
+<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_rate">Fast Rate [s]</string>
+<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
+<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
+<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
+<string name="p_sb_slow_rate">Slow Rate [s]</string>
+<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_cp_turn_time">Min Turn Time [s]</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
+<string name="p_cp_turn_angle">Min Turn Angle [°]</string>
+<string name="p_cp_turn_angle_summary">Minimum angle at high speed</string>
+<string name="p_cp_turn_slope">Turn Slope</string>
+<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+
+<string name="p_interval">最小更新时间</string>
+<string name="p_interval_summary">分钟信标传送间隔</string>
+<string name="p_interval_entry">输入更新间隔［分钟］</string>
+<string name="p_distance">最小更新距离</string>
+<string name="p_distance_summary">公里信标传送间隔（设置为0则以时间设置为准）</string>
+<string name="p_distance_entry">输入更新距离［公里］</string>
+<string name="p_speedbrg">等待速度 &amp; 方位</string>
+<string name="p_speedbrg_summary">保持 GPS 开启以获得更多预设数据</string>
+<string name="p_netloc">使用基站位置</string>
+<string name="p_netloc_summary">从移动电话网络中请求位置信息</string>
+<string name="p_gps">GPS 精确度</string>
+<string name="p_gps_summary">精度与耗电量</string>
+<string name="p_gps_entry">请设置GPS精确度</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">高精度(一直打开)</string>
+<string name="p_gps_med">中精度</string>
+<string name="p_gps_low">低精度</string>
+<string name="p_keepscreen">保持屏幕开启狀態</string>
+<string name="p_keepscreen_summary">APRSdroid在前台时不要关闭屏幕</string>
+
+<!-- messaging -->
+<string name="p__display">顯示頂欄通知訊息</string>
+<string name="p__notification">提示</string>
+<string name="p__notification_summary">告警信息和位置报告</string>
+<string name="p_msg">傳入的訊息</string>
+<string name="p_msg_led">闪动 LED</string>
+<string name="p_msg_led_on">LED 通知打开</string>
+<string name="p_msg_led_off">LED 通知关闭</string>
+<string name="p_msg_vibr">振动</string>
+<string name="p_msg_vibr_on">振动通知打开</string>
+<string name="p_msg_vibr_off">振动通知关闭</string>
+<string name="p_msg_ring">响铃</string>
+<string name="p_msg_ring_summary">来信息时响铃</string>
+<string name="p_pos">我的位置报告</string>
+<string name="p_pos_ring">响铃</string>
+<string name="p_pos_ring_summary">已发送位置报告提示音</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">响铃</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS 中继路径</string>
+<string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
+<string name="p_aprs_path_summary">中继顺序</string>
+<string name="p_aprs_path_entry">输入逗号分隔的Digi路径</string>
+<string name="p_afsk_prefix">帧同步前缀</string>
+<string name="p_afsk_prefix_summary">No-Op Preamble (比如:声控发射)</string>
+<string name="p_afsk_prefix_entry">输入同步前缀时间</string>
+<string name="p_afsk_hqdemod">高质量解码</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: 需要 800 MHz 以上 CPU 支持</string>
+<string name="p_afsk_btsco">蓝牙耳机</string>
+<string name="p_afsk_btsco_summary">使用蓝牙(SCO)耳机发射AFSK</string>
+<string name="p_afsk_output">音频输出</string>
+<string-array name="p_afsk_out_e">
+	<item>语音通话</item>
+	<item>响铃</item>
+	<item>音乐</item>
+	<item>报警</item>
+</string-array>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">TCP 服务器设置</string>
+<string name="p_filterdist">范围过滤</string>
+<string name="p_filterdist_summary">接收此范围内的台站信息数据包</string>
+<string name="p_filterdist_entry">过滤以您为中心范围内的数据包[单位:公里]</string>
+<string name="p_filter">Packet filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">过滤收到的数据包</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
+
+<string name="p_filterhelp">信息过滤帮助</string>
+<string name="p_filterhelp_summary">APRS-IS过滤器在线参考</string>
+
+<string name="p_sotimeout">TCP 套接字超时</string>
+<string name="p_sotimeout_summary">重置连接前的时间</string>
+<string name="p_sotimeout_entry">超时值(0为关闭，单位:秒)</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  bg2xvp https://launchpad.net/~louisxcn</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">终端模式</string>
+<string name="p_bt_client_summary">APRSdroid建立连接（保持此项打开！）</string>
+<string name="p_bt_tnc_device">TNC 蓝牙设备</string>
+<string name="p_bt_tnc_device_summary">从配对设备中选择您的TNC</string>
+<string name="p_bt_tnc_device_entry">选择设备</string>
+<string name="p_bt_channel">频道</string>
+<string name="p_bt_channel_summary">TNC蓝牙频道</string>
+<string name="p_bt_channel_entry">输入频道(通常为1;SPP模式为空)</string>
+
+<string name="p_bt_tnc_init">TNC初始化字符串</string>
+<string name="p_bt_tnc_init_summary">TNC初始化命令</string>
+
+<string name="p_bt_tnc_delay">TNC 初始化延迟</string>
+<string name="p_bt_tnc_delay_summary">每次连线后等待时间</string>
+<string name="p_bt_tnc_delay_entry">TNC 初始化延迟[毫秒]</string>
+
+<string name="p_bt_prefs">蓝牙设置</string>
+<string name="p_bt_prefs_summary">打开蓝牙，配对设备...</string>
+
+<string name="bt_error_unsupported">藍牙設備未被支持!</string>
+<string name="bt_error_disabled">请启用蓝牙!</string>
+<string name="bt_error_no_tnc">请配置蓝牙TNC设备!</string>
+
+<string name="afsk_info_sco_req">正在请求蓝牙SCO连接...</string>
+<string name="afsk_info_sco_est">蓝牙SCO链路已建立。</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP 伺服器</string>
+<string name="p_tcptnc_entry">输入KISS伺服器名稱</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+</resources>

@@ -1,76 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
-<string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Beállítások</string>
-<string name="app_map">APRSdroid Térkép</string>
-<string name="app_hub">APRSdroid Hub</string>
-<string name="app_sta">Állomás információk</string>
-<string name="app_messages">Üzenetek</string>
-<string name="app_messages_clear">Üzenetek törlése</string>
+<string name="app_name">aprs untuk android</string>
+<string name="app_prefs">pengaturan aprsdroid</string>
+<string name="app_map">peta aprsdroid</string>
+<string name="app_hub">sambungan aprsdroid</string>
+<string name="app_sta">info stasiun</string>
+<string name="app_messages">Pesan-pesan</string>
+<string name="app_messages_clear">Hapus Pesan</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">Be kell állítanod a hívójeled és a passcode-od!</string>
-<string name="wrongpasscode">A passcode-od nem jó ehhez a hívójelhez!</string>
+<string name="firstrun">Anda harus memasukkan callsign dan passcode utk menggunakan APRSdroid</string>
+<string name="wrongpasscode">Passcode tidak cocok dengan callsign Anda!</string>
 <string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">A minimum frissítési idő 1 perc!</string>
-<string name="singlelog">Feltöltés egyszer</string>
-<string name="startlog">Nyomkövetés indítása</string>
-<string name="stoplog">Nyomkövetés leállítása</string>
+<string name="mininterval">Minimum update time is 1 minute!</string>
+<string name="singlelog">Single Shot</string>
+<string name="startlog">Mulai Penjejak</string>
+<string name="stoplog">Hentikan Penjejak</string>
 
-<string name="empty_logview">You have not yet sent or received any packets.\n\n
-	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
-	You can also change the application preferences from the menu.</string>
+<string name="empty_logview">Belum ada kiriman atau penerimaan paket apapun.\n\n Tekan tombol \"Menu\" untuk mengirim laporan tunggal atau mulai rekam jejak posisi Anda.\n\n Anda juga dapat mengubah pengaturan aplikasi dari menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
-<string name="map_track_call">Tracking %s...</string>
-<string name="map_select">Select station</string>
+<string name="sta_lastreport">%s Pesan Terakhir</string>
+<string name="map_track_call">Rekam Jejak %s</string>
+<string name="map_select">Pilih Stasiun</string>
 
-<string name="map_loading">Loading...</string>
+<string name="map_loading">Memuat</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">Station SSIDs</string>
-<string name="sta_history">Station History</string>
-<string name="sta_map">Map</string>
+<string name="sta_ssids">Stasiun SSIDs</string>
+<string name="sta_history">Riwayat Stasiun</string>
+<string name="sta_map">Peta</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
+<string name="msg_send_new">Kirim pesan ke...</string>
+<string name="msg_message_text">Pesan teks</string>
+<string name="msg_empty_list">Tidak ada percakapan yang tersimpan.</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
-<string name="msg_to">Message to %s</string>
-<string name="msg_abort">Abort transmission</string>
-<string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_from">Pesan dari %s</string>
+<string name="msg_to">Pesan untuk %s</string>
+<string name="msg_abort">batalkan transmisi</string>
+<string name="msg_restart">Mulai ulang transmisi</string>
+<string name="msg_type_rejected">ditolak</string>
+<string name="msg_type_aborted">dibatalkan</string>
 
 <!-- AprsService -->
-<string name="aprsservice">APRSdroid Service</string>
+<string name="aprsservice">Layanan APRSdroid</string>
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">APRS Service started: %1$s, %2$s.</string>
-<string name="service_stop">APRS szolgáltatás leállítva.</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
+<string name="service_start">Layanan APRS dimulai: %1$s, %2$s.</string>
+<string name="service_stop">Layanan APRS dihentikan</string>
+<string name="service_no_location">Anda perlu aktifkan GPS atau Lokasi Jaringan agar APRSdroid bekerja dengan baik!</string>
 <string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
-<string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_error">Terjadi Kesalahan</string>
+<string name="post_incmg">diterima</string>
 <string name="post_info"/>
-<string name="post_connecting">Connecting to %1$s:%2$d...</string>
-<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
+<string name="post_connecting">Menghubungkan ke %1$s:%2$d...</string>
+<string name="post_reconnect">Sambungan putus. Hubungkan kembali dalam %d detik...</string>
 
 <!-- first run dialog -->
-<string name="fr_title">Üdvözöllek, ez itt az APRSdroid!</string>
-<string name="fr_text">This software may only be used by licensed amateur radio
-	operators!</string>
-<string name="fr_text2">You need to enter your callsign to use this software.
-	To forward your packets, an APRS-IS passcode is required as well.</string>
+<string name="fr_title">Selamat Datang di APRSdroid!</string>
+<string name="fr_text">Perangkat lunak ini hanya dapat digunakan oleh operator amatir radio berlisensi!</string>
+<string name="fr_text2">Anda harus memasukkan callsign Anda untuk menggunakan software ini. Untuk meneruskan paket Anda, diperlukan juga sebuah APRS-IS passcode.</string>
 
 <!-- about dialog -->
-<string name="ad_title">Az APRSdroid v%s-ról</string>
+<string name="ad_title">Tentang APRSdroid v%s</string>
 <string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
@@ -92,7 +88,7 @@
 	\n\n
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
-<string name="ad_thanks">Thanks to:</string>
+<string name="ad_thanks">Terima kasih kepada:</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
 <string name="ad_thanks_1">Michael, DO3BOX: idea</string>
 <string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
@@ -100,46 +96,46 @@
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
-<string name="ad_trans">\n\nFordítás: Varga "Nonoo" Norbert HA2NON </string>
-<string name="ad_homepage">Kezdőlap</string>
+<string name="ad_trans">\n\nTerjemahan:</string>
+<string name="ad_homepage">Halaman Utama</string>
 
 <!-- map view -->
-<string name="map_overlays">Overlays</string>
-<string name="map_satellite">Satellite</string>
-<string name="map_objects">APRS Objects</string>
+<string name="map_overlays">Lapisan</string>
+<string name="map_satellite">Satelit</string>
+<string name="map_objects">Obyek APRS</string>
 
 <!-- map view -->
-<string name="age">Show last...</string>
-<string name="age_30">30 minutes</string>
-<string name="age_2h">2 hours</string>
-<string name="age_12h">12 hours</string>
-<string name="age_1d">1 day</string>
-<string name="age_2d">2 days</string>
+<string name="age">Tampilkan terakhir...</string>
+<string name="age_30">30 menit</string>
+<string name="age_2h">2 jam</string>
+<string name="age_12h">12 jam</string>
+<string name="age_1d">1 hari</string>
+<string name="age_2d">2 hari</string>
 
 
 <!-- options menu -->
-<string name="about">Névjegy</string>
+<string name="about">Tentang</string>
 <string name="show_hub">Show Hub</string>
-<string name="show_map">Show Map</string>
-<string name="show_log">Show Log</string>
-<string name="clear_log">Clear Log</string>
-<string name="quit">Kilépés</string>
-<string name="preferences">Beállítások</string>
+<string name="show_map">Tampilkan Peta</string>
+<string name="show_log">Tampilkan catatan</string>
+<string name="clear_log">Hapus catatan</string>
+<string name="quit">Keluar</string>
+<string name="preferences">Pengaturan</string>
 <!-- preferences -->
-<string name="p__ham">Amatőr rádió</string>
-<string name="p_callsign">Hívójel</string>
-<string name="p_callsign_nossid">Callsign (without SSID)</string>
-<string name="p_callsign_summary">A hívójeled</string>
-<string name="p_callsign_entry">Írd be a hívójeled</string>
+<string name="p__ham">Radio Amatir</string>
+<string name="p_callsign">Callsign</string>
+<string name="p_callsign_nossid">Callsign (tanpa SSID)</string>
+<string name="p_callsign_summary">Callsign HAM radio Anda</string>
+<string name="p_callsign_entry">Masukkan callsign Anda</string>
 <string name="p_passcode">APRS-IS Passcode</string>
-<string name="p_passcode_summary">APRS-IS ellenőrző passcode</string>
-<string name="p_passcode_entry">Írd be a hívójeledhez tartozó passcodeot</string>
-<string name="p_passreq">Request Passcode</string>
-<string name="p_passreq_summary">Request APRS-IS passcode online</string>
-<string name="p__aprs">APRS beállítások</string>
+<string name="p_passcode_summary">Validasi APRS-IS passcode</string>
+<string name="p_passcode_entry">Enter the passcode for your call</string>
+<string name="p_passreq">Permohonan Passcode</string>
+<string name="p_passreq_summary">Permohonan APRS-IS passcode online</string>
+<string name="p__aprs">Pengaturan APRS</string>
 <string name="p_ssid">SSID</string>
-<string name="p_ssid_summary">Állomás típusa (1..15; 9=Mobil, 10=APRS-IS)</string>
-<string name="p_ssid_entry">Írd be az állomásod SSID-jét</string>
+<string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Enter the SSID for your station</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
 	<item>(none) Primary Station</item>
@@ -148,33 +144,33 @@
 	<item>3: Generic additional station</item>
 	<item>4: Generic additional station</item>
 	<item>5: Other network (D-Star, 3G)</item>
-	<item>6: Műhold</item>
-	<item>7: Kézirádió</item>
-	<item>8: Csónak / hajó</item>
-	<item>9: Mobil állomás</item>
-	<item>10: APRS-IS (rádió nélküli)</item>
+	<item>6: Satellite</item>
+	<item>7: Handheld radio</item>
+	<item>8: Boat / ship</item>
+	<item>9: Mobile station</item>
+	<item>10: APRS-IS (no radio)</item>
 	<item>11: Balloon, aircraft, spacecraft</item>
 	<item>12: APRStt, DTMF, ... (one way)</item>
 	<item>13: Weather station</item>
-	<item>14: Áruszállító jármű</item>
+	<item>14: Freight vehicle</item>
 	<item>15: Generic additional station</item>
 </string-array>
-<string name="p_symbol">APRS szimbólum</string>
-<string name="p_symbol_summary">A szimbólumod a térképen</string>
-<string name="p_symbol_entry">Írd be a szimbólumot reprezentáló két karakterkódot</string>
+<string name="p_symbol">APRS symbol</string>
+<string name="p_symbol_summary">Your symbol for map display</string>
+<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
 <string name="p_status">Comment field</string>
-<string name="p_status_summary">Szöveg a koordinátáid után</string>
+<string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
-<string name="p_conntype">Kapcsolódási protokoll</string>
+<string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
-<string name="p_conntype_entry">Válaszd ki a kapcsolódási protokollt</string>
+<string name="p_conntype_entry">Choose the connection protocol</string>
 <string name="p_connsetup">Connection Preferences</string>
 <string name="p_connsetup_summary">Configuration of Connection</string>
 <string name="p_connlog">Connection Logging</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP kapcsolat</string>
+<string name="p_conn_tcp">TCP connection</string>
 <string name="p_conn_udp">UDP (send only)</string>
 <string name="p_conn_http">HTTP POST (send only)</string>
 <string name="p_conn_afsk">AFSK via Speaker/Mic</string>
@@ -210,14 +206,14 @@
 <string name="p_priv_altitude_summary">Include altitude in position reports</string>
 
 <!-- connection type properties -->
-<string name="p_host">Szerver</string>
-<string name="p_host_summary">APRS-IS szerver (8080-as port), amire a beaconok mennek</string>
-<string name="p_host_entry">Írd be az APRS-IS szerver hostnevét</string>
+<string name="p_host">Server</string>
+<string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
+<string name="p_host_entry">Enter the APRS-IS server hostname</string>
 <string name="p_host_hint">host:port</string>
 <string name="p__position">Position Reports</string>
 <string name="p_locsource">Location Source</string>
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
-<string name="p__location">Helymeghatározás</string>
+<string name="p__location">Location Settings</string>
 <string name="p__location_summary">Configuration for sending position reports</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
@@ -239,16 +235,16 @@
 <string name="p_cp_turn_slope">Turn Slope</string>
 <string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
 
-<string name="p_interval">Minimum frissítési idő</string>
-<string name="p_interval_summary">Percek a beacon küldések között</string>
-<string name="p_interval_entry">Írd be a frissítési intervallumot [perc]</string>
-<string name="p_distance">Minimum frissítési távolság</string>
-<string name="p_distance_summary">Távolság minden egyes beacon küldés között (állítsd 0-ra, ha csak az időt szeretnéd figyelembevenni)</string>
-<string name="p_distance_entry">Írd be a frissítési távolságot [km]</string>
-<string name="p_speedbrg">Várakozás a sebességre, irányra</string>
-<string name="p_speedbrg_summary">GPS tovább bekapcsolva tartása a precízebb adatokhoz</string>
-<string name="p_netloc">Hálózati helyinformáció használata</string>
-<string name="p_netloc_summary">Pozíció megszerzése a mobilhálózatból</string>
+<string name="p_interval">Minimum update time</string>
+<string name="p_interval_summary">Minutes between beacon transmissions</string>
+<string name="p_interval_entry">Enter the update interval [min]</string>
+<string name="p_distance">Minimum update distance</string>
+<string name="p_distance_summary">Kilometers before beacon transmission (set to 0 for time-only)</string>
+<string name="p_distance_entry">Enter the update distance [km]</string>
+<string name="p_speedbrg">Await speed &amp; bearing</string>
+<string name="p_speedbrg_summary">Keep GPS on longer to get more precise data</string>
+<string name="p_netloc">Use network location</string>
+<string name="p_netloc_summary">Acquire position from the cellular network</string>
 <string name="p_gps">GPS Precision</string>
 <string name="p_gps_summary">Battery usage vs. position quality</string>
 <string name="p_gps_entry">Please set the GPS Precision</string>
@@ -303,9 +299,9 @@
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
-<string name="p_filterdist">Figyelés sugara</string>
-<string name="p_filterdist_summary">Csomagok fogadása ebből a távolságból</string>
-<string name="p_filterdist_entry">Csomagok fogadása ezen távolságon belülről [km]</string>
+<string name="p_filterdist">Neighbor radius</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
 <string name="p_filter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Filter for incoming packets</string>
@@ -319,9 +315,9 @@
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Andras Sari https://launchpad.net/~ha2bnd
-  Georg Lukas https://launchpad.net/~ge0rg
-  Norbert Varga https://launchpad.net/~nonoo</string>
+  Zoel Gandhi https://launchpad.net/~yc0nyo
+  ali elsas https://launchpad.net/~yc3inp
+  m. anshori https://launchpad.net/~m-anshory</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

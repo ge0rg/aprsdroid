@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid    Preferie</string>
+<string name="app_map">APRSdroid cartinn-a</string>
+<string name="app_hub">APRSdroid   Noddu</string>
+<string name="app_sta">Numme da Stasiun</string>
+<string name="app_messages">Messagi</string>
+<string name="app_messages_clear">Limpià i messagi</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Ti nessessiti de cunfigurarte  l \'APRSdroid , u tu numminativu e a parolla segreta assegnà !</string>
+<string name="wrongpasscode">A parolla segreta assegnà nu coinsidde con u nominativu!</string>
+<string name="anon_warning">Sensa a parolla segreta assegnà u tu pacchettu u nu pè esse mandou!</string>
+<string name="mininterval">Aggiornamentu minimu u l\'è 1 minuto!</string>
+<string name="singlelog">Trasmissiun singula!</string>
+<string name="startlog">Agganciamentu partiu</string>
+<string name="stoplog">Agganciamentu terminoù</string>
+
+<string name="empty_logview">Ti nu è ancun mandou o sentiu nisciun pacchettu.\n\n schissa \"Menu\" pe mandà un rapportu o pè fa partii u tracciamentu da té posisiun.\n\n tI pè anche cangià e preferensie da u menu.</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s l\'ultimu rapportu</string>
+<string name="map_track_call">%s... Staggu tracciandu</string>
+<string name="map_select">Stasiun selesiunà</string>
+
+<string name="map_loading">Cargandu</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">Numme de e Stasiun (SSIDs)</string>
+<string name="sta_history">Giurnale de Stasiun</string>
+<string name="sta_map">Cartinn-a</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
+
+<!-- Conversations activity -->
+<string name="msg_send_new">Envia u messaggiu a.....</string>
+<string name="msg_message_text">Testu du messaggiu</string>
+<string name="msg_empty_list">Nu ghe sun conversasiun magazzinée</string>
+<string name="msg_stored_offline">U messaggiu u saià invioù quandu ti feé parti\' u l\'agganciamentu.</string>
+<!-- Message activity -->
+<string name="msg_from">Messaggiu da %s</string>
+<string name="msg_to">Messaggiu a %s</string>
+<string name="msg_abort">Trasmissiun abortia</string>
+<string name="msg_restart">Trasmissiun ri-partia</string>
+<string name="msg_type_rejected">returna au mittente</string>
+<string name="msg_type_aborted">abortia</string>
+
+<!-- AprsService -->
+<string name="aprsservice">Servisiu APRSdroid</string>
+<string name="service_once">APRS  Servisiu de trasmissiun singula: %1$s, %2$s.</string>
+<string name="service_start">aprs Servisiu de trasmissiun  partiu:%1$s, %2$s.</string>
+<string name="service_stop">APRS servisiu de trasmissiun fermou.</string>
+<string name="service_no_location">Ti necessiti de abilità ù GPS o l\'accertamentu da Ré in moddu che APRSdroid u travaggia propriamente!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ ciamma U GPS !!!</string>
+<!-- service result codes -->
+<string name="post_error">Errure</string>
+<string name="post_incmg">sentii</string>
+<string name="post_info"/>
+<string name="post_connecting">Connettou a %1$s:%2$d...</string>
+<string name="post_reconnect">Connessiun persa.Re-connessiun in %d secundi...</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Benveniu in APRSdroid!</string>
+<string name="fr_text">Stu pragramma pé esse uso\' solou da operatui radio autorisée!</string>
+<string name="fr_text2">Ti devvi entree u te nominativu pé usà stu programma.Pé trasmette i tè pacchetti,un-a parolla segreta assegnà a lé anche dovua.</string>
+
+<!-- about dialog -->
+<string name="ad_title">Informasuin de APRSdroid v%s</string>
+<string name="ad_copyright">proprieté Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® l\'é na marca registrà de Bob Bruninga (WB4APR)</string>
+<string name="ad_gpl">U programma l\'é liberu; ti pé re-distribuì e/o modificà sotto i termini dà GNU LISENSE PUBBLICA GENERALE  cumme pubblicoù da  Free Software Foundation; versiun 2 da licensa, o(ta opiniun) ultime versiun. \n\n Stu promgramma u l\'é distribuiu con a speransa   ca saria utile , ma SENSA A GARANSIA !; sensa l\'implicitaé de   MERCANSABILITAE ou FINALISOU PE PARTILER SCOP-PI. Vedie a GNU General Public Licensa pe atri dettaggi. \n\n Ti dovié avé resieu na cop-pia de la GNU General Public License apartenua a stu rogramma program; au contraiu , scrivvi au  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_thanks">Ringrasiamentu a:</string>
+<string name="ad_thanks_0">Me donna ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: pe idea</string>
+<string name="ad_thanks_2">Dirk, DB5OY: motivasiun e aggiuttu</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK implementasiun</string>
+<string name="ad_thanks_4">Matti, OH2MQK e John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulatui, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™ di HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_trans">\n\nTradusiun:</string>
+<string name="ad_homepage">Pag-ina prinsipà</string>
+
+<!-- map view -->
+<string name="map_overlays">Viduia  da cartin-a</string>
+<string name="map_satellite">Satellite</string>
+<string name="map_objects">Oggetti APRS</string>
+
+<!-- map view -->
+<string name="age">Ultima veduia</string>
+<string name="age_30">30 minuti</string>
+<string name="age_2h">2 ùue</string>
+<string name="age_12h">12 ou</string>
+<string name="age_1d">1 giornàa</string>
+<string name="age_2d">2 giornèe</string>
+
+
+<!-- options menu -->
+<string name="about">Informasiun</string>
+<string name="show_hub">Veddi i Noddi de Interconnessiun</string>
+<string name="show_map">Veddi a Cartinn-a</string>
+<string name="show_log">Veddi u registru</string>
+<string name="clear_log">Cassa u registru</string>
+<string name="quit">Lassa u programma</string>
+<string name="preferences">Preferié</string>
+<!-- preferences -->
+<string name="p__ham">Stasiun de Radio Amatur</string>
+<string name="p_callsign">Nominativu</string>
+<string name="p_callsign_nossid">Nominativu sensa u SSID</string>
+<string name="p_callsign_summary">U te Numinativo</string>
+<string name="p_callsign_entry">Chi ti metti u te numinativu</string>
+<string name="p_passcode">APRS-IS Parol-a segret-a assegnà</string>
+<string name="p_passcode_summary">APRS-IS  Conferma Parol-a segret-a assegnà</string>
+<string name="p_passcode_entry">Metti a Parol-a segret-a assegnà pou te nominativu</string>
+<string name="p_passreq">Domanda de Parol-a segret-a assegnà</string>
+<string name="p_passreq_summary">Domanda a te  Parol-a segret-a direttamente  " on line"</string>
+<string name="p__aprs">Impostasiun APRS</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Tipu de stasiun (1..15; 9=Mobile, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Metti u te SSID pa te stasiun</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(vetu) stasiun Principale</item>
+	<item>1: Stasiun Generica Adisiunale</item>
+	<item>2:Stasiun Generica Adisiunale</item>
+	<item>3:Stasiun Generica Adisiunale</item>
+	<item>4:Stasiun Generica Adisiunale</item>
+	<item>Atre Ré(D-Star, 3G)</item>
+	<item>6:Satellite</item>
+	<item>7:radio a man</item>
+	<item>8: Gozzu/ navve</item>
+	<item>9: Stasiun moblle</item>
+	<item>10: APRS-IS (no radio)</item>
+	<item>11: Ballun, aereo, astronavve</item>
+	<item>12: APRStt, DTMF, ... (un-a via)</item>
+	<item>13: Stasiun du Tempu</item>
+	<item>14: Veicolu merci</item>
+	<item>15: Stasiun Generica Aggiunta</item>
+</string-array>
+<string name="p_symbol">Segna-le APRS</string>
+<string name="p_symbol_summary">U te Segna-le pa te cartin-a</string>
+<string name="p_symbol_entry">Metiè le dui lettre pou segna-le scia cartin-a</string>
+<string name="p_status">campu de commentariu</string>
+<string name="p_status_summary">U testu doppu e te coordina-te</string>
+<string name="p_status_entry">Mettié u commentariu du te Radiofaru</string>
+<string name="p__connection">connessiun APRS</string>
+<string name="p_conntype">Protocollu de connessiun</string>
+<string name="p_conntype_summary">AFSK, HTTP, TCP o UDP</string>
+<string name="p_conntype_entry">Mettié u protocollu de connessiun</string>
+<string name="p_connsetup">Preferensia de connessiun</string>
+<string name="p_connsetup_summary">Configurasiun de connessiun</string>
+<string name="p_connlog">Registrasiun de la connessiun</string>
+<string name="p_connlog_summary">Troppe parolle in tu registru</string>
+<!-- array of connection types -->
+<string name="p_conn_tcp">Connessiun TCP</string>
+<string name="p_conn_udp">UDP (trasmissiun solu)</string>
+<string name="p_conn_http">HTTP POST (trasmissiun solu)</string>
+<string name="p_conn_afsk">AFSK via Autoparlante/Microfono</string>
+<string name="p_conn_bt">Bluetooth TNC</string>
+<string name="p_conn_kwd">Porta Kenwood GPS</string>
+<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Posisiun Manuale</string>
+<string name="p_source_periodic">Periodico GPS/ Posisun de Ré</string>
+<string name="p_source_smart">posisiun SmartBeaconing™</string>
+<!-- manual position -->
+<string name="p_source_lat">Latitudine</string>
+<string name="p_source_lon">Longitudine</string>
+<string name="p_source_coord">Coordina-te</string>
+<string name="p_source_get_last">Usà l\'ultima posisiun GPS</string>
+<string name="p_source_auto">Enviu Automatico</string>
+<string name="p_source_auto_summary">Posisiun Periodica</string>
+
+
+<!-- privacy settings -->
+<string name="p_privacy">Posisiun privée</string>
+<string name="p_privacy_summary">Ambiguité de posisiun e atru</string>
+<string name="p_priv_ambiguity">Amibuité de posisiun</string>
+<string name="p_priv_ambiguity_summary">Rediuta precisiun pé u rapportu de posisiun</string>
+<string name="p_ambiguity_off">Fermou (DD° MM.mm\')</string>
+<string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
+<string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
+<string name="p_ambiguity_ddm">2 (DD° MM\')</string>
+<string name="p_ambiguity_dd">4 (DD°)</string>
+<string name="p_priv_spdbear">Envia Velosité e ampiessa;Orientamentu</string>
+<string name="p_priv_spdbear_summary">Metié velosité e diresiun intu rapportu de posisiun</string>
+<string name="p_priv_altitude">Envié l\'Altitudine</string>
+<string name="p_priv_altitude_summary">Metié l\'altitudine intu rapporto de posisiun</string>
+
+<!-- connection type properties -->
+<string name="p_host">Server</string>
+<string name="p_host_summary">APRS-IS server (porta8080) da invié au radiofeii</string>
+<string name="p_host_entry">Metié el numme de l APRS-IS</string>
+<string name="p_host_hint">porta :</string>
+<string name="p__position">Rapporti de posisiun</string>
+<string name="p_locsource">Localité de  trasmisiun</string>
+<string name="p_locsource_summary">Manuel, Periodica o SmartBeaconing™</string>
+<string name="p__location">coordiné de la localité</string>
+<string name="p__location_summary">Configurasiun pa envié u rapportu de posisiun</string>
+
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">Aggiuttu pe SmartBeaconing™</string>
+<string name="p_sb_fast_speed">Ata velosité [km/h]</string>
+<string name="p_sb_fast_speed_summary">Minima velosité pe aggiornamentu  veloce da posisiun</string>
+<string name="p_sb_fast_rate">Aggiornamento veloce[s]</string>
+<string name="p_sb_fast_rate_summary">Radiofaro aggiornamento  ata velocité</string>
+<string name="p_sb_slow_speed">bassa velocité [km/h]</string>
+<string name="p_sb_slow_speed_summary">Massima velocité pa bassu aggiornamento da posisiun</string>
+<string name="p_sb_slow_rate">Bassu aggiornamentu[s]</string>
+<string name="p_sb_slow_rate_summary">Aggiornamentu  radiofaro a bassa velocité</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Angulo de stabilisasiun</string>
+<string name="p_cp_turn_time">Tempu minimo de rotasiun[s]</string>
+<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
+<string name="p_cp_turn_angle">Minimu angu-o de rotasiun [°]</string>
+<string name="p_cp_turn_angle_summary">Minimu angu-o ad alta velosité</string>
+<string name="p_cp_turn_slope">Angu-o de viràa</string>
+<string name="p_cp_turn_slope_summary">Influensa da velocité sul minimu angu-o</string>
+
+<string name="p_interval">Minuimo tempu d\'aggiornamentu</string>
+<string name="p_interval_summary">Minuti tra dui trasmissiun du radiofaru</string>
+<string name="p_interval_entry">Mettié l\'intervallu de aggiornamentu [min]</string>
+<string name="p_distance">Minima distansa de aggiornamentu</string>
+<string name="p_distance_summary">Kilometri primma da trasmission du radiofaru (mettié a 0 pa primma votta)</string>
+<string name="p_distance_entry">Metié a distansia de aggiornamentu [km]</string>
+<string name="p_speedbrg">velocité d\'attendre e ampiessa ; orientou</string>
+<string name="p_speedbrg_summary">Mantegni u GPS ciu a lungu che ti puei pe indicasion ciu presisi</string>
+<string name="p_netloc">usa riferimenti da ré</string>
+<string name="p_netloc_summary">Ciappa a pososiun da a ré du cellulare</string>
+<string name="p_gps">Precisiun GPS</string>
+<string name="p_gps_summary">Un-a batteria cansà a va a scapitu de la qualié da precisiun</string>
+<string name="p_gps_entry">Pe piascié metti a Precisiun GPS</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">Alta (sempre attivee)</string>
+<string name="p_gps_med">Media</string>
+<string name="p_gps_low">Bassa</string>
+<string name="p_keepscreen">Nu permetteé au schermu de serrarse</string>
+<string name="p_keepscreen_summary">Nu serrà u schermu se APRSdroid u le in primmu cian</string>
+
+<!-- messaging -->
+<string name="p__display">Visulizzasiun e Notificasiun</string>
+<string name="p__notification">Notificasiun</string>
+<string name="p__notification_summary">Alerta de messagi e rapporti de posisiun</string>
+<string name="p_msg">Messagi  entrée</string>
+<string name="p_msg_led">LED en modalité lampezzante</string>
+<string name="p_msg_led_on">LED e notificasiun sun abilitée</string>
+<string name="p_msg_led_off">LED e notificasiun sun dis-abilitée</string>
+<string name="p_msg_vibr">Vibrasiun</string>
+<string name="p_msg_vibr_on">Vibrasiun le notificasiun sun abilitée</string>
+<string name="p_msg_vibr_off">Vibrasiun le notificasiun sun dis-abilitée</string>
+<string name="p_msg_ring">Tonalitée</string>
+<string name="p_msg_ring_summary">Tonu pe messagi ch\' entran</string>
+<string name="p_pos">Rapporti de posisiun propri</string>
+<string name="p_pos_ring">Tonalitée</string>
+<string name="p_pos_ring_summary">Tonu pe rapporti de posisiun</string>
+<string name="p_dgp">Digipeated Own Packets</string>
+<string name="p_dgp_ring">Tonalitée</string>
+<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+
+<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">Cammin du digi APRS</string>
+<string name="p_aprs_path_hint">Saltu 1,salto 2,.....</string>
+<string name="p_aprs_path_summary">Successiun de ripetitui</string>
+<string name="p_aprs_path_entry">Mettié ,separou da virgue,l\'instradamentu</string>
+<string name="p_afsk_prefix">Tempu Prefissou de Sincronismu</string>
+<string name="p_afsk_prefix_summary">Nissciun parametro pe u VOX</string>
+<string name="p_afsk_prefix_entry">Mettié u tempu Prefissou  [ms]</string>
+<string name="p_afsk_hqdemod">Demodulatu de Ata Qualité</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: necessita de na CPU a 800 MHz</string>
+<string name="p_afsk_btsco">Cuffie Bluetooth</string>
+<string name="p_afsk_btsco_summary">Utilisa Cuffie Bluetooth pe AFSK</string>
+<string name="p_afsk_output">Sortia Audio</string>
+<string-array name="p_afsk_out_e">
+	<item>Ciamà a Vusce  (Call)</item>
+	<item>Tonalitée</item>
+	<item>Musica</item>
+	<item>Alarme</item>
+</string-array>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">A porta standard APRS-IS TCP  du server  la l\'é a : 14580</string>
+<string name="p_filterdist">Raggiu de proximité</string>
+<string name="p_filterdist_summary">Resevié dati da e stasiun in tu raggiu</string>
+<string name="p_filterdist_entry">Raggiu inturnu a te pe moniturà i dati  [km]</string>
+<string name="p_filter">Packet filter</string>
+<string name="p_filter_hint">b/AMISCI o/OGGETTI...</string>
+<string name="p_filter_summary">Filtri de pacchetti c\'arrivan</string>
+<string name="p_filter_entry">Enter a filter for incoming packets</string>
+
+<string name="p_filterhelp">Aggiuttu pe Filtru Messagi</string>
+<string name="p_filterhelp_summary">Guidda Online pe filtri APRS-IS</string>
+
+<string name="p_sotimeout">Tempu mascimu de connessiun TNC</string>
+<string name="p_sotimeout_summary">Tempu primma che a connessiun sa ferma automaticamente</string>
+<string name="p_sotimeout_entry">value du Tempu Massimo in secondi (0=disabilitou)</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  SILVIO BARLETTA https://launchpad.net/~ik1bqd</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">Modo Utilizzatore (Client)</string>
+<string name="p_bt_client_summary">APRSDroid stabili-sce a te connessiun (Tegnilu Aviertu!)</string>
+<string name="p_bt_tnc_device">Unità TNC Bluetooth</string>
+<string name="p_bt_tnc_device_summary">Piggia u TNC che ti ve dell\'unità attachée</string>
+<string name="p_bt_tnc_device_entry">Piggia a te unità</string>
+<string name="p_bt_channel">Canale</string>
+<string name="p_bt_channel_summary">Canale Bluetooth  sciu u TNC</string>
+<string name="p_bt_channel_entry">Mettié u canale (ciu uso\' :"1";vutu pe SPP</string>
+
+<string name="p_bt_tnc_init">Stringa de inisializasiun doppu a partensa du TNC</string>
+<string name="p_bt_tnc_init_summary">Commandu de inisializasiun pe u TNC</string>
+
+<string name="p_bt_tnc_delay">Ritardu de l\'inisializasiun doppu a partensa del TNC</string>
+<string name="p_bt_tnc_delay_summary">Tempu d\'aspettàa doppu uogni linea</string>
+<string name="p_bt_tnc_delay_entry">Ritardu de l\'inisializasiun doppu a partensa del TNC  [ms]</string>
+
+<string name="p_bt_prefs">Impostasiun du Bluetooth</string>
+<string name="p_bt_prefs_summary">Autorizza Bluetooth,unità disponibili....</string>
+
+<string name="bt_error_unsupported">Bluetooth nu l\'é supportou</string>
+<string name="bt_error_disabled">Pe piascié autorizza u Bluetooth</string>
+<string name="bt_error_no_tnc">Pe piascié metti au puntu u TNC du Bluetooth</string>
+
+<string name="afsk_info_sco_req">Ciamandu u collegamentu au Bluetooth SCO</string>
+<string name="afsk_info_sco_est">collegamentu au Bluetooth SCO  stabiliu</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">contattu au server KISS TCP</string>
+<string name="p_tcptnc_entry">Entra chie u numme KISS du te server</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL certificate import</string>
+<string name="ssl_import_password">Please enter the certificate import password:</string>
+<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_import_ok">Imported certificate for %s.</string>
+<string name="ssl_import_error">Error importing certificate: %s!</string>
+<string name="ssl_expired">Your certificate has expired!</string>
+<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+</resources>
