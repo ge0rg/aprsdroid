@@ -19,7 +19,7 @@ Furthermore, it is possible to influence APRSdroid with the following
 Intents ("actions"):
 
  * `SERVICE` - start APRSdroid's tracking service
- * `SERVICE.ONCE` - send one position packet and stop
+ * `ONCE` - send one position packet and stop
  * `SERVICE_STOP` - stop APRSdroid's tracking service
  * `SEND_PACKET` - send a (raw) APRS packet
 
@@ -161,10 +161,10 @@ the action description, and must be delivered using
 
 The individual actions are described in the following.
 
-### SERVICE / SERVICE.ONCE
+### SERVICE / ONCE
 
 Start the APRSdroid tracking service for an indeterminate runtime
-(`SERVICE`) or for one position transmission (`SERVICE.ONCE`).
+(`SERVICE`) or for one position transmission (`ONCE`).
 
 	// launch APRSdroid tracker
 	Intent i = new Intent("org.aprsdroid.app.SERVICE");
