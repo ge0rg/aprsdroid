@@ -57,6 +57,7 @@ class PrefsAct extends PreferenceActivity {
 		} else
 		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123457) {
 			parseFilePickerResult(data, "themefile", R.string.themefile_error)
-		}
+		} else
+			super.onActivityResult(reqCode, resultCode, data)
 	}
 }
