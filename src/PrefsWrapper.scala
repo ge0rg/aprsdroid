@@ -65,6 +65,6 @@ class PrefsWrapper(val context : Context) {
 		getPasscode(), getVersion())
 	
 	def getAfskHQ() = getBoolean("afsk.hqdemod", true)
-	def getAfskBluetooth() = getBoolean("afsk.btsco", false)
+	def getAfskBluetooth() = getBoolean("afsk.btsco", false) && getAfskHQ()
 	def getAfskOutput() = if (getAfskBluetooth()) AudioManager.STREAM_VOICE_CALL else getStringInt("afsk.output", 0)
 }

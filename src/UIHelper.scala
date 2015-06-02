@@ -4,7 +4,9 @@ package org.aprsdroid.app
 import _root_.android.app.{Activity, ListActivity}
 import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
+import _root_.android.content.res.Configuration
 import _root_.android.net.Uri
+import _root_.android.os.Build
 import _root_.android.util.Log
 import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View, WindowManager}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
@@ -112,7 +114,6 @@ trait UIHelper extends Activity
 						}
 					}})
 				.setNeutralButton(R.string.p_passreq, new UrlOpener(this, getString(R.string.passcode_url)))
-				.setNegativeButton(android.R.string.cancel, this)
 				.setOnCancelListener(this)
 				.create.show
 	}
@@ -123,6 +124,21 @@ trait UIHelper extends Activity
 	// DialogInterface.OnCancelListener
 	override def onCancel(d : DialogInterface) {
 		finish()
+	}
+
+	def setLongTitle(title_id : Int, targetcall : String) {
+		// use two-line display on holo in portrait mode
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+				new HoneycombTitleSetter(getString(title_id), targetcall)
+			else
+				new HoneycombTitleSetter(getString(title_id) + ": " + targetcall, null)
+		} else // pre-holo setTitle
+			setTitle(getString(title_id) + ": " + targetcall)
+	}
+	class HoneycombTitleSetter(t : String, st : String) {
+		UIHelper.this.setTitle(t)
+		UIHelper.this.getActionBar().setSubtitle(st)
 	}
 
 	// store the activity name for next APRSdroid launch
@@ -197,16 +213,31 @@ trait UIHelper extends Activity
 			.create.show
 	}
 
-	abstract override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
-		val mi = menu.findItem(R.id.startstopbtn)
-		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
-		mi.setIcon(if (AprsService.running) android.R.drawable.ic_menu_close_clear_cancel  else android.R.drawable.ic_menu_compass)
+	def sendMessageBroadcast(dest : String, body : String) {
+		sendBroadcast(new Intent(AprsService.MESSAGETX)
+			.putExtra(AprsService.SOURCE, prefs.getCallSsid())
+			.putExtra(AprsService.DEST, dest)
+			.putExtra(AprsService.BODY, body)
+			)
+	}
+
+	abstract override def onCreateOptionsMenu(menu : Menu) : Boolean = {
+		getMenuInflater().inflate(R.menu.options_activities, menu);
+		getMenuInflater().inflate(R.menu.options_map, menu);
+		getMenuInflater().inflate(R.menu.options, menu);
 		// disable the "own" menu
 		Array(R.id.hub, R.id.map, R.id.log, R.id.conversations).map((id) => {
 			menu.findItem(id).setVisible(id != menu_id)
 		})
 		menu.findItem(R.id.age).setVisible(R.id.map == menu_id || R.id.hub == menu_id)
 		menu.findItem(R.id.overlays).setVisible(R.id.map == menu_id)
+		true
+	}
+
+	abstract override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+		val mi = menu.findItem(R.id.startstopbtn)
+		mi.setTitle(if (AprsService.running) R.string.stoplog else R.string.startlog)
+		mi.setIcon(if (AprsService.running) android.R.drawable.ic_menu_close_clear_cancel  else android.R.drawable.ic_menu_compass)
 		menu.findItem(R.id.objects).setChecked(prefs.getShowObjects())
 		menu.findItem(R.id.satellite).setChecked(prefs.getShowSatellite())
 		true
@@ -258,6 +289,12 @@ trait UIHelper extends Activity
 		//	stopService(AprsService.intent(this, AprsService.SERVICE))
 		//	finish();
 		//	true
+		case android.R.id.home =>
+			if (isTaskRoot()) {
+				startActivity(new Intent(this, classOf[HubActivity]).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+				finish();
+				true
+			} else super.onOptionsItemSelected(mi)
 		case _ => false
 		}
 	}
@@ -290,15 +327,15 @@ trait UIHelper extends Activity
 		case R.id.messagesclear =>
 			clearMessages(targetcall)
 			true
-		case R.id.mapbutton =>
+		case R.id.map =>
 			trackOnMap(targetcall)
 			true
-		case R.id.aprsfibutton =>
+		case R.id.aprsfi =>
 			val url = "http://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)
 			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
 			true
-		case R.id.qrzcombutton =>
+		case R.id.qrzcom =>
 			val url = "http://qrz.com/db/%s".format(targetcall.split("[- ]+")(0))
 			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
@@ -330,7 +367,7 @@ trait UIHelper extends Activity
 		}
 		override def onPostExecute(x : Unit) {
 			Log.d("MessageCleaner", "broadcasting...")
-			sendBroadcast(new Intent(AprsService.MESSAGE))
+			sendBroadcast(AprsService.MSG_PRIV_INTENT)
 		}
 	}
 }

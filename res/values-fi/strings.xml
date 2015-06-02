@@ -34,9 +34,9 @@
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Lähetä viesti asemalle</string>
+<string name="msg_send_new">Lähetä viesti asemalle...</string>
 <string name="msg_message_text">Viestin teksti</string>
-<string name="msg_empty_list">Ei tallennettuja keskusteluja</string>
+<string name="msg_empty_list">Ei tallennettuja keskusteluja.</string>
 <string name="msg_stored_offline">Viesti lähetetään heti, kun käynnistät seurannan.</string>
 <!-- Message activity -->
 <string name="msg_from">Viesti asemalta %s</string>
@@ -299,6 +299,7 @@
   Georg Lukas https://launchpad.net/~ge0rg
   Heikki Hannikainen https://launchpad.net/~hessu
   Herkko R https://launchpad.net/~oh7fxk
+  Kalle Pihlajasaari https://launchpad.net/~kalle-ip
   Lasse Kurkela https://launchpad.net/~oh3jaj
   Ville Filpus https://launchpad.net/~oh6fse
   oh1hfv https://launchpad.net/~oh1hfv</string>

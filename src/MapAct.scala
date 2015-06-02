@@ -2,6 +2,7 @@ package org.aprsdroid.app
 
 import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
+import _root_.android.content.res.Configuration
 import _root_.android.database.Cursor
 import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
@@ -58,10 +59,16 @@ class MapAct extends MapActivity with UIHelper {
 		if (targetcall == "")
 			makeLaunchActivity("map")
 		else
-			setTitle(getString(R.string.app_map) + ": " + targetcall)
+			setLongTitle(R.string.app_map, targetcall)
 		setKeepScreenOn()
 		setVolumeControls()
 		reloadMapAndTheme()
+	}
+
+	override def onConfigurationChanged(c : Configuration) = {
+		super.onConfigurationChanged(c)
+		if (targetcall != "")
+			setLongTitle(R.string.app_map, targetcall)
 	}
 
 	override def onDestroy() {
@@ -84,8 +91,26 @@ class MapAct extends MapActivity with UIHelper {
 	}
 
 	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options, menu);
+		getMenuInflater().inflate(R.menu.options_map, menu);
+		if (targetcall != "")
+			getMenuInflater().inflate(R.menu.context_call, menu);
+		else {
+			getMenuInflater().inflate(R.menu.options_activities, menu);
+			getMenuInflater().inflate(R.menu.options, menu);
+		}
+		menu.findItem(R.id.map).setVisible(false)
 		true
+	}
+
+	// override this to only call UIHelper on "bare" map
+	override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+		if (targetcall == "")
+			super.onPrepareOptionsMenu(menu)
+		else {
+			menu.findItem(R.id.objects).setChecked(prefs.getShowObjects())
+			menu.findItem(R.id.satellite).setChecked(prefs.getShowSatellite())
+			true
+		}
 	}
 
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
@@ -102,7 +127,11 @@ class MapAct extends MapActivity with UIHelper {
 			mi.setChecked(newState)
 			//mapview.setSatellite(newState)
 			true
-		case _ => super.onOptionsItemSelected(mi)
+		case _ =>
+			if (targetcall != "" && callsignAction(mi.getItemId, targetcall))
+				true
+			else
+				super.onOptionsItemSelected(mi)
 		}
 	}
 

@@ -1,8 +1,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:id="@+id/details" android:title="@string/app_sta" />
-	<item android:id="@+id/message" android:title="@string/app_messages" />
-	<item android:id="@+id/messagesclear" android:title="@string/app_messages_clear" />
-	<item android:id="@+id/mapbutton" android:title="@string/sta_map" />
-	<item android:id="@+id/aprsfibutton" android:title="@string/sta_aprsfi" />
-	<item android:id="@+id/qrzcombutton" android:title="@string/sta_qrzcom" />
+	<item android:id="@+id/details"
+	      android:title="@string/app_sta"
+	      android:showAsAction="ifRoom"
+	      android:icon="@android:drawable/ic_menu_info_details"
+	      />
+	<item android:id="@+id/message"
+	      android:title="@string/app_messages"
+	      android:showAsAction="ifRoom"
+	      android:icon="@android:drawable/ic_menu_send"
+	      />
+	<item android:id="@+id/messagesclear"
+	      android:title="@string/app_messages_clear"
+	      android:icon="@android:drawable/ic_menu_close_clear_cancel"
+	      />
+	<item android:id="@+id/map"
+	      android:title="@string/sta_map"
+	      android:showAsAction="ifRoom"
+	      android:icon="@android:drawable/ic_menu_mapmode"
+	      />
+	<item android:id="@+id/aprsfi"
+	      android:title="@string/sta_aprsfi"
+	      />
+	<item android:id="@+id/qrzcom"
+	      android:title="@string/sta_qrzcom"
+	      />
 </menu>

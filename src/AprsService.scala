@@ -12,20 +12,42 @@ import _root_.net.ab0oo.aprs.parser._
 
 object AprsService {
 	val PACKAGE = "org.aprsdroid.app"
-	// intent actions
+	// action intents
 	val SERVICE = PACKAGE + ".SERVICE"
 	val SERVICE_ONCE = PACKAGE + ".ONCE"
 	val SERVICE_SEND_PACKET = PACKAGE + ".SEND_PACKET"
 	val SERVICE_STOP = PACKAGE + ".SERVICE_STOP"
+	// event intents
+	val SERVICE_STARTED = PACKAGE + ".SERVICE_STARTED"
+	val SERVICE_STOPPED = PACKAGE + ".SERVICE_STOPPED"
+	val POSITION = PACKAGE + ".POSITION"
+	val MICLEVEL = PACKAGE + ".MICLEVEL" // internal volume event intent
 	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
 	val MESSAGE = PACKAGE + ".MESSAGE"	// we received a message/ack
 	val MESSAGETX = PACKAGE + ".MESSAGETX"	// we created a message for TX
 	// broadcast intent extras
-	val LOCATION = PACKAGE + ".LOCATION"
-	val STATUS = PACKAGE + ".STATUS"
-	val PACKET = PACKAGE + ".PACKET"
-	val MICLEVEL = PACKAGE + ".MICLEVEL"
+	// SERVICE_STARTED
+	val API_VERSION = "api_version"		// API version
+	val CALLSIGN = "callsign"		// callsign + ssid of the user
+	// UPDATE
+	val TYPE = "type"			// type
+	val STATUS = "status"			// content
+	// POSITION
+	val LOCATION = "location"		// Location object
+	val SOURCE = "source"			// sender callsign
+	val PACKET = "packet"			// raw packet content
+	// MESSAGE
+	//  +- SOURCE
+	val DEST = "dest"			// destination callsign
+	val BODY = "body"			// body of the message
+
+	// APRSdroid API version
+	val API_VERSION_CODE = 1
+
+	// private intents for message handling
+	lazy val MSG_PRIV_INTENT = new Intent(MESSAGE).setPackage("org.aprsdroid.app")
+	lazy val MSG_TX_PRIV_INTENT = new Intent(MESSAGETX).setPackage("org.aprsdroid.app")
 
 	def intent(ctx : Context, action : String) : Intent = {
 		new Intent(action, null, ctx, classOf[AprsService])
@@ -149,6 +171,10 @@ class AprsService extends Service {
 		ServiceNotifier.instance.start(this, message)
 
 		msgService.sendPendingMessages()
+
+		sendBroadcast(new Intent(SERVICE_STARTED)
+			.putExtra(API_VERSION, API_VERSION_CODE)
+			.putExtra(CALLSIGN, callssid))
 	}
 
 	override def onBind(i : Intent) : IBinder = null
@@ -166,6 +192,8 @@ class AprsService extends Service {
 		if (poster != null) {
 			poster.stop()
 			showToast(getString(R.string.service_stop))
+
+			sendBroadcast(new Intent(SERVICE_STOPPED))
 		}
 		msgService.stop()
 		locSource.stop()
@@ -256,8 +284,8 @@ class AprsService extends Service {
 			if (fap.hasFault())
 				throw new Exception("FAP fault")
 			fap.getAprsInformation() match {
-				case pp : PositionPacket => db.addPosition(ts, fap, pp.getPosition(), null)
-				case op : ObjectPacket => db.addPosition(ts, fap, op.getPosition(), op.getObjectName())
+				case pp : PositionPacket => addPosition(ts, fap, pp, pp.getPosition(), null)
+				case op : ObjectPacket => addPosition(ts, fap, op, op.getPosition(), op.getObjectName())
 				case msg : MessagePacket => msgService.handleMessage(ts, fap, msg)
 			}
 		} catch {
@@ -265,6 +293,24 @@ class AprsService extends Service {
 			Log.d(TAG, "parsePacket() unsupported packet: " + message)
 			e.printStackTrace()
 		}
+	}
+
+	def getCSE(field : InformationField) : CourseAndSpeedExtension = {
+		field.getExtension() match {
+			case cse : CourseAndSpeedExtension => cse
+			case _ => null
+		}
+	}
+	def addPosition(ts : Long, ap : APRSPacket, field : InformationField, pos : Position, objectname : String) {
+		val cse = getCSE(field)
+		db.addPosition(ts, ap, pos, cse, objectname)
+
+		sendBroadcast(new Intent(POSITION)
+			.putExtra(SOURCE, ap.getSourceCall())
+			.putExtra(LOCATION, AprsPacket.position2location(ts, pos, cse))
+			.putExtra(CALLSIGN, if (objectname != null) objectname else ap.getSourceCall())
+			.putExtra(PACKET, ap.toString())
+		)
 	}
 
 	def addPost(t : Int, status : String, message : String) {
@@ -276,7 +322,9 @@ class AprsService extends Service {
 			// only log status messages
 			Log.d(TAG, "addPost: " + status + " - " + message)
 		}
-		sendBroadcast(new Intent(UPDATE).putExtra(STATUS, message))
+		sendBroadcast(new Intent(UPDATE)
+			.putExtra(TYPE, t)
+			.putExtra(STATUS, message))
 	}
 	// support for translated IDs
 	def addPost(t : Int, status_id : Int, message : String) {

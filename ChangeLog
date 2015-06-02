@@ -1,3 +1,9 @@
+1.3.0:
+* Modernized User Interface
+* Fixed AFSK operation resumption
+* 3rd Party App API, see doc/API.mdwn
+* Bluetooth crash fix
+
 1.2.3:
 * Many fixes in APRS parsing (KISS, 3rd party, objects/items, ACKs, Mic-E, ...)
 * SmartBeaconing: fix excessive flooding error, add preferences

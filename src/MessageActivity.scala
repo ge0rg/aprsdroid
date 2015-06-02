@@ -12,10 +12,9 @@ import _root_.android.view.View.{OnClickListener, OnKeyListener}
 import _root_.android.widget.{Button, EditText, ListView, Toast}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 
-class MessageActivity extends LoadingListActivity
+class MessageActivity extends StationHelper(R.string.app_messages)
 		with OnClickListener with OnKeyListener with TextWatcher {
 	val TAG = "APRSdroid.Message"
-	lazy val targetcall = getIntent().getDataString()
 
 	lazy val storage = StorageDatabase.open(this)
 			
@@ -38,8 +37,6 @@ class MessageActivity extends LoadingListActivity
 		msginput.setOnKeyListener(this)
 		msgsend.setOnClickListener(this)
 
-		setTitle(getString(R.string.app_messages) + ": " + targetcall)
-
 		val message = getIntent().getStringExtra("message")
 		if (message != null) {
 			Log.d(TAG, "sending message to %s: %s".format(targetcall, message))
@@ -57,8 +54,8 @@ class MessageActivity extends LoadingListActivity
 		pla.onDestroy()
 	}
 
-	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options, menu);
+	override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
+		menu.findItem(R.id.message).setVisible(false)
 		true
 	}
 
@@ -82,7 +79,7 @@ class MessageActivity extends LoadingListActivity
 		case R.id.abort =>
 			if (msg_type == TYPE_OUT_NEW) {
 				storage.updateMessageType(msg_id, TYPE_OUT_ABORTED)
-				sendBroadcast(new Intent(AprsService.MESSAGE))
+				sendBroadcast(AprsService.MSG_PRIV_INTENT)
 			}
 			true
 		case R.id.resend =>
@@ -92,7 +89,7 @@ class MessageActivity extends LoadingListActivity
 				cv.put(RETRYCNT, 0.asInstanceOf[java.lang.Integer])
 				cv.put(TS, System.currentTimeMillis.asInstanceOf[java.lang.Long])
 				storage.updateMessage(msg_id, cv)
-				sendBroadcast(new Intent(AprsService.MESSAGETX))
+				sendBroadcast(AprsService.MSG_TX_PRIV_INTENT)
 			}
 			true
 		case _ => false
@@ -153,9 +150,9 @@ class MessageActivity extends LoadingListActivity
 		cv.put(TEXT, msg)
 		storage.addMessage(cv)
 		// notify backend
-		sendBroadcast(new Intent(AprsService.MESSAGETX))
+		sendMessageBroadcast(targetcall, msg)
 		// notify UI about new message
-		sendBroadcast(new Intent(AprsService.MESSAGE))
+		sendBroadcast(AprsService.MSG_PRIV_INTENT)
 		// if not connected, notify user about postponed message
 		if (!AprsService.running)
 			Toast.makeText(this, R.string.msg_stored_offline, Toast.LENGTH_SHORT).show()

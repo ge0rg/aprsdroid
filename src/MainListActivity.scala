@@ -42,11 +42,6 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 		unregisterReceiver(miclReceiver)
 	}
 
-	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options, menu);
-		true
-	}
-
 	def setupButtons(running : Boolean) {
 		//singleBtn.setEnabled(!running)
 		if (running) {

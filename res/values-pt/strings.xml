@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
-<string name="app_name">ãAPRSdroid</string>
+<string name="app_name">APRSdroid</string>
 <string name="app_prefs">Preferências do APRSdroid</string>
 <string name="app_map">Mapa APRSdroid</string>
 <string name="app_hub">Eixo APRSdroid</string>
@@ -11,18 +11,18 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Deve configurar o APRSdroid com o seu indicativo e password!</string>
 <string name="wrongpasscode">A palavra-passe está incorrecta.</string>
-<string name="anon_warning">Sem password os seus pacotes não serão enviados</string>
+<string name="anon_warning">Sem a password as suas transmissões não serão divulgadas!</string>
 <string name="mininterval">Tempo mínimo de actualização - 1 minuto!</string>
 <string name="singlelog">Só uma vez.</string>
 <string name="startlog">Iniciar seguimento.</string>
 <string name="stoplog">Parar seguimento.</string>
 
-<string name="empty_logview">Você ainda não enviou ou recebeu nenhum pacote. \ N \ n Pressione o \ "Menu \" botão para enviar um único pacote ou para começar a seguir a sua posição. \ N \ n Você também pode alterar as sua preferências da a partir do menu.</string>
+<string name="empty_logview">Você ainda não enviou ou recebeu nenhum pacote. \ N \ n Pressione o \ "Menu \" botão para enviar um único pacote ou para começar a seguir a sua posição. \ N \ n Você também pode alterar as sua preferências a partir do menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Ultimo controlo.</string>
+<string name="sta_lastreport">Última transmissão</string>
 <string name="map_track_call">Seguindo %s...</string>
-<string name="map_select">Selecionar estação</string>
+<string name="map_select">Seleccionar estação</string>
 
 <string name="map_loading">A carregar...</string>
 
@@ -35,7 +35,7 @@
 
 <!-- Conversations activity -->
 <string name="msg_send_new">Enviar mensagem para...</string>
-<string name="msg_message_text">Mensagem de texto</string>
+<string name="msg_message_text">Texto da mensagem</string>
 <string name="msg_empty_list">Não tem mensagens guardadas</string>
 <string name="msg_stored_offline">Esta mensagem será enviada quando inciar seguimento.</string>
 <!-- Message activity -->
@@ -51,8 +51,8 @@
 <string name="service_once">Serviço APRS numa transmissão: %1$s, %2$s.</string>
 <string name="service_start">Serviço APRS começado: %1$s, %2$s.</string>
 <string name="service_stop">Serviço de APRS terminado.</string>
-<string name="service_no_location">Para APRSdroid funcionar correctamente deve ligar o seu GPS ou verificar cobertura de rede.</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requer GPS!</string>
+<string name="service_no_location">Para o APRSdroid funcionar correctamente deve ligar o seu GPS ou verificar cobertura de rede.</string>
+<string name="service_sm_no_gps">O SmartBeaconing™ requer GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Erro</string>
 <string name="post_incmg">recebido</string>
@@ -96,7 +96,7 @@
 
 <!-- options menu -->
 <string name="about">Acerca</string>
-<string name="show_hub">Mostrar a volta</string>
+<string name="show_hub">Mostrar estações à volta da minha.</string>
 <string name="show_map">Mostrar mapa</string>
 <string name="show_log">Mostrar registo</string>
 <string name="clear_log">Limpar o Registo</string>
@@ -199,27 +199,27 @@
 
 <string name="p_smartbeaconing">Copy text 	 SmartBeaconing™</string>
 <string name="p_sb_help">Ajuda do SmartBeaconing</string>
-<string name="p_sb_fast_speed">Velocidade rapida [km/h]</string>
-<string name="p_sb_fast_speed_summary">Velocidada minima  para actualizar posicoes rapidas</string>
-<string name="p_sb_fast_rate">Ritmo rapido [s]</string>
-<string name="p_sb_fast_rate_summary">Ritmo do beacon com velocidade rapida</string>
+<string name="p_sb_fast_speed">Velocidade rápida [km/h]</string>
+<string name="p_sb_fast_speed_summary">Velocidada mínima para actualizar posições rápidas</string>
+<string name="p_sb_fast_rate">Ritmo rápido [s]</string>
+<string name="p_sb_fast_rate_summary">Ritmo do beacon com velocidade rápida</string>
 <string name="p_sb_slow_speed">Velocidade lenta [km/h]</string>
-<string name="p_sb_slow_speed_summary">Velocidade maxima para actualizar posicoes lentas</string>
+<string name="p_sb_slow_speed_summary">Velocidade máxima para actualizar posições lentas</string>
 <string name="p_sb_slow_rate">Ritmo lento [s]</string>
 <string name="p_sb_slow_rate_summary">Ritmo do beacon com velocidade lenta</string>
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Rotina CornerPegging</string>
-<string name="p_cp_turn_time">Tempo de viragem minimo</string>
-<string name="p_cp_turn_time_summary">Minimo tempo de beacon quando mudar de direcção</string>
-<string name="p_cp_turn_angle">Angulo de viragem minimo</string>
-<string name="p_cp_turn_angle_summary">Angulo minimo com velocidade alta</string>
+<string name="p_cp_turn_time">Tempo de viragem mínimo</string>
+<string name="p_cp_turn_time_summary">Tempo mínimo de beacon quando mudar de direcção</string>
+<string name="p_cp_turn_angle">Ângulo de viragem mínimo [°]</string>
+<string name="p_cp_turn_angle_summary">Ângulo mínimo com velocidade alta</string>
 <string name="p_cp_turn_slope">Virar o slope</string>
-<string name="p_cp_turn_slope_summary">Influencia da velocidade no angulo minimo</string>
+<string name="p_cp_turn_slope_summary">Influência da velocidade no ângulo mínimo</string>
 
 <string name="p_interval">Tempo mínimo de actualização</string>
 <string name="p_interval_summary">Minutos entre transmissões de beacon</string>
 <string name="p_interval_entry">Escreva o tempo entre actualizações [min]</string>
-<string name="p_distance">Dsitância mínima para actualização</string>
+<string name="p_distance">Distância mínima para actualização</string>
 <string name="p_distance_summary">Quilómetros a percorrer para a transmição do beacon (coloque 0 para ser utilizado o tempo)</string>
 <string name="p_distance_entry">Quilómetros a percorrer para actualização.</string>
 <string name="p_speedbrg">Aguarde velocidade &amp; direcção</string>
@@ -261,7 +261,7 @@
 <!-- AFSK settings -->
 <string name="p_aprs_path">Caminho do digi APRS</string>
 <string name="p_aprs_path_hint">salto1, salto 2, ...</string>
-<string name="p_aprs_path_summary">Sequencia de digipeaters</string>
+<string name="p_aprs_path_summary">Sequência dos digipeaters</string>
 <string name="p_aprs_path_entry">Coloque o caminho(digi patch) separado por virgulas</string>
 <string name="p_afsk_prefix">Sincronização de prefixo</string>
 <string name="p_afsk_prefix_summary">Sem operador predefinido (Ex: para VOX controlo)</string>
@@ -281,14 +281,14 @@
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) para contacto</string>
 <string name="p_filterdist">Raio de recepção</string>
-<string name="p_filterdist_summary">Receber packet das estações dentro deste raio</string>
+<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
 <string name="p_filterdist_entry">Raio, a partir da sua estação, para monitorizar packet [Km]</string>
 <string name="p_filter">Filtro de packet</string>
 <string name="p_filter_hint">b/Colega o/Objecto</string>
 <string name="p_filter_summary">Filtro para mensagens de entrada</string>
 <string name="p_filter_entry">Fazer um filtro para packets recebidos</string>
 
-<string name="p_filterhelp">Ajudade filtro de mensagens</string>
+<string name="p_filterhelp">Ajuda do filtro de mensagens</string>
 <string name="p_filterhelp_summary">Ajuda online para filtros APRS-IS</string>
 
 <string name="p_sotimeout">Tempo limite para ligação TCP</string>
@@ -300,17 +300,18 @@
   David Quental https://launchpad.net/~ct1drb-1
   Jon Amil https://launchpad.net/~amilgz
   Jose Carlos Moreira https://launchpad.net/~ct1dhm
-  Paulo Mendes https://launchpad.net/~ct2hqt</string>
+  Paulo Mendes https://launchpad.net/~ct2hqt
+  ct1drb - David Quental https://launchpad.net/~ct1drb72</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Modo cliente (com virtual)</string>
-<string name="p_bt_client_summary">APRSdroid estabelece a ligação. mantenha-se ligado</string>
+<string name="p_bt_client_summary">APRSdroid estabelece a ligação (mantenha-se ligado)</string>
 <string name="p_bt_tnc_device">Dispositivo TNC Blluetooth</string>
 <string name="p_bt_tnc_device_summary">Escolha o seu TNC de dispositivos emparelhados</string>
 <string name="p_bt_tnc_device_entry">Escolha dispositivo</string>
 <string name="p_bt_channel">Canal</string>
-<string name="p_bt_channel_summary">Canal bluetooth çigado no TNC</string>
-<string name="p_bt_channel_entry">Coloque canal</string>
+<string name="p_bt_channel_summary">Canal bluetooth ligado ao TNC</string>
+<string name="p_bt_channel_entry">Coloque canal (o mais usual: "1"; nada para SPP)</string>
 
 <string name="p_bt_tnc_init">Cadeia de inicialização do TNC</string>
 <string name="p_bt_tnc_init_summary">Comandos de inicialização para o TNC</string>
@@ -319,7 +320,7 @@
 <string name="p_bt_tnc_delay_summary">Tempo de espera depois de cada linha</string>
 <string name="p_bt_tnc_delay_entry">Atraso de inicialização do TNC [ms]</string>
 
-<string name="p_bt_prefs">Sem propagação</string>
+<string name="p_bt_prefs">Definições do bluetooth</string>
 <string name="p_bt_prefs_summary">Lige bluetoooth nos dois disositivso</string>
 
 <string name="bt_error_unsupported">O bluetooth não é suportado!</string>
@@ -336,9 +337,9 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">Importar certificado SSL</string>
 <string name="ssl_import_password">Por favor escreva a password do certificado importado:</string>
-<string name="ssl_no_keyfile">Nenhum certificado para %s! Nao estar a usar o SSL.</string>
+<string name="ssl_no_keyfile">Nenhum certificado para %s! Não se está a utilizar o SSL.</string>
 <string name="ssl_import_ok">Certificado importado para %s.</string>
 <string name="ssl_import_error">Erro na importacao do certificado: %s!</string>
-<string name="ssl_expired">O seu certificado expirou</string>
+<string name="ssl_expired">O seu certificado expirou!</string>
 <string name="ssl_expire_in">O seu certificado expirará em %d dias!</string>
 </resources>
