@@ -181,6 +181,7 @@
 <string name="p_conn_bt">Bluetooth TNC</string>
 <string name="p_conn_kwd">Kenwood GPS Port</string>
 <string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>
 <string name="p_source_periodic">Periodic GPS/Network Position</string>
@@ -359,4 +360,8 @@
 <string name="ssl_import_error">Error importing certificate: %s!</string>
 <string name="ssl_expired">Your certificate has expired!</string>
 <string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
 </resources>

@@ -57,6 +57,11 @@ object AprsBackend {
 			(s, p) => new TcpTnc(s, p),
 			R.xml.backend_tcptnc,
 			CAN_DUPLEX,
+			PASSCODE_NONE),
+		"usb" -> new BackendInfo(
+			(s, p) => new UsbTnc(s, p),
+			R.xml.backend_usb,
+			CAN_DUPLEX,
 			PASSCODE_NONE)
 		)
 
