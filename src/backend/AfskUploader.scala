@@ -14,7 +14,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		with PacketHandler with PacketCallback {
 	val TAG = "APRSdroid.Afsk"
 	// frame prefix: bytes = milliseconds * baudrate / 8 / 1000
-	var FrameLength = prefs.getStringInt("afsk.prefix", 1000)*1200/8/1000
+	var FrameLength = prefs.getStringInt("afsk.prefix", 200)*1200/8/1000
 	var Digis = prefs.getString("digi_path", "WIDE1-1")
 	val use_hq = prefs.getAfskHQ()
 	val use_bt = prefs.getAfskBluetooth()
