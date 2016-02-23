@@ -1,17 +1,17 @@
 package org.aprsdroid.app
 
 import _root_.android.content.{BroadcastReceiver, Context, Intent, IntentFilter}
-import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
-import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
+import _root_.android.graphics.drawable.Drawable
+import _root_.android.graphics.{Bitmap, BitmapFactory, Canvas, Matrix, Paint, Path, Point, Rect, Typeface}
 import _root_.android.util.AttributeSet
 import _root_.android.widget.ImageView
 
 class SymbolView(context : Context, attrs : AttributeSet) extends ImageView(context, attrs) {
 
 	var symbol : String = "/$"
-	val iconbitmap = UnscaledBitmapLoader.loadFromResource(context.getResources(),
-				R.drawable.allicons, null)
-	val symbolSize = 16
+	lazy val iconbitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.allicons)
+	lazy val symbolSize = (context.getResources().getDisplayMetrics().density * 16).toInt
+
 
 	def setSymbol(new_sym : String) {
 		symbol = new_sym
@@ -20,9 +20,9 @@ class SymbolView(context : Context, attrs : AttributeSet) extends ImageView(cont
 
 	def symbol2rect(symbol : String) : Rect = {
 		val alt_offset = if (symbol(0) == '/') 0 else symbolSize*6
-		val index = symbol(1) - 32
-		val x = (index / 16) * symbolSize + alt_offset
-		val y = (index % 16) * symbolSize
+		val index = symbol(1) - 33
+		val y = (index / 16) * symbolSize + alt_offset
+		val x = (index % 16) * symbolSize
 		new Rect(x, y, x+symbolSize, y+symbolSize)
 	}
 
@@ -57,8 +57,8 @@ class SymbolView(context : Context, attrs : AttributeSet) extends ImageView(cont
 		if (symbolIsOverlayed(symbol)) {
 			val x = getWidth()/2
 			val y = getHeight()*3/4
-			canvas.drawText(symbol(0).toString(), x, y, strokePaint)
-			canvas.drawText(symbol(0).toString(), x, y, symbPaint)
+			canvas.drawText(symbol(0).toString(), x+1, y+1, strokePaint)
+			canvas.drawText(symbol(0).toString(), x+1, y+1, symbPaint)
 		}
 	}
 }

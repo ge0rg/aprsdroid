@@ -202,12 +202,12 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 	def symbol2rect(symbol : String) : Rect = {
 		val alt_offset = if (symbol(0) == '/') 0 else symbolSize*6
-		val index = symbol(1) - 32
+		val index = symbol(1) - 33
 		// check for overflow
 		if (index < 0 || index >= 6*16)
 			return new Rect(0, 0, symbolSize, symbolSize)
-		val x = (index / 16) * symbolSize + alt_offset
-		val y = (index % 16) * symbolSize
+		val y = (index / 16) * symbolSize + alt_offset
+		val x = (index % 16) * symbolSize
 		new Rect(x, y, x+symbolSize, y+symbolSize)
 	}
 
@@ -291,8 +291,8 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 				c.drawBitmap(iconbitmap, srcRect, destRect, null)
 				// and finally the bitmap overlay, if any
 				if (zoom >= 6 && symbolIsOverlayed(s.symbol)) {
-					c.drawText(s.symbol(0).toString(), p.x, p.y+ss/2, symbStrPaint)
-					c.drawText(s.symbol(0).toString(), p.x, p.y+ss/2, symbPaint)
+					c.drawText(s.symbol(0).toString(), p.x+1, p.y+ss/2+1, symbStrPaint)
+					c.drawText(s.symbol(0).toString(), p.x+1, p.y+ss/2+1, symbPaint)
 				}
 			}
 		}

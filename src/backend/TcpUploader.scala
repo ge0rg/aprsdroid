@@ -106,6 +106,8 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 					service.getString(R.string.post_connecting, host, port.asInstanceOf[AnyRef]))
 
 				val socket = sc.getSocketFactory().createSocket(host, port).asInstanceOf[SSLSocket]
+				// enable all available cipher suites, including NULL; fixes #71
+				socket.setEnabledCipherSuites(sc.getSocketFactory().getDefaultCipherSuites())
 				socket
 			} catch {
 				case e : java.io.FileNotFoundException =>

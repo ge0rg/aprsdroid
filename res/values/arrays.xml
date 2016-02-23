@@ -8,6 +8,7 @@
 		<item>@string/p_conn_bt</item>
 		<item>@string/p_conn_kwd</item>
 		<item>@string/p_conn_tcptnc</item>
+		<item>@string/p_conn_usb</item>
 	</string-array>
 	<string-array name="p_conntype_ev">
 		<item>tcp</item>
@@ -17,6 +18,7 @@
 		<item>bluetooth</item>
 		<item>kenwood</item>
 		<item>tcptnc</item>
+		<item>usb</item>
 	</string-array>
 	<string-array name="p_afsk_out_ev">
 		<item>0</item>
@@ -82,5 +84,13 @@
 		<item>720</item>
 		<item>1440</item>
 		<item>2880</item>
+	</string-array>
+	<string-array name="p_serial_baudrates">
+		<item>4800</item>
+		<item>9600</item>
+		<item>19200</item>
+		<item>38400</item>
+		<item>57600</item>
+		<item>115200</item>
 	</string-array>
 </resources>
