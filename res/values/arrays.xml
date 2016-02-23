@@ -86,6 +86,7 @@
 		<item>2880</item>
 	</string-array>
 	<string-array name="p_serial_baudrates">
+		<item>4800</item>
 		<item>9600</item>
 		<item>19200</item>
 		<item>38400</item>
