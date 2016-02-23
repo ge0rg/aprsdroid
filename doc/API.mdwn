@@ -167,7 +167,7 @@ Start the APRSdroid tracking service for an indeterminate runtime
 (`SERVICE`) or for one position transmission (`ONCE`).
 
 	// launch APRSdroid tracker
-	Intent i = new Intent("org.aprsdroid.app.SERVICE");
+	Intent i = new Intent("org.aprsdroid.app.SERVICE").setPackage("org.aprsdroid.app");
 	startService(i);
 
 ### SERVICE_STOP
@@ -175,7 +175,7 @@ Start the APRSdroid tracking service for an indeterminate runtime
 Stop the tracking service.
 
 	// stop APRSdroid tracker
-	Intent i = new Intent("org.aprsdroid.app.SERVICE_STOP");
+	Intent i = new Intent("org.aprsdroid.app.SERVICE_STOP").setPackage("org.aprsdroid.app");
 	startService(i);
 
 ### SEND_PACKET
@@ -192,7 +192,7 @@ Intent extras:
 Example for sending a raw status packet:
 
 	// send raw status packet
-	Intent i = new Intent("org.aprsdroid.app.SEND_PACKET");
+	Intent i = new Intent("org.aprsdroid.app.SEND_PACKET").setPackage("org.aprsdroid.app");
 	i.putExtra("data", ">third-party APRS status app");
 	startService(i);
 
