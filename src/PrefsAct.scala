@@ -1,6 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.android.content.Intent
+import _root_.android.net.Uri
 import _root_.android.os.Bundle
 import _root_.android.preference.Preference
 import _root_.android.preference.Preference.OnPreferenceClickListener
@@ -30,7 +31,11 @@ class PrefsAct extends PreferenceActivity {
 		case "file" =>
 			data.getData().getPath()
 		case "content" =>
-			val cursor = getContentResolver().query(data.getData(), null, null, null, null)
+			// fix up Uri for KitKat+; http://stackoverflow.com/a/27271131/539443
+			val fixup_uri = Uri.parse(data.getDataString().replace(
+				"content://com.android.providers.downloads.documents/document",
+				"content://downloads/public_downloads"))
+			val cursor = getContentResolver().query(fixup_uri, null, null, null, null)
 			cursor.moveToFirst()
 			val idx = cursor.getColumnIndex("_data")
 			val result = if (idx != -1) cursor.getString(idx) else null
@@ -44,6 +49,9 @@ class PrefsAct extends PreferenceActivity {
 				.edit().putString(pref_name, file).commit()
 			android.widget.Toast.makeText(this, file,
 				android.widget.Toast.LENGTH_SHORT).show()
+			// reload prefs
+			finish()
+			startActivity(getIntent())
 		} else {
 			android.widget.Toast.makeText(this, getString(error_id, file),
 				android.widget.Toast.LENGTH_SHORT).show()
