@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	    android:title="@string/p_conn_usb">
+
+        <de.duenndns.ListPreferenceWithValue
+                android:key="baudrate"
+		android:title="@string/p_serial_baudrate"
+		android:summary="@string/p_serial_baudrate_summary"
+                android:entries="@array/p_serial_baudrates"
+                android:entryValues="@array/p_serial_baudrates"
+		android:defaultValue="115200"
+		android:dialogTitle="@string/p_serial_baudrate" />
+
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="usb.init"
+		android:defaultValue=""
+		android:singleLine="false"
+		android:title="@string/p_bt_tnc_init"
+		android:summary="@string/p_bt_tnc_init_summary"
+		android:dialogTitle="@string/p_bt_tnc_init" />
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="usb.delay"
+		android:inputType="number"
+		android:hint="300"
+		android:defaultValue="300"
+		android:title="@string/p_bt_tnc_delay"
+		android:summary="@string/p_bt_tnc_delay_summary"
+		android:dialogTitle="@string/p_bt_tnc_delay_entry" />
+
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="digi_path"
+		android:hint="hop1,hop2,.."
+		android:defaultValue="WIDE1-1"
+		android:title="@string/p_aprs_path"
+		android:summary="@string/p_aprs_path_summary"
+		android:dialogTitle="@string/p_aprs_path_entry" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
+
