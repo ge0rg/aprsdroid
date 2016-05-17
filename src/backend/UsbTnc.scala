@@ -79,13 +79,14 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		for ((name, dev) <- dl) {
 			val deviceVID = dev.getVendorId()
 			val devicePID = dev.getProductId()
-			if (deviceVID != 0x1d6b || (devicePID != 0x0001 || devicePID != 0x0002 || devicePID != 0x0003)) {
+			if (UsbSerialDevice.isDeviceSupported(dev)) {
 				// this is not a USB Hub
 				log("Found USB device %04x:%04x, requesting permissions.".format(deviceVID, devicePID))
 				this.dev = dev
 				usbManager.requestPermission(dev, pendingIntent)
 				return
-			}
+			} else
+				log("Unsupported USB device %04x:%04x.".format(deviceVID, devicePID))
 		}
 		service.postAbort("No USB device found!")
 	}
