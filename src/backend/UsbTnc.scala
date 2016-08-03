@@ -145,7 +145,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 
 			log("Opened " + ser.getClass().getSimpleName() + " at " + baudrate + "bd")
 			val os = new SerialOutputStream(ser)
-			val initstring = prefs.getString("usb.init", null)
+			val initstring = java.net.URLDecoder.decode(prefs.getString("usb.init", ""), "UTF-8")
 			val initdelay = prefs.getStringInt("usb.delay", 300)
 			if (initstring != null && initstring != "") {
 				log("Sending init: " + initstring)

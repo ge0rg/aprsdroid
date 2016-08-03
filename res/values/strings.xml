@@ -332,7 +332,8 @@
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
 <string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_bt_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_bt_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
 <string name="p_bt_tnc_delay">TNC init delay</string>
 <string name="p_bt_tnc_delay_summary">Time to wait after each line</string>

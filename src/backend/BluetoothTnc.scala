@@ -106,7 +106,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 			this.synchronized {
 				proto = createTncProto(socket.getInputStream(), socket.getOutputStream())
 			}
-			val initstring = prefs.getString("bt.init", null)
+			val initstring = java.net.URLDecoder.decode(prefs.getString("bt.init", ""), "UTF-8")
 			val initdelay = prefs.getStringInt("bt.delay", 300)
 			if (initstring != null && initstring != "") {
 				log("Sending init: " + initstring)
