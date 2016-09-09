@@ -26,9 +26,13 @@
 			CharSequence[] entryValues = new CharSequence[pairedDevices.size()];
 			int i = 0;
 			for (BluetoothDevice dev : pairedDevices) {
-				entries[i] = dev.getName();
-				entryValues[i] = dev.getAddress();
-				i++;
+				if (dev.getAddress() != null) {
+					entries[i] = dev.getName();
+					if (entries[i] == null)
+						entries[i] = "(null)";
+					entryValues[i] = dev.getAddress();
+					i++;
+				}
 			}
 			setEntries(entries);
 			setEntryValues(entryValues);
