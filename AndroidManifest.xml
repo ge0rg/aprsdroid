@@ -91,10 +91,26 @@
 		<action android:name="android.intent.action.VIEW" />
 		<category android:name="android.intent.category.DEFAULT" />
 		<category android:name="android.intent.category.BROWSABLE" />
-		<data android:scheme="file" />
-		<data android:mimeType="*/*" />
-		<data android:pathPattern=".*\\.p12" />
-		<data android:host="*" />
+		<data android:scheme="file"
+			android:mimeType="*/*"
+			android:host="*"
+			android:pathPattern=".*\\.p12" />
+	    </intent-filter>
+	    <intent-filter>
+		<action android:name="android.intent.action.VIEW" />
+		<category android:name="android.intent.category.DEFAULT" />
+		<category android:name="android.intent.category.BROWSABLE" />
+		<data android:scheme="content"
+			android:mimeType="*/*"
+			android:host="*"
+			android:pathPattern=".*\\.p12" />
+	    </intent-filter>
+	    <intent-filter>
+		<action android:name="android.intent.action.VIEW" />
+		<category android:name="android.intent.category.DEFAULT" />
+		<category android:name="android.intent.category.BROWSABLE" />
+		<data android:scheme="content"
+			android:mimeType="application/x-pkcs12" />
 	    </intent-filter>
 	</activity>
 	<service android:name=".AprsService" android:label="@string/aprsservice">
