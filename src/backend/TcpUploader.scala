@@ -210,6 +210,8 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 
 		def shutdown() {
 			Log.d(TAG, "shutdown()")
+			if (tnc != null)
+				tnc.stop()
 			this.synchronized {
 				catchLog("shutdownInput", socket.shutdownInput)
 				catchLog("shutdownOutput", socket.shutdownOutput)

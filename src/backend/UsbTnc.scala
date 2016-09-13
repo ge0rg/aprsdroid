@@ -164,6 +164,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 				service.postSubmit(line)
 			}
 			Log.d(TAG, "terminate()")
+			proto.stop()
 		}
 
 

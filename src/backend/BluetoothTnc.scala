@@ -180,6 +180,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 
 		def shutdown() {
 			Log.d(TAG, "shutdown()")
+			if (proto != null)
+				proto.stop()
 			this.synchronized {
 				catchLog("socket.close", socket.close)
 			}
