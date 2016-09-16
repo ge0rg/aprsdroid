@@ -2,7 +2,6 @@ package org.aprsdroid.app
 
 import _root_.android.app.Service
 import _root_.android.content.Context
-import _root_.android.location.{Location, LocationManager}
 import _root_.android.util.Log
 import _root_.android.widget.Toast
 import _root_.java.io.{BufferedReader, File, InputStream, InputStreamReader, OutputStream, OutputStreamWriter, PrintWriter}
@@ -27,20 +26,6 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 		false
 	}
 
-	def setupFilter() : String = {
-		val filterdist = prefs.getStringInt("tcp.filterdist", 50)
-		val userfilter = prefs.getString("tcp.filter", "")
-		val lastloc = try {
-			val locMan = service.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
-			AprsPacket.formatRangeFilter(
-				locMan.getLastKnownLocation(PeriodicGPS.bestProvider(locMan)), filterdist)
-		} catch {
-			case e : IllegalArgumentException => ""
-		}
-		if (filterdist == 0) return " filter %s %s".format(userfilter, lastloc)
-				else return " filter m/%d %s %s".format(filterdist, userfilter, lastloc)
-	}
-
 	def createConnection() {
 		Log.d(TAG, "TcpUploader.createConnection: " + hostport)
 		conn = new TcpSocketThread(hostport)
@@ -48,8 +33,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 	}
 
 	def createTncProto(is : InputStream, os : OutputStream) : TncProto = {
-		Log.d(TAG, login + setupFilter())
-		new AprsIsProto(is, os, login + setupFilter())
+		new AprsIsProto(service, is, os)
 	}
 
 	def update(packet : APRSPacket) : String = {
