@@ -18,7 +18,6 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 	val bt_client = prefs.getBoolean("bt.client", true)
 	val tncmac = prefs.getString("bt.mac", null)
 	val tncchannel = prefs.getStringInt("bt.channel", -1)
-	var digipath = prefs.getString("digi_path", "WIDE1-1")
 	var conn : BtSocketThread = null
 
 	def start() = {
@@ -28,7 +27,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 	}
 
 	def createTncProto(is : InputStream, os : OutputStream) : TncProto =
-		new KissProto(is, os, digipath)
+		new KissProto(is, os)
 
 	def createConnection() {
 		Log.d(TAG, "BluetoothTnc.createConnection: " + tncmac)
@@ -52,8 +51,6 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 	}
 
 	def update(packet : APRSPacket) : String = {
-		// the digipeater setting here is a duplicate just for log purpose
-		packet.setDigipeaters(Digipeater.parseList(digipath, true))
 		Log.d(TAG, "BluetoothTnc.update: " + packet)
 		conn.update(packet)
 	}
