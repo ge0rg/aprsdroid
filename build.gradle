@@ -127,4 +127,6 @@ dependencies {
 	implementation fileTree(include: ['*.jar'], dir: 'libs')
 	implementation 'com.google.android.gms:play-services-maps:17.0.0'
 	implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+	implementation 'com.squareup.okio:okio:2.1.0'
 }

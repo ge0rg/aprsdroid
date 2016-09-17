@@ -146,7 +146,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		override def run() {
 			val con = usbManager.openDevice(dev)
 			ser = UsbSerialDevice.createUsbSerialDevice(dev, con)
-			if (ser == null || !ser.open()) {
+			if (ser == null || !ser.syncOpen()) {
 				con.close()
 				service.postAbort(service.getString(R.string.p_serial_unsupported))
 				return
