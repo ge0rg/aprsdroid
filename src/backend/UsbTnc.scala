@@ -23,8 +23,6 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 	val ACTION_USB_ATTACHED = "android.hardware.usb.action.USB_DEVICE_ATTACHED"
 	val ACTION_USB_DETACHED = "android.hardware.usb.action.USB_DEVICE_DETACHED"
 
-	var digipath = prefs.getString("digi_path", "WIDE1-1")
-
 	val usbManager = service.getSystemService(Context.USB_SERVICE).asInstanceOf[UsbManager];
 	var thread : UsbThread = null
 	var dev : UsbDevice = null
@@ -79,7 +77,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		for ((name, dev) <- dl) {
 			val deviceVID = dev.getVendorId()
 			val devicePID = dev.getProductId()
-			if (UsbSerialDevice.isDeviceSupported(dev)) {
+			if (UsbSerialDevice.isSupported(dev)) {
 				// this is not a USB Hub
 				log("Found USB device %04x:%04x, requesting permissions.".format(deviceVID, devicePID))
 				this.dev = dev
@@ -92,10 +90,6 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 	}
 
 	def update(packet : APRSPacket) : String = {
-		// the digipeater setting here is a duplicate just for log purpose
-		packet.setDigipeaters(Digipeater.parseList(digipath, true))
-		Log.d(TAG, "UsbTnc.update: " + packet)
-		//TODO
 		proto.writePacket(packet)
 		"USB OK"
 	}
@@ -156,7 +150,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 					Thread.sleep(initdelay)
 				}
 			}
-			proto = new KissProto(new SerialInputStream(ser), os, digipath)
+			proto = new KissProto(new SerialInputStream(ser), os)
 			service.postPosterStarted()
 			while (running) {
 				val line = proto.readPacket()
@@ -164,6 +158,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 				service.postSubmit(line)
 			}
 			Log.d(TAG, "terminate()")
+			proto.stop()
 		}
 
 

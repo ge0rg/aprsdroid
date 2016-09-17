@@ -202,8 +202,9 @@ class AprsService extends Service {
 	}
 
 	def newPacket(payload : InformationField) = {
-		// TODO: obtain digi path from prefs
-		new APRSPacket(prefs.getCallSsid(), APP_VERSION, null, payload)
+		val digipath = prefs.getString("digi_path", "WIDE1-1")
+		new APRSPacket(prefs.getCallSsid(), APP_VERSION,
+			Digipeater.parseList(digipath, true), payload)
 	}
 
 	def formatLoc(symbol : String, status : String, location : Location) = {

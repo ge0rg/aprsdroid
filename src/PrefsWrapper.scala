@@ -1,6 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.android.content.Context
+import _root_.android.location.{Location, LocationManager}
 import _root_.android.media.AudioManager
 import _root_.android.preference.PreferenceManager
 
@@ -63,6 +64,20 @@ class PrefsWrapper(val context : Context) {
 
 	def getLoginString() = AprsPacket.formatLogin(getCallsign(), getSsid(),
 		getPasscode(), getVersion())
+	def getFilterString(service : AprsService) : String = {
+		val filterdist = getStringInt("tcp.filterdist", 50)
+		val userfilter = getString("tcp.filter", "")
+		val lastloc = try {
+			val locMan = service.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
+			AprsPacket.formatRangeFilter(
+				locMan.getLastKnownLocation(PeriodicGPS.bestProvider(locMan)), filterdist)
+		} catch {
+			case e : IllegalArgumentException => ""
+		}
+		if (filterdist == 0) return " filter %s %s".format(userfilter, lastloc)
+				else return " filter m/%d %s %s".format(filterdist, userfilter, lastloc)
+	}
+
 	
 	def getAfskHQ() = getBoolean("afsk.hqdemod", true)
 	def getAfskBluetooth() = getBoolean("afsk.btsco", false) && getAfskHQ()

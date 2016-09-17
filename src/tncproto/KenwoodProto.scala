@@ -1,13 +1,26 @@
 package org.aprsdroid.app
 
+import _root_.android.content.Context
+import _root_.android.location.{GpsStatus, LocationManager}
 import _root_.android.util.Log
-import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStream}
+import _root_.android.os.{Handler, Looper}
+import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStream, OutputStreamWriter}
 
 import _root_.net.ab0oo.aprs.parser._
 
-class KenwoodProto(is : InputStream) extends TncProto(is, null) {
+class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) extends TncProto(is, null) {
 	val TAG = "APRSdroid.KenwoodProto"
 	val br = new BufferedReader(new InputStreamReader(is))
+	val locMan = service.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
+	val output = new OutputStreamWriter(os)
+
+	var listener : NmeaListener = null
+	if (android.os.Build.VERSION.SDK_INT >= 5) {
+		new Handler(Looper.getMainLooper()).post(new Runnable() { override def run() {
+			listener = new NmeaListener()
+			locMan.addNmeaListener(listener)
+		}})
+	}
 
 	def wpl2aprs(line : String) = {
 		val s = line.split("[,*]") // get and split nmea
@@ -35,6 +48,27 @@ class KenwoodProto(is : InputStream) extends TncProto(is, null) {
 
 	def writePacket(p : APRSPacket) {
 		// don't do anything. yet.
+	}
+
+	class NmeaListener extends GpsStatus.NmeaListener() {
+	def onNmeaReceived(timestamp : Long, nmea : String) {
+		if (output != null && (nmea.startsWith("$GPGGA") || nmea.startsWith("$GPRMC"))) {
+			Log.d(TAG, "NMEA >>> " + nmea)
+			try {
+				output.write(nmea)
+			} catch {
+			case e : Exception =>
+				Log.e(TAG, "error sending NMEA to Kenwood: " + e)
+				e.printStackTrace()
+			}
+		} else
+			Log.d(TAG, "NMEA --- " + nmea)
+	}}
+
+	override def stop() {
+		if (android.os.Build.VERSION.SDK_INT >= 5)
+			locMan.removeNmeaListener(listener)
+		super.stop()
 	}
 }
 
