@@ -8,7 +8,7 @@ class KenwoodTnc(service : AprsService, prefs : PrefsWrapper) extends BluetoothT
 	override val TAG = "APRSdroid.KenwoodTnc"
 
 	override def createTncProto(is : InputStream, os : OutputStream) = {
-		new KenwoodProto(service, is, os)
+		AprsBackend.instanciateProto("kiss", service, is, os)
 	}
 
 }

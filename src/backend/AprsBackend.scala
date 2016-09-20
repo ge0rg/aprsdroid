@@ -1,6 +1,7 @@
 package org.aprsdroid.app
 
 import _root_.net.ab0oo.aprs.parser.APRSPacket
+import _root_.java.io.{InputStream, OutputStream}
 
 object AprsBackend {
 	val DEFAULT_CONNTYPE = "tcp"
@@ -72,8 +73,34 @@ object AprsBackend {
 		}
 	}
 
+	class ProtoInfo(
+		val create : (AprsService, InputStream, OutputStream) => TncProto,
+		val prefxml : Int
+	) {}
+
+	val proto_collection = Map(
+		"aprsis" -> new ProtoInfo(
+			(s, is, os) => new AprsIsProto(s, is, os),
+			0),
+		"kiss" -> new ProtoInfo(
+			(s, is, os) => new KissProto(is, os),
+			0),
+		"kenwood" -> new ProtoInfo(
+			(s, is, os) => new KenwoodProto(s, is, os),
+			0)
+	);
+	def defaultProtoInfo(p : String) : ProtoInfo = {
+		proto_collection.get(p) match {
+		case Some(pi) => pi
+		case None => proto_collection("kiss")
+		}
+	}
+
 	def instanciateUploader(service : AprsService, prefs : PrefsWrapper) : AprsBackend = {
 		defaultBackendInfo(prefs).create(service, prefs)
+	}
+	def instanciateProto(p : String, service : AprsService, is : InputStream, os : OutputStream) : TncProto = {
+		defaultProtoInfo(p).create(service, is, os)
 	}
 	def instanciatePrefsAct(prefs : PrefsWrapper) = {
 		defaultBackendInfo(prefs).prefxml

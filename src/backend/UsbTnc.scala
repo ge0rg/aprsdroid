@@ -150,7 +150,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 					Thread.sleep(initdelay)
 				}
 			}
-			proto = new KissProto(new SerialInputStream(ser), os)
+			proto = AprsBackend.instanciateProto("kiss", service, new SerialInputStream(ser), os)
 			service.postPosterStarted()
 			while (running) {
 				val line = proto.readPacket()

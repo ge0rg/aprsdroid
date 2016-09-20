@@ -27,7 +27,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 	}
 
 	def createTncProto(is : InputStream, os : OutputStream) : TncProto =
-		new KissProto(is, os)
+		AprsBackend.instanciateProto("kiss", service, is, os)
 
 	def createConnection() {
 		Log.d(TAG, "BluetoothTnc.createConnection: " + tncmac)

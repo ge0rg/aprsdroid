@@ -33,7 +33,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 	}
 
 	def createTncProto(is : InputStream, os : OutputStream) : TncProto = {
-		new AprsIsProto(service, is, os)
+		AprsBackend.instanciateProto("aprsis", service, is, os)
 	}
 
 	def update(packet : APRSPacket) : String = {

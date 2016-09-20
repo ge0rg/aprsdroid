@@ -6,6 +6,6 @@ class TcpTnc(service : AprsService, prefs : PrefsWrapper) extends TcpUploader(se
 	override val TAG = "APRSdroid.TcpTnc"
 
 	override def createTncProto(is : InputStream, os : OutputStream) : TncProto =
-		new KissProto(is, os)
+		AprsBackend.instanciateProto("kiss", service, is, os)
 
 }
