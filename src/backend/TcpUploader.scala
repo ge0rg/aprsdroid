@@ -32,10 +32,6 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 		conn.start()
 	}
 
-	def createTncProto(is : InputStream, os : OutputStream) : TncProto = {
-		AprsBackend.instanciateProto("aprsis", service, is, os)
-	}
-
 	def update(packet : APRSPacket) : String = {
 		Log.d(TAG, "TcpUploader.update: " + packet)
 		conn.update(packet)
@@ -126,7 +122,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 				}
 				socket.setKeepAlive(true)
 				socket.setSoTimeout(so_timeout*1000)
-				tnc = createTncProto(socket.getInputStream(), socket.getOutputStream())
+				tnc = AprsBackend.instanciateProto(service, socket.getInputStream(), socket.getOutputStream())
 			}
 			Log.d(TAG, "init_socket() done")
 		}

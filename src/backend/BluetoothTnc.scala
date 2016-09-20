@@ -26,9 +26,6 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		false
 	}
 
-	def createTncProto(is : InputStream, os : OutputStream) : TncProto =
-		AprsBackend.instanciateProto("kiss", service, is, os)
-
 	def createConnection() {
 		Log.d(TAG, "BluetoothTnc.createConnection: " + tncmac)
 		val adapter = BluetoothAdapter.getDefaultAdapter()
@@ -101,7 +98,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 				log("Connected to TNC.")
 
 			this.synchronized {
-				proto = createTncProto(socket.getInputStream(), socket.getOutputStream())
+				proto = AprsBackend.instanciateProto(service, socket.getInputStream(), socket.getOutputStream())
 			}
 			val initstring = java.net.URLDecoder.decode(prefs.getString("bt.init", ""), "UTF-8")
 			val initdelay = prefs.getStringInt("bt.delay", 300)

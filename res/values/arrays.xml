@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string-array name="p_conntype_e">
-		<item>@string/p_conn_tcp</item>
-		<item>@string/p_conn_udp</item>
-		<item>@string/p_conn_http</item>
+		<item>@string/p_conn_aprsis</item>
 		<item>@string/p_conn_afsk</item>
-		<item>@string/p_conn_bt</item>
+		<item>@string/p_conn_kiss</item>
 		<item>@string/p_conn_kwd</item>
-		<item>@string/p_conn_tcptnc</item>
-		<item>@string/p_conn_usb</item>
 	</string-array>
 	<string-array name="p_conntype_ev">
-		<item>tcp</item>
-		<item>udp</item>
-		<item>http</item>
+		<item>aprsis</item>
 		<item>afsk</item>
-		<item>bluetooth</item>
+		<item>kiss</item>
 		<item>kenwood</item>
-		<item>tcptnc</item>
+	</string-array>
+	<string-array name="p_aprsis_e">
+		<item>@string/p_aprsis_tcp</item>
+		<item>@string/p_aprsis_http</item>
+		<item>@string/p_aprsis_udp</item>
+	</string-array>
+	<string-array name="p_aprsis_ev">
+		<item>tcp</item>
+		<item>http</item>
+		<item>udp</item>
+	</string-array>
+	<string-array name="p_link_e">
+		<item>@string/p_link_bt</item>
+		<item>@string/p_link_usb</item>
+		<item>@string/p_link_tcpip</item>
+	</string-array>
+	<string-array name="p_link_ev">
+		<item>bluetooth</item>
 		<item>usb</item>
+		<item>tcpip</item>
 	</string-array>
 	<string-array name="p_afsk_out_ev">
 		<item>0</item>

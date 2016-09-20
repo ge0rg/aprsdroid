@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	    android:title="@string/p_conn_aprsis">
+
+        <EditTextPreference
+                android:key="passcode"
+		android:inputType="number"
+		android:title="@string/p_passcode"
+		android:summary="@string/p_passcode_summary"
+		android:dialogTitle="@string/p_passcode_entry" />
+	<Preference
+		android:title="@string/p_passreq"
+		android:summary="@string/p_passreq_summary" >
+		<intent android:action="android.intent.action.VIEW"
+			android:data="@string/passcode_url" />
+	</Preference>
+
+        <de.duenndns.ListPreferenceWithValue
+                android:key="aprsis"
+		android:title="@string/p_link"
+                android:entries="@array/p_aprsis_e"
+                android:entryValues="@array/p_aprsis_ev"
+		android:defaultValue="tcp"
+		android:dialogTitle="@string/p_link_entry" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
+

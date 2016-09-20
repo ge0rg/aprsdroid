@@ -36,7 +36,7 @@ object AprsBackend {
 			PASSCODE_REQUIRED),
 		"afsk" -> new BackendInfo(
 			(s, p) => new AfskUploader(s, p),
-			R.xml.backend_afsk,
+			0,
 			CAN_DUPLEX,
 			PASSCODE_NONE),
 		"tcp" -> new BackendInfo(
@@ -49,13 +49,8 @@ object AprsBackend {
 			R.xml.backend_bluetooth,
 			CAN_DUPLEX,
 			PASSCODE_NONE),
-		"kenwood" -> new BackendInfo(
-			(s, p) => new KenwoodTnc(s, p),
-			R.xml.backend_kenwood,
-			CAN_RECEIVE,
-			PASSCODE_NONE),
-		"tcptnc" -> new BackendInfo(
-			(s, p) => new TcpTnc(s, p),
+		"tcpip" -> new BackendInfo(
+			(s, p) => new TcpUploader(s, p),
 			R.xml.backend_tcptnc,
 			CAN_DUPLEX,
 			PASSCODE_NONE),
@@ -66,43 +61,54 @@ object AprsBackend {
 			PASSCODE_NONE)
 		)
 
-	def defaultBackendInfo(prefs : PrefsWrapper) : BackendInfo = {
-		backend_collection.get(prefs.getString("backend", DEFAULT_CONNTYPE)) match {
-		case Some(bi) => bi
-		case None => backend_collection(DEFAULT_CONNTYPE)
-		}
-	}
-
 	class ProtoInfo(
 		val create : (AprsService, InputStream, OutputStream) => TncProto,
-		val prefxml : Int
+		val prefxml : Int,
+		val link : String
 	) {}
 
 	val proto_collection = Map(
 		"aprsis" -> new ProtoInfo(
 			(s, is, os) => new AprsIsProto(s, is, os),
-			0),
+			R.xml.proto_aprsis, "aprsis"),
+		"afsk" -> new ProtoInfo(
+			null,
+			R.xml.proto_afsk, null),
 		"kiss" -> new ProtoInfo(
 			(s, is, os) => new KissProto(is, os),
-			0),
+			R.xml.proto_kiss, "link"),
 		"kenwood" -> new ProtoInfo(
 			(s, is, os) => new KenwoodProto(s, is, os),
-			0)
+			R.xml.proto_kenwood, "link")
 	);
 	def defaultProtoInfo(p : String) : ProtoInfo = {
 		proto_collection.get(p) match {
 		case Some(pi) => pi
-		case None => proto_collection("kiss")
+		case None => proto_collection("aprsis")
 		}
 	}
+	def defaultProtoInfo(prefs : PrefsWrapper) : ProtoInfo = defaultProtoInfo(prefs.getProto())
+
+	def defaultBackendInfo(prefs : PrefsWrapper) : BackendInfo = {
+		val pi = defaultProtoInfo(prefs)
+		val link = if (pi.link != null) { prefs.getString(pi.link, "bluetooth") } else { prefs.getProto() }
+		backend_collection.get(link) match {
+		case Some(bi) => bi
+		case None => backend_collection(DEFAULT_CONNTYPE)
+		}
+	}
+
 
 	def instanciateUploader(service : AprsService, prefs : PrefsWrapper) : AprsBackend = {
 		defaultBackendInfo(prefs).create(service, prefs)
 	}
-	def instanciateProto(p : String, service : AprsService, is : InputStream, os : OutputStream) : TncProto = {
-		defaultProtoInfo(p).create(service, is, os)
+	def instanciateProto(service : AprsService, is : InputStream, os : OutputStream) : TncProto = {
+		defaultProtoInfo(service.prefs).create(service, is, os)
 	}
-	def instanciatePrefsAct(prefs : PrefsWrapper) = {
+	def prefxml_proto(prefs : PrefsWrapper) = {
+		defaultProtoInfo(prefs).prefxml
+	}
+	def prefxml_backend(prefs : PrefsWrapper) = {
 		defaultBackendInfo(prefs).prefxml
 	}
 

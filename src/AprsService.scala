@@ -136,7 +136,7 @@ class AprsService extends Service {
 			showToast(toastString.format(
 				prefs.getListItemName("loc_source", LocationSource.DEFAULT_CONNTYPE,
 					R.array.p_locsource_ev, R.array.p_locsource_e),
-				prefs.getListItemName("backend", AprsBackend.DEFAULT_CONNTYPE,
+				prefs.getListItemName("proto", AprsBackend.DEFAULT_CONNTYPE,
 					R.array.p_conntype_ev, R.array.p_conntype_e)))
 
 		val callssid = prefs.getCallSsid()
