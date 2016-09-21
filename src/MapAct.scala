@@ -203,12 +203,17 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		//Log.d(TAG, "drawing trace of %s".format(call))
 
 		val tracePaint = new Paint()
-		tracePaint.setARGB(200, 255, 128, 128)
+		tracePaint.setARGB(128, 100, 100, 255)
 		tracePaint.setStyle(Paint.Style.STROKE)
 		tracePaint.setStrokeJoin(Paint.Join.ROUND)
 		tracePaint.setStrokeCap(Paint.Cap.ROUND)
-		tracePaint.setStrokeWidth(2)
+		tracePaint.setStrokeWidth(drawSize/6)
 		tracePaint.setAntiAlias(true)
+
+		val dotPaint = new Paint()
+		dotPaint.setARGB(128, 255, 0, 0)
+		dotPaint.setStyle(Paint.Style.FILL)
+		dotPaint.setAntiAlias(true)
 
 
 		val path = new Path()
@@ -225,6 +230,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 				first = false
 			} else
 				path.lineTo(point.x, point.y)
+			c.drawCircle(point.x, point.y, drawSize/12, dotPaint)
 		}
 		c.drawPath(path, tracePaint)
 	}
