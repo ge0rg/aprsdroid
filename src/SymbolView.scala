@@ -6,11 +6,22 @@ import _root_.android.graphics.{Bitmap, BitmapFactory, Canvas, Matrix, Paint, Pa
 import _root_.android.util.AttributeSet
 import _root_.android.widget.ImageView
 
+object SymbolView {
+	var iconbitmap : Bitmap = null
+
+	def getSingleton(context : Context) = {
+		if (iconbitmap == null) {
+			iconbitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.allicons)
+		}
+		iconbitmap
+	}
+}
+
 class SymbolView(context : Context, attrs : AttributeSet) extends ImageView(context, attrs) {
 
 	var symbol : String = "/$"
-	lazy val iconbitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.allicons)
-	lazy val symbolSize = (context.getResources().getDisplayMetrics().density * 16).toInt
+	lazy val iconbitmap = SymbolView.getSingleton(context)
+	lazy val symbolSize = iconbitmap.getWidth()/16
 
 
 	def setSymbol(new_sym : String) {

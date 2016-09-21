@@ -175,7 +175,9 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	// prevent android bug #11666
 	populate()
 
-	lazy val symbolSize = (context.getResources().getDisplayMetrics().density * 16).toInt
+	val iconbitmap = icons.asInstanceOf[BitmapDrawable].getBitmap
+	val symbolSize = iconbitmap.getWidth()/16
+	lazy val drawSize = (context.getResources().getDisplayMetrics().density * 24).toInt
 
 	override def size() = stations.size()
 	override def createItem(idx : Int) : Station = stations.get(idx)
@@ -228,7 +230,8 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	override def draw(c : Canvas, m : MapView, shadow : Boolean) : Unit = {
 		if (shadow) return;
 
-		val fontSize = symbolSize*7/8
+		Log.d(TAG, "draw: symbolSize=" + symbolSize + " drawSize=" + drawSize)
+		val fontSize = drawSize*7/8
 		val textPaint = new Paint()
 		textPaint.setColor(0xff000000)
 		textPaint.setTextAlign(Paint.Align.CENTER)
@@ -238,7 +241,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 		val symbPaint = new Paint(textPaint)
 		symbPaint.setARGB(255, 255, 255, 255)
-		symbPaint.setTextSize(symbolSize*3/4 - 1)
+		symbPaint.setTextSize(drawSize*3/4 - 1)
 
 		val strokePaint = new Paint(textPaint)
 		strokePaint.setColor(0xffc8ffc8)
@@ -247,17 +250,16 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 		val symbStrPaint = new Paint(strokePaint)
 		symbStrPaint.setColor(0xff000000)
-		symbStrPaint.setTextSize(symbolSize*3/4 - 1)
+		symbStrPaint.setTextSize(drawSize*3/4 - 1)
 
 		strokePaint.setShadowLayer(2, 0, 0, 0xffc8ffc8)
 
-		val iconbitmap = icons.asInstanceOf[BitmapDrawable].getBitmap
 
 		val p = new Point()
 		val proj = m.getProjection()
 		val zoom = m.getZoomLevel()
 		val (width, height) = (c.getWidth(), c.getHeight())
-		val ss = symbolSize/2
+		val ss = drawSize/2
 		for (s <- stations) {
 			proj.toPixels(s.pt, p)
 			if (p.x >= 0 && p.y >= 0 && p.x < width && p.y < height) {
