@@ -104,5 +104,8 @@
 		<item>38400</item>
 		<item>57600</item>
 		<item>115200</item>
+		<item>230400</item>
+		<item>460800</item>
+		<item>921600</item>
 	</string-array>
 </resources>
