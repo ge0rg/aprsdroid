@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <de.duenndns.ListPreferenceWithValue
+                android:key="loc_source"
+		android:title="@string/p_locsource"
+		android:summary="@string/p_locsource_summary"
+                android:entries="@array/p_locsource_e"
+                android:entryValues="@array/p_locsource_ev"
+		android:defaultValue="smartbeaconing"
+		android:dialogTitle="@string/p_locsource" />
+
+</PreferenceScreen>
