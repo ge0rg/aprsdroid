@@ -182,15 +182,17 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	override def size() = stations.size()
 	override def createItem(idx : Int) : Station = stations.get(idx)
 
-	def symbol2rect(symbol : String) : Rect = {
-		val alt_offset = if (symbol(0) == '/') 0 else symbolSize*6
-		val index = symbol(1) - 33
+	def symbol2rect(index : Int, page : Int) : Rect = {
 		// check for overflow
 		if (index < 0 || index >= 6*16)
 			return new Rect(0, 0, symbolSize, symbolSize)
+		val alt_offset = page*symbolSize*6
 		val y = (index / 16) * symbolSize + alt_offset
 		val x = (index % 16) * symbolSize
 		new Rect(x, y, x+symbolSize, y+symbolSize)
+	}
+	def symbol2rect(symbol : String) : Rect = {
+		symbol2rect(symbol(1) - 33, if (symbol(0) == '/') 0 else 1)
 	}
 
 	def symbolIsOverlayed(symbol : String) = {
@@ -275,9 +277,9 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 				// then the bitmap
 				c.drawBitmap(iconbitmap, srcRect, destRect, null)
 				// and finally the bitmap overlay, if any
-				if (zoom >= 6 && symbolIsOverlayed(s.symbol)) {
-					c.drawText(s.symbol(0).toString(), p.x+1, p.y+ss/2+1, symbStrPaint)
-					c.drawText(s.symbol(0).toString(), p.x+1, p.y+ss/2+1, symbPaint)
+				if (symbolIsOverlayed(s.symbol)) {
+					// use page 2, overlay letters
+					c.drawBitmap(iconbitmap, symbol2rect(s.symbol(0)-33, 2), destRect, null)
 				}
 			}
 		}

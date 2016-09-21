@@ -29,12 +29,14 @@ class SymbolView(context : Context, attrs : AttributeSet) extends ImageView(cont
 		invalidate()
 	}
 
-	def symbol2rect(symbol : String) : Rect = {
-		val alt_offset = if (symbol(0) == '/') 0 else symbolSize*6
-		val index = symbol(1) - 33
+	def symbol2rect(index : Int, page : Int) : Rect = {
+		val alt_offset = page*symbolSize*6
 		val y = (index / 16) * symbolSize + alt_offset
 		val x = (index % 16) * symbolSize
 		new Rect(x, y, x+symbolSize, y+symbolSize)
+	}
+	def symbol2rect(symbol : String) : Rect = {
+		symbol2rect(symbol(1) - 33, if (symbol(0) == '/') 0 else 1)
 	}
 
 	def symbolIsOverlayed(symbol : String) = {
@@ -46,30 +48,15 @@ class SymbolView(context : Context, attrs : AttributeSet) extends ImageView(cont
 		val srcRect = symbol2rect(symbol)
 		//android.util.Log.d("SymbolView", "x * y = " +  getWidth() + "*" + getHeight())
 		val destRect = new Rect(0, 0, getWidth(), getHeight())
-		val fontSize = getHeight()*3/4 - 1
 		val drawPaint = new Paint()
 		drawPaint.setAntiAlias(true)
 		drawPaint.setFilterBitmap(true)
 
 		canvas.drawBitmap(iconbitmap, srcRect, destRect, drawPaint)
 
-		val symbPaint = new Paint()
-		symbPaint.setColor(0xffffffff)
-		symbPaint.setTextAlign(Paint.Align.CENTER)
-		symbPaint.setTypeface(Typeface.MONOSPACE)
-		symbPaint.setTextSize(fontSize)
-		symbPaint.setAntiAlias(true)
-
-		val strokePaint = new Paint(symbPaint)
-		strokePaint.setColor(0xff000000)
-		strokePaint.setStyle(Paint.Style.STROKE)
-		strokePaint.setStrokeWidth(2)
-
 		if (symbolIsOverlayed(symbol)) {
-			val x = getWidth()/2
-			val y = getHeight()*3/4
-			canvas.drawText(symbol(0).toString(), x+1, y+1, strokePaint)
-			canvas.drawText(symbol(0).toString(), x+1, y+1, symbPaint)
+			// use page 2, overlay letters
+			canvas.drawBitmap(iconbitmap, symbol2rect(symbol(0)-33, 2), destRect, drawPaint)
 		}
 	}
 }
