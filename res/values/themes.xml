@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="DefaultTheme"
+	    parent="@android:style/Theme" />
     <style name="MapViewTheme"
-           parent="@android:style/Theme.NoTitleBar">
-    </style>
+	    parent="@android:style/Theme.NoTitleBar" />
 </resources>

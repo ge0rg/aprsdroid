@@ -26,7 +26,8 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.VIBRATE"/>
 
-    <application android:label="@string/app_name" android:icon="@drawable/icon">
+    <application android:label="@string/app_name" android:icon="@drawable/icon"
+	    android:theme="@style/DefaultTheme" >
 	<uses-library android:name="com.google.android.maps" />
 
         <activity android:name=".APRSdroid"
