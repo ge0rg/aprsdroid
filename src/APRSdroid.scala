@@ -18,10 +18,8 @@ class APRSdroid extends Activity {
 		val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
 		// if this is a USB device, auto-launch the service
-		if (getIntent.getParcelableExtra("device") != null) {
-			prefs.edit().putString("backend", "usb").commit();
+		if (UsbTnc.checkDeviceHandle(prefs, getIntent.getParcelableExtra("device")))
 			startService(AprsService.intent(this, AprsService.SERVICE))
-		}
 
 		prefs.getString("activity", "log") match {
 		case "hub" => replaceAct(classOf[HubActivity])
