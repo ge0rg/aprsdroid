@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-	    android:title="@string/p_conn_tcp">
+	    android:title="@string/p_aprsis_tcp">
 
         <de.duenndns.EditTextPreferenceWithValue
                 android:key="tcp.server"

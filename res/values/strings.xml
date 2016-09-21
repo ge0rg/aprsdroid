@@ -24,6 +24,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
 <string name="map_track_call">Tracking %s...</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Select station</string>
 
 <string name="map_loading">Loading...</string>
@@ -32,6 +33,7 @@
 <string name="sta_ssids">Station SSIDs</string>
 <string name="sta_history">Station History</string>
 <string name="sta_map">Map</string>
+<string name="sta_extmap">External Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -161,27 +163,34 @@
 </string-array>
 <string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Your symbol for map display</string>
-<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Result:</string>
 <string name="p_status">Comment field</string>
 <string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Connection Protocol</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
+<string name="p_link">Connection Type</string>
+<string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Connection Preferences</string>
 <string name="p_connsetup_summary">Configuration of Connection</string>
 <string name="p_connlog">Connection Logging</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP connection</string>
-<string name="p_conn_udp">UDP (send only)</string>
-<string name="p_conn_http">HTTP POST (send only)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
-<string name="p_conn_usb">USB Serial</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood setup help</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP connection</string>
+<string name="p_aprsis_http">HTTP POST (send only)</string>
+<string name="p_aprsis_udp">UDP (send only)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>
 <string name="p_source_periodic">Periodic GPS/Network Position</string>

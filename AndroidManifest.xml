@@ -5,7 +5,7 @@
       android:versionName="1.3.0"
       android:installLocation="auto">
 
-    <uses-sdk android:minSdkVersion="3"
+    <uses-sdk android:minSdkVersion="8"
 	android:targetSdkVersion="19" />
 
     <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
@@ -27,7 +27,8 @@
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <application android:label="@string/app_name" android:icon="@drawable/icon">
+    <application android:label="@string/app_name" android:icon="@drawable/icon"
+	    android:theme="@style/DefaultTheme" >
 
         <activity android:name=".APRSdroid"
 		android:configChanges="orientation|keyboardHidden|screenSize"
@@ -69,10 +70,13 @@
 	<activity android:name=".PrefsAct" android:label="@string/app_prefs"
 		android:parentActivityName=".HubActivity"
 		/>
-	<activity android:name=".BackendPrefs" android:label="@string/app_prefs"
+	<activity android:name=".BackendPrefs" android:label="@string/p__connection"
 		android:parentActivityName=".PrefsAct"
 		/>
-	<activity android:name=".LocationPrefs" android:label="@string/app_prefs" 
+	<activity android:name=".PrefSymbolAct" android:label="@string/p_symbol"
+		android:parentActivityName=".PrefsAct"
+		/>
+	<activity android:name=".LocationPrefs" android:label="@string/p__location"
 		android:parentActivityName=".PrefsAct"
 		android:launchMode="singleTop"
 		/>

@@ -144,14 +144,9 @@ class MapAct extends MapActivity with UIHelper {
 
 	def animateToCall() {
 		if (targetcall != "") {
-			val cursor = db.getStaPosition(targetcall)
-			if (cursor.getCount() > 0) {
-				cursor.moveToFirst()
-				val lat = cursor.getInt(StorageDatabase.Station.COLUMN_LAT)
-				val lon = cursor.getInt(StorageDatabase.Station.COLUMN_LON)
+			val (found, lat, lon) = getStaPosition(db, targetcall)
+			if (found)
 				mapview.getController().setCenter(new GeoPoint(lat, lon))
-			}
-			cursor.close()
 		}
 	}
 
@@ -193,22 +188,26 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	// prevent android bug #11666
 	populate()
 
-	lazy val symbolSize = (context.getResources().getDisplayMetrics().density * 16).toInt
+	val iconbitmap = icons.asInstanceOf[BitmapDrawable].getBitmap
+	val symbolSize = iconbitmap.getWidth()/16
+	lazy val drawSize = (context.getResources().getDisplayMetrics().density * 24).toInt
 
 	icons.setBounds(0, 0, symbolSize, symbolSize)
 
 	override def size() = stations.size()
 	override def createItem(idx : Int) : Station = stations.get(idx)
 
-	def symbol2rect(symbol : String) : Rect = {
-		val alt_offset = if (symbol(0) == '/') 0 else symbolSize*6
-		val index = symbol(1) - 33
+	def symbol2rect(index : Int, page : Int) : Rect = {
 		// check for overflow
 		if (index < 0 || index >= 6*16)
 			return new Rect(0, 0, symbolSize, symbolSize)
+		val alt_offset = page*symbolSize*6
 		val y = (index / 16) * symbolSize + alt_offset
 		val x = (index % 16) * symbolSize
 		new Rect(x, y, x+symbolSize, y+symbolSize)
+	}
+	def symbol2rect(symbol : String) : Rect = {
+		symbol2rect(symbol(1) - 33, if (symbol(0) == '/') 0 else 1)
 	}
 
 	def symbolIsOverlayed(symbol : String) = {
@@ -219,12 +218,17 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		//Log.d(TAG, "drawing trace of %s".format(call))
 
 		val tracePaint = new Paint()
-		tracePaint.setARGB(200, 255, 128, 128)
+		tracePaint.setARGB(128, 100, 100, 255)
 		tracePaint.setStyle(Paint.Style.STROKE)
 		tracePaint.setStrokeJoin(Paint.Join.ROUND)
 		tracePaint.setStrokeCap(Paint.Cap.ROUND)
-		tracePaint.setStrokeWidth(2)
+		tracePaint.setStrokeWidth(drawSize/6)
 		tracePaint.setAntiAlias(true)
+
+		val dotPaint = new Paint()
+		dotPaint.setARGB(128, 255, 0, 0)
+		dotPaint.setStyle(Paint.Style.FILL)
+		dotPaint.setAntiAlias(true)
 
 
 		val path = new Path()
@@ -241,13 +245,15 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 				first = false
 			} else
 				path.lineTo(point.x, point.y)
+			c.drawCircle(point.x, point.y, drawSize/12, dotPaint)
 		}
 		c.drawPath(path, tracePaint)
 	}
 
 	override def drawOverlayBitmap(c : Canvas, dp : Point, proj : Projection, zoom : Byte) : Unit = {
 
-		val fontSize = symbolSize*7/8
+		Log.d(TAG, "draw: symbolSize=" + symbolSize + " drawSize=" + drawSize)
+		val fontSize = drawSize*7/8
 		val textPaint = new Paint()
 		textPaint.setColor(0xff000000)
 		textPaint.setTextAlign(Paint.Align.CENTER)
@@ -257,7 +263,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 		val symbPaint = new Paint(textPaint)
 		symbPaint.setARGB(255, 255, 255, 255)
-		symbPaint.setTextSize(symbolSize*3/4 - 1)
+		symbPaint.setTextSize(drawSize*3/4 - 1)
 
 		val strokePaint = new Paint(textPaint)
 		strokePaint.setColor(0xffc8ffc8)
@@ -266,15 +272,14 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 		val symbStrPaint = new Paint(strokePaint)
 		symbStrPaint.setColor(0xff000000)
-		symbStrPaint.setTextSize(symbolSize*3/4 - 1)
+		symbStrPaint.setTextSize(drawSize*3/4 - 1)
 
 		strokePaint.setShadowLayer(2, 0, 0, 0xffc8ffc8)
 
-		val iconbitmap = icons.asInstanceOf[BitmapDrawable].getBitmap
 
 		val p = new Point()
 		val (width, height) = (c.getWidth(), c.getHeight())
-		val ss = symbolSize/2
+		val ss = drawSize/2
 		for (s <- stations) {
 			proj.toPixels(s.pt, p)
 			if (p.x >= 0 && p.y >= 0 && p.x < width && p.y < height) {
@@ -290,9 +295,9 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 				// then the bitmap
 				c.drawBitmap(iconbitmap, srcRect, destRect, null)
 				// and finally the bitmap overlay, if any
-				if (zoom >= 6 && symbolIsOverlayed(s.symbol)) {
-					c.drawText(s.symbol(0).toString(), p.x+1, p.y+ss/2+1, symbStrPaint)
-					c.drawText(s.symbol(0).toString(), p.x+1, p.y+ss/2+1, symbPaint)
+				if (symbolIsOverlayed(s.symbol)) {
+					// use page 2, overlay letters
+					c.drawBitmap(iconbitmap, symbol2rect(s.symbol(0)-33, 2), destRect, null)
 				}
 			}
 		}

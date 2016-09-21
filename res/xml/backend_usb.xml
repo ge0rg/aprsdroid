@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-	    android:title="@string/p_conn_usb">
+	    android:title="@string/p_link_usb">
 
         <de.duenndns.ListPreferenceWithValue
                 android:key="baudrate"
@@ -30,14 +30,6 @@
 		android:title="@string/p_bt_tnc_delay"
 		android:summary="@string/p_bt_tnc_delay_summary"
 		android:dialogTitle="@string/p_bt_tnc_delay_entry" />
-
-        <de.duenndns.EditTextPreferenceWithValue
-                android:key="digi_path"
-		android:hint="hop1,hop2,.."
-		android:defaultValue="WIDE1-1"
-		android:title="@string/p_aprs_path"
-		android:summary="@string/p_aprs_path_summary"
-		android:dialogTitle="@string/p_aprs_path_entry" />
 
     </PreferenceCategory>
 </PreferenceScreen>

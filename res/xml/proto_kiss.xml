@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	    android:title="@string/p_conn_kiss">
+
+        <de.duenndns.ListPreferenceWithValue
+                android:key="link"
+		android:title="@string/p_link"
+                android:entries="@array/p_link_e"
+                android:entryValues="@array/p_link_ev"
+		android:defaultValue="bluetooth"
+		android:dialogTitle="@string/p_link_entry" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
+

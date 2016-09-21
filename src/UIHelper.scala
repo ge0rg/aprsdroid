@@ -48,12 +48,12 @@ trait UIHelper extends Activity
 		startActivity(new Intent(this, classOf[MapAct]).setData(Uri.parse(call)))
 	}
 
-	def openPrefs(toastId : Int) {
+	def openPrefs(toastId : Int, act : Class[_]) {
 		if (openedPrefs) {
 			// only open prefs once, exit app afterwards
 			finish()
 		} else {
-			startActivity(new Intent(this, classOf[PrefsAct]));
+			startActivity(new Intent(this, act));
 			Toast.makeText(this, toastId, Toast.LENGTH_SHORT).show()
 			openedPrefs = true
 		}
@@ -170,13 +170,22 @@ trait UIHelper extends Activity
 			return false
 		}
 		if (passcodeConfigRequired(callsign, passcode)) {
-			openPrefs(R.string.wrongpasscode)
+			openPrefs(R.string.wrongpasscode, classOf[BackendPrefs])
 			return false
 		}
 
 		if (prefs.getStringInt("interval", 10) < 1) {
-			openPrefs(R.string.mininterval)
+			openPrefs(R.string.mininterval, classOf[PrefsAct])
 			return false
+		}
+		if (prefs.getString("proto", null) == null) {
+			// upgrade to 1.4+, need to set "proto" and "link"/"aprsis"
+			val proto_link_aprsis = AprsBackend.backend_upgrade(prefs.getString("backend", "tcp")).split("-")
+			prefs.prefs.edit()
+				.putString("proto", proto_link_aprsis(0))
+				.putString("link", proto_link_aprsis(1))
+				.putString("aprsis", proto_link_aprsis(2))
+				.commit()
 		}
 		true
 	}
@@ -316,6 +325,23 @@ trait UIHelper extends Activity
 		StorageDatabase.cursor2call(c)
 	}
 
+	def getStaPosition(db : StorageDatabase, targetcall : String) = {
+		val cursor = db.getStaPosition(targetcall)
+		if (cursor.getCount() > 0) {
+			cursor.moveToFirst()
+			val lat = cursor.getInt(StorageDatabase.Station.COLUMN_LAT)
+			val lon = cursor.getInt(StorageDatabase.Station.COLUMN_LON)
+			cursor.close()
+			Log.d("GetStaPos", "Found " + targetcall +" " + lat + " " + lon)
+			(true, lat, lon)
+		} else {
+			Toast.makeText(this, getString(R.string.map_track_unknown, targetcall), Toast.LENGTH_SHORT).show()
+			cursor.close()
+			Log.d("GetStaPos", "Missed " + targetcall)
+			(false, 0, 0)
+		}
+	}
+
 	def callsignAction(id : Int, targetcall : String) : Boolean = {
 		id match {
 		case R.id.details =>
@@ -329,6 +355,15 @@ trait UIHelper extends Activity
 			true
 		case R.id.map =>
 			trackOnMap(targetcall)
+			true
+		case R.id.extmap =>
+			val (found, lat, lon) = getStaPosition(StorageDatabase.open(this), targetcall)
+			if (found) {
+				val url = "geo:%1.6f,%1.6f?q=%1.6f,%1.6f(%s)".formatLocal(null,
+					lat/1000000., lon/1000000., lat/1000000., lon/1000000., targetcall)
+				startActivity(new Intent(Intent.ACTION_VIEW,
+					Uri.parse(url)))
+			}
 			true
 		case R.id.aprsfi =>
 			val url = "http://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)

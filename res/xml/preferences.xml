@@ -14,19 +14,6 @@
 		android:hint="@string/p_callsign_nossid"
 		android:dialogTitle="@string/p_callsign_entry" />
 
-        <EditTextPreference
-                android:key="passcode"
-		android:inputType="number"
-		android:title="@string/p_passcode"
-		android:summary="@string/p_passcode_summary"
-		android:dialogTitle="@string/p_passcode_entry" />
-	<Preference
-		android:title="@string/p_passreq"
-		android:summary="@string/p_passreq_summary" >
-		<intent android:action="android.intent.action.VIEW"
-			android:data="@string/passcode_url" />
-	</Preference>
-
         <de.duenndns.ListPreferenceWithValue
                 android:key="ssid"
 		android:title="@string/p_ssid"
@@ -35,17 +22,41 @@
                 android:entryValues="@array/p_ssid_ev"
 		android:defaultValue="5"
 		android:dialogTitle="@string/p_ssid_entry" />
+
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="digi_path"
+		android:hint="hop1,hop2,.."
+		android:defaultValue="WIDE1-1"
+		android:title="@string/p_aprs_path"
+		android:summary="@string/p_aprs_path_summary"
+		android:dialogTitle="@string/p_aprs_path_entry" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+	android:title="@string/p__connection">
+
+        <PreferenceScreen
+		android:title="@string/p_connsetup"
+		android:summary="@string/p_connsetup_summary">
+
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.BackendPrefs" />
+
+        </PreferenceScreen>
     </PreferenceCategory>
 
     <PreferenceCategory
 	android:title="@string/p__position">
-        <de.duenndns.EditTextPreferenceWithValue
-                android:key="symbol"
-		android:hint="@string/default_symbol"
-		android:title="@string/p_symbol"
-		android:summary="@string/p_symbol_summary"
-		android:defaultValue="@string/default_symbol"
-		android:dialogTitle="@string/p_symbol_entry" />
+    <PreferenceScreen
+	    android:title="@string/p_symbol"
+	    android:summary="@string/p_symbol_summary" >
+
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.PrefSymbolAct" />
+    </PreferenceScreen>
 
         <de.duenndns.EditTextPreferenceWithValue
                 android:key="status"
@@ -56,14 +67,6 @@
 		android:dialogTitle="@string/p_status_entry" />
 
     <!-- sub-screen "Position Reports" -->
-        <de.duenndns.ListPreferenceWithValue
-                android:key="loc_source"
-		android:title="@string/p_locsource"
-		android:summary="@string/p_locsource_summary"
-                android:entries="@array/p_locsource_e"
-                android:entryValues="@array/p_locsource_ev"
-		android:defaultValue="smartbeaconing"
-		android:dialogTitle="@string/p_locsource" />
 
     <PreferenceScreen
 	    android:title="@string/p__location"
@@ -103,33 +106,6 @@
 		/>
     </PreferenceCategory>
     </PreferenceScreen>
-    </PreferenceCategory>
-
-    <PreferenceCategory
-	android:title="@string/p__connection">
-
-        <de.duenndns.ListPreferenceWithValue
-                android:key="backend"
-		android:title="@string/p_conntype"
-		android:summary="@string/p_conntype_summary"
-                android:entries="@array/p_conntype_e"
-                android:entryValues="@array/p_conntype_ev"
-		android:defaultValue="tcp"
-		android:dialogTitle="@string/p_conntype_entry" />
-
-        <PreferenceScreen
-		android:title="@string/p_connsetup"
-		android:summary="@string/p_connsetup_summary">
-
-            <intent android:action="android.intent.action.MAIN"
-                    android:targetPackage="org.aprsdroid.app"
-                    android:targetClass="org.aprsdroid.app.BackendPrefs" />
-
-        </PreferenceScreen>
-        <CheckBoxPreference
-                android:key="conn_log"
-		android:title="@string/p_connlog"
-		android:summary="@string/p_connlog_summary" />
     </PreferenceCategory>
 
     <!-- sub-screen "display and notifications" -->

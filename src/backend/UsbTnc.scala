@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.SharedPreferences
 import android.hardware.usb.UsbManager
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbDeviceConnection
@@ -15,6 +16,23 @@ import java.io.{InputStream, OutputStream}
 import net.ab0oo.aprs.parser._
 
 import com.felhr.usbserial._
+
+object UsbTnc {
+	def deviceHandle(dev : UsbDevice) = {
+		"usb_%04x_%04x_%s".format(dev.getVendorId(), dev.getProductId(), dev.getDeviceName())
+	}
+	def checkDeviceHandle(prefs : SharedPreferences, dev_p : android.os.Parcelable) : Boolean = {
+		if (dev_p == null)
+			return false
+		val dev = dev_p.asInstanceOf[UsbDevice]
+		val last_use = prefs.getString(deviceHandle(dev), null)
+		if (last_use == null)
+			return false
+		prefs.edit().putString("proto", last_use)
+			    .putString("link", "usb").commit()
+		true
+	}
+}
 
 class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(prefs) {
 	val TAG = "APRSdroid.Usb"
@@ -137,6 +155,9 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			ser.setParity(UsbSerialInterface.PARITY_NONE)
 			ser.setFlowControl(UsbSerialInterface.FLOW_CONTROL_OFF)
 
+			// success: remember this for usb-attach launch
+			prefs.prefs.edit().putString(UsbTnc.deviceHandle(dev), prefs.getString("proto", "kiss")).commit()
+
 			log("Opened " + ser.getClass().getSimpleName() + " at " + baudrate + "bd")
 			val os = new SerialOutputStream(ser)
 			val initstring = java.net.URLDecoder.decode(prefs.getString("usb.init", ""), "UTF-8")
@@ -150,7 +171,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 					Thread.sleep(initdelay)
 				}
 			}
-			proto = new KissProto(new SerialInputStream(ser), os)
+			proto = AprsBackend.instanciateProto(service, new SerialInputStream(ser), os)
 			service.postPosterStarted()
 			while (running) {
 				val line = proto.readPacket()
