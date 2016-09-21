@@ -48,12 +48,12 @@ trait UIHelper extends Activity
 		startActivity(new Intent(this, classOf[MapAct]).setData(Uri.parse(call)))
 	}
 
-	def openPrefs(toastId : Int) {
+	def openPrefs(toastId : Int, act : Class[_]) {
 		if (openedPrefs) {
 			// only open prefs once, exit app afterwards
 			finish()
 		} else {
-			startActivity(new Intent(this, classOf[PrefsAct]));
+			startActivity(new Intent(this, act));
 			Toast.makeText(this, toastId, Toast.LENGTH_SHORT).show()
 			openedPrefs = true
 		}
@@ -170,12 +170,12 @@ trait UIHelper extends Activity
 			return false
 		}
 		if (passcodeConfigRequired(callsign, passcode)) {
-			openPrefs(R.string.wrongpasscode)
+			openPrefs(R.string.wrongpasscode, classOf[BackendPrefs])
 			return false
 		}
 
 		if (prefs.getStringInt("interval", 10) < 1) {
-			openPrefs(R.string.mininterval)
+			openPrefs(R.string.mininterval, classOf[PrefsAct])
 			return false
 		}
 		true
