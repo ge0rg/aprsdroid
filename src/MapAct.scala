@@ -126,14 +126,9 @@ class MapAct extends MapActivity with UIHelper {
 
 	def animateToCall() {
 		if (targetcall != "") {
-			val cursor = db.getStaPosition(targetcall)
-			if (cursor.getCount() > 0) {
-				cursor.moveToFirst()
-				val lat = cursor.getInt(StorageDatabase.Station.COLUMN_LAT)
-				val lon = cursor.getInt(StorageDatabase.Station.COLUMN_LON)
+			val (found, lat, lon) = getStaPosition(db, targetcall)
+			if (found)
 				mapview.getController().animateTo(new GeoPoint(lat, lon))
-			}
-			cursor.close()
 		}
 	}
 

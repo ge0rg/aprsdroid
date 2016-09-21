@@ -24,6 +24,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
 <string name="map_track_call">Tracking %s...</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Select station</string>
 
 <string name="map_loading">Loading...</string>
@@ -32,6 +33,7 @@
 <string name="sta_ssids">Station SSIDs</string>
 <string name="sta_history">Station History</string>
 <string name="sta_map">Map</string>
+<string name="sta_extmap">External Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 

@@ -18,6 +18,9 @@
 	      android:showAsAction="ifRoom"
 	      android:icon="@android:drawable/ic_menu_mapmode"
 	      />
+	<item android:id="@+id/extmap"
+	      android:title="@string/sta_extmap"
+	      />
 	<item android:id="@+id/aprsfi"
 	      android:title="@string/sta_aprsfi"
 	      />
