@@ -49,13 +49,14 @@
 
     <PreferenceCategory
 	android:title="@string/p__position">
-        <de.duenndns.EditTextPreferenceWithValue
-                android:key="symbol"
-		android:hint="@string/default_symbol"
-		android:title="@string/p_symbol"
-		android:summary="@string/p_symbol_summary"
-		android:defaultValue="@string/default_symbol"
-		android:dialogTitle="@string/p_symbol_entry" />
+    <PreferenceScreen
+	    android:title="@string/p_symbol"
+	    android:summary="@string/p_symbol_summary" >
+
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.PrefSymbolAct" />
+    </PreferenceScreen>
 
         <de.duenndns.EditTextPreferenceWithValue
                 android:key="status"

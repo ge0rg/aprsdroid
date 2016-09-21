@@ -72,6 +72,9 @@
 	<activity android:name=".BackendPrefs" android:label="@string/app_prefs"
 		android:parentActivityName=".PrefsAct"
 		/>
+	<activity android:name=".PrefSymbolAct" android:label="@string/p_symbol"
+		android:parentActivityName=".PrefsAct"
+		/>
 	<activity android:name=".LocationPrefs" android:label="@string/app_prefs" 
 		android:parentActivityName=".PrefsAct"
 		android:launchMode="singleTop"

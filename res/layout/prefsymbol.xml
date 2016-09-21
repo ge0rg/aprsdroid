@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<GridView
+	android:id="@+id/gridview"
+	android:columnWidth="64dp"
+	android:numColumns="auto_fit"
+	android:verticalSpacing="16dp"
+	android:horizontalSpacing="16dp"
+	android:stretchMode="columnWidth"
+	android:gravity="center"
+	android:layout_width="fill_parent"
+	android:layout_height="100sp"
+	android:layout_weight="1"
+	/>
+<LinearLayout
+	android:id="@+id/buttonlayout"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:padding="4sp"
+	android:orientation="horizontal"
+	android:gravity="center"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	>
+	<TextView
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:padding="4sp"
+		android:textSize="16sp"
+		android:text="@string/p_symbol_overlay"/>
+	<EditText android:id="@+id/overlay"
+		android:layout_width="20sp" 
+		android:layout_height="wrap_content"
+		android:layout_weight="1"
+		android:textSize="16sp"
+		android:maxLength="1"
+		android:inputType="textCapCharacters"
+		android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		android:text="" />
+	<TextView
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:padding="4sp"
+		android:textSize="16sp"
+		android:text="@string/p_symbol_result"/>
+	<org.aprsdroid.app.SymbolView android:id="@+id/symbol"
+		android:padding="4sp"
+		android:layout_width="24dp" 
+		android:layout_height="24dp"
+		/>
+</LinearLayout>
+<Button android:id="@+id/ok"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:onClick="onOkClicked"
+	android:text="@android:string/ok"
+	/>
+
+</LinearLayout>
