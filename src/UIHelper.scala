@@ -178,6 +178,15 @@ trait UIHelper extends Activity
 			openPrefs(R.string.mininterval, classOf[PrefsAct])
 			return false
 		}
+		if (prefs.getString("proto", null) == null) {
+			// upgrade to 1.4+, need to set "proto" and "link"/"aprsis"
+			val proto_link_aprsis = AprsBackend.backend_upgrade(prefs.getString("backend", "tcp")).split("-")
+			prefs.prefs.edit()
+				.putString("proto", proto_link_aprsis(0))
+				.putString("link", proto_link_aprsis(1))
+				.putString("aprsis", proto_link_aprsis(2))
+				.commit()
+		}
 		true
 	}
 

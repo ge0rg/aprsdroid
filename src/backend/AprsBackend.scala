@@ -22,6 +22,18 @@ object AprsBackend {
 		val need_passcode : Int
 	) {}
 
+	// map from old "backend" to new proto-link-aprsis (defaults are bluetooth and tcp)
+	val backend_upgrade = Map(
+		"tcp" -> "aprsis-bluetooth-tcp",
+		"udp" -> "aprsis-bluetooth-udp",
+		"http" -> "aprsis-bluetooth-http",
+		"afsk" -> "afsk-bluetooth-tcp",
+		"bluetooth" -> "kiss-bluetooth-tcp",
+		"kenwood" -> "kenwood-bluetooth-tcp",
+		"tcptnc" -> "kiss-tcpip-tcp",
+		"usb" -> "kiss-usb-tcp"
+		)
+
 	// add your own BackendInfo here
 	val backend_collection = Map(
 		"udp" -> new BackendInfo(
