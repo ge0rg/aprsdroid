@@ -163,8 +163,8 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			val initstring = java.net.URLDecoder.decode(prefs.getString("usb.init", ""), "UTF-8")
 			val initdelay = prefs.getStringInt("usb.delay", 300)
 			if (initstring != null && initstring != "") {
-				log("Sending init: " + initstring)
 				for (line <- initstring.split("\n")) {
+					log(initstring)
 					os.write(line.getBytes())
 					os.write('\r')
 					os.write('\n')
