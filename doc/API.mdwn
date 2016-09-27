@@ -1,3 +1,7 @@
+---
+title: APRSdroid Inter-App API
+author: Georg Lukas
+---
 # APRSdroid Inter-App API
 
 This document describes how Android applications can interact with
