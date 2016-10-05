@@ -127,6 +127,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		//thread.shutdown()
 		thread.interrupt()
 		thread.join(50)
+		proto.stop()
 	}
 
 	class UsbThread()
@@ -178,7 +179,6 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 				service.postSubmit(line)
 			}
 			Log.d(TAG, "terminate()")
-			proto.stop()
 		}
 
 
