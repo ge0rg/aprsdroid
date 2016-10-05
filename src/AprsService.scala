@@ -218,7 +218,7 @@ class AprsService extends Service {
 		val status_alt = if (prefs.getBoolean("priv_altitude", true))
 			AprsPacket.formatAltitude(location) else ""
 		newPacket(new PositionPacket(
-			pos, status_spd + status_alt + " " + status, /* messaging = */ true))
+			pos, status_spd + status_alt + status, /* messaging = */ true))
 	}
 
 	def sendPacket(packet : APRSPacket, status_postfix : String) {
