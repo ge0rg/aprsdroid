@@ -16,6 +16,7 @@
 			android:layout_marginRight="10sp"
 			android:singleLine="true"
 			android:inputType="textCapCharacters"
+			android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-"
 			android:hint="@string/p_callsign"
 			/>
 		<EditText
