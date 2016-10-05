@@ -133,6 +133,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 			Log.d(TAG, "TcpSocketThread.run()")
 			try {
 				init_socket()
+				service.postLinkOn()
 				service.postPosterStarted()
 			} catch {
 				case e : Exception => service.postAbort(e.toString()); running = false
@@ -147,6 +148,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 						shutdown()
 						Thread.sleep(RECONNECT*1000)
 						init_socket()
+						service.postLinkOn()
 					}
 					Log.d(TAG, "waiting for data...")
 					var line : String = null
@@ -158,6 +160,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 							service.postAddPost(TYPE_INFO, R.string.post_info, line)
 					}
 					if (running && (line == null || !socket.isConnected())) {
+						service.postLinkOff()
 						need_reconnect = true
 					}
 				} catch {

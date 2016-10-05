@@ -134,6 +134,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 							Thread.sleep(3*1000)
 						} catch { case _ => }
 						init_socket()
+						service.postLinkOn()
 					}
 					Log.d(TAG, "waiting for data...")
 					while (running) {
@@ -144,6 +145,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 				} catch {
 					case e : Exception => 
 						Log.d(TAG, "exception, reconnecting...")
+						if (running && !need_reconnect)
+							service.postLinkOff()
 						need_reconnect = true
 						try {
 							if (running) // only bother the user if not yet quitting

@@ -22,6 +22,8 @@ object AprsService {
 	val SERVICE_STOPPED = PACKAGE + ".SERVICE_STOPPED"
 	val POSITION = PACKAGE + ".POSITION"
 	val MICLEVEL = PACKAGE + ".MICLEVEL" // internal volume event intent
+	val LINK_ON = PACKAGE + ".LINK_ON"
+	val LINK_OFF = PACKAGE + ".LINK_OFF"
 	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
 	val MESSAGE = PACKAGE + ".MESSAGE"	// we received a message/ack
@@ -357,5 +359,12 @@ class AprsService extends Service {
 		}
 	}
 
+	def postLinkOn() {
+		sendBroadcast(new Intent(LINK_ON))
+	}
+
+	def postLinkOff() {
+		sendBroadcast(new Intent(LINK_OFF))
+	}
 }
 
