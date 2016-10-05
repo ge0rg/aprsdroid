@@ -1,9 +1,9 @@
 package org.aprsdroid.app
 
 import _root_.android.content.Context
-import _root_.android.location.{GpsStatus, LocationManager}
+import _root_.android.location._
 import _root_.android.util.Log
-import _root_.android.os.{Handler, Looper}
+import _root_.android.os.{Bundle, Handler, Looper}
 import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStream, OutputStreamWriter}
 
 import _root_.net.ab0oo.aprs.parser._
@@ -11,16 +11,17 @@ import _root_.net.ab0oo.aprs.parser._
 class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) extends TncProto(is, null) {
 	val TAG = "APRSdroid.KenwoodProto"
 	val br = new BufferedReader(new InputStreamReader(is))
+	val sinkhole = new LocationSinkhole()
 	val locMan = service.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 	val output = new OutputStreamWriter(os)
 
 	var listener : NmeaListener = null
-	if (android.os.Build.VERSION.SDK_INT >= 5) {
-		new Handler(Looper.getMainLooper()).post(new Runnable() { override def run() {
-			listener = new NmeaListener()
-			locMan.addNmeaListener(listener)
-		}})
-	}
+	new Handler(Looper.getMainLooper()).post(new Runnable() { override def run() {
+		listener = new NmeaListener()
+		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+			0, 0, sinkhole)
+		locMan.addNmeaListener(listener)
+	}})
 
 	def wpl2aprs(line : String) = {
 		val s = line.split("[,*]") // get and split nmea
@@ -65,9 +66,21 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 			Log.d(TAG, "NMEA --- " + nmea)
 	}}
 
+	class LocationSinkhole extends LocationListener {
+	override def onLocationChanged(location : Location) {
+	}
+
+	override def onProviderDisabled(provider : String) {
+	}
+	override def onProviderEnabled(provider : String) {
+	}
+	override def onStatusChanged(provider : String, st: Int, extras : Bundle) {
+	}
+	}
+
 	override def stop() {
-		if (android.os.Build.VERSION.SDK_INT >= 5)
-			locMan.removeNmeaListener(listener)
+		locMan.removeUpdates(sinkhole)
+		locMan.removeNmeaListener(listener)
 		super.stop()
 	}
 }
