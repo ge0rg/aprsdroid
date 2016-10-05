@@ -61,7 +61,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			}
 			val granted = i.getExtras().getBoolean(UsbManager.EXTRA_PERMISSION_GRANTED)
 			if (!granted) {
-				service.postAbort("No permission for USB device!")
+				service.postAbort(service.getString(R.string.p_serial_noperm))
 				return
 			}
 			log("Obtained USB permissions.")
@@ -83,7 +83,6 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 	}
 
 	def log(s : String) {
-		Log.i(TAG, s)
 		service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
 	}
 
@@ -104,7 +103,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			} else
 				log("Unsupported USB device %04x:%04x.".format(deviceVID, devicePID))
 		}
-		service.postAbort("No USB device found!")
+		service.postAbort(service.getString(R.string.p_serial_notfound))
 	}
 
 	def update(packet : APRSPacket) : String = {
@@ -136,7 +135,6 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		var running = true
 
 		def log(s : String) {
-			Log.i(TAG, s)
 			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
 		}
 
@@ -145,7 +143,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			val ser = UsbSerialDevice.createUsbSerialDevice(dev, con)
 			if (ser == null || !ser.open()) {
 				con.close()
-				service.postAbort("Unsupported serial port")
+				service.postAbort(service.getString(R.string.p_serial_unsupported))
 				return
 			}
 			val baudrate = prefs.getStringInt("baudrate", 115200)
@@ -164,7 +162,8 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			val initdelay = prefs.getStringInt("usb.delay", 300)
 			if (initstring != null && initstring != "") {
 				for (line <- initstring.split("\n")) {
-					log(initstring)
+					service.postAddPost(StorageDatabase.Post.TYPE_TX,
+						R.string.p_bt_tnc_init, line)
 					os.write(line.getBytes())
 					os.write('\r')
 					os.write('\n')

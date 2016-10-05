@@ -9,6 +9,8 @@ class AprsIsProto(service : AprsService, is : InputStream, os : OutputStream) ex
 	val reader = new BufferedReader(new InputStreamReader(is), 256)
 	val writer = new PrintWriter(new OutputStreamWriter(os), true)
 
+	service.postAddPost(StorageDatabase.Post.TYPE_TX,
+		R.string.p_conn_aprsis, loginfilter)
 	writer.println(loginfilter)
 
 	def readPacket() : String = reader.readLine()

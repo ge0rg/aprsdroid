@@ -374,4 +374,8 @@
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Baud Rate</string>
 <string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Unsupported serial port!</string>
+<string name="p_serial_noperm">No permission for USB device!</string>
+<string name="p_serial_notfound">No USB device found!</string>
 </resources>

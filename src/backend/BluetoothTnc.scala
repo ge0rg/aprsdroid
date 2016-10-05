@@ -71,7 +71,6 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		var proto : TncProto = null
 
 		def log(s : String) {
-			Log.i(TAG, s)
 			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
 		}
 
@@ -106,6 +105,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 				log("Sending init: " + initstring)
 				val os = socket.getOutputStream()
 				for (line <- initstring.split("\n")) {
+					service.postAddPost(StorageDatabase.Post.TYPE_TX,
+						R.string.p_bt_tnc_init, line)
 					os.write(line.getBytes())
 					os.write('\r')
 					os.write('\n')

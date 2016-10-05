@@ -57,6 +57,8 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 			Log.d(TAG, "NMEA >>> " + nmea)
 			try {
 				output.write(nmea)
+				service.postAddPost(StorageDatabase.Post.TYPE_TX,
+					R.string.p_conn_kwd, nmea.trim())
 			} catch {
 			case e : Exception =>
 				Log.e(TAG, "error sending NMEA to Kenwood: " + e)
