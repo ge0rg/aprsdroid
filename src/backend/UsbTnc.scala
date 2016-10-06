@@ -61,7 +61,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			}
 			val granted = i.getExtras().getBoolean(UsbManager.EXTRA_PERMISSION_GRANTED)
 			if (!granted) {
-				service.postAbort("No permission for USB device!")
+				service.postAbort(service.getString(R.string.p_serial_noperm))
 				return
 			}
 			log("Obtained USB permissions.")
@@ -83,7 +83,6 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 	}
 
 	def log(s : String) {
-		Log.i(TAG, s)
 		service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
 	}
 
@@ -104,7 +103,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			} else
 				log("Unsupported USB device %04x:%04x.".format(deviceVID, devicePID))
 		}
-		service.postAbort("No USB device found!")
+		service.postAbort(service.getString(R.string.p_serial_notfound))
 	}
 
 	def update(packet : APRSPacket) : String = {
@@ -128,6 +127,8 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		//thread.shutdown()
 		thread.interrupt()
 		thread.join(50)
+		if (proto != null)
+			proto.stop()
 	}
 
 	class UsbThread()
@@ -136,7 +137,6 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		var running = true
 
 		def log(s : String) {
-			Log.i(TAG, s)
 			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
 		}
 
@@ -145,7 +145,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			val ser = UsbSerialDevice.createUsbSerialDevice(dev, con)
 			if (ser == null || !ser.open()) {
 				con.close()
-				service.postAbort("Unsupported serial port")
+				service.postAbort(service.getString(R.string.p_serial_unsupported))
 				return
 			}
 			val baudrate = prefs.getStringInt("baudrate", 115200)
@@ -159,19 +159,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			prefs.prefs.edit().putString(UsbTnc.deviceHandle(dev), prefs.getString("proto", "kiss")).commit()
 
 			log("Opened " + ser.getClass().getSimpleName() + " at " + baudrate + "bd")
-			val os = new SerialOutputStream(ser)
-			val initstring = java.net.URLDecoder.decode(prefs.getString("usb.init", ""), "UTF-8")
-			val initdelay = prefs.getStringInt("usb.delay", 300)
-			if (initstring != null && initstring != "") {
-				log("Sending init: " + initstring)
-				for (line <- initstring.split("\n")) {
-					os.write(line.getBytes())
-					os.write('\r')
-					os.write('\n')
-					Thread.sleep(initdelay)
-				}
-			}
-			proto = AprsBackend.instanciateProto(service, new SerialInputStream(ser), os)
+			proto = AprsBackend.instanciateProto(service, new SerialInputStream(ser), new SerialOutputStream(ser))
 			service.postPosterStarted()
 			while (running) {
 				val line = proto.readPacket()
@@ -179,7 +167,6 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 				service.postSubmit(line)
 			}
 			Log.d(TAG, "terminate()")
-			proto.stop()
 		}
 
 

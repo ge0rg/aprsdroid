@@ -268,13 +268,9 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		val strokePaint = new Paint(textPaint)
 		strokePaint.setColor(0xffc8ffc8)
 		strokePaint.setStyle(Paint.Style.STROKE)
-		strokePaint.setStrokeWidth(2)
+		strokePaint.setStrokeWidth(drawSize.asInstanceOf[Float]/12.f)
 
-		val symbStrPaint = new Paint(strokePaint)
-		symbStrPaint.setColor(0xff000000)
-		symbStrPaint.setTextSize(drawSize*3/4 - 1)
-
-		strokePaint.setShadowLayer(2, 0, 0, 0xffc8ffc8)
+		strokePaint.setShadowLayer(10, 0, 0, 0x80c8ffc8)
 
 
 		val p = new Point()

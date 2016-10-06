@@ -5,7 +5,7 @@ import _root_.java.io.{InputStream, OutputStream}
 
 import _root_.net.ab0oo.aprs.parser._
 
-class KissProto(is : InputStream, os : OutputStream) extends TncProto(is, os) {
+class KissProto(service : AprsService, is : InputStream, os : OutputStream) extends TncProto(is, os) {
 	val TAG = "APRSdroid.KissProto"
 
 	object Kiss {
@@ -17,6 +17,19 @@ class KissProto(is : InputStream, os : OutputStream) extends TncProto(is, os) {
 
 		// commands
 		val CMD_DATA = 0x00
+	}
+
+	val initstring = java.net.URLDecoder.decode(service.prefs.getString("kiss.init", ""), "UTF-8")
+	val initdelay = service.prefs.getStringInt("kiss.delay", 300)
+	if (initstring != null && initstring != "") {
+		for (line <- initstring.split("\n")) {
+			service.postAddPost(StorageDatabase.Post.TYPE_TX,
+				R.string.p_tnc_init, line)
+			os.write(line.getBytes())
+			os.write('\r')
+			os.write('\n')
+			Thread.sleep(initdelay)
+		}
 	}
 
 	def readPacket() : String = {

@@ -24,22 +24,6 @@
 		android:title="@string/p_bt_channel"
 		android:summary="@string/p_bt_channel_summary"
 		android:dialogTitle="@string/p_bt_channel_entry" />
-        <de.duenndns.EditTextPreferenceWithValue
-                android:key="bt.init"
-		android:defaultValue=""
-		android:singleLine="false"
-		android:title="@string/p_bt_tnc_init"
-		android:summary="@string/p_bt_tnc_init_summary"
-		android:dialogMessage="@string/p_bt_tnc_init_msg"
-		android:dialogTitle="@string/p_bt_tnc_init" />
-        <de.duenndns.EditTextPreferenceWithValue
-                android:key="bt.delay"
-		android:inputType="number"
-		android:hint="300"
-		android:defaultValue="300"
-		android:title="@string/p_bt_tnc_delay"
-		android:summary="@string/p_bt_tnc_delay_summary"
-		android:dialogTitle="@string/p_bt_tnc_delay_entry" />
 
 	<Preference
 		android:title="@string/p_bt_prefs"

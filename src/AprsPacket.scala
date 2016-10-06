@@ -53,6 +53,13 @@ object AprsPacket {
 			""
 	}
 
+	def formatFreq(csespd : String, freq : Float) : String = {
+		if (freq == 0) "" else {
+			val prefix = if (csespd.length() > 0) "/" else ""
+			prefix + "%07.3fMHz".formatLocal(null, freq)
+		}
+	}
+
 	def formatLogin(callsign : String, ssid : String, passcode : String, version : String) : String = {
 		"user %s pass %s vers %s".format(formatCallSsid(callsign, ssid), passcode, version)
 	}

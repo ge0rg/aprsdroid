@@ -71,7 +71,6 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		var proto : TncProto = null
 
 		def log(s : String) {
-			Log.i(TAG, s)
 			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
 		}
 
@@ -97,21 +96,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 				}
 				log("Connected to TNC.")
 
-			this.synchronized {
-				proto = AprsBackend.instanciateProto(service, socket.getInputStream(), socket.getOutputStream())
-			}
-			val initstring = java.net.URLDecoder.decode(prefs.getString("bt.init", ""), "UTF-8")
-			val initdelay = prefs.getStringInt("bt.delay", 300)
-			if (initstring != null && initstring != "") {
-				log("Sending init: " + initstring)
-				val os = socket.getOutputStream()
-				for (line <- initstring.split("\n")) {
-					os.write(line.getBytes())
-					os.write('\r')
-					os.write('\n')
-					Thread.sleep(initdelay)
-				}
-			}
+			proto = AprsBackend.instanciateProto(service, socket.getInputStream(), socket.getOutputStream())
 			Log.d(TAG, "init_socket() done")
 		}
 
@@ -133,6 +118,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 							Thread.sleep(3*1000)
 						} catch { case _ => }
 						init_socket()
+						service.postLinkOn()
 					}
 					Log.d(TAG, "waiting for data...")
 					while (running) {
@@ -143,6 +129,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 				} catch {
 					case e : Exception => 
 						Log.d(TAG, "exception, reconnecting...")
+						if (running && !need_reconnect)
+							service.postLinkOff()
 						need_reconnect = true
 						try {
 							if (running) // only bother the user if not yet quitting

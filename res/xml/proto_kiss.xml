@@ -5,6 +5,22 @@
     <PreferenceCategory
 	    android:title="@string/p_conn_kiss">
 
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="kiss.init"
+		android:defaultValue=""
+		android:singleLine="false"
+		android:title="@string/p_tnc_init"
+		android:summary="@string/p_tnc_init_summary"
+		android:dialogTitle="@string/p_tnc_init" />
+        <de.duenndns.EditTextPreferenceWithValue
+                android:key="kiss.delay"
+		android:inputType="number"
+		android:hint="300"
+		android:defaultValue="300"
+		android:title="@string/p_tnc_delay"
+		android:summary="@string/p_tnc_delay_summary"
+		android:dialogTitle="@string/p_tnc_delay_entry" />
+
         <de.duenndns.ListPreferenceWithValue
                 android:key="link"
 		android:title="@string/p_link"
