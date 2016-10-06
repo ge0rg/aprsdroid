@@ -13,7 +13,7 @@
 <string name="wrongpasscode">Your passcode does not match your callsign!</string>
 <string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
 <string name="mininterval">Minimum update time is 1 minute!</string>
-<string name="singlelog">Single Shot</string>
+<string name="singlelog">Send Position</string>
 <string name="startlog">Start Tracking</string>
 <string name="stoplog">Stop Tracking</string>
 
@@ -342,13 +342,13 @@
 <string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
-<string name="p_bt_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
+<string name="p_tnc_init">TNC init string</string>
+<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_tnc_delay">TNC init delay</string>
+<string name="p_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_tnc_delay_entry">TNC init delay [ms]</string>
 
 <string name="p_bt_prefs">Bluetooth settings</string>
 <string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
