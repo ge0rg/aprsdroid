@@ -59,6 +59,13 @@
     </PreferenceScreen>
 
         <de.duenndns.EditTextPreferenceWithValue
+                android:key="frequency"
+		android:inputType="number|numberDecimal"
+		android:title="@string/p_frequency"
+		android:summary="@string/p_frequency_summary"
+		android:dialogTitle="@string/p_frequency_summary" />
+
+        <de.duenndns.EditTextPreferenceWithValue
                 android:key="status"
 		android:hint="@string/default_status"
 		android:title="@string/p_status"

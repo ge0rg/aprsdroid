@@ -165,6 +165,8 @@
 <string name="p_symbol_summary">Your symbol for map display</string>
 <string name="p_symbol_overlay">Overlay:</string>
 <string name="p_symbol_result">Result:</string>
+<string name="p_frequency">Voice frequency</string>
+<string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">Comment field</string>
 <string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your beacon comment</string>

@@ -215,10 +215,11 @@ class AprsService extends Service {
 		pos.setPositionAmbiguity(prefs.getStringInt("priv_ambiguity", 0))
 		val status_spd = if (prefs.getBoolean("priv_spdbear", true))
 			AprsPacket.formatCourseSpeed(location) else ""
+		val status_freq = AprsPacket.formatFreq(status_spd, prefs.getStringFloat("frequency", 0.0f))
 		val status_alt = if (prefs.getBoolean("priv_altitude", true))
 			AprsPacket.formatAltitude(location) else ""
 		newPacket(new PositionPacket(
-			pos, status_spd + status_alt + status, /* messaging = */ true))
+			pos, status_spd + status_freq + status_alt + " " + status, /* messaging = */ true))
 	}
 
 	def sendPacket(packet : APRSPacket, status_postfix : String) {
