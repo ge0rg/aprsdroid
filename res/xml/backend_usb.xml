@@ -14,23 +14,6 @@
 		android:defaultValue="115200"
 		android:dialogTitle="@string/p_serial_baudrate" />
 
-        <de.duenndns.EditTextPreferenceWithValue
-                android:key="usb.init"
-		android:defaultValue=""
-		android:singleLine="false"
-		android:title="@string/p_bt_tnc_init"
-		android:summary="@string/p_bt_tnc_init_summary"
-		android:dialogMessage="@string/p_bt_tnc_init_msg"
-		android:dialogTitle="@string/p_bt_tnc_init" />
-        <de.duenndns.EditTextPreferenceWithValue
-                android:key="usb.delay"
-		android:inputType="number"
-		android:hint="300"
-		android:defaultValue="300"
-		android:title="@string/p_bt_tnc_delay"
-		android:summary="@string/p_bt_tnc_delay_summary"
-		android:dialogTitle="@string/p_bt_tnc_delay_entry" />
-
     </PreferenceCategory>
 </PreferenceScreen>
 

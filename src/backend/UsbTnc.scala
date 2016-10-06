@@ -127,7 +127,8 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		//thread.shutdown()
 		thread.interrupt()
 		thread.join(50)
-		proto.stop()
+		if (proto != null)
+			proto.stop()
 	}
 
 	class UsbThread()
@@ -158,20 +159,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			prefs.prefs.edit().putString(UsbTnc.deviceHandle(dev), prefs.getString("proto", "kiss")).commit()
 
 			log("Opened " + ser.getClass().getSimpleName() + " at " + baudrate + "bd")
-			val os = new SerialOutputStream(ser)
-			val initstring = java.net.URLDecoder.decode(prefs.getString("usb.init", ""), "UTF-8")
-			val initdelay = prefs.getStringInt("usb.delay", 300)
-			if (initstring != null && initstring != "") {
-				for (line <- initstring.split("\n")) {
-					service.postAddPost(StorageDatabase.Post.TYPE_TX,
-						R.string.p_bt_tnc_init, line)
-					os.write(line.getBytes())
-					os.write('\r')
-					os.write('\n')
-					Thread.sleep(initdelay)
-				}
-			}
-			proto = AprsBackend.instanciateProto(service, new SerialInputStream(ser), os)
+			proto = AprsBackend.instanciateProto(service, new SerialInputStream(ser), new SerialOutputStream(ser))
 			service.postPosterStarted()
 			while (running) {
 				val line = proto.readPacket()

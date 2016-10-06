@@ -87,7 +87,7 @@ object AprsBackend {
 			null,
 			R.xml.proto_afsk, null),
 		"kiss" -> new ProtoInfo(
-			(s, is, os) => new KissProto(is, os),
+			(s, is, os) => new KissProto(s, is, os),
 			R.xml.proto_kiss, "link"),
 		"kenwood" -> new ProtoInfo(
 			(s, is, os) => new KenwoodProto(s, is, os),

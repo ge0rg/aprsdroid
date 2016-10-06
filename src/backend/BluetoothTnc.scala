@@ -96,23 +96,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 				}
 				log("Connected to TNC.")
 
-			this.synchronized {
-				proto = AprsBackend.instanciateProto(service, socket.getInputStream(), socket.getOutputStream())
-			}
-			val initstring = java.net.URLDecoder.decode(prefs.getString("bt.init", ""), "UTF-8")
-			val initdelay = prefs.getStringInt("bt.delay", 300)
-			if (initstring != null && initstring != "") {
-				log("Sending init: " + initstring)
-				val os = socket.getOutputStream()
-				for (line <- initstring.split("\n")) {
-					service.postAddPost(StorageDatabase.Post.TYPE_TX,
-						R.string.p_bt_tnc_init, line)
-					os.write(line.getBytes())
-					os.write('\r')
-					os.write('\n')
-					Thread.sleep(initdelay)
-				}
-			}
+			proto = AprsBackend.instanciateProto(service, socket.getInputStream(), socket.getOutputStream())
 			Log.d(TAG, "init_socket() done")
 		}
 
