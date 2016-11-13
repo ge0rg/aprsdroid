@@ -8,7 +8,7 @@ import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
 import _root_.android.os.{Bundle, Handler}
 import _root_.android.util.Log
-import _root_.android.view.{Menu, MenuItem, View}
+import _root_.android.view.{KeyEvent, Menu, MenuItem, View}
 import _root_.android.widget.SimpleCursorAdapter
 import _root_.android.widget.Spinner
 import _root_.android.widget.TextView
@@ -117,11 +117,29 @@ class MapAct extends MapActivity with UIHelper {
 		}
 	}
 
+	override def onKeyDown(keyCode : Int, event : KeyEvent) : Boolean = {
+		keyCode match {
+		case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD |
+		     KeyEvent.KEYCODE_MEDIA_NEXT =>
+			changeZoom(+1)
+			true
+		case KeyEvent.KEYCODE_MEDIA_REWIND |
+		     KeyEvent.KEYCODE_MEDIA_PREVIOUS =>
+			changeZoom(-1)
+			true
+		case _ => super.onKeyDown(keyCode, event)
+		}
+	}
+
 	def getTargetCall() : String = {
 		val i = getIntent()
 		if (i != null && i.getDataString() != null) {
 			i.getDataString()
 		} else ""
+	}
+
+	def changeZoom(delta : Int) {
+		mapview.getController().setZoom(mapview.getZoomLevel() + delta)
 	}
 
 	def animateToCall() {
