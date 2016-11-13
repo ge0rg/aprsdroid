@@ -157,7 +157,7 @@ class MapAct extends MapActivity with UIHelper {
 	}
 
 	def changeZoom(delta : Int) {
-		mapview.getController().setZoom(mapview.getZoomLevel() + delta)
+		mapview.getController().setZoom(mapview.getMapPosition().getZoomLevel() + delta)
 	}
 
 	def animateToCall() {
