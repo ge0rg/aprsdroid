@@ -71,6 +71,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 	}
 
 	var proto : TncProto = null
+	var sis : SerialInputStream = null
 
 	def start() = {
 		val filter = new IntentFilter(USB_PERM_ACTION)
@@ -117,6 +118,8 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		alreadyRunning = false
 		if (ser != null)
 			ser.close()
+		if (sis != null)
+			sis.close()
 		if (con != null)
 			con.close()
 		if (thread == null)
@@ -159,12 +162,21 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			prefs.prefs.edit().putString(UsbTnc.deviceHandle(dev), prefs.getString("proto", "kiss")).commit()
 
 			log("Opened " + ser.getClass().getSimpleName() + " at " + baudrate + "bd")
-			proto = AprsBackend.instanciateProto(service, new SerialInputStream(ser), new SerialOutputStream(ser))
+			sis = new SerialInputStream(ser)
+			proto = AprsBackend.instanciateProto(service, sis, new SerialOutputStream(ser))
 			service.postPosterStarted()
 			while (running) {
-				val line = proto.readPacket()
-				Log.d(TAG, "recv: " + line)
-				service.postSubmit(line)
+				try {
+					val line = proto.readPacket()
+					Log.d(TAG, "recv: " + line)
+					service.postSubmit(line)
+				} catch {
+				case e : Exception =>
+					Log.d(TAG, "readPacket exception: " + e.toString())
+					if (running) {
+						service.postAbort(e.toString()); running = false
+					}
+				}
 			}
 			Log.d(TAG, "terminate()")
 		}
