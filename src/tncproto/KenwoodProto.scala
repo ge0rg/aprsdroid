@@ -37,7 +37,7 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 			val lon = "%s%s".format(s(3), s(4))
 			val call = s(5).trim()
 			"%s>APRS:!%s/%s/".format(call, lat, lon)
-		case _ => line
+		case _ => line.replaceFirst("^(cmd:)+", "") // workaround for Kenwood APRS mode
 		}
 	}
 
