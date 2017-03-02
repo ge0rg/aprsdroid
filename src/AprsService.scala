@@ -273,7 +273,8 @@ class AprsService extends Service {
 
 			val callssid = prefs.getCallSsid()
 			if (source == StorageDatabase.Post.TYPE_INCMG &&
-			    fap.getSourceCall().equalsIgnoreCase(callssid)) {
+			    fap.getSourceCall().equalsIgnoreCase(callssid) &&
+			    fap.getLastUsedDigi() != null) {
 				Log.i(TAG, "got digipeated own packet")
 				val message = getString(R.string.got_digipeated, fap.getLastUsedDigi(),
 					fap.getAprsInformation().toString())
