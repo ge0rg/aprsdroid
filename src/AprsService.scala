@@ -213,13 +213,54 @@ class AprsService extends Service {
 		val pos = new Position(location.getLatitude, location.getLongitude, 0,
 				     symbol(0), symbol(1))
 		pos.setPositionAmbiguity(prefs.getStringInt("priv_ambiguity", 0))
-		val status_spd = if (prefs.getBoolean("priv_spdbear", true))
-			AprsPacket.formatCourseSpeed(location) else ""
+		val status_spd = if (prefs.getBoolean("priv_spdbear", true)) {
+			if(prefs.getBoolean("compressed_location", false)) {
+				// Compressed format
+				AprsPacket.formatCourseSpeedCompressed(location)
+			} else {
+				AprsPacket.formatCourseSpeed(location)
+			}
+		} else ""
 		val status_freq = AprsPacket.formatFreq(status_spd, prefs.getStringFloat("frequency", 0.0f))
-		val status_alt = if (prefs.getBoolean("priv_altitude", true))
-			AprsPacket.formatAltitude(location) else ""
-		newPacket(new PositionPacket(
-			pos, status_spd + status_freq + status_alt + " " + status, /* messaging = */ true))
+		val status_alt = if (prefs.getBoolean("priv_altitude", true)) {
+			// if speed is empty then use compressed altitude, otherwise use full length altitude
+			if(prefs.getBoolean("compressed_location", false) && status_spd == "") {
+				// Compressed format
+				AprsPacket.formatAltitudeCompressed(location)
+			} else {
+				AprsPacket.formatAltitude(location)
+			}
+		} else ""
+		if(prefs.getBoolean("compressed_location", false)) {
+			if(status_spd == "") {
+				// Speed is empty, so we can use a compressed altitude
+				if(status_alt == "") {
+					// Altitude is empty, so don't send any altitude data
+					pos.setCsTField(" sT")
+				} else {
+					// 3 signifies current GPS fix, GGA altitude, software compressed.
+					pos.setCsTField(status_alt + "3")
+				}
+				val packet = new PositionPacket(
+					pos, status_freq + " " + status, /* messaging = */ true)
+				packet.setCompressedFormat(true)
+				newPacket(packet)
+			} else {
+				// Speed is present, so we need to append the altitude to the end of the packet using the
+				// uncompressed method
+				// Apply the csT field with speed and course
+				// [ signifies current GPS fix, RMC speed, software compressed.
+				pos.setCsTField(status_spd + "[")
+				val packet = new PositionPacket(
+					pos, status_freq + status_alt + " " + status, /* messaging = */ true)
+				packet.setCompressedFormat(true)
+				newPacket(packet)
+			}
+		} else {
+			val packet = new PositionPacket(
+				pos, status_spd + status_freq + status_alt + " " + status, /* messaging = */ true)
+			newPacket(packet)
+		}
 	}
 
 	def sendPacket(packet : APRSPacket, status_postfix : String) {

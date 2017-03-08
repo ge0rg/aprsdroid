@@ -43,6 +43,20 @@ object AprsPacket {
 			""
 	}
 
+	def formatAltitudeCompressed(location : Location) : String = {
+		if (location.hasAltitude) {
+			var altitude = m2ft(location.getAltitude)
+			var compressedAltitude = ((math.log(altitude) / math.log(1.002)) + 0.5).asInstanceOf[Int]
+			var c = (compressedAltitude / 91).asInstanceOf[Byte] + 33
+			var s = (compressedAltitude % 91).asInstanceOf[Byte] + 33
+			// Negative altitudes cannot be expressed in base-91 and results in corrupt packets
+			if(c < 33) c = 33
+			if(s < 33) s = 33
+			"%c%c".format(c.asInstanceOf[Char], s.asInstanceOf[Char])
+		} else
+			""
+	}
+
 	def formatCourseSpeed(location : Location) : String = {
 		// only report speeds above 2m/s (7.2km/h)
 		if (location.hasSpeed && location.hasBearing)
@@ -51,6 +65,23 @@ object AprsPacket {
 				mps2kt(location.getSpeed))
 		else
 			""
+	}
+
+	def formatCourseSpeedCompressed(location : Location) : String = {
+		// only report speeds above 2m/s (7.2km/h)
+		if (location.hasSpeed && location.hasBearing) {
+			// && location.getSpeed > 2)
+			var compressedBearing = (location.getBearing.asInstanceOf[Int] / 4).asInstanceOf[Int]
+			var compressedSpeed = ((math.log(mps2kt(location.getSpeed)) / math.log(1.08)) - 1).asInstanceOf[Int]
+			var c = compressedBearing.asInstanceOf[Byte] + 33;
+			var s = compressedSpeed.asInstanceOf[Byte] + 33;
+			// Negative speeds a courses cannot be expressed in base-91 and results in corrupt packets
+			if(c < 33) c = 33
+			if(s < 33) s = 33
+			"%c%c".format(c.asInstanceOf[Char], s.asInstanceOf[Char])
+		} else {
+			""
+		}
 	}
 
 	def formatFreq(csespd : String, freq : Float) : String = {
