@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
+	<CheckBoxPreference
+		android:defaultValue="false"
+		android:key="compressed_location"
+		android:summaryOff="@string/p__location_compressed_beacons_off"
+		android:summaryOn="@string/p__location_compressed_beacons_on"
+		android:title="@string/p__location_compressed_beacons" />
         <de.duenndns.ListPreferenceWithValue
                 android:key="loc_source"
 		android:title="@string/p_locsource"

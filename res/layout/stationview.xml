@@ -48,6 +48,15 @@
 		/>
 	</LinearLayout>
 	<TextView
+		android:id="@+id/extendedinfo"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:textColor="#8080b0"
+		android:textSize="17dp"
+		android:typeface="monospace"
+		android:focusable="false"
+		/>
+	<TextView
 	android:id="@+id/listmessage"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"

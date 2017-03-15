@@ -12,12 +12,15 @@ import _root_.android.widget.FilterQueryProvider
 
 object StationListAdapter {
 	import StorageDatabase.Station._
-	val LIST_FROM = Array(CALL, COMMENT, QRG)
-	val LIST_TO = Array(R.id.station_call, R.id.listmessage, R.id.station_qrg)
+	val LIST_FROM = Array(CALL, COMMENT, QRG, WX)
+	val LIST_TO = Array(R.id.station_call, R.id.listmessage, R.id.station_qrg, R.id.extendedinfo)
 
 	val SINGLE = 0
 	val NEIGHBORS = 1
 	val SSIDS = 2
+  // return compass bearing for a given value
+  private val LETTERS = Array("N", "NE", "E", "SE", "S", "SW", "W", "NW")
+  def getBearing(b : Double) = LETTERS(((b.toInt + 22 + 720) % 360) / 45)
 }
 
 class StationListAdapter(context : Context, prefs : PrefsWrapper,
@@ -52,10 +55,6 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		mix.reduceLeft(_*256 + _)
 	}
 
-	// return compass bearing for a given value
-	private val LETTERS = Array("N", "NE", "E", "SE", "S", "SW", "W", "NW")
-	def getBearing(b : Double) = LETTERS(((b.toInt + 22 + 720) % 360) / 45)
-
 	override def bindView(view : View, context : Context, cursor : Cursor) {
 		import StorageDatabase.Station._
 
@@ -67,9 +66,9 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		val lat = cursor.getInt(COLUMN_LAT)
 		val lon = cursor.getInt(COLUMN_LON)
 		val qrg = cursor.getString(COLUMN_QRG)
+    var wx = cursor.getString(COLUMN_WX)
 		val symbol = cursor.getString(COLUMN_SYMBOL)
 		val dist = Array[Float](0, 0)
-
 		if (call == mycall) {
 			view.setBackgroundColor(0x4020ff20)
 		} else if (call == targetcall) {
@@ -85,8 +84,10 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		val MCD = 1000000.
 		android.location.Location.distanceBetween(my_lat/MCD, my_lon/MCD,
 			lat/MCD, lon/MCD, dist)
-		distage.setText("%1.1f km %s\n%s".format(dist(0)/1000., getBearing(dist(1)), age))
+		distage.setText("%1.1f km %s\n%s".format(dist(0)/1000., StationListAdapter.getBearing(dist(1)), age))
 		view.findViewById(R.id.station_symbol).asInstanceOf[SymbolView].setSymbol(symbol)
+    val wx_visible = if(wx != null && wx != "") View.VISIBLE else View.GONE
+		view.findViewById(R.id.extendedinfo).setVisibility(wx_visible)
 		super.bindView(view, context, cursor)
 	}
 
