@@ -14,7 +14,7 @@ import _root_.scala.math.{cos, Pi}
 
 object StorageDatabase {
 	val TAG = "APRSdroid.Storage"
-	val DB_VERSION = 3
+	val DB_VERSION = 4
 	val DB_NAME = "storage.db"
 
 	val TSS_COL = "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS"
@@ -57,30 +57,32 @@ object StorageDatabase {
 		val ORIGIN = "origin"	// originator call for object/item
 		val QRG = "qrg"		// voice frequency
 		val FLAGS = "flags"	// bitmask for attributes like "messaging capable"
+		val WX = "wx" // weather data
 		lazy val TABLE_CREATE = """CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s LONG,
 			%s TEXT UNIQUE, %s INTEGER, %s INTEGER,
 			%s INTEGER, %s INTEGER, %s INTEGER,
-			%s TEXT, %s TEXT, %s TEXT, %s TEXT, %s INTEGER)"""
+			%s TEXT, %s TEXT, %s TEXT, %s TEXT, %s INTEGER, %s TEXT)"""
 			.format(TABLE, _ID, TS,
 				CALL, LAT, LON,
 				SPEED, COURSE, ALT,
-				SYMBOL, COMMENT, ORIGIN, QRG, FLAGS)
+				SYMBOL, COMMENT, ORIGIN, QRG, FLAGS, WX)
 		lazy val TABLE_DROP = "DROP TABLE %s".format(TABLE)
-		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SYMBOL, COMMENT, SPEED, COURSE, ALT, ORIGIN, QRG)
+		lazy val COLUMNS = Array(_ID, TS, CALL, LAT, LON, SPEED, COURSE, ALT, SYMBOL, COMMENT, ORIGIN, QRG, FLAGS, WX)
 		lazy val COL_DIST = "((lat - %d)*(lat - %d) + (lon - %d)*(lon - %d)*%d/100) as dist"
 
 		val COLUMN_TS		= 1
 		val COLUMN_CALL		= 2
 		val COLUMN_LAT		= 3
 		val COLUMN_LON		= 4
-		val COLUMN_SYMBOL	= 5
-		val COLUMN_COMMENT	= 6
-		val COLUMN_SPEED	= 7
-		val COLUMN_COURSE	= 8
-		val COLUMN_ALT		= 9
+		val COLUMN_SPEED	= 5
+		val COLUMN_COURSE	= 6
+		val COLUMN_ALT		= 7
+		val COLUMN_SYMBOL	= 8
+		val COLUMN_COMMENT	= 9
 		val COLUMN_ORIGIN	= 10
 		val COLUMN_QRG		= 11
 		val COLUMN_FLAGS	= 12
+		val COLUMN_WX     = 13
 
 		lazy val COLUMNS_MAP = Array(_ID, CALL, LAT, LON, SYMBOL, ORIGIN)
 		val COLUMN_MAP_CALL	= 1
@@ -199,6 +201,9 @@ class StorageDatabase(context : Context) extends
 			db.execSQL(Station.TABLE_CREATE)
 			db.execSQL(Position.TABLE_CREATE)
 		}
+		if(from <= 3 && to <= 4) {
+			db.execSQL("ALTER TABLE stations ADD COLUMN wx TEXT")
+		}
 	}
 
 	def trimPosts(ts : Long) = Benchmark("trimPosts") {
@@ -225,6 +230,8 @@ class StorageDatabase(context : Context) extends
 		val sym = "%s%s".format(pos.getSymbolTable(), pos.getSymbolCode())
 		val comment = ap.getAprsInformation().getComment()
 		val qrg = AprsPacket.parseQrg(comment)
+		val wx = if(pos.getSymbolCode() == '_') AprsPacket.parseWx(comment) else if (pos.getSymbolCode() == '$') AprsPacket.parseWxPeet(comment) else ""
+
 		cv.put(TS, ts.asInstanceOf[java.lang.Long])
 		cv.put(CALL, if (objectname != null) objectname else call)
 		cv.put(LAT, lat.asInstanceOf[java.lang.Integer])
@@ -237,13 +244,15 @@ class StorageDatabase(context : Context) extends
 		cv.put(SYMBOL, sym)
 		cv.put(COMMENT, comment)
 		cv.put(QRG, qrg)
+		cv.put(WX, wx)
+
 		if (cse != null) {
 			cv.put(SPEED, cse.getSpeed().asInstanceOf[java.lang.Integer])
 			cv.put(COURSE, cse.getCourse().asInstanceOf[java.lang.Integer])
 		}
-		Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
+		Log.d(TAG, "got %s(%d, %d)%s -> %s %s".format(call, lat, lon, sym, comment, wx))
 		// replace the full station info in stations table
-		getWritableDatabase().replaceOrThrow(TABLE, CALL, cv)
+		getWritableDatabase().replaceOrThrow(Station.TABLE, CALL, cv)
 	}
 
 	def isMessageDuplicate(call : String, msgid : String, text : String) : Boolean = {
