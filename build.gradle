@@ -1,0 +1,108 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+	repositories {
+		jcenter()
+		maven { url 'https://jitpack.io' }
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:2.3.0'
+		// NOTE: Do not place your application dependencies here; they belong
+		// in the individual module build.gradle files
+
+		classpath 'com.github.xingda920813:gradle-android-scala-plugin:java8'
+		//classpath "jp.leafytree.gradle:gradle-android-scala-plugin:1.4"
+		classpath 'org.ajoberstar:grgit:1.1.0'
+	}
+}
+
+plugins {
+	// obtain revision from git
+	id 'org.ajoberstar.grgit' version '1.6.0'
+}
+
+allprojects {
+	repositories {
+		jcenter()
+	}
+}
+
+/////////////// APRSdroid specific build rules ///////////////
+apply plugin: 'com.android.application'
+apply plugin: "jp.leafytree.android-scala"
+
+ext {
+	build_date = "${new Date().format('yyyy-MM-dd')}"
+	build_revision = "${grgit.describe()}"
+	build_version = "APRSdroid ${build_revision} ${build_date}"
+}
+
+task buildVersion (type: Copy) {
+	from("template") {
+		include "version.xml"
+		expand( build_date: build_date,
+			build_revision: build_revision,
+			build_version: build_version)
+	}
+	into("res/values")
+	outputs.upToDateWhen {
+		false
+	}
+}
+
+android {
+	compileSdkVersion 19
+	buildToolsVersion "25.0.0"
+	defaultConfig {
+		minSdkVersion 9
+		targetSdkVersion 19
+		versionName "$build_revision"
+	}
+
+	signingConfigs {
+		release {
+			storeFile file(RELEASE_STORE_FILE)
+			storePassword RELEASE_STORE_PASSWORD
+			keyAlias RELEASE_KEY_ALIAS
+			keyPassword RELEASE_KEY_PASSWORD
+		}
+	}
+
+	buildTypes {
+		debug {
+			minifyEnabled true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+		}
+		release {
+			minifyEnabled true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+			signingConfig signingConfigs.release
+		}
+	}
+
+	sourceSets {
+		main {
+			manifest.srcFile 'AndroidManifest.xml'
+			java.srcDirs = ['src']
+			//scala { srcDir = 'src' }
+			resources.srcDirs = ['src']
+			aidl.srcDirs = ['src']
+			renderscript.srcDirs = ['src']
+			res.srcDirs = ['res']
+			assets.srcDirs = ['assets']
+		}
+		androidTest {
+			//scala { srcDir = 'src' }
+		}
+	}
+	lintOptions {
+		disable 'MissingTranslation'
+	}
+}
+
+dependencies {
+	compile "org.scala-lang:scala-library:2.11.7"
+	//compile 'com.google.android.gms:play-services-maps:6.5.87'
+	compile fileTree(include: ['*.jar'], dir: 'libs')
+}
+
+preBuild.dependsOn buildVersion
