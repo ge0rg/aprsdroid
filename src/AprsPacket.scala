@@ -85,7 +85,7 @@ object AprsPacket {
 			return (splits(0), splits(1).toInt)
 		} catch {
 			// fallback to default port if none/bad one given
-			case _ => return (splits(0), defaultport)
+			case _ : Throwable => return (splits(0), defaultport)
 		}
 	}
 
