@@ -107,7 +107,12 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 				init_socket()
 				service.postPosterStarted()
 			} catch {
-				case e : Exception => e.printStackTrace(); service.postAbort(e.toString()); running = false;
+				case e : Exception => {
+					e.printStackTrace();
+					service.postAbort(service.getString(R.string.bt_error_connect,
+						tnc.getName()));
+					running = false;
+                                }
 			}
 			while (running) {
 				try {
