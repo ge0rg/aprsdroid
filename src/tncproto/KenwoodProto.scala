@@ -16,12 +16,14 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 	val output = new OutputStreamWriter(os)
 
 	var listener : NmeaListener = null
-	new Handler(Looper.getMainLooper()).post(new Runnable() { override def run() {
-		listener = new NmeaListener()
-		locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-			0, 0, sinkhole)
-		locMan.addNmeaListener(listener)
-	}})
+        if (service.prefs.getBoolean("kenwood.gps", false)) {
+                new Handler(Looper.getMainLooper()).post(new Runnable() { override def run() {
+                        listener = new NmeaListener()
+                        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                                0, 0, sinkhole)
+                        locMan.addNmeaListener(listener)
+                }})
+        }
 
 	def wpl2aprs(line : String) = {
 		val s = line.split("[,*]") // get and split nmea
@@ -57,8 +59,9 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 			Log.d(TAG, "NMEA >>> " + nmea)
 			try {
 				output.write(nmea)
-				service.postAddPost(StorageDatabase.Post.TYPE_TX,
-					R.string.p_conn_kwd, nmea.trim())
+                                if (service.prefs.getBoolean("kenwood.gps_debug", false))
+                                        service.postAddPost(StorageDatabase.Post.TYPE_TX,
+                                                R.string.p_conn_kwd, nmea.trim())
 			} catch {
 			case e : Exception =>
 				Log.e(TAG, "error sending NMEA to Kenwood: " + e)
@@ -82,7 +85,8 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 
 	override def stop() {
 		locMan.removeUpdates(sinkhole)
-		locMan.removeNmeaListener(listener)
+                if (listener != null)
+                        locMan.removeNmeaListener(listener)
 		super.stop()
 	}
 }

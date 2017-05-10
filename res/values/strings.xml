@@ -185,6 +185,10 @@
 <string name="p_conn_kiss">TNC (KISS)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
 <string name="p_conn_kwd_info">Kenwood setup help</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">TCP connection</string>
 <string name="p_aprsis_http">HTTP POST (send only)</string>
