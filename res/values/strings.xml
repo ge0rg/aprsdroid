@@ -183,6 +183,7 @@
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audio (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (legacy TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
 <string name="p_conn_kwd_info">Kenwood setup help</string>
 <string name="p_conn_kwd_gps">Use Android GPS</string>

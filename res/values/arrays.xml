@@ -4,12 +4,14 @@
 		<item>@string/p_conn_aprsis</item>
 		<item>@string/p_conn_afsk</item>
 		<item>@string/p_conn_kiss</item>
+		<item>@string/p_conn_tnc2</item>
 		<item>@string/p_conn_kwd</item>
 	</string-array>
 	<string-array name="p_conntype_ev">
 		<item>aprsis</item>
 		<item>afsk</item>
 		<item>kiss</item>
+		<item>tnc2</item>
 		<item>kenwood</item>
 	</string-array>
 	<string-array name="p_aprsis_e">
