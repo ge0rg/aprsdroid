@@ -5,6 +5,7 @@
 <string name="app_prefs">APRSdroid Preferences</string>
 <string name="app_map">APRSdroid Map</string>
 <string name="app_hub">APRSdroid Hub</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Station Info</string>
 <string name="app_messages">Messages</string>
 <string name="app_messages_clear">Clear Messages</string>
