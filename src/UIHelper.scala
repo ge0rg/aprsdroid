@@ -126,6 +126,15 @@ trait UIHelper extends Activity
 		finish()
 	}
 
+	def setTitleStatus() {
+		if (AprsService.link_error != 0) {
+			setTitle(getString(R.string.status_linkoff, getString(AprsService.link_error)))
+		} else {
+			val title = getPackageManager().getActivityInfo(getComponentName(), 0).labelRes
+			setTitle(title)
+		}
+	}
+
 	def setLongTitle(title_id : Int, targetcall : String) {
 		// use two-line display on holo in portrait mode
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {

@@ -24,6 +24,7 @@ object AprsService {
 	val MICLEVEL = PACKAGE + ".MICLEVEL" // internal volume event intent
 	val LINK_ON = PACKAGE + ".LINK_ON"
 	val LINK_OFF = PACKAGE + ".LINK_OFF"
+	val LINK_INFO = PACKAGE + ".LINK_INFO"
 	// broadcast actions
 	val UPDATE = PACKAGE + ".UPDATE"	// something added to the log
 	val MESSAGE = PACKAGE + ".MESSAGE"	// we received a message/ack
@@ -56,6 +57,7 @@ object AprsService {
 	}
 
 	var running = false
+	var link_error = 0
 
 	implicit def block2runnable(block: => Unit) =
 		new Runnable() {
@@ -361,12 +363,18 @@ class AprsService extends Service {
 		}
 	}
 
-	def postLinkOn() {
-		sendBroadcast(new Intent(LINK_ON))
+	def postLinkOn(link : Int) {
+                link_error = 0
+		sendBroadcast(new Intent(LINK_ON).putExtra(LINK_INFO, link))
+		val message = getString(R.string.status_linkon, getString(link))
+		ServiceNotifier.instance.start(this, message)
 	}
 
-	def postLinkOff() {
-		sendBroadcast(new Intent(LINK_OFF))
+	def postLinkOff(link : Int) {
+                link_error = link
+		sendBroadcast(new Intent(LINK_OFF).putExtra(LINK_INFO, link))
+		val message = getString(R.string.status_linkoff, getString(link))
+		ServiceNotifier.instance.start(this, message)
 	}
 }
 
