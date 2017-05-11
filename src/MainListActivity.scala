@@ -42,6 +42,7 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 		setVolumeControls()
 
 		registerReceiver(miclReceiver, new IntentFilter(AprsService.MICLEVEL))
+		registerReceiver(linkOnOffReceiver, new IntentFilter(AprsService.SERVICE_STOPPED))
 		registerReceiver(linkOnOffReceiver, new IntentFilter(AprsService.LINK_OFF))
 		registerReceiver(linkOnOffReceiver, new IntentFilter(AprsService.LINK_ON))
 	}

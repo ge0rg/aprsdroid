@@ -192,6 +192,7 @@ class AprsService extends Service {
 
 	override def onDestroy() {
 		running = false
+		link_error = 0
 		// catch FC when service is killed from outside
 		if (poster != null) {
 			poster.stop()
