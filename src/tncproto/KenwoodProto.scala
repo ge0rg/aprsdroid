@@ -43,8 +43,21 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 		}
 	}
 
+	// Solution for #141 - yaesu FTM-400XDR packet monitor
+	def yaesu2aprs(line1 : String, line2 : String) = {
+		Log.d(TAG, "line1: " + line1)
+		Log.d(TAG, "line2: " + line2)
+		// remove the timestamp and UI meta data from first line, concatenate with second line using ":"
+		line1.replaceAll(" \\[[0-9/: ]+\\] <UI ?[A-Z]?>:$", ":") + line2
+	}
+
 	def readPacket() : String = {
-		val line = br.readLine()
+		var line = br.readLine()
+		// loop: read a non-empty line
+		while (line == null || line.length() == 0)
+			line = br.readLine()
+		if (line.contains("] <UI") && line.endsWith(">:"))
+			return yaesu2aprs(line, br.readLine())
 		Log.d(TAG, "got " + line)
 		return wpl2aprs(line)
 	}
