@@ -321,6 +321,16 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_sotimeout_summary">Tijd om de connectie te resetten</string>
 <string name="p_sotimeout_entry">Timout waarde in seconden (0 = uit)</string>
 
+<string name="p_mapfile">Map file name</string>
+<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
+<string name="p_mapfile_choose">Choose map file</string>
+<string name="mapfile_error">Error loading map file %s!</string>
+
+<string name="p_themefile">Theme file name</string>
+<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
+<string name="p_themefile_choose">Choose theme file</string>
+<string name="themefile_error">Error loading theme file %s!</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Eddy Vaesen https://launchpad.net/~a-eddy-n
   Georg Lukas https://launchpad.net/~ge0rg

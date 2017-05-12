@@ -315,6 +315,16 @@
 <string name="p_sotimeout_summary">Čas před obnovením připojení</string>
 <string name="p_sotimeout_entry">Čas prodlevy v sekundách (0 = zakázat)</string>
 
+<string name="p_mapfile">Map file name</string>
+<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
+<string name="p_mapfile_choose">Choose map file</string>
+<string name="mapfile_error">Error loading map file %s!</string>
+
+<string name="p_themefile">Theme file name</string>
+<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
+<string name="p_themefile_choose">Choose theme file</string>
+<string name="themefile_error">Error loading theme file %s!</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Bronek OK2JIB https://launchpad.net/~bronajz
   Georg Lukas https://launchpad.net/~ge0rg

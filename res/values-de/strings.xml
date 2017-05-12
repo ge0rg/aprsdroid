@@ -323,6 +323,16 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_sotimeout_summary">Zeit zum Zurücksetzen der Verbindung</string>
 <string name="p_sotimeout_entry">Timeout-Wert in Sekunden (0 = deaktiviert)</string>
 
+<string name="p_mapfile">Map file name</string>
+<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
+<string name="p_mapfile_choose">Kartendatei auswählen</string>
+<string name="mapfile_error">Fehler beim Laden der Karte %s!</string>
+
+<string name="p_themefile">Theme file name</string>
+<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
+<string name="p_themefile_choose">Theme-Datei auswählen</string>
+<string name="themefile_error">Fehler beim Laden der Theme-Datei %s!</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Dennis Baudys https://launchpad.net/~thecondordb
   Georg Lukas https://launchpad.net/~ge0rg
