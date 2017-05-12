@@ -5,6 +5,7 @@
 <string name="app_prefs">APRSdroid：設定</string>
 <string name="app_map">APRSdroid：地図</string>
 <string name="app_hub">APRSdroid：局一覧</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">局情報</string>
 <string name="app_messages">メッセージ</string>
 <string name="app_messages_clear">メッセージ消去</string>
@@ -13,7 +14,7 @@
 <string name="wrongpasscode">コールサインとパスコードが一致しません</string>
 <string name="anon_warning">パスコードを入力しないと位置情報は送信されません</string>
 <string name="mininterval">GPS測位間隔は１分以下に設定できません</string>
-<string name="singlelog">１回のみ送信</string>
+<string name="singlelog">位置送信</string>
 <string name="startlog">連続送信開始</string>
 <string name="stoplog">送信停止</string>
 
@@ -22,6 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s 最終受信情報</string>
 <string name="map_track_call">%sを追跡...</string>
+<string name="map_track_unknown">%s の位置は不明!</string>
 <string name="map_select">局 選択</string>
 
 <string name="map_loading">読み込み中...</string>
@@ -30,6 +32,7 @@
 <string name="sta_ssids">局 SSID</string>
 <string name="sta_history">局 受信情報履歴</string>
 <string name="sta_map">地図表示</string>
+<string name="sta_extmap">外部マップ</string>
 <string name="sta_aprsfi">aprs.fiで表示</string>
 <string name="sta_qrzcom">QRZ.com接続</string>
 
@@ -67,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroidについて v%s</string>
-<string name="ad_copyright">著作権 © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®は Bob Bruninga (WB4APR) の登録商標です。</string>
+<string name="ad_copyright">著作権 © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®はBob Bruninga（WB4APR）の登録商標です。</string>
 <string name="ad_gpl">このプログラムはフリー・ソフトウェアです。; 再分配あるいはフリー・ソフトウェア・ファウンデーションによって公表されるようなGNU一般ライセンスの条件下で修正する事が出来ます。ライセンスver.2あるいは(貴方のオプションで)以降のバージョンの何れか。\n\n このプログラムは有用であることを願い,しかし一切の保証なしに提供されています。;特定の目的に対する商品性もしくは適合性についての暗黙の保証すらありません。 詳細についてはGNU一般ライセンスを参照してください。 \n\n あなたはこのプログラムと共にGNU一般公衆利用許諾契約書のコピーを受け取り承諾しているはずです。; そうでなければ、フリー・ソフトウェア財団に手紙を書いてください。, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">協力:</string>
 <string name="ad_thanks_0">私の彼女♥♥♥</string>
@@ -138,26 +141,41 @@
 </string-array>
 <string name="p_symbol">APRSシンボル</string>
 <string name="p_symbol_summary">地図上に表示するシンボル</string>
-<string name="p_symbol_entry">表示シンボル（2文字)を入力</string>
+<string name="p_symbol_overlay">オーバーレイ:</string>
+<string name="p_symbol_result">結果:</string>
+<string name="p_frequency">音声周波数</string>
+<string name="p_frequency_summary">貴局の音声交信周波数 [MHz]</string>
 <string name="p_status">送信コメント文</string>
 <string name="p_status_summary">位置情報と共に送信するメッセージ</string>
 <string name="p_status_entry">ビーコンコメントを入力</string>
 <string name="p__connection">APRS接続設定</string>
 <string name="p_conntype">通信方式</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP または UDP</string>
 <string name="p_conntype_entry">通信方式を選択</string>
+<string name="p_link">接続タイプ</string>
+<string name="p_link_entry">接続タイプを選択</string>
 <string name="p_connsetup">接続詳細設定</string>
 <string name="p_connsetup_summary">接続に関する設定</string>
 <string name="p_connlog">接続情報を記録</string>
 <string name="p_connlog_summary">冗長状態をログに出力する(デバック)</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP接続</string>
-<string name="p_conn_udp">UDP (送信のみ）</string>
-<string name="p_conn_http">HTTP POST (送信のみ）</string>
-<string name="p_conn_afsk">AFSK via スピーカー/マイク</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">KENWOOD GPS ポート</string>
-<string name="p_conn_tcptnc">TCP/IP 接続 TNC</string>
+<string name="p_conn_aprsis">インターネット (APRS-IS)</string>
+<string name="p_conn_afsk">音信号 (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">KENWOOD (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">KENWOOD 設定ヘルプ</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP接続</string>
+<string name="p_aprsis_http">HTTP POST (送信のみ）</string>
+<string name="p_aprsis_udp">UDP (送信のみ）</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB シリアル</string>
 <!-- array of location sources -->
 <string name="p_source_manual">手動位置設定</string>
 <string name="p_source_periodic">周期的に GPS/ネットワーク で測位</string>
@@ -257,6 +275,8 @@
 <string name="p_dgp_ring_summary">デジピートされた時の音を選択</string>
 
 <string name="got_digipeated">%1$s でデジピートされました: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRSデジピートパス</string>
@@ -309,12 +329,13 @@
 <string name="p_bt_channel_summary">Bluetooth信号チャンネルを選択</string>
 <string name="p_bt_channel_entry">チャンネルを入力(普通は:"1"; SPPは空)</string>
 
-<string name="p_bt_tnc_init">TNC初期化設定</string>
-<string name="p_bt_tnc_init_summary">TNC初期化コマンド設定</string>
+<string name="p_tnc_init">TNC初期化設定</string>
+<string name="p_tnc_init_summary">初期設定コマンド for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URLエンコード (Esc=%1B, \"%\"=%25) :</string>
 
-<string name="p_bt_tnc_delay">TNC初期化遅れ</string>
-<string name="p_bt_tnc_delay_summary">各ラインの待ち時間</string>
-<string name="p_bt_tnc_delay_entry">TNC初期化遅れ[ミリ秒]</string>
+<string name="p_tnc_delay">TNC初期化遅れ</string>
+<string name="p_tnc_delay_summary">各ラインの待ち時間</string>
+<string name="p_tnc_delay_entry">TNC初期化遅れ[ミリ秒]</string>
 
 <string name="p_bt_prefs">Bluetooth設定</string>
 <string name="p_bt_prefs_summary">有効なBluetoothペア機器</string>
@@ -322,6 +343,7 @@
 <string name="bt_error_unsupported">Bluetoothはサポートされていません!</string>
 <string name="bt_error_disabled">Bluetoothを有効にしてください!</string>
 <string name="bt_error_no_tnc">Bluetooth-TNCの設定をして下さい!</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">Bluetooth(SCO)リンク要求</string>
 <string name="afsk_info_sco_est">Bluetooth(SCO)リンク確立</string>
@@ -333,9 +355,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL証明書をインポート</string>
 <string name="ssl_import_password">証明書パスワードを入力:</string>
-<string name="ssl_no_keyfile">%s 証明書を使用出来ません。</string>
+<string name="ssl_no_keyfile">%s! 無証明 / パスコード認証使用</string>
 <string name="ssl_import_ok">%s 証明書を読込完了。</string>
 <string name="ssl_import_error">証明書読込エラー: %s!</string>
 <string name="ssl_expired">証明書の有効期限が終了しています!</string>
 <string name="ssl_expire_in">あなたの証明書はあと %d日で終了します!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">機器通信速度</string>
+<string name="p_serial_baudrate_summary">シリアルポートの転送速度</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">シリアルポートをサポートしていない！</string>
+<string name="p_serial_noperm">USB機器 無許可!</string>
+<string name="p_serial_notfound">USB機器が見つかりません！</string>
 </resources>

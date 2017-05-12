@@ -5,6 +5,7 @@
 <string name="app_prefs">Preferencias APRSdroid</string>
 <string name="app_map">Mapa APRSdroid</string>
 <string name="app_hub">APRSdroid Hub</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Información da Estacion</string>
 <string name="app_messages">Mensaxes</string>
 <string name="app_messages_clear">Limpar Mensaxes</string>
@@ -13,7 +14,7 @@
 <string name="wrongpasscode">O seu contrasinal non corresponde co seu indicativo!!</string>
 <string name="anon_warning">Sen contrasinal, as suas tramas non seran enviadas!!</string>
 <string name="mininterval">O tempo minimo de actualizacion e de 1 minuto!!</string>
-<string name="singlelog">Single Shot</string>
+<string name="singlelog">Send Position</string>
 <string name="startlog">Comezar seguimento</string>
 <string name="stoplog">Parar seguimento</string>
 
@@ -24,6 +25,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
 <string name="map_track_call">Tracking %s...</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Seleccionar estacion</string>
 
 <string name="map_loading">A cargar…</string>
@@ -32,6 +34,7 @@
 <string name="sta_ssids">SSIDs da estacion</string>
 <string name="sta_history">Historial da estacion</string>
 <string name="sta_map">Mapa</string>
+<string name="sta_extmap">External Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -71,7 +74,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -161,26 +164,41 @@
 </string-array>
 <string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Your symbol for map display</string>
-<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Result:</string>
+<string name="p_frequency">Voice frequency</string>
+<string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">Comment field</string>
 <string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
 <string name="p_conntype">Connection Protocol</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
+<string name="p_link">Connection Type</string>
+<string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Connection Preferences</string>
 <string name="p_connsetup_summary">Configuration of Connection</string>
 <string name="p_connlog">Connection Logging</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP connection</string>
-<string name="p_conn_udp">UDP (send only)</string>
-<string name="p_conn_http">HTTP POST (send only)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood setup help</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP connection</string>
+<string name="p_aprsis_http">HTTP POST (send only)</string>
+<string name="p_aprsis_udp">UDP (send only)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>
 <string name="p_source_periodic">Periodic GPS/Network Position</string>
@@ -280,6 +298,8 @@
 <string name="p_dgp_ring_summary">Tone for digipeated packets</string>
 
 <string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -331,12 +351,13 @@
 <string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_tnc_init">TNC init string</string>
+<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_tnc_delay">TNC init delay</string>
+<string name="p_tnc_delay_summary">Time to wait after each line</string>
+<string name="p_tnc_delay_entry">TNC init delay [ms]</string>
 
 <string name="p_bt_prefs">Bluetooth settings</string>
 <string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
@@ -344,6 +365,7 @@
 <string name="bt_error_unsupported">Bluetooth is not supported!</string>
 <string name="bt_error_disabled">Please enable Bluetooth!</string>
 <string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
@@ -355,9 +377,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL certificate import</string>
 <string name="ssl_import_password">Please enter the certificate import password:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
 <string name="ssl_import_ok">Imported certificate for %s.</string>
 <string name="ssl_import_error">Error importing certificate: %s!</string>
 <string name="ssl_expired">Your certificate has expired!</string>
 <string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Unsupported serial port!</string>
+<string name="p_serial_noperm">No permission for USB device!</string>
+<string name="p_serial_notfound">No USB device found!</string>
 </resources>

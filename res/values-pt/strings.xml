@@ -5,15 +5,16 @@
 <string name="app_prefs">Preferências do APRSdroid</string>
 <string name="app_map">Mapa APRSdroid</string>
 <string name="app_hub">Eixo APRSdroid</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Informação da estação</string>
 <string name="app_messages">Mensagens</string>
-<string name="app_messages_clear">Limpar as mensagens</string>
+<string name="app_messages_clear">Limpar Mensagens</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Deve configurar o APRSdroid com o seu indicativo e password!</string>
 <string name="wrongpasscode">A palavra-passe está incorrecta.</string>
 <string name="anon_warning">Sem a password as suas transmissões não serão divulgadas!</string>
 <string name="mininterval">Tempo mínimo de actualização - 1 minuto!</string>
-<string name="singlelog">Só uma vez.</string>
+<string name="singlelog">Envio de posição</string>
 <string name="startlog">Iniciar seguimento.</string>
 <string name="stoplog">Parar seguimento.</string>
 
@@ -22,6 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">Última transmissão</string>
 <string name="map_track_call">Seguindo %s...</string>
+<string name="map_track_unknown">Posição para %s desconhecida</string>
 <string name="map_select">Seleccionar estação</string>
 
 <string name="map_loading">A carregar...</string>
@@ -30,6 +32,7 @@
 <string name="sta_ssids">SSIDs da Estação</string>
 <string name="sta_history">Pacotes anteriores da Estação</string>
 <string name="sta_map">Mapa</string>
+<string name="sta_extmap">Mapa Externo</string>
 <string name="sta_aprsfi">pt.aprs.fi</string>
 <string name="sta_qrzcom">qrz.com</string>
 
@@ -67,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Sobre o APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® é uma marca registada por Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copia protegida © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® é uma marca registada de Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Este programa é software livre, você pode redistribuí-lo e / ou modificá-lo sob os termos da GNU General Public License conforme publicada pela Free Software Foundation, tanto a versão 2 da Licença, ou (a seu critério) qualquer versão posterior. \ n \ n Este programa é distribuído na esperança que será útil, mas SEM QUALQUER GARANTIA, sem mesmo a garantia implícita de COMERCIALIZAÇÃO ou ADEQUAÇÃO PARA UM DETERMINADO PROPÓSITO. Veja a GNU General Public License para mais detalhes. \ n \ n Você deve ter recebido uma cópia da Licença Pública Geral GNU junto com este programa, se não, escreva para a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, EUA. \ n \ n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Agradecimentos a:</string>
 <string name="ad_thanks_0">Minha YL ♥♥♥</string>
@@ -138,26 +141,41 @@
 </string-array>
 <string name="p_symbol">Símbolo APRS</string>
 <string name="p_symbol_summary">O seu símbolo para o mapa</string>
-<string name="p_symbol_entry">Escreva o código (2 caractéres) do símbolo</string>
+<string name="p_symbol_overlay">Sobreposição</string>
+<string name="p_symbol_result">Resultado:</string>
+<string name="p_frequency">Frequência voz</string>
+<string name="p_frequency_summary">A Frequência em voz [MHz]</string>
 <string name="p_status">Espaço para comentário</string>
 <string name="p_status_summary">O texto após as suas coordenadas</string>
 <string name="p_status_entry">Coloque o comentário da sua estação para enviar nos pacotes</string>
 <string name="p__connection">Ligação APRS</string>
 <string name="p_conntype">Protocolo de ligação</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">Escolha o protocolo de ligação</string>
+<string name="p_link">Tipo de Ligação</string>
+<string name="p_link_entry">Escolha o tipo de ligação</string>
 <string name="p_connsetup">Preferências de Ligação</string>
 <string name="p_connsetup_summary">Configuração da ligação</string>
 <string name="p_connlog">Registo de ligação</string>
 <string name="p_connlog_summary">Registo detalhado de saída no LOG</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">Ligação TCP</string>
-<string name="p_conn_udp">UDP (apenas envio)</string>
-<string name="p_conn_http">HTTP POST (apenas envio)</string>
-<string name="p_conn_afsk">AFSK via Speaker/Mic</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Porta do GPS do Kenwood</string>
-<string name="p_conn_tcptnc">TNC TCP/IP</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Áudio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (via NMEA)</string>
+<string name="p_conn_kwd_info">Ajuda configuração Kenwood</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">Ligação TCP</string>
+<string name="p_aprsis_http">HTTP POST (apenas envio)</string>
+<string name="p_aprsis_udp">UDP (apenas envio)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP (Perfil da porta série)</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">Porta série USB</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Posição manual</string>
 <string name="p_source_periodic">Posição periódica de GPS/Network</string>
@@ -257,6 +275,8 @@
 <string name="p_dgp_ring_summary">Tones para transmissoes retransmitidas</string>
 
 <string name="got_digipeated">Retransmitidas por %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">Caminho do digi APRS</string>
@@ -281,7 +301,7 @@
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) para contacto</string>
 <string name="p_filterdist">Raio de recepção</string>
-<string name="p_filterdist_summary">Receive packets from stations in this radius</string>
+<string name="p_filterdist_summary">A receber pacotes de estações neste raio</string>
 <string name="p_filterdist_entry">Raio, a partir da sua estação, para monitorizar packet [Km]</string>
 <string name="p_filter">Filtro de packet</string>
 <string name="p_filter_hint">b/Colega o/Objecto</string>
@@ -298,7 +318,9 @@
 <string name="translator_credits">Launchpad Contributions:
   David Quental https://launchpad.net/~ct1drb
   David Quental https://launchpad.net/~ct1drb-1
+  Henrique Martins https://launchpad.net/~ct2kea
   Jon Amil https://launchpad.net/~amilgz
+  Jorge Santos https://launchpad.net/~ct1jib
   Jose Carlos Moreira https://launchpad.net/~ct1dhm
   Paulo Mendes https://launchpad.net/~ct2hqt
   ct1drb - David Quental https://launchpad.net/~ct1drb72</string>
@@ -313,12 +335,13 @@
 <string name="p_bt_channel_summary">Canal bluetooth ligado ao TNC</string>
 <string name="p_bt_channel_entry">Coloque canal (o mais usual: "1"; nada para SPP)</string>
 
-<string name="p_bt_tnc_init">Cadeia de inicialização do TNC</string>
-<string name="p_bt_tnc_init_summary">Comandos de inicialização para o TNC</string>
+<string name="p_tnc_init">Cadeia de inicialização do TNC</string>
+<string name="p_tnc_init_summary">Comandos de inicialização para o TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">A string da URL-encoded (Esc=%1B, \"%\"=%25), atraso depois de cada linha:</string>
 
-<string name="p_bt_tnc_delay">Atraso da inicialização do TNC</string>
-<string name="p_bt_tnc_delay_summary">Tempo de espera depois de cada linha</string>
-<string name="p_bt_tnc_delay_entry">Atraso de inicialização do TNC [ms]</string>
+<string name="p_tnc_delay">Atraso da inicialização do TNC</string>
+<string name="p_tnc_delay_summary">Tempo de espera depois de cada linha</string>
+<string name="p_tnc_delay_entry">Atraso de inicialização do TNC [ms]</string>
 
 <string name="p_bt_prefs">Definições do bluetooth</string>
 <string name="p_bt_prefs_summary">Lige bluetoooth nos dois disositivso</string>
@@ -326,6 +349,7 @@
 <string name="bt_error_unsupported">O bluetooth não é suportado!</string>
 <string name="bt_error_disabled">Por favor active o bluetooth</string>
 <string name="bt_error_no_tnc">Por favor configure o TNC bluetooth</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">A pedir ligação do SCO bluetooth...</string>
 <string name="afsk_info_sco_est">Ligação do SCO bluetooth estabelecida.</string>
@@ -337,9 +361,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">Importar certificado SSL</string>
 <string name="ssl_import_password">Por favor escreva a password do certificado importado:</string>
-<string name="ssl_no_keyfile">Nenhum certificado para %s! Não se está a utilizar o SSL.</string>
+<string name="ssl_no_keyfile">Nenhum certificado para %s! A usar a password de autenticação.</string>
 <string name="ssl_import_ok">Certificado importado para %s.</string>
 <string name="ssl_import_error">Erro na importacao do certificado: %s!</string>
 <string name="ssl_expired">O seu certificado expirou!</string>
 <string name="ssl_expire_in">O seu certificado expirará em %d dias!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">O baud rate da porta série</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Porta série não suportada!</string>
+<string name="p_serial_noperm">Não há permissão para a porta USB!</string>
+<string name="p_serial_notfound">Nenhuma porta USB encontrada!</string>
 </resources>

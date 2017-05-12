@@ -1,48 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
-<string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
-<string name="app_map">APRSdroid Map</string>
-<string name="app_hub">APRSdroid Hub</string>
+<string name="app_name">एपिआरएस ड्रोएड</string>
+<string name="app_prefs">एपिआरएस ड्रोएड  प्राथमिकताहरू</string>
+<string name="app_map">एपिआरएस ड्रोएड नक्सा</string>
+<string name="app_hub">एपिआरएस ड्रोएड हब</string>
 <string name="app_log">APRSdroid Log</string>
-<string name="app_sta">Station Info</string>
-<string name="app_messages">Poruke</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_sta">स्टेशन जानकारी</string>
+<string name="app_messages">सन्देशहरू</string>
+<string name="app_messages_clear">सन्देश हटाउनुस</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
-<string name="wrongpasscode">Your passcode does not match your callsign!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">minimalno vrijeme update-a je 1 minut</string>
-<string name="singlelog">Send Position</string>
-<string name="startlog">Pokreni pračenje</string>
-<string name="stoplog">Zaustavi pračenje</string>
+<string name="firstrun">एपिआरएस ड्रोएड - गतिविधि</string>
+<string name="wrongpasscode">तपाईंको पासकोड आफ्नो कलसाईन सँग  मेल खाँदैन!</string>
+<string name="anon_warning">पासकोड बिना, तपाईंको रिपोर्टहरु पठाईदैन !</string>
+<string name="mininterval">न्यूनतम अद्यावधिक गर्ने समय १ मिनेट !</string>
+<string name="singlelog">ठेगाना पठाउनुहोस्</string>
+<string name="startlog">ट्रयाकिङ् सुरु</string>
+<string name="stoplog">ट्रयाकिङ्र रोक्नु</string>
 
-<string name="empty_logview">You have not yet sent or received any packets.\n\n
-	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
-	You can also change the application preferences from the menu.</string>
+<string name="empty_logview">तपाईंले अहिलेसम्म कुनै पनि प्याकेटहरू पठाउनु  वा  प्राप्त भएको छैन। रिपोर्ट पठाउन वा आफ्नो स्थिति ट्र्याक सुरु गर्न मेनु बटन थिच्नुहोस्।</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">% posljednji izvještaj</string>
-<string name="map_track_call">Tracking %s...</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
-<string name="map_select">Select station</string>
+<string name="sta_lastreport">पछिल्लो रिपोर्ट</string>
+<string name="map_track_call">ट्रयाकिङ्र %s...</string>
+<string name="map_track_unknown">अज्ञात ठेगना</string>
+<string name="map_select">स्टेशन छान्नुहोस</string>
 
-<string name="map_loading">Učitavam...</string>
+<string name="map_loading">लोड हुँदैछ...</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">Station SSIDs</string>
-<string name="sta_history">Station History</string>
-<string name="sta_map">Mapa</string>
-<string name="sta_extmap">External Map</string>
+<string name="sta_ssids">स्टेशन एस्एसआईडी</string>
+<string name="sta_history">स्टेशन इतिहास</string>
+<string name="sta_map">नक्सा</string>
+<string name="sta_extmap">बाह्य नक्सा</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
-<string name="msg_empty_list">There are no stored conversations.</string>
-<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<string name="msg_send_new">सन्देश पठाउन ...</string>
+<string name="msg_message_text">सन्देश पाठ</string>
+<string name="msg_empty_list">कुनै कुराकानीको भण्डारण छैन।</string>
+<string name="msg_stored_offline">तपाईँले ट्रयाकिङ सुरु गर्ने बितिकै सन्देश पठाइने छ।</string>
 <!-- Message activity -->
 <string name="msg_from">Message from %s</string>
 <string name="msg_to">Message to %s</string>
@@ -339,7 +337,7 @@
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Almin Islamović https://launchpad.net/~almin-islamovic</string>
+  Bijay Dewan https://launchpad.net/~dewan</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

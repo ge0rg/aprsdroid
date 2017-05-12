@@ -5,6 +5,7 @@
 <string name="app_prefs">APRSdroid параметры</string>
 <string name="app_map">APRSdroid карта</string>
 <string name="app_hub">APRSdroid узел</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Информация о станции</string>
 <string name="app_messages">Сообщения</string>
 <string name="app_messages_clear">Очистить сообщения</string>
@@ -13,7 +14,7 @@
 <string name="wrongpasscode">Ваш пароль не соответствует вашему позывному</string>
 <string name="anon_warning">Ваши рапорты не будут распространяться без пароля!</string>
 <string name="mininterval">Минимальное время обновления 1 минута!</string>
-<string name="singlelog">Одиночный кадр</string>
+<string name="singlelog">Send Position</string>
 <string name="startlog">Начать трекинг</string>
 <string name="stoplog">остановить слежение</string>
 
@@ -22,6 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s последний рапорт</string>
 <string name="map_track_call">Трекинг %s...</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Выбор станции</string>
 
 <string name="map_loading">Загрузка...</string>
@@ -30,6 +32,7 @@
 <string name="sta_ssids">SSID-идентификаторы станции</string>
 <string name="sta_history">История по станции</string>
 <string name="sta_map">Карта</string>
+<string name="sta_extmap">External Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -67,7 +70,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">Об APRSdroid v%s</string>
-<string name="ad_copyright">© 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® зарегистрированная торговая марка Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">Эта программа является свободным программным обеспечением, вы можете распространять и/или модифицировать его на условиях GNU General Public License, опубликованной Free Software Foundation; либо 2-ой версией лицензии, либо (по вашему выбору) любой более поздней версией.  \n\n Эта программа распространяется в надежде, что она будет полезной, но БЕЗ ВСЯКИХ ГАРАНТИЙ. Совершенно не подразумевается гарантия КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ. Смотрите общественную лицензию GNU General для получения более подробной информации.\n\n Вы должны были получить копию GNU General Public License вместе с этой программой. Если в не получили копии, напишите письмо по адресу Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Благодарности:</string>
 <string name="ad_thanks_0">Моей YL ♥♥♥</string>
@@ -138,26 +145,41 @@
 </string-array>
 <string name="p_symbol">APRS символ</string>
 <string name="p_symbol_summary">Ваш символ для отображения карты</string>
-<string name="p_symbol_entry">Введите двузначный код символа</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Result:</string>
+<string name="p_frequency">Voice frequency</string>
+<string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">Комментарий</string>
 <string name="p_status_summary">Текст после ваших координат</string>
 <string name="p_status_entry">Введите сообщение маяка</string>
 <string name="p__connection">APRS подключение</string>
 <string name="p_conntype">Протокол подключения</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP или UDP</string>
 <string name="p_conntype_entry">Выбор протокола подключючения</string>
+<string name="p_link">Connection Type</string>
+<string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Параметры подключения</string>
 <string name="p_connsetup_summary">Конфигурация подключения</string>
 <string name="p_connlog">Протоколирование соединения</string>
 <string name="p_connlog_summary">Подробная информация в журнале</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP-соединение</string>
-<string name="p_conn_udp">UDP (только отправка)</string>
-<string name="p_conn_http">HTTP POST (только отправка)</string>
-<string name="p_conn_afsk">AFSK через динамик/микрофон</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Порт</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood setup help</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP-соединение</string>
+<string name="p_aprsis_http">HTTP POST (только отправка)</string>
+<string name="p_aprsis_udp">UDP (только отправка)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Ввести координаты</string>
 <string name="p_source_periodic">Отсылать периодически, через интервал</string>
@@ -257,6 +279,8 @@
 <string name="p_dgp_ring_summary">Тон для пакетов дигипитера</string>
 
 <string name="got_digipeated">Передано дигипитером через %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS путь</string>
@@ -313,12 +337,13 @@
 <string name="p_bt_channel_summary">Bluetooth канал на TNC</string>
 <string name="p_bt_channel_entry">Номер канала (обычно: "1";для SPP оставьте пустое)</string>
 
-<string name="p_bt_tnc_init">строка команд TNC</string>
-<string name="p_bt_tnc_init_summary">Команды для TNC</string>
+<string name="p_tnc_init">строка команд TNC</string>
+<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
-<string name="p_bt_tnc_delay">Задержка запуска TNC</string>
-<string name="p_bt_tnc_delay_summary">Время ожидания после каждой строки</string>
-<string name="p_bt_tnc_delay_entry">Задержка запуска TNC [мс]</string>
+<string name="p_tnc_delay">Задержка запуска TNC</string>
+<string name="p_tnc_delay_summary">Время ожидания после каждой строки</string>
+<string name="p_tnc_delay_entry">Задержка запуска TNC [мс]</string>
 
 <string name="p_bt_prefs">Настройки Bluetooth</string>
 <string name="p_bt_prefs_summary">Разрешить Bluetooth, подружить устройства..</string>
@@ -326,6 +351,7 @@
 <string name="bt_error_unsupported">Bluetooth не поддерживается!</string>
 <string name="bt_error_disabled">Пожалуйста включите Bluetooth!</string>
 <string name="bt_error_no_tnc">Пожалуйста настройте Bluetooth TNC!</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">Запрос соединения bluetooth</string>
 <string name="afsk_info_sco_est">Соединение Bluetooth установлено.</string>
@@ -337,9 +363,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">Импорт SSL-сертификата</string>
 <string name="ssl_import_password">Введите пароль сертификата для импорта</string>
-<string name="ssl_no_keyfile">Для %s сертификата нет! SSL не используется.</string>
+<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
 <string name="ssl_import_ok">Сертификат для %s импортирован.</string>
 <string name="ssl_import_error">Ошибка импорта сетификата: %s!</string>
 <string name="ssl_expired">Ваш сертификат просрочен!</string>
 <string name="ssl_expire_in">Ваш сертификат заканчивается через %d дней!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Unsupported serial port!</string>
+<string name="p_serial_noperm">No permission for USB device!</string>
+<string name="p_serial_notfound">No USB device found!</string>
 </resources>

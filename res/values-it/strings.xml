@@ -5,6 +5,7 @@
 <string name="app_prefs">Preferenze APRSdroid</string>
 <string name="app_map">Mappa APRSdroid</string>
 <string name="app_hub">APRSdroid Interconnessione Multiporta</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Informazioni Stazione</string>
 <string name="app_messages">Messaggi</string>
 <string name="app_messages_clear">Cancella messaggi</string>
@@ -13,7 +14,7 @@
 <string name="wrongpasscode">La password APRS non corrisponde al tuo nominativo radio!</string>
 <string name="anon_warning">Senza password non puoi utilizzare il programma!</string>
 <string name="mininterval">L\'aggiornamento minimo è 1 minuto!</string>
-<string name="singlelog">Singola tramissione</string>
+<string name="singlelog">Send Position</string>
 <string name="startlog">Inizio inseguimento</string>
 <string name="stoplog">Interrompi</string>
 
@@ -22,6 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Ultimo Rapporto</string>
 <string name="map_track_call">Tracciando %s...</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Stazione scelta</string>
 
 <string name="map_loading">Caricamento...</string>
@@ -30,6 +32,7 @@
 <string name="sta_ssids">Nome SSID</string>
 <string name="sta_history">Storico Stazione</string>
 <string name="sta_map">Mappa</string>
+<string name="sta_extmap">External Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -67,7 +70,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">Informazioni programma  APRSdroid v%s</string>
-<string name="ad_copyright">Proprietà letteraria , Diritti d\'Autore: Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®s è un marchio registrato di Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">Questo programma è software libero; è possibile ridistribuirlo e/o modificarlo sotto i termini della GNU General Public License come pubblicata dalla Free Software Foundation; versione 2 della Licenza o (a propria discrezione) qualsiasi versione successiva. \N \N Questo programma è distribuito nella speranza che possa essere utile, ma SENZA ALCUNA GARANZIA; senza persino la garanzia implicita di COMMERCIABILITÀ o IDONEITÀ PER UNO SCOPO PARTICOLARE. Vedere la GNU General Public License per maggiori dettagli. \N \N Tu dovresti avere ricevuto una copia della Licenza Pubblica Generica GNU insieme a questo programma; in caso contrario, scrivi alla Free Software Foundation, Inc. , 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \N \N http://www.gnu.org/licenses/old-licenses/gpl-2.0.htm</string>
 <string name="ad_thanks">Si ringrazia:</string>
 <string name="ad_thanks_0">La mia compagna♥♥♥</string>
@@ -138,26 +145,41 @@
 </string-array>
 <string name="p_symbol">Simbolo APRS</string>
 <string name="p_symbol_summary">Simbolo per la mappa</string>
-<string name="p_symbol_entry">inserisci i due caratteri corrispondenti al simbolo da visualiazzare.</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Result:</string>
+<string name="p_frequency">Voice frequency</string>
+<string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">Campo riservato al messaggio da inviare</string>
 <string name="p_status_summary">Il testo da inserire dopo le coordinate</string>
 <string name="p_status_entry">Inserisci il commento per il tuo Radiofaro (Beacon)</string>
 <string name="p__connection">Connessione APRS</string>
 <string name="p_conntype">Protocollo di Connessione</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">Scegli il protocollo di connessione</string>
+<string name="p_link">Connection Type</string>
+<string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Preferenze di Connessione</string>
 <string name="p_connsetup_summary">Configurazione della Connessione</string>
 <string name="p_connlog">Accredidamento</string>
 <string name="p_connlog_summary">Troppe parole nel registro di uscita</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">Connessione TCP</string>
-<string name="p_conn_udp">UDP (invia soltanto)</string>
-<string name="p_conn_http">HTTP POST (invia soltanto)</string>
-<string name="p_conn_afsk">AFSK via Altoparlante /Microfono</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Porta Kenwood GPS</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood setup help</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">Connessione TCP</string>
+<string name="p_aprsis_http">HTTP POST (invia soltanto)</string>
+<string name="p_aprsis_udp">UDP (invia soltanto)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Posizione Manuale</string>
 <string name="p_source_periodic">GPS Periodico/Posizione Rete</string>
@@ -257,6 +279,8 @@
 <string name="p_dgp_ring_summary">Tone for digipeated packets</string>
 
 <string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">Instradamento  del ripetitore digitale APRS</string>
@@ -313,12 +337,13 @@
 <string name="p_bt_channel_summary">Canale del TNC Bluetooth</string>
 <string name="p_bt_channel_entry">Inserisci il canale  (normalmente: "1"; vuoto per SPP)</string>
 
-<string name="p_bt_tnc_init">stringa inizializzazione  dopo l\'avvio del TNC</string>
-<string name="p_bt_tnc_init_summary">comando inizializzazione TNC</string>
+<string name="p_tnc_init">stringa inizializzazione  dopo l\'avvio del TNC</string>
+<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
-<string name="p_bt_tnc_delay">ritardo  inizializzazione  dopo l\'avvio del TNC</string>
-<string name="p_bt_tnc_delay_summary">Temo di attesa dopo ogni linea</string>
-<string name="p_bt_tnc_delay_entry">ritardo inizializzazione  dopo l\'avvio del TNC [ms]</string>
+<string name="p_tnc_delay">ritardo  inizializzazione  dopo l\'avvio del TNC</string>
+<string name="p_tnc_delay_summary">Temo di attesa dopo ogni linea</string>
+<string name="p_tnc_delay_entry">ritardo inizializzazione  dopo l\'avvio del TNC [ms]</string>
 
 <string name="p_bt_prefs">Impostazioni del   Bluetooth</string>
 <string name="p_bt_prefs_summary">Bluetooth Abilitazione, apparecchi collegati...</string>
@@ -326,6 +351,7 @@
 <string name="bt_error_unsupported">Il Bluetooth non è supportato</string>
 <string name="bt_error_disabled">Per favore abilita il Bluetooth</string>
 <string name="bt_error_no_tnc">Per favore configura il TNC Bluetooth</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">Sto richiedendo il collegamento  al Bluetooth SCO</string>
 <string name="afsk_info_sco_est">il collegamento  al Bluetooth SCO è stabilito.</string>
@@ -337,9 +363,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL certificate import</string>
 <string name="ssl_import_password">Please enter the certificate import password:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
 <string name="ssl_import_ok">Imported certificate for %s.</string>
 <string name="ssl_import_error">Error importing certificate: %s!</string>
 <string name="ssl_expired">Your certificate has expired!</string>
 <string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Unsupported serial port!</string>
+<string name="p_serial_noperm">No permission for USB device!</string>
+<string name="p_serial_notfound">No USB device found!</string>
 </resources>

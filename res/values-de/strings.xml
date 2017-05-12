@@ -5,6 +5,7 @@
 <string name="app_prefs">APRSdroid-Einstellungen</string>
 <string name="app_map">APRSdroid-Karte</string>
 <string name="app_hub">APRSdroid-Hub</string>
+<string name="app_log">APRSdroid-Log</string>
 <string name="app_sta">Stationsinfo</string>
 <string name="app_messages">Mitteilungen</string>
 <string name="app_messages_clear">Mitteilungen löschen</string>
@@ -23,20 +24,22 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s: Letzte Meldung</string>
-<string name="map_track_call">%s wird verfolgt…</string>
+<string name="map_track_call">Verfolge %s…</string>
+<string name="map_track_unknown">Position für %s unbekannt!</string>
 <string name="map_select">Station wählen</string>
 
-<string name="map_loading">Ladevorgang…</string>
+<string name="map_loading">Ladevorgang …</string>
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Stations-SSIDs</string>
 <string name="sta_history">Stationsgeschichte</string>
 <string name="sta_map">Karte</string>
+<string name="sta_extmap">Externe Karte</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Nachricht senden an…</string>
+<string name="msg_send_new">Nachricht senden an …</string>
 <string name="msg_message_text">Nachrichtentext</string>
 <string name="msg_empty_list">Keine gespeicherten Gespräche.</string>
 <string name="msg_stored_offline">Die Nachricht wird versendet, wenn Sie das Tracking starten.</string>
@@ -60,7 +63,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="post_incmg">empfangen</string>
 <string name="post_info"/>
 <string name="post_connecting">Verbinde mit %1$s:%2$d…</string>
-<string name="post_reconnect">Verbindung getrennt. Neue Verbindung in %d Sekunden…</string>
+<string name="post_reconnect">Verbindung getrennt. Neue Verbindung in %d Sekunden …</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Willkommen zu APRSdroid!</string>
@@ -69,7 +72,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 
 <!-- about dialog -->
 <string name="ad_title">Über APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® ist ein eingetragenes Warenzeichen von Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
 \n\n
 Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
@@ -103,7 +106,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 
 
 <!-- options menu -->
-<string name="about">Über…</string>
+<string name="about">Über</string>
 <string name="show_hub">Hub anzeigen</string>
 <string name="show_map">Karte anzeigen</string>
 <string name="show_log">Protokoll anzeigen</string>
@@ -146,26 +149,41 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 </string-array>
 <string name="p_symbol">APRS-Symbol</string>
 <string name="p_symbol_summary">Symbol für die Kartenanzeige</string>
-<string name="p_symbol_entry">Geben Sie das APRS-Symbol an (zwei Zeichen)</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Ergebnis:</string>
+<string name="p_frequency">Anruffrequenz</string>
+<string name="p_frequency_summary">Ihre Sprechfunk-Frequenz [MHz]</string>
 <string name="p_status">Kommentarfeld</string>
 <string name="p_status_summary">Nachrichtenteil in der Bake</string>
 <string name="p_status_entry">Bitte Baken-Kommentar eingeben</string>
 <string name="p__connection">APRS-Verbindung</string>
 <string name="p_conntype">Verbindungsprotokoll</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP oder UDP</string>
 <string name="p_conntype_entry">Wählen Sie das Verbindungsprotokoll</string>
+<string name="p_link">Verbindungstyp</string>
+<string name="p_link_entry">Art der Verbindung auswählen</string>
 <string name="p_connsetup">Verbindungseinstellungen</string>
 <string name="p_connsetup_summary">Konfiguration der Verbindung</string>
-<string name="p_connlog">Verbindungs-Logging</string>
+<string name="p_connlog">Verbindungsprotokollierung</string>
 <string name="p_connlog_summary">Zusätzliche Ausgaben im Protokoll</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP-Verbindung</string>
-<string name="p_conn_udp">UDP (nur Senden)</string>
-<string name="p_conn_http">HTTP POST (nur Senden)</string>
-<string name="p_conn_afsk">AFSK über Lautsprecher/Mikro</string>
-<string name="p_conn_bt">Bluetooth-TNC</string>
-<string name="p_conn_kwd">Kenwood GPS-Port</string>
-<string name="p_conn_tcptnc">TCP/IP-TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (Plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA-Wegpunkt)</string>
+<string name="p_conn_kwd_info">Kenwood-Einrichtungshilfe</string>
+<string name="p_conn_kwd_gps">Android-GPS nutzen</string>
+<string name="p_conn_kwd_gps_summary">NMEA-Nachrichten an Funkgerät weitergeben</string>
+<string name="p_conn_kwd_gps_debug">GPS im Protokoll anzeigen</string>
+<string name="p_conn_kwd_gps_debug_summary">NMEA-Nachrichten in APRSdroid zeigen</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP-Verbindung</string>
+<string name="p_aprsis_http">HTTP POST (nur Senden)</string>
+<string name="p_aprsis_udp">UDP (nur Senden)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB-Seriell</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuelle Position</string>
 <string name="p_source_periodic">Periodische GPS/Netzwerk-Position</string>
@@ -265,6 +283,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_dgp_ring_summary">Ton für weitergeleitete Pakete</string>
 
 <string name="got_digipeated">Weitergeleitet von %1$s: %2$s</string>
+<string name="status_linkoff">Fehler: %s</string>
+<string name="status_linkon">Verbunden: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS-Digi-Pfad</string>
@@ -318,19 +338,21 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_bt_channel_summary">Bluetooth-Kanal auf dem TNC</string>
 <string name="p_bt_channel_entry">Kanal eingeben (meist "1"; leer für SPP)</string>
 
-<string name="p_bt_tnc_init">TNC Init-String</string>
-<string name="p_bt_tnc_init_summary">Befehle zur TNC-Initialisierung</string>
+<string name="p_tnc_init">TNC Init-String</string>
+<string name="p_tnc_init_summary">Initialisierungskommandos für TNC (URL-kodiert, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-kodierter String (Esc=%1B, \"%\"=%25), Pause nach jeder Zeile:</string>
 
-<string name="p_bt_tnc_delay">TNC Init-Delay</string>
-<string name="p_bt_tnc_delay_summary">Wartezeit nach jeder Init-Zeile</string>
-<string name="p_bt_tnc_delay_entry">TNC Init-Delay [ms]</string>
+<string name="p_tnc_delay">TNC Init-Delay</string>
+<string name="p_tnc_delay_summary">Wartezeit nach jeder Init-Zeile</string>
+<string name="p_tnc_delay_entry">TNC Init-Delay [ms]</string>
 
 <string name="p_bt_prefs">Bluetooth-Einstellungen</string>
-<string name="p_bt_prefs_summary">Bluetooth aktivieren, Geräte paaren…</string>
+<string name="p_bt_prefs_summary">Bluetooth aktivieren, Geräte paaren …</string>
 
 <string name="bt_error_unsupported">Bluetooth nicht unterstützt!</string>
 <string name="bt_error_disabled">Bitte Bluetooth einschalten!</string>
 <string name="bt_error_no_tnc">Bitte einen Bluetooth-TNC einstellen!</string>
+<string name="bt_error_connect">Keine Verbindung zu %s! Bitte Gerät einschalten und andere Bluetooth-Verbindungen schließen.</string>
 
 <string name="afsk_info_sco_req">Bluetooth-SCO-Verbindung wird angefordert…</string>
 <string name="afsk_info_sco_est">Bluetooth-SCO-Verbindung aufgebaut.</string>
@@ -342,9 +364,17 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL-Zertifikat-Import</string>
 <string name="ssl_import_password">Bitte das Import-Passwort eingeben:</string>
-<string name="ssl_no_keyfile">Kein Zertifikat für %s! SSL wird nicht verwendet.</string>
+<string name="ssl_no_keyfile">Kein Zertifikat für %s! Benutze Passcode-Authentifizierung.</string>
 <string name="ssl_import_ok">SSL-Zertifikat für %s importiert.</string>
 <string name="ssl_import_error">Fehler beim Zertifikat-Import: %s!</string>
 <string name="ssl_expired">Ihr Zertifikat ist abgelaufen!</string>
 <string name="ssl_expire_in">Ihr Zertifikat läuft in %d Tagen ab!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud-Rate</string>
+<string name="p_serial_baudrate_summary">Datenrate für den seriellen Port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Serieller Port nicht unterstützt!</string>
+<string name="p_serial_noperm">Keine Berechtigung für USB-Gerät!</string>
+<string name="p_serial_notfound">Kein USB-Gerät gefunden!</string>
 </resources>
