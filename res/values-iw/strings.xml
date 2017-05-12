@@ -5,6 +5,7 @@
 <string name="app_prefs">העדפות APRSdroid</string>
 <string name="app_map">מפת APRSdroid</string>
 <string name="app_hub">מוקד APRSdroid</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">מידע תחנה</string>
 <string name="app_messages">הודעות</string>
 <string name="app_messages_clear">טהר הודעות</string>
@@ -13,7 +14,7 @@
 <string name="wrongpasscode">ה-passcode שלך לא תואם את ה-callsign! שלך</string>
 <string name="anon_warning">ללא passcode, הדיווחים שלך לא יופצו!</string>
 <string name="mininterval">זמן עדכון נומינלי הינו דקה 1!</string>
-<string name="singlelog">Single Shot</string>
+<string name="singlelog">Send Position</string>
 <string name="startlog">התחל לעקוב</string>
 <string name="stoplog">הפסק לעקוב</string>
 
@@ -24,6 +25,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Last Report</string>
 <string name="map_track_call">כעת עוקב אחר %s...</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">בחר תחנה</string>
 
 <string name="map_loading">כעת טוען...</string>
@@ -32,6 +34,7 @@
 <string name="sta_ssids">Station SSIDs</string>
 <string name="sta_history">היסטוריית תחנה</string>
 <string name="sta_map">מפה</string>
+<string name="sta_extmap">External Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -70,7 +73,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">אודות APRSdroid v%s</string>
-<string name="ad_copyright">זכויות יוצרים © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® הינו סימן מסחר רשום של Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">תוכנית זו הינה תכנה חופשית; זכותכם להפיצה ו/או לשנותה בכפוף לתנאי הרשיון GNU General Public License גרסא 2 כפי שזה פורסם על ידי Free Software Foundation; או בגרסא 2 של הרשיון, או (בתור אופציה השמורה לכם) בכל גרסא מאוחרת. \n\n תוכנית זו הינה מופצת מתוך תקווה כי זו תהיה יעילה, אך ללא כל אחריות שהיא; אפילו ללא אחריות משתמעת של סחירות או כשירות לתכלית מסוימת. ראו את הרשיון GNU General Public License לשם פרטים נוספים. \n\n היתם אמורים לקבל העתק של הרשיון GNU General Public License יחד עם תוכנית זו; במידה ולא, כתבו למען Free Software Foundation, Inc.‎, רחוב פרנקלין (Franklin)‏ 51 , קומה חמישית, בוסטון (Boston), מסצ׳וסטס (MA) ‏02110-1301, ארה״ב (USA). \n\n קישור: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">תודות לכבוד:</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
@@ -141,26 +148,41 @@
 </string-array>
 <string name="p_symbol">סמל APRS</string>
 <string name="p_symbol_summary">הסמל שלך עבור תצוגת מפה</string>
-<string name="p_symbol_entry">Enter the symbol encoded as two characters</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Result:</string>
+<string name="p_frequency">Voice frequency</string>
+<string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">שדה הערה</string>
 <string name="p_status_summary">הטקסט לאחר השלמת תיאום</string>
 <string name="p_status_entry">הזן הערת משואה</string>
 <string name="p__connection">חיבור APRS</string>
 <string name="p_conntype">פרוטוקול חיבור</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP או UDP</string>
 <string name="p_conntype_entry">בחר את פרוטוקול החיבור</string>
+<string name="p_link">Connection Type</string>
+<string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">העדפות חיבור</string>
 <string name="p_connsetup_summary">הגדרה של חיבור</string>
 <string name="p_connlog">רשימת חיבור</string>
 <string name="p_connlog_summary">פלט מצב מגובב בתוך יומן</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">חיבור TCP</string>
-<string name="p_conn_udp">UDP (שליחה בלבד)</string>
-<string name="p_conn_http">HTTP POST (שליחה בלבד)</string>
-<string name="p_conn_afsk">AFSK דרך Speaker/Mic</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Port</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood setup help</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">חיבור TCP</string>
+<string name="p_aprsis_http">HTTP POST (שליחה בלבד)</string>
+<string name="p_aprsis_udp">UDP (שליחה בלבד)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">מיקום ידני</string>
 <string name="p_source_periodic">מיקום GPS/רשת ארעי</string>
@@ -260,6 +282,8 @@
 <string name="p_dgp_ring_summary">Tone for digipeated packets</string>
 
 <string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -311,12 +335,13 @@
 <string name="p_bt_channel_summary">ערוץ Bluetooth על TNC</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_tnc_init">TNC init string</string>
+<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">זמן להמתנה לאחר כל שורה</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_tnc_delay">TNC init delay</string>
+<string name="p_tnc_delay_summary">זמן להמתנה לאחר כל שורה</string>
+<string name="p_tnc_delay_entry">TNC init delay [ms]</string>
 
 <string name="p_bt_prefs">הגדרות Bluetooth</string>
 <string name="p_bt_prefs_summary">Enable Bluetooth, pair devices...</string>
@@ -324,6 +349,7 @@
 <string name="bt_error_unsupported">Bluetooth אינו נתמך!</string>
 <string name="bt_error_disabled">אנא אפשר Bluetooth!</string>
 <string name="bt_error_no_tnc">אנא הגדר Bluetooth TNC!</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
@@ -335,9 +361,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">ייבוא תעודת SSL</string>
 <string name="ssl_import_password">אנא הזן את הסיסמת לשם ייבוא תעודה:</string>
-<string name="ssl_no_keyfile">אין תעודה עבור %s! לא משתמש בהצפנת SSL.</string>
+<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
 <string name="ssl_import_ok">תעודה מיובאת עבור %s.</string>
 <string name="ssl_import_error">שגיאה בייבוא תעודה: %s!</string>
 <string name="ssl_expired">התעודה שלך פקעה!</string>
 <string name="ssl_expire_in">התעודה שלך תפוג בתוך %d ימים!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Unsupported serial port!</string>
+<string name="p_serial_noperm">No permission for USB device!</string>
+<string name="p_serial_notfound">No USB device found!</string>
 </resources>

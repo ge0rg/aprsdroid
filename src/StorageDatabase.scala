@@ -308,7 +308,7 @@ class StorageDatabase(context : Context) extends
 	}
 	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
-		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
+		val corr = (cos(Pi*lat/180000000.0)*cos(Pi*lat/180000000.0)*100).toInt
 		//Log.d(TAG, "getNeighbors: correcting by %d".format(corr))
 		// add a distance column to the query
 		val newcols = Station.COLUMNS :+ Station.COL_DIST.format(lat, lat, lon, lon, corr)
@@ -319,7 +319,7 @@ class StorageDatabase(context : Context) extends
 
 	def getNeighborsLike(call : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
-		val corr = (cos(Pi*lat/180000000.)*cos(Pi*lat/180000000.)*100).toInt
+		val corr = (cos(Pi*lat/180000000.0)*cos(Pi*lat/180000000.0)*100).toInt
 		Log.d(TAG, "getNeighborsLike: correcting by %d".format(corr))
 		// add a distance column to the query
 		val newcols = Station.COLUMNS :+ Station.COL_DIST.format(lat, lat, lon, lon, corr)

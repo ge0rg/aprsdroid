@@ -5,6 +5,7 @@
 <string name="app_prefs">APRSdroid Asetukset</string>
 <string name="app_map">APRSdroid Kartta</string>
 <string name="app_hub">APRSdroid Läheiset</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Aseman tiedot</string>
 <string name="app_messages">Viestit</string>
 <string name="app_messages_clear">Tyhjennä viestit</string>
@@ -13,7 +14,7 @@
 <string name="wrongpasscode">Passcode ei vastaa kutsumerkkiäsi!</string>
 <string name="anon_warning">Paikkatietoraporttejasi ei välitetä edelleen mikäli passcode ei ole asetettu!</string>
 <string name="mininterval">Pienin päivitysväli on 1 minuutti!</string>
-<string name="singlelog">Yksittäinen lähetys</string>
+<string name="singlelog">Lähetä sijainti</string>
 <string name="startlog">Aloita seuranta</string>
 <string name="stoplog">Lopeta seuranta</string>
 
@@ -22,6 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Viimeisin raportti</string>
 <string name="map_track_call">Seuraa asemaa %s...</string>
+<string name="map_track_unknown">%s:n sijainti ei tiedossa!</string>
 <string name="map_select">Valitse asema</string>
 
 <string name="map_loading">Ladataan...</string>
@@ -30,6 +32,7 @@
 <string name="sta_ssids">Aseman SSID:t</string>
 <string name="sta_history">Aseman historia</string>
 <string name="sta_map">Kartta</string>
+<string name="sta_extmap">Ulkoinen kartta</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -42,7 +45,7 @@
 <string name="msg_from">Viesti asemalta %s</string>
 <string name="msg_to">Viesti asemalle %s</string>
 <string name="msg_abort">Keskeytä lähetys</string>
-<string name="msg_restart">Lähetä uudelleen</string>
+<string name="msg_restart">Käynnistä lähetys uudelleen</string>
 <string name="msg_type_rejected">hylätty</string>
 <string name="msg_type_aborted">keskeytetty</string>
 
@@ -67,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Tietoja APRSdroid v%s:sta</string>
-<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® on Bob Bruningan (WB4APR) rekisteröimä tavaramerkki</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® on Bob Bruningan (WB4APR) rekisteröimä tavaramerkki</string>
 <string name="ad_gpl">Tämä ohjelmisto on vapaa; voit jakaa sitä ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public License ehtojen mukaisesti; joko Lisenssin 2-version tai myöhemmän version mukaisesti. \n\n Tätä ohjelmaa jaetaan siten, että siitä olisi jotain hyötyä, mutta EHDOTTOMASTI ILMAN MITÄÄN TAKUUTA; ilman vähäisintäkään takuuta KAUPALLISUUDESTA tai SOPIVUUDESTA ERITYISIIN TARKOITUKSIIN. Katso GNU General Public License tarkemista yksityiskohdista. \n\n Olet saanut kopion GNU General Public License:stä tämän ohjelman mukana; jos et, niin otayhteyttä Free Software Foundation:iin , Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Kiitokset:</string>
 <string name="ad_thanks_0">Oma YL:ni ♥♥♥</string>
@@ -138,26 +141,41 @@
 </string-array>
 <string name="p_symbol">APRS-symboli</string>
 <string name="p_symbol_summary">Asemasi symboli</string>
-<string name="p_symbol_entry">Aseta symboli kahdella merkillä koodattuna</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Tulos:</string>
+<string name="p_frequency">Puhetaajuus</string>
+<string name="p_frequency_summary">Puhetaajuutesi [MHz]</string>
 <string name="p_status">Kommettikenttä</string>
 <string name="p_status_summary">Koordinaattien jälkeinen teksti</string>
 <string name="p_status_entry">Syötä kommentti majakallesi</string>
 <string name="p__connection">APRS Yhteys</string>
 <string name="p_conntype">Yhteyden protokolla</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP tai UDP</string>
 <string name="p_conntype_entry">Valitse yhteydellä käytetty protokolla</string>
+<string name="p_link">Yhteystyyppi</string>
+<string name="p_link_entry">Valitse yhteyden tyyppi</string>
 <string name="p_connsetup">Yhteysasetukset</string>
 <string name="p_connsetup_summary">Yhteyden asetukset</string>
 <string name="p_connlog">Yhteyden kirjaus lokiin</string>
 <string name="p_connlog_summary">Laajemmat tilatiedot lokiin</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP-yhteys</string>
-<string name="p_conn_udp">UDP (vain lähetys)</string>
-<string name="p_conn_http">HTTP POST (vain lähetys)</string>
-<string name="p_conn_afsk">AFSK-modeemi kaiuttimen/mikrofonin kautta</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwoodin GPS-portti</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audiomodeemi (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood-asetusten ohje</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP-yhteys</string>
+<string name="p_aprsis_http">HTTP POST (vain lähetys)</string>
+<string name="p_aprsis_udp">UDP (vain lähetys)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB-sarjaportti</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuaalinen sijainti</string>
 <string name="p_source_periodic">Jaksottainen GPS-/verkkosijainti</string>
@@ -175,7 +193,7 @@
 <string name="p_privacy">Sijainnin yksityisyys</string>
 <string name="p_privacy_summary">Sijainnin tarkkuuden vähentäminen, ym.</string>
 <string name="p_priv_ambiguity">Sijainnin tarkkuuden vähentäminen</string>
-<string name="p_priv_ambiguity_summary">Vähennä omien sijantitietojen tarkkuutta</string>
+<string name="p_priv_ambiguity_summary">Vähennä omien paikkatietojen tarkkuutta</string>
 <string name="p_ambiguity_off">Pois (DD° MM.mm\')</string>
 <string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
 <string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
@@ -257,6 +275,8 @@
 <string name="p_dgp_ring_summary">Toistimilta kuultujen omien pakettien ääni</string>
 
 <string name="got_digipeated">%1$s:n toistama paketti: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS-toistinpolku</string>
@@ -299,7 +319,8 @@
   Georg Lukas https://launchpad.net/~ge0rg
   Heikki Hannikainen https://launchpad.net/~hessu
   Herkko R https://launchpad.net/~oh7fxk
-  Kalle Pihlajasaari https://launchpad.net/~kalle-ip
+  KalleMP https://launchpad.net/~kallemp
+  Kimmo Laaksonen https://launchpad.net/~oh3mbc
   Lasse Kurkela https://launchpad.net/~oh3jaj
   Ville Filpus https://launchpad.net/~oh6fse
   oh1hfv https://launchpad.net/~oh1hfv</string>
@@ -314,12 +335,13 @@
 <string name="p_bt_channel_summary">Bluetooth-kanava TNC:ssä</string>
 <string name="p_bt_channel_entry">Aseta kanava (yleensä "1", tyhjä SPP:lle)</string>
 
-<string name="p_bt_tnc_init">TNC:n alustuskomento</string>
-<string name="p_bt_tnc_init_summary">TNC:n alustuskomennot</string>
+<string name="p_tnc_init">TNC:n alustuskomento</string>
+<string name="p_tnc_init_summary">Alustuskomennot TNC:lle (URL-enkoodattuna, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-enkoodattu merkkijono (Esc=%1B, \"%\"=%25), viivettä jokaisen rivin jälkeen:</string>
 
-<string name="p_bt_tnc_delay">TNC:n alustusviive</string>
-<string name="p_bt_tnc_delay_summary">Rivien välinen viive</string>
-<string name="p_bt_tnc_delay_entry">TNC:n alustusviive (ms)</string>
+<string name="p_tnc_delay">TNC:n alustusviive</string>
+<string name="p_tnc_delay_summary">Rivien välinen viive</string>
+<string name="p_tnc_delay_entry">TNC:n alustusviive (ms)</string>
 
 <string name="p_bt_prefs">Bluetooth-asetukset</string>
 <string name="p_bt_prefs_summary">Kytke Bluetooth päälle, parita laitteet...</string>
@@ -327,6 +349,7 @@
 <string name="bt_error_unsupported">Laite ei tue Bluetoothia!</string>
 <string name="bt_error_disabled">Ole hyvä ja kytke Bluetooth päälle!</string>
 <string name="bt_error_no_tnc">Ole hyvä ja määritä Bluetooth-TNC:n asetukset!</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">Pyydän Bluetooth SCO-yhteyttä...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO-yhteys muodostettu.</string>
@@ -338,9 +361,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL-sertifikaatin tuonti tiedostosta</string>
 <string name="ssl_import_password">Anna sertifikaattitiedoston salasana:</string>
-<string name="ssl_no_keyfile">Kutsulle %s ei ole sertifikaattia! SSL ei käytössä.</string>
+<string name="ssl_no_keyfile">Ei sertifikaattia %s:lle! Passcode-autentikointi käytössä.</string>
 <string name="ssl_import_ok">Sertifikaatti kutsulle %s asennettu.</string>
 <string name="ssl_import_error">Sertifikaatin tuonti epäonnistui: %s!</string>
 <string name="ssl_expired">Sertifikaattisi on vanhentunut!</string>
 <string name="ssl_expire_in">Sertifikaattisi vanhenee %d päivän kuluttua!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Nopeus (baud)</string>
+<string name="p_serial_baudrate_summary">Sarjaportin nopeus</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Sarjaportti ei tuettu</string>
+<string name="p_serial_noperm">Ei käyttöoikeuksia USB-laitteelle!</string>
+<string name="p_serial_notfound">USB-laitetta ei löydy!</string>
 </resources>

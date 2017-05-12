@@ -5,6 +5,7 @@
 <string name="app_prefs">APRSdroid Innstillinger</string>
 <string name="app_map">APRSdroid Kart</string>
 <string name="app_hub">APRSdroid sentral</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Enhetsinformasjon</string>
 <string name="app_messages">Meldinger.</string>
 <string name="app_messages_clear">Slett beskjeder</string>
@@ -13,7 +14,7 @@
 <string name="wrongpasscode">Din valideringsnøkkel samsvarer ikke med ditt kallesignal</string>
 <string name="anon_warning">Dine possisjoner vil ikke bli videresendt uten en vallideringsnøkkel</string>
 <string name="mininterval">Minimum oppdateringstid 1 minutt!</string>
-<string name="singlelog">Enkeloppdatering av posisjon</string>
+<string name="singlelog">Send Position</string>
 <string name="startlog">Start sporing</string>
 <string name="stoplog">Stopp sporing</string>
 
@@ -22,6 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Siste rapport.</string>
 <string name="map_track_call">Følger %s...</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Velg enhet</string>
 
 <string name="map_loading">Laster inn...</string>
@@ -30,6 +32,7 @@
 <string name="sta_ssids">Enhetens SSID</string>
 <string name="sta_history">Enhetshistorikk</string>
 <string name="sta_map">Kart</string>
+<string name="sta_extmap">External Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -67,7 +70,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">Om APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® er et registrert varemerke fra Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">Denne programvaren er fri. og du er fri til å redistribuere den og endre den som forutsatt under GNU General Public License  publisert av Free Software Foundation; enten versjon 2 eller (etter ditt valg) en senere versjon. \n\n Dette programmet er utgitt med et håp om at det skal være brukbart, UTEN NOEN SOM HELST GARANTI; også uten lovnader for enhver tilpassning eller mening. Se GNU General Public License for øvrige detaljer \n\n Du skulle motta en kopi av GNU General Public License sammen med dette programmet. hvis ikke bes du kontakte Free Software Foundation , Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Takk til:</string>
 <string name="ad_thanks_0">Min YL ♥♥♥</string>
@@ -138,26 +145,41 @@
 </string-array>
 <string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Ditt symbol for kartvisning</string>
-<string name="p_symbol_entry">Skriv symbolet som to karakterer</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Result:</string>
+<string name="p_frequency">Voice frequency</string>
+<string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">kommentarfelt</string>
 <string name="p_status_summary">Tekst / melding etter koordinater</string>
 <string name="p_status_entry">tast inn ditt meldingstillegg</string>
 <string name="p__connection">APRS Tilkobling</string>
 <string name="p_conntype">Tilkoblingsprotokoll</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP eller UDP</string>
 <string name="p_conntype_entry">Velg tilkoblingsprotokoll</string>
+<string name="p_link">Connection Type</string>
+<string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Brukervalg for tilkobling</string>
 <string name="p_connsetup_summary">Tilkoblingskonfigurasjon</string>
 <string name="p_connlog">Tilkoblingslogg</string>
 <string name="p_connlog_summary">Rikelige statusmeldinger til logg</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP tilkobling</string>
-<string name="p_conn_udp">UDP (kun sending)</string>
-<string name="p_conn_http">HTTP POST (kun sending)</string>
-<string name="p_conn_afsk">AFSK via høytaler/mic</string>
-<string name="p_conn_bt">Blåtann TNC</string>
-<string name="p_conn_kwd">Kenwood GPS port</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood setup help</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP tilkobling</string>
+<string name="p_aprsis_http">HTTP POST (kun sending)</string>
+<string name="p_aprsis_udp">UDP (kun sending)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuell posisjon</string>
 <string name="p_source_periodic">Periodisk GPS/Nettverk posisjon</string>
@@ -257,6 +279,8 @@
 <string name="p_dgp_ring_summary">Tone for digipeated packets</string>
 
 <string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi sti</string>
@@ -310,12 +334,13 @@
 <string name="p_bt_channel_summary">Blåtann kanal på TNC</string>
 <string name="p_bt_channel_entry">Sett inn kanalnummer (som oftest "1"; tom for SPP)</string>
 
-<string name="p_bt_tnc_init">TNC initieringsstreng</string>
-<string name="p_bt_tnc_init_summary">Oppstartskommando for TNC</string>
+<string name="p_tnc_init">TNC initieringsstreng</string>
+<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
-<string name="p_bt_tnc_delay">TNC init forsikelse</string>
-<string name="p_bt_tnc_delay_summary">Ventetid etter hver linje</string>
-<string name="p_bt_tnc_delay_entry">TNC init-forsikelse [ms]</string>
+<string name="p_tnc_delay">TNC init forsikelse</string>
+<string name="p_tnc_delay_summary">Ventetid etter hver linje</string>
+<string name="p_tnc_delay_entry">TNC init-forsikelse [ms]</string>
 
 <string name="p_bt_prefs">Blåtann innstillinger</string>
 <string name="p_bt_prefs_summary">Tillat blåtann å pare enheter</string>
@@ -323,6 +348,7 @@
 <string name="bt_error_unsupported">Blåtann er ikke støttet</string>
 <string name="bt_error_disabled">Vennligst aktiver blåtann</string>
 <string name="bt_error_no_tnc">Vennligst konfigurer en blåtann TNC</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">Forlanger blåtann SCO forbindelse</string>
 <string name="afsk_info_sco_est">Blåtann SCO er etablert</string>
@@ -334,9 +360,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL certificate import</string>
 <string name="ssl_import_password">Please enter the certificate import password:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
 <string name="ssl_import_ok">Imported certificate for %s.</string>
 <string name="ssl_import_error">Error importing certificate: %s!</string>
 <string name="ssl_expired">Your certificate has expired!</string>
 <string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Unsupported serial port!</string>
+<string name="p_serial_noperm">No permission for USB device!</string>
+<string name="p_serial_notfound">No USB device found!</string>
 </resources>

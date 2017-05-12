@@ -11,6 +11,21 @@
 			android:data="@string/kwd_help_url" />
 	</Preference>
 
+        <CheckBoxPreference
+                android:key="kenwood.gps"
+		android:title="@string/p_conn_kwd_gps"
+		android:summary="@string/p_conn_kwd_gps_summary"
+		android:defaultValue="false"
+		/>
+
+        <CheckBoxPreference
+                android:key="kenwood.gps_debug"
+		android:title="@string/p_conn_kwd_gps_debug"
+		android:summary="@string/p_conn_kwd_gps_debug_summary"
+		android:dependency="kenwood.gps"
+		android:defaultValue="false"
+		/>
+
 
         <de.duenndns.ListPreferenceWithValue
                 android:key="link"

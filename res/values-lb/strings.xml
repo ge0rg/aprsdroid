@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
+<resources>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid Astellungen</string>
+<string name="app_map">APRSdroid Kaart</string>
+<string name="app_hub">APRSdroid Zentral</string>
+<string name="app_log">APRSdroid Log</string>
+<string name="app_sta">Statiounsinfo</string>
+<string name="app_messages">Noriichten</string>
+<string name="app_messages_clear">Noriichten leschen</string>
+<!-- APRSdroid activity -->
+<string name="firstrun">Du muss APRSdroid mat dengem Rufzeechen an Passcode konfiguréieren!</string>
+<string name="wrongpasscode">Den Passcode passt net zum Rufzeechen!</string>
+<string name="anon_warning">Ouni Passcode ginn deng Infoe net viru geschéckt!</string>
+<string name="mininterval">Klengst  Updatezäit ass 1 Minutt!</string>
+<string name="singlelog">Positioun schécken</string>
+<string name="startlog">Tracking starten</string>
+<string name="stoplog">Tracking stoppen</string>
+
+<string name="empty_logview">Du hues bis elo nach keng Päck gesent oder empfaangen.\n\n Dreck den \"Menu\" Knapp fir eng Eenzelpositioun ze senden oder fir unzefänken deng Positiounen ze verfollegen.\n\n Du kanns d\'Programmastellungen och iwwert den Menü änneren.</string>
+
+<!-- Maps activity -->
+<string name="sta_lastreport">%s Läscht Info</string>
+<string name="map_track_call">Follegen %s</string>
+<string name="map_track_unknown">D\'Positioun fir %s ass net bekannt!</string>
+<string name="map_select">Wiel d\'Statioun aus</string>
+
+<string name="map_loading">Lueden...</string>
+
+<!-- StationInfo activity -->
+<string name="sta_ssids">Statioun SSIDs</string>
+<string name="sta_history">Statioun\'s Historique</string>
+<string name="sta_map">Kaart</string>
+<string name="sta_extmap">Extern Kaart</string>
+<string name="sta_aprsfi">aprs.fi</string>
+<string name="sta_qrzcom">QRZ.com</string>
+
+<!-- Conversations activity -->
+<string name="msg_send_new">Scheck en Message un...</string>
+<string name="msg_message_text">Message</string>
+<string name="msg_empty_list">Et gi keng gespäichert Gespréicher.</string>
+<string name="msg_stored_offline">De Message gëtt geschéckt soubal\'s de den tracking starts.</string>
+<!-- Message activity -->
+<string name="msg_from">Noriicht vun %s</string>
+<string name="msg_to">Noriicht un %s</string>
+<string name="msg_abort">Sendung ënnerbriechen</string>
+<string name="msg_restart">Sendung nei starten</string>
+<string name="msg_type_rejected">net ugeholl</string>
+<string name="msg_type_aborted">ofgebrach</string>
+
+<!-- AprsService -->
+<string name="aprsservice">APRSdroid Service</string>
+<string name="service_once">APRS Service Emolsendung: %1$s, %2$s.</string>
+<string name="service_start">APRS Service gestart: %1$s, %2$s.</string>
+<string name="service_stop">APRS Service gestoppt.</string>
+<string name="service_no_location">Du muss entweder GPS oder Positiounsbestemmung iwwer Netzwierk aktivéieren fir dass APRSdroid richteg funktionéiert!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ brauch GPS!</string>
+<!-- service result codes -->
+<string name="post_error">Feeler</string>
+<string name="post_incmg">empfaang</string>
+<string name="post_info"/>
+<string name="post_connecting">Connectéieren zu %1$s:%2$d...</string>
+<string name="post_reconnect">Connectioun verluer. Versichen an %d Sekonnen nei...</string>
+
+<!-- first run dialog -->
+<string name="fr_title">Wëllkomm bei APRSdroid!</string>
+<string name="fr_text">Des Software dierf nëmmen vun lizenséierten Funkamateuren benotzt ginn!</string>
+<string name="fr_text2">Du muss däin Rufzeechen aginn fir des Software benotzen ze kënnen. Fir deng Päck ze verschécken brauchs ze zudeem en APRS-IS passcode.</string>
+
+<!-- about dialog -->
+<string name="ad_title">Iwwer APRSdroid v%s</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® ass eng registréiert Mark vum Bob Bruninga (WB4APR)</string>
+<string name="ad_gpl">Dëst ass eng fräi Software; du kanns se ënnert den Konditiounen vun der GNU General Public License wéi se vun der Free Software Foundation publizéiert ginn ass virun verdeelen an/oder modifizéieren; entweder ënnert der Versioun 2 vun der Lizenz, oder (als deng Optioun) ënnert enger méi spéiderer Versioun. \n\n Dësen Programm gëtt an der Hoffnung verdeelt, dass en nëtzlech ass, mee OUNI IRGENDENG GARANTIE; och ouni di implizéiert Garantie fir MARKTGÄNGEGKEET oder FITNESS FIR EN BESONNESCHEN ZWECK. Kuck an der GNU General Public License fir weider Detailer. \n\n Du miss eng Kopie vun der GNU General Public License mat dësem Programm kritt hunn; wann net, dann schreif un d\'Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
+<string name="ad_thanks">E Merci un:</string>
+<string name="ad_thanks_0">Meng YL ♥♥♥</string>
+<string name="ad_thanks_1">Michael, DO3BOX: Idee</string>
+<string name="ad_thanks_2">Dirk, DB5OY: Motivatioun an Ënnerstëtzung</string>
+<string name="ad_thanks_3">Bastian, DB1BM: AFSK Implementatioun</string>
+<string name="ad_thanks_4">Matti, OH2MQK an John, AB0OO: Java APRS</string>
+<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK Demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_6">SmartBeaconing™ vun HamHUD Nichetronix, LLC, http://hamhud.net</string>
+<string name="ad_trans">\n\nIwersetzungen:</string>
+<string name="ad_homepage">Haaptsäit</string>
+
+<!-- map view -->
+<string name="map_overlays">Ablendung</string>
+<string name="map_satellite">Satellit</string>
+<string name="map_objects">APRS Objet\'en</string>
+
+<!-- map view -->
+<string name="age">Zum Schluss...</string>
+<string name="age_30">30 Minutten</string>
+<string name="age_2h">2 Stonnen</string>
+<string name="age_12h">12 Stonnen</string>
+<string name="age_1d">1 Dag</string>
+<string name="age_2d">2 Deeg</string>
+
+
+<!-- options menu -->
+<string name="about">Iwwer</string>
+<string name="show_hub">Zentral weisen</string>
+<string name="show_map">Kaart weisen</string>
+<string name="show_log">Log weisen</string>
+<string name="clear_log">Log läschen</string>
+<string name="quit">Verloossen</string>
+<string name="preferences">Astellungen</string>
+<!-- preferences -->
+<string name="p__ham">Funkamateur</string>
+<string name="p_callsign">Rufzeechen</string>
+<string name="p_callsign_nossid">Rufzeechen (ouni SSID)</string>
+<string name="p_callsign_summary">Däin Rufzeechen</string>
+<string name="p_callsign_entry">Gëff däin Rufzeechen an</string>
+<string name="p_passcode">APRS-IS Passcode</string>
+<string name="p_passcode_summary">APRS-IS Validatiounspasscode</string>
+<string name="p_passcode_entry">Gëff den Passcode fir däin Rufzeechen an</string>
+<string name="p_passreq">Passcode ufroen</string>
+<string name="p_passreq_summary">APRS-IS passcode online ufroen</string>
+<string name="p__aprs">APRS Astellungen</string>
+<string name="p_ssid">SSID</string>
+<string name="p_ssid_summary">Statiounstyp (1..15; 9=Mobil, 10=APRS-IS)</string>
+<string name="p_ssid_entry">Gëff d\'SSID fir den Statioun an</string>
+<!-- array of station types (SSID) -->
+<string-array name="p_ssid_e">
+	<item>(keng) Primärstatioun</item>
+	<item>1: Generesch zousätzlech Statioun</item>
+	<item>2: Generesch zousätzlech Statioun</item>
+	<item>3: Generesch zousätzlech Statioun</item>
+	<item>4: Generesch zousätzlech Statioun</item>
+	<item>5: Anert Netzwierk (D-Star, 3G)</item>
+	<item>6: Satellit</item>
+	<item>7: Handfunkgerät</item>
+	<item>8: Boot / Schëff</item>
+	<item>9: Mobilstatioun</item>
+	<item>10: APRS-IS (kee Funk)</item>
+	<item>11: Ballon, Fliger, spacecraft</item>
+	<item>12: APRStt, DTMF, ... (e Wee)</item>
+	<item>13: Wiederstatioun</item>
+	<item>14: Camion</item>
+	<item>15: Generesch zousätzlech Statioun</item>
+</string-array>
+<string name="p_symbol">APRS Symbol</string>
+<string name="p_symbol_summary">Däin Kaartesymbol</string>
+<string name="p_symbol_overlay">Ablendung:</string>
+<string name="p_symbol_result">Resultat:</string>
+<string name="p_frequency">Sprochfrequenz</string>
+<string name="p_frequency_summary">Deng Sprochfrequenz [MHz]</string>
+<string name="p_status">Kommentarfeld</string>
+<string name="p_status_summary">Den text no dengen Koordinaten</string>
+<string name="p_status_entry">Gëff däin Beaconkommentar an</string>
+<string name="p__connection">APRS Verbindung</string>
+<string name="p_conntype">Verbindungsprotokoll</string>
+<string name="p_conntype_entry">Wiel d\'Verbindungsprotokoll</string>
+<string name="p_link">Connectiouns-Typ</string>
+<string name="p_link_entry">Wiel den Linktyp</string>
+<string name="p_connsetup">Verbindungsastellungen</string>
+<string name="p_connsetup_summary">Verbindungskonfiguratioun</string>
+<string name="p_connlog">Verbindungslog</string>
+<string name="p_connlog_summary">Detailléiert Statusausgab am Log</string>
+<!-- array of connection types -->
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA Weepunkt)</string>
+<string name="p_conn_kwd_info">Kenwood Astellungshëllef</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP Verbindung</string>
+<string name="p_aprsis_http">HTTP POST (nëmme senden)</string>
+<string name="p_aprsis_udp">UDP (nëmme senden)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Seriell</string>
+<!-- array of location sources -->
+<string name="p_source_manual">Manuell Positioun</string>
+<string name="p_source_periodic">Periodesch GPS/Netzwierk Positioun</string>
+<string name="p_source_smart">SmartBeaconing™ Positioun</string>
+<!-- manual position -->
+<string name="p_source_lat">Breetegrad</string>
+<string name="p_source_lon">Längegrad</string>
+<string name="p_source_coord">Koordinaten</string>
+<string name="p_source_get_last">Benotz déi läscht GPS Positioun</string>
+<string name="p_source_auto">Automatescht Verschecken</string>
+<string name="p_source_auto_summary">Maach periodesch Positionsaussendungen</string>
+
+
+<!-- privacy settings -->
+<string name="p_privacy">Positiounsdateschutz</string>
+<string name="p_privacy_summary">Positiounsambiguitéit a méi</string>
+<string name="p_priv_ambiguity">Positiounsambiguitéit</string>
+<string name="p_priv_ambiguity_summary">Reduzéiert Genauegkeet fir eegen Positiounsaussendungen</string>
+<string name="p_ambiguity_off">Aus (DD° MM.mm\')</string>
+<string name="p_ambiguity_ddmmm">1 (DD° MM.m\')</string>
+<string name="p_ambiguity_ddmm">2 (DD° MM\')</string>
+<string name="p_ambiguity_ddm">3 (DD° Mx\')</string>
+<string name="p_ambiguity_dd">4 (DD°)</string>
+<string name="p_priv_spdbear">Send Vitesse &amp; Richtung</string>
+<string name="p_priv_spdbear_summary">Scheck och Vitesse an Richtung an der Positiounsaussendung</string>
+<string name="p_priv_altitude">Scheck d\'Héicht</string>
+<string name="p_priv_altitude_summary">Scheck och d\'Héicht an der Positiounsaussendung</string>
+
+<!-- connection type properties -->
+<string name="p_host">Server</string>
+<string name="p_host_summary">APRS-IS Server (Port 8080) fir Beacons ze senden</string>
+<string name="p_host_entry">Gëff den APRS-IS Server Hostnumm an</string>
+<string name="p_host_hint">host:port</string>
+<string name="p__position">Positionsaussendungen</string>
+<string name="p_locsource">Standuert Source</string>
+<string name="p_locsource_summary">Manuell, Periodesch oder SmartBeaconing™</string>
+<string name="p__location">Standuert Astellungen</string>
+<string name="p__location_summary">Konfiguratioun fir d\'Positiounsaussendung</string>
+
+<string name="p_smartbeaconing">SmartBeaconing™</string>
+<string name="p_sb_help">SmartBeaconing™ Hëllef</string>
+<string name="p_sb_fast_speed">Héich Vitesse [km/h]</string>
+<string name="p_sb_fast_speed_summary">Klengsten Vitesse fir schnell Positiounsupdates</string>
+<string name="p_sb_fast_rate">Héich Heefegkeet [s]</string>
+<string name="p_sb_fast_rate_summary">Beaconheefegkeet bei héijer Vitesse</string>
+<string name="p_sb_slow_speed">Lues Vitesse [km/h]</string>
+<string name="p_sb_slow_speed_summary">Héchsten Vitesse fir lues Positiounsupdates</string>
+<string name="p_sb_slow_rate">Nidreg Heefechkeet [s]</string>
+<string name="p_sb_slow_rate_summary">Beaconheefegkeet bei niddreger Vitesse</string>
+<!-- corner pegging should not be translated -->
+<string name="p_corner_pegging">Richtungswiessel no leschtem beacon</string>
+<string name="p_cp_turn_time">Min Richtungswiesselzäit [s]</string>
+<string name="p_cp_turn_time_summary">Minimal Beaconheefegkeet bei Richtungswiessel</string>
+<string name="p_cp_turn_angle">Min Wenkelännerung [°]</string>
+<string name="p_cp_turn_angle_summary">Klengsten Wénkel bei héijer Vitesse</string>
+<string name="p_cp_turn_slope">Turn slope</string>
+<string name="p_cp_turn_slope_summary">Afloss vun der Vitesse op den klengsten Wénkel</string>
+
+<string name="p_interval">Klengsten Updatezäit</string>
+<string name="p_interval_summary">Minutten teschend Beaconaussendungen</string>
+<string name="p_interval_entry">Gëff den Updateintervall an [min]</string>
+<string name="p_distance">Minimal Updatedistanz</string>
+<string name="p_distance_summary">Kilometer virun Beaconaussendung (0 fir nëmmen op Zäit)</string>
+<string name="p_distance_entry">Gëff d\'Updatedistanz an [km]</string>
+<string name="p_speedbrg">Ward op d\'Vitesse &amp; Richtung</string>
+<string name="p_speedbrg_summary">Looss den GPS méi laang un fir méi genee Daten ze kréien</string>
+<string name="p_netloc">Benotz Netzwierkstanduert</string>
+<string name="p_netloc_summary">Bestëmm d\'Positioun iwwert d\'Telephonsnetzwierk</string>
+<string name="p_gps">GPS Prezisioun</string>
+<string name="p_gps_summary">Batteriebelaaschtung vs Positiounsgenauegkeet</string>
+<string name="p_gps_entry">Gëff d\'GPS Prezisioun an</string>
+<!-- array of GPS precisions -->
+<string name="p_gps_always">Héich (ëmmer un)</string>
+<string name="p_gps_med">Mëttel</string>
+<string name="p_gps_low">Niddreg</string>
+<string name="p_keepscreen">Looss den Schierm un</string>
+<string name="p_keepscreen_summary">Schalt den Schierm net aus, wenn APRSdroid am Virdergrond ass</string>
+
+<!-- messaging -->
+<string name="p__display">Duerstellung an Benoriichtegen</string>
+<string name="p__notification">Noriichten</string>
+<string name="p__notification_summary">Alarm fir Noriichten an Positionsaussendungen</string>
+<string name="p_msg">Empfaangen Noriichten</string>
+<string name="p_msg_led">Blenkend LED</string>
+<string name="p_msg_led_on">LED Notifikatiounen sinn un</string>
+<string name="p_msg_led_off">LED Notifikatiounen sinn aus</string>
+<string name="p_msg_vibr">Vibratioun</string>
+<string name="p_msg_vibr_on">Vibratiounsnotifikatiounen sinn un</string>
+<string name="p_msg_vibr_off">Vibratiounsnotifikatiounen sinn aus</string>
+<string name="p_msg_ring">Schelltoun</string>
+<string name="p_msg_ring_summary">Toun fir ukommend Noriichten</string>
+<string name="p_pos">Eegen Positiounsugaben</string>
+<string name="p_pos_ring">Schelltoun</string>
+<string name="p_pos_ring_summary">Toun fir geschéckten Positiounsugaben</string>
+<string name="p_dgp">Eegen Päck déi digipeat gi sinn</string>
+<string name="p_dgp_ring">Schelltoun</string>
+<string name="p_dgp_ring_summary">Toun fir digipeated Päck</string>
+
+<string name="got_digipeated">Digipeated vun %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
+
+<!-- AFSK settings -->
+<string name="p_aprs_path">APRS Digiwee</string>
+<string name="p_aprs_path_hint">Hop 1, Hop 2, ...</string>
+<string name="p_aprs_path_summary">Digipeatersequenzen</string>
+<string name="p_aprs_path_entry">Gëff den Digiwee mat Komma getrennt an</string>
+<string name="p_afsk_prefix">Frame Sync Prefix</string>
+<string name="p_afsk_prefix_summary">No-Op Preambel (z.B. fir VOX Kontroll)</string>
+<string name="p_afsk_prefix_entry">Gëff d\'Prefixzäit an [ms]</string>
+<string name="p_afsk_hqdemod">Héichwäertegen Demodulator</string>
+<string name="p_afsk_hqdemod_summary">javAX25lib: Et gëtt eng 800 MHz CPU gebraucht</string>
+<string name="p_afsk_btsco">Bluetooth Kopfhörer</string>
+<string name="p_afsk_btsco_summary">Benotz en Bluetooth (SCO) Kopfhörer fir AFSK</string>
+<string name="p_afsk_output">Audioausgab</string>
+<string-array name="p_afsk_out_e">
+	<item>Sprochuruff</item>
+	<item>Schelltoun</item>
+	<item>Musek</item>
+	<item>Alarm</item>
+</string-array>
+
+<!-- TCP server settings -->
+<string name="p_tcp_server_summary">APRS-IS TCP Server (Port 14580) fir ze kontaktéieren</string>
+<string name="p_filterdist">Nopeschemkrees</string>
+<string name="p_filterdist_summary">Empfäng Päck vun Statiounen an dësem Radius</string>
+<string name="p_filterdist_entry">Radius ronderëm dësch fir op Päck ze lauschteren [km]</string>
+<string name="p_filter">Packet Filter</string>
+<string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_filter_summary">Filter fir ukommend Päck</string>
+<string name="p_filter_entry">Definéier e Filter fir ukommend Päck</string>
+
+<string name="p_filterhelp">Noriichtenfilter Hëllef</string>
+<string name="p_filterhelp_summary">Online Referenz fir APRS-IS Filter</string>
+
+<string name="p_sotimeout">TCP socket Timeout</string>
+<string name="p_sotimeout_summary">Zäit bevrun d\'Verbindung resett gëtt</string>
+<string name="p_sotimeout_entry">Timeout Wäert an Sekonnen (0 = ausschalten)</string>
+
+<string name="translator_credits">Launchpad Contributions:
+  heedge https://launchpad.net/~heedge</string>
+
+<!-- Bluetooth TNC settings -->
+<string name="p_bt_client">Clientsmode</string>
+<string name="p_bt_client_summary">APRSdroid stellt d\'Verbindung hier (Looss dëst un!)</string>
+<string name="p_bt_tnc_device">TNC Bluetooth Gerät</string>
+<string name="p_bt_tnc_device_summary">Wiel däin TNC aus den gepairten Geräter</string>
+<string name="p_bt_tnc_device_entry">Wiel en Gerät</string>
+<string name="p_bt_channel">Kanal</string>
+<string name="p_bt_channel_summary">Bluetoothkanal um TNC</string>
+<string name="p_bt_channel_entry">Gëff den Kanal an (meeschtens: "1"; eidel fir SPP)</string>
+
+<string name="p_tnc_init">TNC Initbefehl</string>
+<string name="p_tnc_init_summary">Initialisatiounsbefehler fir TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encoded String (Esc=%1B, \"%\"=%25), Verzögerung no all Zeil:</string>
+
+<string name="p_tnc_delay">TNC Initdelai</string>
+<string name="p_tnc_delay_summary">Waardezäit teschend all Zeil</string>
+<string name="p_tnc_delay_entry">TNC Initdelai [ms]</string>
+
+<string name="p_bt_prefs">Bluetooth Astellungen</string>
+<string name="p_bt_prefs_summary">Schalt Bluetooth an, pair d\'Geräter...</string>
+
+<string name="bt_error_unsupported">Bluetooth gëtt net ënnerstëtzt</string>
+<string name="bt_error_disabled">Schalt Bluetooth w.e.g un</string>
+<string name="bt_error_no_tnc">Konfiguréier w.e.g. en Bluetooth TNC!</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+
+<string name="afsk_info_sco_req">Sichen no enger Bluetooth SCO Verbindung...</string>
+<string name="afsk_info_sco_est">Bluetooth SCO Verbindung ass hiergestallt.</string>
+
+<!-- TCP/IP TNC settings -->
+<string name="p_tcptnc_server_summary">KISS TCP Server fir ze kontaktéieren</string>
+<string name="p_tcptnc_entry">Gëff den KISS Server Hostnumm an</string>
+
+<!-- SSL strings -->
+<string name="ssl_import_activity">SSL Zertifikatsimport</string>
+<string name="ssl_import_password">Gëff w.e.g. d\'Passwuert fir den Zertifikatsimport an:</string>
+<string name="ssl_no_keyfile">Keen Zertifikat fir %s! Benotzen passcode zur Authentifizéierung.</string>
+<string name="ssl_import_ok">Importéierten Zertifikat fir %s.</string>
+<string name="ssl_import_error">Fehler beim Zertifikatsimport: %s!</string>
+<string name="ssl_expired">Däin Zertifikat ass ofgelaf</string>
+<string name="ssl_expire_in">Däin Zertifikat leeft an %d Deeg of!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baudrate</string>
+<string name="p_serial_baudrate_summary">Datendurchsatz vum serielle Port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Deen serielle Port gëtt net ënnerstëtzt!</string>
+<string name="p_serial_noperm">Keng Erlaabnis fir USB Gerät!</string>
+<string name="p_serial_notfound">Keen USB Gerät fond!</string>
+</resources>

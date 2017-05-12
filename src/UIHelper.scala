@@ -126,6 +126,15 @@ trait UIHelper extends Activity
 		finish()
 	}
 
+	def setTitleStatus() {
+		if (AprsService.link_error != 0) {
+			setTitle(getString(R.string.status_linkoff, getString(AprsService.link_error)))
+		} else {
+			val title = getPackageManager().getActivityInfo(getComponentName(), 0).labelRes
+			setTitle(title)
+		}
+	}
+
 	def setLongTitle(title_id : Int, targetcall : String) {
 		// use two-line display on holo in portrait mode
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
@@ -360,7 +369,7 @@ trait UIHelper extends Activity
 			val (found, lat, lon) = getStaPosition(StorageDatabase.open(this), targetcall)
 			if (found) {
 				val url = "geo:%1.6f,%1.6f?q=%1.6f,%1.6f(%s)".formatLocal(null,
-					lat/1000000., lon/1000000., lat/1000000., lon/1000000., targetcall)
+					lat/1000000.0, lon/1000000.0, lat/1000000.0, lon/1000000.0, targetcall)
 				startActivity(new Intent(Intent.ACTION_VIEW,
 					Uri.parse(url)))
 			}

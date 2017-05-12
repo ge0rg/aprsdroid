@@ -5,6 +5,7 @@
 <string name="app_prefs">APRSdroid    Preferie</string>
 <string name="app_map">APRSdroid cartinn-a</string>
 <string name="app_hub">APRSdroid   Noddu</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Numme da Stasiun</string>
 <string name="app_messages">Messagi</string>
 <string name="app_messages_clear">Limpià i messagi</string>
@@ -13,7 +14,7 @@
 <string name="wrongpasscode">A parolla segreta assegnà nu coinsidde con u nominativu!</string>
 <string name="anon_warning">Sensa a parolla segreta assegnà u tu pacchettu u nu pè esse mandou!</string>
 <string name="mininterval">Aggiornamentu minimu u l\'è 1 minuto!</string>
-<string name="singlelog">Trasmissiun singula!</string>
+<string name="singlelog">Send Position</string>
 <string name="startlog">Agganciamentu partiu</string>
 <string name="stoplog">Agganciamentu terminoù</string>
 
@@ -22,6 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s l\'ultimu rapportu</string>
 <string name="map_track_call">%s... Staggu tracciandu</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Stasiun selesiunà</string>
 
 <string name="map_loading">Cargandu</string>
@@ -30,6 +32,7 @@
 <string name="sta_ssids">Numme de e Stasiun (SSIDs)</string>
 <string name="sta_history">Giurnale de Stasiun</string>
 <string name="sta_map">Cartinn-a</string>
+<string name="sta_extmap">External Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -67,7 +70,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">Informasuin de APRSdroid v%s</string>
-<string name="ad_copyright">proprieté Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® l\'é na marca registrà de Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">U programma l\'é liberu; ti pé re-distribuì e/o modificà sotto i termini dà GNU LISENSE PUBBLICA GENERALE  cumme pubblicoù da  Free Software Foundation; versiun 2 da licensa, o(ta opiniun) ultime versiun. \n\n Stu promgramma u l\'é distribuiu con a speransa   ca saria utile , ma SENSA A GARANSIA !; sensa l\'implicitaé de   MERCANSABILITAE ou FINALISOU PE PARTILER SCOP-PI. Vedie a GNU General Public Licensa pe atri dettaggi. \n\n Ti dovié avé resieu na cop-pia de la GNU General Public License apartenua a stu rogramma program; au contraiu , scrivvi au  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Ringrasiamentu a:</string>
 <string name="ad_thanks_0">Me donna ♥♥♥</string>
@@ -138,26 +145,41 @@
 </string-array>
 <string name="p_symbol">Segna-le APRS</string>
 <string name="p_symbol_summary">U te Segna-le pa te cartin-a</string>
-<string name="p_symbol_entry">Metiè le dui lettre pou segna-le scia cartin-a</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Result:</string>
+<string name="p_frequency">Voice frequency</string>
+<string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">campu de commentariu</string>
 <string name="p_status_summary">U testu doppu e te coordina-te</string>
 <string name="p_status_entry">Mettié u commentariu du te Radiofaru</string>
 <string name="p__connection">connessiun APRS</string>
 <string name="p_conntype">Protocollu de connessiun</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP o UDP</string>
 <string name="p_conntype_entry">Mettié u protocollu de connessiun</string>
+<string name="p_link">Connection Type</string>
+<string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Preferensia de connessiun</string>
 <string name="p_connsetup_summary">Configurasiun de connessiun</string>
 <string name="p_connlog">Registrasiun de la connessiun</string>
 <string name="p_connlog_summary">Troppe parolle in tu registru</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">Connessiun TCP</string>
-<string name="p_conn_udp">UDP (trasmissiun solu)</string>
-<string name="p_conn_http">HTTP POST (trasmissiun solu)</string>
-<string name="p_conn_afsk">AFSK via Autoparlante/Microfono</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Porta Kenwood GPS</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood setup help</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">Connessiun TCP</string>
+<string name="p_aprsis_http">HTTP POST (trasmissiun solu)</string>
+<string name="p_aprsis_udp">UDP (trasmissiun solu)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Posisiun Manuale</string>
 <string name="p_source_periodic">Periodico GPS/ Posisun de Ré</string>
@@ -257,6 +279,8 @@
 <string name="p_dgp_ring_summary">Tone for digipeated packets</string>
 
 <string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">Cammin du digi APRS</string>
@@ -308,12 +332,13 @@
 <string name="p_bt_channel_summary">Canale Bluetooth  sciu u TNC</string>
 <string name="p_bt_channel_entry">Mettié u canale (ciu uso\' :"1";vutu pe SPP</string>
 
-<string name="p_bt_tnc_init">Stringa de inisializasiun doppu a partensa du TNC</string>
-<string name="p_bt_tnc_init_summary">Commandu de inisializasiun pe u TNC</string>
+<string name="p_tnc_init">Stringa de inisializasiun doppu a partensa du TNC</string>
+<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
-<string name="p_bt_tnc_delay">Ritardu de l\'inisializasiun doppu a partensa del TNC</string>
-<string name="p_bt_tnc_delay_summary">Tempu d\'aspettàa doppu uogni linea</string>
-<string name="p_bt_tnc_delay_entry">Ritardu de l\'inisializasiun doppu a partensa del TNC  [ms]</string>
+<string name="p_tnc_delay">Ritardu de l\'inisializasiun doppu a partensa del TNC</string>
+<string name="p_tnc_delay_summary">Tempu d\'aspettàa doppu uogni linea</string>
+<string name="p_tnc_delay_entry">Ritardu de l\'inisializasiun doppu a partensa del TNC  [ms]</string>
 
 <string name="p_bt_prefs">Impostasiun du Bluetooth</string>
 <string name="p_bt_prefs_summary">Autorizza Bluetooth,unità disponibili....</string>
@@ -321,6 +346,7 @@
 <string name="bt_error_unsupported">Bluetooth nu l\'é supportou</string>
 <string name="bt_error_disabled">Pe piascié autorizza u Bluetooth</string>
 <string name="bt_error_no_tnc">Pe piascié metti au puntu u TNC du Bluetooth</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">Ciamandu u collegamentu au Bluetooth SCO</string>
 <string name="afsk_info_sco_est">collegamentu au Bluetooth SCO  stabiliu</string>
@@ -332,9 +358,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL certificate import</string>
 <string name="ssl_import_password">Please enter the certificate import password:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
 <string name="ssl_import_ok">Imported certificate for %s.</string>
 <string name="ssl_import_error">Error importing certificate: %s!</string>
 <string name="ssl_expired">Your certificate has expired!</string>
 <string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Unsupported serial port!</string>
+<string name="p_serial_noperm">No permission for USB device!</string>
+<string name="p_serial_notfound">No USB device found!</string>
 </resources>

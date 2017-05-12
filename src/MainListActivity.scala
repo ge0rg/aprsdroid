@@ -19,6 +19,11 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 		}
 	}
 
+	lazy val linkOnOffReceiver = new BroadcastReceiver() {
+		override def onReceive(ctx : Context, i : Intent) {
+			setTitleStatus()
+		}
+	}
 
 	def onContentViewLoaded() {
 		singleBtn.setOnClickListener(this);
@@ -30,16 +35,21 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 		super.onResume()
 		checkConfig()
 
+		setTitleStatus()
 		setupButtons(AprsService.running)
 		makeLaunchActivity(actname)
 		setKeepScreenOn()
 		setVolumeControls()
 
 		registerReceiver(miclReceiver, new IntentFilter(AprsService.MICLEVEL))
+		registerReceiver(linkOnOffReceiver, new IntentFilter(AprsService.SERVICE_STOPPED))
+		registerReceiver(linkOnOffReceiver, new IntentFilter(AprsService.LINK_OFF))
+		registerReceiver(linkOnOffReceiver, new IntentFilter(AprsService.LINK_ON))
 	}
 	override def onPause() {
 		super.onPause()
 		unregisterReceiver(miclReceiver)
+		unregisterReceiver(linkOnOffReceiver)
 	}
 
 	def setupButtons(running : Boolean) {

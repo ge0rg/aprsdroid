@@ -68,6 +68,7 @@
 
         <de.duenndns.EditTextPreferenceWithValue
                 android:key="status"
+		android:singleLine="true"
 		android:hint="@string/default_status"
 		android:title="@string/p_status"
 		android:defaultValue="@string/default_status"

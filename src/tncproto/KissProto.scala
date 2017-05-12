@@ -37,7 +37,8 @@ class KissProto(service : AprsService, is : InputStream, os : OutputStream) exte
 		val buf = scala.collection.mutable.ListBuffer[Byte]()
 		do {
 			var ch = is.read()
-			Log.d(TAG, "readPacket: %02X '%c'".format(ch, ch))
+			if (ch >= 0)
+				Log.d(TAG, "readPacket: %02X '%c'".format(ch, ch))
 			ch match {
 			case FEND =>
 				if (buf.length > 0) {

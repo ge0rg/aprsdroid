@@ -14,12 +14,12 @@ class PrefsWrapper(val context : Context) {
 
 	// safely read integers
 	def getStringInt(key : String, defValue : Int) = {
-		try { prefs.getString(key, null).trim.toInt } catch { case _ => defValue }
+		try { prefs.getString(key, null).trim.toInt } catch { case _ : Throwable => defValue }
 	}
 
 	// safely read integers
 	def getStringFloat(key : String, defValue : Float) = {
-		try { prefs.getString(key, null).trim.toFloat } catch { case _ => defValue }
+		try { prefs.getString(key, null).trim.toFloat } catch { case _ : Throwable => defValue }
 	}
 
 	// return commonly used prefs

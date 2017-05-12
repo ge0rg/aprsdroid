@@ -7,28 +7,28 @@
 <string name="app_hub">APRSdroid Hub</string>
 <string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Station Info</string>
-<string name="app_messages">Poruke</string>
+<string name="app_messages">Messatges</string>
 <string name="app_messages_clear">Clear Messages</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
 <string name="wrongpasscode">Your passcode does not match your callsign!</string>
 <string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">minimalno vrijeme update-a je 1 minut</string>
+<string name="mininterval">Minimum update time is 1 minute!</string>
 <string name="singlelog">Send Position</string>
-<string name="startlog">Pokreni pračenje</string>
-<string name="stoplog">Zaustavi pračenje</string>
+<string name="startlog">Start Tracking</string>
+<string name="stoplog">Stop Tracking</string>
 
 <string name="empty_logview">You have not yet sent or received any packets.\n\n
 	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
 	You can also change the application preferences from the menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">% posljednji izvještaj</string>
+<string name="sta_lastreport">%s Last Report</string>
 <string name="map_track_call">Tracking %s...</string>
 <string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Select station</string>
 
-<string name="map_loading">Učitavam...</string>
+<string name="map_loading">Cargament en cors...</string>
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Station SSIDs</string>
@@ -40,16 +40,16 @@
 
 <!-- Conversations activity -->
 <string name="msg_send_new">Send message to...</string>
-<string name="msg_message_text">Message text</string>
+<string name="msg_message_text">Tèxte del messatge</string>
 <string name="msg_empty_list">There are no stored conversations.</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 <!-- Message activity -->
-<string name="msg_from">Message from %s</string>
+<string name="msg_from">Messatge de « %s »</string>
 <string name="msg_to">Message to %s</string>
 <string name="msg_abort">Abort transmission</string>
 <string name="msg_restart">Restart transmission</string>
-<string name="msg_type_rejected">rejected</string>
-<string name="msg_type_aborted">aborted</string>
+<string name="msg_type_rejected">rejetat</string>
+<string name="msg_type_aborted">interromput</string>
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Service</string>
@@ -95,7 +95,7 @@
 	\n\n
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
-<string name="ad_thanks">Thanks to:</string>
+<string name="ad_thanks">Mercejaments a :</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
 <string name="ad_thanks_1">Michael, DO3BOX: idea</string>
 <string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
@@ -104,32 +104,32 @@
 <string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nTranslation:</string>
-<string name="ad_homepage">Home Page</string>
+<string name="ad_homepage">Pagina d\'acuèlh</string>
 
 <!-- map view -->
-<string name="map_overlays">Overlays</string>
-<string name="map_satellite">Satellite</string>
+<string name="map_overlays">Superposicions</string>
+<string name="map_satellite">Satellit</string>
 <string name="map_objects">APRS Objects</string>
 
 <!-- map view -->
 <string name="age">Show last...</string>
-<string name="age_30">30 minutes</string>
-<string name="age_2h">2 hours</string>
-<string name="age_12h">12 hours</string>
-<string name="age_1d">1 day</string>
-<string name="age_2d">2 days</string>
+<string name="age_30">30 minutas</string>
+<string name="age_2h">2 oras</string>
+<string name="age_12h">12 oras</string>
+<string name="age_1d">1 jorn</string>
+<string name="age_2d">2 jorns</string>
 
 
 <!-- options menu -->
-<string name="about">About</string>
+<string name="about">A prepaus</string>
 <string name="show_hub">Show Hub</string>
 <string name="show_map">Show Map</string>
 <string name="show_log">Show Log</string>
 <string name="clear_log">Clear Log</string>
-<string name="quit">Quit</string>
-<string name="preferences">Preferences</string>
+<string name="quit">Quitar</string>
+<string name="preferences">Preferéncias</string>
 <!-- preferences -->
-<string name="p__ham">Amateur Radio</string>
+<string name="p__ham">Radioamator</string>
 <string name="p_callsign">Callsign</string>
 <string name="p_callsign_nossid">Callsign (without SSID)</string>
 <string name="p_callsign_summary">Your HAM radio callsign</string>
@@ -176,7 +176,7 @@
 <string name="p_conntype_entry">Choose the connection protocol</string>
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
-<string name="p_connsetup">Connection Preferences</string>
+<string name="p_connsetup">Preferéncias de connexion</string>
 <string name="p_connsetup_summary">Configuration of Connection</string>
 <string name="p_connlog">Connection Logging</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
@@ -204,9 +204,9 @@
 <string name="p_source_periodic">Periodic GPS/Network Position</string>
 <string name="p_source_smart">SmartBeaconing™ Position</string>
 <!-- manual position -->
-<string name="p_source_lat">Latitude</string>
-<string name="p_source_lon">Longitude</string>
-<string name="p_source_coord">Coordinate</string>
+<string name="p_source_lat">Latitud</string>
+<string name="p_source_lon">Longitud</string>
+<string name="p_source_coord">Coordenada</string>
 <string name="p_source_get_last">Use last GPS position</string>
 <string name="p_source_auto">Automatic Posting</string>
 <string name="p_source_auto_summary">Perform periodic position posting</string>
@@ -228,11 +228,11 @@
 <string name="p_priv_altitude_summary">Include altitude in position reports</string>
 
 <!-- connection type properties -->
-<string name="p_host">Server</string>
+<string name="p_host">Servidor</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>
 <string name="p_host_hint">host:port</string>
-<string name="p__position">Position Reports</string>
+<string name="p__position">Rapòrts suls pòstes</string>
 <string name="p_locsource">Location Source</string>
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Location Settings</string>
@@ -272,29 +272,29 @@
 <string name="p_gps_entry">Please set the GPS Precision</string>
 <!-- array of GPS precisions -->
 <string name="p_gps_always">High (Always on)</string>
-<string name="p_gps_med">Medium</string>
+<string name="p_gps_med">Mejan</string>
 <string name="p_gps_low">Low</string>
 <string name="p_keepscreen">Keep screen awake</string>
 <string name="p_keepscreen_summary">Do not turn off screen when APRSdroid is in the foreground</string>
 
 <!-- messaging -->
 <string name="p__display">Display and Notifications</string>
-<string name="p__notification">Notifications</string>
+<string name="p__notification">Notificacions</string>
 <string name="p__notification_summary">Alert for messages and position reports</string>
-<string name="p_msg">Incoming Messages</string>
+<string name="p_msg">Messatges entrants</string>
 <string name="p_msg_led">Blinking LED</string>
 <string name="p_msg_led_on">LED notifications are on</string>
 <string name="p_msg_led_off">LED notifications are off</string>
-<string name="p_msg_vibr">Vibration</string>
+<string name="p_msg_vibr">Vibracion</string>
 <string name="p_msg_vibr_on">Vibration notifications are on</string>
 <string name="p_msg_vibr_off">Vibration notification are off</string>
-<string name="p_msg_ring">Ringtone</string>
+<string name="p_msg_ring">Sonariá</string>
 <string name="p_msg_ring_summary">Tone for incoming messages</string>
 <string name="p_pos">Own Position Reports</string>
-<string name="p_pos_ring">Ringtone</string>
+<string name="p_pos_ring">Sonariá</string>
 <string name="p_pos_ring_summary">Tone for sent position reports</string>
 <string name="p_dgp">Digipeated Own Packets</string>
-<string name="p_dgp_ring">Ringtone</string>
+<string name="p_dgp_ring">Sonariá</string>
 <string name="p_dgp_ring_summary">Tone for digipeated packets</string>
 
 <string name="got_digipeated">Digipeated by %1$s: %2$s</string>
@@ -313,12 +313,12 @@
 <string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU required</string>
 <string name="p_afsk_btsco">Bluetooth Headset</string>
 <string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
-<string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_output">Sortida àudio</string>
 <string-array name="p_afsk_out_e">
-	<item>Voice Call</item>
-	<item>Ringtone</item>
-	<item>Music</item>
-	<item>Alarm</item>
+	<item>Apèl àudio</item>
+	<item>Sonariá</item>
+	<item>Musica</item>
+	<item>Alarma</item>
 </string-array>
 
 <!-- TCP server settings -->
@@ -339,7 +339,7 @@
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Almin Islamović https://launchpad.net/~almin-islamovic</string>
+  Cédric VALMARY (Tot en òc) https://launchpad.net/~cvalmary</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>
@@ -347,7 +347,7 @@
 <string name="p_bt_tnc_device">TNC Bluetooth Device</string>
 <string name="p_bt_tnc_device_summary">Choose your TNC from paired devices</string>
 <string name="p_bt_tnc_device_entry">Choose device</string>
-<string name="p_bt_channel">Channel</string>
+<string name="p_bt_channel">Canal</string>
 <string name="p_bt_channel_summary">Bluetooth channel on the TNC</string>
 <string name="p_bt_channel_entry">Enter channel (most often: "1"; empty for SPP)</string>
 

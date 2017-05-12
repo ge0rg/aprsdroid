@@ -5,23 +5,25 @@
 <string name="app_prefs">APRSdroid Tercihler</string>
 <string name="app_map">APRSdroid Harita</string>
 <string name="app_hub">APRSdroid Ana Sayfa</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">İstasyon Bilgisi</string>
-<string name="app_messages">İletiler</string>
+<string name="app_messages">Mesajlar</string>
 <string name="app_messages_clear">İletileri Temizle</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid\'i çağrıişaretiniz ve APRS kayıt numaranızla yapılandırmalısınız!</string>
 <string name="wrongpasscode">Şifreniz çağrı işaretinizle eşleşmiyor!</string>
 <string name="anon_warning">APRS kayıt numarası olmadan bilgileriniz gönderilmez!</string>
 <string name="mininterval">Asgari güncelleme zamanı 1 dakikadır!</string>
-<string name="singlelog">Bir Kerelik</string>
+<string name="singlelog">Konum Gönder</string>
 <string name="startlog">İzlemeyi Başlat</string>
 <string name="stoplog">İzlemeyi Durdur</string>
 
-<string name="empty_logview">Henüz bir paket verisi gönderip almadınız. \n\n Pozisyonunuzun bir kerelik bildirimi ya da izlenmesini başlatmak için \"Menu"\ düğmesine basınız.\n\n Uygulama tercihlerinizi de menüden değiştirebilirsiniz.</string>
+<string name="empty_logview">Henüz bir paket verisi gönderip almadınız. \n\n Pozisyonunuzu bir defaya mahsus bildirmek için "Bir defalığına" tuşuna veya sürekli izleme başlatmak için "İzlemeyi Başlat" tuşuna tıklayınız. .\n\n Uygulama tercihlerinizi \"Menu\" kısmından değiştirebilirsiniz.</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Son Bildirim</string>
 <string name="map_track_call">%s izleniliyor...</string>
+<string name="map_track_unknown">%s konumu bilinmiyor!</string>
 <string name="map_select">İstasyon Seçin</string>
 
 <string name="map_loading">Yükleniyor...</string>
@@ -30,6 +32,7 @@
 <string name="sta_ssids">İstasyon SSID\'leri</string>
 <string name="sta_history">İstasyon Geçmişi</string>
 <string name="sta_map">Harita</string>
+<string name="sta_extmap">Harici Harita</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -48,7 +51,7 @@
 
 <!-- AprsService -->
 <string name="aprsservice">APRSdroid Servisi</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_once">APRS Servisi tek menzil: %1$s, %2$s.</string>
 <string name="service_start">Başlatılan APRS Servisleri: %1$s, %2$s.</string>
 <string name="service_stop">APRS Servisi Durduruldu</string>
 <string name="service_no_location">APRSdroid\'in işini yapabilmesi için GPS\'i ya da Ağ Konumunu etkinleştirmelisiniz!</string>
@@ -67,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroid hakkında v%s</string>
-<string name="ad_copyright">Copyright © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®, Bob Bruninga\'nın (WB4APR) kayıtlı ticari markasıdır.</string>
 <string name="ad_gpl">Bu program ücretsizdir; Free Software Foundation tarafından yayımlanan  GNU General Public License 2. sürüm ya da (tercih ederseniz) daha sonraki sürümde yer alan şartlar altında dağıtabilir ve değiştirebilirsiniz. \n\n Bu program kullanıcıya faydalı olması beklentisiyle, HERHANGİ BİR GARANTİ olmaksızın; hatta SATILABİLİRLİK ya da BELİRLİ BİR AMACA UYGUNLUK imasında bulunulmaksızın dağıtılmaktadır. Daha fazla detay için GNU General Public License dokümanına bakınız. \n\n Bu programla birlikte tarafınıza GNU General Public License dokümanının bir kopyası iletilmiş olmalıdır; aksi takdirde durumu, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresine yazılı olarak bildiriniz. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Teşekkürler:</string>
 <string name="ad_thanks_0">YL\'me ♥♥♥</string>
@@ -75,7 +78,7 @@
 <string name="ad_thanks_2">Dirk, DB5OY: motivasyon ve destek</string>
 <string name="ad_thanks_3">Bastian, DB1BM: AFSK uygulaması</string>
 <string name="ad_thanks_4">Matti, OH2MQK ve John, AB0OO: Java APRS</string>
-<string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
+<string name="ad_thanks_5">Sivan 4X6IZ\'ın geliştirdiği AFSK demodülatör için: https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™ HamHUD Nichetronix tarafından, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nÇeviri:</string>
 <string name="ad_homepage">Ana Sayfa</string>
@@ -138,26 +141,41 @@
 </string-array>
 <string name="p_symbol">APRS simgesi</string>
 <string name="p_symbol_summary">Haritada gösterilecek simgeniz</string>
-<string name="p_symbol_entry">Simgeyi kodlanmış 2 karakter olarak giriniz</string>
+<string name="p_symbol_overlay">Yük:</string>
+<string name="p_symbol_result">Sonuç:</string>
+<string name="p_frequency">Ses frekansı</string>
+<string name="p_frequency_summary">Ses frekansınız [MHz]</string>
 <string name="p_status">Yorum alanı</string>
 <string name="p_status_summary">Koordinatlarınızdan sonra gönderilecek metin</string>
 <string name="p_status_entry">Pozisyonunuzla birlikte gönderilecek ek bilgiyi giriniz</string>
 <string name="p__connection">APRS Bağlantısı</string>
 <string name="p_conntype">Bağlantı Protokolü</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP ya da UDP</string>
 <string name="p_conntype_entry">Bağlantı protokolünü seçiniz</string>
+<string name="p_link">Bağlantı Türü</string>
+<string name="p_link_entry">Link türünü seçin</string>
 <string name="p_connsetup">Bağlantı Tercihleri</string>
 <string name="p_connsetup_summary">Bağlantı yapılandırması</string>
 <string name="p_connlog">Bağlantı kaydı</string>
 <string name="p_connlog_summary">Durum çıktısı detaylarını kaydet</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP bağlantısı</string>
-<string name="p_conn_udp">UDP (sadece gönderme)</string>
-<string name="p_conn_http">HTTP POST (sadece gönderme)</string>
-<string name="p_conn_afsk">Hoparlör/Mikrofon aracılığı ile AFSK</string>
-<string name="p_conn_bt">Bluetooth TNC</string>
-<string name="p_conn_kwd">Kenwood GPS Portu</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood kurulum yardımı</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP bağlantısı</string>
+<string name="p_aprsis_http">HTTP POST (sadece gönderme)</string>
+<string name="p_aprsis_udp">UDP (sadece gönderme)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">El ile pozisyon girişi</string>
 <string name="p_source_periodic">Periyodik GPS/Ağ Pozisyonu</string>
@@ -199,22 +217,22 @@
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ Yardım</string>
-<string name="p_sb_fast_speed">Fast Speed [km/h]</string>
+<string name="p_sb_fast_speed">Düşük Hız [km/h]</string>
 <string name="p_sb_fast_speed_summary">Hızlı pozisyon güncellemeleri için minimum hız</string>
-<string name="p_sb_fast_rate">Fast Rate [s]</string>
-<string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
-<string name="p_sb_slow_speed">Slow Speed [km/h]</string>
-<string name="p_sb_slow_speed_summary">Maximum speed for slow position updates</string>
-<string name="p_sb_slow_rate">Slow Rate [s]</string>
-<string name="p_sb_slow_rate_summary">Beacon rate at slow speed</string>
+<string name="p_sb_fast_rate">Düşük oran  [s]</string>
+<string name="p_sb_fast_rate_summary">Beacon oranı düşük hız</string>
+<string name="p_sb_slow_speed">Düşük hız [km/h]</string>
+<string name="p_sb_slow_speed_summary">Maksimum hız için pozisyon güncellemeleri</string>
+<string name="p_sb_slow_rate">Düşük oran [s]</string>
+<string name="p_sb_slow_rate_summary">Düşük hızda iletilecek Beacon oranı</string>
 <!-- corner pegging should not be translated -->
-<string name="p_corner_pegging">Corner Pegging</string>
+<string name="p_corner_pegging">Köşe işaretleme</string>
 <string name="p_cp_turn_time">Min Dönüş Zamanı [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
+<string name="p_cp_turn_time_summary">Yön değişimlerinde minimum iletilecek beacon oranı</string>
 <string name="p_cp_turn_angle">Min Dönüş Açısı [°]</string>
 <string name="p_cp_turn_angle_summary">Yüksek hızda minimum açı</string>
-<string name="p_cp_turn_slope">Turn Slope</string>
-<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
+<string name="p_cp_turn_slope">Eğime dön</string>
+<string name="p_cp_turn_slope_summary">Düşük açıda minimum etki</string>
 
 <string name="p_interval">Asgari güncelleme zamanı</string>
 <string name="p_interval_summary">Beacon gönderileri arasındaki zaman (dk)</string>
@@ -256,7 +274,9 @@
 <string name="p_dgp_ring">Melodi</string>
 <string name="p_dgp_ring_summary">Gönderilmiş paketler için ton</string>
 
-<string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+<string name="got_digipeated">Digipeater tarafından %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -266,7 +286,7 @@
 <string name="p_afsk_prefix">Frame senkronizasyonu için prefix</string>
 <string name="p_afsk_prefix_summary">No-Op Önvurgulama (örn. VOX kontrolü için)</string>
 <string name="p_afsk_prefix_entry">Prefix zamanını girin [ms]</string>
-<string name="p_afsk_hqdemod">High-Quality Demodulator</string>
+<string name="p_afsk_hqdemod">Yüksek kalite demodülatör</string>
 <string name="p_afsk_hqdemod_summary">javAX25lib: 800 MHz CPU gerekli</string>
 <string name="p_afsk_btsco">Bluetooth Kulaklık</string>
 <string name="p_afsk_btsco_summary">AFSK için Bluetooth kulaklık kullanın</string>
@@ -298,6 +318,8 @@
 <string name="translator_credits">Launchpad Contributions:
   Alp Sarıca https://launchpad.net/~alpsarica
   Hüseyin Odabaş https://launchpad.net/~ta1df
+  Kudret EMRE https://launchpad.net/~kudretemre
+  Ozgur Karatas https://launchpad.net/~okaratas
   Recep Aydin Gulec https://launchpad.net/~ragulec
   zeugma https://launchpad.net/~sunder67</string>
 
@@ -311,12 +333,13 @@
 <string name="p_bt_channel_summary">TNC üzerindeki Bluetooth kanalı</string>
 <string name="p_bt_channel_entry">Kanalı giriniz (sıklıkla "1"; SPP için boş)</string>
 
-<string name="p_bt_tnc_init">TNC init string</string>
-<string name="p_bt_tnc_init_summary">Initialization commands for TNC</string>
+<string name="p_tnc_init">TNC başlatma değeri</string>
+<string name="p_tnc_init_summary">TNC için başlatma komutları (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL encoding dizgisi Esc =% 1B, \ "% \" =% 25), her satırdan sonra yaşanan gecikme:</string>
 
-<string name="p_bt_tnc_delay">TNC init delay</string>
-<string name="p_bt_tnc_delay_summary">Time to wait after each line</string>
-<string name="p_bt_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_tnc_delay">TNC başlatma zamanı</string>
+<string name="p_tnc_delay_summary">Son bildirimden sonra bekleme zamanı</string>
+<string name="p_tnc_delay_entry">TNC yükleme gecikmesi [ms]</string>
 
 <string name="p_bt_prefs">Bluetooth ayarları</string>
 <string name="p_bt_prefs_summary">Bluetooth\'u etkinleştir, cihazları eşleştir...</string>
@@ -324,6 +347,7 @@
 <string name="bt_error_unsupported">Bluetooth desteklenmiyor!</string>
 <string name="bt_error_disabled">Lütfen Bluetooth\'u etkinleştirin!</string>
 <string name="bt_error_no_tnc">Lütfen bir Bluetooth TNC yapılandırınız!</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">Bluetooth SCO linki sağlanıyor</string>
 <string name="afsk_info_sco_est">Bluettoh SCo linki sağlandı</string>
@@ -335,9 +359,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">İçe SSL sertifikası aktar</string>
 <string name="ssl_import_password">Lütfen sertifika içe aktarma parolası girin:</string>
-<string name="ssl_no_keyfile">%s için sertifika bulunamadı! SSL kullanılamıyor.</string>
+<string name="ssl_no_keyfile">%s için sertifika bulunamadı! Parola ile yetkilendirme kullanılıyır.</string>
 <string name="ssl_import_ok">%s için içe aktarılmış sertifikalar</string>
 <string name="ssl_import_error">Şu sertifikalar içe aktarılırken hata oluştu: %s!</string>
 <string name="ssl_expired">Sertifikanın süresi dolmuş!</string>
 <string name="ssl_expire_in">Sertifikanızın %d gün içinde süresi dolacak!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">Seri portun veri iletim hızı</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Desteklenmeyen seri port!</string>
+<string name="p_serial_noperm">USB cihazına izin verilmedi!</string>
+<string name="p_serial_notfound">USB cihazı bulunamadı!</string>
 </resources>

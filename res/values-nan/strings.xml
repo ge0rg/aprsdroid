@@ -5,6 +5,7 @@
 <string name="app_prefs">APRSdroid 偏好设置</string>
 <string name="app_map">APRSdroid 地图</string>
 <string name="app_hub">APRSdroid 列表中心</string>
+<string name="app_log">APRSdroid Log</string>
 <string name="app_sta">台站信息</string>
 <string name="app_messages">讯息</string>
 <string name="app_messages_clear">清除消息</string>
@@ -13,7 +14,7 @@
 <string name="wrongpasscode">您的呼号验证码不正确！</string>
 <string name="anon_warning">没有验证码，您的数据包将不会被发出！</string>
 <string name="mininterval">最小的更新时间是1分钟！</string>
-<string name="singlelog">單次發送</string>
+<string name="singlelog">Send Position</string>
 <string name="startlog">开始记录路径</string>
 <string name="stoplog">停止记录路径</string>
 
@@ -22,6 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">近期报告</string>
 <string name="map_track_call">记录中</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">选择台站</string>
 
 <string name="map_loading">載入中</string>
@@ -30,6 +32,7 @@
 <string name="sta_ssids">台站SSID</string>
 <string name="sta_history">已發現台站</string>
 <string name="sta_map">地图</string>
+<string name="sta_extmap">External Map</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -67,7 +70,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">关于 APRSdroid v%s</string>
-<string name="ad_copyright">版权所有 © 2009-2013 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® 注册商标归 Bob Bruninga (WB4APR)所有</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">这是一个免费软件;你可以在GNU 通用公共授权(或第二版授权)的条款下进行修改. \n\n 希望这个程序的发布是有用的,但是它是没有任何承诺性担保或保证的，甚至没有商业或其它特定目的而隐含的担保。有关详细信息，请参阅GNU通用公共许可证。 \n\n 您应该已经收到随着这项计划的GNU通用公共许可证的副本，如果没有，写信给自由软件基金会,51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">鸣谢：</string>
 <string name="ad_thanks_0">我的 YL ♥♥♥</string>
@@ -138,26 +145,41 @@
 </string-array>
 <string name="p_symbol">APRS 符号</string>
 <string name="p_symbol_summary">您用作在地图中显示的符号</string>
-<string name="p_symbol_entry">输入表示双角色的符号</string>
+<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_result">Result:</string>
+<string name="p_frequency">Voice frequency</string>
+<string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">注释字段</string>
 <string name="p_status_summary">匹配后的文本</string>
 <string name="p_status_entry">输入您的信标注释信息</string>
 <string name="p__connection">APRS 连接</string>
 <string name="p_conntype">连接协议</string>
-<string name="p_conntype_summary">AFSK, HTTP, TCP or UDP</string>
 <string name="p_conntype_entry">选择连接协议</string>
+<string name="p_link">Connection Type</string>
+<string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">连接首选项</string>
 <string name="p_connsetup_summary">连接配置</string>
 <string name="p_connlog">连接记录中</string>
 <string name="p_connlog_summary">記錄詳細登入登出日誌</string>
 <!-- array of connection types -->
-<string name="p_conn_tcp">TCP 连接</string>
-<string name="p_conn_udp">UDP (僅發送)</string>
-<string name="p_conn_http">HTTP POST (僅發送)</string>
-<string name="p_conn_afsk">耳麦输出AFSK</string>
-<string name="p_conn_bt">藍牙TNC</string>
-<string name="p_conn_kwd">建伍GPS端口</string>
-<string name="p_conn_tcptnc">TCP/IP TNC</string>
+<string name="p_conn_aprsis">Internet (APRS-IS)</string>
+<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_kiss">TNC (KISS)</string>
+<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
+<string name="p_conn_kwd_info">Kenwood setup help</string>
+<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
+<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<!-- array of APRS-IS protocols -->
+<string name="p_aprsis_tcp">TCP 连接</string>
+<string name="p_aprsis_http">HTTP POST (僅發送)</string>
+<string name="p_aprsis_udp">UDP (僅發送)</string>
+<!-- array of TNC link types -->
+<string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_tcpip">TCP/IP</string>
+<string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
 <string name="p_source_manual">手动设定坐标</string>
 <string name="p_source_periodic">周期性启动GPS或基站定位</string>
@@ -257,6 +279,8 @@
 <string name="p_dgp_ring_summary">Tone for digipeated packets</string>
 
 <string name="got_digipeated">Digipeated by %1$s: %2$s</string>
+<string name="status_linkoff">Error: %s</string>
+<string name="status_linkon">Connected: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS 中继路径</string>
@@ -308,12 +332,13 @@
 <string name="p_bt_channel_summary">TNC蓝牙频道</string>
 <string name="p_bt_channel_entry">输入频道(通常为1;SPP模式为空)</string>
 
-<string name="p_bt_tnc_init">TNC初始化字符串</string>
-<string name="p_bt_tnc_init_summary">TNC初始化命令</string>
+<string name="p_tnc_init">TNC初始化字符串</string>
+<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
-<string name="p_bt_tnc_delay">TNC 初始化延迟</string>
-<string name="p_bt_tnc_delay_summary">每次连线后等待时间</string>
-<string name="p_bt_tnc_delay_entry">TNC 初始化延迟[毫秒]</string>
+<string name="p_tnc_delay">TNC 初始化延迟</string>
+<string name="p_tnc_delay_summary">每次连线后等待时间</string>
+<string name="p_tnc_delay_entry">TNC 初始化延迟[毫秒]</string>
 
 <string name="p_bt_prefs">蓝牙设置</string>
 <string name="p_bt_prefs_summary">打开蓝牙，配对设备...</string>
@@ -321,6 +346,7 @@
 <string name="bt_error_unsupported">藍牙設備未被支持!</string>
 <string name="bt_error_disabled">请启用蓝牙!</string>
 <string name="bt_error_no_tnc">请配置蓝牙TNC设备!</string>
+<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
 
 <string name="afsk_info_sco_req">正在请求蓝牙SCO连接...</string>
 <string name="afsk_info_sco_est">蓝牙SCO链路已建立。</string>
@@ -332,9 +358,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL certificate import</string>
 <string name="ssl_import_password">Please enter the certificate import password:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Not using SSL.</string>
+<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
 <string name="ssl_import_ok">Imported certificate for %s.</string>
 <string name="ssl_import_error">Error importing certificate: %s!</string>
 <string name="ssl_expired">Your certificate has expired!</string>
 <string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+
+<!-- (USB) Serial TNC settings -->
+<string name="p_serial_baudrate">Baud Rate</string>
+<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<!-- (USB) Serial Errors -->
+<string name="p_serial_unsupported">Unsupported serial port!</string>
+<string name="p_serial_noperm">No permission for USB device!</string>
+<string name="p_serial_notfound">No USB device found!</string>
 </resources>

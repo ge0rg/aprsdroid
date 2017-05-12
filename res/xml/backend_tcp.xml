@@ -24,6 +24,7 @@
 
         <de.duenndns.EditTextPreferenceWithValue
                 android:key="tcp.filter"
+		android:singleLine="true"
 		android:title="@string/p_filter"
 		android:summary="@string/p_filter_summary"
 		android:hint="@string/p_filter_hint"
