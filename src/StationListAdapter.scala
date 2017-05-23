@@ -94,10 +94,10 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		def runQuery(constraint : CharSequence) = {
 			if (constraint.length() > 0)
 				storage.getNeighborsLike("%s%%".format(constraint),
-					my_lat, my_lon, System.currentTimeMillis - prefs.getShowAge(), "50")
+					my_lat, my_lon, System.currentTimeMillis - prefs.getShowAge(), "300")
 			else
 				storage.getNeighbors(mycall, my_lat, my_lon,
-					System.currentTimeMillis - prefs.getShowAge(), "50")
+					System.currentTimeMillis - prefs.getShowAge(), "300")
 		}
 	}
 
@@ -113,7 +113,7 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		val c = mode match {
 			case SINGLE	=> storage.getStaPosition(targetcall)
 			case NEIGHBORS	=> storage.getNeighbors(mycall, my_lat, my_lon,
-				System.currentTimeMillis - prefs.getShowAge(), "50")
+				System.currentTimeMillis - prefs.getShowAge(), "300")
 			case SSIDS	=> storage.getAllSsids(targetcall)
 		}
 		c.getCount()

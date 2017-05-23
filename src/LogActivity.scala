@@ -20,7 +20,7 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 	val TAG = "APRSdroid.Log"
 
 	lazy val storage = StorageDatabase.open(this)
-	lazy val postcursor = storage.getPosts("100")
+	lazy val postcursor = storage.getPosts("300")
 
 	lazy val postlist = getListView()
 
@@ -37,7 +37,7 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 
 		onStartLoading()
 
-		la.setFilterQueryProvider(storage.getPostFilter("100"))
+		la.setFilterQueryProvider(storage.getPostFilter("300"))
 
 		postlist.setAdapter(la)
 		postlist.setTextFilterEnabled(true)
@@ -74,7 +74,7 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 	}
 
 	def load_cursor(i : Intent) = {
-		val c = storage.getPosts("100")
+		val c = storage.getPosts("300")
 		c.getCount()
 		c
 	}
