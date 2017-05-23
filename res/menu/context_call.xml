@@ -27,4 +27,7 @@
 	<item android:id="@+id/qrzcom"
 	      android:title="@string/sta_qrzcom"
 	      />
+	<item android:id="@+id/sta_export"
+	      android:title="@string/export_log"
+	      />
 </menu>

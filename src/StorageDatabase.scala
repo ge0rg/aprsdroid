@@ -36,6 +36,8 @@ object StorageDatabase {
 		val TYPE_INCMG	= 3
 		val TYPE_TX	= 4
 
+		val COLUMN_TS		= 1
+		val COLUMN_TSS		= 2
 		val COLUMN_TYPE		= 3
 		val COLUMN_MESSAGE	= 5
 
@@ -356,7 +358,19 @@ class StorageDatabase(context : Context) extends
 		val obj1 = "%%;%s%%".format(call)	// ;call - object
 		val obj2 = "%%)%s%%".format(call)	// )call - item
 		getPosts("message LIKE ? OR message LIKE ? OR message LIKE ?",
-			Array(start, obj1, obj2), "100")
+			Array(start, obj1, obj2), limit)
+	}
+
+	def getExportPosts(call : String) : Cursor = {
+                if (call != null)
+                        getWritableDatabase().query(Post.TABLE, Post.COLUMNS,
+                                "type in (0, 3) and message LIKE ?",
+                                Array("%s%%".format(call)),
+                                null, null, null, null)
+                else
+                        getWritableDatabase().query(Post.TABLE, Post.COLUMNS,
+                                "type in (0, 3)", null,
+                                null, null, null, null)
 	}
 
 	def getPostFilter(limit : String) : FilterQueryProvider = {

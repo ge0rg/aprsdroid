@@ -7,6 +7,10 @@
 		android:title="@string/singlelog"
 		android:alphabeticShortcut="s"
 		android:icon="@android:drawable/ic_menu_myplaces" />
+	<item android:id="@+id/export"
+		android:title="@string/export_log"
+		android:alphabeticShortcut="x"
+		android:icon="@android:drawable/ic_menu_save" />
 	<item android:id="@+id/clear"
 		android:title="@string/clear_log"
 		android:alphabeticShortcut="c"
