@@ -103,6 +103,8 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="show_hub">Pokaż hub</string>
 <string name="show_map">Pokaż mapę</string>
 <string name="show_log">Pokaż dziennik</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Wyczyść dziennik</string>
 <string name="quit">Zakończ</string>
 <string name="preferences">Ustawienia</string>

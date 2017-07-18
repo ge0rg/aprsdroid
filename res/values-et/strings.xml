@@ -121,6 +121,8 @@
 <string name="show_hub">Näita HUBi</string>
 <string name="show_map">Näita kaarti</string>
 <string name="show_log">Näita logi</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Tühjenda logi</string>
 <string name="quit">Välju</string>
 <string name="preferences">Seaded</string>

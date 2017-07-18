@@ -121,6 +121,8 @@
 <string name="show_hub">Show Hub</string>
 <string name="show_map">Tampilkan Peta</string>
 <string name="show_log">Tampilkan catatan</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Hapus catatan</string>
 <string name="quit">Keluar</string>
 <string name="preferences">Pengaturan</string>

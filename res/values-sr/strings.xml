@@ -106,6 +106,8 @@
 <string name="show_hub">Prikaži listu stanica</string>
 <string name="show_map">Prikaži mapu</string>
 <string name="show_log">Prikaži log</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Obriši log</string>
 <string name="quit">Zatvori</string>
 <string name="preferences">Podešavanja</string>
@@ -321,7 +323,7 @@
 
 <string name="translator_credits">Launchpad Contributions:
   Filip https://launchpad.net/~fms-r
-  Предраг Супуровић https://launchpad.net/~pedja-3</string>
+  Предраг Супуровић YT9TP https://launchpad.net/~pedja-3</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

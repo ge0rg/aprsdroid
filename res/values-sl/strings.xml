@@ -106,6 +106,8 @@
 <string name="show_hub">Prikaži vozel</string>
 <string name="show_map">Show Map</string>
 <string name="show_log">Prikaži dnevnik datoteko</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Počisti dnevnik</string>
 <string name="quit">Končaj</string>
 <string name="preferences">Možnosti</string>

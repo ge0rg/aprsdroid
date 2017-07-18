@@ -106,6 +106,8 @@
 <string name="show_hub">Mostra Interconnessione</string>
 <string name="show_map">Mostra la mappa</string>
 <string name="show_log">Mostra il rapporto</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Cancella il Registro</string>
 <string name="quit">Termina</string>
 <string name="preferences">Impostazioni</string>

@@ -121,6 +121,8 @@
 <string name="show_hub">Show Hub</string>
 <string name="show_map">แสดงแผนที่</string>
 <string name="show_log">แสดงข้อมูลจัดเก็บ</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">ลบข้อมูลจัดเก็บ</string>
 <string name="quit">ออก</string>
 <string name="preferences">ตั้งค่าใช้งาน</string>

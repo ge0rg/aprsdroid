@@ -106,6 +106,8 @@
 <string name="show_hub">Prikaži monitor</string>
 <string name="show_map">Prikaži kartu</string>
 <string name="show_log">Prikaži dnevnik</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Obriši dnevnik</string>
 <string name="quit">Izađi</string>
 <string name="preferences">Postavke</string>

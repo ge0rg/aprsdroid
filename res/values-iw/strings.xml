@@ -109,6 +109,8 @@
 <string name="show_hub">הצג מוקד</string>
 <string name="show_map">הצג מפה</string>
 <string name="show_log">הצג יומן</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">טהר יומן</string>
 <string name="quit">יציאה</string>
 <string name="preferences">העדפות</string>

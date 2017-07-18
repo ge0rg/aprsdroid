@@ -102,6 +102,8 @@
 <string name="show_hub">Zentral weisen</string>
 <string name="show_map">Kaart weisen</string>
 <string name="show_log">Log weisen</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Log läschen</string>
 <string name="quit">Verloossen</string>
 <string name="preferences">Astellungen</string>
@@ -161,13 +163,13 @@
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audio (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_tnc2">TNC (Text TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA Weepunkt)</string>
 <string name="p_conn_kwd_info">Kenwood Astellungshëllef</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_gps">Benotz Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Scheck NMEA Sätz un de Sender</string>
+<string name="p_conn_kwd_gps_debug">Weiss GPS am Log</string>
+<string name="p_conn_kwd_gps_debug_summary">Weiss raw NMEA am APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">TCP Verbindung</string>
 <string name="p_aprsis_http">HTTP POST (nëmme senden)</string>
@@ -275,8 +277,8 @@
 <string name="p_dgp_ring_summary">Toun fir digipeated Päck</string>
 
 <string name="got_digipeated">Digipeated vun %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Fehler: %s</string>
+<string name="status_linkon">Verbonnen: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS Digiwee</string>
@@ -342,7 +344,7 @@
 <string name="bt_error_unsupported">Bluetooth gëtt net ënnerstëtzt</string>
 <string name="bt_error_disabled">Schalt Bluetooth w.e.g un</string>
 <string name="bt_error_no_tnc">Konfiguréier w.e.g. en Bluetooth TNC!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Konnt net zu %s connectéiren! Schalt d\'Gerät un a mach aaner Bluetooth Connexiounen zou.</string>
 
 <string name="afsk_info_sco_req">Sichen no enger Bluetooth SCO Verbindung...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO Verbindung ass hiergestallt.</string>

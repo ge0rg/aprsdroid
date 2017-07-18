@@ -102,6 +102,8 @@
 <string name="show_hub">Monstrar le perno</string>
 <string name="show_map">Monstrar le mappa</string>
 <string name="show_log">Monstrar le registro</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Clarar le registro</string>
 <string name="quit">Quitar</string>
 <string name="preferences">Preferentias</string>
