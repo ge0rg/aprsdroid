@@ -323,13 +323,13 @@
 
 <string name="p_mapfile">Map file name</string>
 <string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
-<string name="p_mapfile_choose">Choose map file</string>
-<string name="mapfile_error">Error loading map file %s!</string>
+<string name="p_mapfile_choose">Изберете файл на карта</string>
+<string name="mapfile_error">Грешка при зареждаде на карта от файл %s!</string>
 
 <string name="p_themefile">Theme file name</string>
 <string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
-<string name="p_themefile_choose">Choose theme file</string>
-<string name="themefile_error">Error loading theme file %s!</string>
+<string name="p_themefile_choose">Изберете файл за тема</string>
+<string name="themefile_error">Грешка при зареждането на темата от файл: %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
   HackMan https://launchpad.net/~mm-yuhu

@@ -317,15 +317,15 @@
 <string name="p_sotimeout_summary">Tiempo antes de restablecer la conexión</string>
 <string name="p_sotimeout_entry">Valor de tiempo de espera en segundos (0 = desactivar)</string>
 
-<string name="p_mapfile">Map file name</string>
-<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
-<string name="p_mapfile_choose">Choose map file</string>
-<string name="mapfile_error">Error loading map file %s!</string>
+<string name="p_mapfile">Nombre del mapa</string>
+<string name="p_mapfile_summary">Archivo MapsForge para APRSdroid</string>
+<string name="p_mapfile_choose">Elija archivo de mapa</string>
+<string name="mapfile_error">Errores cargando archivo de mapa %s!</string>
 
-<string name="p_themefile">Theme file name</string>
-<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
-<string name="p_themefile_choose">Choose theme file</string>
-<string name="themefile_error">Error loading theme file %s!</string>
+<string name="p_themefile">Nombre del archivo del tema</string>
+<string name="p_themefile_summary">Tema de rendición de MapsForge (XML)</string>
+<string name="p_themefile_choose">Elija archivo de tema</string>
+<string name="themefile_error">Error cargando archivo de tema %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Adolfo Jayme https://launchpad.net/~fitojb
