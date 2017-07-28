@@ -108,6 +108,8 @@
 <string name="show_hub">Show Hub</string>
 <string name="show_map">Show Map</string>
 <string name="show_log">Show Log</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Kosongkan log</string>
 <string name="quit">Keluar</string>
 <string name="preferences">Keutamaan</string>

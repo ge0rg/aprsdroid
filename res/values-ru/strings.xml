@@ -106,6 +106,8 @@
 <string name="show_hub">Показать хаб</string>
 <string name="show_map">Показать карту</string>
 <string name="show_log">Показать журнал</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Очистить журнал</string>
 <string name="quit">Выход</string>
 <string name="preferences">Параметры</string>

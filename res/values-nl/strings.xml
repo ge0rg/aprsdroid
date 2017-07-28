@@ -108,6 +108,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="show_hub">Hub weergeven</string>
 <string name="show_map">Toon kaart</string>
 <string name="show_log">Toon logbestand</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Logbestand wissen</string>
 <string name="quit">afsluiten</string>
 <string name="preferences">Voorkeuren</string>

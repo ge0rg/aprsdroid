@@ -5,7 +5,7 @@
 <string name="app_prefs">APRSdroid Настройки</string>
 <string name="app_map">APRSdroid Карта</string>
 <string name="app_hub">APRSdroid Хъб</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">APRSdroid Журнал</string>
 <string name="app_sta">Информация за станцията</string>
 <string name="app_messages">Съобщения</string>
 <string name="app_messages_clear">Изчистване на съобщенията</string>
@@ -14,7 +14,7 @@
 <string name="wrongpasscode">Вашия passcode не съответства на Вашия инициал!</string>
 <string name="anon_warning">Без passcode, вашите рапорти няма да бъдат предавани!</string>
 <string name="mininterval">Минималното време за обновяване е 1 минута!</string>
-<string name="singlelog">Send Position</string>
+<string name="singlelog">Изпрати Позиция</string>
 <string name="startlog">Започни проследяване</string>
 <string name="stoplog">Спри проследяване</string>
 
@@ -23,7 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Последен рапорт</string>
 <string name="map_track_call">Проследяване %s...</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
+<string name="map_track_unknown">Не е намерена позиция за %s</string>
 <string name="map_select">Изберете станция</string>
 
 <string name="map_loading">Зареждане…</string>
@@ -32,7 +32,7 @@
 <string name="sta_ssids">SSID на станцията</string>
 <string name="sta_history">История на станцията</string>
 <string name="sta_map">Карта</string>
-<string name="sta_extmap">External Map</string>
+<string name="sta_extmap">Външна карта</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -106,6 +106,8 @@
 <string name="show_hub">Покажи Хъб</string>
 <string name="show_map">Покажи Карта</string>
 <string name="show_log">Покажи Лог</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Изчистване на Лога</string>
 <string name="quit">Изход</string>
 <string name="preferences">Настройки</string>
@@ -146,31 +148,31 @@
 <string name="p_symbol">APRS символ</string>
 <string name="p_symbol_summary">Вашият символ за изобразяване на картата</string>
 <string name="p_symbol_overlay">Overlay:</string>
-<string name="p_symbol_result">Result:</string>
-<string name="p_frequency">Voice frequency</string>
-<string name="p_frequency_summary">Your voice frequency [MHz]</string>
+<string name="p_symbol_result">Резултат:</string>
+<string name="p_frequency">Честота за разговор</string>
+<string name="p_frequency_summary">Вашата честота за разговор [MHz]</string>
 <string name="p_status">Поле за коментар</string>
 <string name="p_status_summary">Текст след Вашите координати</string>
 <string name="p_status_entry">Въведете коментар за beacon</string>
 <string name="p__connection">APRS Връзка</string>
 <string name="p_conntype">Протокол за връзка</string>
 <string name="p_conntype_entry">Изберете протокол за връзка</string>
-<string name="p_link">Connection Type</string>
-<string name="p_link_entry">Choose the link type</string>
+<string name="p_link">Вид на връзката</string>
+<string name="p_link_entry">Изберете видът на връзката</string>
 <string name="p_connsetup">Настройки на връзката</string>
 <string name="p_connsetup_summary">Конфигуриране на връзката</string>
 <string name="p_connlog">Логване на връзката</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
-<string name="p_conn_aprsis">Internet (APRS-IS)</string>
-<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_aprsis">Интернет (APRS-IS)</string>
+<string name="p_conn_afsk">Аудио (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_tnc2">TNC (чист текст TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
-<string name="p_conn_kwd_info">Kenwood setup help</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_info">Kenwood помощ за настройка</string>
+<string name="p_conn_kwd_gps">Използвайте Android GPS</string>
 <string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug">Покажи GPS в журнала</string>
 <string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">TCP връзка</string>
@@ -179,7 +181,7 @@
 <!-- array of TNC link types -->
 <string name="p_link_bt">Bluetooth SPP</string>
 <string name="p_link_tcpip">TCP/IP</string>
-<string name="p_link_usb">USB Serial</string>
+<string name="p_link_usb">USB Серийна</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Ръчна позиция</string>
 <string name="p_source_periodic">Периодична GPS/Мрежова Позиция</string>
@@ -232,11 +234,11 @@
 <!-- corner pegging should not be translated -->
 <string name="p_corner_pegging">Corner Pegging</string>
 <string name="p_cp_turn_time">Минимално  време за завой [s]</string>
-<string name="p_cp_turn_time_summary">Minimum beacon rate when changing direction</string>
+<string name="p_cp_turn_time_summary">Минимална скорост на изпращане на сигнали, когато се сменя посоката</string>
 <string name="p_cp_turn_angle">Минимален ъгъл на завой [°]</string>
 <string name="p_cp_turn_angle_summary">Минимален ъгъл при висока скорост</string>
 <string name="p_cp_turn_slope">Наклон на завоя</string>
-<string name="p_cp_turn_slope_summary">Въздействие на скороста върху минималния ъгъл</string>
+<string name="p_cp_turn_slope_summary">Influence of speed on the minimum angle</string>
 
 <string name="p_interval">Минимално време за обновяване</string>
 <string name="p_interval_summary">Минути между предаване на beacon</string>
@@ -270,17 +272,17 @@
 <string name="p_msg_vibr_on">Уведомяването с вибрация е включено</string>
 <string name="p_msg_vibr_off">Уведомяването с вибрация е изключено</string>
 <string name="p_msg_ring">Тон звънене</string>
-<string name="p_msg_ring_summary">Тон за входящо съобщение</string>
+<string name="p_msg_ring_summary">Tone for incoming messages</string>
 <string name="p_pos">Собствени рапорти за позиция</string>
 <string name="p_pos_ring">Тон звънене</string>
 <string name="p_pos_ring_summary">Тон за изпратен рапорт за позиция</string>
 <string name="p_dgp">Digipeated Own Packets</string>
 <string name="p_dgp_ring">Тон звънене</string>
-<string name="p_dgp_ring_summary">Tone for digipeated packets</string>
+<string name="p_dgp_ring_summary">Звук за digipeated пакети</string>
 
 <string name="got_digipeated">Digipeated by %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Грешка: %s</string>
+<string name="status_linkon">Свързан: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi път</string>
@@ -307,15 +309,15 @@
 <string name="p_filterdist">радиус за съседство</string>
 <string name="p_filterdist_summary">Приемане на пакети от станции в този радиус</string>
 <string name="p_filterdist_entry">Радиус около Вас за мониторинг на пакети [km]</string>
-<string name="p_filter">Packet filter</string>
+<string name="p_filter">Пакетен филтър</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Филтър за входящи пакети</string>
-<string name="p_filter_entry">Enter a filter for incoming packets</string>
+<string name="p_filter_entry">Въведете филтър за входящи пакети</string>
 
 <string name="p_filterhelp">Помощ за филтъра за съобщения</string>
 <string name="p_filterhelp_summary">Онлайн справка за APRS-IS филтри</string>
 
-<string name="p_sotimeout">TCP socket timeout</string>
+<string name="p_sotimeout">Таймаут на TCP връзка</string>
 <string name="p_sotimeout_summary">Време преди да се ресетне връзката</string>
 <string name="p_sotimeout_entry">Таймаут стойност в секунди (0=изключен)</string>
 
@@ -330,6 +332,7 @@
 <string name="themefile_error">Error loading theme file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  HackMan https://launchpad.net/~mm-yuhu
   Zlatan Dimitrov https://launchpad.net/~z-dimitrov</string>
 
 <!-- Bluetooth TNC settings -->
@@ -343,12 +346,12 @@
 <string name="p_bt_channel_entry">Въведете канал (най-често: "1"; празно за SPP)</string>
 
 <string name="p_tnc_init">TNC инициализиращ стринг</string>
-<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
-<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
+<string name="p_tnc_init_summary">Инициализационни команди за TNC (URL-кодирани,  Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-кодиран низ  (Esc=%1B, \"%\"=%25), забавяне след всяка линия:</string>
 
-<string name="p_tnc_delay">TNC init delay</string>
+<string name="p_tnc_delay">TNC инициализационно забавяне</string>
 <string name="p_tnc_delay_summary">Време за изчакване след всеки ред</string>
-<string name="p_tnc_delay_entry">TNC init delay [ms]</string>
+<string name="p_tnc_delay_entry">TNC инициализационно забавяне [ms]</string>
 
 <string name="p_bt_prefs">Bluetooth настройки</string>
 <string name="p_bt_prefs_summary">Включване на Bluetooth, сдвояване на устройства...</string>
@@ -356,7 +359,7 @@
 <string name="bt_error_unsupported">Bluetooth не се поддържа!</string>
 <string name="bt_error_disabled">Моля включете Bluetooth!</string>
 <string name="bt_error_no_tnc">Моля конфигурирайте Bluetooth TNC!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Не може да се свърже с %s! Моля включете устройството и изключете другите Bluetooth връзки</string>
 
 <string name="afsk_info_sco_req">Искане на bluetooth SCO връзка...</string>
 <string name="afsk_info_sco_est">Връзката с Bluetooth SCO е установена.</string>
@@ -366,19 +369,19 @@
 <string name="p_tcptnc_entry">Въведете hostname на KISS сървър</string>
 
 <!-- SSL strings -->
-<string name="ssl_import_activity">SSL certificate import</string>
-<string name="ssl_import_password">Please enter the certificate import password:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
-<string name="ssl_import_ok">Imported certificate for %s.</string>
-<string name="ssl_import_error">Error importing certificate: %s!</string>
-<string name="ssl_expired">Your certificate has expired!</string>
-<string name="ssl_expire_in">Your certificate will expire in %d days!</string>
+<string name="ssl_import_activity">SSL сертификат за въвеждане</string>
+<string name="ssl_import_password">Моля въведете паролата за сертификата:</string>
+<string name="ssl_no_keyfile">Не е намерен сертификат за %s! Използвайки passcode оторизацият</string>
+<string name="ssl_import_ok">Въведен сертификат за %s.</string>
+<string name="ssl_import_error">Грешка при въвеждането на сертификат: %s!</string>
+<string name="ssl_expired">Вашият сертификат е изтекъл!</string>
+<string name="ssl_expire_in">Вашият сертификат ще изтече до %d дни!</string>
 
 <!-- (USB) Serial TNC settings -->
-<string name="p_serial_baudrate">Baud Rate</string>
-<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<string name="p_serial_baudrate">Скорост</string>
+<string name="p_serial_baudrate_summary">Скорот за предаване на данни</string>
 <!-- (USB) Serial Errors -->
-<string name="p_serial_unsupported">Unsupported serial port!</string>
-<string name="p_serial_noperm">No permission for USB device!</string>
-<string name="p_serial_notfound">No USB device found!</string>
+<string name="p_serial_unsupported">Серийният порт не се поддържа</string>
+<string name="p_serial_noperm">Няма достъп до USB устройството!</string>
+<string name="p_serial_notfound">Не е намерено USB устройство!</string>
 </resources>

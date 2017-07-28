@@ -106,6 +106,8 @@
 <string name="show_hub">Veddi i Noddi de Interconnessiun</string>
 <string name="show_map">Veddi a Cartinn-a</string>
 <string name="show_log">Veddi u registru</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Cassa u registru</string>
 <string name="quit">Lassa u programma</string>
 <string name="preferences">Preferié</string>

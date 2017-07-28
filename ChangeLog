@@ -1,3 +1,12 @@
+1.4.0:
+* new APRS symbols, with chooser dialog
+* USB serial support
+* Export Log support
+* Different TNC protocols (KISS, TNC-2, "monitor") via USB, serial and TCP/IP
+* TNC connection monitoring
+* Kenwood: GPS control settings
+* Various bug fixes
+
 1.3.0:
 * Modernized User Interface
 * Fixed AFSK operation resumption

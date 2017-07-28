@@ -102,6 +102,8 @@
 <string name="show_hub">Näytä Läheiset</string>
 <string name="show_map">Näytä Kartta</string>
 <string name="show_log">Näytä loki</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Tyhjennä loki</string>
 <string name="quit">Poistu</string>
 <string name="preferences">Asetukset</string>

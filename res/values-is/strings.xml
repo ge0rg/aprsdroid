@@ -123,6 +123,8 @@
 <string name="show_hub">Sýna miðjur</string>
 <string name="show_map">Sýna kort</string>
 <string name="show_log">Sýna sögu</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Hreinsa sögu</string>
 <string name="quit">Hætta</string>
 <string name="preferences">Valmöguleikar</string>

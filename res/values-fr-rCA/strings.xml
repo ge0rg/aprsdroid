@@ -106,6 +106,8 @@
 <string name="show_hub">Afficher Réseau</string>
 <string name="show_map">Montrer la carte</string>
 <string name="show_log">Afficher le Journal</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Effacer le journal</string>
 <string name="quit">Quitter</string>
 <string name="preferences">Préférences</string>

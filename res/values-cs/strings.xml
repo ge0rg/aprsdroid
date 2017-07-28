@@ -102,6 +102,8 @@
 <string name="show_hub">Zobrazit seznam stanic</string>
 <string name="show_map">Zobrazit mapu</string>
 <string name="show_log">Zobrazit log</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Smazat log</string>
 <string name="quit">Ukončit</string>
 <string name="preferences">Možnosti</string>

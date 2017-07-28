@@ -5,7 +5,7 @@
 <string name="app_prefs">Προτιμήσεις APRSdroid</string>
 <string name="app_map">Χάρτης APRSdroid</string>
 <string name="app_hub">Κόμβος APRSdroid</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">Ημερολόγιο του APRSdroid</string>
 <string name="app_sta">Πληροφορίες Σταθμού</string>
 <string name="app_messages">Μηνύματα</string>
 <string name="app_messages_clear">Διαγραφή Μηνυμάτων</string>
@@ -14,7 +14,7 @@
 <string name="wrongpasscode">Ο κωδικός πρόσβασης σας δεν αντιστοιχεί στο διακριτικό κλήσης σας!</string>
 <string name="anon_warning">Χωρίς κωδικό πρόσβασης, οι αναφορές σας δεν θα μεταδοθούν!</string>
 <string name="mininterval">Ελάχιστος χρόνος ενημέρωσης είναι 1 λεπτό!</string>
-<string name="singlelog">Send Position</string>
+<string name="singlelog">Αποστολή θέσης</string>
 <string name="startlog">Έναρξη Παρακολούθησης</string>
 <string name="stoplog">Διακοπή Παρακολούθησης</string>
 
@@ -23,7 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Τελευταία Αναφορά</string>
 <string name="map_track_call">Παρακολούθηση %s</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
+<string name="map_track_unknown">Θέση για % άγνωστη</string>
 <string name="map_select">Επιλέξτε σταθμό</string>
 
 <string name="map_loading">Φόρτωση…</string>
@@ -32,7 +32,7 @@
 <string name="sta_ssids">SSIDs Σταθμού</string>
 <string name="sta_history">Ιστορικό Σταθμού</string>
 <string name="sta_map">Χάρτης</string>
-<string name="sta_extmap">External Map</string>
+<string name="sta_extmap">Εξωτερικός χάρτης</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -106,6 +106,8 @@
 <string name="show_hub">Εμφάνιση Κόμβου</string>
 <string name="show_map">Εμφάνιση Χάρτη</string>
 <string name="show_log">Εμφάνιση αρχείου Καταγραφής</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Καθαρισμός αρχείου Καταγραφής</string>
 <string name="quit">Έξοδος</string>
 <string name="preferences">Προτιμήσεις</string>
@@ -146,32 +148,32 @@
 <string name="p_symbol">Σύμβολο APRS</string>
 <string name="p_symbol_summary">Το εικονίδιό σας για εμφάνιση στο χάρτη</string>
 <string name="p_symbol_overlay">Overlay:</string>
-<string name="p_symbol_result">Result:</string>
-<string name="p_frequency">Voice frequency</string>
-<string name="p_frequency_summary">Your voice frequency [MHz]</string>
+<string name="p_symbol_result">Αποτέλεσμα:</string>
+<string name="p_frequency">Συχνότητα φωνής</string>
+<string name="p_frequency_summary">Συχνότητα φωνής σε MHZ</string>
 <string name="p_status">Πεδίο περιγραφής</string>
 <string name="p_status_summary">Το κείμενο μετά τις συντεταγμένες σας</string>
 <string name="p_status_entry">Πληκτρολογήστε το σχόλιο του beacon σας</string>
 <string name="p__connection">Σύνδεση APRS</string>
 <string name="p_conntype">Πρωτόκολλο Σύνδεσης</string>
 <string name="p_conntype_entry">Επιλέξτε το πρωτόκολλο σύνδεσης</string>
-<string name="p_link">Connection Type</string>
-<string name="p_link_entry">Choose the link type</string>
+<string name="p_link">Τύπος σύνδεσης</string>
+<string name="p_link_entry">Διαλέξτε τύπο ζεύξης</string>
 <string name="p_connsetup">Προτιμήσεις Σύνδεσης</string>
 <string name="p_connsetup_summary">Ρυθμίσεις Σύνδεσης</string>
 <string name="p_connlog">Σύνδεση Καταγραφής</string>
 <string name="p_connlog_summary">Λεπτομερής κατάσταση εξόδου στο Μητρώο</string>
 <!-- array of connection types -->
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
-<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_afsk">Ακουστική συχνότητα (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
 <string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
-<string name="p_conn_kwd_info">Kenwood setup help</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_info">Βοήθεια ρύθμισης για Kenwood</string>
+<string name="p_conn_kwd_gps">Χρησιμοποιήστε το GPS του Android</string>
+<string name="p_conn_kwd_gps_summary">Προωθήστε προτάσεις NMEA στον ασύρματο</string>
+<string name="p_conn_kwd_gps_debug">Δείξτε το GPS στο ημερολόγιο</string>
+<string name="p_conn_kwd_gps_debug_summary">Δείξτε ακατέργαστα δεδομένα NMEA στο APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">Σύνδεση TCP</string>
 <string name="p_aprsis_http">HTTP POST (μόνο αποστολή)</string>
@@ -279,8 +281,8 @@
 <string name="p_dgp_ring_summary">Tone για digipeated πακέτα</string>
 
 <string name="got_digipeated">Digipeated από %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Σφάλμα: %s</string>
+<string name="status_linkon">Συνδεδεμένος: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -331,6 +333,7 @@
 
 <string name="translator_credits">Launchpad Contributions:
   Ath. Bouliakoudis https://launchpad.net/~sv2ctv
+  Demetre Valaris https://launchpad.net/~dvalaris
   Efstathios Iosifidis https://launchpad.net/~diamond-gr
   Ioannis K https://launchpad.net/~kioan20</string>
 
@@ -345,7 +348,7 @@
 <string name="p_bt_channel_entry">Πληκτρολογήστε το κανάλι (πιο συχνά: "1"; άδειο για SPP)</string>
 
 <string name="p_tnc_init">TNC init σειρά</string>
-<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_summary">Εντολές εκκίνησης για TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
 <string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
 
 <string name="p_tnc_delay">TNC init καθυστέρηση</string>
@@ -358,7 +361,7 @@
 <string name="bt_error_unsupported">Το Bluetooth δεν υποστηρίζεται!</string>
 <string name="bt_error_disabled">Παρακαλούμε ενεργοποιήστε το Bluetooth!</string>
 <string name="bt_error_no_tnc">Παρακαλούμε διαμορφώστε το TNC Bluetooth!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Δεν είναι δυνατή η σύνδεση με τον %s! Παρακαλώ ανάψτε τη συσκευή και κλείστε τις υπόλοιπες συνδέσεις Bluetooth.</string>
 
 <string name="afsk_info_sco_req">Αίτηση SCO σύνδεσης Bluetooth...</string>
 <string name="afsk_info_sco_est">SCO σύνδεση Bluetooth επιβεβαιώθηκε.</string>
@@ -370,7 +373,7 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">Εισαγωγή πιστοποιητικού SSL</string>
 <string name="ssl_import_password">Παρακαλώ εισάγετε τον κωδικό πρόσβασης του πιστοποιητικού εισαγωγής:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
+<string name="ssl_no_keyfile">Δεν υπάρχει πιστοποιητικό για τον %s! Θα χρησιμοποιηθεί  πιστοποίηση με τον κωδικό APRS.</string>
 <string name="ssl_import_ok">Εισαγόμενα πιστοποιητικού για %s.</string>
 <string name="ssl_import_error">Σφάλμα πιστοποιητικού εισαγωγής: %s!</string>
 <string name="ssl_expired">Το πιστοποιητικό σας έχει λήξει!</string>

@@ -102,6 +102,8 @@
 <string name="show_hub">Mostrar Hub</string>
 <string name="show_map">Mostrar mapa</string>
 <string name="show_log">Mostrar registro</string>
+<string name="export_log">Exportar logs</string>
+<string name="export_empty">Nada para exportar</string>
 <string name="clear_log">Limpiar el registro</string>
 <string name="quit">Salir</string>
 <string name="preferences">Preferencias</string>

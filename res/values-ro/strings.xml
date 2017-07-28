@@ -122,6 +122,8 @@
 <string name="show_hub">Show Hub</string>
 <string name="show_map">Arata Harta</string>
 <string name="show_log">Arata Jurnal</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Sterge Jurnal</string>
 <string name="quit">Închide</string>
 <string name="preferences">Configurare</string>

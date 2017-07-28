@@ -102,6 +102,8 @@
 <string name="show_hub">Mostrar estações à volta da minha.</string>
 <string name="show_map">Mostrar mapa</string>
 <string name="show_log">Mostrar registo</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Limpar o Registo</string>
 <string name="quit">Sair.</string>
 <string name="preferences">Preferências</string>

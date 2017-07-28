@@ -106,6 +106,8 @@
 <string name="show_hub">Visa hubb</string>
 <string name="show_map">Visa karta</string>
 <string name="show_log">Visa logg</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Rensa logg</string>
 <string name="quit">Avsluta</string>
 <string name="preferences">Egenskaper</string>

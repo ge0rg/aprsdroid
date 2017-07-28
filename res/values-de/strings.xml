@@ -28,7 +28,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="map_track_unknown">Position für %s unbekannt!</string>
 <string name="map_select">Station wählen</string>
 
-<string name="map_loading">Ladevorgang …</string>
+<string name="map_loading">Wird geladen…</string>
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Stations-SSIDs</string>
@@ -39,7 +39,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Nachricht senden an …</string>
+<string name="msg_send_new">Nachricht senden an…</string>
 <string name="msg_message_text">Nachrichtentext</string>
 <string name="msg_empty_list">Keine gespeicherten Gespräche.</string>
 <string name="msg_stored_offline">Die Nachricht wird versendet, wenn Sie das Tracking starten.</string>
@@ -63,7 +63,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="post_incmg">empfangen</string>
 <string name="post_info"/>
 <string name="post_connecting">Verbinde mit %1$s:%2$d…</string>
-<string name="post_reconnect">Verbindung getrennt. Neue Verbindung in %d Sekunden …</string>
+<string name="post_reconnect">Verbindung getrennt. Neue Verbindung in %d Sekunden…</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Willkommen zu APRSdroid!</string>
@@ -110,6 +110,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="show_hub">Hub anzeigen</string>
 <string name="show_map">Karte anzeigen</string>
 <string name="show_log">Protokoll anzeigen</string>
+<string name="export_log">Log exportieren</string>
+<string name="export_empty">Nichts zu exportieren</string>
 <string name="clear_log">Protokoll leeren</string>
 <string name="quit">Beenden</string>
 <string name="preferences">Einstellungen</string>
@@ -357,7 +359,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_tnc_delay_entry">TNC Init-Delay [ms]</string>
 
 <string name="p_bt_prefs">Bluetooth-Einstellungen</string>
-<string name="p_bt_prefs_summary">Bluetooth aktivieren, Geräte paaren …</string>
+<string name="p_bt_prefs_summary">Bluetooth aktivieren, Geräte paaren…</string>
 
 <string name="bt_error_unsupported">Bluetooth nicht unterstützt!</string>
 <string name="bt_error_disabled">Bitte Bluetooth einschalten!</string>

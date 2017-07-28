@@ -106,6 +106,8 @@
 <string name="show_hub">Vis Hub</string>
 <string name="show_map">Vis kort</string>
 <string name="show_log">Vis Log</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">Ryd log</string>
 <string name="quit">Afslut</string>
 <string name="preferences">Indstillinger</string>

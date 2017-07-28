@@ -71,7 +71,7 @@ class StationActivity extends StationHelper(R.string.app_sta)
 	}
 
 	def load_cursor(i : Intent) = {
-		val c = storage.getStaPosts(targetcall, "100")
+		val c = storage.getStaPosts(targetcall, "300")
 		c.getCount()
 		c
 	}

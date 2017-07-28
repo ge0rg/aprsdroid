@@ -6,11 +6,15 @@ import _root_.android.app.AlertDialog
 import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
 import _root_.android.content.res.Configuration
 import _root_.android.net.Uri
-import _root_.android.os.Build
+import _root_.android.os.{Build, Environment}
 import _root_.android.util.Log
 import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View, WindowManager}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 import _root_.android.widget.{EditText, Toast}
+
+import java.io.{PrintWriter, File}
+import java.text.SimpleDateFormat
+import java.util.Date
 
 trait UIHelper extends Activity
 		with LoadingIndicator
@@ -266,6 +270,10 @@ trait UIHelper extends Activity
 		case R.id.preferences =>
 			startActivity(new Intent(this, classOf[PrefsAct]));
 			true
+		case R.id.export =>
+			onStartLoading()
+			new LogExporter(StorageDatabase.open(this), null).execute()
+			true
 		case R.id.clear =>
 			onStartLoading()
 			new StorageCleaner(StorageDatabase.open(this)).execute()
@@ -352,6 +360,7 @@ trait UIHelper extends Activity
 	}
 
 	def callsignAction(id : Int, targetcall : String) : Boolean = {
+		val basecall = targetcall.split("[- ]+")(0)
 		id match {
 		case R.id.details =>
 			openDetails(targetcall)
@@ -380,9 +389,12 @@ trait UIHelper extends Activity
 				Uri.parse(url)))
 			true
 		case R.id.qrzcom =>
-			val url = "http://qrz.com/db/%s".format(targetcall.split("[- ]+")(0))
+			val url = "http://qrz.com/db/%s".format(basecall)
 			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
+			true
+		case R.id.sta_export =>
+			new LogExporter(StorageDatabase.open(this), basecall).execute()
 			true
 		case _ =>
 			false
@@ -412,6 +424,49 @@ trait UIHelper extends Activity
 		override def onPostExecute(x : Unit) {
 			Log.d("MessageCleaner", "broadcasting...")
 			sendBroadcast(AprsService.MSG_PRIV_INTENT)
+		}
+	}
+	class LogExporter(storage : StorageDatabase, call : String) extends MyAsyncTask[Unit, String] {
+		val filename = "aprsdroid-%s.log".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
+		val file = new File(Environment.getExternalStorageDirectory(), filename)
+
+		override def doInBackground1(params : Array[String]) : String = {
+			import StorageDatabase.Post._
+			Log.d("LogExporter", "saving " + filename + " for callsign " + call)
+			val c = storage.getExportPosts(call)
+			if (c.getCount() == 0) {
+				return getString(R.string.export_empty)
+			}
+			try {
+				val fo = new PrintWriter(file)
+				while (c.moveToNext()) {
+					val ts = c.getString(COLUMN_TSS)
+					val tpe = c.getInt(COLUMN_TYPE)
+					val packet = c.getString(COLUMN_MESSAGE)
+					fo.print(ts)
+					fo.print("\t")
+					fo.print(if (tpe == TYPE_INCMG) "RX" else "TX")
+					fo.print("\t")
+					fo.println(packet)
+				}
+				fo.close()
+				return null
+			} catch {
+			case e : Exception => return e.getMessage()
+			} finally {
+				c.close()
+			}
+		}
+		override def onPostExecute(error : String) {
+			Log.d("LogExporter", "saving " + filename + " done: " + error)
+			onStopLoading()
+			if (error != null)
+				Toast.makeText(UIHelper.this, error, Toast.LENGTH_SHORT).show()
+			else startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND)
+					.setType("text/plain")
+					.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
+					.putExtra(Intent.EXTRA_SUBJECT, filename),
+				file.toString()))
 		}
 	}
 }

@@ -106,6 +106,8 @@
 <string name="show_hub">显示列表中心</string>
 <string name="show_map">显示地图</string>
 <string name="show_log">显示日志</string>
+<string name="export_log">Export Log</string>
+<string name="export_empty">Nothing to export</string>
 <string name="clear_log">清除日志</string>
 <string name="quit">退出</string>
 <string name="preferences">偏好设置</string>

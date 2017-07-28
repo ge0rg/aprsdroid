@@ -5,7 +5,7 @@
 <string name="app_prefs">APRSdroid Tercihler</string>
 <string name="app_map">APRSdroid Harita</string>
 <string name="app_hub">APRSdroid Ana Sayfa</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">APRSdroid Günlüğü</string>
 <string name="app_sta">İstasyon Bilgisi</string>
 <string name="app_messages">Mesajlar</string>
 <string name="app_messages_clear">İletileri Temizle</string>
@@ -102,6 +102,8 @@
 <string name="show_hub">Ana Ekranı Göster</string>
 <string name="show_map">Haritayı Göster</string>
 <string name="show_log">Günlüğü Göster</string>
+<string name="export_log">Günlüğü Dışa Aktar</string>
+<string name="export_empty">Dışarı alınacak hiçbir şey yok.</string>
 <string name="clear_log">Günlüğü Temizle</string>
 <string name="quit">Çıkış</string>
 <string name="preferences">Tercihler</string>
@@ -161,13 +163,13 @@
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audio (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_tnc2">TNC (düz metin TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
 <string name="p_conn_kwd_info">Kenwood kurulum yardımı</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_gps">Android GPS kullanın</string>
+<string name="p_conn_kwd_gps_summary">NMEA cümlelerini radyoya ilet</string>
+<string name="p_conn_kwd_gps_debug">GPS\'i günkükte göster</string>
+<string name="p_conn_kwd_gps_debug_summary">APRSdroid\'de ham NMEA göster</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">TCP bağlantısı</string>
 <string name="p_aprsis_http">HTTP POST (sadece gönderme)</string>
@@ -275,8 +277,8 @@
 <string name="p_dgp_ring_summary">Gönderilmiş paketler için ton</string>
 
 <string name="got_digipeated">Digipeater tarafından %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Hata: %s</string>
+<string name="status_linkon">Bağlandı: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -331,6 +333,7 @@
   Kudret EMRE https://launchpad.net/~kudretemre
   Ozgur Karatas https://launchpad.net/~okaratas
   Recep Aydin Gulec https://launchpad.net/~ragulec
+  Uygar Demir Koç https://launchpad.net/~uygardemirkoc
   zeugma https://launchpad.net/~sunder67</string>
 
 <!-- Bluetooth TNC settings -->
@@ -357,7 +360,7 @@
 <string name="bt_error_unsupported">Bluetooth desteklenmiyor!</string>
 <string name="bt_error_disabled">Lütfen Bluetooth\'u etkinleştirin!</string>
 <string name="bt_error_no_tnc">Lütfen bir Bluetooth TNC yapılandırınız!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">%s\'ye bağlanılamadı! Lütfen cihazı açın ve diğer Bluetooth bağlantılarını kapatın.</string>
 
 <string name="afsk_info_sco_req">Bluetooth SCO linki sağlanıyor</string>
 <string name="afsk_info_sco_est">Bluettoh SCo linki sağlandı</string>
