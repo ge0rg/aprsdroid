@@ -68,7 +68,7 @@ class PrefsAct extends PreferenceActivity {
 			finish()
 			startActivity(getIntent())
 		} else {
-			android.widget.Toast.makeText(this, getString(error_id, file),
+			android.widget.Toast.makeText(this, getString(error_id, data.getDataString()),
 				android.widget.Toast.LENGTH_SHORT).show()
 		}
 	}
