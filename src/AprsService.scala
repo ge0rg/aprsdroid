@@ -102,6 +102,8 @@ class AprsService extends Service {
 
 	def handleStart(i : Intent) {
 		if (i.getAction() == SERVICE_STOP) {
+                        // explicitly disabled, remember this
+                        prefs.setBoolean("service_running", false)
 			if (running)
 				stopSelf()
 			return
@@ -179,6 +181,10 @@ class AprsService extends Service {
 		sendBroadcast(new Intent(SERVICE_STARTED)
 			.putExtra(API_VERSION, API_VERSION_CODE)
 			.putExtra(CALLSIGN, callssid))
+
+		// startup completed, remember state
+		if (!singleShot)
+			prefs.setBoolean("service_running", true)
 	}
 
 	override def onBind(i : Intent) : IBinder = null
