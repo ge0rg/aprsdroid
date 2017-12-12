@@ -92,6 +92,26 @@
 		<category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 	</activity>
+	<activity android:name=".ProfileImportActivity" android:label="@string/profile_import_activity">
+	    <intent-filter>
+		<action android:name="android.intent.action.VIEW" />
+		<category android:name="android.intent.category.DEFAULT" />
+		<category android:name="android.intent.category.BROWSABLE" />
+		<data android:scheme="file"
+			android:mimeType="*/*"
+			android:host="*"
+			android:pathPattern=".*\\.aprs" />
+	    </intent-filter>
+	    <intent-filter>
+		<action android:name="android.intent.action.VIEW" />
+		<category android:name="android.intent.category.DEFAULT" />
+		<category android:name="android.intent.category.BROWSABLE" />
+		<data android:scheme="content"
+			android:mimeType="*/*"
+			android:host="*"
+			android:pathPattern=".*\\.aprs" />
+	    </intent-filter>
+	</activity>
 	<activity android:name=".KeyfileImportActivity" android:label="@string/ssl_import_activity">
 	    <intent-filter>
 		<action android:name="android.intent.action.VIEW" />
