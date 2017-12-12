@@ -35,6 +35,9 @@ class PrefsWrapper(val context : Context) {
 	def toggleBoolean(name : String, default : Boolean) = {
 		val new_val = !prefs.getBoolean(name, default)
 		android.util.Log.d("toggleBoolean", name + "=" + new_val)
+                setBoolean(name, new_val)
+        }
+	def setBoolean(name : String, new_val : Boolean) = {
 		prefs.edit().putBoolean(name, new_val).commit()
 		new_val
 	}

@@ -73,7 +73,7 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 			if (!is_running) {
 				startService(AprsService.intent(this, AprsService.SERVICE))
 			} else {
-				stopService(AprsService.intent(this, AprsService.SERVICE))
+				stopAprsService()
 			}
 			setupButtons(!is_running)
 		}

@@ -157,23 +157,23 @@
 <string name="p__connection">APRS подключение</string>
 <string name="p_conntype">Протокол подключения</string>
 <string name="p_conntype_entry">Выбор протокола подключючения</string>
-<string name="p_link">Connection Type</string>
-<string name="p_link_entry">Choose the link type</string>
+<string name="p_link">Тип соединения</string>
+<string name="p_link_entry">Выберите тип связи</string>
 <string name="p_connsetup">Параметры подключения</string>
 <string name="p_connsetup_summary">Конфигурация подключения</string>
 <string name="p_connlog">Протоколирование соединения</string>
 <string name="p_connlog_summary">Подробная информация в журнале</string>
 <!-- array of connection types -->
-<string name="p_conn_aprsis">Internet (APRS-IS)</string>
-<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_aprsis">Интернет (APRS-IS)</string>
+<string name="p_conn_afsk">Аудио (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
-<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
-<string name="p_conn_kwd_info">Kenwood setup help</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_tnc2">TNC (текстовый TNC2)</string>
+<string name="p_conn_kwd">Kenwood (путевые точки NMEA)</string>
+<string name="p_conn_kwd_info">Помощь настройки Kenwood</string>
+<string name="p_conn_kwd_gps">Использовать GPS Android-устройства</string>
+<string name="p_conn_kwd_gps_summary">Направить NMEA данные по радиоканалу</string>
+<string name="p_conn_kwd_gps_debug">Отображать GPS в журнале</string>
+<string name="p_conn_kwd_gps_debug_summary">Показывать данные NMEA в APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">TCP-соединение</string>
 <string name="p_aprsis_http">HTTP POST (только отправка)</string>
@@ -350,8 +350,8 @@
 <string name="p_bt_channel_entry">Номер канала (обычно: "1";для SPP оставьте пустое)</string>
 
 <string name="p_tnc_init">строка команд TNC</string>
-<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
-<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
+<string name="p_tnc_init_summary">Команды инициализации TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">Строка URL-кодирования (Esc=%1B, \"%\"=%25), задержка после каждой строки:</string>
 
 <string name="p_tnc_delay">Задержка запуска TNC</string>
 <string name="p_tnc_delay_summary">Время ожидания после каждой строки</string>
@@ -363,7 +363,7 @@
 <string name="bt_error_unsupported">Bluetooth не поддерживается!</string>
 <string name="bt_error_disabled">Пожалуйста включите Bluetooth!</string>
 <string name="bt_error_no_tnc">Пожалуйста настройте Bluetooth TNC!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Не могу подключиться к %s! Пожалуйста, включите устройство и закройте прочие соединения по Bluetooth.</string>
 
 <string name="afsk_info_sco_req">Запрос соединения bluetooth</string>
 <string name="afsk_info_sco_est">Соединение Bluetooth установлено.</string>
@@ -375,17 +375,17 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">Импорт SSL-сертификата</string>
 <string name="ssl_import_password">Введите пароль сертификата для импорта</string>
-<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
+<string name="ssl_no_keyfile">Сертификат для %s отсутствует! Используется авторизация по APRS-паролю.</string>
 <string name="ssl_import_ok">Сертификат для %s импортирован.</string>
 <string name="ssl_import_error">Ошибка импорта сетификата: %s!</string>
 <string name="ssl_expired">Ваш сертификат просрочен!</string>
 <string name="ssl_expire_in">Ваш сертификат заканчивается через %d дней!</string>
 
 <!-- (USB) Serial TNC settings -->
-<string name="p_serial_baudrate">Baud Rate</string>
-<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<string name="p_serial_baudrate">Скорость передачи</string>
+<string name="p_serial_baudrate_summary">Передача данных по последовательному порту</string>
 <!-- (USB) Serial Errors -->
-<string name="p_serial_unsupported">Unsupported serial port!</string>
-<string name="p_serial_noperm">No permission for USB device!</string>
-<string name="p_serial_notfound">No USB device found!</string>
+<string name="p_serial_unsupported">Неподдерживаемый последовательный порт!</string>
+<string name="p_serial_noperm">Нет доступа к USB устройсту!</string>
+<string name="p_serial_notfound">Не найдено USB устройство!</string>
 </resources>

@@ -63,7 +63,12 @@ trait UIHelper extends Activity
 		}
 	}
 
-
+	// manual stop: remember shutdown for next reboot
+	def stopAprsService() {
+		// explicitly disabled, remember this
+		prefs.setBoolean("service_running", false)
+		stopService(AprsService.intent(this, AprsService.SERVICE))
+	}
 
 	def passcodeConfigRequired(call : String, pass : String) : Boolean = {
 		import AprsBackend._
@@ -303,7 +308,7 @@ trait UIHelper extends Activity
 			if (!is_running) {
 				startService(AprsService.intent(this, AprsService.SERVICE))
 			} else {
-				stopService(AprsService.intent(this, AprsService.SERVICE))
+				stopAprsService()
 			}
 			true
 		case R.id.singlebtn =>
