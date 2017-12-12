@@ -368,6 +368,11 @@
 <string name="ssl_expired">Your certificate has expired!</string>
 <string name="ssl_expire_in">Your certificate will expire in %d days!</string>
 
+<!-- Config import -->
+<string name="profile_import_activity">Profile import</string>
+<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_error">Error importing profile: %s!</string>
+
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Baud Rate</string>
 <string name="p_serial_baudrate_summary">Data rate of the serial port</string>

@@ -70,11 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Σχετικά με APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό; Μπορείτε να το αναδιανέμετε ή/και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή δημοσιεύεται από το Ίδρυμα Ελεύθερου Λογισμικού; είτε της έκδοσης 2 της Άδειας, είτε (κατ\'επιλογή σας) οποιαδήποτε μεταγενέστερη έκδοση. \n\n Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ; χωρίς καν την υπονοούμενη εγγύηση της ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε την GNU Γενική Άδεια Δημόσιας Χρήσης για περισσότερες λεπτομέρειες. \n\n Θα πρέπει να έχετε λάβει ένα αντίγραφο της GNU General Public License μαζί με αυτό το πρόγραμμα; αν όχι, γράψτε στο Ίδρυμα Ελεύθερου Λογισμικού, Inc, 51 Franklin Street, πέμπτο όροφο, Boston, MA 02110-1301, ΗΠΑ. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Ευχαριστίες σε:</string>
 <string name="ad_thanks_0">Η YL μου ♥♥♥</string>
@@ -106,8 +102,8 @@
 <string name="show_hub">Εμφάνιση Κόμβου</string>
 <string name="show_map">Εμφάνιση Χάρτη</string>
 <string name="show_log">Εμφάνιση αρχείου Καταγραφής</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Εξαγωγή αρχείου καταγραφής</string>
+<string name="export_empty">Τίποτα για εξαγωγή</string>
 <string name="clear_log">Καθαρισμός αρχείου Καταγραφής</string>
 <string name="quit">Έξοδος</string>
 <string name="preferences">Προτιμήσεις</string>
@@ -147,7 +143,7 @@
 </string-array>
 <string name="p_symbol">Σύμβολο APRS</string>
 <string name="p_symbol_summary">Το εικονίδιό σας για εμφάνιση στο χάρτη</string>
-<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_overlay">Επικάλυμμα:</string>
 <string name="p_symbol_result">Αποτέλεσμα:</string>
 <string name="p_frequency">Συχνότητα φωνής</string>
 <string name="p_frequency_summary">Συχνότητα φωνής σε MHZ</string>
@@ -339,7 +335,7 @@
 
 <string name="p_tnc_init">TNC init σειρά</string>
 <string name="p_tnc_init_summary">Εντολές εκκίνησης για TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
-<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
+<string name="p_tnc_init_msg" formatted="false">Κωδικοποιημένη συμβολοσειρά URL (Esc =% 1B, \ "% \" =% 25), καθυστέρηση μετά από κάθε γραμμή:</string>
 
 <string name="p_tnc_delay">TNC init καθυστέρηση</string>
 <string name="p_tnc_delay_summary">Χρόνος αναμονής μετά από κάθε γραμμή</string>
@@ -369,11 +365,16 @@
 <string name="ssl_expired">Το πιστοποιητικό σας έχει λήξει!</string>
 <string name="ssl_expire_in">Το πιστοποιητικό σας θα λήξει σε %d ημέρες:</string>
 
+<!-- Config import -->
+<string name="profile_import_activity">Profile import</string>
+<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_error">Error importing profile: %s!</string>
+
 <!-- (USB) Serial TNC settings -->
-<string name="p_serial_baudrate">Baud Rate</string>
-<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<string name="p_serial_baudrate">Ρυθμός μετάδοσης</string>
+<string name="p_serial_baudrate_summary">Ποσοστό δεδομένων της σειριακής θύρας</string>
 <!-- (USB) Serial Errors -->
-<string name="p_serial_unsupported">Unsupported serial port!</string>
-<string name="p_serial_noperm">No permission for USB device!</string>
-<string name="p_serial_notfound">No USB device found!</string>
+<string name="p_serial_unsupported">Μη υποστηριζόμενη σειριακή θύρα!</string>
+<string name="p_serial_noperm">Δεν υπάρχει άδεια για συσκευή USB!</string>
+<string name="p_serial_notfound">Δεν βρέθηκε καμία συσκευή USB!</string>
 </resources>

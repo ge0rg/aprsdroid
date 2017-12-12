@@ -363,6 +363,11 @@
 <string name="ssl_expired">証明書の有効期限が終了しています!</string>
 <string name="ssl_expire_in">あなたの証明書はあと %d日で終了します!</string>
 
+<!-- Config import -->
+<string name="profile_import_activity">Profile import</string>
+<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_error">Error importing profile: %s!</string>
+
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">機器通信速度</string>
 <string name="p_serial_baudrate_summary">シリアルポートの転送速度</string>
