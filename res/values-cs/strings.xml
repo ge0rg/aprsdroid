@@ -5,14 +5,14 @@
 <string name="app_prefs">Možnosti APRSdroid</string>
 <string name="app_map">Mapa APRSdroid</string>
 <string name="app_hub">APRSdroid: Seznam stanic</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">Log APRSdroid</string>
 <string name="app_sta">Informace o stanici</string>
 <string name="app_messages">Zprávy</string>
 <string name="app_messages_clear">Vymazat zprávy</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Nejdříve musíte nastavit svoji volací značku a APRS-IS kód.</string>
 <string name="wrongpasscode">Tvůj APRS-IS kód neodpovídá tvé volací značce.</string>
-<string name="anon_warning">Bez APRS-IS kódu se tvé oznámení polohy nebudou odesílat.</string>
+<string name="anon_warning">Bez APRS-IS kódu se nebude odesílat poloha.</string>
 <string name="mininterval">Minimalní čas obnovy polohy je 1 minuta!</string>
 <string name="singlelog">Odeslat pozici</string>
 <string name="startlog">Spustit sledování</string>
@@ -102,8 +102,8 @@
 <string name="show_hub">Zobrazit seznam stanic</string>
 <string name="show_map">Zobrazit mapu</string>
 <string name="show_log">Zobrazit log</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Log exportu</string>
+<string name="export_empty">Nic pro export</string>
 <string name="clear_log">Smazat log</string>
 <string name="quit">Ukončit</string>
 <string name="preferences">Možnosti</string>
@@ -163,13 +163,13 @@
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audio (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS mód)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_tnc2">TNC (textový TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
 <string name="p_conn_kwd_info">Nápověda nastavení Kenwood</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_gps">Použít GPS androidu</string>
+<string name="p_conn_kwd_gps_summary">Posílat NMEA do radiostanice</string>
+<string name="p_conn_kwd_gps_debug">Zobrazit GPS v logu</string>
+<string name="p_conn_kwd_gps_debug_summary">Zobrazit zdrojové NMEA v APRSdroidu</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">Připojení TCP</string>
 <string name="p_aprsis_http">HTTP POST (pouze odesílání)</string>
@@ -267,18 +267,18 @@
 <string name="p_msg_vibr">Vibrace</string>
 <string name="p_msg_vibr_on">Upozornění vibracemi zapnuté</string>
 <string name="p_msg_vibr_off">Upozornění vibracemi vypnuté</string>
-<string name="p_msg_ring">Vyzvánění</string>
+<string name="p_msg_ring">Vyzváněcí tón</string>
 <string name="p_msg_ring_summary">Zvuk pro příchozí zprávy</string>
 <string name="p_pos">Oznámení vlastní polohy</string>
-<string name="p_pos_ring">Vyzvánění</string>
+<string name="p_pos_ring">Vyzváněcí tón</string>
 <string name="p_pos_ring_summary">Zvuk pro odeslané oznámení polohy</string>
 <string name="p_dgp">Vlastní digipeatované pakety</string>
-<string name="p_dgp_ring">Vyzvánění</string>
+<string name="p_dgp_ring">Vyzváněcí tón</string>
 <string name="p_dgp_ring_summary">Tón pro digipeatované pakety</string>
 
 <string name="got_digipeated">Digipeatováno %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Chyba: %s</string>
+<string name="status_linkon">Připojeno: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi cesta</string>
@@ -294,8 +294,8 @@
 <string name="p_afsk_btsco_summary">Použít Bluetooth headset (SCO) pro AFSK</string>
 <string name="p_afsk_output">Zvukový výstup</string>
 <string-array name="p_afsk_out_e">
-	<item>Telefonní hovor</item>
-	<item>Vyzvánění</item>
+	<item>Hlasové volání</item>
+	<item>Vyzváněcí tón</item>
 	<item>Hudba</item>
 	<item>Budík</item>
 </string-array>
@@ -358,7 +358,7 @@
 <string name="bt_error_unsupported">Bluetooth není podporován!</string>
 <string name="bt_error_disabled">Zapni prosím Bluetooth!</string>
 <string name="bt_error_no_tnc">Nastav Bluetooth TNC prosím!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Nelze se připojit k %s! Prosím zapněte zařízení a ukončete jíné bluetooth spojení.</string>
 
 <string name="afsk_info_sco_req">Vyžádávání Bluetooth SCO spojení...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO spojení navázáno.</string>
@@ -375,6 +375,11 @@
 <string name="ssl_import_error">Chyba importování certifikátu: %s!</string>
 <string name="ssl_expired">Tvůj certifikát vypršel!</string>
 <string name="ssl_expire_in">Platnost tvého certifikátu vyprší za %d dní!</string>
+
+<!-- Config import -->
+<string name="profile_import_activity">Profile import</string>
+<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Rychlost v baudech</string>

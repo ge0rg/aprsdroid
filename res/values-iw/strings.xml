@@ -379,6 +379,11 @@
 <string name="ssl_expired">התעודה שלך פקעה!</string>
 <string name="ssl_expire_in">התעודה שלך תפוג בתוך %d ימים!</string>
 
+<!-- Config import -->
+<string name="profile_import_activity">Profile import</string>
+<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_error">Error importing profile: %s!</string>
+
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Baud Rate</string>
 <string name="p_serial_baudrate_summary">Data rate of the serial port</string>

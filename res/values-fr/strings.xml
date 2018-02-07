@@ -5,7 +5,7 @@
 <string name="app_prefs">Préférences d\'APRSdroid</string>
 <string name="app_map">Carte APRSdroid</string>
 <string name="app_hub">Réseau APRSdroid</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">Journal APRSdroid</string>
 <string name="app_sta">Informations de la station</string>
 <string name="app_messages">Messages</string>
 <string name="app_messages_clear">Effacer les messages</string>
@@ -102,8 +102,8 @@
 <string name="show_hub">Afficher le réseau</string>
 <string name="show_map">Afficher la carte</string>
 <string name="show_log">Afficher le journal</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Exporter journal</string>
+<string name="export_empty">Rien à exporter</string>
 <string name="clear_log">Effacer le journal</string>
 <string name="quit">Quitter</string>
 <string name="preferences">Préférences</string>
@@ -163,13 +163,13 @@
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audio (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_tnc2">TNC (texte brut TNC2)</string>
 <string name="p_conn_kwd">Kenwood (Waypoint NMEA)</string>
 <string name="p_conn_kwd_info">Aide à la configuration Kenwood</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_gps">Utilise le GPS Android</string>
+<string name="p_conn_kwd_gps_summary">Transférer les messages NMEA vers la radio</string>
+<string name="p_conn_kwd_gps_debug">Afficher le GPS dans le journal</string>
+<string name="p_conn_kwd_gps_debug_summary">Afficher les messages NMEA brut dans APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">Connexion TCP</string>
 <string name="p_aprsis_http">Post HTTP (envoi seulement)</string>
@@ -277,8 +277,8 @@
 <string name="p_dgp_ring_summary">Sonnerie des paquets retransmis</string>
 
 <string name="got_digipeated">Retransmis par %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Erreur: %s</string>
+<string name="status_linkon">Connecté: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">Chemin du digi APRS</string>
@@ -330,6 +330,7 @@
 <string name="translator_credits">Launchpad Contributions:
   Ath. Bouliakoudis https://launchpad.net/~sv2ctv
   F4EIR https://launchpad.net/~arneir77
+  F4HVD https://launchpad.net/~steflaf
   F5OPV https://launchpad.net/~f5opv
   F8ANZ https://launchpad.net/~matromat
   François Magimel https://launchpad.net/~linkid
@@ -368,7 +369,7 @@
 <string name="bt_error_unsupported">Le Bluetooth n\'est pas pris en charge !</string>
 <string name="bt_error_disabled">Veuillez activer le Bluetooth !</string>
 <string name="bt_error_no_tnc">Veuillez paramétrer un TNC Bluetooth</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Impossible de se connecter à %s! Merci d\'éteindre l\'appareil et de fermer les autres connexions Bluetooth.</string>
 
 <string name="afsk_info_sco_req">Requête d\'un lien bluetooth SCO...</string>
 <string name="afsk_info_sco_est">Lien bluetooth SCO établi.</string>
@@ -385,6 +386,11 @@
 <string name="ssl_import_error">Erreur d\'importation de certificat : %s !</string>
 <string name="ssl_expired">Votre certificat à expiré !</string>
 <string name="ssl_expire_in">Votre certificat va expirer dans %d jours !</string>
+
+<!-- Config import -->
+<string name="profile_import_activity">Profile import</string>
+<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Débit</string>

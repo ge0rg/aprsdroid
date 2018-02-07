@@ -379,6 +379,11 @@
 <string name="ssl_expired">Sertifikaattisi on vanhentunut!</string>
 <string name="ssl_expire_in">Sertifikaattisi vanhenee %d päivän kuluttua!</string>
 
+<!-- Config import -->
+<string name="profile_import_activity">Profile import</string>
+<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_error">Error importing profile: %s!</string>
+
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Nopeus (baud)</string>
 <string name="p_serial_baudrate_summary">Sarjaportin nopeus</string>

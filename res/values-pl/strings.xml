@@ -5,7 +5,7 @@
 <string name="app_prefs">APRSdroid Preferencje</string>
 <string name="app_map">APRSdroid Mapa</string>
 <string name="app_hub">APRSdroid Hub</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">Log APRSdroid</string>
 <string name="app_sta">Informacje o stacji</string>
 <string name="app_messages">Wiadomości</string>
 <string name="app_messages_clear">Usuń wiadomości</string>
@@ -103,8 +103,8 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="show_hub">Pokaż hub</string>
 <string name="show_map">Pokaż mapę</string>
 <string name="show_log">Pokaż dziennik</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Ekspoertuj log</string>
+<string name="export_empty">Brak danych do eksportu</string>
 <string name="clear_log">Wyczyść dziennik</string>
 <string name="quit">Zakończ</string>
 <string name="preferences">Ustawienia</string>
@@ -164,13 +164,13 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audio (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_tnc2">TNC (format tekstowy TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA)</string>
 <string name="p_conn_kwd_info">Ustawienia Kenwood - pomoc</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_gps">Używaj Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Przekazuj dane NMEA na radio</string>
+<string name="p_conn_kwd_gps_debug">Wyświetlaj GPS w logu</string>
+<string name="p_conn_kwd_gps_debug_summary">Pokazuj surower dane NMEA w APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">Połączenie TCP</string>
 <string name="p_aprsis_http">HTTP POST (tylko wysyłanie)</string>
@@ -278,8 +278,8 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_dgp_ring_summary">Dzwonek dla pakietów powtórzonych przez Digi</string>
 
 <string name="got_digipeated">Digi przez %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Błąd: %s</string>
+<string name="status_linkon">Połączono: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">Ścieżka digi APRS</string>
@@ -364,7 +364,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="bt_error_unsupported">Bluetooth nie jest obsługiwany!</string>
 <string name="bt_error_disabled">Proszę uaktywnić Bluetooth!</string>
 <string name="bt_error_no_tnc">Proszę skonfigurować Bluetooth TNC!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Nie można połączyć z %s! Proszę włączyć urządzenie i zamknąć inne połączenia Bluetooth.</string>
 
 <string name="afsk_info_sco_req">Nawiązywanie połączenia Bluetooth SCO...</string>
 <string name="afsk_info_sco_est">Połączenie Bluetooth SCO nawiązane.</string>
@@ -381,6 +381,11 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="ssl_import_error">Błąd podczas importu certyfikatu: %s!</string>
 <string name="ssl_expired">Twój certyfikat wygasł!</string>
 <string name="ssl_expire_in">Twój certyfikat wygaśnie za %d dni!</string>
+
+<!-- Config import -->
+<string name="profile_import_activity">Profile import</string>
+<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Prędkość transmisji (baudrate)</string>

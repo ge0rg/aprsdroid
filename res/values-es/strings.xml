@@ -382,6 +382,11 @@
 <string name="ssl_expired">Su certificado ha expirado!</string>
 <string name="ssl_expire_in">Su certificado expirará en %d días!</string>
 
+<!-- Config import -->
+<string name="profile_import_activity">Profile import</string>
+<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_error">Error importing profile: %s!</string>
+
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">(USB) Configuración TNC en seria</string>
 <string name="p_serial_baudrate_summary">Velocidad del pórtico serie</string>
