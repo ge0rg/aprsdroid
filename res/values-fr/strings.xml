@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">À propos d\'APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Ce programme est un logiciel libre ; vous pouvez le redistribuer et/ou le modifier selon les termes de la Licence Publique Générale GNU publiée par la Free Software Foundation ; soit la version 2 de la Licence, ou (à votre choix) toute version ultérieure. \n\n Ce programme est distribué dans l\'espoir qu\'il sera utile, mais SANS AUCUNE GARANTIE : sans même la garantie implicite de COMMERCIALISATION ou D\'ADAPTATION À UN USAGE PARTICULIER. Voir la Licence Publique Générale GNU pour plus de détails. \n\n Vous devriez avoir reçu un exemplaire de la Licence Publique Générale GNU avec ce programme, sinon, écrivez à la Free Software Foundation, Inc, 51 rue Franklin, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Merci à :</string>
 <string name="ad_thanks_0">Ma femme ♥♥♥</string>
@@ -108,6 +108,8 @@
 <string name="quit">Quitter</string>
 <string name="preferences">Préférences</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Radioamateur</string>
 <string name="p_callsign">Indicatif</string>
 <string name="p_callsign_nossid">Indicatif (sans SSID)</string>
@@ -316,6 +318,16 @@
 <string name="p_sotimeout">TCP socket délai d\'expiration</string>
 <string name="p_sotimeout_summary">Temps avant de réinitialiser la connexion</string>
 <string name="p_sotimeout_entry">Valeur d\'expiration en secondes (0 = désactiver)</string>
+
+<string name="p_mapfile">Chemin vers la carte</string>
+<string name="p_mapfile_summary">Fichier MapsForge pour APRSdroid</string>
+<string name="p_mapfile_choose">Selectionner fichier carte</string>
+<string name="mapfile_error">Erreur de chargement de la carte %s!</string>
+
+<string name="p_themefile">Nom du fichier de thème</string>
+<string name="p_themefile_summary">Theme de rendu MapsForge (XML)</string>
+<string name="p_themefile_choose">Choisir le fichier de thème</string>
+<string name="themefile_error">Erreur de chargement du fichier de thème %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Ath. Bouliakoudis https://launchpad.net/~sv2ctv

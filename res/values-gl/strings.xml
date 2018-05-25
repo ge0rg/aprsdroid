@@ -74,7 +74,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -131,6 +131,8 @@
 <string name="quit">Quit</string>
 <string name="preferences">Preferences</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Amateur Radio</string>
 <string name="p_callsign">Callsign</string>
 <string name="p_callsign_nossid">Callsign (without SSID)</string>
@@ -339,6 +341,16 @@
 <string name="p_sotimeout">TCP socket timeout</string>
 <string name="p_sotimeout_summary">Time before resetting the connection</string>
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+
+<string name="p_mapfile">Map file name</string>
+<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
+<string name="p_mapfile_choose">Choose map file</string>
+<string name="mapfile_error">Error loading map file %s!</string>
+
+<string name="p_themefile">Theme file name</string>
+<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
+<string name="p_themefile_choose">Choose theme file</string>
+<string name="themefile_error">Error loading theme file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Javier Vilar Gonzalez https://launchpad.net/~javi-redes</string>

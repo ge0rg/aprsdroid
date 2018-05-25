@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">O APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania - według wersji 2-giej tej Licencji lub którejś
 z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji - Powszechna Licencja Publiczna GNU. \n\n Z pewnością wraz z niniejszym programem otrzymałeś też egzemplarz Powszechnej Licencji Publicznej GNU (GNU General Public License); jeśli nie - napisz do Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Podziękowania dla:</string>
@@ -109,6 +109,8 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="quit">Zakończ</string>
 <string name="preferences">Ustawienia</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Krótkofalarstwo</string>
 <string name="p_callsign">Znak wywoławczy</string>
 <string name="p_callsign_nossid">Znak wywoławczy (bez SSID)</string>
@@ -318,9 +320,20 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_sotimeout_summary">Czas przed zresetowaniem połączenia</string>
 <string name="p_sotimeout_entry">Timeout w sec. (0 = wył.)</string>
 
+<string name="p_mapfile">Nazwa pliku mapy</string>
+<string name="p_mapfile_summary">Plik mapy MapsForge</string>
+<string name="p_mapfile_choose">Wybierz plik mapy</string>
+<string name="mapfile_error">Błąd ładowania pliku mapy: %s!</string>
+
+<string name="p_themefile">Nazwa pliku motywu</string>
+<string name="p_themefile_summary">Motyw renderowania MapsForge (XML)</string>
+<string name="p_themefile_choose">Wybierz plik motywu</string>
+<string name="themefile_error">Błąd ładowania pliku motywu %s!</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Adam Czabara https://launchpad.net/~adam-czabara
   Georg Lukas https://launchpad.net/~ge0rg
+  Michal SQ2MO https://launchpad.net/~sq2mo
   Michał Czarniecki https://launchpad.net/~sq9mcs
   Paweł https://launchpad.net/~pawel-4
   Phitherek_ https://launchpad.net/~phitherek
@@ -373,9 +386,9 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="ssl_expire_in">Twój certyfikat wygaśnie za %d dni!</string>
 
 <!-- Config import -->
-<string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
-<string name="profile_import_error">Error importing profile: %s!</string>
+<string name="profile_import_activity">Importowanie profilu</string>
+<string name="profile_import_done">Importowanie pomyślne!</string>
+<string name="profile_import_error">Błąd przy importowaniu profilu: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Prędkość transmisji (baudrate)</string>

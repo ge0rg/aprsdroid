@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroid hakkında v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®, Bob Bruninga\'nın (WB4APR) kayıtlı ticari markasıdır.</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®, Bob Bruninga\'nın (WB4APR) kayıtlı ticari markasıdır.</string>
 <string name="ad_gpl">Bu program ücretsizdir; Free Software Foundation tarafından yayımlanan  GNU General Public License 2. sürüm ya da (tercih ederseniz) daha sonraki sürümde yer alan şartlar altında dağıtabilir ve değiştirebilirsiniz. \n\n Bu program kullanıcıya faydalı olması beklentisiyle, HERHANGİ BİR GARANTİ olmaksızın; hatta SATILABİLİRLİK ya da BELİRLİ BİR AMACA UYGUNLUK imasında bulunulmaksızın dağıtılmaktadır. Daha fazla detay için GNU General Public License dokümanına bakınız. \n\n Bu programla birlikte tarafınıza GNU General Public License dokümanının bir kopyası iletilmiş olmalıdır; aksi takdirde durumu, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresine yazılı olarak bildiriniz. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Teşekkürler:</string>
 <string name="ad_thanks_0">YL\'me ♥♥♥</string>
@@ -108,6 +108,8 @@
 <string name="quit">Çıkış</string>
 <string name="preferences">Tercihler</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Amatör Telsiz</string>
 <string name="p_callsign">Çağrı işareti</string>
 <string name="p_callsign_nossid">Çağrı işareti (SSID olmadan)</string>
@@ -317,11 +319,21 @@
 <string name="p_sotimeout_summary">Bağlantıyı sıfırlamadan önceki süre</string>
 <string name="p_sotimeout_entry">Saniye olarak zamanaşımı süresi (0=devredışı)</string>
 
+<string name="p_mapfile">Harita dosyası adı</string>
+<string name="p_mapfile_summary">APRSdroid için MapsForge harita dosyası</string>
+<string name="p_mapfile_choose">Harita dosyası seçin</string>
+<string name="mapfile_error">Harita dosyası %s yüklenirken hata oluştu!</string>
+
+<string name="p_themefile">Tema dosyasının adı</string>
+<string name="p_themefile_summary">MapsForge işleme teması (XML)</string>
+<string name="p_themefile_choose">Tema dosyası seçin</string>
+<string name="themefile_error">Tema dosyası %s yüklenirken hata oluştu!</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Alp Sarıca https://launchpad.net/~alpsarica
   Hüseyin Odabaş https://launchpad.net/~ta1df
   Kudret EMRE https://launchpad.net/~kudretemre
-  Ozgur Karatas https://launchpad.net/~okaratas
+  Ozgur https://launchpad.net/~toorq
   Recep Aydin Gulec https://launchpad.net/~ragulec
   Uygar Demir Koç https://launchpad.net/~uygardemirkoc
   zeugma https://launchpad.net/~sunder67</string>
@@ -369,9 +381,9 @@
 <string name="ssl_expire_in">Sertifikanızın %d gün içinde süresi dolacak!</string>
 
 <!-- Config import -->
-<string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
-<string name="profile_import_error">Error importing profile: %s!</string>
+<string name="profile_import_activity">Profil içe aktarma</string>
+<string name="profile_import_done">İçe aktarma başarılı!</string>
+<string name="profile_import_error">İçe aktarmada hata: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Baud Rate</string>

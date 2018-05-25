@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroidについて v%s</string>
-<string name="ad_copyright">著作権 © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®はBob Bruninga（WB4APR）の登録商標です。</string>
+<string name="ad_copyright">著作権 © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®はBob Bruninga（WB4APR）の登録商標です。</string>
 <string name="ad_gpl">このプログラムはフリー・ソフトウェアです。; 再分配あるいはフリー・ソフトウェア・ファウンデーションによって公表されるようなGNU一般ライセンスの条件下で修正する事が出来ます。ライセンスver.2あるいは(貴方のオプションで)以降のバージョンの何れか。\n\n このプログラムは有用であることを願い,しかし一切の保証なしに提供されています。;特定の目的に対する商品性もしくは適合性についての暗黙の保証すらありません。 詳細についてはGNU一般ライセンスを参照してください。 \n\n あなたはこのプログラムと共にGNU一般公衆利用許諾契約書のコピーを受け取り承諾しているはずです。; そうでなければ、フリー・ソフトウェア財団に手紙を書いてください。, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">協力:</string>
 <string name="ad_thanks_0">私の彼女♥♥♥</string>
@@ -108,6 +108,8 @@
 <string name="quit">終了</string>
 <string name="preferences">設定</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">無線局情報設定</string>
 <string name="p_callsign">コールサイン</string>
 <string name="p_callsign_nossid">コールサイン (SSID抜き)</string>
@@ -316,6 +318,16 @@
 <string name="p_sotimeout">TCPソケット タイムアウト</string>
 <string name="p_sotimeout_summary">接続をタイムアウトするまでの時間</string>
 <string name="p_sotimeout_entry">タイムアウト時間[秒]を入力 (0でタイムアウトしない）</string>
+
+<string name="p_mapfile">地図ファイル名</string>
+<string name="p_mapfile_summary">MapsForge地図ファイル for APRSdroid</string>
+<string name="p_mapfile_choose">地図ファイル選択</string>
+<string name="mapfile_error">地図読込エラー %s!</string>
+
+<string name="p_themefile">テーマファイル名</string>
+<string name="p_themefile_summary">MapsForgeレンダリングテーマ(XML)</string>
+<string name="p_themefile_choose">テーマファイル選択</string>
+<string name="themefile_error">テーマファイル読込エラー %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Yoshihisa Tanda https://launchpad.net/~jn4oqt

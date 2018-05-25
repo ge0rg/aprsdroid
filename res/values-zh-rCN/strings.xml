@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">关于 APRSdroid v%s</string>
-<string name="ad_copyright">版权所有©2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®是Bob Bruninga (WB4APR)的注册商标</string>
+<string name="ad_copyright">版权所有©2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®是Bob Bruninga (WB4APR)的注册商标</string>
 <string name="ad_gpl">这是一个免费软件;你可以在GNU 通用公共授权(或第二版授权)的条款下进行修改. \n\n 希望这个程序的发布是有用的,但是它是没有任何承诺性担保或保证的，甚至没有商业或其它特定目的而隐含的担保。有关详细信息，请参阅GNU通用公共许可证。 \n\n 您应该已经收到随着这项计划的GNU通用公共许可证的副本，如果没有，写信给自由软件基金会,51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">感谢:</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
@@ -108,6 +108,8 @@
 <string name="quit">退出</string>
 <string name="preferences">偏好设置</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">业余无线电</string>
 <string name="p_callsign">呼号</string>
 <string name="p_callsign_nossid">呼号(无后缀符号)</string>
@@ -316,6 +318,16 @@
 <string name="p_sotimeout">TCP 套接字超时</string>
 <string name="p_sotimeout_summary">重置连接前的时间</string>
 <string name="p_sotimeout_entry">超时值(0为关闭，单位:秒)</string>
+
+<string name="p_mapfile">地图文件名</string>
+<string name="p_mapfile_summary">APRSdroid的MapsForge地图文件</string>
+<string name="p_mapfile_choose">选择地图文件</string>
+<string name="mapfile_error">加载地图文件％s时出错!</string>
+
+<string name="p_themefile">主题文件名</string>
+<string name="p_themefile_summary">MapsForge渲染主题(XML)</string>
+<string name="p_themefile_choose">选择主题文件</string>
+<string name="themefile_error">加载主题文件％s时出错!</string>
 
 <string name="translator_credits">Launchpad Contributions:
   BG5DNS https://launchpad.net/~zihe

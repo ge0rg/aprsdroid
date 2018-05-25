@@ -23,7 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Sidste Rapport</string>
 <string name="map_track_call">Sporing %s...</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
+<string name="map_track_unknown">Positionen for %s er ukendt</string>
 <string name="map_select">Vælg station</string>
 
 <string name="map_loading">Indlæser...</string>
@@ -32,7 +32,7 @@
 <string name="sta_ssids">Stations SSID\'er</string>
 <string name="sta_history">Stations Log</string>
 <string name="sta_map">Kort</string>
-<string name="sta_extmap">External Map</string>
+<string name="sta_extmap">Externt kort</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -70,11 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Om APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® er et registreret varemærke der tilhører Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. \n\n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \n\n You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Tak til:</string>
 <string name="ad_thanks_0">Min YL ♥♥♥</string>
@@ -106,12 +102,14 @@
 <string name="show_hub">Vis Hub</string>
 <string name="show_map">Vis kort</string>
 <string name="show_log">Vis Log</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Exporter log</string>
+<string name="export_empty">Intet at eksportere</string>
 <string name="clear_log">Ryd log</string>
 <string name="quit">Afslut</string>
 <string name="preferences">Indstillinger</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Amatørradio</string>
 <string name="p_callsign">Kaldesignal</string>
 <string name="p_callsign_nossid">Kaldesignal (uden SSID)</string>
@@ -147,33 +145,33 @@
 </string-array>
 <string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Din symbol for kortvisning</string>
-<string name="p_symbol_overlay">Overlay:</string>
-<string name="p_symbol_result">Result:</string>
-<string name="p_frequency">Voice frequency</string>
-<string name="p_frequency_summary">Your voice frequency [MHz]</string>
+<string name="p_symbol_overlay">Lag:</string>
+<string name="p_symbol_result">Resultat:</string>
+<string name="p_frequency">Voice frekvens</string>
+<string name="p_frequency_summary">Din voice frekvens [MHz]</string>
 <string name="p_status">Kommentarfelt</string>
 <string name="p_status_summary">Tekst som kommer efter dine koordinater</string>
 <string name="p_status_entry">Indtast din beacon kommentar</string>
 <string name="p__connection">APRS Forbindelse</string>
 <string name="p_conntype">Forbindelses-protokol</string>
 <string name="p_conntype_entry">Vælg forbindelses-protokol</string>
-<string name="p_link">Connection Type</string>
-<string name="p_link_entry">Choose the link type</string>
+<string name="p_link">Forbindelsestype</string>
+<string name="p_link_entry">Vælg forbindelses type</string>
 <string name="p_connsetup">Indstillinger af forbindelse</string>
 <string name="p_connsetup_summary">Konfiguration af forbindelse</string>
 <string name="p_connlog">Forbindelses logning</string>
 <string name="p_connlog_summary">Detaljeret status output til log</string>
 <!-- array of connection types -->
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
-<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_afsk">Lyd (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
 <string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
-<string name="p_conn_kwd_info">Kenwood setup help</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_info">Kenwood indstillings hjælp</string>
+<string name="p_conn_kwd_gps">Brug Android GPS</string>
+<string name="p_conn_kwd_gps_summary">Videregiv NMEA beskeder til radioen</string>
+<string name="p_conn_kwd_gps_debug">Vis GPS i loggen</string>
+<string name="p_conn_kwd_gps_debug_summary">Vis rå NMEA datea i APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">TCP forbindelse</string>
 <string name="p_aprsis_http">HTTP POST (sending, ingen modtagelse)</string>
@@ -181,7 +179,7 @@
 <!-- array of TNC link types -->
 <string name="p_link_bt">Bluetooth SPP</string>
 <string name="p_link_tcpip">TCP/IP</string>
-<string name="p_link_usb">USB Serial</string>
+<string name="p_link_usb">USB Seriel</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuel Position</string>
 <string name="p_source_periodic">Periodisk GPS/netværks position</string>
@@ -281,8 +279,8 @@
 <string name="p_dgp_ring_summary">Lyd ved digipeatede pakker</string>
 
 <string name="got_digipeated">Digipeated af %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Fejl: %s</string>
+<string name="status_linkon">Forbundet: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -321,6 +319,16 @@
 <string name="p_sotimeout_summary">Tid før nulstilling af forbindelsen</string>
 <string name="p_sotimeout_entry">Timeout værdi i sekunder (0 = slået fra)</string>
 
+<string name="p_mapfile">Kortfil navn</string>
+<string name="p_mapfile_summary">Mapforge kortfil til APRSdroid</string>
+<string name="p_mapfile_choose">Vælg kortfil</string>
+<string name="mapfile_error">Fejl ved indlæsning af kortfil %s!</string>
+
+<string name="p_themefile">Tema filnavn</string>
+<string name="p_themefile_summary">MapsForge renderings tema (XML)</string>
+<string name="p_themefile_choose">Vælg tema fil</string>
+<string name="themefile_error">Fejl ved indlæsning af tema fil %s!</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Alexandru Csete https://launchpad.net/~alexc
   Finn Leslie https://launchpad.net/~idestrup
@@ -338,8 +346,8 @@
 <string name="p_bt_channel_entry">Angiv kanal (oftest: "1"; tomt ved SPP)</string>
 
 <string name="p_tnc_init">TNC initialiserings streng</string>
-<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
-<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
+<string name="p_tnc_init_summary">Initialiserings kommandoer til TNC (URL-encodet, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-encodet streng (Esc=%1B, \"%\"=%25), pause efter hver linje:</string>
 
 <string name="p_tnc_delay">TNC initialiseringsforsinkelse</string>
 <string name="p_tnc_delay_summary">Tid der skal ventes efter hver linje</string>
@@ -351,7 +359,7 @@
 <string name="bt_error_unsupported">Bluetooth er ikke understøttet!</string>
 <string name="bt_error_disabled">Slå Bluetooth til!</string>
 <string name="bt_error_no_tnc">Konfigurer et Bluetooth TNC!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Kunne ikke forbinde til %s! Tænd for enheden og afbryd andre Bluetooth forbindelser.</string>
 
 <string name="afsk_info_sco_req">Opretter Bluetooth SCO forbindelse...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO forbindelse oprettet.</string>
@@ -363,22 +371,22 @@
 <!-- SSL strings -->
 <string name="ssl_import_activity">SSL certifikat import</string>
 <string name="ssl_import_password">Indtast certifikat import kodeordet:</string>
-<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
+<string name="ssl_no_keyfile">Intet certifikat for %s! Benytter kodeords autentificering..</string>
 <string name="ssl_import_ok">Importeret certifikat for %s.</string>
 <string name="ssl_import_error">Fejl ved import af certifikat: %s!</string>
 <string name="ssl_expired">Dit certifikat er udløbet!</string>
 <string name="ssl_expire_in">Dit certifikat vil udløbe om %d dage!</string>
 
 <!-- Config import -->
-<string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
-<string name="profile_import_error">Error importing profile: %s!</string>
+<string name="profile_import_activity">Profil import</string>
+<string name="profile_import_done">Import succesfuld!</string>
+<string name="profile_import_error">Fejl ved import af profil: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
-<string name="p_serial_baudrate">Baud Rate</string>
-<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<string name="p_serial_baudrate">Baud-hastighed</string>
+<string name="p_serial_baudrate_summary">Overførselshastighed på serielport</string>
 <!-- (USB) Serial Errors -->
-<string name="p_serial_unsupported">Unsupported serial port!</string>
-<string name="p_serial_noperm">No permission for USB device!</string>
-<string name="p_serial_notfound">No USB device found!</string>
+<string name="p_serial_unsupported">Ikke-understøttet serielport</string>
+<string name="p_serial_noperm">Ingen tilladelse til USB enheden!</string>
+<string name="p_serial_notfound">Ingen USB enhed fundet!</string>
 </resources>

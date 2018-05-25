@@ -14,7 +14,7 @@
 <string name="wrongpasscode">Je passcode komt niet overeen met je callsign!</string>
 <string name="anon_warning">Zonder een wachtwoord zullen uw rapporten niet verzonden worden</string>
 <string name="mininterval">Minimum update tijd is 1 minuut!</string>
-<string name="singlelog">Send Position</string>
+<string name="singlelog">Stuur locatie</string>
 <string name="startlog">Tracking starten</string>
 <string name="stoplog">Tracking stoppen</string>
 
@@ -25,7 +25,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Laatst ontvangen pakket</string>
 <string name="map_track_call">Tracking %s...</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
+<string name="map_track_unknown">Geen positie voor %s bekend!</string>
 <string name="map_select">Station selecteren</string>
 
 <string name="map_loading">Bezig met laden...</string>
@@ -34,7 +34,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="sta_ssids">Station SSIDs</string>
 <string name="sta_history">Station historiek</string>
 <string name="sta_map">Kaart</string>
-<string name="sta_extmap">External Map</string>
+<string name="sta_extmap">Externe kaart</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -72,7 +72,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <!-- about dialog -->
 <string name="ad_title">Over APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -108,12 +108,14 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="show_hub">Hub weergeven</string>
 <string name="show_map">Toon kaart</string>
 <string name="show_log">Toon logbestand</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Exporteer logbestand</string>
+<string name="export_empty">Niets te exporteren</string>
 <string name="clear_log">Logbestand wissen</string>
 <string name="quit">afsluiten</string>
 <string name="preferences">Voorkeuren</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Amateur Radio</string>
 <string name="p_callsign">Callsign</string>
 <string name="p_callsign_nossid">Callsign (zonder SSID)</string>
@@ -150,7 +152,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_symbol">APRS symbool</string>
 <string name="p_symbol_summary">Jouw symbool voor map weergave</string>
 <string name="p_symbol_overlay">Overlay:</string>
-<string name="p_symbol_result">Result:</string>
+<string name="p_symbol_result">Resultaat:</string>
 <string name="p_frequency">Voice frequency</string>
 <string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">Commentaar venster</string>
@@ -323,10 +325,21 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_sotimeout_summary">Tijd om de connectie te resetten</string>
 <string name="p_sotimeout_entry">Timout waarde in seconden (0 = uit)</string>
 
+<string name="p_mapfile">Map file name</string>
+<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
+<string name="p_mapfile_choose">Choose map file</string>
+<string name="mapfile_error">Error loading map file %s!</string>
+
+<string name="p_themefile">Theme file name</string>
+<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
+<string name="p_themefile_choose">Choose theme file</string>
+<string name="themefile_error">Error loading theme file %s!</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Eddy Vaesen https://launchpad.net/~a-eddy-n
   Georg Lukas https://launchpad.net/~ge0rg
   H.F.P. Pit https://launchpad.net/~pd5dp
+  Jeroen https://launchpad.net/~pd1ode
   Robbie De Lise https://launchpad.net/~robbie-delise
   Selly https://launchpad.net/~salpatxot
   doomer https://launchpad.net/~doomer
@@ -385,5 +398,5 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <!-- (USB) Serial Errors -->
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
-<string name="p_serial_notfound">No USB device found!</string>
+<string name="p_serial_notfound">Geen USB-apparaat gevonden!</string>
 </resources>

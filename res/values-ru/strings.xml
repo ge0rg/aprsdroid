@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Об APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Права защищены © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® - это зарегистрированный торговый знак, принадлежащей Бобу Браунингу (Bob Bruninga, WB4APR).</string>
 <string name="ad_gpl">Эта программа является свободным программным обеспечением, вы можете распространять и/или модифицировать его на условиях GNU General Public License, опубликованной Free Software Foundation; либо 2-ой версией лицензии, либо (по вашему выбору) любой более поздней версией.  \n\n Эта программа распространяется в надежде, что она будет полезной, но БЕЗ ВСЯКИХ ГАРАНТИЙ. Совершенно не подразумевается гарантия КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ. Смотрите общественную лицензию GNU General для получения более подробной информации.\n\n Вы должны были получить копию GNU General Public License вместе с этой программой. Если в не получили копии, напишите письмо по адресу Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Благодарности:</string>
 <string name="ad_thanks_0">Моей YL ♥♥♥</string>
@@ -81,15 +81,15 @@
 <string name="ad_thanks_5">Sivan, 4X6IZ: AFSK демодулятор, https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™ с помощью HamHUD Nichetronix, LLC, http://hamhud.net</string>
 <string name="ad_trans">\n\nПеревод:</string>
-<string name="ad_homepage">Домашняя страница</string>
+<string name="ad_homepage">Вебсайт проекта</string>
 
 <!-- map view -->
-<string name="map_overlays">Виды карт</string>
-<string name="map_satellite">Спутник</string>
-<string name="map_objects">APRS Объекты</string>
+<string name="map_overlays">Слои данных карты</string>
+<string name="map_satellite">Космосники</string>
+<string name="map_objects">Объекты APRS</string>
 
 <!-- map view -->
-<string name="age">Показать последние ...</string>
+<string name="age">История объектов за :</string>
 <string name="age_30">30 минут</string>
 <string name="age_2h">2 часа</string>
 <string name="age_12h">12 часов</string>
@@ -108,6 +108,8 @@
 <string name="quit">Выход</string>
 <string name="preferences">Параметры</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Любительское радио</string>
 <string name="p_callsign">Позывной</string>
 <string name="p_callsign_nossid">Позывной (без SSID)</string>
@@ -317,6 +319,16 @@
 <string name="p_sotimeout_summary">Время до сброса соединения</string>
 <string name="p_sotimeout_entry">Тайм-аут в секундах (0 = отключить)</string>
 
+<string name="p_mapfile">Имя файла карты</string>
+<string name="p_mapfile_summary">MapsForge файл карты для APRSdroid</string>
+<string name="p_mapfile_choose">Выбор файла карты</string>
+<string name="mapfile_error">Ошибка загрузки файла карты</string>
+
+<string name="p_themefile">Имя файла темы</string>
+<string name="p_themefile_summary">Тема рендера MapsForge (XML)</string>
+<string name="p_themefile_choose">Выбор файла темы</string>
+<string name="themefile_error">Ошибка загрузки файла темы %s!</string>
+
 <string name="translator_credits">Launchpad Contributions:
   Aleksey Kabanov https://launchpad.net/~ak099
   Andriy Tymchenko https://launchpad.net/~silpol
@@ -369,9 +381,9 @@
 <string name="ssl_expire_in">Ваш сертификат заканчивается через %d дней!</string>
 
 <!-- Config import -->
-<string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
-<string name="profile_import_error">Error importing profile: %s!</string>
+<string name="profile_import_activity">Настройки импорта</string>
+<string name="profile_import_done">Импортировано успешно!</string>
+<string name="profile_import_error">Ошибка при импорте профиля: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Скорость в бодах</string>
