@@ -141,13 +141,13 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 			while (running) {
 				try {
 					if (need_reconnect) {
-						need_reconnect = false
 						Log.d(TAG, "reconnecting in " + RECONNECT + "s")
 						service.postAddPost(TYPE_INFO, R.string.post_info,
 							service.getString(R.string.post_reconnect, RECONNECT.asInstanceOf[AnyRef]))
 						shutdown()
 						Thread.sleep(RECONNECT*1000)
 						init_socket()
+						need_reconnect = false
 						service.postLinkOn(R.string.p_aprsis_tcp)
 					}
 					Log.d(TAG, "waiting for data...")
