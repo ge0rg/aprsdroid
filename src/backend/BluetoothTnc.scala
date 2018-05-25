@@ -117,12 +117,12 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 			while (running) {
 				try {
 					if (need_reconnect) {
-						need_reconnect = false
 						log("Reconnecting in 3s...")
 						try {
 							Thread.sleep(3*1000)
 						} catch { case _ => }
 						init_socket()
+						need_reconnect = false
 						service.postLinkOn(R.string.p_link_bt)
 					}
 					Log.d(TAG, "waiting for data...")

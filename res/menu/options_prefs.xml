@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/profile_load"
+		android:title="@string/profile_load"
+		android:icon="@android:drawable/ic_menu_set_as" />
+	<item android:id="@+id/profile_export"
+		android:title="@string/profile_export"
+		android:icon="@android:drawable/ic_menu_save" />
+</menu>

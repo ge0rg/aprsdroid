@@ -8,8 +8,35 @@ import _root_.android.preference.Preference
 import _root_.android.preference.Preference.OnPreferenceClickListener
 import _root_.android.preference.PreferenceActivity
 import _root_.android.preference.PreferenceManager
+import _root_.android.view.{Menu, MenuItem}
+import _root_.android.widget.Toast
+
+import java.text.SimpleDateFormat
+import java.io.{PrintWriter, File}
+import java.util.Date
+import org.json.JSONObject
 
 class PrefsAct extends PreferenceActivity {
+	def exportPrefs() {
+		val filename = "profile-%s.aprs".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
+		val file = new File(Environment.getExternalStorageDirectory(), filename)
+		try {
+			val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+			val json = new JSONObject(prefs.getAll)
+			val fo = new PrintWriter(file)
+			fo.println(json.toString(2))
+			fo.close()
+
+			startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND)
+				.setType("text/plain")
+				.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
+				.putExtra(Intent.EXTRA_SUBJECT, filename),
+				file.toString()))
+		} catch {
+			case e : Exception => Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show()
+		}
+	}
+
 	def fileChooserPreference(pref_name : String, reqCode : Int, titleId : Int) {
 		findPreference(pref_name).setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			def onPreferenceClick(preference : Preference) = {
@@ -81,6 +108,28 @@ class PrefsAct extends PreferenceActivity {
 		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123457) {
 			parseFilePickerResult(data, "themefile", R.string.themefile_error)
 		} else
+		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123458) {
+			data.setClass(this, classOf[ProfileImportActivity])
+			startActivity(data)
+		} else
 			super.onActivityResult(reqCode, resultCode, data)
+	}
+
+	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
+		getMenuInflater().inflate(R.menu.options_prefs, menu)
+		true
+	}
+	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
+		mi.getItemId match {
+		case R.id.profile_load =>
+			val get_file = new Intent(Intent.ACTION_GET_CONTENT).setType("*/*")
+				startActivityForResult(Intent.createChooser(get_file,
+				getString(R.string.profile_import_activity)), 123458)
+			true
+		case R.id.profile_export =>
+			exportPrefs()
+			true
+		case _ => super.onOptionsItemSelected(mi)
+		}
 	}
 }
