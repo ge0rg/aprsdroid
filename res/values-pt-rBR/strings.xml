@@ -5,14 +5,14 @@
 <string name="app_prefs">Preferências do APRSdroid</string>
 <string name="app_map">Mapa do APRSdroid</string>
 <string name="app_hub">Hub do APRSdroid</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">Log do APRSdroid</string>
 <string name="app_sta">Informação da Estação</string>
 <string name="app_messages">Mensagens</string>
 <string name="app_messages_clear">Apagar Mensagens</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Você deve configurar o APRSdroid com seu indicativo de chamada e senha!</string>
 <string name="wrongpasscode">Sua senha não confere com seu indicativo de chamada!</string>
-<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
+<string name="e_toolong_callsign">Sua identificação é muito longa para um pacote de rádio!</string>
 <string name="anon_warning">Sem uma senha, seus pacotes não serão propagados!</string>
 <string name="mininterval">O tempo mínimo de atualização é 1 minuto!</string>
 <string name="singlelog">Enviar posição</string>
@@ -71,11 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Sobre o APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2020 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Este programa é software livre; você pode redistribuí-lo e/ou modificá-lo nos termos da Licença Pública Geral (GPL) da GNU como publicado pela Free Software Foundation; seja a versão 2 da licença, ou (por sua opção) qualquer versão mais recente. \n\n Este programa é distribuído na esperança de que será útil, mas SEM QUALQUER GARANTIA; nem mesmo a garantia implícita de COMERCIALIZAÇÃO ou ATENDIMENTO A PROPÓSITO PARTICULAR. Veja a GNU General Public License para mais detalhes. \n\n Você deve ter recebido uma cópia da GNU General Public License junto com esse programa; se não, escreva para a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Agradecimentos a:</string>
 <string name="ad_thanks_0">Minha jovem senhorita ♥♥♥</string>
@@ -90,7 +86,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Camadas</string>
-<string name="map_satellite">Satélite</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Objetos APRS</string>
 
 <!-- map view -->
@@ -107,14 +107,14 @@
 <string name="show_hub">Mostrar Hub</string>
 <string name="show_map">Exibir mapa</string>
 <string name="show_log">Mostrar Log</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Exportar log</string>
+<string name="export_empty">Nada para exportar</string>
 <string name="clear_log">Limpar Log</string>
 <string name="quit">Sair</string>
 <string name="preferences">Preferências</string>
 <!-- preferences -->
-<string name="profile_load">Load profile...</string>
-<string name="profile_export">Export profile...</string>
+<string name="profile_load">Carregar perfil...</string>
+<string name="profile_export">Exportar perfil</string>
 <string name="p__ham">Radioamador</string>
 <string name="p_callsign">Indicativo de chamada</string>
 <string name="p_callsign_nossid">Indicativo (sem SSID)</string>
@@ -169,13 +169,13 @@
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audio (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_tnc2">TNC (texto plano TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
 <string name="p_conn_kwd_info">Setup de ajuda Kenwood</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_gps">Utilizar GPS do Android</string>
+<string name="p_conn_kwd_gps_summary">Direcionar mensagens NMEA para o rádio</string>
+<string name="p_conn_kwd_gps_debug">Mostrar GPS no log</string>
+<string name="p_conn_kwd_gps_debug_summary">Mostrar NMEA bruto no APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">Conexão TCP</string>
 <string name="p_aprsis_http">HTTP POST (envio somente)</string>
@@ -282,8 +282,8 @@
 <string name="p_dgp_ring_summary">Som para pacotes retransmitidos</string>
 
 <string name="got_digipeated">Repetido por %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Erro: %s</string>
+<string name="status_linkon">Conectado: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">Caminho APRS digi</string>
@@ -322,21 +322,22 @@
 <string name="p_sotimeout_summary">Tempo antes de resetar a conexão</string>
 <string name="p_sotimeout_entry">Valor do timeout em segundos (0 = desativar)</string>
 
-<string name="p_mapfile">Map file name</string>
-<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
-<string name="p_mapfile_choose">Choose map file</string>
-<string name="mapfile_error">Error loading map file %s!</string>
+<string name="p_mapfile">Nome do arquivo de mapa</string>
+<string name="p_mapfile_summary">Arquivo de mapa do MapsForge para APRSdroid</string>
+<string name="p_mapfile_choose">Escolher arquivo de mapa</string>
+<string name="mapfile_error">Falha ao carregar arquivo de mapa</string>
 
-<string name="p_themefile">Theme file name</string>
-<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
-<string name="p_themefile_choose">Choose theme file</string>
-<string name="themefile_error">Error loading theme file %s!</string>
+<string name="p_themefile">Nome do arquivo de tema</string>
+<string name="p_themefile_summary">Tema de exibição do MapsForge (XML)</string>
+<string name="p_themefile_choose">Selecione o arquivo de tema</string>
+<string name="themefile_error">Falha ao carregar o arquivo de tema %s</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Airton Torres https://launchpad.net/~airton-torres
   Júlio Cezar Santos Pires https://launchpad.net/~juliocspires
   Lucas - Lobo https://launchpad.net/~lobo-lists
   Luzemário https://launchpad.net/~luzemario
+  ThiagoRyuuga https://launchpad.net/~thiagoryuuga
   luiz https://launchpad.net/~fellipeferreira</string>
 
 <!-- Bluetooth TNC settings -->
@@ -363,7 +364,7 @@
 <string name="bt_error_unsupported">Bluetooth não suportado!</string>
 <string name="bt_error_disabled">Por favor ative o Bluetooth!</string>
 <string name="bt_error_no_tnc">Por favor configure um TNC Bluetooth!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Não foi possível conectar à %s! Por favor ligue o dispositivo e encerre as demais conexões Bluetooth</string>
 
 <string name="afsk_info_sco_req">Solicitando link SCO bluetooth...</string>
 <string name="afsk_info_sco_est">Link SCO bluetooth estabelecido.</string>
@@ -382,9 +383,9 @@
 <string name="ssl_expire_in">Seu certificado vai expirar em %d dias!</string>
 
 <!-- Config import -->
-<string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Imported profile: %s</string>
-<string name="profile_import_error">Error importing profile: %s!</string>
+<string name="profile_import_activity">Importar perfil</string>
+<string name="profile_import_done">Perfil importado: %s</string>
+<string name="profile_import_error">Falha ao importar perfil: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Taxa de transmissão</string>
@@ -394,5 +395,5 @@
 <string name="p_serial_noperm">Sem permissão para o dispositivo USB!</string>
 <string name="p_serial_notfound">Nenhum dispositivo USB encontrado!</string>
 
-<string name="no_perm_text">The following permissions are required:</string>
+<string name="no_perm_text">As seguintes permissões são necessárias:</string>
 </resources>

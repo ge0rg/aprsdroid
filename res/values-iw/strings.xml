@@ -74,7 +74,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">אודות APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2020 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -93,7 +93,11 @@
 
 <!-- map view -->
 <string name="map_overlays">שכבות</string>
-<string name="map_satellite">לוויין</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">אובייקטים של APRS</string>
 
 <!-- map view -->

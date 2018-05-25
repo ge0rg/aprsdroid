@@ -12,7 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">¡Debes configurar APRSdroid con tu distintivo de llamada y contraseña!</string>
 <string name="wrongpasscode">¡Tu contraseña no se corresponde con tu distintivo de llamada!</string>
-<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
+<string name="e_toolong_callsign">¡Distintivo de llamada demaciado largo para Packet Radio!</string>
 <string name="anon_warning">¡Sin contraseña, tus reportes no serán distribuidos!</string>
 <string name="mininterval">¡El tiempo mínimo de la actualización es 1 minuto!</string>
 <string name="singlelog">Enviar posición</string>
@@ -71,7 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Sobre APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® es una marca registrada Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2020 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® es una marca registrada Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Este programa es software libre, puede redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, versión 2 de la Licencia, o (a su elección) cualquier versión posterior. \ n \ n Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA, incluso sin la garantía implícita de COMERCIALIZACIÓN o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General de GNU para más detalles. \ n \ n Usted debe haber recibido una copia de la Licencia Pública General de GNU junto con este programa, si no, escriba a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, EE.UU.. \ n \ n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Gracias a:</string>
 <string name="ad_thanks_0">Mi novia ♥♥♥</string>
@@ -86,7 +86,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Superposición de iconos</string>
-<string name="map_satellite">Satélite</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Objetos APRS</string>
 
 <!-- map view -->
@@ -335,6 +339,7 @@
   Eduardo Alberto Calvo https://launchpad.net/~edu5800
   Georg Lukas https://launchpad.net/~ge0rg
   Javier Henderson https://launchpad.net/~javier-3
+  Lurkan https://launchpad.net/~lurkan
   Miguel https://launchpad.net/~nobody-su
   Paco-EB5TC https://launchpad.net/~paco-eb5tc
   R R https://launchpad.net/~kf5fvf
@@ -396,5 +401,5 @@
 <string name="p_serial_noperm">Sin permiso para el dispositivo USB!</string>
 <string name="p_serial_notfound">No se encuentra ningún dispositivo USB</string>
 
-<string name="no_perm_text">The following permissions are required:</string>
+<string name="no_perm_text">El siguiente permiso es requerido</string>
 </resources>

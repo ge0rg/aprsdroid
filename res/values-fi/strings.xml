@@ -5,14 +5,14 @@
 <string name="app_prefs">APRSdroid Asetukset</string>
 <string name="app_map">APRSdroid Kartta</string>
 <string name="app_hub">APRSdroid Läheiset</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">APRSdroidin loki</string>
 <string name="app_sta">Aseman tiedot</string>
 <string name="app_messages">Viestit</string>
 <string name="app_messages_clear">Tyhjennä viestit</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid:n asetuksista puuttuvat kutsu sekä passcode!</string>
 <string name="wrongpasscode">Passcode ei vastaa kutsumerkkiäsi!</string>
-<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
+<string name="e_toolong_callsign">Kutsumerkkisi on liian pitkä pakettiradiolle!</string>
 <string name="anon_warning">Paikkatietoraporttejasi ei välitetä edelleen mikäli passcode ei ole asetettu!</string>
 <string name="mininterval">Pienin päivitysväli on 1 minuutti!</string>
 <string name="singlelog">Lähetä sijainti</string>
@@ -71,7 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Tietoja APRSdroid v%s:sta</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2020 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -90,7 +90,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Kartan peitteet</string>
-<string name="map_satellite">Satelliitti</string>
+<string name="map_google">Google: Kartta</string>
+<string name="map_satellite">Google: Satelliitti</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline">%s (Paikallisesti tallennettu)</string>
 <string name="map_objects">APRS-objektit</string>
 
 <!-- map view -->
@@ -107,14 +111,14 @@
 <string name="show_hub">Näytä Läheiset</string>
 <string name="show_map">Näytä Kartta</string>
 <string name="show_log">Näytä loki</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Vie loki</string>
+<string name="export_empty">Ei vietävää lokitietoa</string>
 <string name="clear_log">Tyhjennä loki</string>
 <string name="quit">Poistu</string>
 <string name="preferences">Asetukset</string>
 <!-- preferences -->
-<string name="profile_load">Load profile...</string>
-<string name="profile_export">Export profile...</string>
+<string name="profile_load">Lataa profiili...</string>
+<string name="profile_export">Vie profiili...</string>
 <string name="p__ham">Amatööriradio</string>
 <string name="p_callsign">Kutsumerkki</string>
 <string name="p_callsign_nossid">Kutsumerkki (ilman SSID:tä)</string>
@@ -169,13 +173,13 @@
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audiomodeemi (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_tnc2">TNC (tekstimuotoinen TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
 <string name="p_conn_kwd_info">Kenwood-asetusten ohje</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_gps">Käytä Androidin GPS:ää</string>
+<string name="p_conn_kwd_gps_summary">Lähetä NMEA-lauseet radiolle</string>
+<string name="p_conn_kwd_gps_debug">Näytä GPS lokissa</string>
+<string name="p_conn_kwd_gps_debug_summary">Näytä NMEA-lauseet APRSdroidissa</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">TCP-yhteys</string>
 <string name="p_aprsis_http">HTTP POST (vain lähetys)</string>
@@ -282,8 +286,8 @@
 <string name="p_dgp_ring_summary">Toistimilta kuultujen omien pakettien ääni</string>
 
 <string name="got_digipeated">%1$s:n toistama paketti: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Virhe: %s</string>
+<string name="status_linkon">Yhdistetty: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS-toistinpolku</string>
@@ -322,15 +326,15 @@
 <string name="p_sotimeout_summary">Hyytyneen yhteyden katkaisuviive</string>
 <string name="p_sotimeout_entry">Aikakatkaisu sekunneissa (0 = ei käytössä)</string>
 
-<string name="p_mapfile">Map file name</string>
-<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
-<string name="p_mapfile_choose">Choose map file</string>
-<string name="mapfile_error">Error loading map file %s!</string>
+<string name="p_mapfile">Karttatiedoston nimi</string>
+<string name="p_mapfile_summary">MapsForge-karttatiedosto APRSdroidille</string>
+<string name="p_mapfile_choose">Valitse karttatiedosto</string>
+<string name="mapfile_error">Virhe ladattaessa karttatiedostoa %s!</string>
 
-<string name="p_themefile">Theme file name</string>
-<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
-<string name="p_themefile_choose">Choose theme file</string>
-<string name="themefile_error">Error loading theme file %s!</string>
+<string name="p_themefile">Teematiedoston nimi</string>
+<string name="p_themefile_summary">MapsForge piirtoteema (XML)</string>
+<string name="p_themefile_choose">Valitse teematiedosto</string>
+<string name="themefile_error">Virhe ladattaessa teematiedostoa %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg
@@ -366,7 +370,7 @@
 <string name="bt_error_unsupported">Laite ei tue Bluetoothia!</string>
 <string name="bt_error_disabled">Ole hyvä ja kytke Bluetooth päälle!</string>
 <string name="bt_error_no_tnc">Ole hyvä ja määritä Bluetooth-TNC:n asetukset!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Yhteydenmuodostus %s:ään epäonnistui! Ole ystävällinen ja kytke laite päälle sekä sulje muut Bluetooth-yhteydet.</string>
 
 <string name="afsk_info_sco_req">Pyydän Bluetooth SCO-yhteyttä...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO-yhteys muodostettu.</string>
@@ -385,9 +389,9 @@
 <string name="ssl_expire_in">Sertifikaattisi vanhenee %d päivän kuluttua!</string>
 
 <!-- Config import -->
-<string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Imported profile: %s</string>
-<string name="profile_import_error">Error importing profile: %s!</string>
+<string name="profile_import_activity">Profiilin tuonti</string>
+<string name="profile_import_done">Profiili tuotu: %s</string>
+<string name="profile_import_error">Virhe tuotaessa profiilia: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Nopeus (baud)</string>
@@ -397,5 +401,5 @@
 <string name="p_serial_noperm">Ei käyttöoikeuksia USB-laitteelle!</string>
 <string name="p_serial_notfound">USB-laitetta ei löydy!</string>
 
-<string name="no_perm_text">The following permissions are required:</string>
+<string name="no_perm_text">Seuraavat oikeudet vaaditaan:</string>
 </resources>

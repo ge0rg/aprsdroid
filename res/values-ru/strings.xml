@@ -71,7 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Об APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Георг Лукас (DO1GL)\n http://arpsdroid.org \n\n APRS® является зарегистрированным товарным знаком Боба Брунинга (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2020 Георг Лукас (DO1GL)\n http://arpsdroid.org \n\n APRS® является зарегистрированным товарным знаком Боба Брунинга (WB4APR)</string>
 <string name="ad_gpl">Эта программа является свободным программным обеспечением, вы можете распространять и/или модифицировать его на условиях GNU General Public License, опубликованной Free Software Foundation; либо 2-ой версией лицензии, либо (по вашему выбору) любой более поздней версией.  \n\n Эта программа распространяется в надежде, что она будет полезной, но БЕЗ ВСЯКИХ ГАРАНТИЙ. Совершенно не подразумевается гарантия КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ. Смотрите общественную лицензию GNU General для получения более подробной информации.\n\n Вы должны были получить копию GNU General Public License вместе с этой программой. Если в не получили копии, напишите письмо по адресу Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Благодарности:</string>
 <string name="ad_thanks_0">Моей YL ♥♥♥</string>
@@ -86,7 +86,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Слои данных карты</string>
-<string name="map_satellite">Космосники</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Объекты APRS</string>
 
 <!-- map view -->
@@ -332,6 +336,7 @@
   Aleksey Kabanov https://launchpad.net/~ak099
   Andriy Tymchenko https://launchpad.net/~silpol
   Dmitrij Kiryanov https://launchpad.net/~kagaminep
+  Mikhail Mikhaylov https://launchpad.net/~mimiknn
   R1AIT https://launchpad.net/~l-keo-d
   RN3DLL https://launchpad.net/~rn3dll
   Sergey N. Belinsky https://launchpad.net/~sergeybe

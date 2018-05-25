@@ -12,7 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">您需要在APRSdroid中配置您的呼号和验证码！</string>
 <string name="wrongpasscode">您的呼号验证码不正确！</string>
-<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
+<string name="e_toolong_callsign">您的呼号对于数据模式来说太长了！</string>
 <string name="anon_warning">没有验证码，您的数据包将不会被发出！</string>
 <string name="mininterval">最小的更新时间是1分钟！</string>
 <string name="singlelog">发送位置</string>
@@ -71,7 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">关于 APRSdroid v%s</string>
-<string name="ad_copyright">版权信息 © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">版权信息 © 2009-2020 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">这是一个免费软件;你可以在GNU 通用公共授权(或第二版授权)的条款下进行修改. \n\n 希望这个程序的发布是有用的,但是它是没有任何承诺性担保或保证的，甚至没有商业或其它特定目的而隐含的担保。有关详细信息，请参阅GNU通用公共许可证。 \n\n 您应该已经收到随着这项计划的GNU通用公共许可证的副本，如果没有，写信给自由软件基金会,51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">感谢:</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
@@ -86,7 +86,11 @@
 
 <!-- map view -->
 <string name="map_overlays">图层</string>
-<string name="map_satellite">卫星图</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">APRS 对象</string>
 
 <!-- map view -->
@@ -390,5 +394,5 @@
 <string name="p_serial_noperm">没有USB设备的权限！</string>
 <string name="p_serial_notfound">找不到USB设备！</string>
 
-<string name="no_perm_text">The following permissions are required:</string>
+<string name="no_perm_text">需要以下权限：</string>
 </resources>
