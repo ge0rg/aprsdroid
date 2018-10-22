@@ -122,7 +122,8 @@ class PrefsAct extends PreferenceActivity {
 		mi.getItemId match {
 		case R.id.profile_load =>
 			val get_file = new Intent(Intent.ACTION_GET_CONTENT).setType("*/*")
-				startActivityForResult(Intent.createChooser(get_file,
+			// TODO: use MaterialFilePicker().withFilter() for *.aprs
+			startActivityForResult(Intent.createChooser(get_file,
 				getString(R.string.profile_import_activity)), 123458)
 			true
 		case R.id.profile_export =>
