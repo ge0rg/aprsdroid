@@ -52,6 +52,7 @@ class ProfileImportActivity extends Activity {
 			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 			db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_INFO,
 				getString(R.string.profile_import_activity), msg)
+			startActivity(new Intent(this, classOf[LogActivity]))
 		} catch {
 			case e : Exception =>
 				val errmsg = getString(R.string.profile_import_error, e.getMessage())

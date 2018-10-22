@@ -85,6 +85,7 @@ class KeyfileImportActivity extends Activity {
 				Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 				db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_INFO,
 					getString(R.string.post_info), msg)
+				startActivity(new Intent(this, classOf[LogActivity]))
 			}
 		} catch {
 		case e : Exception =>
