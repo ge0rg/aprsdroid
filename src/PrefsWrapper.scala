@@ -65,6 +65,16 @@ class PrefsWrapper(val context : Context) {
 		else
 			context.getResources().getStringArray(names)(id)
 	}
+	def getLocationSourceName() = {
+		getListItemName("loc_source", LocationSource.DEFAULT_CONNTYPE,
+			R.array.p_locsource_ev, R.array.p_locsource_e)
+	}
+	def getBackendName() = {
+		val proto = getListItemName("proto", AprsBackend.DEFAULT_CONNTYPE,
+			R.array.p_conntype_ev, R.array.p_conntype_e)
+		val additional_xml = AprsBackend.prefxml_backend(this)
+			if (additional_xml != 0)
+	}
 
 	// this is actually a hack!
 	def getVersion() = context.getString(R.string.build_version).split(" ").take(2).mkString(" ")

@@ -18,6 +18,7 @@ import org.json.JSONObject
 
 class PrefsAct extends PreferenceActivity {
 	lazy val db = StorageDatabase.open(this)
+	lazy val prefs = new PrefsWrapper(this)
 
 	def exportPrefs() {
 		val filename = "profile-%s.aprs".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
@@ -52,6 +53,12 @@ class PrefsAct extends PreferenceActivity {
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		addPreferencesFromResource(R.xml.preferences)
+	}
+	override def onResume() {
+		super.onResume()
+		findPreference("p_connsetup").setSummary(prefs.getBackendName())
+		findPreference("p_location").setSummary(prefs.getLocationSourceName())
+		findPreference("p_symbol").setSummary(getString(R.string.p_symbol_summary) + ": " + prefs.getString("symbol", "/$"))
 	}
 
 	def resolveContentUri(uri : Uri) = {
