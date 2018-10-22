@@ -16,6 +16,7 @@ object AprsService {
 	val SERVICE = PACKAGE + ".SERVICE"
 	val SERVICE_ONCE = PACKAGE + ".ONCE"
 	val SERVICE_SEND_PACKET = PACKAGE + ".SEND_PACKET"
+	val SERVICE_FREQUENCY = PACKAGE + ".FREQUENCY"
 	val SERVICE_STOP = PACKAGE + ".SERVICE_STOP"
 	// event intents
 	val SERVICE_STARTED = PACKAGE + ".SERVICE_STARTED"
@@ -122,7 +123,22 @@ class AprsService extends Service {
 				data_field)
 			sendPacket(p)
 			return
+		} else
+		if (i.getAction() == SERVICE_FREQUENCY) {
+			val data_field = i.getStringExtra("frequency")
+			if (data_field == null) {
+				Log.d(TAG, "FREQUENCY ignored, 'frequency' extra is empty.")
+				return
+			}
+                        val freq_cleaned = data_field.replace("MHz", "").trim
+                        val freq = try { freq_cleaned.toFloat; freq_cleaned } catch { case _ : Throwable => "" }
+                        if (prefs.getString("frequency", null) != freq) {
+                                prefs.set("frequency", freq)
+                                if (!running) return
+                                // XXX: fall through into SERVICE_ONCE
+			} else return
 		}
+
 
 		// display notification (even though we are not actually started yet,
 		// but we need this to prevent error message reordering)

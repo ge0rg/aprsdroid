@@ -41,6 +41,10 @@ class PrefsWrapper(val context : Context) {
 		prefs.edit().putBoolean(name, new_val).commit()
 		new_val
 	}
+	def set(name : String, new_val : String) = {
+		prefs.edit().putString(name, new_val).commit()
+		new_val
+	}
 	def getShowObjects() = prefs.getBoolean("show_objects", true)
 	def getShowSatellite() = prefs.getBoolean("show_satellite", false)
 

@@ -22,6 +22,8 @@ Intents ("actions"):
  * `ONCE` - send one position packet and stop
  * `SERVICE_STOP` - stop APRSdroid's tracking service
  * `SEND_PACKET` - send a (raw) APRS packet
+ * `FREQUENCY` - change the frequency announced in position packets (requires
+   APRSdroid 1.4.1)
 
 All uppercase strings mentioned in this document are suffixes to
 `"org.aprsdroid.app."` and need to be concatenated for the effective
@@ -195,6 +197,29 @@ Example for sending a raw status packet:
 	Intent i = new Intent("org.aprsdroid.app.SEND_PACKET").setPackage("org.aprsdroid.app");
 	i.putExtra("data", ">third-party APRS status app");
 	startService(i);
+
+### FREQUENCY (APRSdroid 1.4.1)
+
+Update the [frequency field](http://www.aprs.org/info/freqspec.txt) in the
+position reports sent by APRSdroid. If the APRSdroid service is running, this
+will immediately generate a position packet with the new frequency.
+
+Intent extras:
+
+ * `frequency` (String): the new frequency value, e.g. "438.750MHz", "145.500"
+   or "" to disable, decimal separator must be a dot (".")
+
+Example for updating the frequency:
+
+	// send raw status packet
+	Intent i = new Intent("org.aprsdroid.app.FREQUENCY").setPackage("org.aprsdroid.app");
+	i.putExtra("frequency", "438.750");
+	startService(i);
+
+Invocation from the adb shell:
+
+	am startservice -a org.aprsdroid.app.FREQUENCY -e frequency "438.750"
+
 
 ## (In-)Security
 

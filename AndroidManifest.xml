@@ -145,6 +145,7 @@
 		<action android:name="org.aprsdroid.app.ONCE" />
 		<action android:name="org.aprsdroid.app.SEND_PACKET" />
 		<action android:name="org.aprsdroid.app.SERVICE_STOP" />
+		<action android:name="org.aprsdroid.app.FREQUENCY" />
 	    </intent-filter>
 	</service>
 	<!-- start the service if applicable on boot -->
