@@ -17,6 +17,8 @@ import java.util.Date
 import org.json.JSONObject
 
 class PrefsAct extends PreferenceActivity {
+	lazy val db = StorageDatabase.open(this)
+
 	def exportPrefs() {
 		val filename = "profile-%s.aprs".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
 		val file = new File(Environment.getExternalStorageDirectory(), filename)
@@ -87,14 +89,15 @@ class PrefsAct extends PreferenceActivity {
 		if (file != null) {
 			PreferenceManager.getDefaultSharedPreferences(this)
 				.edit().putString(pref_name, file).commit()
-			android.widget.Toast.makeText(this, file,
-				android.widget.Toast.LENGTH_SHORT).show()
+			Toast.makeText(this, file, Toast.LENGTH_SHORT).show()
 			// reload prefs
 			finish()
 			startActivity(getIntent())
 		} else {
-			android.widget.Toast.makeText(this, getString(error_id, data.getDataString()),
-				android.widget.Toast.LENGTH_SHORT).show()
+			val errmsg = getString(error_id, data.getDataString())
+			Toast.makeText(this, errmsg, Toast.LENGTH_SHORT).show()
+			db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_ERROR,
+				getString(R.string.post_error), errmsg)
 		}
 	}
 
