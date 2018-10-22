@@ -243,7 +243,7 @@ class StorageDatabase(context : Context) extends
 			cv.put(SPEED, cse.getSpeed().asInstanceOf[java.lang.Integer])
 			cv.put(COURSE, cse.getCourse().asInstanceOf[java.lang.Integer])
 		}
-		Log.d(TAG, "got %s(%d, %d)%s -> %s".format(call, lat, lon, sym, comment))
+		Log.d(TAG, "got %s(%d, %d)%s -> %s".formatLocal(null, call, lat, lon, sym, comment))
 		// replace the full station info in stations table
 		getWritableDatabase().replaceOrThrow(TABLE, CALL, cv)
 	}
@@ -284,7 +284,7 @@ class StorageDatabase(context : Context) extends
 	}
 
 	def getRectStations(lat1 : Int, lon1 : Int, lat2 : Int, lon2 : Int, limit : String) : Cursor = {
-		Log.d(TAG, "StorageDatabase.getRectStations: %d,%d - %d,%d".format(lat1, lon1, lat2, lon2))
+		Log.d(TAG, "StorageDatabase.getRectStations: %d,%d - %d,%d".formatLocal(null, lat1, lon1, lat2, lon2))
 		// check for areas overflowing between +180 and -180 degrees
 		val QUERY = if (lon1 <= lon2) "LAT >= ? AND LAT <= ? AND LON >= ? AND LON <= ?"
 					else  "LAT >= ? AND LAT <= ? AND (LON <= ? OR LON >= ?)"
@@ -311,9 +311,9 @@ class StorageDatabase(context : Context) extends
 	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
 		val corr = (cos(Pi*lat/180000000.0)*cos(Pi*lat/180000000.0)*100).toInt
-		//Log.d(TAG, "getNeighbors: correcting by %d".format(corr))
+		//Log.d(TAG, "getNeighbors: correcting by %d".formatLocal(null, corr))
 		// add a distance column to the query
-		val newcols = Station.COLUMNS :+ Station.COL_DIST.format(lat, lat, lon, lon, corr)
+		val newcols = Station.COLUMNS :+ Station.COL_DIST.formatLocal(null, lat, lat, lon, lon, corr)
 		getReadableDatabase().query(Station.TABLE, newcols,
 			"ts > ? or call = ?", Array(ts.toString, mycall),
 			null, null, "dist", limit)
@@ -322,9 +322,9 @@ class StorageDatabase(context : Context) extends
 	def getNeighborsLike(call : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
 		// calculate latitude correction
 		val corr = (cos(Pi*lat/180000000.0)*cos(Pi*lat/180000000.0)*100).toInt
-		Log.d(TAG, "getNeighborsLike: correcting by %d".format(corr))
+		Log.d(TAG, "getNeighborsLike: correcting by %d".formatLocal(null, corr))
 		// add a distance column to the query
-		val newcols = Station.COLUMNS :+ Station.COL_DIST.format(lat, lat, lon, lon, corr)
+		val newcols = Station.COLUMNS :+ Station.COL_DIST.formatLocal(null, lat, lat, lon, lon, corr)
 		getReadableDatabase().query(Station.TABLE, newcols,
 			"call like ?", Array(call),
 			null, null, "dist", limit)
@@ -425,7 +425,7 @@ class StorageDatabase(context : Context) extends
 		val result = if (c.getCount() == 0)
 			0
 		else c.getInt(0) + 1
-		Log.d(TAG, "createMsgId(%s) = %d".format(call, result))
+		Log.d(TAG, "createMsgId(%s) = %d".formatLocal(null, call, result))
 		c.close()
 		result
 	}

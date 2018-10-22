@@ -38,7 +38,7 @@ object AprsPacket {
 
 	def formatAltitude(location : Location) : String = {
 		if (location.hasAltitude)
-			"/A=%06d".format(m2ft(location.getAltitude))
+			"/A=%06d".formatLocal(null, m2ft(location.getAltitude))
 		else
 			""
 	}
@@ -47,7 +47,7 @@ object AprsPacket {
 		// only report speeds above 2m/s (7.2km/h)
 		if (location.hasSpeed && location.hasBearing)
 		   // && location.getSpeed > 2)
-			"%03d/%03d".format(location.getBearing.asInstanceOf[Int],
+			"%03d/%03d".formatLocal(null, location.getBearing.asInstanceOf[Int],
 				mps2kt(location.getSpeed))
 		else
 			""

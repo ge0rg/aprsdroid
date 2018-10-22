@@ -9,7 +9,7 @@ object Benchmark {
 			block
 		} finally {
 			val exectime = System.currentTimeMillis - start
-			Log.d(tag, "exectuion time: %.3f s".format(exectime / 1000.0))
+			Log.d(tag, "exectuion time: %.3f s".formatLocal(null, exectime / 1000.0))
 		}
 	}
 }
