@@ -18,6 +18,8 @@ import scala.collection.JavaConversions._ // for enumeration of config items
 class ProfileImportActivity extends Activity {
 	val TAG = "APRSdroid.ProfileImport"
 
+	lazy val db = StorageDatabase.open(this)
+
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		Log.d(TAG, "created: " + getIntent())
@@ -46,11 +48,18 @@ class ProfileImportActivity extends Activity {
 				}
 			}
 			prefsedit.commit()
-			Toast.makeText(this, R.string.profile_import_done, Toast.LENGTH_SHORT).show()
+			val msg = getString(R.string.profile_import_done, getIntent.getData().getPath())
+			Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+			db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_INFO,
+				getString(R.string.profile_import_activity), msg)
+			startActivity(new Intent(this, classOf[LogActivity]))
 		} catch {
 			case e : Exception =>
-			Toast.makeText(this, getString(R.string.profile_import_error, e.getMessage()), Toast.LENGTH_LONG).show()
-			e.printStackTrace()
+				val errmsg = getString(R.string.profile_import_error, e.getMessage())
+				Toast.makeText(this, errmsg, Toast.LENGTH_LONG).show()
+				db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_ERROR,
+					getString(R.string.profile_import_activity), errmsg)
+				e.printStackTrace()
 		}
 		finish()
 	}

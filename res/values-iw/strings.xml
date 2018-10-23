@@ -73,7 +73,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">אודות APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -115,6 +115,8 @@
 <string name="quit">יציאה</string>
 <string name="preferences">העדפות</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">רדיו חובבני</string>
 <string name="p_callsign">Callsign</string>
 <string name="p_callsign_nossid">Callsign (ללא SSID)</string>
@@ -163,7 +165,6 @@
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">העדפות חיבור</string>
-<string name="p_connsetup_summary">הגדרה של חיבור</string>
 <string name="p_connlog">רשימת חיבור</string>
 <string name="p_connlog_summary">פלט מצב מגובב בתוך יומן</string>
 <!-- array of connection types -->
@@ -222,7 +223,6 @@
 <string name="p_locsource">מקור מיקום</string>
 <string name="p_locsource_summary">ידני, ארעי או ™SmartBeaconing</string>
 <string name="p__location">הגדרות מיקום</string>
-<string name="p__location_summary">תצוורה לשם שליחת דיווחי עמדה</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">עזרה ™SmartBeaconing</string>
@@ -381,7 +381,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

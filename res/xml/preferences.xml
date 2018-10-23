@@ -9,6 +9,7 @@
                 android:key="callsign"
 		android:inputType="textCapCharacters"
 		android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		android:maxLength="6"
 		android:title="@string/p_callsign_nossid"
 		android:summary="@string/p_callsign_summary"
 		android:hint="@string/p_callsign_nossid"
@@ -38,8 +39,8 @@
 	android:title="@string/p__connection">
 
         <PreferenceScreen
-		android:title="@string/p_connsetup"
-		android:summary="@string/p_connsetup_summary">
+		android:key="p_connsetup"
+		android:title="@string/p_connsetup">
 
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="org.aprsdroid.app"
@@ -51,6 +52,7 @@
     <PreferenceCategory
 	android:title="@string/p__position">
     <PreferenceScreen
+	    android:key="p_symbol"
 	    android:title="@string/p_symbol"
 	    android:summary="@string/p_symbol_summary" >
 
@@ -78,8 +80,8 @@
     <!-- sub-screen "Position Reports" -->
 
     <PreferenceScreen
-	    android:title="@string/p__location"
-	    android:summary="@string/p__location_summary">
+	    android:key="p_location"
+	    android:title="@string/p__location">
 
             <intent android:action="android.intent.action.MAIN"
                     android:targetPackage="org.aprsdroid.app"

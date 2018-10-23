@@ -17,6 +17,9 @@ import java.util.Date
 import org.json.JSONObject
 
 class PrefsAct extends PreferenceActivity {
+	lazy val db = StorageDatabase.open(this)
+	lazy val prefs = new PrefsWrapper(this)
+
 	def exportPrefs() {
 		val filename = "profile-%s.aprs".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
 		val file = new File(Environment.getExternalStorageDirectory(), filename)
@@ -52,6 +55,12 @@ class PrefsAct extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.preferences)
 		fileChooserPreference("mapfile", 123456, R.string.p_mapfile_choose)
 		fileChooserPreference("themefile", 123457, R.string.p_themefile_choose)
+	}
+	override def onResume() {
+		super.onResume()
+		findPreference("p_connsetup").setSummary(prefs.getBackendName())
+		findPreference("p_location").setSummary(prefs.getLocationSourceName())
+		findPreference("p_symbol").setSummary(getString(R.string.p_symbol_summary) + ": " + prefs.getString("symbol", "/$"))
 	}
 
 	def resolveContentUri(uri : Uri) = {
@@ -89,14 +98,15 @@ class PrefsAct extends PreferenceActivity {
 		if (file != null) {
 			PreferenceManager.getDefaultSharedPreferences(this)
 				.edit().putString(pref_name, file).commit()
-			android.widget.Toast.makeText(this, file,
-				android.widget.Toast.LENGTH_SHORT).show()
+			Toast.makeText(this, file, Toast.LENGTH_SHORT).show()
 			// reload prefs
 			finish()
 			startActivity(getIntent())
 		} else {
-			android.widget.Toast.makeText(this, getString(error_id, data.getDataString()),
-				android.widget.Toast.LENGTH_SHORT).show()
+			val errmsg = getString(error_id, data.getDataString())
+			Toast.makeText(this, errmsg, Toast.LENGTH_SHORT).show()
+			db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_ERROR,
+				getString(R.string.post_error), errmsg)
 		}
 	}
 
@@ -123,7 +133,8 @@ class PrefsAct extends PreferenceActivity {
 		mi.getItemId match {
 		case R.id.profile_load =>
 			val get_file = new Intent(Intent.ACTION_GET_CONTENT).setType("*/*")
-				startActivityForResult(Intent.createChooser(get_file,
+			// TODO: use MaterialFilePicker().withFilter() for *.aprs
+			startActivityForResult(Intent.createChooser(get_file,
 				getString(R.string.profile_import_activity)), 123458)
 			true
 		case R.id.profile_export =>

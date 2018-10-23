@@ -5,7 +5,7 @@
 <string name="app_prefs">APRSdroid možnosti</string>
 <string name="app_map">APRSdroid zemljevid</string>
 <string name="app_hub">APRSdroid vozlišče</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">APRSdroid dnevnik</string>
 <string name="app_sta">Info postaje</string>
 <string name="app_messages">Sporočila</string>
 <string name="app_messages_clear">Počisti sporočila</string>
@@ -14,7 +14,7 @@
 <string name="wrongpasscode">Vaše geslo se ne ujema z pozivnim znakom</string>
 <string name="anon_warning">Brez gesla vaša sporočila ne bodo vidna</string>
 <string name="mininterval">Najmanjši čas posodobitve</string>
-<string name="singlelog">Send Position</string>
+<string name="singlelog">Pošlji lokacijo</string>
 <string name="startlog">Začetek sledenja</string>
 <string name="stoplog">Konec sledenja</string>
 
@@ -23,7 +23,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Zadnje poročilo</string>
 <string name="map_track_call">Sledenje %s...</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
+<string name="map_track_unknown">Lokacija za %s ni znana!</string>
 <string name="map_select">Izberi postajo</string>
 
 <string name="map_loading">Nalaganje …</string>
@@ -32,7 +32,7 @@
 <string name="sta_ssids">SSID postaje</string>
 <string name="sta_history">Zgodovina postaje</string>
 <string name="sta_map">Zemljevid</string>
-<string name="sta_extmap">External Map</string>
+<string name="sta_extmap">Zunanji zemljevid</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroid vizitka v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -104,14 +104,16 @@
 <!-- options menu -->
 <string name="about">Vizitka</string>
 <string name="show_hub">Prikaži vozel</string>
-<string name="show_map">Show Map</string>
+<string name="show_map">Pokaži zemljevid</string>
 <string name="show_log">Prikaži dnevnik datoteko</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Izvozi dnevnik</string>
+<string name="export_empty">Ni podatkov za izvoz</string>
 <string name="clear_log">Počisti dnevnik</string>
 <string name="quit">Končaj</string>
 <string name="preferences">Možnosti</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Radioamaterstvo</string>
 <string name="p_callsign">Pozivni znak</string>
 <string name="p_callsign_nossid">Pozivni znak(brez SSID)</string>
@@ -129,8 +131,8 @@
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
 	<item>(brez) Osnovna postaja</item>
-	<item>1: Generic additional station</item>
-	<item>2: Generic additional station</item>
+	<item>1: Generična dodatna postaja</item>
+	<item>2: Generična dodatna postaja</item>
 	<item>Originalna dodatna postaja</item>
 	<item>Originalna dodatna postaja</item>
 	<item>Ostala omrežja(D-Star, 3G)</item>
@@ -148,7 +150,7 @@
 <string name="p_symbol">APRS simbol</string>
 <string name="p_symbol_summary">Vaš simbol za prikaz na zemljevidu</string>
 <string name="p_symbol_overlay">Overlay:</string>
-<string name="p_symbol_result">Result:</string>
+<string name="p_symbol_result">Rezultat:</string>
 <string name="p_frequency">Voice frequency</string>
 <string name="p_frequency_summary">Your voice frequency [MHz]</string>
 <string name="p_status">Polje za komentar</string>
@@ -157,22 +159,21 @@
 <string name="p__connection">APRS povezava</string>
 <string name="p_conntype">Protkol povezave</string>
 <string name="p_conntype_entry">Izberite protkol povezave</string>
-<string name="p_link">Connection Type</string>
-<string name="p_link_entry">Choose the link type</string>
+<string name="p_link">Vrsta povezave</string>
+<string name="p_link_entry">Izberite vrsto povezave</string>
 <string name="p_connsetup">Možnosti povezave</string>
-<string name="p_connsetup_summary">Nastavitve povezave</string>
 <string name="p_connlog">Dnevnik povezave</string>
 <string name="p_connlog_summary">Detajlni izhodni dnevnik</string>
 <!-- array of connection types -->
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
-<string name="p_conn_afsk">Audio (AFSK)</string>
+<string name="p_conn_afsk">Zvok (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
 <string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
-<string name="p_conn_kwd_info">Kenwood setup help</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
+<string name="p_conn_kwd_info">Pomoč pri nastativah Kenwood</string>
+<string name="p_conn_kwd_gps">Uporabi Android GPS</string>
 <string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
+<string name="p_conn_kwd_gps_debug">Prikaži GPS v dnevniku</string>
 <string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">niz tipov povezave</string>
@@ -219,7 +220,6 @@
 <string name="p_locsource">Lokacijski izvor</string>
 <string name="p_locsource_summary">Ročni, Periodični ali  SmartBeaconing™</string>
 <string name="p__location">Nastavitve lokacije</string>
-<string name="p__location_summary">Nastavitve za pošiljanje lokacijskih poročil</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ pomoč</string>
@@ -332,7 +332,8 @@
 <string name="themefile_error">Error loading theme file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Joško Horvat https://launchpad.net/~joze-horvat</string>
+  Joško Horvat https://launchpad.net/~joze-horvat
+  Matic Gradišer https://launchpad.net/~0micky</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>
@@ -378,7 +379,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

@@ -23,6 +23,8 @@ class KeyfileImportActivity extends Activity {
 
 	val CALL_RE = ".*CALLSIGN=([0-9A-Za-z]+).*".r
 
+	lazy val db = StorageDatabase.open(this)
+
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		Log.d(TAG, "created: " + getIntent())
@@ -79,11 +81,18 @@ class KeyfileImportActivity extends Activity {
 				PreferenceManager.getDefaultSharedPreferences(this)
 					.edit().putString("callsign", callsign).commit()
 
-				Toast.makeText(this, getString(R.string.ssl_import_ok, callsign), Toast.LENGTH_SHORT).show()
+				val msg = getString(R.string.ssl_import_ok, callsign)
+				Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+				db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_INFO,
+					getString(R.string.post_info), msg)
+				startActivity(new Intent(this, classOf[LogActivity]))
 			}
 		} catch {
 		case e : Exception =>
-			Toast.makeText(this, getString(R.string.ssl_import_error, e.getMessage()), Toast.LENGTH_LONG).show()
+			val errmsg = getString(R.string.ssl_import_error, e.getMessage())
+			Toast.makeText(this, errmsg, Toast.LENGTH_LONG).show()
+			db.addPost(System.currentTimeMillis(), StorageDatabase.Post.TYPE_ERROR,
+				getString(R.string.post_error), errmsg)
 			e.printStackTrace()
 		}
 		finish()

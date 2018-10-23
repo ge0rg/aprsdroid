@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Sobre APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® es marca registrada de Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® es marca registrada de Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Este programa es software libre, puede redistribuirlo y / o modificarlo bajo los términos de la Licencia Pública General GNU publicada por la Free Software Foundation, versión 2 de la Licencia, o (a su elección) cualquier versión posterior. \ n \ n Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA, incluso sin la garantía implícita de COMERCIALIZACIÓN o IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General de GNU para más detalles. \ n \ n Usted debe haber recibido una copia de la Licencia Pública General de GNU junto con este programa, si no, escriba a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, EE.UU.. \ n \ n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Gracias a:</string>
 <string name="ad_thanks_0">Mi novia ♥♥♥</string>
@@ -108,6 +108,8 @@
 <string name="quit">Salir</string>
 <string name="preferences">Preferencias</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Radioaficionado</string>
 <string name="p_callsign">Distintivo de llamada</string>
 <string name="p_callsign_nossid">Distintivo de llamada (sin SSID)</string>
@@ -156,7 +158,6 @@
 <string name="p_link">Tipo de conexión</string>
 <string name="p_link_entry">Escoja el tipo de enlace</string>
 <string name="p_connsetup">Preferencias de conexión</string>
-<string name="p_connsetup_summary">Configuración de la conexión</string>
 <string name="p_connlog">Registro de conexiones</string>
 <string name="p_connlog_summary">Estado detallado en logs</string>
 <!-- array of connection types -->
@@ -215,7 +216,6 @@
 <string name="p_locsource">Fuente de localización</string>
 <string name="p_locsource_summary">Manual, Periódico o SmartBeaconing™</string>
 <string name="p__location">Preferencias de la ubicación</string>
-<string name="p__location_summary">Configuración para enviar los reportes de posición</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">Ayuda de SmartBeaconing[tm]</string>
@@ -384,7 +384,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

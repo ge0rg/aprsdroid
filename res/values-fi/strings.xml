@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Tietoja APRSdroid v%s:sta</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® on Bob Bruningan (WB4APR) rekisteröimä tavaramerkki</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® on Bob Bruningan (WB4APR) rekisteröimä tavaramerkki</string>
 <string name="ad_gpl">Tämä ohjelmisto on vapaa; voit jakaa sitä ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public License ehtojen mukaisesti; joko Lisenssin 2-version tai myöhemmän version mukaisesti. \n\n Tätä ohjelmaa jaetaan siten, että siitä olisi jotain hyötyä, mutta EHDOTTOMASTI ILMAN MITÄÄN TAKUUTA; ilman vähäisintäkään takuuta KAUPALLISUUDESTA tai SOPIVUUDESTA ERITYISIIN TARKOITUKSIIN. Katso GNU General Public License tarkemista yksityiskohdista. \n\n Olet saanut kopion GNU General Public License:stä tämän ohjelman mukana; jos et, niin otayhteyttä Free Software Foundation:iin , Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Kiitokset:</string>
 <string name="ad_thanks_0">Oma YL:ni ♥♥♥</string>
@@ -108,6 +108,8 @@
 <string name="quit">Poistu</string>
 <string name="preferences">Asetukset</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Amatööriradio</string>
 <string name="p_callsign">Kutsumerkki</string>
 <string name="p_callsign_nossid">Kutsumerkki (ilman SSID:tä)</string>
@@ -156,7 +158,6 @@
 <string name="p_link">Yhteystyyppi</string>
 <string name="p_link_entry">Valitse yhteyden tyyppi</string>
 <string name="p_connsetup">Yhteysasetukset</string>
-<string name="p_connsetup_summary">Yhteyden asetukset</string>
 <string name="p_connlog">Yhteyden kirjaus lokiin</string>
 <string name="p_connlog_summary">Laajemmat tilatiedot lokiin</string>
 <!-- array of connection types -->
@@ -215,7 +216,6 @@
 <string name="p_locsource">Sijainnin lähde</string>
 <string name="p_locsource_summary">Manuaalinen, Jaksottainen tai SmartBeaconing™</string>
 <string name="p__location">Sijaintiasetukset</string>
-<string name="p__location_summary">Sijaintiraportin lähetyksen asetukset</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ ohje</string>
@@ -381,7 +381,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

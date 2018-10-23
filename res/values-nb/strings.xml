@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Om APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -112,6 +112,8 @@
 <string name="quit">Avslutt</string>
 <string name="preferences">Brukervalg</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Amatørradio</string>
 <string name="p_callsign">Kallesignal</string>
 <string name="p_callsign_nossid">Kallesignal (uten SSID)</string>
@@ -160,7 +162,6 @@
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Brukervalg for tilkobling</string>
-<string name="p_connsetup_summary">Tilkoblingskonfigurasjon</string>
 <string name="p_connlog">Tilkoblingslogg</string>
 <string name="p_connlog_summary">Rikelige statusmeldinger til logg</string>
 <!-- array of connection types -->
@@ -219,7 +220,6 @@
 <string name="p_locsource">Lokaliseringskilde</string>
 <string name="p_locsource_summary">Manuell, periodisk eller SmartBeaconing™</string>
 <string name="p__location">Stedsinnstillinger</string>
-<string name="p__location_summary">Konfigurasjon for sending av possisjonsrapporter</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>
@@ -380,7 +380,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

@@ -23,7 +23,7 @@ class PrefsWrapper(val context : Context) {
 	}
 
 	// return commonly used prefs
-	def getCallsign() = prefs.getString("callsign", "").trim().toUpperCase()
+	def getCallsign() = prefs.getString("callsign", "").trim().slice(0, 6).toUpperCase()
 
 	def getPasscode() = prefs.getString("passcode", "") match {
 		case "" => "-1"
@@ -39,6 +39,10 @@ class PrefsWrapper(val context : Context) {
         }
 	def setBoolean(name : String, new_val : Boolean) = {
 		prefs.edit().putBoolean(name, new_val).commit()
+		new_val
+	}
+	def set(name : String, new_val : String) = {
+		prefs.edit().putString(name, new_val).commit()
 		new_val
 	}
 	def getShowObjects() = prefs.getBoolean("show_objects", true)
@@ -60,6 +64,20 @@ class PrefsWrapper(val context : Context) {
 			"<not in list>"
 		else
 			context.getResources().getStringArray(names)(id)
+	}
+	def getLocationSourceName() = {
+		getListItemName("loc_source", LocationSource.DEFAULT_CONNTYPE,
+			R.array.p_locsource_ev, R.array.p_locsource_e)
+	}
+	def getBackendName() = {
+		val proto = getListItemName("proto", AprsBackend.DEFAULT_CONNTYPE,
+			R.array.p_conntype_ev, R.array.p_conntype_e)
+		val link = AprsBackend.defaultProtoInfo(this).link
+		link match {
+		case "aprsis" => "%s, %s".format(proto, getListItemName(link, "tcp", R.array.p_aprsis_ev, R.array.p_aprsis_e))
+		case "link" => "%s, %s".format(proto, getListItemName(link, "tcp", R.array.p_link_ev, R.array.p_link_e))
+		case _ => proto
+		}
 	}
 
 	// this is actually a hack!

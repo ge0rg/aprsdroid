@@ -72,7 +72,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 
 <!-- about dialog -->
 <string name="ad_title">Über APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
 \n\n
 Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
@@ -116,6 +116,8 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="quit">Beenden</string>
 <string name="preferences">Einstellungen</string>
 <!-- preferences -->
+<string name="profile_load">Profil laden...</string>
+<string name="profile_export">Profil exportieren...</string>
 <string name="p__ham">Amateurfunk</string>
 <string name="p_callsign">Rufzeichen</string>
 <string name="p_callsign_nossid">Rufzeichen (ohne SSID)</string>
@@ -164,7 +166,6 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_link">Verbindungstyp</string>
 <string name="p_link_entry">Art der Verbindung auswählen</string>
 <string name="p_connsetup">Verbindungseinstellungen</string>
-<string name="p_connsetup_summary">Konfiguration der Verbindung</string>
 <string name="p_connlog">Verbindungsprotokollierung</string>
 <string name="p_connlog_summary">Zusätzliche Ausgaben im Protokoll</string>
 <!-- array of connection types -->
@@ -223,7 +224,6 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_locsource">Standort-Quelle</string>
 <string name="p_locsource_summary">Manuell, periodisch oder SmartBeaconing™</string>
 <string name="p__location">Standorteinstellungen</string>
-<string name="p__location_summary">Einstellungen für den Versand der eigenen Position</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™-Hilfe</string>
@@ -384,7 +384,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 
 <!-- Config import -->
 <string name="profile_import_activity">Profil-Import</string>
-<string name="profile_import_done">Import erfolgreich!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Fehler beim Profil-Import: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

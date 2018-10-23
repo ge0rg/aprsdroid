@@ -74,7 +74,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -131,6 +131,8 @@
 <string name="quit">Quit</string>
 <string name="preferences">Preferences</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Amateur Radio</string>
 <string name="p_callsign">Callsign</string>
 <string name="p_callsign_nossid">Callsign (without SSID)</string>
@@ -179,7 +181,6 @@
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Connection Preferences</string>
-<string name="p_connsetup_summary">Configuration of Connection</string>
 <string name="p_connlog">Connection Logging</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
@@ -238,7 +239,6 @@
 <string name="p_locsource">Location Source</string>
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Location Settings</string>
-<string name="p__location_summary">Configuration for sending position reports</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>
@@ -396,7 +396,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

@@ -70,7 +70,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Informasuin de APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2015 Georg Lukas (DO1GL)\n
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
@@ -112,6 +112,8 @@
 <string name="quit">Lassa u programma</string>
 <string name="preferences">Preferié</string>
 <!-- preferences -->
+<string name="profile_load">Load profile...</string>
+<string name="profile_export">Export profile...</string>
 <string name="p__ham">Stasiun de Radio Amatur</string>
 <string name="p_callsign">Nominativu</string>
 <string name="p_callsign_nossid">Nominativu sensa u SSID</string>
@@ -160,7 +162,6 @@
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Preferensia de connessiun</string>
-<string name="p_connsetup_summary">Configurasiun de connessiun</string>
 <string name="p_connlog">Registrasiun de la connessiun</string>
 <string name="p_connlog_summary">Troppe parolle in tu registru</string>
 <!-- array of connection types -->
@@ -219,7 +220,6 @@
 <string name="p_locsource">Localité de  trasmisiun</string>
 <string name="p_locsource_summary">Manuel, Periodica o SmartBeaconing™</string>
 <string name="p__location">coordiné de la localité</string>
-<string name="p__location_summary">Configurasiun pa envié u rapportu de posisiun</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">Aggiuttu pe SmartBeaconing™</string>
@@ -378,7 +378,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
