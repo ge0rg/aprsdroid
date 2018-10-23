@@ -162,7 +162,6 @@
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Preferensia de connessiun</string>
-<string name="p_connsetup_summary">Configurasiun de connessiun</string>
 <string name="p_connlog">Registrasiun de la connessiun</string>
 <string name="p_connlog_summary">Troppe parolle in tu registru</string>
 <!-- array of connection types -->
@@ -221,7 +220,6 @@
 <string name="p_locsource">Localité de  trasmisiun</string>
 <string name="p_locsource_summary">Manuel, Periodica o SmartBeaconing™</string>
 <string name="p__location">coordiné de la localité</string>
-<string name="p__location_summary">Configurasiun pa envié u rapportu de posisiun</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">Aggiuttu pe SmartBeaconing™</string>
@@ -380,7 +378,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

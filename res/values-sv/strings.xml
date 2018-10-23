@@ -162,7 +162,6 @@
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Egenskaper för anslutningen</string>
-<string name="p_connsetup_summary">Konfiguration för anslutningen</string>
 <string name="p_connlog">Loggför anslutning</string>
 <string name="p_connlog_summary">Utförlig statusutdata i loggen</string>
 <!-- array of connection types -->
@@ -221,7 +220,6 @@
 <string name="p_locsource">Platskälla</string>
 <string name="p_locsource_summary">Manuell, periodisk, eller SmartBeaconing™</string>
 <string name="p__location">Platsinställningar</string>
-<string name="p__location_summary">Inställningar för att skicka positionsrapporter</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>
@@ -382,7 +380,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

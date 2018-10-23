@@ -70,7 +70,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">Σχετικά με APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό; Μπορείτε να το αναδιανέμετε ή/και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή δημοσιεύεται από το Ίδρυμα Ελεύθερου Λογισμικού; είτε της έκδοσης 2 της Άδειας, είτε (κατ\'επιλογή σας) οποιαδήποτε μεταγενέστερη έκδοση. \n\n Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ; χωρίς καν την υπονοούμενη εγγύηση της ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε την GNU Γενική Άδεια Δημόσιας Χρήσης για περισσότερες λεπτομέρειες. \n\n Θα πρέπει να έχετε λάβει ένα αντίγραφο της GNU General Public License μαζί με αυτό το πρόγραμμα; αν όχι, γράψτε στο Ίδρυμα Ελεύθερου Λογισμικού, Inc, 51 Franklin Street, πέμπτο όροφο, Boston, MA 02110-1301, ΗΠΑ. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Ευχαριστίες σε:</string>
 <string name="ad_thanks_0">Η YL μου ♥♥♥</string>
@@ -108,8 +112,8 @@
 <string name="quit">Έξοδος</string>
 <string name="preferences">Προτιμήσεις</string>
 <!-- preferences -->
-<string name="profile_load">Load profile...</string>
-<string name="profile_export">Export profile...</string>
+<string name="profile_load">Φόρτωση προφίλ...</string>
+<string name="profile_export">Εξαγωγή προφίλ...</string>
 <string name="p__ham">Ραδιοερασιτεχνισμός</string>
 <string name="p_callsign">Διακριτικό Κλήσης</string>
 <string name="p_callsign_nossid">Διακριτικό Κλήσης (χωρίς SSID)</string>
@@ -158,7 +162,6 @@
 <string name="p_link">Τύπος σύνδεσης</string>
 <string name="p_link_entry">Διαλέξτε τύπο ζεύξης</string>
 <string name="p_connsetup">Προτιμήσεις Σύνδεσης</string>
-<string name="p_connsetup_summary">Ρυθμίσεις Σύνδεσης</string>
 <string name="p_connlog">Σύνδεση Καταγραφής</string>
 <string name="p_connlog_summary">Λεπτομερής κατάσταση εξόδου στο Μητρώο</string>
 <!-- array of connection types -->
@@ -217,7 +220,6 @@
 <string name="p_locsource">Προέλευση Τοποθεσίας</string>
 <string name="p_locsource_summary">Χειροκίνητο, Περιοδικό ή SmartBeaconing™</string>
 <string name="p__location">Ρυθμίσεις Τοποθεσίας</string>
-<string name="p__location_summary">Ρύθμιση για την αποστολή των αναφορών τοποθεσίας</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ βοήθεια</string>
@@ -379,7 +381,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Εισαγωγή προφίλ</string>
-<string name="profile_import_done">Η εισαγωγή έγινε με επιτυχία!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Σφάλμα κατά την εισαγωγή προφίλ: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

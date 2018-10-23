@@ -14,7 +14,7 @@
 <string name="wrongpasscode">Passcode tidak cocok dengan callsign Anda!</string>
 <string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
 <string name="mininterval">Minimum update time is 1 minute!</string>
-<string name="singlelog">Send Position</string>
+<string name="singlelog">Kirim Posisi</string>
 <string name="startlog">Mulai Penjejak</string>
 <string name="stoplog">Hentikan Penjejak</string>
 
@@ -23,10 +23,10 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Pesan Terakhir</string>
 <string name="map_track_call">Rekam Jejak %s</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
+<string name="map_track_unknown">Posisi %s tidak diketahui!</string>
 <string name="map_select">Pilih Stasiun</string>
 
-<string name="map_loading">Memuat</string>
+<string name="map_loading">Memuat...</string>
 
 <!-- StationInfo activity -->
 <string name="sta_ssids">Stasiun SSIDs</string>
@@ -177,7 +177,6 @@
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Connection Preferences</string>
-<string name="p_connsetup_summary">Configuration of Connection</string>
 <string name="p_connlog">Connection Logging</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
@@ -236,7 +235,6 @@
 <string name="p_locsource">Location Source</string>
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Location Settings</string>
-<string name="p__location_summary">Configuration for sending position reports</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>
@@ -349,6 +347,7 @@
 <string name="themefile_error">Error loading theme file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Josef Matondang https://launchpad.net/~josefmtd
   Zoel Gandhi https://launchpad.net/~yc0nyo
   ali elsas https://launchpad.net/~yc3inp
   m. anshori https://launchpad.net/~m-anshory</string>
@@ -397,7 +396,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

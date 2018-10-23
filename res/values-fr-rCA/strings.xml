@@ -162,7 +162,6 @@
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Préférences de connexion</string>
-<string name="p_connsetup_summary">Configuration de la connexion</string>
 <string name="p_connlog">Historique des connexions</string>
 <string name="p_connlog_summary">Écriture des statuts dans l\'historique</string>
 <!-- array of connection types -->
@@ -221,7 +220,6 @@
 <string name="p_locsource">Source de la localisation</string>
 <string name="p_locsource_summary">Manuel, Périodique ou SmartBeaconing™</string>
 <string name="p__location">Paramètres de localisation</string>
-<string name="p__location_summary">Configuration des rapports de position envoyés</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">Assistant SmartBeaconing™</string>
@@ -380,7 +378,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

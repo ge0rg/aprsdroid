@@ -70,7 +70,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">Об APRSdroid v%s</string>
-<string name="ad_copyright">Права защищены © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® - это зарегистрированный торговый знак, принадлежащей Бобу Браунингу (Bob Bruninga, WB4APR).</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">Эта программа является свободным программным обеспечением, вы можете распространять и/или модифицировать его на условиях GNU General Public License, опубликованной Free Software Foundation; либо 2-ой версией лицензии, либо (по вашему выбору) любой более поздней версией.  \n\n Эта программа распространяется в надежде, что она будет полезной, но БЕЗ ВСЯКИХ ГАРАНТИЙ. Совершенно не подразумевается гарантия КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ. Смотрите общественную лицензию GNU General для получения более подробной информации.\n\n Вы должны были получить копию GNU General Public License вместе с этой программой. Если в не получили копии, напишите письмо по адресу Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Благодарности:</string>
 <string name="ad_thanks_0">Моей YL ♥♥♥</string>
@@ -158,7 +162,6 @@
 <string name="p_link">Тип соединения</string>
 <string name="p_link_entry">Выбор типа связи</string>
 <string name="p_connsetup">Параметры подключения</string>
-<string name="p_connsetup_summary">Конфигурация подключения</string>
 <string name="p_connlog">Протоколирование соединения</string>
 <string name="p_connlog_summary">Подробная информация в журнале</string>
 <!-- array of connection types -->
@@ -217,7 +220,6 @@
 <string name="p_locsource">Источник координат</string>
 <string name="p_locsource_summary">Вручную, периодически или с SmartBeaconing™</string>
 <string name="p__location">Установки местоположения</string>
-<string name="p__location_summary">Конфигурация для отправки сообщения о местоположении</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ помощь</string>
@@ -382,7 +384,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Настройки импорта</string>
-<string name="profile_import_done">Импортировано успешно!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Ошибка при импорте профиля: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

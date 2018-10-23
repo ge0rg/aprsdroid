@@ -178,7 +178,6 @@
 <string name="p_link">Тип з\'єднання</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Параметри з\'єднання</string>
-<string name="p_connsetup_summary">Конфігурація з\'єднання</string>
 <string name="p_connlog">Реєстрація з\'єднання</string>
 <string name="p_connlog_summary">Verbose status output in Log</string>
 <!-- array of connection types -->
@@ -237,7 +236,6 @@
 <string name="p_locsource">Джерело розташування</string>
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Параметри місцезнаходження</string>
-<string name="p__location_summary">Configuration for sending position reports</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">допомога SmartBeaconing™</string>
@@ -396,7 +394,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

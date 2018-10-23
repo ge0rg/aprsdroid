@@ -162,7 +162,6 @@
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Postavke povezivanja</string>
-<string name="p_connsetup_summary">Konfiguracija veze</string>
 <string name="p_connlog">Praćenje povezivanja</string>
 <string name="p_connlog_summary">Verbalni ispis u dnevniku</string>
 <!-- array of connection types -->
@@ -221,7 +220,6 @@
 <string name="p_locsource">Izvor lokacija</string>
 <string name="p_locsource_summary">Ručno, povremeno ili SmartBeaconing™</string>
 <string name="p__location">Postavke lokacija</string>
-<string name="p__location_summary">Konfiguracija za slanje izvješća lokacije</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ pomoć</string>
@@ -381,7 +379,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

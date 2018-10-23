@@ -70,7 +70,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">O APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania - według wersji 2-giej tej Licencji lub którejś
 z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji - Powszechna Licencja Publiczna GNU. \n\n Z pewnością wraz z niniejszym programem otrzymałeś też egzemplarz Powszechnej Licencji Publicznej GNU (GNU General Public License); jeśli nie - napisz do Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Podziękowania dla:</string>
@@ -109,8 +113,8 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="quit">Zakończ</string>
 <string name="preferences">Ustawienia</string>
 <!-- preferences -->
-<string name="profile_load">Load profile...</string>
-<string name="profile_export">Export profile...</string>
+<string name="profile_load">Załaduj profil...</string>
+<string name="profile_export">Eksportuj profil...</string>
 <string name="p__ham">Krótkofalarstwo</string>
 <string name="p_callsign">Znak wywoławczy</string>
 <string name="p_callsign_nossid">Znak wywoławczy (bez SSID)</string>
@@ -159,7 +163,6 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_link">Rodzaj połączenia</string>
 <string name="p_link_entry">Wybierz typ połączenia</string>
 <string name="p_connsetup">Ustawienia połączenia</string>
-<string name="p_connsetup_summary">Konfiguracja połączenia</string>
 <string name="p_connlog">Logowanie połączenia</string>
 <string name="p_connlog_summary">Wyświetlaj status w Logu</string>
 <!-- array of connection types -->
@@ -218,7 +221,6 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_locsource">Źródło współrzędnych</string>
 <string name="p_locsource_summary">Manualna, okresowa lub SmartBeaconing™</string>
 <string name="p__location">Ustawienia lokalizacji</string>
-<string name="p__location_summary">Konfiguracja wysyłania raportów położenia</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">Pomoc SmartBeaconing™</string>
@@ -387,7 +389,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 
 <!-- Config import -->
 <string name="profile_import_activity">Importowanie profilu</string>
-<string name="profile_import_done">Importowanie pomyślne!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Błąd przy importowaniu profilu: %s!</string>
 
 <!-- (USB) Serial TNC settings -->

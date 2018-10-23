@@ -164,7 +164,6 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_link">Connection Type</string>
 <string name="p_link_entry">Choose the link type</string>
 <string name="p_connsetup">Verbindingsinstellingen</string>
-<string name="p_connsetup_summary">Verbindingsconfiguratie</string>
 <string name="p_connlog">Verbindingslog</string>
 <string name="p_connlog_summary">Status weeergave in de Log</string>
 <!-- array of connection types -->
@@ -223,7 +222,6 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_locsource">Bron van de locatie</string>
 <string name="p_locsource_summary">Manueel, Periodiek of SmartBeaconing™</string>
 <string name="p__location">Lokatie instellingen</string>
-<string name="p__location_summary">Instellingen voor het verzenden van rapporten</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>
@@ -389,7 +387,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Import successful!</string>
+<string name="profile_import_done">Imported profile: %s</string>
 <string name="profile_import_error">Error importing profile: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
