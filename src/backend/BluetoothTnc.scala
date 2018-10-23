@@ -109,8 +109,8 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 			} catch {
 				case e : Exception => {
 					e.printStackTrace();
-					service.postAbort(service.getString(R.string.bt_error_connect,
-						tnc.getName()));
+					val name = if (tnc.getName() != null) tnc.getName() else tncmac
+					service.postAbort(service.getString(R.string.bt_error_connect, name))
 					running = false;
                                 }
 			}
