@@ -384,8 +384,8 @@ trait UIHelper extends Activity
 			if (found) {
 				val url = "geo:%1.6f,%1.6f?q=%1.6f,%1.6f(%s)".formatLocal(null,
 					lat/1000000.0, lon/1000000.0, lat/1000000.0, lon/1000000.0, targetcall)
-				startActivity(new Intent(Intent.ACTION_VIEW,
-					Uri.parse(url)))
+				startActivity(Intent.createChooser(new Intent(Intent.ACTION_VIEW,
+					Uri.parse(url)), targetcall))
 			}
 			true
 		case R.id.aprsfi =>

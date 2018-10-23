@@ -1,3 +1,12 @@
+1.5.0:
+* Restart APRSdroid after phone reboot
+* Import / Export of settings profiles as JSON
+* Updated UsbSerial to 4.5.2
+* New `FREQUENCY` Intent for changing your QRG comment
+* Fixes for Arabic device language
+* Fixes for callsign input
+* Preferences: display connection type, location source, icon
+
 1.4.0:
 * new APRS symbols, with chooser dialog
 * USB serial support

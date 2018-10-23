@@ -70,7 +70,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroid hakkında v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS®, Bob Bruninga\'nın (WB4APR) kayıtlı ticari markasıdır.</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">Bu program ücretsizdir; Free Software Foundation tarafından yayımlanan  GNU General Public License 2. sürüm ya da (tercih ederseniz) daha sonraki sürümde yer alan şartlar altında dağıtabilir ve değiştirebilirsiniz. \n\n Bu program kullanıcıya faydalı olması beklentisiyle, HERHANGİ BİR GARANTİ olmaksızın; hatta SATILABİLİRLİK ya da BELİRLİ BİR AMACA UYGUNLUK imasında bulunulmaksızın dağıtılmaktadır. Daha fazla detay için GNU General Public License dokümanına bakınız. \n\n Bu programla birlikte tarafınıza GNU General Public License dokümanının bir kopyası iletilmiş olmalıdır; aksi takdirde durumu, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresine yazılı olarak bildiriniz. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Teşekkürler:</string>
 <string name="ad_thanks_0">YL\'me ♥♥♥</string>
@@ -331,7 +335,7 @@
   Alp Sarıca https://launchpad.net/~alpsarica
   Hüseyin Odabaş https://launchpad.net/~ta1df
   Kudret EMRE https://launchpad.net/~kudretemre
-  Ozgur https://launchpad.net/~toorq
+  Ozgur Kara https://launchpad.net/~ozgursoft
   Recep Aydin Gulec https://launchpad.net/~ragulec
   Uygar Demir Koç https://launchpad.net/~uygardemirkoc
   zeugma https://launchpad.net/~sunder67</string>

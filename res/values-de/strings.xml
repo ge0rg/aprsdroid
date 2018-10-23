@@ -7,8 +7,8 @@
 <string name="app_hub">APRSdroid-Hub</string>
 <string name="app_log">APRSdroid-Log</string>
 <string name="app_sta">Stationsinfo</string>
-<string name="app_messages">Mitteilungen</string>
-<string name="app_messages_clear">Mitteilungen löschen</string>
+<string name="app_messages">Nachrichten</string>
+<string name="app_messages_clear">Nachrichten löschen</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Sie müssen Ihr Rufzeichen und den dazugehörigen Passcode eingeben!</string>
 <string name="wrongpasscode">Der Passcode für Ihr Rufzeichen ist nicht korrekt!</string>
@@ -24,7 +24,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s: Letzte Meldung</string>
-<string name="map_track_call">%s wird verfolgt …</string>
+<string name="map_track_call">Verfolge %s…</string>
 <string name="map_track_unknown">Position für %s unbekannt!</string>
 <string name="map_select">Station wählen</string>
 
@@ -39,13 +39,13 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Nachricht senden an …</string>
+<string name="msg_send_new">Sende Nachricht an…</string>
 <string name="msg_message_text">Nachrichtentext</string>
 <string name="msg_empty_list">Keine gespeicherten Gespräche.</string>
 <string name="msg_stored_offline">Die Nachricht wird versendet, wenn Sie das Tracking starten.</string>
 <!-- Message activity -->
-<string name="msg_from">Mitteilung von %s</string>
-<string name="msg_to">Mitteilung an %s</string>
+<string name="msg_from">Nachricht von %s</string>
+<string name="msg_to">Nachricht an %s</string>
 <string name="msg_abort">Versand abbrechen</string>
 <string name="msg_restart">Versand wiederholen</string>
 <string name="msg_type_rejected">abgelehnt</string>
@@ -62,8 +62,8 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="post_error">Fehler</string>
 <string name="post_incmg">empfangen</string>
 <string name="post_info"/>
-<string name="post_connecting">Mit %1$s:%2$d wird verbunden …</string>
-<string name="post_reconnect">Verbindung getrennt. Neue Verbindung in %d Sekunden …</string>
+<string name="post_connecting">Verbinde mit %1$s:%2$d…</string>
+<string name="post_reconnect">Verbindung getrennt. Neue Verbindung in %d Sekunden…</string>
 
 <!-- first run dialog -->
 <string name="fr_title">Willkommen zu APRSdroid!</string>
@@ -97,7 +97,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="map_objects">APRS-Objekte</string>
 
 <!-- map view -->
-<string name="age">Letzte anzeigen …</string>
+<string name="age">Zeige letzte…</string>
 <string name="age_30">30 Minuten</string>
 <string name="age_2h">2 Stunden</string>
 <string name="age_12h">12 Stunden</string>
@@ -359,14 +359,14 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_tnc_delay_entry">TNC Init-Delay [ms]</string>
 
 <string name="p_bt_prefs">Bluetooth-Einstellungen</string>
-<string name="p_bt_prefs_summary">Bluetooth aktivieren, Geräte paaren …</string>
+<string name="p_bt_prefs_summary">Bluetooth aktivieren, Geräte koppeln…</string>
 
 <string name="bt_error_unsupported">Bluetooth nicht unterstützt!</string>
 <string name="bt_error_disabled">Bitte Bluetooth einschalten!</string>
 <string name="bt_error_no_tnc">Bitte einen Bluetooth-TNC einstellen!</string>
 <string name="bt_error_connect">Keine Verbindung zu %s! Bitte Gerät einschalten und andere Bluetooth-Verbindungen schließen.</string>
 
-<string name="afsk_info_sco_req">Bluetooth-SCO-Verbindung wird angefordert …</string>
+<string name="afsk_info_sco_req">Bluetooth-SCO-Verbindung wird angefordert…</string>
 <string name="afsk_info_sco_est">Bluetooth-SCO-Verbindung aufgebaut.</string>
 
 <!-- TCP/IP TNC settings -->
@@ -384,7 +384,7 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 
 <!-- Config import -->
 <string name="profile_import_activity">Profil-Import</string>
-<string name="profile_import_done">Imported profile: %s</string>
+<string name="profile_import_done">Profil importiert: %s</string>
 <string name="profile_import_error">Fehler beim Profil-Import: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
