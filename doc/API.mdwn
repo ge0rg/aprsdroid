@@ -187,7 +187,7 @@ the packet payload needs to be configured, APRSdroid will automatically
 complete the header (your callsign and the ARPS path) from its
 configuration.
 
-Intent extras:
+Intent extras (do not use `setData()`, it doesn't work!):
 
  * `data` (String): raw packet payload
 
