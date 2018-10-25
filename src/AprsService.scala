@@ -241,8 +241,9 @@ class AprsService extends Service {
 		val status_freq = AprsPacket.formatFreq(status_spd, prefs.getStringFloat("frequency", 0.0f))
 		val status_alt = if (prefs.getBoolean("priv_altitude", true))
 			AprsPacket.formatAltitude(location) else ""
-		newPacket(new PositionPacket(
-			pos, status_spd + status_freq + status_alt + " " + status, /* messaging = */ true))
+		val comment = status_spd + status_freq + status_alt + " " + status;
+		// TODO: slice after 43 bytes, not after 43 UTF-8 codepoints
+		newPacket(new PositionPacket(pos, comment.slice(0, 43), /* messaging = */ true))
 	}
 
 	def sendPacket(packet : APRSPacket, status_postfix : String) {
