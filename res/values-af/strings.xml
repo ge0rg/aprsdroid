@@ -2,31 +2,29 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
-<string name="app_map">APRSdroid Map</string>
-<string name="app_hub">APRSdroid Hub</string>
+<string name="app_prefs">APRSdroid Voorkeure</string>
+<string name="app_map">APRSdroid Kaart</string>
+<string name="app_hub">APRSdroid Kern</string>
 <string name="app_log">APRSdroid Log</string>
-<string name="app_sta">Station Info</string>
-<string name="app_messages">Messages</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_sta">Stasie Informasie</string>
+<string name="app_messages">Boodskappe</string>
+<string name="app_messages_clear">Wis Boodskappe Uit</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
-<string name="wrongpasscode">Your passcode does not match your callsign!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">Minimum update time is 1 minute!</string>
-<string name="singlelog">Send Position</string>
-<string name="startlog">Start Tracking</string>
-<string name="stoplog">Stop Tracking</string>
+<string name="firstrun">Jy moet APRSdroid instel met jou roepsein en toegangs kode!</string>
+<string name="wrongpasscode">Jou toegangs kode stem nie ooreen met jou roepsein nie!</string>
+<string name="anon_warning">Sonder \'n toegangs kode sal jou berigte nie propageer nie!</string>
+<string name="mininterval">Minimum opdateer tydperk is 1 minuut!</string>
+<string name="singlelog">Stuur Posisie</string>
+<string name="startlog">Begin Nasporing</string>
+<string name="stoplog">Eindig Nasporing</string>
 
-<string name="empty_logview">You have not yet sent or received any packets.\n\n
-	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
-	You can also change the application preferences from the menu.</string>
+<string name="empty_logview">Jy het nog geen pakkette gestuur of ontvang nie.\n\n Druk die \"Menu\" knoppie om \'n enkele berig te stuur of om nasporing van jou posisie te begin.\n\nJy kan ook program voorkeure verander deur die menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
-<string name="map_track_call">Tracking %s...</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
-<string name="map_select">Select station</string>
+<string name="sta_lastreport">%s Laaste Berig</string>
+<string name="map_track_call">Nasporing %s...</string>
+<string name="map_track_unknown">Posisie van %s onbekend!</string>
+<string name="map_select">Kies stasie</string>
 
 <string name="map_loading">Loading...</string>
 
@@ -350,7 +348,8 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
-<string name="translator_credits">translator-credits</string>
+<string name="translator_credits">Launchpad Contributions:
+  Robin Pringle https://launchpad.net/~pringlerobin</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>
