@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="org.aprsdroid.app"
-      android:versionCode="18"
+      android:versionCode="19"
       android:versionName="1.5.0"
       android:installLocation="auto">
 
