@@ -107,6 +107,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 				init_socket()
 				service.postPosterStarted()
 			} catch {
+				case e : IllegalArgumentException => service.postAbort(e.getMessage()); running = false
 				case e : Exception => {
 					e.printStackTrace();
 					val name = if (tnc.getName() != null) tnc.getName() else tncmac

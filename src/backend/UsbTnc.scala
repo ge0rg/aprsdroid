@@ -163,7 +163,13 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 
 			log("Opened " + ser.getClass().getSimpleName() + " at " + baudrate + "bd")
 			sis = new SerialInputStream(ser)
-			proto = AprsBackend.instanciateProto(service, sis, new SerialOutputStream(ser))
+			try {
+				proto = AprsBackend.instanciateProto(service, sis, new SerialOutputStream(ser))
+			} catch {
+				case e : IllegalArgumentException =>
+				service.postAbort(e.getMessage()); running = false
+				return
+			}
 			service.postPosterStarted()
 			while (running) {
 				try {

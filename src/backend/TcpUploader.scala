@@ -136,6 +136,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 				service.postLinkOn(R.string.p_aprsis_tcp)
 				service.postPosterStarted()
 			} catch {
+				case e : IllegalArgumentException => service.postAbort(e.getMessage()); running = false
 				case e : Exception => service.postAbort(e.toString()); running = false
 			}
 			while (running) {

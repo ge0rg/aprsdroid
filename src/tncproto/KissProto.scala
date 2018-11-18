@@ -32,6 +32,10 @@ class KissProto(service : AprsService, is : InputStream, os : OutputStream) exte
 		}
 	}
 
+	if (service.prefs.getCallsign().length() > 6) {
+		throw new IllegalArgumentException(service.getString(R.string.e_toolong_callsign))
+	}
+
 	def readPacket() : String = {
 		import Kiss._
 		val buf = scala.collection.mutable.ListBuffer[Byte]()
