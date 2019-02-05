@@ -41,7 +41,8 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 		conn.synchronized {
 			conn.running = false
 		}
-		scala.concurrent.ops.spawn { conn.shutdown() }
+                implicit val ec = scala.concurrent.ExecutionContext.global
+		scala.concurrent.Future { conn.shutdown() }
 		conn.interrupt()
 		conn.join(50)
 	}

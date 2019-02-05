@@ -246,7 +246,8 @@ class AprsService extends Service {
 	}
 
 	def sendPacket(packet : APRSPacket, status_postfix : String) {
-		scala.concurrent.ops.spawn {
+                implicit val ec = scala.concurrent.ExecutionContext.global
+		scala.concurrent.Future {
 		val status = try {
 			val status = poster.update(packet)
 			val full_status = status + status_postfix
