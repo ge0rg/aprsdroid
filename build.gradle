@@ -7,21 +7,21 @@ buildscript {
 		google()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.3.2'
+		classpath 'com.android.tools.build:gradle:3.5.1'
 		// NOTE: Do not place your application dependencies here; they belong
 		// in the individual module build.gradle files
 
 		// grgit for version tags
-		classpath 'org.ajoberstar:grgit:1.1.0'
+		classpath 'org.ajoberstar.grgit:grgit-gradle:4.0.1'
 
 		// scala build
-		classpath 'com.github.AllBus:gradle-android-scala-plugin:3.3.1'
+		classpath 'com.github.AllBus:gradle-android-scala-plugin:3.5.1'
 	}
 }
 
 plugins {
 	// obtain revision from git
-	id 'org.ajoberstar.grgit' version '1.6.0'
+	id 'org.ajoberstar.grgit' version '4.0.1'
 }
 
 allprojects {
@@ -106,7 +106,7 @@ android {
 }
 
 dependencies {
-	implementation "org.scala-lang:scala-library:2.11.8"
+	implementation "org.scala-lang:scala-library:2.11.12"
 	//compile 'com.google.android.gms:play-services-maps:6.5.87'
 	api fileTree(include: ['*.jar'], dir: 'libs')
 }
