@@ -40,7 +40,11 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		}
 	}
 
-	def start() = {
+	def start() : Boolean = {
+		if (prefs.getCallsign().length() > 6) {
+			service.postAbort(service.getString(R.string.e_toolong_callsign))
+			return false
+		}
 		if (use_bt) {
 			log(service.getString(R.string.afsk_info_sco_req))
 			service.getSystemService(Context.AUDIO_SERVICE)

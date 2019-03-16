@@ -60,11 +60,7 @@ object AprsService {
 	var running = false
 	var link_error = 0
 
-	implicit def block2runnable(block: => Unit) =
-		new Runnable() {
-			def run() { block }
-		}
-
+	implicit def block2runnable[F](f: => F) = new Runnable() { def run() { f } }
 }
 
 class AprsService extends Service {
@@ -247,7 +243,8 @@ class AprsService extends Service {
 	}
 
 	def sendPacket(packet : APRSPacket, status_postfix : String) {
-		scala.concurrent.ops.spawn {
+                implicit val ec = scala.concurrent.ExecutionContext.global
+		scala.concurrent.Future {
 		val status = try {
 			val status = poster.update(packet)
 			val full_status = status + status_postfix

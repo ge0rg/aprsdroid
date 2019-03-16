@@ -107,7 +107,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="show_hub">Pokaż hub</string>
 <string name="show_map">Pokaż mapę</string>
 <string name="show_log">Pokaż dziennik</string>
-<string name="export_log">Ekspoertuj log</string>
+<string name="export_log">Eksportuj log</string>
 <string name="export_empty">Brak danych do eksportu</string>
 <string name="clear_log">Wyczyść dziennik</string>
 <string name="quit">Zakończ</string>

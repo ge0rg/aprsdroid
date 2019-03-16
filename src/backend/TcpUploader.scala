@@ -41,7 +41,8 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 		conn.synchronized {
 			conn.running = false
 		}
-		scala.concurrent.ops.spawn { conn.shutdown() }
+                implicit val ec = scala.concurrent.ExecutionContext.global
+		scala.concurrent.Future { conn.shutdown() }
 		conn.interrupt()
 		conn.join(50)
 	}
@@ -136,6 +137,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 				service.postLinkOn(R.string.p_aprsis_tcp)
 				service.postPosterStarted()
 			} catch {
+				case e : IllegalArgumentException => service.postAbort(e.getMessage()); running = false
 				case e : Exception => service.postAbort(e.toString()); running = false
 			}
 			while (running) {

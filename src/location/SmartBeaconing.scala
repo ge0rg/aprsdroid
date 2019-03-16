@@ -24,7 +24,8 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 		} catch {
 			case e : IllegalArgumentException =>
 				// this device does not have GPS. Oops.
-				service.postAbort(service.getString(R.string.service_sm_no_gps))
+				service.postAbort(service.getString(R.string.service_sm_no_gps)
+					+ "\n" + e.getMessage())
 		}
 		service.getString(R.string.p_source_smart)
 	}

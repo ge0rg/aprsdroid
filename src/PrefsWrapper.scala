@@ -23,7 +23,7 @@ class PrefsWrapper(val context : Context) {
 	}
 
 	// return commonly used prefs
-	def getCallsign() = prefs.getString("callsign", "").trim().slice(0, 6).toUpperCase()
+	def getCallsign() = prefs.getString("callsign", "").trim().toUpperCase()
 
 	def getPasscode() = prefs.getString("passcode", "") match {
 		case "" => "-1"
