@@ -3,15 +3,19 @@ buildscript {
 	repositories {
 		jcenter()
 		maven { url 'https://jitpack.io' }
+		mavenCentral()
+		google()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.3.0'
+		classpath 'com.android.tools.build:gradle:3.3.2'
 		// NOTE: Do not place your application dependencies here; they belong
 		// in the individual module build.gradle files
 
-		classpath 'com.github.xingda920813:gradle-android-scala-plugin:java8'
-		//classpath "jp.leafytree.gradle:gradle-android-scala-plugin:1.4"
+		// grgit for version tags
 		classpath 'org.ajoberstar:grgit:1.1.0'
+
+		// scala build
+		classpath 'com.github.AllBus:gradle-android-scala-plugin:3.3.1'
 	}
 }
 
@@ -22,13 +26,14 @@ plugins {
 
 allprojects {
 	repositories {
+		google()
 		jcenter()
 	}
 }
 
 /////////////// APRSdroid specific build rules ///////////////
 apply plugin: 'com.android.application'
-apply plugin: "jp.leafytree.android-scala"
+apply plugin: 'jp.leafytree.android-scala'
 
 ext {
 	build_date = "${new Date().format('yyyy-MM-dd')}"
@@ -51,7 +56,6 @@ task buildVersion (type: Copy) {
 
 android {
 	compileSdkVersion 19
-	buildToolsVersion "25.0.0"
 	defaultConfig {
 		minSdkVersion 9
 		targetSdkVersion 19
@@ -83,15 +87,12 @@ android {
 		main {
 			manifest.srcFile 'AndroidManifest.xml'
 			java.srcDirs = ['src']
-			//scala { srcDir = 'src' }
+			scala.srcDirs = ['src']
 			resources.srcDirs = ['src']
 			aidl.srcDirs = ['src']
 			renderscript.srcDirs = ['src']
 			res.srcDirs = ['res']
 			assets.srcDirs = ['assets']
-		}
-		androidTest {
-			//scala { srcDir = 'src' }
 		}
 	}
 	lintOptions {
@@ -100,9 +101,10 @@ android {
 }
 
 dependencies {
-	compile "org.scala-lang:scala-library:2.11.7"
+	implementation "org.scala-lang:scala-library:2.11.8"
 	//compile 'com.google.android.gms:play-services-maps:6.5.87'
-	compile fileTree(include: ['*.jar'], dir: 'libs')
+	api fileTree(include: ['*.jar'], dir: 'libs')
 }
 
 preBuild.dependsOn buildVersion
+
