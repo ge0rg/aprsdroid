@@ -28,6 +28,7 @@
                 android:key="digi_path"
 		android:hint="hop1,hop2,.."
 		android:defaultValue="WIDE1-1"
+		android:inputType="textCapCharacters"
 		android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ,-"
 		android:title="@string/p_aprs_path"
 		android:summary="@string/p_aprs_path_summary"
