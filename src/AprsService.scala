@@ -60,11 +60,7 @@ object AprsService {
 	var running = false
 	var link_error = 0
 
-	implicit def block2runnable(block: => Unit) =
-		new Runnable() {
-			def run() { block }
-		}
-
+	implicit def block2runnable[F](f: => F) = new Runnable() { def run() { f } }
 }
 
 class AprsService extends Service {
