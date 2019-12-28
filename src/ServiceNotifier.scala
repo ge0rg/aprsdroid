@@ -18,16 +18,17 @@ abstract class ServiceNotifier {
 	val callIdMap = new scala.collection.mutable.HashMap[String, Int]()
 
 	def newNotification(ctx : Service, status : String) : Notification = {
-		val n = new Notification()
-		n.icon = R.drawable.ic_status
-		n.when = System.currentTimeMillis
-		n.flags |= Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR
 		val i = new Intent(ctx, classOf[APRSdroid])
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-		n.contentIntent = PendingIntent.getActivity(ctx, 0, i, 0)
 		val appname = ctx.getResources().getString(R.string.app_name)
-		n.setLatestEventInfo(ctx, appname, status, n.contentIntent)
-		n
+		new Notification.Builder(ctx)
+			.setContentTitle(appname)
+			.setContentText(status)
+			.setContentIntent(PendingIntent.getActivity(ctx, 0, i, 0))
+			.setSmallIcon(R.drawable.ic_status)
+			.setWhen(System.currentTimeMillis)
+			.setOngoing(true)
+			.build()
 	}
 
 	def getCallNumber(call : String) : Int = {
@@ -42,16 +43,18 @@ abstract class ServiceNotifier {
 	}
 
 	def newMessageNotification(ctx : Service, call : String, message : String) : Notification = {
-		val n = new Notification()
-		n.icon = R.drawable.icon
-		n.when = System.currentTimeMillis
-		n.flags = Notification.FLAG_AUTO_CANCEL
 		val i = new Intent(ctx, classOf[MessageActivity])
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 		i.setData(Uri.parse(call))
-		n.contentIntent = PendingIntent.getActivity(ctx, 0, i, PendingIntent.FLAG_UPDATE_CURRENT)
-		n.setLatestEventInfo(ctx, call, message, n.contentIntent)
-		n
+		new Notification.Builder(ctx)
+			.setContentTitle(call)
+			.setContentText(message)
+			.setContentIntent(PendingIntent.getActivity(ctx, 0, i, PendingIntent.FLAG_UPDATE_CURRENT))
+			.setSmallIcon(R.drawable.icon)
+			.setTicker(call + ": " + message)
+			.setWhen(System.currentTimeMillis)
+			.setAutoCancel(true)
+			.build()
 	}
 
 	def getNotificationMgr(ctx : Context) = ctx.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
