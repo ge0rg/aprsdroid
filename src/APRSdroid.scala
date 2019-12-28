@@ -17,6 +17,8 @@ class APRSdroid extends Activity {
 		super.onCreate(savedInstanceState)
 		val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 
+		ServiceNotifier.instance.setupChannels(this)
+
 		// if this is a USB device, auto-launch the service
 		if (UsbTnc.checkDeviceHandle(prefs, getIntent.getParcelableExtra("device")) && prefs.getBoolean("service_running", false))
 			startService(AprsService.intent(this, AprsService.SERVICE))
