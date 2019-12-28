@@ -55,11 +55,16 @@ task buildVersion (type: Copy) {
 }
 
 android {
-	compileSdkVersion 19
+	compileSdkVersion 28
 	defaultConfig {
-		minSdkVersion 9
-		targetSdkVersion 19
+		minSdkVersion 14
+		targetSdkVersion 28
 		versionName "$build_revision"
+	}
+	useLibrary 'org.apache.http.legacy'
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
 	}
 
 	signingConfigs {
