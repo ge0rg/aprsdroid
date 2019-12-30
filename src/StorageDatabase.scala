@@ -14,10 +14,11 @@ import _root_.scala.math.{cos, Pi}
 
 object StorageDatabase {
 	val TAG = "APRSdroid.Storage"
-	val DB_VERSION = 3
+	val DB_VERSION = 4
 	val DB_NAME = "storage.db"
 
 	val TSS_COL = "DATETIME(TS/1000, 'unixepoch', 'localtime') as TSS"
+	val TABLE_INDEX = "CREATE INDEX idx_%1$s_%2$s ON %1$s (%2$s)"
 
 	object Post {
 		val TABLE = "posts"
@@ -90,8 +91,6 @@ object StorageDatabase {
 		val COLUMN_MAP_LON	= 3
 		val COLUMN_MAP_SYMBOL	= 4
 		val COLUMN_MAP_ORIGIN	= 5
-
-		lazy val TABLE_INDEX = "CREATE INDEX idx_stations_%s ON stations (%s)"
 
 		// binary flags used for symbol coloring
 		val FLAG_MSGCAPABLE	= 1
@@ -184,9 +183,12 @@ class StorageDatabase(context : Context) extends
 		db.execSQL(Post.TABLE_CREATE);
 		db.execSQL(Station.TABLE_CREATE)
 		// index on call is implicit due to UNIQUE
-		Array("lat", "lon").map(col => db.execSQL(Station.TABLE_INDEX.format(col, col)))
+		Array("lat", "lon").map(col => db.execSQL(TABLE_INDEX.format(Station.TABLE, col)))
 		db.execSQL(Position.TABLE_CREATE)
 		db.execSQL(Message.TABLE_CREATE)
+		// version 4
+		Array(Position.TABLE, Station.TABLE).map(tab => db.execSQL(TABLE_INDEX.format(tab, "ts")))
+		Array("call", "type").map(col => db.execSQL(TABLE_INDEX.format(Message.TABLE, col)))
 	}
 
 	override def onUpgrade(db: SQLiteDatabase, from : Int, to : Int) {
@@ -200,6 +202,10 @@ class StorageDatabase(context : Context) extends
 			db.execSQL("DROP TABLE position") // old name
 			db.execSQL(Station.TABLE_CREATE)
 			db.execSQL(Position.TABLE_CREATE)
+		}
+		if (to <= 4) {
+			Array(Position.TABLE, Station.TABLE).map(tab => db.execSQL(TABLE_INDEX.format(tab, "ts", "ts")))
+			Array("call", "type").map(col => db.execSQL(TABLE_INDEX.format(Message.TABLE, col, col)))
 		}
 	}
 
