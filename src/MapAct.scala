@@ -132,6 +132,10 @@ class MapAct extends MapActivity with UIHelper {
 			//	case map_gen_tile : TileDownloader => map_gen_tile.setUserAgent("APRSdroid")
 			//}
 			mapview.setMapGenerator(map_gen)
+			if (!mapview.getMapPosition.isValid) {
+				mapview.getController().setCenter(new GeoPoint(52.5075, 13.39027))
+				mapview.getController().setZoom(11)
+			}
 		}
 		val themefile = new File(prefs.getString("themefile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.xml"))
 		if (themefile.exists())
