@@ -122,6 +122,13 @@ object AprsBackend {
 		}
 	}
 
+	def defaultBackendPermissions(prefs : PrefsWrapper) : Set[String] = {
+		val perms = scala.collection.mutable.Set[String]()
+		perms ++= AprsBackend.defaultBackendInfo(prefs).permissions
+		if (prefs.getProto() == "kenwood" && prefs.getBoolean("kenwood.gps", false))
+			perms.add(Manifest.permission.ACCESS_FINE_LOCATION)
+		perms.toSet
+	}
 
 	def instanciateUploader(service : AprsService, prefs : PrefsWrapper) : AprsBackend = {
 		defaultBackendInfo(prefs).create(service, prefs)

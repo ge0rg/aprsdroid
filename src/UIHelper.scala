@@ -66,7 +66,7 @@ trait UIHelper extends Activity
 		}
 	}
 	def currentListOfPermissions() : Array[String] = {
-		val bi_perms = AprsBackend.defaultBackendInfo(prefs).permissions
+		val bi_perms = AprsBackend.defaultBackendPermissions(prefs)
 		val ls_perms = LocationSource.getPermissions(prefs)
 		(bi_perms ++ ls_perms).toArray
 	}
