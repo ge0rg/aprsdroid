@@ -14,6 +14,9 @@ buildscript {
 		// grgit for version tags
 		classpath 'org.ajoberstar:grgit:1.1.0'
 
+		// https://github.com/Triple-T/gradle-play-publisher#usage
+		classpath 'com.github.triplet.gradle:play-publisher:2.4.1'
+
 		// scala build
 		classpath 'com.github.AllBus:gradle-android-scala-plugin:3.5.1'
 	}
@@ -34,6 +37,7 @@ allprojects {
 /////////////// APRSdroid specific build rules ///////////////
 apply plugin: 'com.android.application'
 apply plugin: 'jp.leafytree.android-scala'
+apply plugin: 'com.github.triplet.play'
 
 ext {
 	build_date = "${new Date().format('yyyy-MM-dd')}"
@@ -102,6 +106,11 @@ android {
 	lintOptions {
 		disable 'MissingTranslation'
 	}
+}
+
+play {
+	serviceAccountCredentials = file('play-publish-credentials.json')
+	track = 'beta'
 }
 
 dependencies {
