@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
 <string name="wrongpasscode">ה-passcode שלך לא תואם את ה-callsign! שלך</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">ללא passcode, הדיווחים שלך לא יופצו!</string>
 <string name="mininterval">זמן עדכון נומינלי הינו דקה 1!</string>
 <string name="singlelog">Send Position</string>
@@ -391,4 +392,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

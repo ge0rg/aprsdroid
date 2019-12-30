@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Трябва да настроите APRSdroid с Вашия инициал и passcode!</string>
 <string name="wrongpasscode">Вашия passcode не съответства на Вашия инициал!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Без passcode, вашите рапорти няма да бъдат предавани!</string>
 <string name="mininterval">Минималното време за обновяване е 1 минута!</string>
 <string name="singlelog">Изпрати Позиция</string>
@@ -389,4 +390,6 @@
 <string name="p_serial_unsupported">Серийният порт не се поддържа</string>
 <string name="p_serial_noperm">Няма достъп до USB устройството!</string>
 <string name="p_serial_notfound">Не е намерено USB устройство!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

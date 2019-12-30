@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">¡Debes configurar APRSdroid con tu distintivo de llamada y contraseña!</string>
 <string name="wrongpasscode">¡Tu contraseña no se corresponde con tu distintivo de llamada!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">¡Sin contraseña, tus reportes no serán distribuidos!</string>
 <string name="mininterval">¡El tiempo mínimo de la actualización es 1 minuto!</string>
 <string name="singlelog">Enviar posición</string>
@@ -394,4 +395,6 @@
 <string name="p_serial_unsupported">Pórtico serie sin apoyo!</string>
 <string name="p_serial_noperm">Sin permiso para el dispositivo USB!</string>
 <string name="p_serial_notfound">No se encuentra ningún dispositivo USB</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

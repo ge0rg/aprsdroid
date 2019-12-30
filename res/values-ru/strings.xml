@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Необходимо настроить APRSdroid с вашим позывным и паролем</string>
 <string name="wrongpasscode">Ваш пароль не соответствует вашему позывному</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Ваши рапорты не будут распространяться без пароля!</string>
 <string name="mininterval">Минимальное время обновления 1 минута!</string>
 <string name="singlelog">Отправить местоположение</string>
@@ -70,11 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Об APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2018 Георг Лукас (DO1GL)\n http://arpsdroid.org \n\n APRS® является зарегистрированным товарным знаком Боба Брунинга (WB4APR)</string>
 <string name="ad_gpl">Эта программа является свободным программным обеспечением, вы можете распространять и/или модифицировать его на условиях GNU General Public License, опубликованной Free Software Foundation; либо 2-ой версией лицензии, либо (по вашему выбору) любой более поздней версией.  \n\n Эта программа распространяется в надежде, что она будет полезной, но БЕЗ ВСЯКИХ ГАРАНТИЙ. Совершенно не подразумевается гарантия КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ. Смотрите общественную лицензию GNU General для получения более подробной информации.\n\n Вы должны были получить копию GNU General Public License вместе с этой программой. Если в не получили копии, напишите письмо по адресу Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Благодарности:</string>
 <string name="ad_thanks_0">Моей YL ♥♥♥</string>
@@ -112,8 +109,8 @@
 <string name="quit">Выход</string>
 <string name="preferences">Параметры</string>
 <!-- preferences -->
-<string name="profile_load">Load profile...</string>
-<string name="profile_export">Export profile...</string>
+<string name="profile_load">Загрузить профиль...</string>
+<string name="profile_export">Экспортировать профиль...</string>
 <string name="p__ham">Любительское радио</string>
 <string name="p_callsign">Позывной</string>
 <string name="p_callsign_nossid">Позывной (без SSID)</string>
@@ -334,6 +331,7 @@
 <string name="translator_credits">Launchpad Contributions:
   Aleksey Kabanov https://launchpad.net/~ak099
   Andriy Tymchenko https://launchpad.net/~silpol
+  Dmitrij Kiryanov https://launchpad.net/~kagaminep
   R1AIT https://launchpad.net/~l-keo-d
   RN3DLL https://launchpad.net/~rn3dll
   Sergey N. Belinsky https://launchpad.net/~sergeybe
@@ -384,7 +382,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Настройки импорта</string>
-<string name="profile_import_done">Imported profile: %s</string>
+<string name="profile_import_done">Импортированный профиль: %s</string>
 <string name="profile_import_error">Ошибка при импорте профиля: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
@@ -394,4 +392,6 @@
 <string name="p_serial_unsupported">Последовательный порт не поддерживается!</string>
 <string name="p_serial_noperm">Нет прав доступа к USB устройству!</string>
 <string name="p_serial_notfound">Не найдено USB устройство!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid skal konfigureres med radioamatør kaldesignal og adgangskode!</string>
 <string name="wrongpasscode">Din adgangskode matcher ikke dit kaldesignal!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Uden en adgangskode, vil dine rapporter ikke blive sendt</string>
 <string name="mininterval">Minimum opdaterings tid er 1 minut!</string>
 <string name="singlelog">Send Position</string>
@@ -391,4 +392,6 @@
 <string name="p_serial_unsupported">Ikke-understøttet serielport</string>
 <string name="p_serial_noperm">Ingen tilladelse til USB enheden!</string>
 <string name="p_serial_notfound">Ingen USB enhed fundet!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

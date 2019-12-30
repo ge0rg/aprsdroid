@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Du måste konfigurera APRSdroid med anropssignal och lösen!</string>
 <string name="wrongpasscode">Ditt lösen stämmer inte med anropssignalen</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Utan lösenord kommer inte dina positioneringar att routas</string>
 <string name="mininterval">Lägsta tiden för uppdateringar är 1 minut</string>
 <string name="singlelog">Send Position</string>
@@ -390,4 +391,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

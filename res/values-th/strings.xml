@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">คุณต้องกำหนดค่านามเรียกขานและรหัสผ่านของคุณ</string>
 <string name="wrongpasscode">รหัสผ่านไม่ตรงกับนามเรียกขานของคุณ!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">หากไม่มีรหัสผ่าน ข้อมูลของคุณจะไม่ถูกเผยแพร่!</string>
 <string name="mininterval">ปรับค่าขั้นต่ำ 1นาที!</string>
 <string name="singlelog">Send Position</string>
@@ -406,4 +407,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

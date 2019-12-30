@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Tu necessita configurar APRSdroid con tu firma de appello e tu codice de accesso!</string>
 <string name="wrongpasscode">Tu codice de accesso non concorda con tu firma de appello</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Sin un codice de accesso, tu reportos non essera propagate!</string>
 <string name="mininterval">Tempore minime de actualisation 1 minuta!</string>
 <string name="singlelog">Inviar le position</string>
@@ -388,4 +389,6 @@
 <string name="p_serial_unsupported">Porta serial non supportate</string>
 <string name="p_serial_noperm">Nulle permission pro le dispositivo USB!</string>
 <string name="p_serial_notfound">Nulle dispositivo USB trovate!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

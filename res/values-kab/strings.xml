@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Yesefk att swel-eḍ APRSdroid s tasarut n waddaf-ik ed tangalt n waddaf-ik!</string>
 <string name="wrongpasscode">Tangalt n waddaf-ik ur yemezg ara ed tasarut-ik n usiwel!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Mebla tangalt n waddaf, assaɣen inek ur ttwaceggaɛn ara!</string>
 <string name="mininterval">Minimum update time is 1 minute!</string>
 <string name="singlelog">Send Position</string>
@@ -408,4 +409,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

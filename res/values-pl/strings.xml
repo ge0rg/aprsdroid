@@ -10,9 +10,10 @@
 <string name="app_messages">Wiadomości</string>
 <string name="app_messages_clear">Usuń wiadomości</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">Należy skonfigurować APRSdroid swoim znakiem i hasłem!</string>
-<string name="wrongpasscode">Hasło nie pasuje do znaku!</string>
-<string name="anon_warning">Bez hasła, twoje raporty nie będą wysyłane!</string>
+<string name="firstrun">Musisz skonfigurować APRSdroid z własnym znakiem wywoławczym i kodem dostępu!</string>
+<string name="wrongpasscode">Twój kod dostępu nie pasuje do Twojego znaku wywoławczego!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
+<string name="anon_warning">Bez kodu dostępu, twoje raporty nie będą propagowane!</string>
 <string name="mininterval">Minimalny czas aktualizacji to 1 minuta!</string>
 <string name="singlelog">Wyślij pozycję</string>
 <string name="startlog">Rozpocznij raportowanie</string>
@@ -70,11 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">O APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® jest zarejestrowanym znakiem towarowym Bob \'a Bruninga (WB4APR)</string>
 <string name="ad_gpl">Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania - według wersji 2-giej tej Licencji lub którejś
 z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji - Powszechna Licencja Publiczna GNU. \n\n Z pewnością wraz z niniejszym programem otrzymałeś też egzemplarz Powszechnej Licencji Publicznej GNU (GNU General Public License); jeśli nie - napisz do Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Podziękowania dla:</string>
@@ -334,6 +331,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 
 <string name="translator_credits">Launchpad Contributions:
   Adam Czabara https://launchpad.net/~adam-czabara
+  Andrzej Konopka https://launchpad.net/~sq7oiv
   Georg Lukas https://launchpad.net/~ge0rg
   Michal SQ2MO https://launchpad.net/~sq2mo
   Michał Czarniecki https://launchpad.net/~sq9mcs
@@ -389,7 +387,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 
 <!-- Config import -->
 <string name="profile_import_activity">Importowanie profilu</string>
-<string name="profile_import_done">Imported profile: %s</string>
+<string name="profile_import_done">Importowany profil: %s</string>
 <string name="profile_import_error">Błąd przy importowaniu profilu: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
@@ -399,4 +397,6 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_serial_unsupported">Nie wspierany port szeregowy!</string>
 <string name="p_serial_noperm">Brak zezwolenia dla urządzenia USB!</string>
 <string name="p_serial_notfound">Nie znaleziono urządzenia USB!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

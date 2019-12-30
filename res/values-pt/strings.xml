@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Deve configurar o APRSdroid com o seu indicativo e password!</string>
 <string name="wrongpasscode">A palavra-passe está incorrecta.</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Sem a password as suas transmissões não serão divulgadas!</string>
 <string name="mininterval">Tempo mínimo de actualização - 1 minuto!</string>
 <string name="singlelog">Envio de posição</string>
@@ -395,4 +396,6 @@
 <string name="p_serial_unsupported">Porta série não suportada!</string>
 <string name="p_serial_noperm">Não há permissão para a porta USB!</string>
 <string name="p_serial_notfound">Nenhuma porta USB encontrada!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

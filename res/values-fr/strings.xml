@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Vous devez configurer APRSdroid avec votre indicatif et votre mot de passe</string>
 <string name="wrongpasscode">Le mot de passe ne correspond pas a votre indicatif !</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Sans mot de passe vos positions ne seront pas transmises !</string>
 <string name="mininterval">Le délai minimum d\'actualisation est d\'une minute !</string>
 <string name="singlelog">Envoyer la position</string>
@@ -399,4 +400,6 @@
 <string name="p_serial_unsupported">Port Série non supporté!</string>
 <string name="p_serial_noperm">Périph. USB non autorisé!</string>
 <string name="p_serial_notfound">Périph. USB introuvable!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

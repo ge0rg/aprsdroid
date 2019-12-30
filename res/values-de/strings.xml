@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Sie müssen Ihr Rufzeichen und den dazugehörigen Passcode eingeben!</string>
 <string name="wrongpasscode">Der Passcode für Ihr Rufzeichen ist nicht korrekt!</string>
+<string name="e_toolong_callsign">Ihr Rufzeichen ist zu lang für Packet Radio!</string>
 <string name="anon_warning">Ohne Passcode-Angabe werden Ihre Meldungen nicht weitergeleitet!</string>
 <string name="mininterval">Minimale Update-Zeit ist 1 Minute!</string>
 <string name="singlelog">Position senden</string>
@@ -394,4 +395,6 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_serial_unsupported">Serieller Port nicht unterstützt!</string>
 <string name="p_serial_noperm">Keine Berechtigung für USB-Gerät!</string>
 <string name="p_serial_notfound">Kein USB-Gerät gefunden!</string>
+
+<string name="no_perm_text">Die folgenden Berechtigungen werden benötigt:</string>
 </resources>

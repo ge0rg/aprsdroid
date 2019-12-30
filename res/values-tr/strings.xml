@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid\'i çağrıişaretiniz ve APRS kayıt numaranızla yapılandırmalısınız!</string>
 <string name="wrongpasscode">Şifreniz çağrı işaretinizle eşleşmiyor!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">APRS kayıt numarası olmadan bilgileriniz gönderilmez!</string>
 <string name="mininterval">Asgari güncelleme zamanı 1 dakikadır!</string>
 <string name="singlelog">Konum Gönder</string>
@@ -335,7 +336,7 @@
   Alp Sarıca https://launchpad.net/~alpsarica
   Hüseyin Odabaş https://launchpad.net/~ta1df
   Kudret EMRE https://launchpad.net/~kudretemre
-  Ozgur Kara https://launchpad.net/~ozgursoft
+  Ozgur Kara https://launchpad.net/~ozguro
   Recep Aydin Gulec https://launchpad.net/~ragulec
   Uygar Demir Koç https://launchpad.net/~uygardemirkoc
   zeugma https://launchpad.net/~sunder67</string>
@@ -394,4 +395,6 @@
 <string name="p_serial_unsupported">Desteklenmeyen seri port!</string>
 <string name="p_serial_noperm">USB cihazına izin verilmedi!</string>
 <string name="p_serial_notfound">USB cihazı bulunamadı!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid:n asetuksista puuttuvat kutsu sekä passcode!</string>
 <string name="wrongpasscode">Passcode ei vastaa kutsumerkkiäsi!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Paikkatietoraporttejasi ei välitetä edelleen mikäli passcode ei ole asetettu!</string>
 <string name="mininterval">Pienin päivitysväli on 1 minuutti!</string>
 <string name="singlelog">Lähetä sijainti</string>
@@ -395,4 +396,6 @@
 <string name="p_serial_unsupported">Sarjaportti ei tuettu</string>
 <string name="p_serial_noperm">Ei käyttöoikeuksia USB-laitteelle!</string>
 <string name="p_serial_notfound">USB-laitetta ei löydy!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

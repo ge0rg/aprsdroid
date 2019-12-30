@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Je moet APRSdroid configureren met je callsign en passcode!</string>
 <string name="wrongpasscode">Je passcode komt niet overeen met je callsign!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Zonder een wachtwoord zullen uw rapporten niet verzonden worden</string>
 <string name="mininterval">Minimum update tijd is 1 minuut!</string>
 <string name="singlelog">Stuur locatie</string>
@@ -72,11 +73,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <!-- about dialog -->
 <string name="ad_title">Over APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is een geregistreerd handelsmerk van Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. \n\n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \n\n You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Met dank aan:</string>
 <string name="ad_thanks_0">Mijn YL ♥♥♥</string>
@@ -114,8 +111,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="quit">afsluiten</string>
 <string name="preferences">Voorkeuren</string>
 <!-- preferences -->
-<string name="profile_load">Load profile...</string>
-<string name="profile_export">Export profile...</string>
+<string name="profile_load">Profiel laden...</string>
+<string name="profile_export">Profiel exporteren...</string>
 <string name="p__ham">Amateur Radio</string>
 <string name="p_callsign">Callsign</string>
 <string name="p_callsign_nossid">Callsign (zonder SSID)</string>
@@ -151,18 +148,18 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 </string-array>
 <string name="p_symbol">APRS symbool</string>
 <string name="p_symbol_summary">Jouw symbool voor map weergave</string>
-<string name="p_symbol_overlay">Overlay:</string>
+<string name="p_symbol_overlay">Dekking:</string>
 <string name="p_symbol_result">Resultaat:</string>
-<string name="p_frequency">Voice frequency</string>
-<string name="p_frequency_summary">Your voice frequency [MHz]</string>
+<string name="p_frequency">Spraakfrequentie</string>
+<string name="p_frequency_summary">Uw spraakfrequentie [MHz]</string>
 <string name="p_status">Commentaar venster</string>
 <string name="p_status_summary">Text na je coördinaten</string>
 <string name="p_status_entry">Geef je baken commentaar</string>
 <string name="p__connection">APRS Verbinding</string>
 <string name="p_conntype">Connectie Protocol</string>
 <string name="p_conntype_entry">Kies het connectie protocol</string>
-<string name="p_link">Connection Type</string>
-<string name="p_link_entry">Choose the link type</string>
+<string name="p_link">Verbindingstype</string>
+<string name="p_link_entry">Kies het linktype</string>
 <string name="p_connsetup">Verbindingsinstellingen</string>
 <string name="p_connlog">Verbindingslog</string>
 <string name="p_connlog_summary">Status weeergave in de Log</string>
@@ -170,13 +167,13 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audio (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
-<string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
-<string name="p_conn_kwd_info">Kenwood setup help</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_tnc2">TNC (platte tekst TNC2)</string>
+<string name="p_conn_kwd">Kenwood (NMEA keerpunt)</string>
+<string name="p_conn_kwd_info">Kenwood configuratiehulp</string>
+<string name="p_conn_kwd_gps">Gebruik Android GPS</string>
+<string name="p_conn_kwd_gps_summary">NMEA-zinnen naar de radio doorsturen</string>
+<string name="p_conn_kwd_gps_debug">GPS in logboek weergeven</string>
+<string name="p_conn_kwd_gps_debug_summary">Ruwe NMEA in APRSdroid weergeven</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">TCP connectie</string>
 <string name="p_aprsis_http">HTTP POST (alleen zenden)</string>
@@ -184,7 +181,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <!-- array of TNC link types -->
 <string name="p_link_bt">Bluetooth SPP</string>
 <string name="p_link_tcpip">TCP/IP</string>
-<string name="p_link_usb">USB Serial</string>
+<string name="p_link_usb">USB Serieel</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manuele Positie</string>
 <string name="p_source_periodic">Periodieke GPS/Netwerk Positie</string>
@@ -283,8 +280,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_dgp_ring_summary">Toon voor de digipeated pakketten</string>
 
 <string name="got_digipeated">Digipeated door %1$s: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Fout: %s</string>
+<string name="status_linkon">Verbonden: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
@@ -323,21 +320,22 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_sotimeout_summary">Tijd om de connectie te resetten</string>
 <string name="p_sotimeout_entry">Timout waarde in seconden (0 = uit)</string>
 
-<string name="p_mapfile">Map file name</string>
-<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
-<string name="p_mapfile_choose">Choose map file</string>
-<string name="mapfile_error">Error loading map file %s!</string>
+<string name="p_mapfile">Kaartbestandsnaam</string>
+<string name="p_mapfile_summary">MapsForge-kaartbestand voor APRSdroid</string>
+<string name="p_mapfile_choose">Kaartbestand kiezen</string>
+<string name="mapfile_error">Fout bij het laden van de kaartbestand %s!</string>
 
-<string name="p_themefile">Theme file name</string>
-<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
-<string name="p_themefile_choose">Choose theme file</string>
-<string name="themefile_error">Error loading theme file %s!</string>
+<string name="p_themefile">Themabestandsnaam</string>
+<string name="p_themefile_summary">MapsForge weergavethema (XML)</string>
+<string name="p_themefile_choose">Kies themabestand</string>
+<string name="themefile_error">Fout bij het laden van themabestand %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
   Eddy Vaesen https://launchpad.net/~a-eddy-n
   Georg Lukas https://launchpad.net/~ge0rg
   H.F.P. Pit https://launchpad.net/~pd5dp
   Jeroen https://launchpad.net/~pd1ode
+  Michel Smits https://launchpad.net/~micsmithel
   Robbie De Lise https://launchpad.net/~robbie-delise
   Selly https://launchpad.net/~salpatxot
   doomer https://launchpad.net/~doomer
@@ -354,8 +352,8 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_bt_channel_entry">Geef kanaal (meestal: "1"; of leeg voor SPP)</string>
 
 <string name="p_tnc_init">TNC init string</string>
-<string name="p_tnc_init_summary">Initialization commands for TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
-<string name="p_tnc_init_msg" formatted="false">URL-encoded string (Esc=%1B, \"%\"=%25), delay after each line:</string>
+<string name="p_tnc_init_summary">Initialisatieopdrachten voor TNC (URL-encoded, Esc=%%1B, "%%"=%%25)</string>
+<string name="p_tnc_init_msg" formatted="false">URL-gecodeerde string (Esc=%1B, \"%\"=%25), vertraging na elke regel:</string>
 
 <string name="p_tnc_delay">TNC init vertraging</string>
 <string name="p_tnc_delay_summary">vertragingstijd na elke regel</string>
@@ -367,7 +365,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="bt_error_unsupported">Bluetooth wordt niet ondersteund!</string>
 <string name="bt_error_disabled">Bleutooth inschakelen!</string>
 <string name="bt_error_no_tnc">Bleutooth TNC configureren aub!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Kon geen verbinding maken met %s! Gelieve het apparaat in te schakelen en de andere Bluetooth-verbindingen te sluiten.</string>
 
 <string name="afsk_info_sco_req">Maken van bleutooth SCO link...</string>
 <string name="afsk_info_sco_est">Bleutooth SCO link verbonden.</string>
@@ -379,22 +377,24 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <!-- SSL strings -->
 <string name="ssl_import_activity">Importeer SSL certificaat</string>
 <string name="ssl_import_password">Geef het paswoord om het certificaat te importeren</string>
-<string name="ssl_no_keyfile">No certificate for %s! Using passcode authentication.</string>
+<string name="ssl_no_keyfile">Geen certificaat voor %s! Gebruikt toegangscode gebaseerde authenticatie.</string>
 <string name="ssl_import_ok">Importeer het certificaat voor %s.</string>
 <string name="ssl_import_error">Fout bij het importeren van het certificaat: %s!</string>
 <string name="ssl_expired">Je certificaat is verlopen!</string>
 <string name="ssl_expire_in">Je certificaat verloop over %d dagen!</string>
 
 <!-- Config import -->
-<string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Imported profile: %s</string>
-<string name="profile_import_error">Error importing profile: %s!</string>
+<string name="profile_import_activity">Profiel importeren</string>
+<string name="profile_import_done">Geïmporteerd profiel: %s</string>
+<string name="profile_import_error">Fout bij het importeren van het profiel: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
-<string name="p_serial_baudrate">Baud Rate</string>
-<string name="p_serial_baudrate_summary">Data rate of the serial port</string>
+<string name="p_serial_baudrate">Baud-waarde</string>
+<string name="p_serial_baudrate_summary">Gegevenssnelheid van de seriële poort</string>
 <!-- (USB) Serial Errors -->
-<string name="p_serial_unsupported">Unsupported serial port!</string>
-<string name="p_serial_noperm">No permission for USB device!</string>
+<string name="p_serial_unsupported">Niet-ondersteunde seriële poort!</string>
+<string name="p_serial_noperm">Geen toestemming voor USB-apparaat!</string>
 <string name="p_serial_notfound">Geen USB-apparaat gevonden!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

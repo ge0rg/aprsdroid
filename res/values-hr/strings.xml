@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid aktivnost</string>
 <string name="wrongpasscode">Lozinka ne odgovara pozivnoj oznaci!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Bez lozinke, izvješća neće biti objavljivana!</string>
 <string name="mininterval">Minimalno vrijeme osvježenja je 1 minuta!</string>
 <string name="singlelog">Send Position</string>
@@ -389,4 +390,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

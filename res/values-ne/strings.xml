@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">एपिआरएस ड्रोएड - गतिविधि</string>
 <string name="wrongpasscode">तपाईंको पासकोड आफ्नो कलसाईन सँग  मेल खाँदैन!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">पासकोड बिना, तपाईंको रिपोर्टहरु पठाईदैन !</string>
 <string name="mininterval">न्यूनतम अद्यावधिक गर्ने समय १ मिनेट !</string>
 <string name="singlelog">ठेगाना पठाउनुहोस्</string>
@@ -405,4 +406,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

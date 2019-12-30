@@ -1,76 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
-<string name="app_name">aprs untuk android</string>
-<string name="app_prefs">pengaturan aprsdroid</string>
-<string name="app_map">peta aprsdroid</string>
-<string name="app_hub">sambungan aprsdroid</string>
+<string name="app_name">APRSdroid</string>
+<string name="app_prefs">APRSdroid Preferences</string>
+<string name="app_map">Mapa sa APRSdroid</string>
+<string name="app_hub">APRSdroid Hub</string>
 <string name="app_log">APRSdroid Log</string>
-<string name="app_sta">info stasiun</string>
-<string name="app_messages">Pesan-pesan</string>
-<string name="app_messages_clear">Hapus Pesan</string>
+<string name="app_sta">Impormasyon sa Estasyon</string>
+<string name="app_messages">Mga Mensahe</string>
+<string name="app_messages_clear">Burahon ang Mensahe</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">Anda harus memasukkan callsign dan passcode utk menggunakan APRSdroid</string>
-<string name="wrongpasscode">Passcode tidak cocok dengan callsign Anda!</string>
+<string name="firstrun">Kinahanglan nimo ma configure ang APRSdroid sa imong callsign ug passcode!</string>
+<string name="wrongpasscode">Ang imong passcode dili tugma sa imong callsign!</string>
 <string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">Minimum update time is 1 minute!</string>
-<string name="singlelog">Kirim Posisi</string>
-<string name="startlog">Mulai Penjejak</string>
-<string name="stoplog">Hentikan Penjejak</string>
+<string name="anon_warning">Kung walay passcode, dili mamantala ang imong report!</string>
+<string name="mininterval">Pinaka mubong oras sa pag update ay 1 minuto!</string>
+<string name="singlelog">Ipadala ang posisyon</string>
+<string name="startlog">Sugdan ug Subay</string>
+<string name="stoplog">Undangan ug Subay</string>
 
-<string name="empty_logview">Belum ada kiriman atau penerimaan paket apapun.\n\n Tekan tombol \"Menu\" untuk mengirim laporan tunggal atau mulai rekam jejak posisi Anda.\n\n Anda juga dapat mengubah pengaturan aplikasi dari menu.</string>
+<string name="empty_logview">Wala pa kapadala or nakadawat ug packets.\n\n Pindota ang\"Menu\" button para mag padala ug isa ka report or para sugdan ug subay imong posisyon.\n\n Pwede pud nimo usabon ang imong gusto mahitabo sa application didto sa menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Pesan Terakhir</string>
-<string name="map_track_call">Rekam Jejak %s</string>
-<string name="map_track_unknown">Posisi %s tidak diketahui!</string>
-<string name="map_select">Pilih Stasiun</string>
+<string name="sta_lastreport">%s Katapusang Report</string>
+<string name="map_track_call">Nagsubay %s...</string>
+<string name="map_track_unknown">Posisyon para %s sa wala mailhi!</string>
+<string name="map_select">Pili ug stasyon</string>
 
-<string name="map_loading">Memuat...</string>
+<string name="map_loading">Loading...</string>
 
 <!-- StationInfo activity -->
-<string name="sta_ssids">Stasiun SSIDs</string>
-<string name="sta_history">Riwayat Stasiun</string>
-<string name="sta_map">Peta</string>
-<string name="sta_extmap">External Map</string>
+<string name="sta_ssids">Estasyon SSIDs</string>
+<string name="sta_history">History sa Estasyon</string>
+<string name="sta_map">Mapa</string>
+<string name="sta_extmap">Lain na Mapa</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
 <!-- Conversations activity -->
-<string name="msg_send_new">Kirim pesan ke...</string>
-<string name="msg_message_text">Pesan teks</string>
-<string name="msg_empty_list">Tidak ada percakapan yang tersimpan.</string>
+<string name="msg_send_new">Ipadala ang mensahe kay...</string>
+<string name="msg_message_text">Mensahe na Texto</string>
+<string name="msg_empty_list">Walay nakapundo na konbersasyon.</string>
 <string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
 <!-- Message activity -->
-<string name="msg_from">Pesan dari %s</string>
-<string name="msg_to">Pesan untuk %s</string>
-<string name="msg_abort">batalkan transmisi</string>
-<string name="msg_restart">Mulai ulang transmisi</string>
-<string name="msg_type_rejected">ditolak</string>
-<string name="msg_type_aborted">dibatalkan</string>
+<string name="msg_from">Message from %s</string>
+<string name="msg_to">Message to %s</string>
+<string name="msg_abort">Abort transmission</string>
+<string name="msg_restart">Restart transmission</string>
+<string name="msg_type_rejected">rejected</string>
+<string name="msg_type_aborted">aborted</string>
 
 <!-- AprsService -->
-<string name="aprsservice">Layanan APRSdroid</string>
+<string name="aprsservice">APRSdroid Service</string>
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
-<string name="service_start">Layanan APRS dimulai: %1$s, %2$s.</string>
-<string name="service_stop">Layanan APRS dihentikan</string>
-<string name="service_no_location">Anda perlu aktifkan GPS atau Lokasi Jaringan agar APRSdroid bekerja dengan baik!</string>
+<string name="service_start">APRS Service started: %1$s, %2$s.</string>
+<string name="service_stop">APRS Service stopped.</string>
+<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
 <string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
-<string name="post_error">Terjadi Kesalahan</string>
-<string name="post_incmg">diterima</string>
+<string name="post_error">Error</string>
+<string name="post_incmg">received</string>
 <string name="post_info"/>
-<string name="post_connecting">Menghubungkan ke %1$s:%2$d...</string>
-<string name="post_reconnect">Sambungan putus. Hubungkan kembali dalam %d detik...</string>
+<string name="post_connecting">Connecting to %1$s:%2$d...</string>
+<string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>
 
 <!-- first run dialog -->
-<string name="fr_title">Selamat Datang di APRSdroid!</string>
-<string name="fr_text">Perangkat lunak ini hanya dapat digunakan oleh operator amatir radio berlisensi!</string>
-<string name="fr_text2">Anda harus memasukkan callsign Anda untuk menggunakan software ini. Untuk meneruskan paket Anda, diperlukan juga sebuah APRS-IS passcode.</string>
+<string name="fr_title">Welcome to APRSdroid!</string>
+<string name="fr_text">This software may only be used by licensed amateur radio
+	operators!</string>
+<string name="fr_text2">You need to enter your callsign to use this software.
+	To forward your packets, an APRS-IS passcode is required as well.</string>
 
 <!-- about dialog -->
-<string name="ad_title">Tentang APRSdroid v%s</string>
+<string name="ad_title">About APRSdroid v%s</string>
 <string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
 	http://aprsdroid.org
 	\n\n
@@ -92,7 +94,7 @@
 	\n\n
 	http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 	</string>
-<string name="ad_thanks">Terima kasih kepada:</string>
+<string name="ad_thanks">Thanks to:</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
 <string name="ad_thanks_1">Michael, DO3BOX: idea</string>
 <string name="ad_thanks_2">Dirk, DB5OY: motivation and support</string>
@@ -100,47 +102,47 @@
 <string name="ad_thanks_4">Matti, OH2MQK and John, AB0OO: Java APRS</string>
 <string name="ad_thanks_5">Sivan, 4X6IZ: AFSK demodulator, https://github.com/sivantoledo/javAX25</string>
 <string name="ad_thanks_6">SmartBeaconing™ by HamHUD Nichetronix, LLC, http://hamhud.net</string>
-<string name="ad_trans">\n\nTerjemahan:</string>
-<string name="ad_homepage">Halaman Utama</string>
+<string name="ad_trans">\n\nTranslation:</string>
+<string name="ad_homepage">Home Page</string>
 
 <!-- map view -->
-<string name="map_overlays">Lapisan</string>
-<string name="map_satellite">Satelit</string>
-<string name="map_objects">Obyek APRS</string>
+<string name="map_overlays">Overlays</string>
+<string name="map_satellite">Satellite</string>
+<string name="map_objects">APRS Objects</string>
 
 <!-- map view -->
-<string name="age">Tampilkan terakhir...</string>
-<string name="age_30">30 menit</string>
-<string name="age_2h">2 jam</string>
-<string name="age_12h">12 jam</string>
-<string name="age_1d">1 hari</string>
-<string name="age_2d">2 hari</string>
+<string name="age">Show last...</string>
+<string name="age_30">30 minutes</string>
+<string name="age_2h">2 hours</string>
+<string name="age_12h">12 hours</string>
+<string name="age_1d">1 day</string>
+<string name="age_2d">2 days</string>
 
 
 <!-- options menu -->
-<string name="about">Tentang</string>
+<string name="about">About</string>
 <string name="show_hub">Show Hub</string>
-<string name="show_map">Tampilkan Peta</string>
-<string name="show_log">Tampilkan catatan</string>
+<string name="show_map">Show Map</string>
+<string name="show_log">Show Log</string>
 <string name="export_log">Export Log</string>
 <string name="export_empty">Nothing to export</string>
-<string name="clear_log">Hapus catatan</string>
-<string name="quit">Keluar</string>
-<string name="preferences">Pengaturan</string>
+<string name="clear_log">Clear Log</string>
+<string name="quit">Quit</string>
+<string name="preferences">Preferences</string>
 <!-- preferences -->
 <string name="profile_load">Load profile...</string>
 <string name="profile_export">Export profile...</string>
-<string name="p__ham">Radio Amatir</string>
+<string name="p__ham">Amateur Radio</string>
 <string name="p_callsign">Callsign</string>
-<string name="p_callsign_nossid">Callsign (tanpa SSID)</string>
-<string name="p_callsign_summary">Callsign HAM radio Anda</string>
-<string name="p_callsign_entry">Masukkan callsign Anda</string>
+<string name="p_callsign_nossid">Callsign (without SSID)</string>
+<string name="p_callsign_summary">Your HAM radio callsign</string>
+<string name="p_callsign_entry">Enter your callsign</string>
 <string name="p_passcode">APRS-IS Passcode</string>
-<string name="p_passcode_summary">Validasi APRS-IS passcode</string>
+<string name="p_passcode_summary">APRS-IS validation passcode</string>
 <string name="p_passcode_entry">Enter the passcode for your call</string>
-<string name="p_passreq">Permohonan Passcode</string>
-<string name="p_passreq_summary">Permohonan APRS-IS passcode online</string>
-<string name="p__aprs">Pengaturan APRS</string>
+<string name="p_passreq">Request Passcode</string>
+<string name="p_passreq_summary">Request APRS-IS passcode online</string>
+<string name="p__aprs">APRS Settings</string>
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
 <string name="p_ssid_entry">Enter the SSID for your station</string>
@@ -348,10 +350,7 @@
 <string name="themefile_error">Error loading theme file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Josef Matondang https://launchpad.net/~josefmtd
-  Zoel Gandhi https://launchpad.net/~yc0nyo
-  ali elsas https://launchpad.net/~yc3inp
-  m. anshori https://launchpad.net/~m-anshory</string>
+  Marlon Nalla https://launchpad.net/~clusterdavao</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

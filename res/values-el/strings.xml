@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Πρέπει να ρυθμίσετε το APRSdroid με το διακριτικό και τον κωδικό πρόσβασής σας!</string>
 <string name="wrongpasscode">Ο κωδικός πρόσβασης σας δεν αντιστοιχεί στο διακριτικό κλήσης σας!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Χωρίς κωδικό πρόσβασης, οι αναφορές σας δεν θα μεταδοθούν!</string>
 <string name="mininterval">Ελάχιστος χρόνος ενημέρωσης είναι 1 λεπτό!</string>
 <string name="singlelog">Αποστολή θέσης</string>
@@ -70,11 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Σχετικά με APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n Το APRS® είναι σήμα κατατεθέν του Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό; Μπορείτε να το αναδιανέμετε ή/και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή δημοσιεύεται από το Ίδρυμα Ελεύθερου Λογισμικού; είτε της έκδοσης 2 της Άδειας, είτε (κατ\'επιλογή σας) οποιαδήποτε μεταγενέστερη έκδοση. \n\n Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ; χωρίς καν την υπονοούμενη εγγύηση της ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε την GNU Γενική Άδεια Δημόσιας Χρήσης για περισσότερες λεπτομέρειες. \n\n Θα πρέπει να έχετε λάβει ένα αντίγραφο της GNU General Public License μαζί με αυτό το πρόγραμμα; αν όχι, γράψτε στο Ίδρυμα Ελεύθερου Λογισμικού, Inc, 51 Franklin Street, πέμπτο όροφο, Boston, MA 02110-1301, ΗΠΑ. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Ευχαριστίες σε:</string>
 <string name="ad_thanks_0">Η YL μου ♥♥♥</string>
@@ -381,7 +378,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Εισαγωγή προφίλ</string>
-<string name="profile_import_done">Imported profile: %s</string>
+<string name="profile_import_done">Εισαγόμενο προφίλ: %s</string>
 <string name="profile_import_error">Σφάλμα κατά την εισαγωγή προφίλ: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
@@ -391,4 +388,6 @@
 <string name="p_serial_unsupported">Μη υποστηριζόμενη σειριακή θύρα!</string>
 <string name="p_serial_noperm">Δεν υπάρχει άδεια για συσκευή USB!</string>
 <string name="p_serial_notfound">Δεν βρέθηκε καμία συσκευή USB!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

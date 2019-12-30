@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Du muss APRSdroid mat dengem Rufzeechen an Passcode konfiguréieren!</string>
 <string name="wrongpasscode">Den Passcode passt net zum Rufzeechen!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Ouni Passcode ginn deng Infoe net viru geschéckt!</string>
 <string name="mininterval">Klengst  Updatezäit ass 1 Minutt!</string>
 <string name="singlelog">Positioun schécken</string>
@@ -384,4 +385,6 @@
 <string name="p_serial_unsupported">Deen serielle Port gëtt net ënnerstëtzt!</string>
 <string name="p_serial_noperm">Keng Erlaabnis fir USB Gerät!</string>
 <string name="p_serial_notfound">Keen USB Gerät fond!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

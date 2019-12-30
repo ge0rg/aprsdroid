@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Nejdříve musíte nastavit svoji volací značku a APRS-IS kód.</string>
 <string name="wrongpasscode">Tvůj APRS-IS kód neodpovídá tvé volací značce.</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Bez APRS-IS kódu se nebude odesílat poloha.</string>
 <string name="mininterval">Minimalní čas obnovy polohy je 1 minuta!</string>
 <string name="singlelog">Odeslat pozici</string>
@@ -392,4 +393,6 @@
 <string name="p_serial_unsupported">Nepodporovaný sériový port!</string>
 <string name="p_serial_noperm">Chybí oprávnění pro USB zařízení!</string>
 <string name="p_serial_notfound">USB zařízení nenalezeno.</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

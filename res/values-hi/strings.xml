@@ -2,31 +2,30 @@
 <!-- APRSdroid strings.xml - this file contains strings which need to be translated -->
 <resources>
 <string name="app_name">APRSdroid</string>
-<string name="app_prefs">APRSdroid Preferences</string>
-<string name="app_map">APRSdroid Map</string>
-<string name="app_hub">APRSdroid Hub</string>
-<string name="app_log">APRSdroid Log</string>
-<string name="app_sta">Station Info</string>
+<string name="app_prefs">APRSdroid पसंद</string>
+<string name="app_map">APRSdroid नक्शे</string>
+<string name="app_hub">APRSdroid केंद्र</string>
+<string name="app_log">APRSdroid अभिलेख</string>
+<string name="app_sta">स्टेशन की जानकारी</string>
 <string name="app_messages">संदेश</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">संदेशों को साफ़ करें</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
-<string name="wrongpasscode">Your passcode does not match your callsign!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">Minimum update time is 1 minute!</string>
-<string name="singlelog">Send Position</string>
-<string name="startlog">Start Tracking</string>
-<string name="stoplog">अनुपालन बंद करें</string>
+<string name="firstrun">आपको अपने callsign और passcode के साथ APRSdroid को configure करने की आवश्यक्ता है</string>
+<string name="wrongpasscode">आपका passcode आपके callsign से मेल नहीं खा रहा है</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
+<string name="anon_warning">Passcode के बिना आपकी रिपोर्ट नहीं बन सकेंगी</string>
+<string name="mininterval">न्यूनतम अद्यतन समय १ मिनट है!</string>
+<string name="singlelog">स्थिती भेजें</string>
+<string name="startlog">नज़र रखना शुरू करें</string>
+<string name="stoplog">नज़र रखना बंद करें</string>
 
-<string name="empty_logview">You have not yet sent or received any packets.\n\n
-	Press the \"Menu\" button to send a single report or to start tracking your position.\n\n
-	You can also change the application preferences from the menu.</string>
+<string name="empty_logview">आपने अभी तक कोई भी पैकेट भेजा या प्राप्त नहीं किया है।\n\n एकल रिपोर्ट भेजने या अपनी स्थिति पर नज़र रखनें के लिए \"मेन्यू\" बटन दबाएं।\n\n आप मेन्यू से एप्लिकेशन की पसंद भी बदल सकतें है।</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">%s Last Report</string>
-<string name="map_track_call">Tracking %s...</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
-<string name="map_select">Select station</string>
+<string name="sta_lastreport">नक्शे की गतिविधि</string>
+<string name="map_track_call">%s पर नज़र रखी जा रही है...</string>
+<string name="map_track_unknown">%s की स्थिती अज्ञात है!</string>
+<string name="map_select">स्टेशन चुनें</string>
 
 <string name="map_loading">Loading...</string>
 
@@ -351,6 +350,7 @@
 <string name="themefile_error">Error loading theme file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Kuldeep Choudhary https://launchpad.net/~vu2zkc
   Manmohan Bhagat https://launchpad.net/~vu3ybh</string>
 
 <!-- Bluetooth TNC settings -->
@@ -407,4 +407,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

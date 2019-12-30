@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroidの使用前にコールサインとパスコードの設定が必要です</string>
 <string name="wrongpasscode">コールサインとパスコードが一致しません</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">パスコードを入力しないと位置情報は送信されません</string>
 <string name="mininterval">GPS測位間隔は１分以下に設定できません</string>
 <string name="singlelog">位置送信</string>
@@ -389,4 +390,6 @@
 <string name="p_serial_unsupported">シリアルポートをサポートしていない！</string>
 <string name="p_serial_noperm">USB機器 無許可!</string>
 <string name="p_serial_notfound">USB機器が見つかりません！</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

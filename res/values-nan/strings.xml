@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">您需要在APRSdroid中配置您的呼号和验证码！</string>
 <string name="wrongpasscode">您的呼号验证码不正确！</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">没有验证码，您的数据包将不会被发出！</string>
 <string name="mininterval">最小的更新时间是1分钟！</string>
 <string name="singlelog">Send Position</string>
@@ -388,4 +389,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

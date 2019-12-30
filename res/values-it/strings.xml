@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Devi conifigurare APRSdroid con il tuo nominativo e la password!</string>
 <string name="wrongpasscode">La password APRS non corrisponde al tuo nominativo radio!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Senza password non puoi utilizzare il programma!</string>
 <string name="mininterval">L\'aggiornamento minimo è 1 minuto!</string>
 <string name="singlelog">Invia posizione</string>
@@ -394,4 +395,6 @@
 <string name="p_serial_unsupported">Porta seriale non supportata!</string>
 <string name="p_serial_noperm">Periferica USB non supportata!</string>
 <string name="p_serial_notfound">Nessuna periferica USB trovata!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

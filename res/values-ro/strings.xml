@@ -8,23 +8,24 @@
 <string name="app_log">APRSdroid Log</string>
 <string name="app_sta">Info statie</string>
 <string name="app_messages">Mesaje</string>
-<string name="app_messages_clear">Clear Messages</string>
+<string name="app_messages_clear">Sterge mesajele</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">Trebuie sa configurati APRSdroid cu indicativul si parola dvs.!</string>
+<string name="firstrun">Activitate APRSdroid</string>
 <string name="wrongpasscode">Parola dvs. nu se potriveste cu indicativul dvs.!</string>
-<string name="anon_warning">Fara parola dvs. rapoartele dvs. nu se propaga!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
+<string name="anon_warning">Fara parola rapoartele nu se propaga!</string>
 <string name="mininterval">Timpul minim pentru actualizare este de 1 min.!</string>
-<string name="singlelog">Send Position</string>
-<string name="startlog">Automat</string>
-<string name="stoplog">Stop</string>
+<string name="singlelog">Trimite pozitia</string>
+<string name="startlog">Tx Automat</string>
+<string name="stoplog">Stop Tx</string>
 
 <string name="empty_logview">Nu ai transmis sau receptionat nimic.\n\n Apasa butonul \"Menu \" pentru a transmite un raport sau pentru a porni trasmisia automata a pozitiei tale. \n\n Poti modifica si optiunile aplicatiei din menu.</string>
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Ultimul raport</string>
 <string name="map_track_call">Urmarire %s...</string>
-<string name="map_track_unknown">Position for %s unknown!</string>
-<string name="map_select">Select station</string>
+<string name="map_track_unknown">Positia pentru %s necunoscut!</string>
+<string name="map_select">Selecteaza statia</string>
 
 <string name="map_loading">Se încarcă...</string>
 
@@ -32,7 +33,7 @@
 <string name="sta_ssids">SSIDuri statie</string>
 <string name="sta_history">Istoric statie</string>
 <string name="sta_map">Harta</string>
-<string name="sta_extmap">External Map</string>
+<string name="sta_extmap">Harta externa</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -40,7 +41,7 @@
 <string name="msg_send_new">Trimite mesaj catre...</string>
 <string name="msg_message_text">Text mesaj</string>
 <string name="msg_empty_list">Nu există conversaţii stocate.</string>
-<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<string name="msg_stored_offline">Mesajul va fi trimis de îndată ce începe Urmărirea.</string>
 <!-- Message activity -->
 <string name="msg_from">Mesaj de la %s</string>
 <string name="msg_to">Mesaj catre %s</string>
@@ -54,8 +55,8 @@
 <string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
 <string name="service_start">APRS Service started: %1$s, %2$s.</string>
 <string name="service_stop">Serviciu APRS oprit.</string>
-<string name="service_no_location">You need to enable either GPS or Network Location for APRSdroid to work properly!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_no_location">Trebuie sa activati GPS-ul sau Localizarea pentru buna functionare a APRSdroid-ului.</string>
+<string name="service_sm_no_gps">SmartBeaconing necesita GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Eroare</string>
 <string name="post_incmg">receptionat</string>
@@ -64,7 +65,7 @@
 <string name="post_reconnect">Conexiune pierduta. Reconectare in %d secunde...</string>
 
 <!-- first run dialog -->
-<string name="fr_title">Welcome to APRSdroid!</string>
+<string name="fr_title">Bine ai venit la APRSdroid!</string>
 <string name="fr_text">Acest software poate fi utilizat numai de către radioamatorii licenţiaţi !</string>
 <string name="fr_text2">You need to enter your callsign to use this software.
 	To forward your packets, an APRS-IS passcode is required as well.</string>
@@ -406,4 +407,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

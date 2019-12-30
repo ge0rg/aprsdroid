@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Potrebno je nastaviti APRSdroid z pozivnim znakom in geslom</string>
 <string name="wrongpasscode">Vaše geslo se ne ujema z pozivnim znakom</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Brez gesla vaša sporočila ne bodo vidna</string>
 <string name="mininterval">Najmanjši čas posodobitve</string>
 <string name="singlelog">Pošlji lokacijo</string>
@@ -389,4 +390,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>
