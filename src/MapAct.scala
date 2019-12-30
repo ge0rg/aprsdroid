@@ -64,7 +64,7 @@ class MapAct extends MapActivity with UIHelper {
 			setLongTitle(R.string.app_map, targetcall)
 		setKeepScreenOn()
 		setVolumeControls()
-		reloadMapAndTheme()
+		checkPermissions(Array(Manifest.permission.WRITE_EXTERNAL_STORAGE), RELOAD_MAP)
 	}
 
 	override def onConfigurationChanged(c : Configuration) = {
@@ -78,6 +78,45 @@ class MapAct extends MapActivity with UIHelper {
 		unregisterReceiver(locReceiver)
 	}
 	//override def isRouteDisplayed() = false
+
+	def checkPermissions(): Boolean = {
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+			true
+		} else {
+			import android.Manifest
+			if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+				if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE))
+					Toast.makeText(this, getString(R.string.mapfile_error, "(no permission)"), Toast.LENGTH_SHORT).show()
+				requestPermissions(Array(Manifest.permission.WRITE_EXTERNAL_STORAGE), 0)
+				false
+			} else
+				true
+		}
+	}
+
+	val RELOAD_MAP = 1010
+
+	override def getActionName(action : Int): Int = {
+		action match {
+		case RELOAD_MAP => R.string.show_map
+		case _ => super.getActionName(action)
+		}
+	}
+  override def onAllPermissionsGranted(action: Int): Unit = {
+		action match {
+		case RELOAD_MAP => reloadMapAndTheme()
+		case _ => super.onAllPermissionsGranted(action)
+		}
+	}
+
+	override def onPermissionsFailed(action: Int, permissions: Set[String]): Unit = {
+		if (action == RELOAD_MAP) {
+			if (targetcall == "")
+				startActivity(new Intent(this, classOf[HubActivity]).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+			finish()
+		}
+		super.onPermissionsFailed(action, permissions)
+	}
 
 	def reloadMapAndTheme() {
 		val mapfile = new File(prefs.getString("mapfile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.map"))
