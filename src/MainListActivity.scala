@@ -66,12 +66,12 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 	override def onClick(view : View) {
 		view.getId match {
 		case R.id.singlebtn =>
-			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
+			startAprsService(START_SERVICE_ONCE)
 			setupButtons(true)
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
-				startService(AprsService.intent(this, AprsService.SERVICE))
+				startAprsService(START_SERVICE)
 			} else {
 				stopAprsService()
 			}

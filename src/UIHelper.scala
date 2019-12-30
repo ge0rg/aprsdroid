@@ -11,13 +11,16 @@ import _root_.android.util.Log
 import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View, WindowManager}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 import _root_.android.widget.{EditText, Toast}
-
-import java.io.{PrintWriter, File}
+import java.io.{File, PrintWriter}
 import java.text.SimpleDateFormat
 import java.util.Date
 
+import android.content.pm.PackageManager
+import android.provider.Settings
+
 trait UIHelper extends Activity
 		with LoadingIndicator
+		with PermissionHelper
 		with DialogInterface.OnClickListener 
 		with DialogInterface.OnCancelListener {
 
@@ -62,6 +65,30 @@ trait UIHelper extends Activity
 			openedPrefs = true
 		}
 	}
+	def currentListOfPermissions() : Array[String] = {
+		val bi_perms = AprsBackend.defaultBackendInfo(prefs).permissions
+		val ls_perms = LocationSource.getPermissions(prefs)
+		(bi_perms ++ ls_perms).toArray
+	}
+
+	val START_SERVICE = 1001
+	val START_SERVICE_ONCE = 1002
+
+	override def getActionName(action : Int): Int = {
+		action match {
+		case START_SERVICE => R.string.startlog
+		case START_SERVICE_ONCE => R.string.singlelog
+		}
+	}
+	override def onAllPermissionsGranted(action : Int): Unit = {
+		action match {
+		case START_SERVICE => startService(AprsService.intent(this, AprsService.SERVICE))
+		case START_SERVICE_ONCE => startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
+		}
+	}
+	def startAprsService(action : Int): Unit = {
+		checkPermissions(currentListOfPermissions(), action)
+	}
 
 	// manual stop: remember shutdown for next reboot
 	def stopAprsService() {
@@ -86,7 +113,7 @@ trait UIHelper extends Activity
 	def saveFirstRun(call : String, passcode : String) {
 		val pe = prefs.prefs.edit()
 		call.split("-") match {
-		case Array(callsign) => 
+		case Array(callsign) =>
 			pe.putString("callsign", callsign)
 		case Array(callsign, ssid) =>
 			pe.putString("callsign", callsign)
@@ -306,13 +333,13 @@ trait UIHelper extends Activity
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
-				startService(AprsService.intent(this, AprsService.SERVICE))
+				startAprsService(START_SERVICE)
 			} else {
 				stopAprsService()
 			}
 			true
 		case R.id.singlebtn =>
-			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
+			startAprsService(START_SERVICE_ONCE)
 			true
 		// quit the app
 		//case R.id.quit =>
