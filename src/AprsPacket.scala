@@ -8,7 +8,7 @@ object AprsPacket {
 
 	def passcode(callssid : String) : Int = {
 		// remove ssid, uppercase, add \0 for odd-length calls
-		val call = callssid.split("-")(0).toUpperCase() + "\0"
+		val call = callssid.split("-")(0).toUpperCase() + "\u0000"
 		var hash = 0x73e2
 		for (i <- 0 to call.length-2 by 2) {
 			hash ^= call(i) << 8
