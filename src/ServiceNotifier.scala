@@ -9,7 +9,7 @@ import _root_.android.graphics.Color
 
 
 object ServiceNotifier {
-	val instance = if (Build.VERSION.SDK.toInt < 5) new DonutNotifier() else new EclairNotifier()
+	val instance = if (Build.VERSION.SDK_INT < 5) new DonutNotifier() else new EclairNotifier()
 }
 
 abstract class ServiceNotifier {

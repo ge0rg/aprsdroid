@@ -121,7 +121,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 						log("Reconnecting in 3s...")
 						try {
 							Thread.sleep(3*1000)
-						} catch { case _ => }
+						} catch { case _ : InterruptedException => }
 						init_socket()
 						need_reconnect = false
 						service.postLinkOn(R.string.p_link_bt)
@@ -143,7 +143,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 								service.postAddPost(StorageDatabase.Post.TYPE_INFO,
 									R.string.post_error, e.toString())
 							e.printStackTrace()
-						} catch { case _ => Log.d(TAG, "Yo dawg! I got an exception while getting an exception!")
+						} catch { case _ : Exception => Log.d(TAG, "Yo dawg! I got an exception while getting an exception!")
 						}
 				}
 			}
@@ -154,7 +154,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 			try {
 				proto.writePacket(packet)
 				"Bluetooth OK"
-			} catch { case e => e.printStackTrace(); conn.socket.close(); "Bluetooth disconnected" }
+			} catch { case e : Exception => e.printStackTrace(); conn.socket.close(); "Bluetooth disconnected" }
 		}
 
 		def catchLog(tag : String, fun : ()=>Unit) {
