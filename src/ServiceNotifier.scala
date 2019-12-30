@@ -18,7 +18,7 @@ abstract class ServiceNotifier {
 	val callIdMap = new scala.collection.mutable.HashMap[String, Int]()
 
 	def setupChannels(ctx : Context) {
-		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 			val nm = ctx.getSystemService(classOf[NotificationManager]).asInstanceOf[NotificationManager]
 			nm.createNotificationChannel(new NotificationChannel("status",
 				ctx.getString(R.string.aprsservice), NotificationManager.IMPORTANCE_LOW))
@@ -27,11 +27,18 @@ abstract class ServiceNotifier {
 		}
 	}
 
+  def newNotificationBuilder(ctx : Service, channel : String) : Notification.Builder = {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+			new Notification.Builder(ctx, channel)
+		else
+			new Notification.Builder(ctx)
+  }
+
 	def newNotification(ctx : Service, status : String) : Notification = {
 		val i = new Intent(ctx, classOf[APRSdroid])
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 		val appname = ctx.getResources().getString(R.string.app_name)
-		new Notification.Builder(ctx, "status")
+		newNotificationBuilder(ctx, "status")
 			.setContentTitle(appname)
 			.setContentText(status)
 			.setContentIntent(PendingIntent.getActivity(ctx, 0, i, 0))
@@ -56,7 +63,7 @@ abstract class ServiceNotifier {
 		val i = new Intent(ctx, classOf[MessageActivity])
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 		i.setData(Uri.parse(call))
-		new Notification.Builder(ctx, "msg")
+		newNotificationBuilder(ctx, "msg")
 			.setContentTitle(call)
 			.setContentText(message)
 			.setContentIntent(PendingIntent.getActivity(ctx, 0, i, PendingIntent.FLAG_UPDATE_CURRENT))
