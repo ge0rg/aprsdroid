@@ -12,7 +12,7 @@ buildscript {
 		// in the individual module build.gradle files
 
 		// grgit for version tags
-		classpath 'org.ajoberstar.grgit:grgit-gradle:4.0.1'
+		classpath 'org.ajoberstar:grgit:1.1.0'
 
 		// scala build
 		classpath 'com.github.AllBus:gradle-android-scala-plugin:3.5.1'
@@ -21,7 +21,7 @@ buildscript {
 
 plugins {
 	// obtain revision from git
-	id 'org.ajoberstar.grgit' version '4.0.1'
+	id 'org.ajoberstar.grgit' version '1.6.0'
 }
 
 allprojects {
