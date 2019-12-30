@@ -1,24 +1,26 @@
 package org.aprsdroid.app
 
+import _root_.android.Manifest
 import _root_.android.app.AlertDialog
-import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
+import _root_.android.content.{DialogInterface, Intent, IntentFilter}
+import _root_.android.content.pm.PackageManager
 import _root_.android.content.res.Configuration
 import _root_.android.database.Cursor
-import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
+import _root_.android.graphics.drawable.{BitmapDrawable, Drawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
-import _root_.android.os.{Bundle, Handler}
+import _root_.android.os.{Build, Bundle}
 import _root_.android.util.Log
 import _root_.android.view.{KeyEvent, Menu, MenuItem, View}
-import _root_.android.widget.SimpleCursorAdapter
-import _root_.android.widget.Spinner
-import _root_.android.widget.TextView
 import _root_.android.widget.Toast
 import _root_.org.mapsforge.android.maps._
-import _root_.org.mapsforge.core.GeoPoint
+import _root_.org.mapsforge.core.{GeoPoint, Tile}
 import _root_.org.mapsforge.android.maps.overlay.{ItemizedOverlay, OverlayItem}
+
 import _root_.scala.collection.mutable.ArrayBuffer
 import _root_.java.io.File
 import _root_.java.util.ArrayList
+
+import org.mapsforge.android.maps.mapgenerator.{MapGeneratorFactory, MapGeneratorInternal}
 
 // to make scala-style iterating over arraylist possible
 import scala.collection.JavaConversions._
@@ -82,8 +84,15 @@ class MapAct extends MapActivity with UIHelper {
 		if (mapfile.exists())
 			mapview.setMapFile(mapfile)
 		else {
-			Toast.makeText(this, getString(R.string.mapfile_error, mapfile), Toast.LENGTH_SHORT).show()
-			finish()
+			if (prefs.getString("mapfile", null) != null)
+				Toast.makeText(this, getString(R.string.mapfile_error, mapfile), Toast.LENGTH_SHORT).show()
+			val map_source = MapGeneratorInternal.MAPNIK
+			val map_gen = MapGeneratorFactory.createMapGenerator(map_source)
+			//TODO in later mapsforge:
+			//map_gen match {
+			//	case map_gen_tile : TileDownloader => map_gen_tile.setUserAgent("APRSdroid")
+			//}
+			mapview.setMapGenerator(map_gen)
 		}
 		val themefile = new File(prefs.getString("themefile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.xml"))
 		if (themefile.exists())
@@ -270,6 +279,8 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 	override def drawOverlayBitmap(c : Canvas, dp : Point, proj : Projection, zoom : Byte) : Unit = {
 
+		if (!context.mapview.getMapPosition.isValid)
+			return
 		Log.d(TAG, "draw: symbolSize=" + symbolSize + " drawSize=" + drawSize)
 		val fontSize = drawSize*7/8
 		val textPaint = new Paint()
