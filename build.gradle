@@ -54,6 +54,11 @@ task buildVersion (type: Copy) {
 	}
 }
 
+tasks.withType(ScalaCompile) {
+	// Suppress deprecation warnings
+	scalaCompileOptions.deprecation = false
+}
+
 android {
 	compileSdkVersion 28
 	defaultConfig {
