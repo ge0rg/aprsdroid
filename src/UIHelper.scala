@@ -217,7 +217,7 @@ trait UIHelper extends Activity
 			.setView(aboutview)
 			.setIcon(android.R.drawable.ic_dialog_info)
 			.setPositiveButton(android.R.string.ok, null)
-			.setNeutralButton(R.string.ad_homepage, new UrlOpener(this, "http://aprsdroid.org/"))
+			.setNeutralButton(R.string.ad_homepage, new UrlOpener(this, "https://aprsdroid.org/"))
 			.create.show
 	}
 
@@ -389,12 +389,12 @@ trait UIHelper extends Activity
 			}
 			true
 		case R.id.aprsfi =>
-			val url = "http://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)
+			val url = "https://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)
 			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
 			true
 		case R.id.qrzcom =>
-			val url = "http://qrz.com/db/%s".format(basecall)
+			val url = "https://qrz.com/db/%s".format(basecall)
 			startActivity(new Intent(Intent.ACTION_VIEW,
 				Uri.parse(url)))
 			true
