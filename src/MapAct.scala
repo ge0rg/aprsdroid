@@ -126,7 +126,7 @@ class MapAct extends MapActivity with UIHelper {
 			if (prefs.getString("mapfile", null) != null)
 				Toast.makeText(this, getString(R.string.mapfile_error, mapfile), Toast.LENGTH_SHORT).show()
 			val map_source = MapGeneratorInternal.MAPNIK
-			val map_gen = MapGeneratorFactory.createMapGenerator(map_source)
+			val map_gen = new OsmTileDownloader()
 			//TODO in later mapsforge:
 			//map_gen match {
 			//	case map_gen_tile : TileDownloader => map_gen_tile.setUserAgent("APRSdroid")
