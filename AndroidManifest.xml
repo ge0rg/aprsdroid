@@ -29,6 +29,9 @@
 	    android:usesCleartextTraffic="true"
 	    android:theme="@style/DefaultTheme" >
 
+	<meta-data
+		android:name="com.google.android.geo.API_KEY"
+		android:value="@string/google_maps_key" />
 	<uses-library android:name="org.apache.http.legacy" android:required="false"/>
         <activity android:name=".APRSdroid"
 		android:configChanges="orientation|keyboardHidden|screenSize"
@@ -80,7 +83,13 @@
 		android:parentActivityName=".PrefsAct"
 		android:launchMode="singleTop"
 		/>
-        <activity android:name=".MapAct" android:label="@string/app_map"
+	<activity android:name=".GoogleMapAct" android:label="@string/app_map"
+		android:launchMode="singleTop"
+		android:parentActivityName=".HubActivity"
+		android:configChanges="orientation|keyboardHidden|screenSize"
+		android:theme="@style/MapViewTheme" >
+	</activity>
+	<activity android:name=".MapAct" android:label="@string/app_map"
 		android:launchMode="singleTop"
 		android:parentActivityName=".HubActivity"
 		android:configChanges="orientation|keyboardHidden|screenSize"
@@ -153,4 +162,4 @@
 	    </intent-filter>
 	</receiver>
     </application>
-</manifest> 
+</manifest>

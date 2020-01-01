@@ -321,7 +321,7 @@ trait UIHelper extends Activity
 			startActivity(new Intent(this, classOf[HubActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		case R.id.map =>
-			startActivity(new Intent(this, classOf[MapAct]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			startActivity(new Intent(this, classOf[GoogleMapAct]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		case R.id.log =>
 			startActivity(new Intent(this, classOf[LogActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
