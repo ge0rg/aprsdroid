@@ -4,7 +4,7 @@ import org.mapsforge.android.maps.mapgenerator.tiledownloader.TileDownloader;
 import org.mapsforge.core.Tile;
 
 public class OsmTileDownloader extends TileDownloader {
-	private static final String HOST_NAME = "tiles.openstreetmap.org";
+	private static final String HOST_NAME = "tile.openstreetmap.org";
 	private static final byte ZOOM_MAX = 18;
 	private final StringBuilder stringBuilder = new StringBuilder();
 
