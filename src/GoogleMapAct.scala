@@ -24,7 +24,7 @@ class GoogleMapAct extends Activity with MapLoaderBase
         var map : GoogleMap = null
         lazy val icons = mutable.HashMap[String, BitmapDescriptor]()
         var visible_callsigns = true
-        val CALLSIGN_ZOOM = 10
+        val CALLSIGN_ZOOM = 8
 
         override def onCreate(savedInstanceState: Bundle) {
                 super.onCreate(savedInstanceState)
@@ -129,7 +129,7 @@ class GoogleMapAct extends Activity with MapLoaderBase
                                   .anchor(0.5f, 0.5f) // center at the middle of the icon
                                   //.infoWindowAnchor(0.5f, 0.0f) // at the top of the icon
                                   .flat(true)
-                                  .rotation(sta.course)
+                                  .rotation(sta.course) // TODO fuckers! - the rotation will also influence the info window anchor
                                   .icon(symbol2marker(sta.symbol))
                                   .title(sta.callQrg())
                                   .snippet(sta.comment))
