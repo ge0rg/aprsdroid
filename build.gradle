@@ -1,8 +1,11 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
 	repositories {
+		mavenLocal()
 		jcenter()
-		maven { url 'https://jitpack.io' }
+		maven {
+			url 'https://jitpack.io'
+		}
 		mavenCentral()
 		google()
 	}
@@ -18,7 +21,8 @@ buildscript {
 		classpath 'com.github.triplet.gradle:play-publisher:2.4.1'
 
 		// scala build
-		classpath 'com.github.AllBus:gradle-android-scala-plugin:3.5.1'
+		//classpath 'com.github.AllBus:gradle-android-scala-plugin:3.5.1'
+		classpath 'com.wire.gradle:gradle-android-scala-plugin:1.7'
 	}
 }
 
