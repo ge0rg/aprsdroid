@@ -120,5 +120,6 @@ dependencies {
 	implementation "org.scala-lang:scala-library:2.11.12"
 	//compile 'com.google.android.gms:play-services-maps:6.5.87'
 	implementation fileTree(include: ['*.jar'], dir: 'libs')
-	implementation 'com.google.android.gms:play-services-maps:16.1.0'
+	implementation 'com.google.android.gms:play-services-maps:17.0.0'
+	implementation 'com.google.maps.android:android-maps-utils:0.5'
 }
