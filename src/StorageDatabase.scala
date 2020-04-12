@@ -85,12 +85,16 @@ object StorageDatabase {
 		val COLUMN_QRG		= 11
 		val COLUMN_FLAGS	= 12
 
-		lazy val COLUMNS_MAP = Array(_ID, CALL, LAT, LON, SYMBOL, ORIGIN)
+		lazy val COLUMNS_MAP = Array(_ID, CALL, LAT, LON, SYMBOL, ORIGIN, QRG, COMMENT, SPEED, COURSE)
 		val COLUMN_MAP_CALL	= 1
 		val COLUMN_MAP_LAT	= 2
 		val COLUMN_MAP_LON	= 3
 		val COLUMN_MAP_SYMBOL	= 4
 		val COLUMN_MAP_ORIGIN	= 5
+		val COLUMN_MAP_QRG	= 6
+		val COLUMN_MAP_COMMENT	= 7
+		val COLUMN_MAP_SPEED	= 8
+		val COLUMN_MAP_CSE	= 9
 
 		// binary flags used for symbol coloring
 		val FLAG_MSGCAPABLE	= 1
