@@ -37,6 +37,8 @@ class GoogleMapAct extends Activity with MapLoaderBase
                                 map = googleMap
                                 map.setOnInfoWindowClickListener(GoogleMapAct.this)
                                 map.setOnCameraMoveListener(GoogleMapAct.this)
+                                map.getUiSettings().setCompassEnabled(true)
+                                map.getUiSettings().setZoomControlsEnabled(true)
                                 visible_callsigns = (map.getCameraPosition().zoom > CALLSIGN_ZOOM)
                                 startLoading()
                         }
