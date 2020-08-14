@@ -38,8 +38,6 @@ class MainListActivity(actname : String, menuid : Int) extends LoadingListActivi
 		setTitleStatus()
 		setupButtons(AprsService.running)
 		makeLaunchActivity(actname)
-		setKeepScreenOn()
-		setVolumeControls()
 
 		registerReceiver(miclReceiver, new IntentFilter(AprsService.MICLEVEL))
 		registerReceiver(linkOnOffReceiver, new IntentFilter(AprsService.SERVICE_STOPPED))

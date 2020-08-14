@@ -59,6 +59,8 @@ class GoogleMapAct extends Activity with MapLoaderBase
 
         override def onResume(): Unit = {
                 super.onResume()
+                setKeepScreenOn()
+                setVolumeControls()
                 mapview.onResume()
         }
 
