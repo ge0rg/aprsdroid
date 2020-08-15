@@ -52,7 +52,7 @@ trait UIHelper extends Activity
 	def trackOnMap(call : String) {
 		val text = getString(R.string.map_track_call, call)
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-		startActivity(new Intent(this, classOf[MapAct]).setData(Uri.parse(call)))
+		startActivity(new Intent(this, classOf[GoogleMapAct]).setData(Uri.parse(call)))
 	}
 
 	def openPrefs(toastId : Int, act : Class[_]) {
