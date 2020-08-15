@@ -8,7 +8,7 @@ import android.util.Log
 import android.view.View
 import com.google.android.gms.maps.GoogleMap.{OnCameraMoveListener, OnInfoWindowClickListener}
 import com.google.android.gms.maps.model.{BitmapDescriptor, BitmapDescriptorFactory, LatLng, Marker, MarkerOptions}
-import com.google.android.gms.maps.{GoogleMap, MapView, OnMapReadyCallback}
+import com.google.android.gms.maps.{CameraUpdateFactory, GoogleMap, MapView, OnMapReadyCallback}
 import com.google.maps.android.ui.IconGenerator
 
 import scala.collection.mutable
@@ -90,6 +90,14 @@ class GoogleMapAct extends Activity with MapLoaderBase
 
         override def onStopLoading() {
                 loading.setVisibility(View.GONE)
+                if (targetcall != "") {
+                        markers.get(targetcall) match {
+                        case None =>
+                        case Some(sta) => 
+                                map.animateCamera(CameraUpdateFactory.newLatLngZoom(sta.icon.getPosition(), 14f))
+                                sta.icon.showInfoWindow()
+                        }
+                }
         }
 
         class MarkerInfo(val icon : Marker, val label : Marker, var last_update : Int) {}
