@@ -146,7 +146,7 @@ class GoogleMapAct extends Activity with MapLoaderBase
 
         def onStationUpdate(stations : util.ArrayList[Station]): Unit = {
                 for (sta <- stations) {
-                        Log.d(TAG, "onStaUpdate: " + sta.call)
+                        //Log.d(TAG, "onStaUpdate: " + sta.call)
                         if (map == null)
                                 return
                         val latlon = new LatLng(sta.lat, sta.lon)
