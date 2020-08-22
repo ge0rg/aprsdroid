@@ -161,7 +161,7 @@ class GoogleMapAct extends Activity with MapLoaderBase
                                   .anchor(0.5f, 0.5f) // center at the middle of the icon
                                   //.infoWindowAnchor(0.5f, 0.0f) // at the top of the icon
                                   .flat(true)
-                                  .rotation(sta.course) // TODO fuckers! - the rotation will also influence the info window anchor
+                                  //.rotation(sta.course) // TODO fuckers! - the rotation will also rotate the info window anchor
                                   .icon(symbol2marker(sta.symbol))
                                   .title(sta.callQrg())
                                   .snippet(sta.comment))
