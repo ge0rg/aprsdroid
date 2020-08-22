@@ -25,19 +25,16 @@ import org.mapsforge.android.maps.mapgenerator.{MapGeneratorFactory, MapGenerato
 // to make scala-style iterating over arraylist possible
 import scala.collection.JavaConversions._
 
-class MapAct extends MapActivity with UIHelper {
-	val TAG = "APRSdroid.Map"
+class MapAct extends MapActivity with MapMenuHelper {
+	override val TAG = "APRSdroid.Map"
 
 	menu_id = R.id.map
+
 	lazy val mapview = findViewById(R.id.mapview).asInstanceOf[MapView]
 	lazy val allicons = this.getResources().getDrawable(R.drawable.allicons)
 	lazy val db = StorageDatabase.open(this)
 	lazy val staoverlay = new StationOverlay(allicons, this, db)
 	lazy val loading = findViewById(R.id.loading).asInstanceOf[View]
-	lazy val targetcall = getTargetCall()
-
-	var showObjects = false
-
 	lazy val locReceiver = new LocationReceiver2[ArrayList[Station]](staoverlay.load_stations,
 			staoverlay.replace_stations, staoverlay.cancel_stations)
 
@@ -45,16 +42,11 @@ class MapAct extends MapActivity with UIHelper {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.mapview)
 		mapview.setBuiltInZoomControls(true)
-
-		locReceiver.startTask(null)
-		showObjects = prefs.getShowObjects()
-		//mapview.setSatellite(prefs.getShowSatellite())
 		mapview.getOverlays().add(staoverlay)
 
-		// listen for new positions
-		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
-
+		startLoading()
 	}
+
 	override def onResume() {
 		super.onResume()
 		// only make it default if not tracking
@@ -77,7 +69,11 @@ class MapAct extends MapActivity with UIHelper {
 		super.onDestroy()
 		unregisterReceiver(locReceiver)
 	}
-	//override def isRouteDisplayed() = false
+
+	def startLoading() {
+		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
+		locReceiver.startTask(null)
+	}
 
 	def checkPermissions(): Boolean = {
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -102,7 +98,7 @@ class MapAct extends MapActivity with UIHelper {
 		case _ => super.getActionName(action)
 		}
 	}
-  override def onAllPermissionsGranted(action: Int): Unit = {
+	override def onAllPermissionsGranted(action: Int): Unit = {
 		action match {
 		case RELOAD_MAP => reloadMapAndTheme()
 		case _ => super.onAllPermissionsGranted(action)
@@ -142,51 +138,6 @@ class MapAct extends MapActivity with UIHelper {
 			mapview.setRenderTheme(themefile)
 	}
 
-	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options_map, menu);
-		if (targetcall != "")
-			getMenuInflater().inflate(R.menu.context_call, menu);
-		else {
-			getMenuInflater().inflate(R.menu.options_activities, menu);
-			getMenuInflater().inflate(R.menu.options, menu);
-		}
-		menu.findItem(R.id.map).setVisible(false)
-		true
-	}
-
-	// override this to only call UIHelper on "bare" map
-	override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
-		if (targetcall == "")
-			super.onPrepareOptionsMenu(menu)
-		else {
-			menu.findItem(R.id.objects).setChecked(prefs.getShowObjects())
-			menu.findItem(R.id.satellite).setChecked(prefs.getShowSatellite())
-			true
-		}
-	}
-
-	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
-		mi.getItemId match {
-		case R.id.objects =>
-			val newState = prefs.toggleBoolean("show_objects", true)
-			mi.setChecked(newState)
-			showObjects = newState
-			onStartLoading()
-			locReceiver.startTask(null)
-			true
-		case R.id.satellite =>
-			val newState = prefs.toggleBoolean("show_satellite", false)
-			mi.setChecked(newState)
-			//mapview.setSatellite(newState)
-			true
-		case _ =>
-			if (targetcall != "" && callsignAction(mi.getItemId, targetcall))
-				true
-			else
-				super.onOptionsItemSelected(mi)
-		}
-	}
-
 	override def onKeyDown(keyCode : Int, event : KeyEvent) : Boolean = {
 		keyCode match {
 		case KeyEvent.KEYCODE_MEDIA_FAST_FORWARD |
@@ -199,13 +150,6 @@ class MapAct extends MapActivity with UIHelper {
 			true
 		case _ => super.onKeyDown(keyCode, event)
 		}
-	}
-
-	def getTargetCall() : String = {
-		val i = getIntent()
-		if (i != null && i.getDataString() != null) {
-			i.getDataString()
-		} else ""
 	}
 
 	def changeZoom(delta : Int) {
@@ -224,6 +168,11 @@ class MapAct extends MapActivity with UIHelper {
 		mapview.invalidate()
 		onStopLoading()
 		animateToCall()
+	}
+
+	override def reloadMap() {
+		onStartLoading()
+		locReceiver.startTask(null)
 	}
 
 	override def onStartLoading() {

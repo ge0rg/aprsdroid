@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:id="@+id/menu_options_activities">
 	<item android:id="@+id/hub"
 		android:title="@string/show_hub"
 		android:alphabeticShortcut="h"
@@ -19,4 +20,5 @@
 		android:alphabeticShortcut="c"
 		android:showAsAction="ifRoom"
 		android:icon="@android:drawable/ic_menu_send" />
+</group>
 </menu>

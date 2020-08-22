@@ -6,7 +6,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.google.android.gms.maps.GoogleMap.{OnCameraMoveListener, OnInfoWindowClickListener}
+import com.google.android.gms.maps.GoogleMap.{OnCameraMoveListener, OnInfoWindowClickListener, OnMarkerClickListener}
 import com.google.android.gms.maps.model.{BitmapDescriptor, BitmapDescriptorFactory, LatLng, Marker, MarkerOptions}
 import com.google.android.gms.maps.{CameraUpdateFactory, GoogleMap, MapView, OnMapReadyCallback}
 import com.google.maps.android.ui.IconGenerator
@@ -18,6 +18,7 @@ import scala.collection.mutable.ArrayBuffer
 import scala.collection.JavaConversions._
 
 class GoogleMapAct extends Activity with MapLoaderBase
+                with OnMarkerClickListener
                 with OnInfoWindowClickListener with OnCameraMoveListener {
         lazy val loading = findViewById(R.id.loading).asInstanceOf[View]
         lazy val mapview = findViewById(R.id.mapview).asInstanceOf[MapView]
@@ -35,6 +36,10 @@ class GoogleMapAct extends Activity with MapLoaderBase
                         override def onMapReady(googleMap: GoogleMap): Unit = {
                                 Log.d(TAG, "Got map!")
                                 map = googleMap
+                                setMapMode(MapModes.defaultMapMode(GoogleMapAct.this, prefs))
+                                //not helpful, off at the top:
+                                //map.setMyLocationEnabled(true)
+                                map.setOnMarkerClickListener(GoogleMapAct.this)
                                 map.setOnInfoWindowClickListener(GoogleMapAct.this)
                                 map.setOnCameraMoveListener(GoogleMapAct.this)
                                 map.getUiSettings().setCompassEnabled(true)
@@ -62,6 +67,8 @@ class GoogleMapAct extends Activity with MapLoaderBase
                 setKeepScreenOn()
                 setVolumeControls()
                 mapview.onResume()
+                if (targetcall != "")
+                        startFollowStation(targetcall)
         }
 
         override def onSaveInstanceState(outState: Bundle): Unit = {
@@ -82,6 +89,15 @@ class GoogleMapAct extends Activity with MapLoaderBase
         override def onDestroy(): Unit = {
                 super.onDestroy()
                 mapview.onDestroy()
+        }
+
+        override def setMapMode(mm : MapMode) = {
+                mm match {
+                case gmm : GoogleMapMode => 
+                        map.setMapType(gmm.mapType)
+                case _ =>
+                        super.setMapMode(mm)
+                }
         }
 
         override def onStartLoading() {
@@ -151,10 +167,19 @@ class GoogleMapAct extends Activity with MapLoaderBase
                                   .visible(visible_callsigns)
                                   .anchor(0.0f, -0.2f) // center text below the icon
                                 )
+                                icon.setTag(sta.call)
+                                label.setTag(sta.call)
                                 markers(sta.call) = new MarkerInfo(icon, label, 0)
                         }
 
                 }
+        }
+
+        // OnMarkerClickListener
+        override def onMarkerClick(marker : Marker): Boolean = {
+                Log.d(TAG, "marker click: " + marker.getTitle() + " / " + marker.getTag())
+                startFollowStation(marker.getTag().toString())
+                false
         }
 
         // OnInfoWindowClickListener

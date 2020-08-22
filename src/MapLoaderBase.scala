@@ -10,11 +10,8 @@ import android.text.TextUtils
 
 import scala.collection.mutable.ArrayBuffer
 
-trait MapLoaderBase extends UIHelper {
-    val TAG = "APRSdroid.MapBase"
-
-    var showObjects = false
-    lazy val targetcall = getTargetCall()
+trait MapLoaderBase extends MapMenuHelper {
+    menu_id = R.id.map
 
     lazy val db = StorageDatabase.open(this)
     lazy val locReceiver = new LocationReceiver2[ArrayList[Station]](load_stations,
@@ -26,13 +23,6 @@ trait MapLoaderBase extends UIHelper {
     }
 
     def onStationUpdate(sl : ArrayList[Station])
-
-    def getTargetCall() : String = {
-        val i = getIntent()
-        if (i != null && i.getDataString() != null) {
-            i.getDataString()
-        } else ""
-    }
 
     def startLoading() {
         locReceiver.startTask(null)
@@ -66,6 +56,11 @@ trait MapLoaderBase extends UIHelper {
         }
         c.close()
         s
+    }
+
+    override def reloadMap() {
+	onStartLoading()
+	locReceiver.startTask(null)
     }
 
     def load_finished(sl: ArrayList[Station]) : Unit = {
