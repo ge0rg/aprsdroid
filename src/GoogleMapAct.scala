@@ -25,6 +25,7 @@ class GoogleMapAct extends Activity with MapLoaderBase
         var map : GoogleMap = null
         lazy val icons = mutable.HashMap[String, BitmapDescriptor]()
         var visible_callsigns = true
+        var first_load = true
         val CALLSIGN_ZOOM = 8
 
         override def onCreate(savedInstanceState: Bundle) {
@@ -111,7 +112,10 @@ class GoogleMapAct extends Activity with MapLoaderBase
                         case None =>
                         case Some(sta) => 
                                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(sta.icon.getPosition(), 14f))
-                                sta.icon.showInfoWindow()
+                                if (first_load) {
+                                        sta.icon.showInfoWindow()
+                                        first_load = false
+                                }
                         }
                 }
         }
