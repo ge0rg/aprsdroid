@@ -13,6 +13,7 @@
 	style="@android:style/Widget.ProgressBar.Large.Inverse"
 	android:id="@+id/loading"
 	android:padding="10sp"
+	android:layout_marginTop="40sp"
 	android:layout_width="76dip"
 	android:layout_height="76dip"
 	android:gravity="right|top"
