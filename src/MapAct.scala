@@ -65,10 +65,23 @@ class MapAct extends MapActivity with MapMenuHelper {
 			setLongTitle(R.string.app_map, targetcall)
 	}
 
+	override def onPause() {
+		super.onPause()
+		val pos = mapview.getMapPosition().getMapPosition()
+		if (pos == null || pos.geoPoint == null)
+			return
+		saveMapViewPosition(pos.geoPoint.latitudeE6/1000000.0f, pos.geoPoint.longitudeE6/1000000.0f, pos.zoomLevel)
+	}
+
 	override def onDestroy() {
 		super.onDestroy()
 		unregisterReceiver(locReceiver)
 	}
+
+        override def loadMapViewPosition(lat : Float, lon : Float, zoom : Float) {
+		mapview.getController().setCenter(new GeoPoint(lat, lon))
+		mapview.getController().setZoom(zoom.asInstanceOf[Int])
+        }
 
 	def startLoading() {
 		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
@@ -128,14 +141,11 @@ class MapAct extends MapActivity with MapMenuHelper {
 			//	case map_gen_tile : TileDownloader => map_gen_tile.setUserAgent("APRSdroid")
 			//}
 			mapview.setMapGenerator(map_gen)
-			if (!mapview.getMapPosition.isValid) {
-				mapview.getController().setCenter(new GeoPoint(52.5075, 13.39027))
-				mapview.getController().setZoom(11)
-			}
 		}
 		val themefile = new File(prefs.getString("themefile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.xml"))
 		if (themefile.exists())
 			mapview.setRenderTheme(themefile)
+		loadMapViewPosition()
 	}
 
 	override def onKeyDown(keyCode : Int, event : KeyEvent) : Boolean = {

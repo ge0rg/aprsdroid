@@ -106,4 +106,20 @@ trait MapMenuHelper extends UIHelper {
         }
 
         def reloadMap()
+
+	def saveMapViewPosition(lat : Float, lon : Float, zoom : Float) {
+		val edit = prefs.prefs.edit()
+		edit.putFloat("map_lat", lat)
+		edit.putFloat("map_lon", lon)
+		edit.putFloat("map_zoom", zoom)
+		edit.commit()
+	}
+	def loadMapViewPosition(lat : Float, lon : Float, zoom : Float)
+		def loadMapViewPosition() {
+		val lat = prefs.prefs.getFloat("map_lat", 52.5075f)
+		val lon = prefs.prefs.getFloat("map_lon", 13.39027f)
+		val zoom = prefs.prefs.getFloat("map_zoom", 12.0f)
+		loadMapViewPosition(lat, lon, zoom)
+	}
+
 }

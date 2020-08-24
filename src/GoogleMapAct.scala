@@ -37,6 +37,7 @@ class GoogleMapAct extends Activity with MapLoaderBase
                         override def onMapReady(googleMap: GoogleMap): Unit = {
                                 Log.d(TAG, "Got map!")
                                 map = googleMap
+                                loadMapViewPosition()
                                 setMapMode(MapModes.defaultMapMode(GoogleMapAct.this, prefs))
                                 //not helpful, off at the top:
                                 //map.setMyLocationEnabled(true)
@@ -80,6 +81,8 @@ class GoogleMapAct extends Activity with MapLoaderBase
         override def onPause(): Unit = {
                 super.onPause()
                 mapview.onPause()
+                val position = map.getCameraPosition()
+                saveMapViewPosition(position.target.latitude.asInstanceOf[Float], position.target.longitude.asInstanceOf[Float], position.zoom)
         }
 
         override def onStop(): Unit = {
@@ -90,6 +93,10 @@ class GoogleMapAct extends Activity with MapLoaderBase
         override def onDestroy(): Unit = {
                 super.onDestroy()
                 mapview.onDestroy()
+        }
+
+        override def loadMapViewPosition(lat : Float, lon : Float, zoom : Float) {
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, lon), zoom))
         }
 
         override def setMapMode(mm : MapMode) = {
