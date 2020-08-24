@@ -88,21 +88,6 @@ class MapAct extends MapActivity with MapMenuHelper {
 		locReceiver.startTask(null)
 	}
 
-	def checkPermissions(): Boolean = {
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-			true
-		} else {
-			import android.Manifest
-			if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-				if (shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE))
-					Toast.makeText(this, getString(R.string.mapfile_error, "(no permission)"), Toast.LENGTH_SHORT).show()
-				requestPermissions(Array(Manifest.permission.WRITE_EXTERNAL_STORAGE), 0)
-				false
-			} else
-				true
-		}
-	}
-
 	val RELOAD_MAP = 1010
 
 	override def getActionName(action : Int): Int = {
