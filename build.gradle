@@ -51,7 +51,11 @@ tasks.withType(ScalaCompile) {
 }
 
 def versionCodeDate() {
-	return new Date().format("yyyyMMdd00").toInteger()
+	if (project.hasProperty("RELEASE_MINOR")) {
+		return new Date().format("yyyyMMdd" + RELEASE_MINOR).toInteger()
+	} else {
+		return new Date().format("yyyyMMdd00").toInteger()
+	}
 }
 android {
 	compileSdkVersion 28
