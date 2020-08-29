@@ -24,7 +24,7 @@
 <!-- Maps activity -->
 <string name="sta_lastreport">पछिल्लो रिपोर्ट</string>
 <string name="map_track_call">ट्रयाकिङ्र %s...</string>
-<string name="map_track_unknown">अज्ञात ठे%s गना</string>
+<string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">स्टेशन छान्नुहोस</string>
 
 <string name="map_loading">लोड हुँदैछ...</string>
@@ -354,7 +354,8 @@
 <string name="themefile_error">Error loading theme file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
-  Bijay Dewan https://launchpad.net/~dewan</string>
+  Bijay Dewan https://launchpad.net/~dewan
+  Georg Lukas https://launchpad.net/~ge0rg</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>

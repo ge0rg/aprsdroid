@@ -73,7 +73,11 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 
 <!-- about dialog -->
 <string name="ad_title">Über APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2020 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2020 Georg Lukas (DO1GL)\n
+	http://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
 \n\n
 Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
