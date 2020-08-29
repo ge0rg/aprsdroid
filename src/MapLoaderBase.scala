@@ -49,9 +49,10 @@ trait MapLoaderBase extends MapMenuHelper {
             val speed = c.getInt(COLUMN_MAP_SPEED)
             val cse = c.getInt(COLUMN_MAP_CSE)
 
-            s.add(new Station(call, origin, symbol, lat/1000000.0d, lon/1000000.0d,
-                qrg, comment, speed, cse,
-                null))
+            if (call != null && !call.isEmpty)
+                s.add(new Station(call, origin, symbol, lat/1000000.0d, lon/1000000.0d,
+                    qrg, comment, speed, cse,
+                    null))
             c.moveToNext()
         }
         c.close()
