@@ -24,6 +24,7 @@ object MapModes {
 	}
 
 	def defaultMapMode(ctx : Context, prefs : PrefsWrapper): MapMode = {
+		MapModes.initialize(ctx)
 		val tag = prefs.getString("mapmode", "google")
 		android.util.Log.d("MapModes", "tag is " + tag )
 		var default : MapMode = null
