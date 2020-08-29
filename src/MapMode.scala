@@ -44,7 +44,7 @@ object MapModes {
 	def startMap(ctx : Context, prefs : PrefsWrapper, targetcall : String) {
 		val mm = defaultMapMode(ctx, prefs)
                 val intent = new Intent(ctx, mm.viewClass)
-                if (targetcall != "")
+                if (targetcall != null && targetcall != "")
                         intent.setData(Uri.parse(targetcall))
                 else
                         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
