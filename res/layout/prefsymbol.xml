@@ -4,8 +4,6 @@ android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:orientation="vertical"
 xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-tools:context=".PrefSymbolAct"
 >
 <GridView
 	android:id="@+id/gridview"
@@ -58,7 +56,6 @@ tools:context=".PrefSymbolAct"
 <Button android:id="@+id/ok"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:onClick="onOkClicked"
 	android:text="@android:string/ok"
 	/>
 
