@@ -69,6 +69,7 @@ def mapsApiKey() {
 
 android {
 	compileSdkVersion 28
+	buildToolsVersion "28.0.3"
 	defaultConfig {
 		minSdkVersion 14
 		targetSdkVersion 28
@@ -79,6 +80,8 @@ android {
 		resValue "string", "build_version", "$build_version"
 
 		resValue "string", "google_maps_key", mapsApiKey()
+
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 	useLibrary 'org.apache.http.legacy'
 	compileOptions {
@@ -127,6 +130,12 @@ android {
 			assets.srcDirs = ['assets']
 			jniLibs.srcDirs = ['libs']
 		}
+		androidTest {
+			java.srcDirs = ['androidTest/java']
+		}
+		test {
+			java.srcDirs = ['test/java']
+		}
 	}
 	lintOptions {
 		disable 'MissingTranslation'
@@ -147,4 +156,7 @@ dependencies {
 	implementation 'com.google.maps.android:android-maps-utils:0.5'
 
 	implementation 'com.squareup.okio:okio:2.1.0'
+	androidTestImplementation 'com.android.support.test:runner:1.0.2'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+	testImplementation 'junit:junit:4.12'
 }
