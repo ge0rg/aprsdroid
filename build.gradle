@@ -109,8 +109,8 @@ android {
 			java.srcDirs = ['src']
 			// some gradle-android-scala-plugin versions don't know scala.* properties
 			// if it breaks, just remove the following two lines:
-			scala.srcDirs = ['src']
-			scala.excludes = ["*.sw?"]
+			//scala.srcDirs = ['src']
+			//scala.excludes = ["*.sw?"]
 			resources.srcDirs = ['src']
 			aidl.srcDirs = ['src']
 			renderscript.srcDirs = ['src']
