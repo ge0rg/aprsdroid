@@ -1,19 +1,25 @@
 language: android
+sudo: true
 dist: trusty
 android:
   components:
+    - tools  # tools needs to be upgraded twice
+    - tools  # https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943
     - tools
     - platform-tools
 
     - build-tools-28.0.3
+    - android-24
     - android-28
 
     - sys-img-x86-android-26
+    - sys-img-armeabi-v7a-android-24
 
   licenses:
     - 'android-sdk-preview-license-52d11cd2'
     - 'android-sdk-license-.+'
 
+# From Travis CI's guide on how to improve Gradle caching
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -24,4 +30,38 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 
-script: ./gradlew build connectedCheck test
+addons:
+  apt:
+    packages:
+      xvfb
+
+# Requires Xenial
+#services:
+#  - xvfb
+
+# Emulator Management: Create, Start and Wait
+before_install:
+  - env USE_SDK_WRAPPER=y android list avd
+  - env USE_SDK_WRAPPER=y android list sdk
+  - env USE_SDK_WRAPPER=y android list device
+  - env USE_SDK_WRAPPER=y android list target
+  - sudo apt-get install -y xvfb
+  # Install the rest of tools (e.g. avdmanager)
+  #- yes | sdkmanager tools
+  # Install the system image.
+  #- sdkmanager "system-images;android-24;default;armeabi-v7a"
+  - echo no | avdmanager create avd --force --name test --package 'system-images;android-24;default;armeabi-v7a' --abi armeabi-v7a --sdcard 100M
+  - xvfb-run $ANDROID_HOME/tools/emulator -avd test -no-audio -no-window &
+
+before_script:
+  - android-wait-for-emulator
+  # Disable animations
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition_animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
+  - adb shell input keyevent 82 &
+
+script:
+  - ./gradlew build
+  - ./gradlew connectedCheck
+  - ./gradlew test
