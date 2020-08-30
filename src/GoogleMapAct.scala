@@ -81,6 +81,8 @@ class GoogleMapAct extends Activity with MapLoaderBase
         override def onPause(): Unit = {
                 super.onPause()
                 mapview.onPause()
+                if (map == null)
+                        return
                 val position = map.getCameraPosition()
                 saveMapViewPosition(position.target.latitude.asInstanceOf[Float], position.target.longitude.asInstanceOf[Float], position.zoom)
         }
