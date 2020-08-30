@@ -121,6 +121,7 @@ android {
 	}
 	lintOptions {
 		disable 'MissingTranslation'
+		disable 'InvalidPackage'
 	}
 }
 
