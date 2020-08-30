@@ -18,7 +18,9 @@ trait MapLoaderBase extends MapMenuHelper {
         load_finished, null)
 
     override def onDestroy(): Unit = {
-        unregisterReceiver(locReceiver)
+        scala.util.control.Exception.ignoring(classOf[IllegalArgumentException]) {
+            unregisterReceiver(locReceiver)
+        }
         super.onDestroy()
     }
 
