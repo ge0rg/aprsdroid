@@ -57,6 +57,16 @@ def versionCodeDate() {
 		return new Date().format("yyyyMMdd00").toInteger()
 	}
 }
+
+def mapsApiKey() {
+	Properties properties = new Properties()
+	try {
+		properties.load(project.rootProject.file('local.properties').newDataInputStream())
+	} catch(Exception ex) {}
+	// the default google_maps_key is restricted to ge0rg's signing keys and can't be used by other builds!
+	properties.getProperty('mapsApiKey', "AIzaSyA12R_iI_upYQ33FWnPU_8GlMKrEmjDxiQ")
+}
+
 android {
 	compileSdkVersion 28
 	defaultConfig {
@@ -68,8 +78,7 @@ android {
 		resValue "string", "build_date", "$build_date"
 		resValue "string", "build_version", "$build_version"
 
-		// the google_maps_key is restricted to ge0rg's signing keys and can't be used by other builds!
-		resValue "string", "google_maps_key", "AIzaSyA12R_iI_upYQ33FWnPU_8GlMKrEmjDxiQ"
+		resValue "string", "google_maps_key", mapsApiKey()
 	}
 	useLibrary 'org.apache.http.legacy'
 	compileOptions {
