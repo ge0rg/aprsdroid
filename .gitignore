@@ -1,5 +1,8 @@
 *.swo
 *.swp
+*~
+.gradle/
+build/
 bin
 gen
 local.properties
