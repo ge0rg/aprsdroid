@@ -24,8 +24,8 @@
 	You can also change the application preferences from the menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">% Síðasta tilkynning</string>
-<string name="map_track_call">Staða púntar %</string>
+<string name="sta_lastreport">%s Síðasta tilkynning</string>
+<string name="map_track_call">Staða púntar %s</string>
 <string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Velja stöð</string>
 
