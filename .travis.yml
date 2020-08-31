@@ -1,5 +1,4 @@
 language: android
-sudo: true
 dist: trusty
 android:
   components:
@@ -30,22 +29,12 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 
-addons:
-  apt:
-    packages:
-      xvfb
-
-# Requires Xenial
-#services:
-#  - xvfb
-
 # Start emulator early so it's ready when the build is done
 before_install:
-  - sudo apt-get install -y xvfb
   # Install the rest of tools (e.g. avdmanager)
   - yes | sdkmanager tools
   - echo no | avdmanager create avd --force --name test --package 'system-images;android-24;default;armeabi-v7a' --abi armeabi-v7a --sdcard 100M
-  - xvfb-run $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
+  - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
 
 before_script:
   - android-wait-for-emulator
