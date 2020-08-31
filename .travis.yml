@@ -9,7 +9,7 @@ android:
     - platform-tools
 
     - build-tools-28.0.3
-    - android-24
+    - android-24  # Need older API for Android ARM as no KVM for x86
     - android-28
 
     - sys-img-x86-android-26
@@ -39,19 +39,13 @@ addons:
 #services:
 #  - xvfb
 
-# Emulator Management: Create, Start and Wait
+# Start emulator early so it's ready when the build is done
 before_install:
-  - env USE_SDK_WRAPPER=y android list avd
-  - env USE_SDK_WRAPPER=y android list sdk
-  - env USE_SDK_WRAPPER=y android list device
-  - env USE_SDK_WRAPPER=y android list target
   - sudo apt-get install -y xvfb
   # Install the rest of tools (e.g. avdmanager)
-  #- yes | sdkmanager tools
-  # Install the system image.
-  #- sdkmanager "system-images;android-24;default;armeabi-v7a"
+  - yes | sdkmanager tools
   - echo no | avdmanager create avd --force --name test --package 'system-images;android-24;default;armeabi-v7a' --abi armeabi-v7a --sdcard 100M
-  - xvfb-run $ANDROID_HOME/tools/emulator -avd test -no-audio -no-window &
+  - xvfb-run $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
 
 before_script:
   - android-wait-for-emulator
@@ -63,5 +57,5 @@ before_script:
 
 script:
   - ./gradlew build
-  - ./gradlew connectedCheck
   - ./gradlew test
+  - ./gradlew connectedCheck
