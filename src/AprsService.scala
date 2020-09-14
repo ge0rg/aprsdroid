@@ -218,7 +218,9 @@ class AprsService extends Service {
 		}
 		msgService.stop()
 		locSource.stop()
-		unregisterReceiver(msgNotifier)
+		scala.util.control.Exception.ignoring(classOf[IllegalArgumentException]) {
+			unregisterReceiver(msgNotifier)
+		}
 		ServiceNotifier.instance.stop(this)
 	}
 
