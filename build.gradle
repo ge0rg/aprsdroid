@@ -25,6 +25,8 @@ buildscript {
 plugins {
 	// obtain revision from git
 	id 'org.ajoberstar.grgit' version '1.6.0'
+	// gradle-amazon-app-store-publisher
+	id "app.brant.amazonappstorepublisher" version "0.1.0"
 }
 
 allprojects {
@@ -65,6 +67,13 @@ def mapsApiKey() {
 	} catch(Exception ex) {}
 	// the default google_maps_key is restricted to ge0rg's signing keys and can't be used by other builds!
 	properties.getProperty('mapsApiKey', "AIzaSyA12R_iI_upYQ33FWnPU_8GlMKrEmjDxiQ")
+}
+
+amazon {
+	securityProfile = file("amazon-publish-credentials.json")
+	applicationId = "amzn1.devportal.mobileapp.90ffde1571a347f8a100e1083c64812e"
+	pathToApks = [ file("build/outputs/apk/release/aprsdroid-release.apk") ]
+	replaceEdit = true
 }
 
 android {
