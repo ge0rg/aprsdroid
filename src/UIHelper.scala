@@ -460,7 +460,8 @@ trait UIHelper extends Activity
 	}
 	class LogExporter(storage : StorageDatabase, call : String) extends MyAsyncTask[Unit, String] {
 		val filename = "aprsdroid-%s.log".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
-		val file = new File(Environment.getExternalStorageDirectory(), filename)
+		val directory = new File(Environment.getExternalStorageDirectory(), "APRSdroid")
+		val file = new File(directory, filename)
 
 		override def doInBackground1(params : Array[String]) : String = {
 			import StorageDatabase.Post._
@@ -470,6 +471,7 @@ trait UIHelper extends Activity
 				return getString(R.string.export_empty)
 			}
 			try {
+				directory.mkdirs()
 				val fo = new PrintWriter(file)
 				while (c.moveToNext()) {
 					val ts = c.getString(COLUMN_TSS)
@@ -494,11 +496,14 @@ trait UIHelper extends Activity
 			onStopLoading()
 			if (error != null)
 				Toast.makeText(UIHelper.this, error, Toast.LENGTH_SHORT).show()
-			else startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND)
+			else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+                                startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND)
 					.setType("text/plain")
 					.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
 					.putExtra(Intent.EXTRA_SUBJECT, filename),
 				file.toString()))
+                        else
+				Toast.makeText(UIHelper.this, file.toString(), Toast.LENGTH_LONG).show()
 		}
 	}
 }
