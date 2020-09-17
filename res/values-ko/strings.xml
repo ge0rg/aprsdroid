@@ -76,7 +76,7 @@
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>
 <string name="ad_copyright">Copyright © 2009-2020 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -356,6 +356,7 @@
 <string name="themefile_error">Error loading theme file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   otstn1010 https://launchpad.net/~otstn1010</string>
 
 <!-- Bluetooth TNC settings -->

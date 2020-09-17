@@ -72,7 +72,7 @@
 <!-- about dialog -->
 <string name="ad_title">Om APRSdroid v%s</string>
 <string name="ad_copyright">Copyright © 2009-2020 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>

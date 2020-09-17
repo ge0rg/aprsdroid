@@ -25,7 +25,7 @@
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Síðasta tilkynning</string>
-<string name="map_track_call">Staða púntar %s</string>
+<string name="map_track_call">Staða púntar %s..</string>
 <string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Velja stöð</string>
 
@@ -74,7 +74,7 @@
 <!-- about dialog -->
 <string name="ad_title">Um APRSdroid v%s</string>
 <string name="ad_copyright">Copyright © 2009-2020 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
