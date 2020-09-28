@@ -78,7 +78,11 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 		if (output != null && (nmea.startsWith("$GPGGA") || nmea.startsWith("$GPRMC"))) {
 			Log.d(TAG, "NMEA >>> " + nmea)
 			try {
-				output.write(nmea)
+                                implicit val ec = scala.concurrent.ExecutionContext.global
+                                scala.concurrent.Future {
+                                        output.write(nmea)
+                                        output.flush()
+                                }
                                 if (service.prefs.getBoolean("kenwood.gps_debug", false))
                                         service.postAddPost(StorageDatabase.Post.TYPE_TX,
                                                 R.string.p_conn_kwd, nmea.trim())
