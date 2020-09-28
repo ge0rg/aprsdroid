@@ -3,7 +3,7 @@ package org.aprsdroid.app
 import _root_.android.content.Context
 import _root_.android.location._
 import _root_.android.util.Log
-import _root_.android.os.{Bundle, Handler, Looper}
+import _root_.android.os.{Build, Bundle, Handler, Looper}
 import _root_.java.io.{BufferedReader, InputStream, InputStreamReader, OutputStream, OutputStreamWriter}
 
 import _root_.net.ab0oo.aprs.parser._
@@ -15,13 +15,21 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 	val locMan = service.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager]
 	val output = new OutputStreamWriter(os)
 
-	var listener : NmeaListener = null
+	var listenerR5 : NmeaListenerR5 = null
+	var listenerR24 : NmeaListenerR24 = null
+
         if (service.prefs.getBoolean("kenwood.gps", false)) {
                 new Handler(Looper.getMainLooper()).post(new Runnable() { override def run() {
-                        listener = new NmeaListener()
                         locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                                 0, 0, sinkhole)
-                        locMan.addNmeaListener(listener)
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+				listenerR5 = new NmeaListenerR5()
+				locMan.addNmeaListener(listenerR5)
+			} else {
+				// TODO: if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+				listenerR24 = new NmeaListenerR24()
+				locMan.addNmeaListener(listenerR24)
+			}
                 }})
         }
 
@@ -66,7 +74,6 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 		// don't do anything. yet.
 	}
 
-	class NmeaListener extends GpsStatus.NmeaListener() {
 	def onNmeaReceived(timestamp : Long, nmea : String) {
 		if (output != null && (nmea.startsWith("$GPGGA") || nmea.startsWith("$GPRMC"))) {
 			Log.d(TAG, "NMEA >>> " + nmea)
@@ -82,7 +89,15 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 			}
 		} else
 			Log.d(TAG, "NMEA --- " + nmea)
-	}}
+	}
+
+	class NmeaListenerR5 extends GpsStatus.NmeaListener() {
+		def onNmeaReceived(timestamp : Long, nmea : String) = KenwoodProto.this.onNmeaReceived(timestamp, nmea)
+	}
+
+	class NmeaListenerR24 extends OnNmeaMessageListener() {
+		def onNmeaMessage(nmea : String, timestamp : Long) = KenwoodProto.this.onNmeaReceived(timestamp, nmea)
+	}
 
 	class LocationSinkhole extends LocationListener {
 	override def onLocationChanged(location : Location) {
@@ -98,8 +113,10 @@ class KenwoodProto(service : AprsService, is : InputStream, os : OutputStream) e
 
 	override def stop() {
 		locMan.removeUpdates(sinkhole)
-                if (listener != null)
-                        locMan.removeNmeaListener(listener)
+                if (listenerR5 != null)
+                        locMan.removeNmeaListener(listenerR5)
+                if (listenerR24 != null)
+                        locMan.removeNmeaListener(listenerR24)
 		super.stop()
 	}
 }
