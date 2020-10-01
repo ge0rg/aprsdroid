@@ -120,11 +120,12 @@ class GoogleMapAct extends Activity with MapLoaderBase
                         markers.get(targetcall) match {
                         case None =>
                         case Some(sta) => 
-                                map.animateCamera(CameraUpdateFactory.newLatLngZoom(sta.icon.getPosition(), 14f))
                                 if (first_load) {
+                                        map.animateCamera(CameraUpdateFactory.newLatLngZoom(sta.icon.getPosition(), 14f))
                                         sta.icon.showInfoWindow()
                                         first_load = false
-                                }
+                                } else
+                                        map.animateCamera(CameraUpdateFactory.newLatLng(sta.icon.getPosition()))
                         }
                 }
         }
