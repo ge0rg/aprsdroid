@@ -51,6 +51,7 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 			extends Thread("APRSdroid TCP connection") {
 		val TAG = "APRSdroid.TcpSocketThread"
 		var running = true
+		var passcode_warned = false
 		var socket : Socket = null
 		var tnc : TncProto = null
 
@@ -109,15 +110,20 @@ class TcpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBacke
 					Log.d(TAG, "init_socket() aborted")
 					return;
 				}
-				socket = init_ssl_socket(hostport)
+                                // Only try TLS on APRS-IS
+                                if (prefs.getProto() == "aprsis")
+                                        socket = init_ssl_socket(hostport)
 				if (socket == null) {
 					val (host, port) = AprsPacket.parseHostPort(hostport, 14580)
 					service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info,
 						service.getString(R.string.post_connecting, host, port.asInstanceOf[AnyRef]))
 					// hack: let the UI thread post a Toast with a passcode warning - only needed in non-SSL mode
 					import AprsService.block2runnable
-					if (prefs.getPasscode() == "-1") service.handler.post {
-						Toast.makeText(service, R.string.anon_warning, Toast.LENGTH_LONG).show()
+					if (!passcode_warned && prefs.getProto() == "aprsis" && prefs.getPasscode() == "-1") {
+                                                service.handler.post {
+                                                        Toast.makeText(service, R.string.anon_warning, Toast.LENGTH_LONG).show()
+                                                }
+                                                passcode_warned = true
 					}
 					socket = new Socket(host, port)
 				}
