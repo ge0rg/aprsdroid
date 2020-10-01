@@ -147,7 +147,8 @@
 			android:mimeType="application/x-pkcs12" />
 	    </intent-filter>
 	</activity>
-	<service android:name=".AprsService" android:label="@string/aprsservice">
+	<service android:name=".AprsService" android:label="@string/aprsservice"
+		android:foregroundServiceType="location">
 	    <intent-filter>
 		<action android:name="org.aprsdroid.app.SERVICE" />
 		<action android:name="org.aprsdroid.app.ONCE" />
