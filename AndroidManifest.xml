@@ -148,6 +148,7 @@
 	    </intent-filter>
 	</activity>
 	<service android:name=".AprsService" android:label="@string/aprsservice"
+		android:foregroundServiceType="location"
 		tools:ignore="ExportedService" >
 	    <intent-filter>
 		<action android:name="org.aprsdroid.app.SERVICE" />
