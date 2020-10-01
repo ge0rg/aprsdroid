@@ -30,7 +30,7 @@
 			android:layout_marginRight="10sp"
 			android:singleLine="true"
 			android:maxLength="67"
-			android:inputType="textShortMessage"
+			android:inputType="textShortMessage|textCapSentences|textAutoCorrect"
 			android:hint="@string/msg_message_text"
 			/>
 	</LinearLayout>

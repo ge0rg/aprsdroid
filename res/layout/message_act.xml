@@ -28,7 +28,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 	android:singleLine="true"
 	android:maxLength="67"
 	android:layout_weight="1"
-	android:inputType="textShortMessage"
+	android:inputType="textShortMessage|textCapSentences|textAutoCorrect"
 	/>
 <Button android:id="@+id/msgsend"
 	android:layout_width="60sp"
