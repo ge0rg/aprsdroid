@@ -65,7 +65,6 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 
 	def sendMessage(msg : Message) : Boolean = {
 		output.sendMessage(msg)
-		true
 	}
 
 	def update(packet : APRSPacket) : String = {
@@ -75,9 +74,11 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		val to = packet.getDestinationCall()
 		val data = packet.getAprsInformation().toString()
 		val msg = new APRSFrame(from,to,Digis,data,FrameLength).getMessage()
-		sendMessage(msg)
 		Log.d(TAG, "update(): From: " + from +" To: "+ to +" Via: " + Digis + " telling " + data)
-		"AFSK OK"
+		if (sendMessage(msg))
+			"AFSK OK"
+		else
+			"AFSK busy"
 	}
 
 	def stop() {
