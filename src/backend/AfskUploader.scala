@@ -40,11 +40,17 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		}
 	}
 
-	def start() : Boolean = {
+	def checkCallsign() : Boolean = {
 		if (prefs.getCallsign().length() > 6) {
 			service.postAbort(service.getString(R.string.e_toolong_callsign))
+			false
+		} else
+			true
+	}
+
+	def start() : Boolean = {
+		if (checkCallsign())
 			return false
-		}
 		if (use_bt) {
 			log(service.getString(R.string.afsk_info_sco_req))
 			service.getSystemService(Context.AUDIO_SERVICE)
@@ -57,6 +63,11 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		}
 	}
 
+	def sendMessage(msg : Message) : Boolean = {
+		output.sendMessage(msg)
+		true
+	}
+
 	def update(packet : APRSPacket) : String = {
 		// Need to "parse" the packet in order to replace the Digipeaters
 		packet.setDigipeaters(Digipeater.parseList(Digis, true))
@@ -64,7 +75,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		val to = packet.getDestinationCall()
 		val data = packet.getAprsInformation().toString()
 		val msg = new APRSFrame(from,to,Digis,data,FrameLength).getMessage()
-		output.sendMessage(msg)
+		sendMessage(msg)
 		Log.d(TAG, "update(): From: " + from +" To: "+ to +" Via: " + Digis + " telling " + data)
 		"AFSK OK"
 	}
