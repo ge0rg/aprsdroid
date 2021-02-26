@@ -12,15 +12,15 @@ import _root_.android.os.{Build, Bundle}
 import _root_.android.util.Log
 import _root_.android.view.{KeyEvent, Menu, MenuItem, View}
 import _root_.android.widget.Toast
-import _root_.org.mapsforge.android.maps._
-import _root_.org.mapsforge.core.{GeoPoint, Tile}
-import _root_.org.mapsforge.android.maps.overlay.{ItemizedOverlay, OverlayItem}
+import _root_.org.mapsforge.v3.android.maps._
+import _root_.org.mapsforge.v3.core.{GeoPoint, Tile}
+import _root_.org.mapsforge.v3.android.maps.overlay.{ItemizedOverlay, OverlayItem}
 
 import _root_.scala.collection.mutable.ArrayBuffer
 import _root_.java.io.File
 import _root_.java.util.ArrayList
 
-import org.mapsforge.android.maps.mapgenerator.{MapGeneratorFactory, MapGeneratorInternal}
+import org.mapsforge.v3.android.maps.mapgenerator.{MapGeneratorFactory, MapGeneratorInternal}
 
 // to make scala-style iterating over arraylist possible
 import scala.collection.JavaConversions._
@@ -43,6 +43,7 @@ class MapAct extends MapActivity with MapMenuHelper {
 		setContentView(R.layout.mapview)
 		mapview.setBuiltInZoomControls(true)
 		mapview.getOverlays().add(staoverlay)
+		mapview.setTextScale(getResources().getDisplayMetrics().density)
 
 		startLoading()
 	}
@@ -121,10 +122,7 @@ class MapAct extends MapActivity with MapMenuHelper {
 				Toast.makeText(this, getString(R.string.mapfile_error, mapfile), Toast.LENGTH_SHORT).show()
 			val map_source = MapGeneratorInternal.MAPNIK
 			val map_gen = new OsmTileDownloader()
-			//TODO in later mapsforge:
-			//map_gen match {
-			//	case map_gen_tile : TileDownloader => map_gen_tile.setUserAgent("APRSdroid")
-			//}
+			map_gen.setUserAgent(getString(R.string.build_version))
 			mapview.setMapGenerator(map_gen)
 		}
 		val themefile = new File(prefs.getString("themefile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.xml"))
