@@ -10,40 +10,40 @@
 			android:orientation="horizontal">
 		<org.aprsdroid.app.SymbolView
 		android:id="@+id/station_symbol"
-		android:layout_width="24dp"
-		android:layout_height="24dp"
-		android:layout_marginLeft="1dp"
-		android:layout_marginRight="3dp"
-		android:layout_marginTop="1dp"
-		android:layout_marginBottom="1dp"
+		android:layout_width="24sp"
+		android:layout_height="24sp"
+		android:layout_marginLeft="1sp"
+		android:layout_marginRight="3sp"
+		android:layout_marginTop="1sp"
+		android:layout_marginBottom="1sp"
 		/>
 		<TextView
 		android:id="@+id/station_call"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginRight="3dp"
+		android:layout_marginRight="3sp"
 		android:textColor="#b0b080"
-		android:textSize="23dp"
+		android:textSize="23sp"
 		android:typeface="monospace"
 		/>
 		<TextView
 		android:id="@+id/station_distage"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginRight="3dp"
+		android:layout_marginRight="3sp"
 		android:layout_weight="1"
 		android:gravity="center"
 		android:textStyle="bold"
 		android:textColor="#d0d0b0"
-		android:textSize="13dp"
+		android:textSize="13sp"
 		/>
 		<TextView
 		android:id="@+id/station_qrg"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginRight="5dp"
+		android:layout_marginRight="5sp"
 		android:textColor="#b0b080"
-		android:textSize="23dp"
+		android:textSize="23sp"
 		android:typeface="monospace"
 		/>
 	</LinearLayout>
@@ -52,7 +52,7 @@
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:textColor="#8080b0"
-	android:textSize="17dp"
+	android:textSize="17sp"
 	android:typeface="monospace"
 	android:focusable="false"
 	/>
