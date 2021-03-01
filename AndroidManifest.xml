@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="org.aprsdroid.app"
-      android:versionCode="19"
-      android:versionName="1.6.0"
-      android:installLocation="auto">
+	xmlns:tools="http://schemas.android.com/tools"
+	package="org.aprsdroid.app"
+	android:installLocation="auto">
 
     <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
     <uses-feature android:name="android.hardware.location" android:required="false" />
@@ -28,6 +27,7 @@
     <application android:label="@string/app_name" android:icon="@drawable/icon"
 	    android:name=".APRSdroidApplication"
 	    android:usesCleartextTraffic="true"
+	    android:allowBackup="true"
 	    android:theme="@style/DefaultTheme" >
 
 	<meta-data
@@ -147,7 +147,8 @@
 			android:mimeType="application/x-pkcs12" />
 	    </intent-filter>
 	</activity>
-	<service android:name=".AprsService" android:label="@string/aprsservice">
+	<service android:name=".AprsService" android:label="@string/aprsservice"
+		tools:ignore="ExportedService" >
 	    <intent-filter>
 		<action android:name="org.aprsdroid.app.SERVICE" />
 		<action android:name="org.aprsdroid.app.ONCE" />

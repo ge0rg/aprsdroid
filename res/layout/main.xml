@@ -25,9 +25,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 android:id="@+id/buttonlayout"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
-android:orientation="horizontal"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
+android:orientation="horizontal">
 <include layout="@layout/buttons" />
 </LinearLayout>
 </LinearLayout>
