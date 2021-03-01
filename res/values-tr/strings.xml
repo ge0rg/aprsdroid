@@ -71,7 +71,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroid hakkında v%s</string>
-<string name="ad_copyright">Telif hakkı © 2009-2020 Georg Lukas (DO1GL)\n https://aprsdroid.org\n\n APRS®, Bob Bruninga\'nın (WB4APR) tescilli ticari markasıdır</string>
+<string name="ad_copyright">Telif hakkı © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org\n\n APRS®, Bob Bruninga\'nın (WB4APR) tescilli ticari markasıdır</string>
 <string name="ad_gpl">Bu program ücretsizdir; Free Software Foundation tarafından yayımlanan  GNU General Public License 2. sürüm ya da (tercih ederseniz) daha sonraki sürümde yer alan şartlar altında dağıtabilir ve değiştirebilirsiniz. \n\n Bu program kullanıcıya faydalı olması beklentisiyle, HERHANGİ BİR GARANTİ olmaksızın; hatta SATILABİLİRLİK ya da BELİRLİ BİR AMACA UYGUNLUK imasında bulunulmaksızın dağıtılmaktadır. Daha fazla detay için GNU General Public License dokümanına bakınız. \n\n Bu programla birlikte tarafınıza GNU General Public License dokümanının bir kopyası iletilmiş olmalıdır; aksi takdirde durumu, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresine yazılı olarak bildiriniz. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Teşekkürler:</string>
 <string name="ad_thanks_0">YL\'me ♥♥♥</string>
