@@ -2,18 +2,17 @@ package org.aprsdroid.app
 
 import _root_.android.content.Intent
 import _root_.android.net.Uri
-import _root_.android.os.Bundle
-import _root_.android.os.Environment
+import _root_.android.os.{Build, Bundle, Environment}
 import _root_.android.preference.Preference
 import _root_.android.preference.Preference.OnPreferenceClickListener
 import _root_.android.preference.PreferenceActivity
 import _root_.android.preference.PreferenceManager
 import _root_.android.view.{Menu, MenuItem}
 import _root_.android.widget.Toast
-
 import java.text.SimpleDateFormat
-import java.io.{PrintWriter, File}
+import java.io.{File, PrintWriter}
 import java.util.Date
+
 import org.json.JSONObject
 
 class PrefsAct extends PreferenceActivity {
@@ -22,7 +21,8 @@ class PrefsAct extends PreferenceActivity {
 
 	def exportPrefs() {
 		val filename = "profile-%s.aprs".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
-		val file = new File(Environment.getExternalStorageDirectory(), filename)
+		val directory = new File(Environment.getExternalStorageDirectory(), "APRSdroid")
+		val file = new File(directory, filename)
 		try {
 			val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 			val json = new JSONObject(prefs.getAll)
@@ -30,13 +30,17 @@ class PrefsAct extends PreferenceActivity {
 			fo.println(json.toString(2))
 			fo.close()
 
-			startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND)
-				.setType("text/plain")
-				.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
-				.putExtra(Intent.EXTRA_SUBJECT, filename),
-				file.toString()))
+			// TODO: implement FileProvider for Android N+
+			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+				startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND)
+					.setType("text/plain")
+					.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
+					.putExtra(Intent.EXTRA_SUBJECT, filename),
+					file.toString()))
+			else
+				Toast.makeText(this, file.toString, Toast.LENGTH_LONG).show()
 		} catch {
-			case e : Exception => Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show()
+			case e : Exception => Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
 		}
 	}
 
