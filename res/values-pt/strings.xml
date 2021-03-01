@@ -22,7 +22,7 @@
 <string name="empty_logview">Você ainda não enviou ou recebeu nenhum pacote. \ N \ n Pressione o \ "Menu \" botão para enviar um único pacote ou para começar a seguir a sua posição. \ N \ n Você também pode alterar as sua preferências a partir do menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">Última transmissão</string>
+<string name="sta_lastreport">Última transmissão %s</string>
 <string name="map_track_call">Seguindo %s...</string>
 <string name="map_track_unknown">Posição para %s desconhecida</string>
 <string name="map_select">Seleccionar estação</string>
@@ -339,6 +339,7 @@
 <string name="translator_credits">Launchpad Contributions:
   David Quental https://launchpad.net/~ct1drb
   David Quental https://launchpad.net/~ct1drb-1
+  Georg Lukas https://launchpad.net/~ge0rg
   Henrique Martins https://launchpad.net/~ct2kea
   Jon Amil https://launchpad.net/~amilgz
   Jorge Santos https://launchpad.net/~ct1jib

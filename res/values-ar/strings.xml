@@ -24,7 +24,7 @@
 	You can also change the application preferences from the menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">آخر تقرير</string>
+<string name="sta_lastreport">%s آخر تقرير</string>
 <string name="map_track_call">Tracking %s...</string>
 <string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">Select station</string>

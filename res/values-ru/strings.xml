@@ -325,7 +325,7 @@
 <string name="p_mapfile">Имя файла карты</string>
 <string name="p_mapfile_summary">MapsForge файл карты для APRSdroid</string>
 <string name="p_mapfile_choose">Выбор файла карты</string>
-<string name="mapfile_error">Ошибка загрузки файла карты</string>
+<string name="mapfile_error">Ошибка загрузки файла карты %s!</string>
 
 <string name="p_themefile">Имя файла темы</string>
 <string name="p_themefile_summary">Тема рендера MapsForge (XML)</string>

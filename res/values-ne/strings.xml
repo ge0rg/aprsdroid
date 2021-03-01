@@ -22,7 +22,7 @@
 <string name="empty_logview">तपाईंले अहिलेसम्म कुनै पनि प्याकेटहरू पठाउनु  वा  प्राप्त भएको छैन। रिपोर्ट पठाउन वा आफ्नो स्थिति ट्र्याक सुरु गर्न मेनु बटन थिच्नुहोस्।</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">पछिल्लो रिपोर्ट</string>
+<string name="sta_lastreport">%s पछिल्लो रिपोर्ट</string>
 <string name="map_track_call">ट्रयाकिङ्र %s...</string>
 <string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">स्टेशन छान्नुहोस</string>

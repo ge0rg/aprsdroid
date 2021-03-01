@@ -22,8 +22,8 @@
 <string name="empty_logview">您还没有发送或接收任何数据包。\n\n 按​​ \“菜单\”按钮发送一个报告或开始记录你的位置。\n\n 您也可以从菜单更改应用程序首选项。</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">近期报告</string>
-<string name="map_track_call">记录中</string>
+<string name="sta_lastreport">近期报告%s</string>
+<string name="map_track_call">记录中%s</string>
 <string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">选择台站</string>
 
@@ -337,6 +337,7 @@
 <string name="themefile_error">Error loading theme file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   bg2xvp https://launchpad.net/~louisxcn</string>
 
 <!-- Bluetooth TNC settings -->

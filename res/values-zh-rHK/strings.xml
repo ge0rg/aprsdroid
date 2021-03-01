@@ -22,7 +22,7 @@
 <string name="empty_logview">您尚未發送或接收任何數據 \n\n按下\“ Menu \”按鈕以發送單個報告或開始追踪您的位置 \n\n您還可以從選單中更改應用程序選項。</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">最後報告</string>
+<string name="sta_lastreport">最後報告%s</string>
 <string name="map_track_call">追踪%s...</string>
 <string name="map_track_unknown">不知%s位置</string>
 <string name="map_select">選擇電台</string>
@@ -62,7 +62,7 @@
 <string name="post_incmg">已收到</string>
 <string name="post_info"/>
 <string name="post_connecting">正在連接到%1$s:%2$d...</string>
-<string name="post_reconnect">連接失敗。 在％d秒內重新連接..</string>
+<string name="post_reconnect">連接失敗。 在%d秒內重新連接..</string>
 
 <!-- first run dialog -->
 <string name="fr_title">歡迎使用APRSdroid!</string>

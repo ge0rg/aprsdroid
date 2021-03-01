@@ -23,7 +23,7 @@
 
 <!-- Maps activity -->
 <string name="sta_lastreport">%s Último Reporte</string>
-<string name="map_track_call">Seguimiento</string>
+<string name="map_track_call">Seguimiento %s…</string>
 <string name="map_track_unknown">Posición para %s es desconocida!</string>
 <string name="map_select">Seleccione estación</string>
 
@@ -44,7 +44,7 @@
 <string name="msg_stored_offline">El mensaje será enviado cuando comiences el seguimiento.</string>
 <!-- Message activity -->
 <string name="msg_from">Mensaje de %s</string>
-<string name="msg_to">Mensaje para %</string>
+<string name="msg_to">Mensaje para %s…</string>
 <string name="msg_abort">Abortar la transmisión</string>
 <string name="msg_restart">Reiniciar la transmisión</string>
 <string name="msg_type_rejected">rechazado</string>
@@ -87,10 +87,10 @@
 <!-- map view -->
 <string name="map_overlays">Superposición de iconos</string>
 <string name="map_google">Google: Map</string>
-<string name="map_satellite">Google: Satellite</string>
+<string name="map_satellite">Google: Satélite</string>
 <string name="map_osm">OpenStreetMap.org</string>
 <!-- intended use is in map style menu: "file name of offline map (Offline)" -->
-<string name="map_offline"> %s (Offline)</string>
+<string name="map_offline">%s (desconectado)</string>
 <string name="map_objects">Objetos APRS</string>
 
 <!-- map view -->
@@ -344,7 +344,8 @@
   Paco-EB5TC https://launchpad.net/~paco-eb5tc
   R R https://launchpad.net/~kf5fvf
   Ryan Schultz https://launchpad.net/~rschultz82
-  SILVIO BARLETTA https://launchpad.net/~ik1bqd</string>
+  SILVIO BARLETTA https://launchpad.net/~ik1bqd
+  fjuarez https://launchpad.net/~feliciano-superjuarez</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Modo Cliente</string>

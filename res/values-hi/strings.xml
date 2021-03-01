@@ -22,7 +22,7 @@
 <string name="empty_logview">आपने अभी तक कोई भी पैकेट भेजा या प्राप्त नहीं किया है।\n\n एकल रिपोर्ट भेजने या अपनी स्थिति पर नज़र रखनें के लिए \"मेन्यू\" बटन दबाएं।\n\n आप मेन्यू से एप्लिकेशन की पसंद भी बदल सकतें है।</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">नक्शे की गतिविधि</string>
+<string name="sta_lastreport">%s नक्शे की गतिविधि</string>
 <string name="map_track_call">%s पर नज़र रखी जा रही है...</string>
 <string name="map_track_unknown">%s की स्थिती अज्ञात है!</string>
 <string name="map_select">स्टेशन चुनें</string>

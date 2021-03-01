@@ -11,8 +11,8 @@
 <string name="app_messages_clear">Noriichten leschen</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Du muss APRSdroid mat dengem Rufzeechen an Passcode konfiguréieren!</string>
-<string name="wrongpasscode">Den Passcode passt net zum Rufzeechen!</string>
-<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
+<string name="wrongpasscode">De Passcode passt net zum Rufzeechen!</string>
+<string name="e_toolong_callsign">Däi Rufzeechen ass ze laang fir Packet Radio!</string>
 <string name="anon_warning">Ouni Passcode ginn deng Infoe net viru geschéckt!</string>
 <string name="mininterval">Klengst  Updatezäit ass 1 Minutt!</string>
 <string name="singlelog">Positioun schécken</string>
@@ -86,11 +86,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Ablendung</string>
-<string name="map_google">Google: Map</string>
-<string name="map_satellite">Google: Satellite</string>
+<string name="map_google">Google: Kaart</string>
+<string name="map_satellite">Google: Satellit</string>
 <string name="map_osm">OpenStreetMap.org</string>
 <!-- intended use is in map style menu: "file name of offline map (Offline)" -->
-<string name="map_offline"> %s (Offline)</string>
+<string name="map_offline">%s (Offline)</string>
 <string name="map_objects">APRS Objet\'en</string>
 
 <!-- map view -->
@@ -391,5 +391,5 @@
 <string name="p_serial_noperm">Keng Erlaabnis fir USB Gerät!</string>
 <string name="p_serial_notfound">Keen USB Gerät fond!</string>
 
-<string name="no_perm_text">The following permissions are required:</string>
+<string name="no_perm_text">Folgend Berechtegungen gi verlangt:</string>
 </resources>

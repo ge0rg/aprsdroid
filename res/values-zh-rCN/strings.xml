@@ -22,7 +22,7 @@
 <string name="empty_logview">您还没有发送或接收任何数据包。\n\n 按​​ \“菜单\”按钮发送一个报告或开始记录你的位置。\n\n 您也可以从菜单更改应用程序首选项。</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">近期报告</string>
+<string name="sta_lastreport">近期报告%s</string>
 <string name="map_track_call">记录中%s...</string>
 <string name="map_track_unknown">未知%s的位置!</string>
 <string name="map_select">选择台站</string>
@@ -282,8 +282,8 @@
 <string name="p_dgp_ring_summary">中继数据包的提示声</string>
 
 <string name="got_digipeated">中继自: %1$s: %2$s</string>
-<string name="status_linkoff">错误:％s</string>
-<string name="status_linkon">已连接:％s</string>
+<string name="status_linkoff">错误:%s</string>
+<string name="status_linkon">已连接:%s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS 中继路径</string>
@@ -325,12 +325,12 @@
 <string name="p_mapfile">地图文件名</string>
 <string name="p_mapfile_summary">APRSdroid的MapsForge地图文件</string>
 <string name="p_mapfile_choose">选择地图文件</string>
-<string name="mapfile_error">加载地图文件％s时出错!</string>
+<string name="mapfile_error">加载地图文件%s时出错!</string>
 
 <string name="p_themefile">主题文件名</string>
 <string name="p_themefile_summary">MapsForge渲染主题(XML)</string>
 <string name="p_themefile_choose">选择主题文件</string>
-<string name="themefile_error">加载主题文件％s时出错!</string>
+<string name="themefile_error">加载主题文件%s时出错!</string>
 
 <string name="translator_credits">Launchpad Contributions:
   BG5DNS https://launchpad.net/~zihe

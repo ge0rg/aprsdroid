@@ -337,6 +337,7 @@
 <string name="themefile_error">Errore caricando il tema del file %s!</string>
 
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   IK2RXU https://launchpad.net/~gilandin
   IZ5MSM https://launchpad.net/~iz5msm
   Martino Barbon https://launchpad.net/~martins999
@@ -385,7 +386,7 @@
 <string name="ssl_import_ok">Certificato importato per %s.</string>
 <string name="ssl_import_error">Errore importando il certificato: %s!</string>
 <string name="ssl_expired">Il tuo certificato é espirato!</string>
-<string name="ssl_expire_in">Il tuo certificato espirerà in 4 giorni!</string>
+<string name="ssl_expire_in">Il tuo certificato espirerà in %d giorni!</string>
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>

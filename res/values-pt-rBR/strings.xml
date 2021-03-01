@@ -86,11 +86,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Camadas</string>
-<string name="map_google">Google: Map</string>
-<string name="map_satellite">Google: Satellite</string>
+<string name="map_google">Google: Mapa</string>
+<string name="map_satellite">Google: Satélite</string>
 <string name="map_osm">OpenStreetMap.org</string>
 <!-- intended use is in map style menu: "file name of offline map (Offline)" -->
-<string name="map_offline"> %s (Offline)</string>
+<string name="map_offline">%s (Desligado)</string>
 <string name="map_objects">Objetos APRS</string>
 
 <!-- map view -->
@@ -325,7 +325,7 @@
 <string name="p_mapfile">Nome do arquivo de mapa</string>
 <string name="p_mapfile_summary">Arquivo de mapa do MapsForge para APRSdroid</string>
 <string name="p_mapfile_choose">Escolher arquivo de mapa</string>
-<string name="mapfile_error">Falha ao carregar arquivo de mapa</string>
+<string name="mapfile_error">Falha ao carregar arquivo de mapa %s</string>
 
 <string name="p_themefile">Nome do arquivo de tema</string>
 <string name="p_themefile_summary">Tema de exibição do MapsForge (XML)</string>
@@ -338,6 +338,7 @@
   Júlio Cezar Santos Pires https://launchpad.net/~juliocspires
   Lucas - Lobo https://launchpad.net/~lobo-lists
   Luzemário https://launchpad.net/~luzemario
+  Rodrigo Henrique  https://launchpad.net/~gatofladigo1
   ThiagoRyuuga https://launchpad.net/~thiagoryuuga
   luiz https://launchpad.net/~fellipeferreira</string>
 

@@ -22,7 +22,7 @@
 <string name="empty_logview">ท่านยังไม่ได้ส่งหรือได้รับแพ็คเก็ตใด ๆ . \ n \ n กด \"เมนู \"เพื่อส่งข้อมูลเดี่ยวหรือเพื่อเริ่มต้นการทำงานติดตามตำแหน่งของคุณ. \ n \ n คุณยังสามารถเปลี่ยนการตั้งค่าการสมัครจากเมนู</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">% ข้อมูลล่าสุด</string>
+<string name="sta_lastreport">%s ข้อมูลล่าสุด</string>
 <string name="map_track_call">ติดตาม %s...</string>
 <string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">เลือกสถานี</string>
