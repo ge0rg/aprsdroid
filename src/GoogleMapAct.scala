@@ -198,7 +198,7 @@ class GoogleMapAct extends Activity with MapLoaderBase
 
         // OnInfoWindowClickListener
         override def onInfoWindowClick(marker: Marker): Unit = {
-                openDetails(marker.getTitle())
+                openDetails(marker.getTag().toString())
         }
 
         // OnCameraMoveListener
