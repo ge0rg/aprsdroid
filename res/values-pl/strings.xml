@@ -71,7 +71,11 @@
 
 <!-- about dialog -->
 <string name="ad_title">O APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® jest zarejestrowanym znakiem towarowym Bob \'a Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
+	\n\n
+	APRS® is a registered trademark of Bob Bruninga (WB4APR)
+</string>
 <string name="ad_gpl">Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania - według wersji 2-giej tej Licencji lub którejś
 z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji - Powszechna Licencja Publiczna GNU. \n\n Z pewnością wraz z niniejszym programem otrzymałeś też egzemplarz Powszechnej Licencji Publicznej GNU (GNU General Public License); jeśli nie - napisz do Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Podziękowania dla:</string>

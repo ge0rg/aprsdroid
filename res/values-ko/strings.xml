@@ -10,11 +10,11 @@
 <string name="app_messages">메세지</string>
 <string name="app_messages_clear">메세지 삭제</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">You need to configure APRSdroid with your callsign and passcode!</string>
-<string name="wrongpasscode">Your passcode does not match your callsign!</string>
-<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
+<string name="firstrun">호출 부호와 비밀번호를 입력하여야 합니다.</string>
+<string name="wrongpasscode">비밀번호와 호출부호가 일치하지 않습니다.</string>
+<string name="e_toolong_callsign">호출부호가 패킷으로 송출하기에는 너무 깁니다.</string>
 <string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">Minimum update time is 1 minute!</string>
+<string name="mininterval">최소한 1분이 지나야 업데이트 할 수 있습니다.</string>
 <string name="singlelog">위치 전송</string>
 <string name="startlog">추적 시작</string>
 <string name="stoplog">추적 정지</string>
