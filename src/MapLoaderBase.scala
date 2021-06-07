@@ -118,10 +118,10 @@ trait MapLoaderBase extends MapMenuHelper {
         b.eraseColor(Color.TRANSPARENT)
         val c = new Canvas(b)
         val rect = new Rect(0, 0, size, size)
-        c.drawBitmap(alliconsbitmap, symbol2rect(symbol), zerorect, null)
+        c.drawBitmap(alliconsbitmap, symbol2rect(symbol), rect, null)
         if (symbolIsOverlayed(symbol)) {
             // draw overlay letter in addition to regular symbol
-            c.drawBitmap(alliconsbitmap, symbol2rect(symbol(0)-33, 2), zerorect, null)
+            c.drawBitmap(alliconsbitmap, symbol2rect(symbol(0)-33, 2), rect, null)
         }
         b
     }
