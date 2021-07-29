@@ -774,7 +774,7 @@ msgid "Fast Speed [km/h]"
 msgstr ""
 
 #: res/values/strings.xml:247(string)
-msgid "Minium speed for fast position updates"
+msgid "Minimum speed for fast position updates"
 msgstr ""
 
 #: res/values/strings.xml:248(string)
