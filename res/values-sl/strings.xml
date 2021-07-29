@@ -230,7 +230,7 @@
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ pomoč</string>
 <string name="p_sb_fast_speed">Visoka hitrost [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_speed_summary">Minimum speed for fast position updates</string>
 <string name="p_sb_fast_rate">Minimalna hitrost za hitre posodobitve lokacije</string>
 <string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
 <string name="p_sb_slow_speed">Nizka hitrost [km/h]</string>

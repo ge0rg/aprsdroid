@@ -230,7 +230,7 @@
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ hulp</string>
 <string name="p_sb_fast_speed">Vinnige Spoed [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium spoed vir vinnige posisie opdateering</string>
+<string name="p_sb_fast_speed_summary">Minimum spoed vir vinnige posisie opdateering</string>
 <string name="p_sb_fast_rate">Vinnige Tempo [s]</string>
 <string name="p_sb_fast_rate_summary">Baken tempo teen vinnige spoed</string>
 <string name="p_sb_slow_speed">Stadige Spoed [km/h]</string>
