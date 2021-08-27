@@ -83,6 +83,9 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 					// we are a host
 					log("Awaiting client...")
 					socket = ba.listenUsingRfcommWithServiceRecord("SPP", SPP).accept(-1)
+					val dev = socket.getRemoteDevice()
+					val name = if (dev.getName() != null) dev.getName() else dev.getAddress()
+					log("Client %s connected.".format(name))
 				} else
 				if (tncchannel == -1) {
 					log("Connecting to SPP service on %s...".format(tncmac))
@@ -110,7 +113,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 				case e : IllegalArgumentException => service.postAbort(e.getMessage()); running = false
 				case e : Exception => {
 					e.printStackTrace();
-					val name = if (tnc.getName() != null) tnc.getName() else tncmac
+					val name = if (tnc != null && tnc.getName() != null) tnc.getName() else tncmac
 					service.postAbort(service.getString(R.string.bt_error_connect, name))
 					running = false;
                                 }
