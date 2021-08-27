@@ -17,7 +17,7 @@
 			android:singleLine="true"
 			android:inputType="textCapCharacters"
 			android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-"
-			android:maxLength="9"
+			android:maxLength="10"
 			android:hint="@string/p_callsign"
 			/>
 		<EditText
