@@ -445,7 +445,7 @@ class StorageDatabase(context : Context) extends
 	}
 
 	def getConversations() = {
-		getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
+		getReadableDatabase().query("(SELECT * FROM messages ORDER BY _id DESC)", Message.COLUMNS,
 			null, null,
 			"call", null,
 			"_id DESC", null)
