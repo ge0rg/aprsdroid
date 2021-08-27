@@ -72,6 +72,7 @@
 	operators!</string>
 <string name="fr_text2">You need to enter your callsign to use this software.
 	To forward your packets, an APRS-IS passcode is required as well.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>

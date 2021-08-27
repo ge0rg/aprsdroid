@@ -42,6 +42,16 @@
 			android:maxLength="10"
 			android:hint="@string/p_callsign"
 			/>
+		<TextView
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10sp"
+			android:layout_marginTop="5sp"
+			android:layout_marginBottom="5sp"
+			android:layout_marginRight="10sp"
+			android:autoLink="web"
+			android:text="@string/fr_text3"
+			/>
 		<EditText
 			android:id="@+id/passcode"
 			android:layout_width="fill_parent"
