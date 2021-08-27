@@ -8,7 +8,7 @@ import _root_.android.content.res.Configuration
 import _root_.android.net.Uri
 import _root_.android.os.{Build, Environment}
 import _root_.android.util.Log
-import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View, WindowManager}
+import _root_.android.view.{ContextMenu, Menu, MenuItem, View, WindowManager}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 import _root_.android.widget.{EditText, Toast}
 import java.io.{File, PrintWriter}
@@ -21,8 +21,7 @@ import android.provider.Settings
 trait UIHelper extends Activity
 		with LoadingIndicator
 		with PermissionHelper
-		with DialogInterface.OnClickListener 
-		with DialogInterface.OnCancelListener {
+{
 
 	var menu_id : Int = -1
 	lazy val prefs = new PrefsWrapper(this)
@@ -110,56 +109,8 @@ trait UIHelper extends Activity
 		}
 	}
 
-	def saveFirstRun(call : String, passcode : String) {
-		val pe = prefs.prefs.edit()
-		call.split("-") match {
-		case Array(callsign) =>
-			pe.putString("callsign", callsign)
-		case Array(callsign, ssid) =>
-			pe.putString("callsign", callsign)
-			pe.putString("ssid", ssid)
-		case _ =>
-			Log.d("saveFirstRun", "could not split callsign")
-			finish()
-			return
-		}
-		if (passcode != "")
-			pe.putString("passcode", passcode)
-		pe.putBoolean("firstrun", false)
-		pe.commit()
-	}
-
 	def firstRunDialog() = {
-			val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE)
-					.asInstanceOf[LayoutInflater]
-			val fr_view = inflater.inflate(R.layout.firstrunview, null, false)
-			val fr_call = fr_view.findViewById(R.id.callsign).asInstanceOf[EditText]
-			val fr_pass = fr_view.findViewById(R.id.passcode).asInstanceOf[EditText]
-			new AlertDialog.Builder(this).setTitle(getString(R.string.fr_title))
-				.setView(fr_view)
-				.setIcon(android.R.drawable.ic_dialog_info)
-				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-					override def onClick(d : DialogInterface, which : Int) {
-						which match {
-							case DialogInterface.BUTTON_POSITIVE =>
-							saveFirstRun(fr_call.getText().toString(),
-								fr_pass.getText().toString())
-							checkConfig()
-							case _ =>
-							finish()
-						}
-					}})
-				.setNeutralButton(R.string.p_passreq, new UrlOpener(this, getString(R.string.passcode_url)))
-				.setOnCancelListener(this)
-				.create.show
-	}
-	// DialogInterface.OnClickListener
-	override def onClick(d : DialogInterface, which : Int) {
-		finish()
-	}
-	// DialogInterface.OnCancelListener
-	override def onCancel(d : DialogInterface) {
-		finish()
+                new PasscodeDialog(this, true).show()
 	}
 
 	def setTitleStatus() {

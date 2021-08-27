@@ -5,7 +5,7 @@
     <PreferenceCategory
 	    android:title="@string/p_conn_aprsis">
 
-        <EditTextPreference
+        <Preference
                 android:key="passcode"
 		android:inputType="number"
 		android:title="@string/p_passcode"

@@ -19,10 +19,22 @@ class BackendPrefs extends PreferenceActivity
 		val additional_xml = AprsBackend.prefxml_backend(prefs)
 		if (additional_xml != 0) {
 			addPreferencesFromResource(additional_xml)
+			hookPasscode()
 			hookGpsPermission()
 		}
 	}
 
+	def hookPasscode(): Unit = {
+		val p = findPreference("passcode")
+		if (p != null) {
+			p.setOnPreferenceClickListener(new OnPreferenceClickListener() {
+				def onPreferenceClick(preference: Preference) = {
+					new PasscodeDialog(BackendPrefs.this, false).show()
+					true
+				}
+			});
+		}
+	}
 	def hookGpsPermission(): Unit = {
 		val p = findPreference("kenwood.gps")
 		if (p != null) {
