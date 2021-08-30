@@ -9,10 +9,10 @@ import _root_.android.graphics.Color
 
 
 object ServiceNotifier {
-	val instance = if (Build.VERSION.SDK_INT < 5) new DonutNotifier() else new EclairNotifier()
+	val instance = new ServiceNotifier()
 }
 
-abstract class ServiceNotifier {
+class ServiceNotifier {
 	val SERVICE_NOTIFICATION : Int = 1
 	var CALL_NOTIFICATION = SERVICE_NOTIFICATION + 1
 	val callIdMap = new scala.collection.mutable.HashMap[String, Int]()
@@ -38,14 +38,16 @@ abstract class ServiceNotifier {
 		val i = new Intent(ctx, classOf[APRSdroid])
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 		val appname = ctx.getResources().getString(R.string.app_name)
-		newNotificationBuilder(ctx, "status")
+		val nb = newNotificationBuilder(ctx, "status")
 			.setContentTitle(appname)
 			.setContentText(status)
 			.setContentIntent(PendingIntent.getActivity(ctx, 0, i, 0))
 			.setSmallIcon(R.drawable.ic_status)
 			.setWhen(System.currentTimeMillis)
 			.setOngoing(true)
-			.build()
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+			nb.setShowWhen(true)
+		nb.build()
 	}
 
 	def getCallNumber(call : String) : Int = {
@@ -75,9 +77,6 @@ abstract class ServiceNotifier {
 	}
 
 	def getNotificationMgr(ctx : Context) = ctx.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
-
-	def start(ctx : Service, status : String)
-	def stop(ctx : Service)
 
 	def setupNotification(n : Notification, ctx : Context, prefs : PrefsWrapper, default: Boolean, prefix : String) {
 		// set notification LED
@@ -115,21 +114,7 @@ abstract class ServiceNotifier {
 		setupNotification(n, ctx, prefs, false, prefix)
 		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, n)
 	}
-}
 
-class DonutNotifier extends ServiceNotifier {
-	def start(ctx : Service, status : String) = {
-		//ctx.setForeground(true)
-		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, newNotification(ctx, status))
-	}
-
-	def stop(ctx : Service) = {
-		//ctx.setForeground(false)
-		getNotificationMgr(ctx).cancel(SERVICE_NOTIFICATION)
-	}
-}
-
-class EclairNotifier extends ServiceNotifier {
 	def start(ctx : Service, status : String) = {
 		ctx.startForeground(SERVICE_NOTIFICATION, newNotification(ctx, status))
 	}
