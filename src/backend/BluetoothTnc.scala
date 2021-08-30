@@ -73,6 +73,9 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		def log(s : String) {
 			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
 		}
+		def log(id : Integer, args : Object*) {
+			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, service.getString(id, args : _*))
+		}
 
 		def init_socket() {
 			Log.d(TAG, "init_socket()")
@@ -81,23 +84,23 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 			}
 				if (tnc == null) {
 					// we are a host
-					log("Awaiting client...")
+					log(R.string.bt_awaiting)
 					socket = ba.listenUsingRfcommWithServiceRecord("SPP", SPP).accept(-1)
 					val dev = socket.getRemoteDevice()
 					val name = if (dev.getName() != null) dev.getName() else dev.getAddress()
-					log("Client %s connected.".format(name))
+					log(R.string.bt_client_connected, name)
 				} else
 				if (tncchannel == -1) {
-					log("Connecting to SPP service on %s...".format(tncmac))
+					log(R.string.bt_connecting_to_spp, tncmac)
 					socket = tnc.createRfcommSocketToServiceRecord(SPP)
 					socket.connect()
 				} else {
-					log("Connecting to channel %d...".format(tncchannel))
+					log(R.string.bt_connecting_to_channel, tncmac, new Integer(tncchannel))
 					val m = tnc.getClass().getMethod("createRfcommSocket", classOf[Int])
 					socket = m.invoke(tnc, tncchannel.asInstanceOf[AnyRef]).asInstanceOf[BluetoothSocket]
 					socket.connect()
 				}
-				log("Connected to TNC.")
+				log(R.string.bt_connected)
 
 			proto = AprsBackend.instanciateProto(service, socket.getInputStream(), socket.getOutputStream())
 			Log.d(TAG, "init_socket() done")
@@ -121,7 +124,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 			while (running) {
 				try {
 					if (need_reconnect) {
-						log("Reconnecting in 3s...")
+						log(R.string.bt_reconnecting)
 						try {
 							Thread.sleep(3*1000)
 						} catch { case _ : InterruptedException => }
