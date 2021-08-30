@@ -107,6 +107,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		}
 
 		override def run() {
+			running = true
 			var need_reconnect = false
 			Log.d(TAG, "BtSocketThread.run()")
 			try {
