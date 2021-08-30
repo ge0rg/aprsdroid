@@ -92,12 +92,15 @@ class PasscodeDialog(act : Activity, firstrun : Boolean) extends AlertDialog(act
 		}
 	}
 
+	def passOK(call : String, pass : String) = {
+		if (pass != "") AprsPacket.passcodeAllowed(call, pass, true) else true
+	}
+
 	def verifyInput() {
 		val call = inputCall.getText().toString()
 		val pass = inputPass.getText().toString()
 		val callError = if (call != "" || !movedAwayFromCallsign) null else act.getString(R.string.p_callsign_entry)
-		val passOK = if (pass != "") AprsPacket.passcodeAllowed(call, pass, true) else true
-		val passError = if (passOK) null else act.getString(R.string.wrongpasscode)
+		val passError = if (passOK(call, pass)) null else act.getString(R.string.wrongpasscode)
 		inputCall.setError(callError)
 		inputPass.setError(passError)
 		okButton.setEnabled(call != "" && callError == null && passError == null)
@@ -117,7 +120,8 @@ class PasscodeDialog(act : Activity, firstrun : Boolean) extends AlertDialog(act
 			act.finish()
 			return
 		}
-		pe.putString("passcode", passcode)
+		if (passOK(call, passcode))
+			pe.putString("passcode", passcode)
 		pe.putBoolean("firstrun", !completed)
 		pe.commit()
 	}
