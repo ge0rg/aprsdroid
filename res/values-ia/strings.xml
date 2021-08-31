@@ -68,6 +68,7 @@
 <string name="fr_title">Benvenite a APRSdroid!</string>
 <string name="fr_text">Iste software pote esser usate solmente per operatores con licentia de radio amatores!</string>
 <string name="fr_text2">Tu necessita inserer tu signo de appello pro usar iste software. Pro transmitter tu pacchettos, assi un codice contrasigno APRS-IS es requirite.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Re APRSdroid v%s</string>
@@ -365,6 +366,14 @@
 <string name="bt_error_disabled">Per favor activa Bluetooth!</string>
 <string name="bt_error_no_tnc">Per favor configura un TNC bluetooth!</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Requesta de ligamine SCO de bluetooth</string>
 <string name="afsk_info_sco_est">Ligamine SCO de bluetooth stabilite</string>

@@ -5,16 +5,16 @@
 <string name="app_prefs">pengaturan aprsdroid</string>
 <string name="app_map">peta aprsdroid</string>
 <string name="app_hub">sambungan aprsdroid</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">Log APRSdroid</string>
 <string name="app_sta">info stasiun</string>
 <string name="app_messages">Pesan-pesan</string>
 <string name="app_messages_clear">Hapus Pesan</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Anda harus memasukkan callsign dan passcode utk menggunakan APRSdroid</string>
 <string name="wrongpasscode">Passcode tidak cocok dengan callsign Anda!</string>
-<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
-<string name="anon_warning">Without a passcode, your reports will not be propagated!</string>
-<string name="mininterval">Minimum update time is 1 minute!</string>
+<string name="e_toolong_callsign">callsign terlalu panjang untuk Packet Radio</string>
+<string name="anon_warning">tanpa passcode, laporan anda tidak akan terkirim</string>
+<string name="mininterval">waktu untuk update minimum 1 menit</string>
 <string name="singlelog">Kirim Posisi</string>
 <string name="startlog">Mulai Penjejak</string>
 <string name="stoplog">Hentikan Penjejak</string>
@@ -33,7 +33,7 @@
 <string name="sta_ssids">Stasiun SSIDs</string>
 <string name="sta_history">Riwayat Stasiun</string>
 <string name="sta_map">Peta</string>
-<string name="sta_extmap">External Map</string>
+<string name="sta_extmap">Map Eksternal</string>
 <string name="sta_aprsfi">aprs.fi</string>
 <string name="sta_qrzcom">QRZ.com</string>
 
@@ -41,7 +41,7 @@
 <string name="msg_send_new">Kirim pesan ke...</string>
 <string name="msg_message_text">Pesan teks</string>
 <string name="msg_empty_list">Tidak ada percakapan yang tersimpan.</string>
-<string name="msg_stored_offline">The message will be sent as soon as you start tracking.</string>
+<string name="msg_stored_offline">Pesan segera dikirim setelah anda memulai tracking</string>
 <!-- Message activity -->
 <string name="msg_from">Pesan dari %s</string>
 <string name="msg_to">Pesan untuk %s</string>
@@ -52,11 +52,11 @@
 
 <!-- AprsService -->
 <string name="aprsservice">Layanan APRSdroid</string>
-<string name="service_once">APRS Service single shot: %1$s, %2$s.</string>
+<string name="service_once">Layanan APRS single shot: %1$s, %2$s.</string>
 <string name="service_start">Layanan APRS dimulai: %1$s, %2$s.</string>
 <string name="service_stop">Layanan APRS dihentikan</string>
 <string name="service_no_location">Anda perlu aktifkan GPS atau Lokasi Jaringan agar APRSdroid bekerja dengan baik!</string>
-<string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
+<string name="service_sm_no_gps">SmartBeaconing™ memerlukan GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Terjadi Kesalahan</string>
 <string name="post_incmg">diterima</string>
@@ -68,6 +68,7 @@
 <string name="fr_title">Selamat Datang di APRSdroid!</string>
 <string name="fr_text">Perangkat lunak ini hanya dapat digunakan oleh operator amatir radio berlisensi!</string>
 <string name="fr_text2">Anda harus memasukkan callsign Anda untuk menggunakan software ini. Untuk meneruskan paket Anda, diperlukan juga sebuah APRS-IS passcode.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Tentang APRSdroid v%s</string>
@@ -356,7 +357,8 @@
   Josef Matondang https://launchpad.net/~josefmtd
   Zoel Gandhi https://launchpad.net/~yc0nyo
   ali elsas https://launchpad.net/~yc3inp
-  m. anshori https://launchpad.net/~m-anshory</string>
+  m. anshori https://launchpad.net/~m-anshory
+  ramadhan https://launchpad.net/~baimramadhan</string>
 
 <!-- Bluetooth TNC settings -->
 <string name="p_bt_client">Client Mode</string>
@@ -383,6 +385,14 @@
 <string name="bt_error_disabled">Please enable Bluetooth!</string>
 <string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO link established.</string>

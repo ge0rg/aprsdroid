@@ -68,6 +68,7 @@
 <string name="fr_title">¡Bienvenido a APRSdroid!</string>
 <string name="fr_text">¡Este software solo puede ser utilizado por radioaficionados con licencia!</string>
 <string name="fr_text2">Es necesario que introduzcas tu distintivo de llamada para usar este software. Para enviar tus paquetes, se requiere también un código de acceso de APRS-IS .</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Sobre APRSdroid v%s</string>
@@ -376,6 +377,14 @@
 <string name="bt_error_disabled">Por favor habilite BlueTooth!</string>
 <string name="bt_error_no_tnc">Por favor configure un TNC via BlueTooth</string>
 <string name="bt_error_connect">No se pudo conectar a %s! Por favor encienda el dispositivo y escoja otra conexión Bluetooth</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Solisitando emparejamiento via BlueTooth</string>
 <string name="afsk_info_sco_est">Emparejamiento BlueTooth establecido!</string>

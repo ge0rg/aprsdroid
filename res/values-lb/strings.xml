@@ -68,6 +68,7 @@
 <string name="fr_title">Wëllkomm bei APRSdroid!</string>
 <string name="fr_text">Des Software dierf nëmmen vun lizenséierten Funkamateuren benotzt ginn!</string>
 <string name="fr_text2">Du muss däin Rufzeechen aginn fir des Software benotzen ze kënnen. Fir deng Päck ze verschécken brauchs ze zudeem en APRS-IS passcode.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Iwwer APRSdroid v%s</string>
@@ -365,6 +366,14 @@
 <string name="bt_error_disabled">Schalt Bluetooth w.e.g un</string>
 <string name="bt_error_no_tnc">Konfiguréier w.e.g. en Bluetooth TNC!</string>
 <string name="bt_error_connect">Konnt net zu %s connectéiren! Schalt d\'Gerät un a mach aaner Bluetooth Connexiounen zou.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Sichen no enger Bluetooth SCO Verbindung...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO Verbindung ass hiergestallt.</string>

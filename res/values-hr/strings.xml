@@ -68,6 +68,7 @@
 <string name="fr_title">Dobro došli u APRSdroid!</string>
 <string name="fr_text">Ovaj software smiju koristiti samo licencirani radio operateri!</string>
 <string name="fr_text2">Da bi koristili program morate unijeti svoju pozivnu oznaku. Da bi proslijeđivali pakete potrebna je APRS-IS lozinka.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">O programu APRSdroid v%s</string>
@@ -365,6 +366,14 @@
 <string name="bt_error_disabled">Molim omogućite bluetooth!</string>
 <string name="bt_error_no_tnc">Molim konfigurirajte bluetooth TNC!</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Zahtijevam bluetooth SCO vezu...</string>
 <string name="afsk_info_sco_est">Bluetooth SCP veza uspostavljena.</string>

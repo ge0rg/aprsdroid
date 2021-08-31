@@ -68,6 +68,7 @@
 <string name="fr_title">Bemvindo ao APRSdroid!</string>
 <string name="fr_text">Este software só pode ser utilizado por radioamadores licenciados!</string>
 <string name="fr_text2">Você precisa entrar seu indicativo para usar este software. Para encaminhar seus pacotes, uma senha do APRS-IS também é necessária.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Sobre o APRSdroid v%s</string>
@@ -371,6 +372,14 @@
 <string name="bt_error_disabled">Por favor ative o Bluetooth!</string>
 <string name="bt_error_no_tnc">Por favor configure um TNC Bluetooth!</string>
 <string name="bt_error_connect">Não foi possível conectar à %s! Por favor ligue o dispositivo e encerre as demais conexões Bluetooth</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Solicitando link SCO bluetooth...</string>
 <string name="afsk_info_sco_est">Link SCO bluetooth estabelecido.</string>

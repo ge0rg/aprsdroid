@@ -70,6 +70,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="fr_title">Willkommen zu APRSdroid!</string>
 <string name="fr_text">Diese Software darf nur von lizensierten Funkamateuren verwendet werden!</string>
 <string name="fr_text2">Sie müssen Ihr Rufzeichen eingeben, um diese Software nutzen zu können. Damit Ihre Pakete weitergeleitet werden, ist weiterhin ein APRS-IS-Passcode erforderlich.</string>
+<string name="fr_text3">Nur für APRS über das Internet notwendig:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Über APRSdroid v%s</string>
@@ -374,6 +375,14 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="bt_error_disabled">Bitte Bluetooth einschalten!</string>
 <string name="bt_error_no_tnc">Bitte einen Bluetooth-TNC einstellen!</string>
 <string name="bt_error_connect">Keine Verbindung zu %s! Bitte Gerät einschalten und andere Bluetooth-Verbindungen schließen.</string>
+<string name="bt_awaiting">Erwarte Client…</string>
+<string name="bt_client_connected">Client %s verbunden.</string>
+<string name="bt_connecting_to_spp">Verbinde mit SPP-Dienst auf %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Verbinde mit %s auf Kanal %d…</string>
+<string name="bt_connected">Verbunden mit TNC.</string>
+<string name="bt_reconnecting">Neue Verbindung in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Bluetooth-SCO-Verbindung wird angefordert…</string>
 <string name="afsk_info_sco_est">Bluetooth-SCO-Verbindung aufgebaut.</string>

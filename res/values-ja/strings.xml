@@ -68,6 +68,7 @@
 <string name="fr_title">ようこそAPRSdroidへ！</string>
 <string name="fr_text">このソフトは免許のあるアマチュア無線局のみ使用可能です。</string>
 <string name="fr_text2">このソフトを使用するにはコールサインの入力が必要です。また、位置情報を送信するにはAPRS-ISパスコードも必要です。</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroidについて v%s</string>
@@ -365,6 +366,14 @@
 <string name="bt_error_disabled">Bluetoothを有効にしてください!</string>
 <string name="bt_error_no_tnc">Bluetooth-TNCの設定をして下さい!</string>
 <string name="bt_error_connect">%s と接続できません。機器をオンにして、他Bluetooth接続を切断して下さい。</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Bluetooth(SCO)リンク要求</string>
 <string name="afsk_info_sco_est">Bluetooth(SCO)リンク確立</string>

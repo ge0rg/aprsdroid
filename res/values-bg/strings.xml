@@ -68,6 +68,7 @@
 <string name="fr_title">Добре дошли в APRSdroid!</string>
 <string name="fr_text">Този софтуер може да бъде използван само от лицензирани радиолюбители!</string>
 <string name="fr_text2">Трябва да въведете вашата позивна(callsign) за да използвате този софтуер. Също така е необходим APRS-IS passcode за да бъдат препращани вашите пакети.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Относно APRSdroid v%s</string>
@@ -366,6 +367,14 @@
 <string name="bt_error_disabled">Моля включете Bluetooth!</string>
 <string name="bt_error_no_tnc">Моля конфигурирайте Bluetooth TNC!</string>
 <string name="bt_error_connect">Не може да се свърже с %s! Моля включете устройството и изключете другите Bluetooth връзки</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Искане на bluetooth SCO връзка...</string>
 <string name="afsk_info_sco_est">Връзката с Bluetooth SCO е установена.</string>

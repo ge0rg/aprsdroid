@@ -68,6 +68,7 @@
 <string name="fr_title">Καλώς ήλθατε στο APRSdroid!</string>
 <string name="fr_text">Η χρήση της εφαρμογής επιτρέπεται μόνο σε αδειούχους ραδιοερασιτέχνες!</string>
 <string name="fr_text2">Πρέπει να εισάγετε το διακριτικό σας για να χρησιμοποιήσετε αυτό το λογισμικό. Για να προωθήσετε πακέτα σας, απαιτείται επίσης ένας κωδικός πρόσβασης APRS-IS.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Σχετικά με APRSdroid v%s</string>
@@ -368,6 +369,14 @@
 <string name="bt_error_disabled">Παρακαλούμε ενεργοποιήστε το Bluetooth!</string>
 <string name="bt_error_no_tnc">Παρακαλούμε διαμορφώστε το TNC Bluetooth!</string>
 <string name="bt_error_connect">Δεν είναι δυνατή η σύνδεση με τον %s! Παρακαλώ ανάψτε τη συσκευή και κλείστε τις υπόλοιπες συνδέσεις Bluetooth.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Αίτηση SCO σύνδεσης Bluetooth...</string>
 <string name="afsk_info_sco_est">SCO σύνδεση Bluetooth επιβεβαιώθηκε.</string>

@@ -68,6 +68,7 @@
 <string name="fr_title">歡迎使用 APRSdroid！</string>
 <string name="fr_text">此軟件僅提供給擁有業餘無線電執照的愛好者使用。</string>
 <string name="fr_text2">你需要在软件中输入呼号以及APRS-IS呼号验证码才能转发您的数据包。</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">关于 APRSdroid v%s</string>
@@ -365,6 +366,14 @@
 <string name="bt_error_disabled">请启用蓝牙!</string>
 <string name="bt_error_no_tnc">请配置蓝牙TNC设备!</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">正在请求蓝牙SCO连接...</string>
 <string name="afsk_info_sco_est">蓝牙SCO链路已建立。</string>

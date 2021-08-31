@@ -70,6 +70,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="fr_title">Welkom bij APRSdroid!</string>
 <string name="fr_text">Deze software mag enkel gebruikt worden door gelicenseerde Radio Amateur Operators</string>
 <string name="fr_text2">Geef je call in om de software te gebruiken. Om pakketten te versturen is het APRS-IS paswoord vereist.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Over APRSdroid v%s</string>
@@ -374,6 +375,14 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="bt_error_disabled">Bleutooth inschakelen!</string>
 <string name="bt_error_no_tnc">Bleutooth TNC configureren aub!</string>
 <string name="bt_error_connect">Kon geen verbinding maken met %s! Gelieve het apparaat in te schakelen en de andere Bluetooth-verbindingen te sluiten.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Maken van bleutooth SCO link...</string>
 <string name="afsk_info_sco_est">Bleutooth SCO link verbonden.</string>

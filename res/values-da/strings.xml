@@ -68,6 +68,7 @@
 <string name="fr_title">Velkommen til APRSdroid!</string>
 <string name="fr_text">Dette program må kun betjenes af licenserede radio amatører!</string>
 <string name="fr_text2">Du skal indtaste dit kaldesignal for at benytte dette program. For at sende pakker over APRS-IS skal du også benytte et kodeord.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Om APRSdroid v%s</string>
@@ -367,6 +368,14 @@
 <string name="bt_error_disabled">Slå Bluetooth til!</string>
 <string name="bt_error_no_tnc">Konfigurer et Bluetooth TNC!</string>
 <string name="bt_error_connect">Kunne ikke forbinde til %s! Tænd for enheden og afbryd andre Bluetooth forbindelser.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Opretter Bluetooth SCO forbindelse...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO forbindelse oprettet.</string>

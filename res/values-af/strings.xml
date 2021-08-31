@@ -68,6 +68,7 @@
 <string name="fr_title">Welkom by APRSdroid!</string>
 <string name="fr_text">Hierdie sagteware mag slegs deur gelisensieerde amateur radio operateurs gebruik word!</string>
 <string name="fr_text2">Jy moet jou roepsein invoer om die sagteware te gebruik. Om pakkete aan te stuur is \'n APRS-IS wagkode ook benodig.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Oor APRSdroid v%s</string>
@@ -364,6 +365,14 @@
 <string name="bt_error_disabled">Aktiveer asseblief Bluetooth!</string>
 <string name="bt_error_no_tnc">Installeer asseblief \'n Bluetooth TNC!</string>
 <string name="bt_error_connect">Kon nie aan %s koppel nie! Skakel asseblief die toestel aan en sluit ander Bluetooth-verbindings.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Versoek Bluetooth SCO skakel ...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO skakel ingestel.</string>

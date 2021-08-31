@@ -68,6 +68,7 @@
 <string name="fr_title">Добро пожаловать в APRSdroid!</string>
 <string name="fr_text">Это приложение только для пользователей имеющих радиолюбительский позывной</string>
 <string name="fr_text2">Необходимо ввести свой позывной, чтобы использовать эту программу. Также для пересылки ваших данных, требуется пароль сервера APRS-IS для вашего позывного.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Об APRSdroid v%s</string>
@@ -373,6 +374,14 @@
 <string name="bt_error_disabled">Пожалуйста включите Bluetooth!</string>
 <string name="bt_error_no_tnc">Пожалуйста настройте Bluetooth TNC!</string>
 <string name="bt_error_connect">Не могу связаться с %s! Пожалуйста включите устройство и закройте все другие соединения Bluetooth.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Запрос соединения Bluetooth...</string>
 <string name="afsk_info_sco_est">Соединение Bluetooth установлено.</string>
