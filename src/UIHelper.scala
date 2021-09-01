@@ -368,13 +368,11 @@ trait UIHelper extends Activity
 			true
 		case R.id.aprsfi =>
 			val url = "https://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)
-			startActivity(new Intent(Intent.ACTION_VIEW,
-				Uri.parse(url)))
+			UrlOpener.open(this, url)
 			true
 		case R.id.qrzcom =>
 			val url = "https://qrz.com/db/%s".format(basecall)
-			startActivity(new Intent(Intent.ACTION_VIEW,
-				Uri.parse(url)))
+			UrlOpener.open(this, url)
 			true
 		case R.id.sta_export =>
 			new LogExporter(StorageDatabase.open(this), basecall).execute()
@@ -459,10 +457,20 @@ trait UIHelper extends Activity
 	}
 }
 
+object UrlOpener {
+	def open(ctx: Context, url : String) {
+		try {
+			ctx.startActivity(new Intent(Intent.ACTION_VIEW,
+				Uri.parse(url)))
+		} catch {
+		case e : Exception => Toast.makeText(ctx, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show()
+		}
+	}
+}
+
 class UrlOpener(ctx : Context, url : String) extends DialogInterface.OnClickListener {
 	override def onClick(d : DialogInterface, which : Int) {
-		ctx.startActivity(new Intent(Intent.ACTION_VIEW,
-			Uri.parse(url)))
+		UrlOpener.open(ctx, url)
 	}
 }
 
