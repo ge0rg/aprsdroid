@@ -1,3 +1,8 @@
+1.6.1:
+* Fix many map bugs
+* Fix various crashes
+* Show newest messages in conversations view
+* Improved first startup dialog
 1.6.0:
 * Support for Google map v2 and MapsForge map
 * Updated UsbSerial to 6.1.0 with CDC fix by @MobilinkD
