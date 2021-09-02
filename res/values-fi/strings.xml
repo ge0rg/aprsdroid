@@ -68,7 +68,7 @@
 <string name="fr_title">Tervetuloa APRSdroid:iin!</string>
 <string name="fr_text">Ohjelman käyttö on sallittua vain pätevyystodistuksen omaaville radioamatööreille!</string>
 <string name="fr_text2">Ohjelman käyttäminen edellyttää oman kutsumerkkisi asettamista. Jotta paikkatietosi välitettäisiin edelleen, myös oikea APRS-IS passcode on asetettava.</string>
-<string name="fr_text3">Only needed for APRS over the Internet:</string>
+<string name="fr_text3">Tarvitaan vain APRS-yhteyteen Internetin kautta:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Tietoja APRSdroid v%s:sta</string>
@@ -372,13 +372,13 @@
 <string name="bt_error_disabled">Ole hyvä ja kytke Bluetooth päälle!</string>
 <string name="bt_error_no_tnc">Ole hyvä ja määritä Bluetooth-TNC:n asetukset!</string>
 <string name="bt_error_connect">Yhteydenmuodostus %s:ään epäonnistui! Ole ystävällinen ja kytke laite päälle sekä sulje muut Bluetooth-yhteydet.</string>
-<string name="bt_awaiting">Awaiting client…</string>
-<string name="bt_client_connected">Client %s connected.</string>
-<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<string name="bt_awaiting">Odottaa yhteyttä...</string>
+<string name="bt_client_connected">Laite %s yhdistynyt.</string>
+<string name="bt_connecting_to_spp">Yhdistää SPP-palveluun %s...</string>
 <!-- connecting to [device name] channel [bluetooth channel id] -->
-<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
-<string name="bt_connected">Connected to TNC.</string>
-<string name="bt_reconnecting">Reconnecting in 3s…</string>
+<string name="bt_connecting_to_channel">Yhdistää %s kanavaan %d...</string>
+<string name="bt_connected">TNC yhdistetty.</string>
+<string name="bt_reconnecting">Yhdistää uudelleen 3s jälkeen...</string>
 
 
 <string name="afsk_info_sco_req">Pyydän Bluetooth SCO-yhteyttä...</string>
