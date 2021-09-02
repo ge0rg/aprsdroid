@@ -40,7 +40,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		}
 	}
 
-	def checkCallsign() : Boolean = {
+	def isCallsignAX25Valid() : Boolean = {
 		if (prefs.getCallsign().length() > 6) {
 			service.postAbort(service.getString(R.string.e_toolong_callsign))
 			false
@@ -49,7 +49,7 @@ class AfskUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 	}
 
 	def start() : Boolean = {
-		if (checkCallsign())
+		if (!isCallsignAX25Valid())
 			return false
 		if (use_bt) {
 			log(service.getString(R.string.afsk_info_sco_req))
