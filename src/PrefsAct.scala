@@ -21,24 +21,17 @@ class PrefsAct extends PreferenceActivity {
 
 	def exportPrefs() {
 		val filename = "profile-%s.aprs".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
-		val directory = new File(Environment.getExternalStorageDirectory(), "APRSdroid")
+		val directory = UIHelper.getExportDirectory(this)
 		val file = new File(directory, filename)
 		try {
+			directory.mkdirs()
 			val prefs = PreferenceManager.getDefaultSharedPreferences(this)
 			val json = new JSONObject(prefs.getAll)
 			val fo = new PrintWriter(file)
 			fo.println(json.toString(2))
 			fo.close()
 
-			// TODO: implement FileProvider for Android N+
-			if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
-				startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND)
-					.setType("text/plain")
-					.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
-					.putExtra(Intent.EXTRA_SUBJECT, filename),
-					file.toString()))
-			else
-				Toast.makeText(this, file.toString, Toast.LENGTH_LONG).show()
+			UIHelper.shareFile(this, file, filename)
 		} catch {
 			case e : Exception => Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
 		}
