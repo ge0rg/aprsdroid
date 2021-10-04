@@ -5,7 +5,15 @@ import _root_.net.ab0oo.aprs.parser.APRSPacket
 import _root_.java.io.{InputStream, OutputStream}
 
 object AprsBackend {
+        /** "Modular" system to connect to an APRS backend.
+        * The backend config consists of three items backed by prefs values:
+        *   - *proto* inside the connection ("aprsis", "afsk", "kiss", "tnc2", "kenwood") - ProtoInfo class
+        *   - *link* type ("bluetooth", "usb", "tcpip"; only for "kiss", "tnc2", "kenwood") - BackendInfo class
+        *   - *aprsis* mode ("tcp", "http", "udp"; only for proto=aprsis) - BackendInfo class
+        */
 	val DEFAULT_CONNTYPE = "tcp"
+	val DEFAULT_LINK = "tcpip"
+	val DEFAULT_PROTO = "aprsis"
 
 	val PASSCODE_NONE	= 0
 	val PASSCODE_OPTIONAL	= 1
@@ -26,9 +34,9 @@ object AprsBackend {
 
 	// map from old "backend" to new proto-link-aprsis (defaults are bluetooth and tcp)
 	val backend_upgrade = Map(
-		"tcp" -> "aprsis-bluetooth-tcp",
-		"udp" -> "aprsis-bluetooth-udp",
-		"http" -> "aprsis-bluetooth-http",
+		"tcp" -> "aprsis-tcpip-tcp",
+		"udp" -> "aprsis-tcpip-udp",
+		"http" -> "aprsis-tcpip-http",
 		"afsk" -> "afsk-bluetooth-tcp",
 		"bluetooth" -> "kiss-bluetooth-tcp",
 		"kenwood" -> "kenwood-bluetooth-tcp",
@@ -115,7 +123,7 @@ object AprsBackend {
 
 	def defaultBackendInfo(prefs : PrefsWrapper) : BackendInfo = {
 		val pi = defaultProtoInfo(prefs)
-		val link = if (pi.link != null) { prefs.getString(pi.link, "bluetooth") } else { prefs.getProto() }
+		val link = if (pi.link != null) { prefs.getString(pi.link, DEFAULT_LINK) } else { prefs.getProto() }
 		backend_collection.get(link) match {
 		case Some(bi) => bi
 		case None => backend_collection(DEFAULT_CONNTYPE)
