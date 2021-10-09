@@ -6,6 +6,7 @@ import android.content.{Context, DialogInterface, Intent}
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
@@ -38,6 +39,7 @@ class PasscodeDialog(act : Activity, firstrun : Boolean) extends AlertDialog(act
 
 	inputCall.setText(prefs.getCallsign())
 	inputCall.addTextChangedListener(this)
+	inputCall.setFilters(Array(new InputFilter.AllCaps()))
 	inputCall.setOnFocusChangeListener(this)
 	inputPass.setText(prefs.getString("passcode", ""))
 	inputPass.addTextChangedListener(this)
