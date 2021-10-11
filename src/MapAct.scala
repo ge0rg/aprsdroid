@@ -58,6 +58,7 @@ class MapAct extends MapActivity with MapMenuHelper {
 		setKeepScreenOn()
 		setVolumeControls()
 		checkPermissions(Array(Manifest.permission.WRITE_EXTERNAL_STORAGE), RELOAD_MAP)
+		mapview.requestFocus()
 	}
 
 	override def onConfigurationChanged(c : Configuration) = {
@@ -140,6 +141,13 @@ class MapAct extends MapActivity with MapMenuHelper {
 		case KeyEvent.KEYCODE_MEDIA_REWIND |
 		     KeyEvent.KEYCODE_MEDIA_PREVIOUS =>
 			changeZoom(-1)
+			true
+		case KeyEvent.KEYCODE_MEDIA_PLAY |
+		     KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE =>
+			if (mapview.hasFocus())
+				mapview.focusSearch(View.FOCUS_FORWARD).requestFocus()
+			else
+				mapview.requestFocus()
 			true
 		case _ => super.onKeyDown(keyCode, event)
 		}
