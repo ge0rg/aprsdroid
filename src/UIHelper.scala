@@ -189,6 +189,29 @@ trait UIHelper extends Activity
 			firstRunDialog()
 			return false
 		}
+		// auto-switch to network location if device lacks GPS
+		if (prefs.getString("loc_source", null) == null) {
+			val has_location = getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION)
+			val has_network = getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_NETWORK)
+			val has_gps = getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS)
+			val best = PeriodicGPS.bestProvider(this)
+			Log.d("checkConfig", "hasLocation = " + has_location + " hasGPS = " + has_gps + " hasNetwork = " + has_network + " best = " + best)
+			Log.d("checkConfig", "hasTouch = " + getPackageManager().hasSystemFeature("android.hardware.touchscreen"))
+			if (!has_gps && best == "passive") {
+				Log.d("checkConfig", "does not have any real location sources, must be a FireTV")
+				prefs.prefs.edit()
+					.putString("loc_source", "manual")
+					.commit()
+				startActivity(new Intent(this, classOf[LocationPrefs]));
+				false
+			} else if (!has_gps) {
+				Log.d("checkConfig", "does not have GPS, switching to netloc")
+				prefs.prefs.edit()
+					.putString("loc_source", "periodic")
+					.putBoolean("netloc", true)
+					.commit()
+			}
+		}
 		if (passcodeConfigRequired(callsign, passcode)) {
 			openPrefs(R.string.wrongpasscode, classOf[BackendPrefs])
 			return false
