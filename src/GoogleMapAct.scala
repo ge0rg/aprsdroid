@@ -130,6 +130,9 @@ class GoogleMapAct extends Activity with MapLoaderBase
                 }
         }
 
+        override def changeZoom(delta : Int): Unit = {
+        }
+
         class MarkerInfo(val icon : Marker, val label : Marker, var last_update : Int) {}
 
         val markers = new mutable.HashMap[String, MarkerInfo]()
@@ -203,14 +206,15 @@ class GoogleMapAct extends Activity with MapLoaderBase
 
         // OnCameraMoveListener
         override def onCameraMove(): Unit = {
-                Log.d(TAG, "zoom level: " + map.getCameraPosition().zoom)
-                val need_visible = (map.getCameraPosition().zoom > CALLSIGN_ZOOM)
+                val pos = map.getCameraPosition()
+                Log.d(TAG, "zoom level: " + pos.zoom)
+                val need_visible = (pos.zoom > CALLSIGN_ZOOM)
                 if (need_visible != visible_callsigns) {
                         visible_callsigns = need_visible
                         for ((call, marker) <- markers)
                                 marker.label.setVisible(visible_callsigns)
                 }
-
+		updateCoordinateInfo(pos.target.latitude.asInstanceOf[Float], pos.target.longitude.asInstanceOf[Float])
         }
 }
 

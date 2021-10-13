@@ -149,11 +149,27 @@ class MapAct extends MapActivity with MapMenuHelper {
 			else
 				mapview.requestFocus()
 			true
+		case KeyEvent.KEYCODE_DPAD_CENTER |
+		     KeyEvent.KEYCODE_ENTER =>
+			// TODO: return coordinates
+			if (isCoordinateChooser) {
+				finish()
+			}
+			true
 		case _ => super.onKeyDown(keyCode, event)
 		}
 	}
 
-	def changeZoom(delta : Int) {
+	def updateCoordinateInfo(): Unit = {
+		if (!isCoordinateChooser)
+			return
+		val pos = mapview.getMapPosition().getMapPosition()
+		if (pos == null || pos.geoPoint == null)
+			return
+		updateCoordinateInfo(pos.geoPoint.latitudeE6/1000000.0f, pos.geoPoint.longitudeE6/1000000.0f)
+	}
+
+	override def changeZoom(delta : Int) {
 		mapview.getController().setZoom(mapview.getMapPosition().getZoomLevel() + delta)
 	}
 
@@ -319,6 +335,8 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 				}
 			}
 		}
+		import AprsService.block2runnable
+		context.handler.post { context.updateCoordinateInfo() }
 	}
 
 	def addStation(sta : Station) {

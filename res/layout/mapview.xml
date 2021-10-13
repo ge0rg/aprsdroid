@@ -11,13 +11,5 @@
 	android:clickable="true"
 	android:focusable="true"
 	/>
-<ProgressBar
-	style="@android:style/Widget.ProgressBar.Large.Inverse"
-	android:id="@+id/loading"
-	android:padding="10sp"
-	android:layout_width="76dip"
-	android:layout_height="76dip"
-	android:gravity="right|top"
-	android:indeterminate="true"
-	/>
+<include layout="@layout/mapcontrols" />
 </FrameLayout>

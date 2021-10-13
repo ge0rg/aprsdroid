@@ -71,6 +71,12 @@ object AprsPacket {
 			""
 	}
 
+	def formatDMS(coordinate : Float, nesw : String) = {
+		val dms = Location.convert(coordinate, Location.FORMAT_SECONDS).split(":")
+		val nesw_idx = (coordinate < 0).compare(false)
+		"%2s° %2s' %s\" %s".format(dms(0), dms(1), dms(2), nesw(nesw_idx))
+	}
+
 	def parseQrg(comment : String) : String = {
 		comment match {
 		case QRG_RE(qrg) => qrg
