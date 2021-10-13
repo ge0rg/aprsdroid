@@ -11,8 +11,13 @@ object PeriodicGPS {
 	def bestProvider(locman : LocationManager) = {
 		val cr = new Criteria()
 		cr.setAccuracy(Criteria.ACCURACY_FINE)
+		Log.d("FAILGPS", "all providers " + locman.getAllProviders())
 		Log.d("FAILGPS", "best. provider. ever. " + locman.getBestProvider(cr, false))
 		locman.getBestProvider(cr, false)
+	}
+
+	def bestProvider(context : Context) : String = {
+		bestProvider(context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager])
 	}
 }
 
