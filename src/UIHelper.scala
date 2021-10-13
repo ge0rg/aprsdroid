@@ -132,8 +132,9 @@ trait UIHelper extends Activity
 		}
 	}
 
+	lazy val passcodeDialog = new PasscodeDialog(this, true)
 	def firstRunDialog() = {
-                new PasscodeDialog(this, true).show()
+		passcodeDialog.show()
 	}
 
 	def setTitleStatus() {
