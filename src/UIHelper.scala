@@ -137,6 +137,23 @@ trait UIHelper extends Activity
 		passcodeDialog.show()
 	}
 
+	def keyboardNavDialog() {
+		if (getPackageManager().hasSystemFeature("android.hardware.touchscreen"))
+			return
+		if (prefs.getBoolean("kbdnav_shown", false))
+			return
+		prefs.prefs.edit().putBoolean("kbdnav_shown", true).commit()
+		
+		val keys = Array("⬅➡⬆⬇", "⏪⏩", "⏯️", "⏎🆗")
+		val titles = getResources().getStringArray(R.array.kbdnav_lines)
+		val text = keys zip titles map { case (k, v) => "%s\t%s".format(k, v) } mkString("\n")
+		new AlertDialog.Builder(this).setTitle(R.string.kbdnav_title)
+			.setMessage(text)
+			.setIcon(android.R.drawable.ic_dialog_info)
+			.setPositiveButton(android.R.string.ok, null)
+			.create.show
+	}
+
 	def setTitleStatus() {
 		if (AprsService.link_error != 0) {
 			setTitle(getString(R.string.status_linkoff, getString(AprsService.link_error)))
