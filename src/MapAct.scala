@@ -116,7 +116,7 @@ class MapAct extends MapActivity with MapMenuHelper {
 
 	def reloadMapAndTheme() {
 		val mapfile = new File(prefs.getString("mapfile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.map"))
-		if (mapfile.exists())
+		if (mapfile.exists() && mapfile.canRead())
 			mapview.setMapFile(mapfile)
 		else {
 			if (prefs.getString("mapfile", null) != null)
