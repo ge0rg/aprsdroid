@@ -72,11 +72,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">O APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
-	https://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® jest zarejestrowanym znakiem towarowym Bob \'a Bruninga (WB4APR)</string>
 <string name="ad_gpl">Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania - według wersji 2-giej tej Licencji lub którejś
 z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji - Powszechna Licencja Publiczna GNU. \n\n Z pewnością wraz z niniejszym programem otrzymałeś też egzemplarz Powszechnej Licencji Publicznej GNU (GNU General Public License); jeśli nie - napisz do Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Podziękowania dla:</string>
@@ -198,6 +194,9 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_source_lat">Szerokość geograficzna</string>
 <string name="p_source_lon">Długość geograficzna</string>
 <string name="p_source_coord">Współrzędna</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Użyj ostatniej pozycji z GPS</string>
 <string name="p_source_auto">Automatyczne wysyłanie</string>
 <string name="p_source_auto_summary">Przeprowadzaj okresowe pozycjonowanie</string>
@@ -337,6 +336,15 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_themefile_summary">Motyw renderowania MapsForge (XML)</string>
 <string name="p_themefile_choose">Wybierz plik motywu</string>
 <string name="themefile_error">Błąd ładowania pliku motywu %s!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Adam Czabara https://launchpad.net/~adam-czabara

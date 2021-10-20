@@ -72,11 +72,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Tietoja APRSdroid v%s:sta</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
-	https://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® on Bob Bruningan (WB4APR) rekisteröity tavaramerkki.</string>
 <string name="ad_gpl">Tämä ohjelmisto on vapaa; voit jakaa sitä ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public License ehtojen mukaisesti; joko Lisenssin 2-version tai myöhemmän version mukaisesti. \n\n Tätä ohjelmaa jaetaan siten, että siitä olisi jotain hyötyä, mutta EHDOTTOMASTI ILMAN MITÄÄN TAKUUTA; ilman vähäisintäkään takuuta KAUPALLISUUDESTA tai SOPIVUUDESTA ERITYISIIN TARKOITUKSIIN. Katso GNU General Public License tarkemista yksityiskohdista. \n\n Olet saanut kopion GNU General Public License:stä tämän ohjelman mukana; jos et, niin otayhteyttä Free Software Foundation:iin , Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Kiitokset:</string>
 <string name="ad_thanks_0">Oma YL:ni ♥♥♥</string>
@@ -197,6 +193,9 @@
 <string name="p_source_lat">Leveyspiiri</string>
 <string name="p_source_lon">Pituuspiiri</string>
 <string name="p_source_coord">Koordinaatit</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Käytä viimeisintä GPS-sijaintia</string>
 <string name="p_source_auto">Automaattinen lähetys</string>
 <string name="p_source_auto_summary">Jaksottainen sijainnin lähetys</string>
@@ -336,6 +335,15 @@
 <string name="p_themefile_summary">MapsForge piirtoteema (XML)</string>
 <string name="p_themefile_choose">Valitse teematiedosto</string>
 <string name="themefile_error">Virhe ladattaessa teematiedostoa %s!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg

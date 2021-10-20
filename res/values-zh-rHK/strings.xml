@@ -72,11 +72,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">關於APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
-	https://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">版權所有© 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS®是Bob Bruninga（WB4APR）的註冊商標</string>
 <string name="ad_gpl">該程序是免費軟件； 您可以根據自由軟件基金會發布的GNU通用公共許可證的條款重新分發和/或修改它； 許可的版本2，或（由您選擇）任何更高的版本。 \ n \ n分發該程序是希望它會有用，但沒有任何擔保； 甚至沒有對適銷性或特定用途適用性的暗示保證。 有關更多詳細信息，請參見GNU通用公共許可證。 \ n \ n您應該已經與該程序一起收到了GNU通用公共許可證的副本； 如果不是，請寫信給美國自由軟件基金會有限公司（Free Software Foundation，Inc.），51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA。 \ n \ n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">感谢：</string>
 <string name="ad_thanks_0">My YL ♥♥♥</string>
@@ -197,6 +193,9 @@
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
 <string name="p_source_coord">Coordinate</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Use last GPS position</string>
 <string name="p_source_auto">Automatic Posting</string>
 <string name="p_source_auto_summary">Perform periodic position posting</string>
@@ -336,6 +335,15 @@
 <string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg

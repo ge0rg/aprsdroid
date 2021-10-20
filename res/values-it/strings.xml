@@ -197,6 +197,9 @@
 <string name="p_source_lat">Latitudine</string>
 <string name="p_source_lon">Longitudine</string>
 <string name="p_source_coord">Coordinate</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Usa l\'ultima posizione GPS</string>
 <string name="p_source_auto">Invio Automatico</string>
 <string name="p_source_auto_summary">Controllo periodico invio posizione</string>
@@ -336,6 +339,15 @@
 <string name="p_themefile_summary">MapsForge tema tridimensionale della mappa (XML)</string>
 <string name="p_themefile_choose">Scegli il tema del file</string>
 <string name="themefile_error">Errore caricando il tema del file %s!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg

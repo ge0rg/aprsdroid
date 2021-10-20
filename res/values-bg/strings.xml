@@ -197,6 +197,9 @@
 <string name="p_source_lat">Географска ширина</string>
 <string name="p_source_lon">Географска дължина</string>
 <string name="p_source_coord">Координати</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Използвай последната GPS позиция</string>
 <string name="p_source_auto">Автоматично Публикуване</string>
 <string name="p_source_auto_summary">Изпълни периодично публикуване на позицията</string>
@@ -336,6 +339,15 @@
 <string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
 <string name="p_themefile_choose">Изберете файл за тема</string>
 <string name="themefile_error">Грешка при зареждането на темата от файл: %s!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg

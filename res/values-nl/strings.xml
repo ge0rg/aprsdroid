@@ -74,11 +74,7 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 
 <!-- about dialog -->
 <string name="ad_title">Over APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
-	https://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® is een geregistreerd handelsmerk van Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. \n\n This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. \n\n You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Met dank aan:</string>
 <string name="ad_thanks_0">Mijn YL ♥♥♥</string>
@@ -199,6 +195,9 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_source_lat">Breedtegraad</string>
 <string name="p_source_lon">Lengtegraad</string>
 <string name="p_source_coord">Coördinaat</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Laatst gebruikte GPS positie</string>
 <string name="p_source_auto">Automatische positie</string>
 <string name="p_source_auto_summary">Periodiek positie doorgeven</string>
@@ -338,6 +337,15 @@ Je kan ook je voorkeuren aanpassen via het menu.</string>
 <string name="p_themefile_summary">MapsForge weergavethema (XML)</string>
 <string name="p_themefile_choose">Kies themabestand</string>
 <string name="themefile_error">Fout bij het laden van themabestand %s!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Eddy Vaesen https://launchpad.net/~a-eddy-n

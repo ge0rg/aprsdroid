@@ -197,6 +197,9 @@
 <string name="p_source_lat">Zeměpisná šířka</string>
 <string name="p_source_lon">Zeměpisná délka</string>
 <string name="p_source_coord">Souřadnice</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Použít poslední GPS polohu</string>
 <string name="p_source_auto">Automatické odesílání</string>
 <string name="p_source_auto_summary">Pravidelně odesílat pozici</string>
@@ -336,6 +339,15 @@
 <string name="p_themefile_summary">Motiv vykreslování MapsForge</string>
 <string name="p_themefile_choose">Zvolit soubor motivu</string>
 <string name="themefile_error">Chyba při nahrávání souboru motivu %s!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Bronek OK2JIB https://launchpad.net/~bronajz

@@ -197,6 +197,9 @@
 <string name="p_source_lat">Breddegrad</string>
 <string name="p_source_lon">Længdegrad</string>
 <string name="p_source_coord">Koordinat</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Brug seneste GPS position</string>
 <string name="p_source_auto">Automatisk afsendelse</string>
 <string name="p_source_auto_summary">Send periodisk positionen</string>
@@ -337,9 +340,19 @@
 <string name="p_themefile_choose">Vælg tema fil</string>
 <string name="themefile_error">Fejl ved indlæsning af tema fil %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   Alexandru Csete https://launchpad.net/~alexc
   Finn Leslie https://launchpad.net/~idestrup
+  Georg Lukas https://launchpad.net/~ge0rg
   Kim Eggert https://launchpad.net/~kim-s-eggert
   Mads Bahrt https://launchpad.net/~1-mb</string>
 

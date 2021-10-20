@@ -72,11 +72,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Σχετικά με APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
-	https://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n Το APRS® είναι σήμα κατατεθέν του Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό; Μπορείτε να το αναδιανέμετε ή/και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή δημοσιεύεται από το Ίδρυμα Ελεύθερου Λογισμικού; είτε της έκδοσης 2 της Άδειας, είτε (κατ\'επιλογή σας) οποιαδήποτε μεταγενέστερη έκδοση. \n\n Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ; χωρίς καν την υπονοούμενη εγγύηση της ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Δείτε την GNU Γενική Άδεια Δημόσιας Χρήσης για περισσότερες λεπτομέρειες. \n\n Θα πρέπει να έχετε λάβει ένα αντίγραφο της GNU General Public License μαζί με αυτό το πρόγραμμα; αν όχι, γράψτε στο Ίδρυμα Ελεύθερου Λογισμικού, Inc, 51 Franklin Street, πέμπτο όροφο, Boston, MA 02110-1301, ΗΠΑ. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Ευχαριστίες σε:</string>
 <string name="ad_thanks_0">Η YL μου ♥♥♥</string>
@@ -197,6 +193,9 @@
 <string name="p_source_lat">Γεωγραφικό Πλάτος</string>
 <string name="p_source_lon">Γεωγραφικό Μήκος</string>
 <string name="p_source_coord">Συντεταγμένη</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Χρησιμοποιήστε την τελευταία τοποθεσία GPS</string>
 <string name="p_source_auto">Αυτόματη Δημοσίευση</string>
 <string name="p_source_auto_summary">Εκτελέστε περιοδική δημοσίευση θέσης</string>
@@ -337,10 +336,19 @@
 <string name="p_themefile_choose">Διαλέξτε αρχείο θέματος</string>
 <string name="themefile_error">Σφάλμα φόρτωσης αρχείου θέματος %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   Athanasios B. https://launchpad.net/~sv2ctv
   Demetre Valaris https://launchpad.net/~dvalaris
-  Efstathios Iosifidis https://launchpad.net/~diamond-gr
+  Efstathios Iosifidis https://launchpad.net/~iosifidis
   Georg Lukas https://launchpad.net/~ge0rg
   Ioannis K https://launchpad.net/~kioan20</string>
 

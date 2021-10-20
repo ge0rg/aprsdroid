@@ -74,11 +74,7 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 
 <!-- about dialog -->
 <string name="ad_title">Über APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
-	https://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
 \n\n
 Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
@@ -205,6 +201,9 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_source_lat">Breitengrad</string>
 <string name="p_source_lon">Längengrad</string>
 <string name="p_source_coord">Koordinate</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Auf Karte auswählen</string>
+<string name="p_source_from_map_save">Position speichern</string>
 <string name="p_source_get_last">Letzte GPS-Position verwenden</string>
 <string name="p_source_auto">Automatisches Senden</string>
 <string name="p_source_auto_summary">Periodisch die eigene Position aussenden</string>
@@ -344,6 +343,15 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_themefile_summary">MapsForge Farbschema (XML)</string>
 <string name="p_themefile_choose">Theme-Datei auswählen</string>
 <string name="themefile_error">Fehler beim Laden der Theme-Datei %s!</string>
+
+<string name="kbdnav_title">Tastatursteuerung</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>Karte bewegen</item>
+	<item>Zoom</item>
+	<item>Menü</item>
+	<item>Auswählen</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Dennis Baudys https://launchpad.net/~thecondordb

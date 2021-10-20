@@ -197,6 +197,9 @@
 <string name="p_source_lat">Geografska širina (Laitude)</string>
 <string name="p_source_lon">Geografska dužina (Longitude)</string>
 <string name="p_source_coord">Koordinate</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Koristi posljednju GPS lokaciju</string>
 <string name="p_source_auto">Automatsko objavljivanje</string>
 <string name="p_source_auto_summary">Provedi povremeno objavljivanje lokacije</string>
@@ -230,7 +233,7 @@
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ pomoć</string>
 <string name="p_sb_fast_speed">Veća brzina [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minimalna brzina za brzo osvježavanje lokacije</string>
+<string name="p_sb_fast_speed_summary">Minimum speed for fast position updates</string>
 <string name="p_sb_fast_rate">Brzo osvježavanje lokacije [s]</string>
 <string name="p_sb_fast_rate_summary">Učestalost odašiljanja na većoj brzini</string>
 <string name="p_sb_slow_speed">Niža brzina [km/h]</string>
@@ -336,6 +339,15 @@
 <string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Ivica Žunić https://launchpad.net/~9a3bzi

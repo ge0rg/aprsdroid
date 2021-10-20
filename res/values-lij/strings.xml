@@ -197,6 +197,9 @@
 <string name="p_source_lat">Latitudine</string>
 <string name="p_source_lon">Longitudine</string>
 <string name="p_source_coord">Coordina-te</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Usà l\'ultima posisiun GPS</string>
 <string name="p_source_auto">Enviu Automatico</string>
 <string name="p_source_auto_summary">Posisiun Periodica</string>
@@ -337,7 +340,17 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   SILVIO BARLETTA https://launchpad.net/~ik1bqd</string>
 
 <!-- Bluetooth TNC settings -->

@@ -68,15 +68,11 @@
 <string name="fr_title">APRSdroid\'e hoşgeldiniz!</string>
 <string name="fr_text">Bu yazılım sadece lisanslı Amatör Telsiz operatörleri tarafından kullanılabilir!</string>
 <string name="fr_text2">Bu yazılımı kullanabilmek için çağrı işaretinizi girmeniz gerekir. Paket verilerinizi ağa iletebilmek için bir APRS-IS şifresi de gereklidir.</string>
-<string name="fr_text3">Only needed for APRS over the Internet:</string>
+<string name="fr_text3">Yalnızca internet üzerinden APRS için gereklidir.</string>
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroid hakkında v%s</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
-	https://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Telif hakkı © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org\n\n APRS®, Bob Bruninga\'nın (WB4APR) tescilli ticari markasıdır</string>
 <string name="ad_gpl">Bu program ücretsizdir; Free Software Foundation tarafından yayımlanan  GNU General Public License 2. sürüm ya da (tercih ederseniz) daha sonraki sürümde yer alan şartlar altında dağıtabilir ve değiştirebilirsiniz. \n\n Bu program kullanıcıya faydalı olması beklentisiyle, HERHANGİ BİR GARANTİ olmaksızın; hatta SATILABİLİRLİK ya da BELİRLİ BİR AMACA UYGUNLUK imasında bulunulmaksızın dağıtılmaktadır. Daha fazla detay için GNU General Public License dokümanına bakınız. \n\n Bu programla birlikte tarafınıza GNU General Public License dokümanının bir kopyası iletilmiş olmalıdır; aksi takdirde durumu, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresine yazılı olarak bildiriniz. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Teşekkürler:</string>
 <string name="ad_thanks_0">YL\'me ♥♥♥</string>
@@ -197,6 +193,9 @@
 <string name="p_source_lat">Enlem</string>
 <string name="p_source_lon">Boylam</string>
 <string name="p_source_coord">Koordinat</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Son GPS konumunu kullan</string>
 <string name="p_source_auto">Otomatik İletim</string>
 <string name="p_source_auto_summary">Periyodik Yer İletimi Yap</string>
@@ -337,8 +336,18 @@
 <string name="p_themefile_choose">Tema dosyası seçin</string>
 <string name="themefile_error">Tema dosyası %s yüklenirken hata oluştu!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   Alp Sarıca https://launchpad.net/~alpsarica
+  Erdem Cengiz https://launchpad.net/~erdemcengiz
   Georg Lukas https://launchpad.net/~ge0rg
   Hüseyin Odabaş https://launchpad.net/~ta1df
   Kudret EMRE https://launchpad.net/~kudretemre

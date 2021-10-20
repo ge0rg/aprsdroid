@@ -72,11 +72,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Sobre o APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
-	https://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Este programa é software livre; você pode redistribuí-lo e/ou modificá-lo nos termos da Licença Pública Geral (GPL) da GNU como publicado pela Free Software Foundation; seja a versão 2 da licença, ou (por sua opção) qualquer versão mais recente. \n\n Este programa é distribuído na esperança de que será útil, mas SEM QUALQUER GARANTIA; nem mesmo a garantia implícita de COMERCIALIZAÇÃO ou ATENDIMENTO A PROPÓSITO PARTICULAR. Veja a GNU General Public License para mais detalhes. \n\n Você deve ter recebido uma cópia da GNU General Public License junto com esse programa; se não, escreva para a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Agradecimentos a:</string>
 <string name="ad_thanks_0">Minha jovem senhorita ♥♥♥</string>
@@ -197,6 +193,9 @@
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
 <string name="p_source_coord">Coordenada</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Use a última posição do GPS</string>
 <string name="p_source_auto">Postagem Automática</string>
 <string name="p_source_auto_summary">Executar postagem de posição periódica</string>
@@ -336,6 +335,15 @@
 <string name="p_themefile_summary">Tema de exibição do MapsForge (XML)</string>
 <string name="p_themefile_choose">Selecione o arquivo de tema</string>
 <string name="themefile_error">Falha ao carregar o arquivo de tema %s</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Airton Torres https://launchpad.net/~airton-torres

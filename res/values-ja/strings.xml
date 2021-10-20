@@ -197,6 +197,9 @@
 <string name="p_source_lat">緯度</string>
 <string name="p_source_lon">経度</string>
 <string name="p_source_coord">座標</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">最後のGPS位置を使用</string>
 <string name="p_source_auto">自動位置情報取得・送信</string>
 <string name="p_source_auto_summary">周期的な位置取得(送信)をします。</string>
@@ -337,7 +340,17 @@
 <string name="p_themefile_choose">テーマファイル選択</string>
 <string name="themefile_error">テーマファイル読込エラー %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   Yoshihisa Tanda https://launchpad.net/~jn4oqt
   Yoshikazu AKAGI https://launchpad.net/~7k4owm</string>
 

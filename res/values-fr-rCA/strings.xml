@@ -197,6 +197,9 @@
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
 <string name="p_source_coord">Coordonnées</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Utiliser la dernière position GPS connue</string>
 <string name="p_source_auto">Envoi automatique</string>
 <string name="p_source_auto_summary">Envoi périodique de la position</string>
@@ -230,7 +233,7 @@
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">Assistant SmartBeaconing™</string>
 <string name="p_sb_fast_speed">Vitesse Rapide [km/h]</string>
-<string name="p_sb_fast_speed_summary">Vitesse minimale pour m.à.j. position Rapide</string>
+<string name="p_sb_fast_speed_summary">Vitesse mini pour m.à.j. position rapide</string>
 <string name="p_sb_fast_rate">Rafraîchissement [s] Rapide</string>
 <string name="p_sb_fast_rate_summary">Taux de balises à vitesse Rapide</string>
 <string name="p_sb_slow_speed">Vitesse Lente [km/h]</string>
@@ -337,7 +340,17 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   Michel Robichaud https://launchpad.net/~mike-1103</string>
 
 <!-- Bluetooth TNC settings -->

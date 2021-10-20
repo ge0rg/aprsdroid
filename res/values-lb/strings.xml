@@ -72,11 +72,7 @@
 
 <!-- about dialog -->
 <string name="ad_title">Iwwer APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
-	https://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® ass eng registréiert Handelsmark vum Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Dëst ass eng fräi Software; du kanns se ënnert den Konditiounen vun der GNU General Public License wéi se vun der Free Software Foundation publizéiert ginn ass virun verdeelen an/oder modifizéieren; entweder ënnert der Versioun 2 vun der Lizenz, oder (als deng Optioun) ënnert enger méi spéiderer Versioun. \n\n Dësen Programm gëtt an der Hoffnung verdeelt, dass en nëtzlech ass, mee OUNI IRGENDENG GARANTIE; och ouni di implizéiert Garantie fir MARKTGÄNGEGKEET oder FITNESS FIR EN BESONNESCHEN ZWECK. Kuck an der GNU General Public License fir weider Detailer. \n\n Du miss eng Kopie vun der GNU General Public License mat dësem Programm kritt hunn; wann net, dann schreif un d\'Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">E Merci un:</string>
 <string name="ad_thanks_0">Meng YL ♥♥♥</string>
@@ -197,6 +193,9 @@
 <string name="p_source_lat">Breetegrad</string>
 <string name="p_source_lon">Längegrad</string>
 <string name="p_source_coord">Koordinaten</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Benotz déi läscht GPS Positioun</string>
 <string name="p_source_auto">Automatescht Verschecken</string>
 <string name="p_source_auto_summary">Maach periodesch Positionsaussendungen</string>
@@ -336,6 +335,15 @@
 <string name="p_themefile_summary">MapsForge Duerstellungs Theme (XML)</string>
 <string name="p_themefile_choose">Wiel Themendatei</string>
 <string name="themefile_error">Fehler beim Themendatei %s lueden!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg
