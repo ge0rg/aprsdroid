@@ -1,3 +1,7 @@
+1.6.2:
+* Manual position map chooser
+* Various Amazon device fixes
+* Fix export of files on Android 5+
 1.6.1:
 * Fix many map bugs
 * Fix various crashes
