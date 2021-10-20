@@ -313,9 +313,10 @@ class StorageDatabase(context : Context) extends
 			null, null, "CALL, _ID", null)
 	}
 	def getAllSsids(call : String) : Cursor = {
-		val querycall = call.split("[- _]+")(0) + "%"
+		val barecall = call.split("[- _]+")(0)
+		val wildcard = barecall + "-%"
 		getReadableDatabase().query(Station.TABLE, Station.COLUMNS,
-			"call LIKE ? or origin LIKE ?", Array(querycall, querycall),
+			"call = ? OR call LIKE ? OR origin = ? OR origin LIKE ?", Array(barecall, wildcard, barecall, wildcard),
 			null, null, null, null)
 	}
 	def getNeighbors(mycall : String, lat : Int, lon : Int, ts : Long, limit : String) : Cursor = {
