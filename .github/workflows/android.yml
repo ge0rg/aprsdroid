@@ -7,10 +7,16 @@ on:
     branches: [ '**' ]
 
 jobs:
-  build:
+  test:
 
-    #runs-on: ubuntu-latest
+    # macOS provided hardware-accelerated emulator
     runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [ 15, 19, 24, 30 ]
+        target: [ default, google_apis ]
+    name: "Android CI for API ${{ matrix.api-level }} target ${{ matrix.target }}"
 
     steps:
     - name: checkout
@@ -41,8 +47,8 @@ jobs:
     - name: Run Instrumented Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
-        api-level: 24
-        target: default #, google_apis
+        api-level: ${{ matrix.api-level }}
+        target: ${{ matrix.target }}
         arch: x86
         profile: Nexus 6
         script: ./gradlew connectedCheck --stacktrace
