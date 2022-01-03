@@ -7,16 +7,9 @@ on:
     branches: [ '**' ]
 
 jobs:
-  test:
-
-    # macOS provided hardware-accelerated emulator
+  compile:
     runs-on: macos-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        api-level: [ 15, 19, 24, 30 ]
-        target: [ default, google_apis ]
-    name: "Android CI for API ${{ matrix.api-level }} target ${{ matrix.target }}"
+    name: "Compile all sources"
 
     steps:
     - name: checkout
@@ -34,9 +27,21 @@ jobs:
     - name: Create properties file with empty API key
       run: echo mapsApiKey="\"${{ secrets.mapsApiKey }}\"" >> local.properties
 
-    - name: Build with Gradle
+    - name: Build App
       run: ./gradlew assemble --stacktrace
 
+    - name: Build unit tests
+      run: ./gradlew assembleDebugUnitTest assembleReleaseUnitTest --stacktrace
+
+    - name: Build instrumentation tests
+      run: ./gradlew assembleAndroidTest --stacktrace
+
+  unit-test:
+    name: "Run all unit tests"
+    needs: compile
+    runs-on: macos-latest
+
+    steps:
     - name: Run Unit Tests
       run: ./gradlew test --stacktrace
 
@@ -44,6 +49,18 @@ jobs:
       run: ./gradlew lint --stacktrace
       continue-on-error: true
 
+  instrumentation:
+    name: "Testing on API ${{ matrix.api-level }} for ${{ matrix.target }}"
+    needs: compile
+    # macOS provided hardware-accelerated emulator
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [ 15, 19, 24, 30 ]
+        target: [ default, google_apis ]
+
+    steps:
     - name: Run Instrumented Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
