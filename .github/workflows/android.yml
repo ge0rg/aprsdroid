@@ -27,10 +27,16 @@ jobs:
 
     - name: Create properties file with empty API key
       run: echo mapsApiKey="\"${{ secrets.mapsApiKey }}\"" >> local.properties
+
     - name: Build with Gradle
-      run: ./gradlew assembleDebug --stacktrace
+      run: ./gradlew assemble --stacktrace
+
     - name: Run Unit Tests
-      run: ./gradlew testDebug --stacktrace
+      run: ./gradlew test --stacktrace
+
+    - name: Run Linter
+      run: ./gradlew lint --stacktrace
+      continue-on-error: true
 
     - name: Run Instrumented Tests
       uses: reactivecircus/android-emulator-runner@v2
