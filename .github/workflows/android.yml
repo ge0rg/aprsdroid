@@ -5,6 +5,7 @@ on:
     branches: [ '**' ]
   pull_request:
     branches: [ '**' ]
+  workflow_dispatch:
 
 jobs:
   compile:
@@ -75,6 +76,13 @@ jobs:
       run: ./gradlew lint --stacktrace
       continue-on-error: true
 
+    - name: Upload reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: Unit Test Reports
+        path: build/outputs/reports
+      if: ${{ failure() }}
+
   instrumentation:
     name: "Testing on API ${{ matrix.api-level }} for ${{ matrix.target }}"
     needs: compile
@@ -83,7 +91,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api-level: [ 15, 19, 24, 30 ]
+        api-level: [ 15, 20, 24, 30 ]
         target: [ default, google_apis ]
 
     steps:
@@ -114,3 +122,10 @@ jobs:
         arch: x86
         profile: Nexus 6
         script: ./gradlew connectedCheck --stacktrace
+
+    - name: Save successful debug APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: debug apk
+        path: build/outputs/debug/aprsdroid-debug.apk
+      if: ${{ matrix.api-level == 30 && matrix.target == 'google_apis' }}
