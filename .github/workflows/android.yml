@@ -17,12 +17,19 @@ jobs:
       with:
         fetch-depth: 0
         submodules: recursive
+
     - name: set up JDK 11
       uses: actions/setup-java@v2
       with:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
+
+    - name: Load build outputs
+      uses: actions/cache@v2
+      with:
+        path: build
+        key: build-${{ github.sha }}
 
     - name: Create properties file with empty API key
       run: echo mapsApiKey="\"${{ secrets.mapsApiKey }}\"" >> local.properties
@@ -42,6 +49,25 @@ jobs:
     runs-on: macos-latest
 
     steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        submodules: recursive
+
+    - name: set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: gradle
+
+    - name: Load build outputs
+      uses: actions/cache@v2
+      with:
+        path: build
+        key: build-${{ github.sha }}
+
     - name: Run Unit Tests
       run: ./gradlew test --stacktrace
 
@@ -61,6 +87,25 @@ jobs:
         target: [ default, google_apis ]
 
     steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        submodules: recursive
+
+    - name: set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: gradle
+
+    - name: Load build outputs
+      uses: actions/cache@v2
+      with:
+        path: build
+        key: build-${{ github.sha }}
+
     - name: Run Instrumented Tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
