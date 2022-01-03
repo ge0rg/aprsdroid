@@ -80,8 +80,8 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: Unit Test Reports
-        path: build/outputs/reports
-      if: ${{ failure() }}
+        path: build/reports
+      if: always()
 
   instrumentation:
     name: "Testing on API ${{ matrix.api-level }} for ${{ matrix.target }}"
@@ -91,7 +91,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api-level: [ 15, 21, 24, 30 ]
+        api-level: [ 15, 21, 24, 31 ]
         target: [ default, google_apis ]
         exclude:
           - api-level: 30
@@ -132,6 +132,7 @@ jobs:
       with:
         api-level: ${{ matrix.api-level }}
         target: ${{ matrix.target }}
+        arch: ${{ matrix.api-level >= 30 && 'x86_64' || 'x86' }}
         force-avd-creation: false
         emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
         disable-animations: false
@@ -142,16 +143,23 @@ jobs:
       with:
         api-level: ${{ matrix.api-level }}
         target: ${{ matrix.target }}
-        arch: x86
+        arch: ${{ matrix.api-level >= 30 && 'x86_64' || 'x86' }}
         profile: Nexus 6
         force-avd-creation: false
         emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
         disable-animations: true
         script: ./gradlew connectedCheck --stacktrace
 
+    - name: Upload reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: Instrument Test Reports API ${{ matrix.api-level }} ${{ matrix.target }}
+        path: build/reports
+      if: always()
+
     - name: Save successful debug APK
       uses: actions/upload-artifact@v2
       with:
         name: debug apk
-        path: build/outputs/debug/aprsdroid-debug.apk
-      if: ${{ matrix.api-level == 30 && matrix.target == 'google_apis' }}
+        path: build/outputs/apk/debug/aprsdroid-debug.apk
+      if: matrix.api-level == 31 && matrix.target == 'google_apis'
