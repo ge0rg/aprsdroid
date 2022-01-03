@@ -81,7 +81,7 @@ jobs:
       with:
         name: Unit Test Reports
         path: build/reports
-      if: always()
+      if: failure()
 
   instrumentation:
     name: "Testing on API ${{ matrix.api-level }} for ${{ matrix.target }}"
@@ -155,11 +155,11 @@ jobs:
       with:
         name: Instrument Test Reports API ${{ matrix.api-level }} ${{ matrix.target }}
         path: build/reports
-      if: always()
+      if: failure()
 
     - name: Save successful debug APK
       uses: actions/upload-artifact@v2
       with:
-        name: debug apk
+        name: Debug APK
         path: build/outputs/apk/debug/aprsdroid-debug.apk
       if: matrix.api-level == 31 && matrix.target == 'google_apis'
