@@ -127,4 +127,157 @@ public class MapModeTest {
                     .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongtude));
         }
     }
+
+    @RunWith(AndroidJUnit4.class)
+    public static class GivenSavedLocationInSEHemisphere {
+        private static final float expectedLatitude = -37.50123f;
+        private static final float expectedLongtude = 88.25034f;
+
+        private final SharedPreferencesRule prefsRule = new SharedPreferencesRule() {
+            @Override
+            protected void modifyPreferences(SharedPreferences preferences) {
+                preferences.edit()
+                        .putFloat("map_lat", expectedLatitude)
+                        .putFloat("map_lon", expectedLongtude)
+                        .putFloat("map_zoom", 5.0f)
+                        .commit();
+            }
+        };
+
+        @Rule
+        public final RuleChain rules = RuleChain.outerRule(prefsRule).around(activityRule);
+
+        @Test
+        public void whenFirstLoaded_thenSaveDisabled() {
+            onView(withId(R.id.info))
+                    .check(matches(withText("")));
+            onView(withId(R.id.accept))
+                    .check(matches(not(isEnabled())));
+        }
+
+        @Test
+        public void whenMapIsDragged_thenPositionAndButtonShown() {
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.info))
+                    .check(matches(not(withText(""))));
+            onView(withId(R.id.accept))
+                    .check(matches(isEnabled()));
+        }
+
+        @Test
+        public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
+                            GeneralLocation.CENTER, Press.THUMB));
+            onView(withId(R.id.info))
+                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongtude));
+        }
+    }
+
+    @RunWith(AndroidJUnit4.class)
+    public static class GivenSavedLocationInNWHemisphere {
+        private static final float expectedLatitude = 37.50123f;
+        private static final float expectedLongtude = -88.25034f;
+
+        private final SharedPreferencesRule prefsRule = new SharedPreferencesRule() {
+            @Override
+            protected void modifyPreferences(SharedPreferences preferences) {
+                preferences.edit()
+                        .putFloat("map_lat", expectedLatitude)
+                        .putFloat("map_lon", expectedLongtude)
+                        .putFloat("map_zoom", 5.0f)
+                        .commit();
+            }
+        };
+
+        @Rule
+        public final RuleChain rules = RuleChain.outerRule(prefsRule).around(activityRule);
+
+        @Test
+        public void whenFirstLoaded_thenSaveDisabled() {
+            onView(withId(R.id.info))
+                    .check(matches(withText("")));
+            onView(withId(R.id.accept))
+                    .check(matches(not(isEnabled())));
+        }
+
+        @Test
+        public void whenMapIsDragged_thenPositionAndButtonShown() {
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.info))
+                    .check(matches(not(withText(""))));
+            onView(withId(R.id.accept))
+                    .check(matches(isEnabled()));
+        }
+
+        @Test
+        public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
+                            GeneralLocation.CENTER, Press.THUMB));
+            onView(withId(R.id.info))
+                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongtude));
+        }
+    }
+
+    @RunWith(AndroidJUnit4.class)
+    public static class GivenSavedLocationInSWHemisphere {
+        private static final float expectedLatitude = -37.50123f;
+        private static final float expectedLongtude = -88.25034f;
+
+        private final SharedPreferencesRule prefsRule = new SharedPreferencesRule() {
+            @Override
+            protected void modifyPreferences(SharedPreferences preferences) {
+                preferences.edit()
+                        .putFloat("map_lat", expectedLatitude)
+                        .putFloat("map_lon", expectedLongtude)
+                        .putFloat("map_zoom", 5.0f)
+                        .commit();
+            }
+        };
+
+        @Rule
+        public final RuleChain rules = RuleChain.outerRule(prefsRule).around(activityRule);
+
+        @Test
+        public void whenFirstLoaded_thenSaveDisabled() {
+            onView(withId(R.id.info))
+                    .check(matches(withText("")));
+            onView(withId(R.id.accept))
+                    .check(matches(not(isEnabled())));
+        }
+
+        @Test
+        public void whenMapIsDragged_thenPositionAndButtonShown() {
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.info))
+                    .check(matches(not(withText(""))));
+            onView(withId(R.id.accept))
+                    .check(matches(isEnabled()));
+        }
+
+        @Test
+        public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
+                            GeneralLocation.CENTER, Press.THUMB));
+            onView(withId(R.id.info))
+                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongtude));
+        }
+    }
 }
