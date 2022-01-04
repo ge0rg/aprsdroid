@@ -1,4 +1,4 @@
-package org.aprsdroid.app;
+package org.aprsdroid.app.testing;
 
 import android.content.Context;
 import android.content.SharedPreferences;
