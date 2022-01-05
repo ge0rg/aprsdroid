@@ -3,6 +3,8 @@ package org.aprsdroid.app
 import _root_.android.location.Location
 import _root_.net.ab0oo.aprs.parser._
 
+import scala.math.abs
+
 object AprsPacket {
 	val QRG_RE = ".*?(\\d{2,3}[.,]\\d{3,4}).*?".r
 
@@ -72,9 +74,9 @@ object AprsPacket {
 	}
 
 	val  DirectionsLatitude = "NS";
-	val  DirectionsLongitude = "WE";
+	val  DirectionsLongitude = "EW";
 	def formatDMS(coordinate : Float, nesw : String) = {
-		val dms = Location.convert(coordinate, Location.FORMAT_SECONDS).split(":")
+		val dms = Location.convert(abs(coordinate), Location.FORMAT_SECONDS).split(":")
 		val nesw_idx = (coordinate < 0).compare(false)
 		"%2s° %2s' %s\" %s".format(dms(0), dms(1), dms(2), nesw(nesw_idx))
 	}
