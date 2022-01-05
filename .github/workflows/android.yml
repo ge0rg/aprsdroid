@@ -93,10 +93,16 @@ jobs:
       fail-fast: false
       matrix:
         api-level: [ 15, 21, 24, 31 ]
-        target: [ default, google_apis ]
+        target: [ default, google_apis, google_apis_playstore ]
         exclude:
-          - api-level: 31  # Was 30, is it needed for 31?
-            target: default
+          - api-level: 15
+            target: google_apis_playstore
+          - api-level: 21
+            target: google_apis_playstore
+          - api-level: 24
+            target: google_apis
+          - api-level: 31
+            target: google_apis
 
     steps:
     - name: Checkout project
