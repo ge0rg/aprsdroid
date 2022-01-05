@@ -174,8 +174,7 @@ trait MapMenuHelper extends UIHelper with OnClickListener {
 
 	def updateCoordinateInfo(lat : Float, lon : Float): Unit = {
 		resultIntent.putExtra("lat", lat).putExtra("lon", lon)
-		val lat_s = AprsPacket.formatDMS(lat, "NS")
-		val lon_s = AprsPacket.formatDMS(lon, "WE")
+		val (lat_s, lon_s) = AprsPacket.formatCoordinates(lat, lon)
 		infoText.setText(lat_s + "\n" + lon_s)
 		accept.setEnabled(true);
 	}
