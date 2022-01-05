@@ -2,6 +2,7 @@ package org.aprsdroid.app;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -50,10 +51,10 @@ public class FirstRunDialog {
                         hasDescendant(withId(R.id.passcode)))));
         onView(withId(R.id.callsign))
                 .check(matches(withHint(containsString("Callsign"))))
-                .perform(typeText("XA1AAA"));
+                .perform(typeText("XA1AAA"), closeSoftKeyboard());
         onView(withId(R.id.passcode))
                 .check(matches(withHint(containsString("Passcode"))))
-                .perform(typeText("12345"));
+                .perform(typeText("12345"), closeSoftKeyboard());
         onView(withId(android.R.id.button1)).perform(click());  // OK Button
         onView(isRoot())
                 .inRoot(isDialog())
@@ -78,10 +79,10 @@ public class FirstRunDialog {
                         hasDescendant(withId(R.id.passcode)))));
         onView(withId(R.id.callsign))
                 .check(matches(withHint(containsString("Callsign"))))
-                .perform(typeText("XA1AAA"));
+                .perform(typeText("XA1AAA"), closeSoftKeyboard());
         onView(withId(R.id.passcode))
                 .check(matches(withHint(containsString("Passcode"))))
-                .perform(typeText("23459"));
+                .perform(typeText("23459"), closeSoftKeyboard());
         onView(withId(android.R.id.button1)).perform(click());  // OK Button
         onView(allOf(
                 isRoot(),
@@ -100,10 +101,10 @@ public class FirstRunDialog {
         Assert.assertNull("Passcode", prefs.getString(pref_passcode, null));
         onView(withId(R.id.callsign))
                 .check(matches(withHint(containsString("Callsign"))))
-                .perform(typeText(expected_callsign));
+                .perform(typeText(expected_callsign), closeSoftKeyboard());
         onView(withId(R.id.passcode))
                 .check(matches(withHint(containsString("Passcode"))))
-                .perform(typeText(expected_passcode));
+                .perform(typeText(expected_passcode), closeSoftKeyboard());
         onView(withId(android.R.id.button1)).perform(click());  // OK Button
         Assert.assertEquals("Callsign", expected_callsign, prefs.getString(pref_callsign, null));
         Assert.assertEquals("Passcode", expected_passcode, prefs.getString(pref_passcode, null));
