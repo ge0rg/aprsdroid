@@ -1,10 +1,13 @@
 package org.aprsdroid.app;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.not;
 
 import android.content.Context;
@@ -80,15 +83,16 @@ public class MapModeTest {
     @RunWith(AndroidJUnit4.class)
     public static class GivenSavedLocationInNEHemisphere {
         private static final float expectedLatitude = 37.50123f;
-        private static final float expectedLongtude = 88.25034f;
+        private static final float expectedLongitude = 88.25034f;
+        private static final float expectedZoom = 4.0f;
 
         private final SharedPreferencesRule prefsRule = new SharedPreferencesRule() {
             @Override
             protected void modifyPreferences(SharedPreferences preferences) {
                 preferences.edit()
                         .putFloat("map_lat", expectedLatitude)
-                        .putFloat("map_lon", expectedLongtude)
-                        .putFloat("map_zoom", 5.0f)
+                        .putFloat("map_lon", expectedLongitude)
+                        .putFloat("map_zoom", expectedZoom)
                         .commit();
             }
         };
@@ -124,22 +128,48 @@ public class MapModeTest {
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
                             GeneralLocation.CENTER, Press.THUMB));
             onView(withId(R.id.info))
-                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongtude));
+                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongitude));
+        }
+
+        @Test
+        public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
+            try { Thread.sleep(500); } catch(InterruptedException ex) {}
+            prefsRule.getPreferences()
+                    .edit()
+                    .remove("map_lat")
+                    .remove("map_lon")
+                    .remove("map_zoom")
+                    .commit();
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
+                            GeneralLocation.CENTER, Press.THUMB));
+            onView(withId(R.id.accept))
+                    .perform(click());
+            float actualLatitude = prefsRule.getPreferences().getFloat("map_lat", 0.0f);
+            float actualLongitude = prefsRule.getPreferences().getFloat("map_lon", 0.0f);
+            float actualZoom = prefsRule.getPreferences().getFloat("map_zoom", 0.0f);
+            assertThat("Latitude", (double)actualLatitude, closeTo((double)expectedLatitude, 5e-2));
+            assertThat("Longitude", (double)actualLongitude, closeTo((double)expectedLongitude, 5e-2));
+            assertThat("Zoom", (double)actualZoom, closeTo((double)expectedZoom, 1e-7));
         }
     }
 
     @RunWith(AndroidJUnit4.class)
     public static class GivenSavedLocationInSEHemisphere {
         private static final float expectedLatitude = -37.50123f;
-        private static final float expectedLongtude = 88.25034f;
+        private static final float expectedLongitude = 88.25034f;
+        private static final float expectedZoom = 4.5f;
 
         private final SharedPreferencesRule prefsRule = new SharedPreferencesRule() {
             @Override
             protected void modifyPreferences(SharedPreferences preferences) {
                 preferences.edit()
                         .putFloat("map_lat", expectedLatitude)
-                        .putFloat("map_lon", expectedLongtude)
-                        .putFloat("map_zoom", 5.0f)
+                        .putFloat("map_lon", expectedLongitude)
+                        .putFloat("map_zoom", expectedZoom)
                         .commit();
             }
         };
@@ -175,22 +205,48 @@ public class MapModeTest {
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
                             GeneralLocation.CENTER, Press.THUMB));
             onView(withId(R.id.info))
-                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongtude));
+                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongitude));
+        }
+
+        @Test
+        public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
+            try { Thread.sleep(500); } catch(InterruptedException ex) {}
+            prefsRule.getPreferences()
+                    .edit()
+                    .remove("map_lat")
+                    .remove("map_lon")
+                    .remove("map_zoom")
+                    .commit();
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
+                            GeneralLocation.CENTER, Press.THUMB));
+            onView(withId(R.id.accept))
+                    .perform(click());
+            float actualLatitude = prefsRule.getPreferences().getFloat("map_lat", 0.0f);
+            float actualLongitude = prefsRule.getPreferences().getFloat("map_lon", 0.0f);
+            float actualZoom = prefsRule.getPreferences().getFloat("map_zoom", 0.0f);
+            assertThat("Latitude", (double)actualLatitude, closeTo((double)expectedLatitude, 5e-2));
+            assertThat("Longitude", (double)actualLongitude, closeTo((double)expectedLongitude, 5e-2));
+            assertThat("Zoom", (double)actualZoom, closeTo((double)expectedZoom, 1e-7));
         }
     }
 
     @RunWith(AndroidJUnit4.class)
     public static class GivenSavedLocationInNWHemisphere {
         private static final float expectedLatitude = 37.50123f;
-        private static final float expectedLongtude = -88.25034f;
+        private static final float expectedLongitude = -88.25034f;
+        private static final float expectedZoom = 5.0f;
 
         private final SharedPreferencesRule prefsRule = new SharedPreferencesRule() {
             @Override
             protected void modifyPreferences(SharedPreferences preferences) {
                 preferences.edit()
                         .putFloat("map_lat", expectedLatitude)
-                        .putFloat("map_lon", expectedLongtude)
-                        .putFloat("map_zoom", 5.0f)
+                        .putFloat("map_lon", expectedLongitude)
+                        .putFloat("map_zoom", expectedZoom)
                         .commit();
             }
         };
@@ -226,22 +282,48 @@ public class MapModeTest {
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
                             GeneralLocation.CENTER, Press.THUMB));
             onView(withId(R.id.info))
-                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongtude));
+                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongitude));
+        }
+
+        @Test
+        public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
+            try { Thread.sleep(500); } catch(InterruptedException ex) {}
+            prefsRule.getPreferences()
+                    .edit()
+                    .remove("map_lat")
+                    .remove("map_lon")
+                    .remove("map_zoom")
+                    .commit();
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
+                            GeneralLocation.CENTER, Press.THUMB));
+            onView(withId(R.id.accept))
+                    .perform(click());
+            float actualLatitude = prefsRule.getPreferences().getFloat("map_lat", 0.0f);
+            float actualLongitude = prefsRule.getPreferences().getFloat("map_lon", 0.0f);
+            float actualZoom = prefsRule.getPreferences().getFloat("map_zoom", 0.0f);
+            assertThat("Latitude", (double)actualLatitude, closeTo((double)expectedLatitude, 5e-2));
+            assertThat("Longitude", (double)actualLongitude, closeTo((double)expectedLongitude, 5e-2));
+            assertThat("Zoom", (double)actualZoom, closeTo((double)expectedZoom, 1e-7));
         }
     }
 
     @RunWith(AndroidJUnit4.class)
     public static class GivenSavedLocationInSWHemisphere {
         private static final float expectedLatitude = -37.50123f;
-        private static final float expectedLongtude = -88.25034f;
+        private static final float expectedLongitude = -88.25034f;
+        private static final float expectedZoom = 5.5f;
 
         private final SharedPreferencesRule prefsRule = new SharedPreferencesRule() {
             @Override
             protected void modifyPreferences(SharedPreferences preferences) {
                 preferences.edit()
                         .putFloat("map_lat", expectedLatitude)
-                        .putFloat("map_lon", expectedLongtude)
-                        .putFloat("map_zoom", 5.0f)
+                        .putFloat("map_lon", expectedLongitude)
+                        .putFloat("map_zoom", expectedZoom)
                         .commit();
             }
         };
@@ -277,7 +359,32 @@ public class MapModeTest {
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
                             GeneralLocation.CENTER, Press.THUMB));
             onView(withId(R.id.info))
-                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongtude));
+                    .check(new SpecificDMSLocationAssertion(expectedLatitude, expectedLongitude));
+        }
+
+        @Test
+        public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
+            try { Thread.sleep(500); } catch(InterruptedException ex) {}
+            prefsRule.getPreferences()
+                    .edit()
+                    .remove("map_lat")
+                    .remove("map_lon")
+                    .remove("map_zoom")
+                    .commit();
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
+                            GeneralLocation.CENTER_LEFT, Press.THUMB));
+            onView(withId(R.id.mapview))
+                    .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER_LEFT,
+                            GeneralLocation.CENTER, Press.THUMB));
+            onView(withId(R.id.accept))
+                    .perform(click());
+            float actualLatitude = prefsRule.getPreferences().getFloat("map_lat", 0.0f);
+            float actualLongitude = prefsRule.getPreferences().getFloat("map_lon", 0.0f);
+            float actualZoom = prefsRule.getPreferences().getFloat("map_zoom", 0.0f);
+            assertThat("Latitude", (double)actualLatitude, closeTo((double)expectedLatitude, 5e-2));
+            assertThat("Longitude", (double)actualLongitude, closeTo((double)expectedLongitude, 5e-2));
+            assertThat("Zoom", (double)actualZoom, closeTo((double)expectedZoom, 1e-7));
         }
     }
 }
