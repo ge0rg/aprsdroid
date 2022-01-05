@@ -1,20 +1,10 @@
 package org.aprsdroid.app;
 
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-
-import static org.hamcrest.Matchers.closeTo;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-
 import static org.hamcrest.MatcherAssert.assertThat;
-import org.aprsdroid.app.testing.CoordinateMatcher;
-import org.junit.Assert;
-import org.junit.Test;
+import static org.hamcrest.Matchers.closeTo;
 
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.aprsdroid.app.testing.CoordinateMatcher;
+import org.junit.Test;
 
 public class CoordinateTest {
     // Reference data generated from https://www.pgc.umn.edu/apps/convert/
@@ -30,24 +20,24 @@ public class CoordinateTest {
     @Test
     public void givenDMSLatitudeInN_whenParsingString_ThenShouldMatchDecimal() {
         float value = CoordinateMatcher.matchLatitude(providedNLatitude);
-        assertThat("Latitude", (double)value, closeTo((double)expectedNLatitude, 1e-7));
+        assertThat("Latitude", (double) value, closeTo((double) expectedNLatitude, 1e-7));
     }
 
     @Test
     public void givenDMSLongitudeInE_whenParsingString_ThenShouldMatchDecimal() {
         float value = CoordinateMatcher.matchLongitude(providedELongitude);
-        assertThat("Longitude", (double)value, closeTo((double)expectedELongitude, 1e-7));
+        assertThat("Longitude", (double) value, closeTo((double) expectedELongitude, 1e-7));
     }
 
     @Test
     public void givenDMSLatitudeInS_whenParsingString_ThenShouldMatchDecimal() {
         float value = CoordinateMatcher.matchLatitude(providedSLatitude);
-        assertThat("Latitude", (double)value, closeTo((double)expectedSLatitude, 1e-7));
+        assertThat("Latitude", (double) value, closeTo((double) expectedSLatitude, 1e-7));
     }
 
     @Test
     public void givenDMSLongitudeInW_whenParsingString_ThenShouldMatchDecimal() {
         float value = CoordinateMatcher.matchLongitude(providedWLongitude);
-        assertThat("Longitude", (double)value, closeTo((double)expectedWLongitude, 1e-7));
+        assertThat("Longitude", (double) value, closeTo((double) expectedWLongitude, 1e-7));
     }
 }
