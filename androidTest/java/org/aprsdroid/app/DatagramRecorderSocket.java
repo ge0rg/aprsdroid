@@ -44,16 +44,19 @@ class DatagramRecorderSocket extends DatagramSocket {
     public void send(DatagramPacket p) {
         if(p != null) {
             Log.d("APRSTest", "Packet to " + p.getAddress().toString() + ":" + p.getPort() + " -> " + new String(p.getData(), StandardCharsets.UTF_8));
+            DatagramLog.addPacket(p);
         }
-        if(p != null)
-            DatagramLog.log.add(p);
     }
 
     static class DatagramLog {
-        static ArrayList<DatagramPacket> log = new ArrayList<>();
+        private static ArrayList<DatagramPacket> log = new ArrayList<>();
 
         static void clear() {
             log.clear();
+        }
+
+        static void addPacket(DatagramPacket packet) {
+            log.add(packet);
         }
 
         static List<DatagramPacket> getLog() {
