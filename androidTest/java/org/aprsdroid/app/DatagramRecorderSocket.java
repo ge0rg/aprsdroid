@@ -6,6 +6,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketAddress;
 import java.net.SocketException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ class DatagramRecorderSocket extends DatagramSocket {
     @Override
     public void send(DatagramPacket p) {
         if(p != null) {
-            Log.d("APRSTest", "Packet to ${it.address.toString()}:${it.port} -> ${it.data.toString()}");
+            Log.d("APRSTest", "Packet to " + p.getAddress().toString() + ":" + p.getPort() + " -> " + new String(p.getData(), StandardCharsets.UTF_8));
         }
         if(p != null)
             DatagramLog.log.add(p);
