@@ -15,8 +15,7 @@ public class ManualLocationUploadTest {
     @Test
     public void testSingleShotUpload() {
         APRSdroidApplication androidApp = (APRSdroidApplication)appContext.getApplicationContext();
-//        androidApp.setServiceLocator(new ServiceLocatorTestImpl());
-        APRSdroidApplication$.MODULE$.setServiceLocator((org.aprsdroid.app.ServiceLocator) new ServiceLocatorTestImpl());
+        androidApp.setServiceLocator(new ServiceLocatorTestImpl());
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("callsign", "X1ABC");
