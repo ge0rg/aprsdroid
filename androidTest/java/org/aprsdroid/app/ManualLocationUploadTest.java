@@ -1,10 +1,12 @@
 package org.aprsdroid.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.test.InstrumentationRegistry;
+import android.util.Log;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,6 +29,7 @@ public class ManualLocationUploadTest {
     private Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     private SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(appContext);
 
+    // Invalid passcode used so it can't accidentally submit data
     private final String expected_callsign = "X1ABC";
     private final String expected_passcode = "12345";
     private final String expected_ssid = "2";
@@ -37,26 +40,38 @@ public class ManualLocationUploadTest {
     public void testSingleShotUpload() {
         APRSdroidApplication androidApp = (APRSdroidApplication)appContext.getApplicationContext();
         androidApp.setServiceLocator(new ServiceLocatorTestImpl());
+        Log.v("APRSdroid-test", "Stopping APRS service");
+        appContext.stopService(new Intent(appContext, AprsService.class));
+        try {
+            // TODO Synchronize with service lifecycle
+            Thread.sleep(1*1000);
+        } catch (InterruptedException ex) {
+            Log.w("APRSdroid-test", "Sleep was interrupted: " + ex.toString());
+        }
         DatagramRecorderSocket.DatagramLog.clear();
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("callsign", expected_callsign);
-        editor.putString("passcode", expected_passcode);  // Invalid passcode so it can't accidentally submit data
+        editor.putString("passcode", expected_passcode);
         editor.putString("ssid", expected_ssid);
         editor.putString("loc_source", "manual");
         editor.putString("manual_lat", String.valueOf(expected_latitude));
         editor.putString("manual_lon", String.valueOf(expected_longitude));
         editor.putBoolean("periodicposition", false);
         editor.putString("interval", "1");
-        editor.putString("backendname", "aprsis-tcpip-udp");
+        //editor.putString("backendname", "aprsis-tcpip-udp");
+        editor.putString("proto", "aprsis");
+        editor.putString("aprsis", "udp");
         editor.commit();
 
+        Log.v("APRSdroid-test", "Starting one-shot APRS service");
         appContext.startService(AprsService$.MODULE$.intent(appContext, AprsService$.MODULE$.SERVICE_ONCE()));
 
         try {
             // TODO Synchronize with service lifecycle
-            Thread.sleep(3000);
+            Thread.sleep(5*1000);
         } catch (InterruptedException ex) {
+            Log.w("APRSdroid-test", "Sleep was interrupted: " + ex.toString());
         }
 
         List<DatagramPacket> packets = DatagramRecorderSocket.DatagramLog.getLog();
@@ -71,9 +86,9 @@ public class ManualLocationUploadTest {
                 fields.put(header[i], header[i+1]);
             }
         }
+        String expected_user = String.format("%s-%s", expected_callsign, expected_ssid);
         Assert.assertTrue("user field missing", fields.containsKey("user"));
         Assert.assertTrue("pass field missing", fields.containsKey("user"));
-        String expected_user = String.format("%s-%s", expected_callsign, expected_ssid);
         Assert.assertEquals("User id incorrect", expected_user, fields.get("user"));
         Assert.assertEquals("Passcode incorrect", expected_passcode, fields.get("pass"));
         APRSPacket decodedPacket;

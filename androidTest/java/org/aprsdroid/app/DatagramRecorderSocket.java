@@ -43,7 +43,7 @@ class DatagramRecorderSocket extends DatagramSocket {
     @Override
     public void send(DatagramPacket p) {
         if(p != null) {
-            Log.d("APRSTest", "Packet to " + p.getAddress().toString() + ":" + p.getPort() + " -> " + new String(p.getData(), StandardCharsets.UTF_8));
+            Log.d("APRSdroid-test", "Packet to " + p.getAddress().toString() + ":" + p.getPort() + " -> " + new String(p.getData(), StandardCharsets.UTF_8));
             DatagramLog.addPacket(p);
         }
     }
