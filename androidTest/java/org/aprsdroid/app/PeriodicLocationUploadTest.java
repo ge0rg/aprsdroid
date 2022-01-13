@@ -3,6 +3,7 @@ package org.aprsdroid.app;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.preference.PreferenceManager;
@@ -54,7 +55,7 @@ public class PeriodicLocationUploadTest {
                 true,
                 true,
                 3,
-                10);
+                Criteria.ACCURACY_FINE);
         locationManager.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
     }
 
@@ -108,7 +109,7 @@ public class PeriodicLocationUploadTest {
         location.setElapsedRealtimeNanos(438455L);
         location.setLatitude(expected_latitude+4);
         location.setLongitude(expected_longitude-10);
-        location.setAccuracy(5);
+        location.setAccuracy(5.3f);
         location.setBearing(45);
         location.setSpeed(40);
         location.setAltitude(650);
