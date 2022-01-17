@@ -8,11 +8,13 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.not;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import androidx.test.espresso.action.GeneralLocation;
 import androidx.test.espresso.action.GeneralSwipeAction;
@@ -22,9 +24,13 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+
 import org.aprsdroid.app.testing.DMSLocationAssertion;
 import org.aprsdroid.app.testing.SharedPreferencesRule;
 import org.aprsdroid.app.testing.SpecificDMSLocationAssertion;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
@@ -33,6 +39,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Enclosed.class)
 public class MapModeTest {
+    private static final String TAG = "APRSdroid-MapModeTest";
     private static final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
     private static final ActivityScenarioRule<GoogleMapAct> activityRule =
@@ -61,6 +68,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDragged_thenPositionAndButtonShown() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -72,6 +82,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDragged_thenPositionIsValidCoordinates() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -110,6 +123,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDragged_thenPositionAndButtonShown() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -121,6 +137,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -133,7 +152,14 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
-            try { Thread.sleep(500); } catch(InterruptedException ex) {}
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Log.w(TAG, "Sleep was interrupted: " + ex);
+            }
             prefsRule.getPreferences()
                     .edit()
                     .remove("map_lat")
@@ -151,9 +177,9 @@ public class MapModeTest {
             float actualLatitude = prefsRule.getPreferences().getFloat("map_lat", 0.0f);
             float actualLongitude = prefsRule.getPreferences().getFloat("map_lon", 0.0f);
             float actualZoom = prefsRule.getPreferences().getFloat("map_zoom", 0.0f);
-            assertThat("Latitude", (double)actualLatitude, closeTo((double)expectedLatitude, 5e-2));
-            assertThat("Longitude", (double)actualLongitude, closeTo((double)expectedLongitude, 5e-2));
-            assertThat("Zoom", (double)actualZoom, closeTo((double)expectedZoom, 1e-7));
+            assertThat("Latitude", (double) actualLatitude, closeTo(expectedLatitude, 5e-2));
+            assertThat("Longitude", (double) actualLongitude, closeTo(expectedLongitude, 5e-2));
+            assertThat("Zoom", (double) actualZoom, closeTo(expectedZoom, 1e-7));
         }
     }
 
@@ -187,6 +213,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDragged_thenPositionAndButtonShown() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -198,6 +227,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -210,7 +242,14 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
-            try { Thread.sleep(500); } catch(InterruptedException ex) {}
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Log.w(TAG, "Sleep was interrupted: " + ex);
+            }
             prefsRule.getPreferences()
                     .edit()
                     .remove("map_lat")
@@ -228,9 +267,9 @@ public class MapModeTest {
             float actualLatitude = prefsRule.getPreferences().getFloat("map_lat", 0.0f);
             float actualLongitude = prefsRule.getPreferences().getFloat("map_lon", 0.0f);
             float actualZoom = prefsRule.getPreferences().getFloat("map_zoom", 0.0f);
-            assertThat("Latitude", (double)actualLatitude, closeTo((double)expectedLatitude, 5e-2));
-            assertThat("Longitude", (double)actualLongitude, closeTo((double)expectedLongitude, 5e-2));
-            assertThat("Zoom", (double)actualZoom, closeTo((double)expectedZoom, 1e-7));
+            assertThat("Latitude", (double) actualLatitude, closeTo(expectedLatitude, 5e-2));
+            assertThat("Longitude", (double) actualLongitude, closeTo(expectedLongitude, 5e-2));
+            assertThat("Zoom", (double) actualZoom, closeTo(expectedZoom, 1e-7));
         }
     }
 
@@ -264,6 +303,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDragged_thenPositionAndButtonShown() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -275,6 +317,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -287,7 +332,14 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
-            try { Thread.sleep(500); } catch(InterruptedException ex) {}
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Log.w(TAG, "Sleep was interrupted: " + ex);
+            }
             prefsRule.getPreferences()
                     .edit()
                     .remove("map_lat")
@@ -305,9 +357,9 @@ public class MapModeTest {
             float actualLatitude = prefsRule.getPreferences().getFloat("map_lat", 0.0f);
             float actualLongitude = prefsRule.getPreferences().getFloat("map_lon", 0.0f);
             float actualZoom = prefsRule.getPreferences().getFloat("map_zoom", 0.0f);
-            assertThat("Latitude", (double)actualLatitude, closeTo((double)expectedLatitude, 5e-2));
-            assertThat("Longitude", (double)actualLongitude, closeTo((double)expectedLongitude, 5e-2));
-            assertThat("Zoom", (double)actualZoom, closeTo((double)expectedZoom, 1e-7));
+            assertThat("Latitude", (double) actualLatitude, closeTo(expectedLatitude, 5e-2));
+            assertThat("Longitude", (double) actualLongitude, closeTo(expectedLongitude, 5e-2));
+            assertThat("Zoom", (double) actualZoom, closeTo(expectedZoom, 1e-7));
         }
     }
 
@@ -341,6 +393,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDragged_thenPositionAndButtonShown() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -352,6 +407,9 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
             onView(withId(R.id.mapview))
                     .perform(new GeneralSwipeAction(Swipe.SLOW, GeneralLocation.CENTER,
                             GeneralLocation.CENTER_LEFT, Press.THUMB));
@@ -364,7 +422,14 @@ public class MapModeTest {
 
         @Test
         public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
-            try { Thread.sleep(500); } catch(InterruptedException ex) {}
+            Assume.assumeThat("Google Play Services requires",
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
+                    equalTo(ConnectionResult.SUCCESS));
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Log.w(TAG, "Sleep was interrupted: " + ex);
+            }
             prefsRule.getPreferences()
                     .edit()
                     .remove("map_lat")
@@ -382,9 +447,9 @@ public class MapModeTest {
             float actualLatitude = prefsRule.getPreferences().getFloat("map_lat", 0.0f);
             float actualLongitude = prefsRule.getPreferences().getFloat("map_lon", 0.0f);
             float actualZoom = prefsRule.getPreferences().getFloat("map_zoom", 0.0f);
-            assertThat("Latitude", (double)actualLatitude, closeTo((double)expectedLatitude, 5e-2));
-            assertThat("Longitude", (double)actualLongitude, closeTo((double)expectedLongitude, 5e-2));
-            assertThat("Zoom", (double)actualZoom, closeTo((double)expectedZoom, 1e-7));
+            assertThat("Latitude", (double) actualLatitude, closeTo(expectedLatitude, 5e-2));
+            assertThat("Longitude", (double) actualLongitude, closeTo(expectedLongitude, 5e-2));
+            assertThat("Zoom", (double) actualZoom, closeTo(expectedZoom, 1e-7));
         }
     }
 }
