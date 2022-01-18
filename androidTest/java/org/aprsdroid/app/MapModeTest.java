@@ -22,6 +22,7 @@ import androidx.test.espresso.action.Press;
 import androidx.test.espresso.action.Swipe;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.FlakyTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -136,6 +137,7 @@ public class MapModeTest {
         }
 
         @Test
+        @FlakyTest
         public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
             Assume.assumeThat("Google Play Services requires",
                     GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
@@ -151,6 +153,7 @@ public class MapModeTest {
         }
 
         @Test
+        @FlakyTest
         public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
             Assume.assumeThat("Google Play Services requires",
                     GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
@@ -226,6 +229,7 @@ public class MapModeTest {
         }
 
         @Test
+        @FlakyTest
         public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
             Assume.assumeThat("Google Play Services requires",
                     GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
@@ -241,6 +245,7 @@ public class MapModeTest {
         }
 
         @Test
+        @FlakyTest
         public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
             Assume.assumeThat("Google Play Services requires",
                     GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
@@ -316,6 +321,7 @@ public class MapModeTest {
         }
 
         @Test
+        @FlakyTest
         public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
             Assume.assumeThat("Google Play Services requires",
                     GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
@@ -331,6 +337,7 @@ public class MapModeTest {
         }
 
         @Test
+        @FlakyTest
         public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
             Assume.assumeThat("Google Play Services requires",
                     GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
@@ -406,6 +413,7 @@ public class MapModeTest {
         }
 
         @Test
+        @FlakyTest
         public void whenMapIsDraggedBackAndForth_thenPositionIsOriginalCoordinates() {
             Assume.assumeThat("Google Play Services requires",
                     GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
@@ -421,6 +429,7 @@ public class MapModeTest {
         }
 
         @Test
+        @FlakyTest
         public void whenMapIsDraggedBackAndForthAndSaved_thenPositionIsSavedCorrectly() {
             Assume.assumeThat("Google Play Services requires",
                     GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(appContext),
