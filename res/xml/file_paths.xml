@@ -1,3 +1,4 @@
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
    <external-path name="APRSdroid" path="Documents/APRSdroid" />
+   <external-path name="APRSdroid-top" path="APRSdroid" />
 </paths>
