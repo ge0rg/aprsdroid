@@ -6,9 +6,11 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.junit.Assume.assumeTrue;
 
 import android.app.Instrumentation;
 import android.content.Intent;
+import android.os.Environment;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.intent.Intents;
@@ -34,6 +36,7 @@ public class ProfileTests {
 
     @Test
     public void testThatExportProfileOpensTheChooser() {
+        assumeTrue(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()));
         ActivityScenario scenario = ActivityScenario.launch(PrefsAct.class);
         Intents.intending(hasAction(Intent.ACTION_CHOOSER)).respondWith(new Instrumentation.ActivityResult(0, null));
         openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
