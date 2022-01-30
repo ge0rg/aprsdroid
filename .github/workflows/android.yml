@@ -148,7 +148,7 @@ jobs:
         force-avd-creation: false
         emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
         disable-animations: true
-        script: ./gradlew connectedCheck --stacktrace
+        script: adb logcat -c && adb logcat -f /sdcard/logcat.txt & ./gradlew connectedCheck --stacktrace || ( adb pull /sdcard/logcat.txt build/reports/; exit 1 )
 
     - name: Upload reports
       uses: actions/upload-artifact@v2
