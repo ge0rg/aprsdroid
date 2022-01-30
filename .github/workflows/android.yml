@@ -124,7 +124,7 @@ jobs:
         path: |
           ~/.android/avd/*
           ~/.android/adb*
-        key: avd-${{ matrix.api-level }}-${{ matrix.target }}
+        key: avd-${{ matrix.api-level }}-${{ matrix.target }}-sd
 
     - name: Create AVD and generate snapshot for caching
       if: steps.avd-cache.outputs.cache-hit != 'true'
@@ -134,6 +134,7 @@ jobs:
         target: ${{ matrix.target }}
         arch: ${{ matrix.api-level >= 30 && 'x86_64' || 'x86' }}
         force-avd-creation: false
+        sdcard-path-or-size: '64M'
         emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
         disable-animations: false
         script: echo "Generated AVD snapshot for caching."
@@ -146,6 +147,7 @@ jobs:
         arch: ${{ matrix.api-level >= 30 && 'x86_64' || 'x86' }}
         profile: Nexus 6
         force-avd-creation: false
+        sdcard-path-or-size: '64M'
         emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
         disable-animations: true
         script: adb logcat -c && adb logcat -f /sdcard/logcat.txt & ./gradlew connectedCheck --stacktrace || ( adb pull /sdcard/logcat.txt build/reports/; exit 1 )
