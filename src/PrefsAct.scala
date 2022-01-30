@@ -9,6 +9,8 @@ import _root_.android.preference.PreferenceActivity
 import _root_.android.preference.PreferenceManager
 import _root_.android.view.{Menu, MenuItem}
 import _root_.android.widget.Toast
+import android.util.Log
+
 import java.text.SimpleDateFormat
 import java.io.{File, PrintWriter}
 import java.util.Date
@@ -16,6 +18,8 @@ import java.util.Date
 import org.json.JSONObject
 
 class PrefsAct extends PreferenceActivity {
+	val TAG = "APRSdroid.PrefsAct"
+
 	lazy val db = StorageDatabase.open(this)
 	lazy val prefs = new PrefsWrapper(this)
 
@@ -33,7 +37,10 @@ class PrefsAct extends PreferenceActivity {
 
 			UIHelper.shareFile(this, file, filename)
 		} catch {
-			case e : Exception => Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
+			case e : Exception => {
+				Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show()
+				Log.i(TAG, "Caught exception sharing file: " + e, e)
+			}
 		}
 	}
 
@@ -62,7 +69,7 @@ class PrefsAct extends PreferenceActivity {
 
 	def resolveContentUri(uri : Uri) = {
 		val Array(storage, path) = uri.getPath().replace("/document/", "").split(":", 2)
-		android.util.Log.d("PrefsAct", "resolveContentUri s=" + storage + " p=" + path)
+		android.util.Log.d(TAG, "resolveContentUri s=" + storage + " p=" + path)
 		if (storage == "primary")
 			Environment.getExternalStorageDirectory() + "/" + path
 		else
@@ -108,7 +115,7 @@ class PrefsAct extends PreferenceActivity {
 	}
 
 	override def onActivityResult(reqCode : Int, resultCode : Int, data : Intent) {
-		android.util.Log.d("PrefsAct", "onActResult: request=" + reqCode + " result=" + resultCode + " " + data)
+		android.util.Log.d(TAG, "onActResult: request=" + reqCode + " result=" + resultCode + " " + data)
 		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123456) {
 			parseFilePickerResult(data, "mapfile", R.string.mapfile_error)
 		} else
