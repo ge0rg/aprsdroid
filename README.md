@@ -8,7 +8,7 @@ messages.
 
 APRSdroid is Open Source Software written in Scala and licensed under the GPLv2.
 
-[![Android CI](../../actions/workflows/android.yml/badge.svg)](../../actions/workflows/android.yml)
+master: [![Android CI](../../actions/workflows/android.yml/badge.svg?branch=master&event=push)](../../actions/workflows/android.yml)
 
 Quick links:
 
