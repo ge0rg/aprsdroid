@@ -21,6 +21,7 @@ import _root_.java.io.File
 import _root_.java.util.ArrayList
 
 import org.mapsforge.v3.android.maps.mapgenerator.{MapGeneratorFactory, MapGeneratorInternal}
+import org.mapsforge.v3.map.reader.header.FileOpenResult
 
 // to make scala-style iterating over arraylist possible
 import scala.collection.JavaConversions._
@@ -116,11 +117,21 @@ class MapAct extends MapActivity with MapMenuHelper {
 
 	def reloadMapAndTheme() {
 		val mapfile = new File(prefs.getString("mapfile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.map"))
-		if (mapfile.exists() && mapfile.canRead())
-			mapview.setMapFile(mapfile)
-		else {
-			if (prefs.getString("mapfile", null) != null)
-				Toast.makeText(this, getString(R.string.mapfile_error, mapfile), Toast.LENGTH_SHORT).show()
+		var error = if (mapfile.exists() && mapfile.canRead()) {
+			val result = mapview.setMapFile(mapfile)
+			// output map loader's error if loading failed
+			if (result.isSuccess) null else result.getErrorMessage
+		} else if (prefs.getString("mapfile", null) != null) {
+			// output generic error if file was configured but is not loadable
+			getString(R.string.mapfile_error, mapfile)
+		} else {
+			// do not output error if no map file was configured, silently load online osm
+			null
+		}
+		if (error != null)
+			Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+		// all map file attempts failed, fall back to online
+		if (mapview.getMapFile == null) {
 			val map_source = MapGeneratorInternal.MAPNIK
 			val map_gen = new OsmTileDownloader()
 			map_gen.setUserAgent(getString(R.string.build_version))
