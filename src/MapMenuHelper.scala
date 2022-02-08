@@ -46,7 +46,7 @@ trait MapMenuHelper extends UIHelper with OnClickListener {
 			infoText.setVisibility(View.INVISIBLE)
 			accept.setVisibility(View.INVISIBLE)
 		}
-		keyboardNavDialog()
+		keyboardNavDialog(isCoordinateChooser)
 	}
 
 	abstract override def onCreateOptionsMenu(menu : Menu) : Boolean = {

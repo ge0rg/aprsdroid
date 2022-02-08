@@ -137,20 +137,22 @@ trait UIHelper extends Activity
 		passcodeDialog.show()
 	}
 
-	def keyboardNavDialog() {
+	def keyboardNavDialog(force : Boolean = false) {
 		if (getPackageManager().hasSystemFeature("android.hardware.touchscreen"))
 			return
-		if (prefs.getBoolean("kbdnav_shown", false))
+		if (!force && prefs.getBoolean("kbdnav_shown", false))
 			return
-		prefs.prefs.edit().putBoolean("kbdnav_shown", true).commit()
 		
-		val keys = Array("⬅➡⬆⬇", "⏪⏩", "⏯️", "⏎🆗")
+		val keys = Array("←→↑↓", "⏪⏩", "⏯️", "⏎🆗")
 		val titles = getResources().getStringArray(R.array.kbdnav_lines)
-		val text = keys zip titles map { case (k, v) => "%s\t%s".format(k, v) } mkString("\n")
+		val text = keys zip titles map { case (k, v) => "%s\t%s".format(k, v) } mkString("\n\n")
 		new AlertDialog.Builder(this).setTitle(R.string.kbdnav_title)
 			.setMessage(text)
 			.setIcon(android.R.drawable.ic_dialog_info)
-			.setPositiveButton(android.R.string.ok, null)
+			.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener {
+				override def onClick(dialog: DialogInterface, which: Int) = {
+					prefs.prefs.edit().putBoolean("kbdnav_shown", true).commit()
+				}})
 			.create.show
 	}
 
