@@ -52,7 +52,9 @@ class MapAct extends MapActivity with MapMenuHelper {
 	override def onResume() {
 		super.onResume()
 		// only make it default if not tracking
-		if (targetcall == "")
+		if (isCoordinateChooser)
+			setTitle(R.string.p_source_from_map)
+		else if (targetcall == "")
 			makeLaunchActivity("map")
 		else
 			setLongTitle(R.string.app_map, targetcall)
@@ -164,6 +166,7 @@ class MapAct extends MapActivity with MapMenuHelper {
 		     KeyEvent.KEYCODE_ENTER =>
 			// TODO: return coordinates
 			if (isCoordinateChooser) {
+				setResult(android.app.Activity.RESULT_OK, resultIntent)
 				finish()
 			}
 			true
