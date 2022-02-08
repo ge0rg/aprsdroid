@@ -81,7 +81,7 @@ android {
 	buildToolsVersion "29.0.3"
 	defaultConfig {
 		minSdkVersion 14
-		targetSdkVersion 30
+		targetSdkVersion 29
 		versionName "$build_revision"
 		versionCode versionCodeDate()
 		resValue "string", "build_revision", "$build_revision"
