@@ -19,6 +19,7 @@ import _root_.org.mapsforge.v3.android.maps.overlay.{ItemizedOverlay, OverlayIte
 import _root_.scala.collection.mutable.ArrayBuffer
 import _root_.java.io.File
 import _root_.java.util.ArrayList
+import java.lang.UnsupportedOperationException
 
 import org.mapsforge.v3.android.maps.mapgenerator.{MapGeneratorFactory, MapGeneratorInternal}
 import org.mapsforge.v3.map.reader.header.FileOpenResult
@@ -133,11 +134,15 @@ class MapAct extends MapActivity with MapMenuHelper {
 		if (error != null)
 			Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
 		// all map file attempts failed, fall back to online
-		if (mapview.getMapFile == null) {
-			val map_source = MapGeneratorInternal.MAPNIK
-			val map_gen = new OsmTileDownloader()
-			map_gen.setUserAgent(getString(R.string.build_version))
-			mapview.setMapGenerator(map_gen)
+		try {
+			if (mapview.getMapFile == null) {
+				val map_source = MapGeneratorInternal.MAPNIK
+				val map_gen = new OsmTileDownloader()
+				map_gen.setUserAgent(getString(R.string.build_version))
+				mapview.setMapGenerator(map_gen)
+			}
+		} catch {
+		case _ : UnsupportedOperationException =>  /* ignore, this is thrown by online map generator */
 		}
 		val themefile = new File(prefs.getString("themefile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.xml"))
 		if (themefile.exists())
