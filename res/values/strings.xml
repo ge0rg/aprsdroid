@@ -325,6 +325,8 @@
 <string name="p_afsk_btsco">Bluetooth Headset</string>
 <string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
 <string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_ptt">Use Push-to-Talk</string>
+<string name="p_afsk_pttport">Push-to-Talk Port</string>
 <string-array name="p_afsk_out_e">
 	<item>Voice Call</item>
 	<item>Ringtone</item>

@@ -102,6 +102,8 @@ class PrefsWrapper(val context : Context) {
 	
 	def getProto() = getString("proto", "aprsis")
 	def getAfskHQ() = getBoolean("afsk.hqdemod", true)
+	def getAfskRTS() = getBoolean("afsk.ptt", false)
+	def getPTTPort() = getString("afsk.pttport", "")
 	def getAfskBluetooth() = getBoolean("afsk.btsco", false) && getAfskHQ()
 	def getAfskOutput() = if (getAfskBluetooth()) AudioManager.STREAM_VOICE_CALL else getStringInt("afsk.output", 0)
 }
