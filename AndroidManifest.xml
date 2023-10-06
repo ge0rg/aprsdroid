@@ -37,7 +37,8 @@
 	<uses-library android:name="org.apache.http.legacy" android:required="false"/>
         <activity android:name=".APRSdroid"
 		android:configChanges="orientation|keyboardHidden|screenSize"
-                  android:label="@string/app_name">
+                  android:label="@string/app_name"
+				  android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -95,13 +96,16 @@
 		android:launchMode="singleTop"
 		android:parentActivityName=".HubActivity"
 		android:configChanges="orientation|keyboardHidden|screenSize"
-		android:theme="@style/MapViewTheme" >
+		android:theme="@style/MapViewTheme"
+		android:exported="true"
+		>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 		<category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 	</activity>
-	<activity android:name=".ProfileImportActivity" android:label="@string/profile_import_activity">
+	<activity android:name=".ProfileImportActivity" android:label="@string/profile_import_activity"
+		android:exported="true">
 	    <intent-filter>
 		<action android:name="android.intent.action.VIEW" />
 		<category android:name="android.intent.category.DEFAULT" />
@@ -121,7 +125,8 @@
 			android:pathPattern=".*\\.aprs" />
 	    </intent-filter>
 	</activity>
-	<activity android:name=".KeyfileImportActivity" android:label="@string/ssl_import_activity">
+	<activity android:name=".KeyfileImportActivity" android:label="@string/ssl_import_activity"
+		android:exported="true">
 	    <intent-filter>
 		<action android:name="android.intent.action.VIEW" />
 		<category android:name="android.intent.category.DEFAULT" />
@@ -150,7 +155,9 @@
 	</activity>
 	<service android:name=".AprsService" android:label="@string/aprsservice"
 		android:foregroundServiceType="location"
-		tools:ignore="ExportedService" >
+		tools:ignore="ExportedService"
+		android:exported="true"
+		>
 	    <intent-filter>
 		<action android:name="org.aprsdroid.app.SERVICE" />
 		<action android:name="org.aprsdroid.app.ONCE" />
@@ -160,7 +167,7 @@
 	    </intent-filter>
 	</service>
 	<!-- start the service if applicable on boot -->
-	<receiver android:name=".SystemEventReceiver">
+	<receiver android:name=".SystemEventReceiver" android:exported="true">
 	    <intent-filter>
 		<action android:name="android.intent.action.BOOT_COMPLETED"/>
 	    </intent-filter>
