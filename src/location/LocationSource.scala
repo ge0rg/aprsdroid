@@ -22,8 +22,8 @@ object LocationSource {
 	}
 	def getPermissions(prefs : PrefsWrapper) = {
 		prefs.getString("loc_source", DEFAULT_CONNTYPE) match {
-			case "smartbeaconing" => Set(Manifest.permission.ACCESS_FINE_LOCATION)
-			case "periodic" => Set(Manifest.permission.ACCESS_FINE_LOCATION)
+			case "smartbeaconing" => Set(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+			case "periodic" => Set(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
 			case "manual" => Set()
 		}
 	}

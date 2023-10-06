@@ -42,7 +42,7 @@ class BackendPrefs extends PreferenceActivity
 				def onPreferenceClick(preference: Preference) = {
 					if (preference.asInstanceOf[CheckBoxPreference].isChecked) {
 						preference.asInstanceOf[CheckBoxPreference].setChecked(false)
-						checkPermissions(Array(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_GPS)
+						checkPermissions(Array(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_GPS)
 					}
 					true
 				}

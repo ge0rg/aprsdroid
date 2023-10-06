@@ -134,7 +134,7 @@ object AprsBackend {
 		val perms = scala.collection.mutable.Set[String]()
 		perms ++= AprsBackend.defaultBackendInfo(prefs).permissions
 		if (prefs.getProto() == "kenwood" && prefs.getBoolean("kenwood.gps", false))
-			perms.add(Manifest.permission.ACCESS_FINE_LOCATION)
+			perms += (Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
 		perms.toSet
 	}
 

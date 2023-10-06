@@ -41,7 +41,7 @@ class LocationPrefs extends PreferenceActivity with OnSharedPreferenceChangeList
 		if (i != null && i.getDataString() != null) {
 			i.getDataString() match {
 			case "gps2manual" =>
-				checkPermissions(Array(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_GPS)
+				checkPermissions(Array(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_GPS)
 			case "chooseOnMap" =>
 				val mapmode = MapModes.defaultMapMode(this, prefs)
 				startActivityForResult(new Intent(this, mapmode.viewClass).putExtra("info", R.string.p_source_from_map_save), REQUEST_MAP)
