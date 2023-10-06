@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<!-- UsbSerial/usbserial/src/main$ perl -lne '/new ConcreteDevice ?.(0x[0-9a-f]{4}), (0x[0-9a-f]{4})/i && printf "\t<usb-device vendor-id=\"%d\" product-id=\"%d\" />\n", hex($1), hex($2)' java/com/felhr/deviceids/*.java -->
+	<!-- UsbSerial/usbserial/src/main$ perl -lne '/createDevice ?.(0x[0-9a-f]{4}), (0x[0-9a-f]{4})/i && printf "\t<usb-device vendor-id=\"%d\" product-id=\"%d\" />\n", hex($1), hex($2)' java/com/felhr/deviceids/*.java | sort -n -->
 	<usb-device vendor-id="17224" product-id="21795" />
 	<usb-device vendor-id="6790" product-id="29987" />
 	<usb-device vendor-id="6790" product-id="21795" />
@@ -77,13 +77,17 @@
 	<usb-device vendor-id="4292" product-id="34296" />
 	<usb-device vendor-id="4292" product-id="34404" />
 	<usb-device vendor-id="4292" product-id="34405" />
+	<usb-device vendor-id="4292" product-id="34652" />
 	<usb-device vendor-id="4292" product-id="34980" />
 	<usb-device vendor-id="4292" product-id="34981" />
 	<usb-device vendor-id="4292" product-id="60000" />
 	<usb-device vendor-id="4292" product-id="60001" />
+	<usb-device vendor-id="4292" product-id="60003" />
 	<usb-device vendor-id="4292" product-id="60016" />
-	<usb-device vendor-id="4292" product-id="60032" />
 	<usb-device vendor-id="4292" product-id="60017" />
+	<usb-device vendor-id="4292" product-id="60026" />
+	<usb-device vendor-id="4292" product-id="60027" />
+	<usb-device vendor-id="4292" product-id="60032" />
 	<usb-device vendor-id="4292" product-id="61441" />
 	<usb-device vendor-id="4292" product-id="61442" />
 	<usb-device vendor-id="4292" product-id="61443" />
@@ -136,6 +140,7 @@
 	<usb-device vendor-id="12693" product-id="62080" />
 	<usb-device vendor-id="12693" product-id="62081" />
 	<usb-device vendor-id="16700" product-id="38144" />
+	<usb-device vendor-id="6408" product-id="8977" />
 	<usb-device vendor-id="4292" product-id="34720" />
 	<usb-device vendor-id="1027" product-id="24577" />
 	<usb-device vendor-id="1027" product-id="24582" />
@@ -373,7 +378,6 @@
 	<usb-device vendor-id="1003" product-id="8457" />
 	<usb-device vendor-id="1110" product-id="61440" />
 	<usb-device vendor-id="1110" product-id="61441" />
-	<usb-device vendor-id="1240" product-id="10" />
 	<usb-device vendor-id="1412" product-id="45088" />
 	<usb-device vendor-id="1607" product-id="256" />
 	<usb-device vendor-id="1742" product-id="33553" />
@@ -734,6 +738,8 @@
 	<usb-device vendor-id="2915" product-id="25904" />
 	<usb-device vendor-id="2956" product-id="8963" />
 	<usb-device vendor-id="4362" product-id="4432" />
+	<usb-device vendor-id="1367" product-id="8200" />
 	<usb-device vendor-id="9805" product-id="562" />
 	<usb-device vendor-id="9805" product-id="288" />
+	<usb-device vendor-id="1155" product-id="22336" />
 </resources>
