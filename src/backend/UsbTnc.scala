@@ -49,7 +49,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 	var alreadyRunning = false
 
 	val intent = new Intent(USB_PERM_ACTION)
-	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent, 0)
+	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
 	val receiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
