@@ -61,7 +61,8 @@ class MapAct extends MapActivity with MapMenuHelper {
 			setLongTitle(R.string.app_map, targetcall)
 		setKeepScreenOn()
 		setVolumeControls()
-		checkPermissions(Array(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), RELOAD_MAP)
+		//checkPermissions(Array(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), RELOAD_MAP)
+		reloadMapAndTheme()
 		mapview.requestFocus()
 	}
 
