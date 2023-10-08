@@ -137,7 +137,7 @@ android {
 			renderscript.srcDirs = ['src']
 			res.srcDirs = ['res']
 			assets.srcDirs = ['assets']
-			jniLibs.srcDirs = ['libs']
+			//jniLibs.srcDirs = ['libs']
 		}
 		androidTest {
 			java.srcDirs = ['androidTest/java']
