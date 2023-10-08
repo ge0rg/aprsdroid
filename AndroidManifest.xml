@@ -106,6 +106,12 @@
 		<category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 	</activity>
+	<activity android:name=".VTMMapAct" android:label="@string/app_map"
+		android:launchMode="singleTop"
+		android:parentActivityName=".HubActivity"
+		android:configChanges="orientation|keyboardHidden|screenSize"
+		android:theme="@style/MapViewTheme" >
+	</activity>
 	<activity android:name=".ProfileImportActivity" android:label="@string/profile_import_activity"
 		android:exported="true">
 	    <intent-filter>

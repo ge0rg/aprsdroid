@@ -2,6 +2,7 @@
 buildscript {
 	repositories {
 		jcenter()
+		maven { url "http://mvnrepository.com/artifact" }
 		maven { url 'https://jitpack.io' }
 		mavenCentral()
 		google()
@@ -165,6 +166,18 @@ dependencies {
 	implementation 'com.google.maps.android:android-maps-utils:0.5'
 	implementation 'androidx.core:core:1.6.0'
 
+	// mapsforge VTM map rendering library
+	def VTM_VERSION = "0.18.0"
+	implementation "org.mapsforge:vtm-android:$VTM_VERSION"
+	implementation "org.mapsforge:vtm-android:$VTM_VERSION:natives-armeabi-v7a"
+	implementation "org.mapsforge:vtm-android:$VTM_VERSION:natives-arm64-v8a"
+	implementation "org.mapsforge:vtm-android:$VTM_VERSION:natives-x86"
+	implementation "org.mapsforge:vtm-android:$VTM_VERSION:natives-x86_64"
+	implementation "org.mapsforge:vtm-themes:$VTM_VERSION"
+	implementation 'com.caverock:androidsvg:1.4'
+	// online tiles
+	implementation "org.mapsforge:vtm-http:$VTM_VERSION"
+	implementation 'com.squareup.okhttp3:okhttp:3.12.13'
 
 	implementation 'com.squareup.okio:okio:2.1.0'
 	androidTestImplementation 'com.android.support.test:runner:1.0.2'

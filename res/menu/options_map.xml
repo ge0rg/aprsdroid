@@ -19,6 +19,8 @@
 					android:title="@string/map_google" />
 				<item android:id="@+id/satellite"
 					android:title="@string/map_satellite" />
+				<item android:id="@+id/vtm"
+					android:title="Vector" />
 				<item android:id="@+id/mapsforge"
 					android:title="@string/map_osm" />
 			</group>

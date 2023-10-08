@@ -18,6 +18,7 @@ object MapModes {
 		all_mapmodes += new GoogleMapMode("google", R.id.normal, null, GoogleMap.MAP_TYPE_NORMAL)
 		all_mapmodes += new GoogleMapMode("satellite", R.id.satellite, null, GoogleMap.MAP_TYPE_HYBRID)
 		all_mapmodes += new MapsforgeOnlineMode("osm", R.id.mapsforge, null, "TODO")
+		all_mapmodes += new VTMFileMode("vtm", R.id.vtm, null, "TODO")
 	}
 
 	def reloadOfflineMaps(ctx : Context) {
@@ -88,5 +89,9 @@ class MapsforgeOnlineMode(tag : String, menu_id : Int, title : String, val foo :
 
 class MapsforgeFileMode(tag : String, menu_id : Int, title : String, val file : String)
 		extends MapMode(tag, menu_id, title, classOf[MapAct]) {
+}
+
+class VTMFileMode(tag : String, menu_id : Int, title : String, val file : String)
+	extends MapMode(tag, menu_id, title, classOf[VTMMapAct]) {
 }
 
