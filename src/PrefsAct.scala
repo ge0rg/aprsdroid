@@ -40,7 +40,7 @@ class PrefsAct extends PreferenceActivity {
 	def fileChooserPreference(pref_name : String, reqCode : Int, titleId : Int) {
 		findPreference(pref_name).setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			def onPreferenceClick(preference : Preference) = {
-				val get_file = new Intent(Intent.ACTION_GET_CONTENT).setType("*/*")
+				val get_file = new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("*/*")
 				startActivityForResult(Intent.createChooser(get_file,
 					getString(titleId)), reqCode)
 				true
@@ -110,7 +110,13 @@ class PrefsAct extends PreferenceActivity {
 	override def onActivityResult(reqCode : Int, resultCode : Int, data : Intent) {
 		android.util.Log.d("PrefsAct", "onActResult: request=" + reqCode + " result=" + resultCode + " " + data)
 		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123456) {
-			parseFilePickerResult(data, "mapfile", R.string.mapfile_error)
+			//parseFilePickerResult(data, "mapfile", R.string.mapfile_error)
+			val takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+			getContentResolver.takePersistableUriPermission(data.getData(), takeFlags)
+			PreferenceManager.getDefaultSharedPreferences(this)
+				.edit().putString("mapfile", data.getDataString()).commit()
+			finish()
+			startActivity(getIntent())
 		} else
 		if (resultCode == android.app.Activity.RESULT_OK && reqCode == 123457) {
 			parseFilePickerResult(data, "themefile", R.string.themefile_error)
@@ -129,7 +135,7 @@ class PrefsAct extends PreferenceActivity {
 	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
 		mi.getItemId match {
 		case R.id.profile_load =>
-			val get_file = new Intent(Intent.ACTION_GET_CONTENT).setType("*/*")
+			val get_file = new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("*/*")
 			// TODO: use MaterialFilePicker().withFilter() for *.aprs
 			startActivityForResult(Intent.createChooser(get_file,
 				getString(R.string.profile_import_activity)), 123458)
