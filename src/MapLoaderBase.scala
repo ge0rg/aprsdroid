@@ -24,7 +24,14 @@ trait MapLoaderBase extends MapMenuHelper {
         super.onDestroy()
     }
 
-    def onStationUpdate(sl : ArrayList[Station])
+    def newStation(call : String, origin : String, symbol : String,
+                  lat : Double, lon : Double,
+                  qrg : String, comment : String, speed : Int, course : Int,
+                  movelog : ArrayBuffer[Point]) : Station = {
+        new Station(call, origin, symbol, lat, lon, qrg, comment, speed, course, movelog)
+    }
+
+        def onStationUpdate(sl : ArrayList[Station])
 
     def startLoading() {
         locReceiver.startTask(null)
@@ -52,7 +59,7 @@ trait MapLoaderBase extends MapMenuHelper {
             val cse = c.getInt(COLUMN_MAP_CSE)
 
             if (call != null && !call.isEmpty)
-                s.add(new Station(call, origin, symbol, lat/1000000.0d, lon/1000000.0d,
+                s.add(newStation(call, origin, symbol, lat/1000000.0d, lon/1000000.0d,
                     qrg, comment, speed, cse,
                     null))
             c.moveToNext()

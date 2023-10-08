@@ -37,7 +37,7 @@ class MapAct extends MapActivity with MapMenuHelper {
 	lazy val db = StorageDatabase.open(this)
 	lazy val staoverlay = new StationOverlay(allicons, this, db)
 	lazy val loading = findViewById(R.id.loading).asInstanceOf[View]
-	lazy val locReceiver = new LocationReceiver2[ArrayList[Station]](staoverlay.load_stations,
+	lazy val locReceiver = new LocationReceiver2[ArrayList[OSMStation]](staoverlay.load_stations,
 			staoverlay.replace_stations, staoverlay.cancel_stations)
 
 	override def onCreate(savedInstanceState: Bundle) {
@@ -219,7 +219,7 @@ class MapAct extends MapActivity with MapMenuHelper {
 	}
 }
 
-class Station(val movelog : ArrayBuffer[GeoPoint], val pt : GeoPoint,
+class OSMStation(val movelog : ArrayBuffer[GeoPoint], val pt : GeoPoint,
 	val call : String, val origin : String, val symbol : String)
 	extends OverlayItem(pt, call, origin) {
 
@@ -233,11 +233,11 @@ class Station(val movelog : ArrayBuffer[GeoPoint], val pt : GeoPoint,
 	}
 }
 
-class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) extends ItemizedOverlay[Station](icons) {
+class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) extends ItemizedOverlay[OSMStation](icons) {
 	val TAG = "APRSdroid.StaOverlay"
 
 	//lazy val calls = new scala.collection.mutable.HashMap[String, Boolean]()
-	var stations = new java.util.ArrayList[Station]()
+	var stations = new java.util.ArrayList[OSMStation]()
 
 	// prevent android bug #11666
 	populate()
@@ -249,7 +249,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	icons.setBounds(0, 0, symbolSize, symbolSize)
 
 	override def size() = stations.size()
-	override def createItem(idx : Int) : Station = stations.get(idx)
+	override def createItem(idx : Int) : OSMStation = stations.get(idx)
 
 	def symbol2rect(index : Int, page : Int) : Rect = {
 		// check for overflow
@@ -268,7 +268,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		(symbol(0) != '/' && symbol(0) != '\\')
 	}
 
-	def drawTrace(c : Canvas, proj : Projection, s : Station) : Unit = {
+	def drawTrace(c : Canvas, proj : Projection, s : OSMStation) : Unit = {
 		//Log.d(TAG, "drawing trace of %s".format(call))
 
 		val tracePaint = new Paint()
@@ -357,7 +357,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		context.handler.post { context.updateCoordinateInfo() }
 	}
 
-	def addStation(sta : Station) {
+	def addStation(sta : OSMStation) {
 		//if (calls.contains(sta.getTitle()))
 		//	return
 		//calls.add(sta.getTitle(), true)
@@ -425,10 +425,10 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		m
 	}
 
-	def load_stations(i : Intent) : ArrayList[Station] = {
+	def load_stations(i : Intent) : ArrayList[OSMStation] = {
 		import StorageDatabase.Station._
 
-		val s = new ArrayList[Station]()
+		val s = new ArrayList[OSMStation]()
 		val age_ts = (System.currentTimeMillis - context.prefs.getShowAge()).toString
 		val filter = if (context.showObjects) "TS > ? OR CALL=?" else "(ORIGIN IS NULL AND TS > ?) OR CALL=?"
 		val c = db.getStations(filter, Array(age_ts, context.targetcall), null)
@@ -443,7 +443,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 			val origin = c.getString(COLUMN_MAP_ORIGIN)
 			val p = new GeoPoint(lat, lon)
 			val m = fetchStaPositions(call, pos_c)
-			s.add(new Station(m, p, call, origin, symbol))
+			s.add(new OSMStation(m, p, call, origin, symbol))
 			c.moveToNext()
 		}
 		c.close()
@@ -452,12 +452,12 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		s
 	}
 
-	def replace_stations(s : ArrayList[Station]) {
+	def replace_stations(s : ArrayList[OSMStation]) {
 		stations = s
 		Benchmark("populate") { populate() }
 		context.onPostLoad()
 	}
-	def cancel_stations(s : ArrayList[Station]) {
+	def cancel_stations(s : ArrayList[OSMStation]) {
 	}
 
 }
