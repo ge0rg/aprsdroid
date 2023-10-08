@@ -109,14 +109,13 @@ class MapAct extends MapActivity with MapMenuHelper {
 		}
 	}
 
-	override def onPermissionsFailed(action: Int, permissions: Set[String]): Unit = {
-		if (action == RELOAD_MAP) {
-			if (targetcall == "")
-				startActivity(new Intent(this, classOf[HubActivity]).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
-			finish()
-		}
-		super.onPermissionsFailed(action, permissions)
-	}
+	override def onPermissionsFailed(action : Int, permissions : Set[String]): Unit = {
+		// fail to online OSM map
+        }
+
+	override def onPermissionsFailedCancel(action: Int): Unit = {
+		// should never be called
+        }
 
 	def reloadMapAndTheme() {
 		val mapfile = new File(prefs.getString("mapfile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.map"))

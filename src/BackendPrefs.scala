@@ -73,4 +73,7 @@ class BackendPrefs extends PreferenceActivity
 	override def onAllPermissionsGranted(action: Int): Unit = {
 		findPreference("kenwood.gps").asInstanceOf[CheckBoxPreference].setChecked(true)
 	}
+	override def onPermissionsFailedCancel(action: Int): Unit = {
+		// nop
+	}
 }

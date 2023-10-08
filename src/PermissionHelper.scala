@@ -10,6 +10,9 @@ import android.provider.Settings
 trait PermissionHelper extends Activity {
 	def getActionName(action : Int): Int
 	def onAllPermissionsGranted(action : Int): Unit
+	def onPermissionsFailedCancel(action : Int): Unit
+
+	var permissionsPopupShown = false
 
 	def checkPermissions(permissions : Array[String], action : Int): Boolean = {
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -55,6 +58,9 @@ trait PermissionHelper extends Activity {
 		}
 	}
 	def onPermissionsFailed(action : Int, permissions : Set[String]): Unit = {
+		if (permissionsPopupShown)
+			return
+		permissionsPopupShown = true
 		val sb = new StringBuilder(getString(R.string.no_perm_text))
 		sb.append("\n\n")
 		for (p <- permissions) {
@@ -71,7 +77,11 @@ trait PermissionHelper extends Activity {
 					startActivity(intent)
 				}
 			})
-			.setNegativeButton(android.R.string.cancel, null)
+			.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener {
+				override def onClick(dialogInterface: DialogInterface, i: Int): Unit = {
+					onPermissionsFailedCancel(action)
+				}
+			})
 			.create().show()
 	}
 

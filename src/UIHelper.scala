@@ -108,6 +108,9 @@ trait UIHelper extends Activity
 		case START_SERVICE_ONCE => startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
 		}
 	}
+	override def onPermissionsFailedCancel(action: Int): Unit = {
+		// nop
+	}
 	def startAprsService(action : Int): Unit = {
 		checkPermissions(currentListOfPermissions(), action)
 	}
