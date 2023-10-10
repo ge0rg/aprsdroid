@@ -73,7 +73,7 @@ object AprsBackend {
 		"bluetooth" -> new BackendInfo(
 			(s, p) => new BluetoothTnc(s, p),
 			R.xml.backend_bluetooth,
-			Set(Manifest.permission.BLUETOOTH_ADMIN),
+			Set(Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH_CONNECT),
 			CAN_DUPLEX,
 			PASSCODE_NONE),
 		"tcpip" -> new BackendInfo(
