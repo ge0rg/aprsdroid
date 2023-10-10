@@ -12,8 +12,6 @@ trait PermissionHelper extends Activity {
 	def onAllPermissionsGranted(action : Int): Unit
 	def onPermissionsFailedCancel(action : Int): Unit
 
-	var permissionsPopupShown = false
-
 	def checkPermissions(permissions : Array[String], action : Int): Boolean = {
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
 			onAllPermissionsGranted(action)
@@ -58,9 +56,6 @@ trait PermissionHelper extends Activity {
 		}
 	}
 	def onPermissionsFailed(action : Int, permissions : Set[String]): Unit = {
-		if (permissionsPopupShown)
-			return
-		permissionsPopupShown = true
 		val sb = new StringBuilder(getString(R.string.no_perm_text))
 		sb.append("\n\n")
 		for (p <- permissions) {
