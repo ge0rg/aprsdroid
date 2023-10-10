@@ -61,31 +61,31 @@ object AprsBackend {
 		"afsk" -> new BackendInfo(
 			(s, p) => new AfskUploader(s, p),
 			0,
-      Set(Manifest.permission.RECORD_AUDIO),
+			Set(Manifest.permission.RECORD_AUDIO, Manifest.permission.POST_NOTIFICATIONS),
 			CAN_DUPLEX,
 			PASSCODE_NONE),
 		"tcp" -> new BackendInfo(
 			(s, p) => new TcpUploader(s, p),
 			R.xml.backend_tcp,
-			Set(),
+			Set(Manifest.permission.POST_NOTIFICATIONS),
 			CAN_DUPLEX,
 			PASSCODE_OPTIONAL),
 		"bluetooth" -> new BackendInfo(
 			(s, p) => new BluetoothTnc(s, p),
 			R.xml.backend_bluetooth,
-			Set(Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH_CONNECT),
+			Set(Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH_CONNECT, Manifest.permission.POST_NOTIFICATIONS),
 			CAN_DUPLEX,
 			PASSCODE_NONE),
 		"tcpip" -> new BackendInfo(
 			(s, p) => new TcpUploader(s, p),
 			R.xml.backend_tcptnc,
-			Set(),
+			Set(Manifest.permission.POST_NOTIFICATIONS),
 			CAN_DUPLEX,
 			PASSCODE_NONE),
 		"usb" -> new BackendInfo(
 			(s, p) => new UsbTnc(s, p),
 			R.xml.backend_usb,
-			Set(),
+			Set(Manifest.permission.POST_NOTIFICATIONS),
 			CAN_DUPLEX,
 			PASSCODE_NONE)
 		)
