@@ -12,6 +12,9 @@ import android.widget.Toast
 class BackendPrefs extends PreferenceActivity
 		with OnSharedPreferenceChangeListener
 		with PermissionHelper {
+
+	val BACKEND_PERMISSION = 1000
+
 	def loadXml() {
 		val prefs = new PrefsWrapper(this)
 		addPreferencesFromResource(R.xml.backend)
@@ -21,6 +24,10 @@ class BackendPrefs extends PreferenceActivity
 			addPreferencesFromResource(additional_xml)
 			hookPasscode()
 			hookGpsPermission()
+		}
+		val perms = AprsBackend.defaultBackendPermissions(prefs)
+		if (perms.nonEmpty) {
+			checkPermissions(perms.toArray, BACKEND_PERMISSION)
 		}
 	}
 
@@ -71,7 +78,11 @@ class BackendPrefs extends PreferenceActivity
 	override def getActionName(action: Int): Int = R.string.p_conn_kwd_gps
 
 	override def onAllPermissionsGranted(action: Int): Unit = {
-		findPreference("kenwood.gps").asInstanceOf[CheckBoxPreference].setChecked(true)
+		action match {
+			case REQUEST_GPS =>
+				findPreference("kenwood.gps").asInstanceOf[CheckBoxPreference].setChecked(true)
+			case _ =>
+		}
 	}
 	override def onPermissionsFailedCancel(action: Int): Unit = {
 		// nop
