@@ -68,7 +68,7 @@ object AprsBackend {
 		"afsk" -> new BackendInfo(
 			(s, p) => new AfskUploader(s, p),
 			0,
-      Set(Manifest.permission.RECORD_AUDIO),
+			Set(Manifest.permission.RECORD_AUDIO),
 			CAN_DUPLEX,
 			PASSCODE_NONE),
 		"tcp" -> new BackendInfo(
@@ -142,6 +142,9 @@ object AprsBackend {
 		perms ++= AprsBackend.defaultBackendInfo(prefs).permissions
 		if (prefs.getProto() == "kenwood" && prefs.getBoolean("kenwood.gps", false))
 			perms += (Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        perms += (Manifest.permission.POST_NOTIFICATIONS)
+                }
 		perms.toSet
 	}
 
