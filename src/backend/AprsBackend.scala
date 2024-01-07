@@ -1,6 +1,7 @@
 package org.aprsdroid.app
 
 import android.Manifest
+import android.os.Build
 import _root_.net.ab0oo.aprs.parser.APRSPacket
 import _root_.java.io.{InputStream, OutputStream}
 
@@ -31,6 +32,12 @@ object AprsBackend {
 		val duplex : Int,
 		val need_passcode : Int
 	) {}
+
+	val BLUETOOTH_PERMISSION = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+		Manifest.permission.BLUETOOTH_CONNECT
+	} else {
+		Manifest.permission.BLUETOOTH_ADMIN
+	}
 
 	// map from old "backend" to new proto-link-aprsis (defaults are bluetooth and tcp)
 	val backend_upgrade = Map(
@@ -73,7 +80,7 @@ object AprsBackend {
 		"bluetooth" -> new BackendInfo(
 			(s, p) => new BluetoothTnc(s, p),
 			R.xml.backend_bluetooth,
-			Set(Manifest.permission.BLUETOOTH_ADMIN, Manifest.permission.BLUETOOTH_CONNECT),
+			Set(BLUETOOTH_PERMISSION),
 			CAN_DUPLEX,
 			PASSCODE_NONE),
 		"tcpip" -> new BackendInfo(
