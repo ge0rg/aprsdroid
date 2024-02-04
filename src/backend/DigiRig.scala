@@ -1,5 +1,7 @@
 package org.aprsdroid.app
 
+import _root_.android.media.{AudioManager, AudioTrack}
+
 import android.app.PendingIntent
 import android.app.Service
 import android.content.BroadcastReceiver
@@ -14,8 +16,10 @@ import android.util.Log
 import java.io.{InputStream, OutputStream}
 
 import net.ab0oo.aprs.parser._
-
+import com.nogy.afu.soundmodem.{Message, APRSFrame, Afsk}
 import com.felhr.usbserial._
+import com.jazzido.PacketDroid.{AudioBufferProcessor, PacketCallback}
+import sivantoledo.ax25.PacketHandler
 
 object DigiRig {
 	def deviceHandle(dev : UsbDevice) = {
@@ -34,25 +38,32 @@ object DigiRig {
 	}
 }
 
-class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(prefs) {
-	val TAG = "APRSdroid.Usb"
+class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AfskUploader(service, prefs)
+	with PacketHandler with PacketCallback {
+
+		override val TAG = "APRSdroid.Digirig"
 
 	val USB_PERM_ACTION = "org.aprsdroid.app.DigiRig.PERM"
 	val ACTION_USB_ATTACHED = "android.hardware.usb.action.USB_DEVICE_ATTACHED"
 	val ACTION_USB_DETACHED = "android.hardware.usb.action.USB_DEVICE_DETACHED"
 
-	val usbManager = service.getSystemService(Context.USB_SERVICE).asInstanceOf[UsbManager];
-	var thread : UsbThread = null
-	var dev : UsbDevice = null
-	var con : UsbDeviceConnection = null
-	var ser : UsbSerialInterface = null
-	var alreadyRunning = false
+        // USB stuff
+
+        val usbManager = service.getSystemService(Context.USB_SERVICE).asInstanceOf[UsbManager];
+        var thread : UsbThread = null
+        var dev : UsbDevice = null
+        var con : UsbDeviceConnection = null
+        var ser : UsbSerialInterface = null
+        var alreadyRunning = false
 
 	val intent = new Intent(USB_PERM_ACTION)
 	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent, 0)
 
+        // Audio stuff
+	output.setVolume(AudioTrack.getMaxVolume())
+
 	val receiver = new BroadcastReceiver() {
-		override def onReceive(ctx : Context, i : Intent) {
+		override def onReceive(ctx: Context, i: Intent) {
 			Log.d(TAG, "onReceive: " + i)
 			if (i.getAction() == ACTION_USB_DETACHED) {
 				log("USB device detached.")
@@ -70,25 +81,65 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(p
 		}
 	}
 
+	override val btScoReceiver = new BroadcastReceiver() {
+		override def onReceive(ctx : Context, i : Intent) {
+			Log.d(TAG, "onReceive: " + i)
+			if (i.getAction() == ACTION_USB_DETACHED) {
+				log("USB device detached.")
+				ctx.stopService(AprsService.intent(ctx, AprsService.SERVICE))
+				return
+			}
+			val granted = i.getExtras().getBoolean(UsbManager.EXTRA_PERMISSION_GRANTED)
+			if (!granted) {
+				service.postAbort(service.getString(R.string.p_serial_noperm))
+				return
+			}
+			log("Obtained USB permissions.")
+			thread = new UsbThread()
+			thread.start()
+
+			val state = i.getIntExtra(AudioManager.EXTRA_SCO_AUDIO_STATE, -1)
+			Log.d(TAG, "AudioManager SCO event: " + state)
+			if (state == AudioManager.SCO_AUDIO_STATE_CONNECTED) {
+				// we are connected, perform actual start
+				log(service.getString(R.string.afsk_info_sco_est))
+				aw.start()
+				service.unregisterReceiver(this)
+				service.postPosterStarted()
+			}
+		}
+	}
+
 	var proto : TncProto = null
 	var sis : SerialInputStream = null
 
-	def start() = {
+	override def start() = {
 		val filter = new IntentFilter(USB_PERM_ACTION)
 		filter.addAction(ACTION_USB_DETACHED)
 		service.registerReceiver(receiver, filter)
 		alreadyRunning = true
 		if (ser == null)
 			requestPermissions()
+
+		if (!isCallsignAX25Valid())
+			false
+
+		if (use_bt) {
+			log(service.getString(R.string.afsk_info_sco_req))
+			service.getSystemService(Context.AUDIO_SERVICE)
+				.asInstanceOf[AudioManager].startBluetoothSco()
+			service.registerReceiver(btScoReceiver, new IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_CHANGED))
+			false
+		} else {
+			aw.start()
+			true
+		}
+
 		false
 	}
 
-	def log(s : String) {
-		service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
-	}
-
 	def requestPermissions() {
-		Log.d(TAG, "UsbTnc.requestPermissions");
+		Log.d(TAG, "Digirig.requestPermissions");
 		val dl = usbManager.getDeviceList();
 		var requested = false
 		import scala.collection.JavaConversions._
@@ -107,12 +158,34 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(p
 		service.postAbort(service.getString(R.string.p_serial_notfound))
 	}
 
-	def update(packet : APRSPacket) : String = {
-		proto.writePacket(packet)
-		"USB OK"
+	override def update(packet: APRSPacket): String = {
+		// Need to "parse" the packet in order to replace the Digipeaters
+		packet.setDigipeaters(Digipeater.parseList(Digis, true))
+		val from = packet.getSourceCall()
+		val to = packet.getDestinationCall()
+		val data = packet.getAprsInformation().toString()
+		val msg = new APRSFrame(from, to, Digis, data, FrameLength).getMessage()
+		Log.d(TAG, "update(): From: " + from + " To: " + to + " Via: " + Digis + " telling " + data)
+
+		ser.setRTS(true)
+		val bits_per_byte = 8
+		val bits_in_frame = packet.toAX25Frame().length / bits_per_byte
+		val ms_per_s = 1000
+		val sleep_ms = bits_in_frame * ms_per_s / 1200 // aprs is 1200 baud
+		val sleep_pad_ms = 1500
+		Thread.sleep(sleep_ms + sleep_pad_ms)
+		val result = sendMessage(msg)
+		Thread.sleep(sleep_ms + sleep_pad_ms)
+		ser.setRTS(false)
+
+		if (result)
+			"AFSK OK"
+		else
+			"AFSK busy"
 	}
 
-	def stop() {
+	override def stop() {
+                // Stop USB thread
 		if (alreadyRunning)
 			service.unregisterReceiver(receiver)
 		alreadyRunning = false
@@ -130,8 +203,18 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(p
 		//thread.shutdown()
 		thread.interrupt()
 		thread.join(50)
-		if (proto != null)
-			proto.stop()
+
+                // Stop AFSK Demodulator
+		aw.close()
+		if (use_bt) {
+			service.getSystemService(Context.AUDIO_SERVICE)
+				.asInstanceOf[AudioManager].stopBluetoothSco()
+			try {
+				service.unregisterReceiver(btScoReceiver)
+			} catch {
+				case e : RuntimeException => // ignore, receiver already unregistered
+			}
+		}
 	}
 
 	class UsbThread()
@@ -157,33 +240,14 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(p
 			ser.setStopBits(UsbSerialInterface.STOP_BITS_1)
 			ser.setParity(UsbSerialInterface.PARITY_NONE)
 			ser.setFlowControl(UsbSerialInterface.FLOW_CONTROL_OFF)
+			ser.setRTS(false)
 
 			// success: remember this for usb-attach launch
-			prefs.prefs.edit().putString(UsbTnc.deviceHandle(dev), prefs.getString("proto", "kiss")).commit()
+			prefs.prefs.edit().putString(UsbTnc.deviceHandle(dev), prefs.getString("proto", "afsk")).commit()
 
 			log("Opened " + ser.getClass().getSimpleName() + " at " + baudrate + "bd")
-			sis = new SerialInputStream(ser)
-			try {
-				proto = AprsBackend.instanciateProto(service, sis, new SerialOutputStream(ser))
-			} catch {
-				case e : IllegalArgumentException =>
-				service.postAbort(e.getMessage()); running = false
-				return
-			}
 			service.postPosterStarted()
-			while (running) {
-				try {
-					val line = proto.readPacket()
-					Log.d(TAG, "recv: " + line)
-					service.postSubmit(line)
-				} catch {
-				case e : Exception =>
-					Log.d(TAG, "readPacket exception: " + e.toString())
-					if (running) {
-						service.postAbort(e.toString()); running = false
-					}
-				}
-			}
+			while (running) { /* do nothing */ }
 			Log.d(TAG, "terminate()")
 		}
 

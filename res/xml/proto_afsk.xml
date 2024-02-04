@@ -37,19 +37,14 @@
 		android:title="@string/p_afsk_prefix"
 		android:summary="@string/p_afsk_prefix_summary"
 		android:dialogTitle="@string/p_afsk_prefix_entry" />
-		<CheckBoxPreference
-			android:defaultValue="false"
-			android:key="afsk.ptt"
-			android:title="@string/p_afsk_ptt"
-			android:visibility="visible" />
-		<EditTextPreference
-			android:defaultValue="Default value"
-			android:key="afsk.pttport"
-			android:selectAllOnFocus="true"
-			android:singleLine="true"
-			android:title="@string/p_afsk_pttport"
-			android:visibility="visible" />
 
+		<de.duenndns.ListPreferenceWithValue
+			android:defaultValue="vox"
+			android:dialogTitle="@string/p_link_entry"
+			android:entries="@array/p_afsk_e"
+			android:entryValues="@array/p_afsk_ev"
+			android:key="afsk"
+			android:title="@string/p_link" />
 	</PreferenceCategory>
 
 </PreferenceScreen>

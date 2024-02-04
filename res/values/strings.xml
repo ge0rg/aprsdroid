@@ -208,6 +208,9 @@
 <string name="p_link_bt">Bluetooth SPP</string>
 <string name="p_link_tcpip">TCP/IP</string>
 <string name="p_link_usb">USB Serial</string>
+<!-- array of AFSK modes -->
+<string name="p_afsk_vox">VOX</string>
+<string name="p_afsk_digirig">Digirig</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>
 <string name="p_source_periodic">Periodic GPS/Network Position</string>
