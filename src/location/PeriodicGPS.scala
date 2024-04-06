@@ -11,8 +11,13 @@ object PeriodicGPS {
 	def bestProvider(locman : LocationManager) = {
 		val cr = new Criteria()
 		cr.setAccuracy(Criteria.ACCURACY_FINE)
+		Log.d("FAILGPS", "all providers " + locman.getAllProviders())
 		Log.d("FAILGPS", "best. provider. ever. " + locman.getBestProvider(cr, false))
 		locman.getBestProvider(cr, false)
+	}
+
+	def bestProvider(context : Context) : String = {
+		bestProvider(context.getSystemService(Context.LOCATION_SERVICE).asInstanceOf[LocationManager])
 	}
 }
 
@@ -40,6 +45,7 @@ class PeriodicGPS(service : AprsService, prefs : PrefsWrapper) extends LocationS
 		val upd_int = prefs.getStringInt("interval", 10)
 		val upd_dist = prefs.getStringInt("distance", 10)
 		val gps_act = prefs.getString("gps_activation", "med")
+		try {
 		if (stay_on || (gps_act == "always")) {
 			locMan.requestLocationUpdates(PeriodicGPS.bestProvider(locMan),
 				0, 0, this)
@@ -51,6 +57,12 @@ class PeriodicGPS(service : AprsService, prefs : PrefsWrapper) extends LocationS
 		if (prefs.getBoolean("netloc", false)) {
 			locMan.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
 				upd_int * 60000, upd_dist * 1000, this)
+		}
+		} catch {
+			case e @ (_: IllegalArgumentException | _: SecurityException) =>
+				// we lack GPS or GPS permissions
+				service.postAbort(service.getString(R.string.service_no_location)
+					+ "\n" + e.getMessage())
 		}
 	}
 

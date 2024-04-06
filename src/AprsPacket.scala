@@ -3,12 +3,14 @@ package org.aprsdroid.app
 import _root_.android.location.Location
 import _root_.net.ab0oo.aprs.parser._
 
+import scala.math.abs
+
 object AprsPacket {
 	val QRG_RE = ".*?(\\d{2,3}[.,]\\d{3,4}).*?".r
 
 	def passcode(callssid : String) : Int = {
 		// remove ssid, uppercase, add \0 for odd-length calls
-		val call = callssid.split("-")(0).toUpperCase() + "\0"
+		val call = callssid.split("-")(0).toUpperCase() + "\u0000"
 		var hash = 0x73e2
 		for (i <- 0 to call.length-2 by 2) {
 			hash ^= call(i) << 8
@@ -69,6 +71,19 @@ object AprsPacket {
 			"r/%1.3f/%1.3f/%d".formatLocal(null, loc.getLatitude, loc.getLongitude, range)
 		else
 			""
+	}
+
+	val  DirectionsLatitude = "NS";
+	val  DirectionsLongitude = "EW";
+	def formatDMS(coordinate : Float, nesw : String) = {
+		val dms = Location.convert(abs(coordinate), Location.FORMAT_SECONDS).split(":")
+		val nesw_idx = (coordinate < 0).compare(false)
+		"%2s° %2s' %s\" %s".format(dms(0), dms(1), dms(2), nesw(nesw_idx))
+	}
+
+	def formatCoordinates(latitude : Float, longitude : Float) = {
+		(AprsPacket.formatDMS(latitude, DirectionsLatitude),
+		 AprsPacket.formatDMS(longitude, DirectionsLongitude))
 	}
 
 	def parseQrg(comment : String) : String = {

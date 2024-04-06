@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroidの使用前にコールサインとパスコードの設定が必要です</string>
 <string name="wrongpasscode">コールサインとパスコードが一致しません</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">パスコードを入力しないと位置情報は送信されません</string>
 <string name="mininterval">GPS測位間隔は１分以下に設定できません</string>
 <string name="singlelog">位置送信</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">ようこそAPRSdroidへ！</string>
 <string name="fr_text">このソフトは免許のあるアマチュア無線局のみ使用可能です。</string>
 <string name="fr_text2">このソフトを使用するにはコールサインの入力が必要です。また、位置情報を送信するにはAPRS-ISパスコードも必要です。</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroidについて v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">オーバーレイ</string>
-<string name="map_satellite">航空写真</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">APRS オブジェクト</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">緯度</string>
 <string name="p_source_lon">経度</string>
 <string name="p_source_coord">座標</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">最後のGPS位置を使用</string>
 <string name="p_source_auto">自動位置情報取得・送信</string>
 <string name="p_source_auto_summary">周期的な位置取得(送信)をします。</string>
@@ -331,7 +340,17 @@
 <string name="p_themefile_choose">テーマファイル選択</string>
 <string name="themefile_error">テーマファイル読込エラー %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   Yoshihisa Tanda https://launchpad.net/~jn4oqt
   Yoshikazu AKAGI https://launchpad.net/~7k4owm</string>
 
@@ -360,6 +379,14 @@
 <string name="bt_error_disabled">Bluetoothを有効にしてください!</string>
 <string name="bt_error_no_tnc">Bluetooth-TNCの設定をして下さい!</string>
 <string name="bt_error_connect">%s と接続できません。機器をオンにして、他Bluetooth接続を切断して下さい。</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Bluetooth(SCO)リンク要求</string>
 <string name="afsk_info_sco_est">Bluetooth(SCO)リンク確立</string>
@@ -389,4 +416,6 @@
 <string name="p_serial_unsupported">シリアルポートをサポートしていない！</string>
 <string name="p_serial_noperm">USB機器 無許可!</string>
 <string name="p_serial_notfound">USB機器が見つかりません！</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

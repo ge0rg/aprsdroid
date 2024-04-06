@@ -9,7 +9,7 @@
                 android:key="callsign"
 		android:inputType="textCapCharacters"
 		android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-		android:maxLength="9"
+		android:maxLength="7"
 		android:title="@string/p_callsign_nossid"
 		android:summary="@string/p_callsign_summary"
 		android:hint="@string/p_callsign_nossid"
@@ -72,6 +72,7 @@
         <de.duenndns.EditTextPreferenceWithValue
                 android:key="status"
 		android:singleLine="true"
+		android:maxLength="42"
 		android:hint="@string/default_status"
 		android:title="@string/p_status"
 		android:defaultValue="@string/default_status"
@@ -212,6 +213,17 @@
 		/>
     </PreferenceCategory>
     </PreferenceScreen>
+
+    <de.duenndns.PreferenceWithValue
+	    android:key="mapfile"
+	    android:title="@string/p_mapfile"
+	    android:summary="@string/p_mapfile_summary" />
+
+    <de.duenndns.PreferenceWithValue
+	    android:key="themefile"
+	    android:title="@string/p_themefile"
+	    android:summary="@string/p_themefile_summary" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

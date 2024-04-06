@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MapCallSign">
+        <item name="android:typeface">monospace</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:shadowColor">#80c8ffc8</item>
+        <item name="android:shadowRadius">3</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:padding">0sp</item>
+    </style>
+</resources>

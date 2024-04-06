@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Трябва да настроите APRSdroid с Вашия инициал и passcode!</string>
 <string name="wrongpasscode">Вашия passcode не съответства на Вашия инициал!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Без passcode, вашите рапорти няма да бъдат предавани!</string>
 <string name="mininterval">Минималното време за обновяване е 1 минута!</string>
 <string name="singlelog">Изпрати Позиция</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">Добре дошли в APRSdroid!</string>
 <string name="fr_text">Този софтуер може да бъде използван само от лицензирани радиолюбители!</string>
 <string name="fr_text2">Трябва да въведете вашата позивна(callsign) за да използвате този софтуер. Също така е необходим APRS-IS passcode за да бъдат препращани вашите пакети.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Относно APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Слоеве</string>
-<string name="map_satellite">Спътников изглед</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">APRS обекти</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">Географска ширина</string>
 <string name="p_source_lon">Географска дължина</string>
 <string name="p_source_coord">Координати</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Използвай последната GPS позиция</string>
 <string name="p_source_auto">Автоматично Публикуване</string>
 <string name="p_source_auto_summary">Изпълни периодично публикуване на позицията</string>
@@ -331,7 +340,17 @@
 <string name="p_themefile_choose">Изберете файл за тема</string>
 <string name="themefile_error">Грешка при зареждането на темата от файл: %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   HackMan https://launchpad.net/~mm-yuhu
   Zlatan Dimitrov https://launchpad.net/~z-dimitrov</string>
 
@@ -360,6 +379,14 @@
 <string name="bt_error_disabled">Моля включете Bluetooth!</string>
 <string name="bt_error_no_tnc">Моля конфигурирайте Bluetooth TNC!</string>
 <string name="bt_error_connect">Не може да се свърже с %s! Моля включете устройството и изключете другите Bluetooth връзки</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Искане на bluetooth SCO връзка...</string>
 <string name="afsk_info_sco_est">Връзката с Bluetooth SCO е установена.</string>
@@ -389,4 +416,6 @@
 <string name="p_serial_unsupported">Серийният порт не се поддържа</string>
 <string name="p_serial_noperm">Няма достъп до USB устройството!</string>
 <string name="p_serial_notfound">Не е намерено USB устройство!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

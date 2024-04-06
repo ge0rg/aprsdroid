@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Sie müssen Ihr Rufzeichen und den dazugehörigen Passcode eingeben!</string>
 <string name="wrongpasscode">Der Passcode für Ihr Rufzeichen ist nicht korrekt!</string>
+<string name="e_toolong_callsign">Ihr Rufzeichen ist zu lang für Packet Radio!</string>
 <string name="anon_warning">Ohne Passcode-Angabe werden Ihre Meldungen nicht weitergeleitet!</string>
 <string name="mininterval">Minimale Update-Zeit ist 1 Minute!</string>
 <string name="singlelog">Position senden</string>
@@ -69,10 +70,11 @@ Drücken Sie den \"Menü\"-Knopf, um eine Positionsmeldung abzusetzen oder das T
 <string name="fr_title">Willkommen zu APRSdroid!</string>
 <string name="fr_text">Diese Software darf nur von lizensierten Funkamateuren verwendet werden!</string>
 <string name="fr_text2">Sie müssen Ihr Rufzeichen eingeben, um diese Software nutzen zu können. Damit Ihre Pakete weitergeleitet werden, ist weiterhin ein APRS-IS-Passcode erforderlich.</string>
+<string name="fr_text3">Nur für APRS über das Internet notwendig:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Über APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® is a registered trademark of Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Dieses Programm ist freie Software. Sie können es unter den Bedingungen der GNU General Public License, wie von der Free Software Foundation veröffentlicht, weitergeben und/oder modifizieren, entweder gemäß Version 2 der Lizenz oder (nach Ihrer Option) jeder späteren Version.
 \n\n
 Die Veröffentlichung dieses Programms erfolgt in der Hoffnung, daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der MARKTREIFE oder der VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK. Details finden Sie in der GNU General Public License.
@@ -93,7 +95,11 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 
 <!-- map view -->
 <string name="map_overlays">Ebenen</string>
-<string name="map_satellite">Satellit</string>
+<string name="map_google">Google: Karte</string>
+<string name="map_satellite">Google: Satellit</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline">%s (Offline)</string>
 <string name="map_objects">APRS-Objekte</string>
 
 <!-- map view -->
@@ -195,6 +201,9 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_source_lat">Breitengrad</string>
 <string name="p_source_lon">Längengrad</string>
 <string name="p_source_coord">Koordinate</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Auf Karte auswählen</string>
+<string name="p_source_from_map_save">Position speichern</string>
 <string name="p_source_get_last">Letzte GPS-Position verwenden</string>
 <string name="p_source_auto">Automatisches Senden</string>
 <string name="p_source_auto_summary">Periodisch die eigene Position aussenden</string>
@@ -335,6 +344,15 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_themefile_choose">Theme-Datei auswählen</string>
 <string name="themefile_error">Fehler beim Laden der Theme-Datei %s!</string>
 
+<string name="kbdnav_title">Tastatursteuerung</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>Karte bewegen</item>
+	<item>Zoom</item>
+	<item>Menü</item>
+	<item>Auswählen</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   Dennis Baudys https://launchpad.net/~thecondordb
   Georg Lukas https://launchpad.net/~ge0rg
@@ -365,6 +383,14 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="bt_error_disabled">Bitte Bluetooth einschalten!</string>
 <string name="bt_error_no_tnc">Bitte einen Bluetooth-TNC einstellen!</string>
 <string name="bt_error_connect">Keine Verbindung zu %s! Bitte Gerät einschalten und andere Bluetooth-Verbindungen schließen.</string>
+<string name="bt_awaiting">Erwarte Client…</string>
+<string name="bt_client_connected">Client %s verbunden.</string>
+<string name="bt_connecting_to_spp">Verbinde mit SPP-Dienst auf %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Verbinde mit %s auf Kanal %d…</string>
+<string name="bt_connected">Verbunden mit TNC.</string>
+<string name="bt_reconnecting">Neue Verbindung in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Bluetooth-SCO-Verbindung wird angefordert…</string>
 <string name="afsk_info_sco_est">Bluetooth-SCO-Verbindung aufgebaut.</string>
@@ -394,4 +420,6 @@ http://www.gnu.de/documents/gpl-2.0.de.html</string>
 <string name="p_serial_unsupported">Serieller Port nicht unterstützt!</string>
 <string name="p_serial_noperm">Keine Berechtigung für USB-Gerät!</string>
 <string name="p_serial_notfound">Kein USB-Gerät gefunden!</string>
+
+<string name="no_perm_text">Die folgenden Berechtigungen werden benötigt:</string>
 </resources>

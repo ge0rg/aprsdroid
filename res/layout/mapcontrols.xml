@@ -1,0 +1,41 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+<ProgressBar
+	android:id="@+id/loading"
+	style="@android:style/Widget.ProgressBar.Large.Inverse"
+	android:layout_width="76dip"
+	android:layout_height="76dip"
+	android:layout_margin="30dip"
+	android:gravity="right|top"
+	android:indeterminate="true"
+	/>
+<ImageView
+	android:id="@+id/crosshair"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_centerInParent="true"
+	android:layout_gravity="center_horizontal|center_vertical"
+	android:gravity="center|top"
+	android:src="@drawable/crosshair"
+	android:visibility="visible"
+	/>
+<LinearLayout
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:layout_gravity="bottom|start|left"
+	android:layout_margin="30dip"
+	android:orientation="vertical" >
+
+	<TextView
+		android:id="@+id/info"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text=""
+		android:textSize="24sp" />
+	<Button
+		android:id="@+id/accept"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="ok"
+		/>
+</LinearLayout>
+</merge>

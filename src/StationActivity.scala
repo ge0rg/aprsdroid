@@ -33,7 +33,7 @@ class StationActivity extends StationHelper(R.string.app_sta)
 		locReceiver.startTask(null)
 
 		Array(R.id.map, R.id.qrzcom, R.id.aprsfi).foreach((id) => {
-				findViewById(id).setOnClickListener(this)
+				findViewById(id).asInstanceOf[View].setOnClickListener(this)
 			})
 	}
 

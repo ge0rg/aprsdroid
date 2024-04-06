@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">คุณต้องกำหนดค่านามเรียกขานและรหัสผ่านของคุณ</string>
 <string name="wrongpasscode">รหัสผ่านไม่ตรงกับนามเรียกขานของคุณ!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">หากไม่มีรหัสผ่าน ข้อมูลของคุณจะไม่ถูกเผยแพร่!</string>
 <string name="mininterval">ปรับค่าขั้นต่ำ 1นาที!</string>
 <string name="singlelog">Send Position</string>
@@ -21,7 +22,7 @@
 <string name="empty_logview">ท่านยังไม่ได้ส่งหรือได้รับแพ็คเก็ตใด ๆ . \ n \ n กด \"เมนู \"เพื่อส่งข้อมูลเดี่ยวหรือเพื่อเริ่มต้นการทำงานติดตามตำแหน่งของคุณ. \ n \ n คุณยังสามารถเปลี่ยนการตั้งค่าการสมัครจากเมนู</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">% ข้อมูลล่าสุด</string>
+<string name="sta_lastreport">%s ข้อมูลล่าสุด</string>
 <string name="map_track_call">ติดตาม %s...</string>
 <string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">เลือกสถานี</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">ยินดีต้อนรับสู่ APRSdroid!</string>
 <string name="fr_text">ซอฟต์แวร์นี้อนุญาตให้ใช้กับนักวิทยุสมัครเล่นที่มีใบอนุญาติแล้วเท่านั้น</string>
 <string name="fr_text2">คุณจำเป็นต้องใส่นามเรียกขานของคุณเพื่อใช้ซอฟต์แวร์นี้ ในต้องการส่งต่อข้อมูลของคุณ และในเซิร์ฟเวอร์ APRS-IS จะต้องระบุรหัสผ่านเท่านั้น</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">เกี่ยวกับ APRSdroid% v s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -104,7 +106,11 @@
 
 <!-- map view -->
 <string name="map_overlays">ซ้อนทับ</string>
-<string name="map_satellite">ดาวเทียม</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">วัตถุประสงค์ APRS</string>
 
 <!-- map view -->
@@ -206,6 +212,9 @@
 <string name="p_source_lat">ละติจูด</string>
 <string name="p_source_lon">ลองจิจูด</string>
 <string name="p_source_coord">Coordinate</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">พิกัดจีพีเอสล่าสุด</string>
 <string name="p_source_auto">Automatic Posting</string>
 <string name="p_source_auto_summary">Perform periodic position posting</string>
@@ -239,7 +248,7 @@
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>
 <string name="p_sb_fast_speed">Fast Speed [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_speed_summary">Minimum speed for fast position updates</string>
 <string name="p_sb_fast_rate">Fast Rate [s]</string>
 <string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
 <string name="p_sb_slow_speed">Slow Speed [km/h]</string>
@@ -346,6 +355,15 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg
   HS5TQA https://launchpad.net/~somkiat
@@ -377,6 +395,14 @@
 <string name="bt_error_disabled">Please enable Bluetooth!</string>
 <string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
@@ -406,4 +432,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

@@ -6,12 +6,13 @@ import _root_.android.os.Bundle
 import _root_.android.text.{Editable, TextWatcher}
 import _root_.android.view.{View, ViewGroup}
 import _root_.android.util.TypedValue
-import _root_.android.widget.{AbsListView, AdapterView, BaseAdapter, EditText, ImageView, GridView}
+import _root_.android.widget.{AbsListView, AdapterView, BaseAdapter, Button, EditText, ImageView, GridView}
 import _root_.android.widget.AdapterView.OnItemClickListener
 
-class PrefSymbolAct extends Activity with TextWatcher {
+class PrefSymbolAct extends Activity with TextWatcher with View.OnClickListener {
 	lazy val overlayedit = findViewById(R.id.overlay).asInstanceOf[EditText]
 	lazy val symbolview = findViewById(R.id.symbol).asInstanceOf[SymbolView]
+	lazy val okbutton = findViewById(R.id.ok).asInstanceOf[Button]
 	lazy val prefs = new PrefsWrapper(this)
 	var chosen_sym : String = ""
 
@@ -46,6 +47,7 @@ class PrefSymbolAct extends Activity with TextWatcher {
 					android.util.Log.d("PrefSymbolAct", "tapped " + v.asInstanceOf[SymbolView].symbol)
 					setSymbol(v.asInstanceOf[SymbolView].symbol)
 				}})
+		okbutton.setOnClickListener(this)
 		chosen_sym = prefs.getString("symbol", "/$")
 		if (chosen_sym.length != 2)
 			chosen_sym = "/$"
@@ -56,8 +58,8 @@ class PrefSymbolAct extends Activity with TextWatcher {
 		setSymbol(chosen_sym)
 	}
 
-	// OK button XML
-	def onOkClicked(view : View) {
+	// OnClickListener for OK button
+	def onClick(view : View) {
 		prefs.prefs.edit().putString("symbol", chosen_sym).commit()
 		finish()
 	}

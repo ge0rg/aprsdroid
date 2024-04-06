@@ -51,6 +51,8 @@ class MessageService(s : AprsService) {
 		} else if (msg.getTargetCallsign().split("-")(0).equalsIgnoreCase(
 				s.prefs.getCallsign()) && !msg.isAck() && !msg.isRej()) {
 			// incoming message for a different ssid of our callsign
+			if (ap.getSourceCall().equalsIgnoreCase(callssid))
+				return; // ignore messages from self, fix #283
 			Log.d(TAG, "incoming message for " + msg.getTargetCallsign())
 			storeNotifyMessage(ts, ap.getSourceCall(), msg)
 		}

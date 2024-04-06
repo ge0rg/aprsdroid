@@ -1,6 +1,6 @@
 package org.aprsdroid.app
 
-import _root_.android.app.{Notification, NotificationManager, PendingIntent, Service}
+import _root_.android.app.{Notification, NotificationChannel, NotificationManager, PendingIntent, Service}
 import _root_.android.content.{Context, Intent}
 import _root_.android.net.Uri
 import _root_.android.os.Build
@@ -9,25 +9,45 @@ import _root_.android.graphics.Color
 
 
 object ServiceNotifier {
-	val instance = if (Build.VERSION.SDK.toInt < 5) new DonutNotifier() else new EclairNotifier()
+	val instance = new ServiceNotifier()
 }
 
-abstract class ServiceNotifier {
+class ServiceNotifier {
 	val SERVICE_NOTIFICATION : Int = 1
 	var CALL_NOTIFICATION = SERVICE_NOTIFICATION + 1
 	val callIdMap = new scala.collection.mutable.HashMap[String, Int]()
 
+	def setupChannels(ctx : Context) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			val nm = ctx.getSystemService(classOf[NotificationManager]).asInstanceOf[NotificationManager]
+			nm.createNotificationChannel(new NotificationChannel("status",
+				ctx.getString(R.string.aprsservice), NotificationManager.IMPORTANCE_LOW))
+			nm.createNotificationChannel(new NotificationChannel("msg",
+				ctx.getString(R.string.p_msg), NotificationManager.IMPORTANCE_DEFAULT))
+		}
+	}
+
+  def newNotificationBuilder(ctx : Service, channel : String) : Notification.Builder = {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+			new Notification.Builder(ctx, channel)
+		else
+			new Notification.Builder(ctx)
+  }
+
 	def newNotification(ctx : Service, status : String) : Notification = {
-		val n = new Notification()
-		n.icon = R.drawable.ic_status
-		n.when = System.currentTimeMillis
-		n.flags |= Notification.FLAG_ONGOING_EVENT | Notification.FLAG_NO_CLEAR
 		val i = new Intent(ctx, classOf[APRSdroid])
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-		n.contentIntent = PendingIntent.getActivity(ctx, 0, i, 0)
 		val appname = ctx.getResources().getString(R.string.app_name)
-		n.setLatestEventInfo(ctx, appname, status, n.contentIntent)
-		n
+		val nb = newNotificationBuilder(ctx, "status")
+			.setContentTitle(appname)
+			.setContentText(status)
+			.setContentIntent(PendingIntent.getActivity(ctx, 0, i, PendingIntent.FLAG_IMMUTABLE))
+			.setSmallIcon(R.drawable.ic_status)
+			.setWhen(System.currentTimeMillis)
+			.setOngoing(true)
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+			nb.setShowWhen(true)
+		nb.build()
 	}
 
 	def getCallNumber(call : String) : Int = {
@@ -42,22 +62,21 @@ abstract class ServiceNotifier {
 	}
 
 	def newMessageNotification(ctx : Service, call : String, message : String) : Notification = {
-		val n = new Notification()
-		n.icon = R.drawable.icon
-		n.when = System.currentTimeMillis
-		n.flags = Notification.FLAG_AUTO_CANCEL
 		val i = new Intent(ctx, classOf[MessageActivity])
 		i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 		i.setData(Uri.parse(call))
-		n.contentIntent = PendingIntent.getActivity(ctx, 0, i, PendingIntent.FLAG_UPDATE_CURRENT)
-		n.setLatestEventInfo(ctx, call, message, n.contentIntent)
-		n
+		newNotificationBuilder(ctx, "msg")
+			.setContentTitle(call)
+			.setContentText(message)
+			.setContentIntent(PendingIntent.getActivity(ctx, 0, i, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE))
+			.setSmallIcon(R.drawable.icon)
+			.setTicker(call + ": " + message)
+			.setWhen(System.currentTimeMillis)
+			.setAutoCancel(true)
+			.build()
 	}
 
 	def getNotificationMgr(ctx : Context) = ctx.getSystemService(Context.NOTIFICATION_SERVICE).asInstanceOf[NotificationManager]
-
-	def start(ctx : Service, status : String)
-	def stop(ctx : Service)
 
 	def setupNotification(n : Notification, ctx : Context, prefs : PrefsWrapper, default: Boolean, prefix : String) {
 		// set notification LED
@@ -95,21 +114,7 @@ abstract class ServiceNotifier {
 		setupNotification(n, ctx, prefs, false, prefix)
 		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, n)
 	}
-}
 
-class DonutNotifier extends ServiceNotifier {
-	def start(ctx : Service, status : String) = {
-		//ctx.setForeground(true)
-		getNotificationMgr(ctx).notify(SERVICE_NOTIFICATION, newNotification(ctx, status))
-	}
-
-	def stop(ctx : Service) = {
-		//ctx.setForeground(false)
-		getNotificationMgr(ctx).cancel(SERVICE_NOTIFICATION)
-	}
-}
-
-class EclairNotifier extends ServiceNotifier {
 	def start(ctx : Service, status : String) = {
 		ctx.startForeground(SERVICE_NOTIFICATION, newNotification(ctx, status))
 	}

@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid skal konfigureres med radioamatør kaldesignal og adgangskode!</string>
 <string name="wrongpasscode">Din adgangskode matcher ikke dit kaldesignal!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Uden en adgangskode, vil dine rapporter ikke blive sendt</string>
 <string name="mininterval">Minimum opdaterings tid er 1 minut!</string>
 <string name="singlelog">Send Position</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">Velkommen til APRSdroid!</string>
 <string name="fr_text">Dette program må kun betjenes af licenserede radio amatører!</string>
 <string name="fr_text2">Du skal indtaste dit kaldesignal for at benytte dette program. For at sende pakker over APRS-IS skal du også benytte et kodeord.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Om APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Kortlag</string>
-<string name="map_satellite">Satellitfoto</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">APRS Objekter</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">Breddegrad</string>
 <string name="p_source_lon">Længdegrad</string>
 <string name="p_source_coord">Koordinat</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Brug seneste GPS position</string>
 <string name="p_source_auto">Automatisk afsendelse</string>
 <string name="p_source_auto_summary">Send periodisk positionen</string>
@@ -331,9 +340,19 @@
 <string name="p_themefile_choose">Vælg tema fil</string>
 <string name="themefile_error">Fejl ved indlæsning af tema fil %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   Alexandru Csete https://launchpad.net/~alexc
   Finn Leslie https://launchpad.net/~idestrup
+  Georg Lukas https://launchpad.net/~ge0rg
   Kim Eggert https://launchpad.net/~kim-s-eggert
   Mads Bahrt https://launchpad.net/~1-mb</string>
 
@@ -362,6 +381,14 @@
 <string name="bt_error_disabled">Slå Bluetooth til!</string>
 <string name="bt_error_no_tnc">Konfigurer et Bluetooth TNC!</string>
 <string name="bt_error_connect">Kunne ikke forbinde til %s! Tænd for enheden og afbryd andre Bluetooth forbindelser.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Opretter Bluetooth SCO forbindelse...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO forbindelse oprettet.</string>
@@ -391,4 +418,6 @@
 <string name="p_serial_unsupported">Ikke-understøttet serielport</string>
 <string name="p_serial_noperm">Ingen tilladelse til USB enheden!</string>
 <string name="p_serial_notfound">Ingen USB enhed fundet!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

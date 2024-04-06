@@ -15,9 +15,10 @@
 			android:layout_marginBottom="5sp"
 			android:layout_marginRight="10sp"
 			android:singleLine="true"
+			android:textAllCaps="true"
 			android:inputType="textCapCharacters"
 			android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-"
-			android:maxLength="9"
+			android:maxLength="10"
 			android:hint="@string/p_callsign"
 			/>
 		<EditText
@@ -30,6 +31,7 @@
 			android:layout_marginRight="10sp"
 			android:singleLine="true"
 			android:maxLength="67"
+			android:inputType="textShortMessage|textCapSentences|textAutoCorrect"
 			android:hint="@string/msg_message_text"
 			/>
 	</LinearLayout>

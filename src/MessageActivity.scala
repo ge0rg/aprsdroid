@@ -164,8 +164,6 @@ class MessageActivity extends StationHelper(R.string.app_messages)
 		view.getId match {
 		case R.id.msgsend =>
 			sendMessage()
-			true
-		case _ => false
 		}
 	}
 

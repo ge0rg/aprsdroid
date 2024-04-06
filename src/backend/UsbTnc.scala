@@ -49,7 +49,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 	var alreadyRunning = false
 
 	val intent = new Intent(USB_PERM_ACTION)
-	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent, 0)
+	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent, PendingIntent.FLAG_MUTABLE)
 
 	val receiver = new BroadcastReceiver() {
 		override def onReceive(ctx : Context, i : Intent) {
@@ -57,6 +57,11 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 			if (i.getAction() == ACTION_USB_DETACHED) {
 				log("USB device detached.")
 				ctx.stopService(AprsService.intent(ctx, AprsService.SERVICE))
+				return
+			}
+			if (i.getExtras() == null) {
+                                /* this shouldn't ever happen, don't need i18n */
+				service.postAbort("USB permission bug")
 				return
 			}
 			val granted = i.getExtras().getBoolean(UsbManager.EXTRA_PERMISSION_GRANTED)
@@ -146,7 +151,7 @@ class UsbTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(pr
 		override def run() {
 			val con = usbManager.openDevice(dev)
 			ser = UsbSerialDevice.createUsbSerialDevice(dev, con)
-			if (ser == null || !ser.open()) {
+			if (ser == null || !ser.syncOpen()) {
 				con.close()
 				service.postAbort(service.getString(R.string.p_serial_unsupported))
 				return

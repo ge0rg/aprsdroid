@@ -23,9 +23,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="wrap_content"
 	android:padding="4sp"
 	android:orientation="horizontal"
-	android:gravity="center"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	>
+	android:gravity="center">
 	<TextView
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content"
@@ -38,6 +36,7 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_weight="1"
 		android:textSize="16sp"
 		android:maxLength="1"
+		android:textAllCaps="true"
 		android:inputType="textCapCharacters"
 		android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 		android:text="" />
@@ -56,7 +55,6 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 <Button android:id="@+id/ok"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:onClick="onOkClicked"
 	android:text="@android:string/ok"
 	/>
 

@@ -72,11 +72,12 @@
 	operators!</string>
 <string name="fr_text2">You need to enter your callsign to use this software.
 	To forward your packets, an APRS-IS passcode is required as well.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">About APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -109,7 +110,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Overlays</string>
-<string name="map_satellite">Satellite</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">APRS Objects</string>
 
 <!-- map view -->
@@ -211,6 +216,9 @@
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
 <string name="p_source_coord">Coordinate</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Use last GPS position</string>
 <string name="p_source_auto">Automatic Posting</string>
 <string name="p_source_auto_summary">Perform periodic position posting</string>
@@ -351,6 +359,15 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">translator-credits</string>
 
 <!-- Bluetooth TNC settings -->
@@ -378,6 +395,14 @@
 <string name="bt_error_disabled">Please enable Bluetooth!</string>
 <string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
@@ -407,4 +432,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

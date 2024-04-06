@@ -22,6 +22,16 @@
 		android:dialogTitle="@string/p_source_lon" />
 
     <PreferenceScreen
+	android:title="@string/p_source_from_map"
+	android:summary="">
+
+	<intent android:action="android.intent.action.MAIN"
+		android:data="chooseOnMap"
+		android:targetPackage="org.aprsdroid.app"
+		android:targetClass="org.aprsdroid.app.LocationPrefs" />
+    </PreferenceScreen>
+
+    <PreferenceScreen
 	    android:title="@string/p_source_get_last"
 	    android:summary="">
 

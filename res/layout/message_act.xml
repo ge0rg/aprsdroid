@@ -13,22 +13,20 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_weight="1"
 	android:descendantFocusability="blocksDescendants"
 	android:stackFromBottom="true"
-	android:transcriptMode="alwaysScroll" />
+	android:transcriptMode="alwaysScroll"
 	/>
 <LinearLayout
 android:id="@+id/buttonlayout"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
-android:orientation="horizontal"
-xmlns:android="http://schemas.android.com/apk/res/android"
->
+android:orientation="horizontal">
 <EditText android:id="@+id/msginput"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
 	android:singleLine="true"
 	android:maxLength="67"
 	android:layout_weight="1"
-	android:inputType="textShortMessage"
+	android:inputType="textShortMessage|textCapSentences|textAutoCorrect"
 	/>
 <Button android:id="@+id/msgsend"
 	android:layout_width="60sp"

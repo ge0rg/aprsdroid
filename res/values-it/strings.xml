@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Devi conifigurare APRSdroid con il tuo nominativo e la password!</string>
 <string name="wrongpasscode">La password APRS non corrisponde al tuo nominativo radio!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Senza password non puoi utilizzare il programma!</string>
 <string name="mininterval">L\'aggiornamento minimo è 1 minuto!</string>
 <string name="singlelog">Invia posizione</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">Benvenuto su APRSdroid!</string>
 <string name="fr_text">Questo software può essere usato solo se si è in possesso di Autorizzazione Generale all\'Impianto di una  di Stazione di Radioamatore rilasciata dal Ministero delle Comunicazioni.</string>
 <string name="fr_text2">Devi inserire il tuo nominativo per usare questo software.Per trasmettere è richiesto ,inoltre, la password APRS-IS.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Informazioni programma  APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Sovrascrivi</string>
-<string name="map_satellite">Satellite</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Oggetti APRS</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">Latitudine</string>
 <string name="p_source_lon">Longitudine</string>
 <string name="p_source_coord">Coordinate</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Usa l\'ultima posizione GPS</string>
 <string name="p_source_auto">Invio Automatico</string>
 <string name="p_source_auto_summary">Controllo periodico invio posizione</string>
@@ -331,7 +340,17 @@
 <string name="p_themefile_choose">Scegli il tema del file</string>
 <string name="themefile_error">Errore caricando il tema del file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   IK2RXU https://launchpad.net/~gilandin
   IZ5MSM https://launchpad.net/~iz5msm
   Martino Barbon https://launchpad.net/~martins999
@@ -365,6 +384,14 @@
 <string name="bt_error_disabled">Per favore abilita il Bluetooth</string>
 <string name="bt_error_no_tnc">Per favore configura il TNC Bluetooth</string>
 <string name="bt_error_connect">Non posso connettere a %s! Per favore accendi lq periferica e chiudi le altre connessioni Bluetooth.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Sto richiedendo il collegamento  al Bluetooth SCO</string>
 <string name="afsk_info_sco_est">il collegamento  al Bluetooth SCO è stabilito.</string>
@@ -380,7 +407,7 @@
 <string name="ssl_import_ok">Certificato importato per %s.</string>
 <string name="ssl_import_error">Errore importando il certificato: %s!</string>
 <string name="ssl_expired">Il tuo certificato é espirato!</string>
-<string name="ssl_expire_in">Il tuo certificato espirerà in 4 giorni!</string>
+<string name="ssl_expire_in">Il tuo certificato espirerà in %d giorni!</string>
 
 <!-- Config import -->
 <string name="profile_import_activity">Profile import</string>
@@ -394,4 +421,6 @@
 <string name="p_serial_unsupported">Porta seriale non supportata!</string>
 <string name="p_serial_noperm">Periferica USB non supportata!</string>
 <string name="p_serial_notfound">Nessuna periferica USB trovata!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

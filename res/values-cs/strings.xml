@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Nejdříve musíte nastavit svoji volací značku a APRS-IS kód.</string>
 <string name="wrongpasscode">Tvůj APRS-IS kód neodpovídá tvé volací značce.</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Bez APRS-IS kódu se nebude odesílat poloha.</string>
 <string name="mininterval">Minimalní čas obnovy polohy je 1 minuta!</string>
 <string name="singlelog">Odeslat pozici</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">Vítejte v programu APRSdroid!</string>
 <string name="fr_text">Tento program může být používán pouze licencovanými radioamatéry!</string>
 <string name="fr_text2">Pro používání tohoto programu musíte vložit svojí volací značku. Aby byly vaše pakety předávány dále, musíte vložit svůj APRS-IS kód.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">O APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Překryvy</string>
-<string name="map_satellite">Satelit</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">APRS Objekt</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">Zeměpisná šířka</string>
 <string name="p_source_lon">Zeměpisná délka</string>
 <string name="p_source_coord">Souřadnice</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Použít poslední GPS polohu</string>
 <string name="p_source_auto">Automatické odesílání</string>
 <string name="p_source_auto_summary">Pravidelně odesílat pozici</string>
@@ -331,6 +340,15 @@
 <string name="p_themefile_choose">Zvolit soubor motivu</string>
 <string name="themefile_error">Chyba při nahrávání souboru motivu %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   Bronek OK2JIB https://launchpad.net/~bronajz
   Georg Lukas https://launchpad.net/~ge0rg
@@ -363,6 +381,14 @@
 <string name="bt_error_disabled">Zapni prosím Bluetooth!</string>
 <string name="bt_error_no_tnc">Nastav Bluetooth TNC prosím!</string>
 <string name="bt_error_connect">Nelze se připojit k %s! Prosím zapněte zařízení a ukončete jíné bluetooth spojení.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Vyžádávání Bluetooth SCO spojení...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO spojení navázáno.</string>
@@ -392,4 +418,6 @@
 <string name="p_serial_unsupported">Nepodporovaný sériový port!</string>
 <string name="p_serial_noperm">Chybí oprávnění pro USB zařízení!</string>
 <string name="p_serial_notfound">USB zařízení nenalezeno.</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

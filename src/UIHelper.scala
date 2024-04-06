@@ -8,18 +8,43 @@ import _root_.android.content.res.Configuration
 import _root_.android.net.Uri
 import _root_.android.os.{Build, Environment}
 import _root_.android.util.Log
-import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View, WindowManager}
+import _root_.android.view.{ContextMenu, Menu, MenuItem, View, WindowManager}
 import _root_.android.widget.AdapterView.AdapterContextMenuInfo
 import _root_.android.widget.{EditText, Toast}
-
-import java.io.{PrintWriter, File}
+import java.io.{File, PrintWriter}
 import java.text.SimpleDateFormat
 import java.util.Date
 
+import android.content.pm.PackageManager
+import android.provider.Settings
+
+import androidx.core.content.FileProvider
+
+object UIHelper
+{
+	def getExportDirectory(ctx : Context) : File = {
+		val base = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+			Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+		} else {
+			Environment.getExternalStorageDirectory()
+		}
+		return new File(base, "APRSdroid")
+	}
+
+	def shareFile(ctx : Context, file : File, filename : String) {
+		ctx.startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND)
+			.setType("text/plain")
+			.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(ctx, "org.aprsdroid.fileprovider", file))
+			.putExtra(Intent.EXTRA_SUBJECT, filename),
+		file.toString()))
+	}
+
+}
+
 trait UIHelper extends Activity
 		with LoadingIndicator
-		with DialogInterface.OnClickListener 
-		with DialogInterface.OnCancelListener {
+		with PermissionHelper
+{
 
 	var menu_id : Int = -1
 	lazy val prefs = new PrefsWrapper(this)
@@ -49,7 +74,7 @@ trait UIHelper extends Activity
 	def trackOnMap(call : String) {
 		val text = getString(R.string.map_track_call, call)
 		Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-		startActivity(new Intent(this, classOf[MapAct]).setData(Uri.parse(call)))
+		MapModes.startMap(this, prefs, call)
 	}
 
 	def openPrefs(toastId : Int, act : Class[_]) {
@@ -61,6 +86,33 @@ trait UIHelper extends Activity
 			Toast.makeText(this, toastId, Toast.LENGTH_SHORT).show()
 			openedPrefs = true
 		}
+	}
+	def currentListOfPermissions() : Array[String] = {
+		val bi_perms = AprsBackend.defaultBackendPermissions(prefs)
+		val ls_perms = LocationSource.getPermissions(prefs)
+		(bi_perms ++ ls_perms).toArray
+	}
+
+	val START_SERVICE = 1001
+	val START_SERVICE_ONCE = 1002
+
+	override def getActionName(action : Int): Int = {
+		action match {
+		case START_SERVICE => R.string.startlog
+		case START_SERVICE_ONCE => R.string.singlelog
+		}
+	}
+	override def onAllPermissionsGranted(action : Int): Unit = {
+		action match {
+		case START_SERVICE => startService(AprsService.intent(this, AprsService.SERVICE))
+		case START_SERVICE_ONCE => startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
+		}
+	}
+	override def onPermissionsFailedCancel(action: Int): Unit = {
+		// nop
+	}
+	def startAprsService(action : Int): Unit = {
+		checkPermissions(currentListOfPermissions(), action)
 	}
 
 	// manual stop: remember shutdown for next reboot
@@ -83,56 +135,28 @@ trait UIHelper extends Activity
 		}
 	}
 
-	def saveFirstRun(call : String, passcode : String) {
-		val pe = prefs.prefs.edit()
-		call.split("-") match {
-		case Array(callsign) => 
-			pe.putString("callsign", callsign)
-		case Array(callsign, ssid) =>
-			pe.putString("callsign", callsign)
-			pe.putString("ssid", ssid)
-		case _ =>
-			Log.d("saveFirstRun", "could not split callsign")
-			finish()
-			return
-		}
-		if (passcode != "")
-			pe.putString("passcode", passcode)
-		pe.putBoolean("firstrun", false)
-		pe.commit()
+	lazy val passcodeDialog = new PasscodeDialog(this, true)
+	def firstRunDialog() = {
+		passcodeDialog.show()
 	}
 
-	def firstRunDialog() = {
-			val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE)
-					.asInstanceOf[LayoutInflater]
-			val fr_view = inflater.inflate(R.layout.firstrunview, null, false)
-			val fr_call = fr_view.findViewById(R.id.callsign).asInstanceOf[EditText]
-			val fr_pass = fr_view.findViewById(R.id.passcode).asInstanceOf[EditText]
-			new AlertDialog.Builder(this).setTitle(getString(R.string.fr_title))
-				.setView(fr_view)
-				.setIcon(android.R.drawable.ic_dialog_info)
-				.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-					override def onClick(d : DialogInterface, which : Int) {
-						which match {
-							case DialogInterface.BUTTON_POSITIVE =>
-							saveFirstRun(fr_call.getText().toString(),
-								fr_pass.getText().toString())
-							checkConfig()
-							case _ =>
-							finish()
-						}
-					}})
-				.setNeutralButton(R.string.p_passreq, new UrlOpener(this, getString(R.string.passcode_url)))
-				.setOnCancelListener(this)
-				.create.show
-	}
-	// DialogInterface.OnClickListener
-	override def onClick(d : DialogInterface, which : Int) {
-		finish()
-	}
-	// DialogInterface.OnCancelListener
-	override def onCancel(d : DialogInterface) {
-		finish()
+	def keyboardNavDialog(force : Boolean = false) {
+		if (getPackageManager().hasSystemFeature("android.hardware.touchscreen"))
+			return
+		if (!force && prefs.getBoolean("kbdnav_shown", false))
+			return
+		
+		val keys = Array("←→↑↓", "⏪⏩", "⏯️", "⏎🆗")
+		val titles = getResources().getStringArray(R.array.kbdnav_lines)
+		val text = keys zip titles map { case (k, v) => "%s\t%s".format(k, v) } mkString("\n\n")
+		new AlertDialog.Builder(this).setTitle(R.string.kbdnav_title)
+			.setMessage(text)
+			.setIcon(android.R.drawable.ic_dialog_info)
+			.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener {
+				override def onClick(dialog: DialogInterface, which: Int) = {
+					prefs.prefs.edit().putBoolean("kbdnav_shown", true).commit()
+				}})
+			.create.show
 	}
 
 	def setTitleStatus() {
@@ -187,6 +211,29 @@ trait UIHelper extends Activity
 			firstRunDialog()
 			return false
 		}
+		// auto-switch to network location if device lacks GPS
+		if (prefs.getString("loc_source", null) == null) {
+			val has_location = getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION)
+			val has_network = getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_NETWORK)
+			val has_gps = getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS)
+			val best = PeriodicGPS.bestProvider(this)
+			Log.d("checkConfig", "hasLocation = " + has_location + " hasGPS = " + has_gps + " hasNetwork = " + has_network + " best = " + best)
+			Log.d("checkConfig", "hasTouch = " + getPackageManager().hasSystemFeature("android.hardware.touchscreen"))
+			if (!has_gps && best == "passive") {
+				Log.d("checkConfig", "does not have any real location sources, must be a FireTV")
+				prefs.prefs.edit()
+					.putString("loc_source", "manual")
+					.commit()
+				startActivity(new Intent(this, classOf[LocationPrefs]));
+				false
+			} else if (!has_gps) {
+				Log.d("checkConfig", "does not have GPS, switching to netloc")
+				prefs.prefs.edit()
+					.putString("loc_source", "periodic")
+					.putBoolean("netloc", true)
+					.commit()
+			}
+		}
 		if (passcodeConfigRequired(callsign, passcode)) {
 			openPrefs(R.string.wrongpasscode, classOf[BackendPrefs])
 			return false
@@ -217,7 +264,7 @@ trait UIHelper extends Activity
 			.setView(aboutview)
 			.setIcon(android.R.drawable.ic_dialog_info)
 			.setPositiveButton(android.R.string.ok, null)
-			.setNeutralButton(R.string.ad_homepage, new UrlOpener(this, "http://aprsdroid.org/"))
+			.setNeutralButton(R.string.ad_homepage, new UrlOpener(this, "https://aprsdroid.org/"))
 			.create.show
 	}
 
@@ -294,7 +341,7 @@ trait UIHelper extends Activity
 			startActivity(new Intent(this, classOf[HubActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
 			true
 		case R.id.map =>
-			startActivity(new Intent(this, classOf[MapAct]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
+			MapModes.startMap(this, prefs, "")
 			true
 		case R.id.log =>
 			startActivity(new Intent(this, classOf[LogActivity]).addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));
@@ -306,13 +353,13 @@ trait UIHelper extends Activity
 		case R.id.startstopbtn =>
 			val is_running = AprsService.running
 			if (!is_running) {
-				startService(AprsService.intent(this, AprsService.SERVICE))
+				startAprsService(START_SERVICE)
 			} else {
 				stopAprsService()
 			}
 			true
 		case R.id.singlebtn =>
-			startService(AprsService.intent(this, AprsService.SERVICE_ONCE))
+			startAprsService(START_SERVICE_ONCE)
 			true
 		// quit the app
 		//case R.id.quit =>
@@ -389,14 +436,12 @@ trait UIHelper extends Activity
 			}
 			true
 		case R.id.aprsfi =>
-			val url = "http://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)
-			startActivity(new Intent(Intent.ACTION_VIEW,
-				Uri.parse(url)))
+			val url = "https://aprs.fi/info/a/%s?utm_source=aprsdroid&utm_medium=inapp&utm_campaign=aprsfi".format(targetcall)
+			UrlOpener.open(this, url)
 			true
 		case R.id.qrzcom =>
-			val url = "http://qrz.com/db/%s".format(basecall)
-			startActivity(new Intent(Intent.ACTION_VIEW,
-				Uri.parse(url)))
+			val url = "https://qrz.com/db/%s".format(basecall)
+			UrlOpener.open(this, url)
 			true
 		case R.id.sta_export =>
 			new LogExporter(StorageDatabase.open(this), basecall).execute()
@@ -433,7 +478,8 @@ trait UIHelper extends Activity
 	}
 	class LogExporter(storage : StorageDatabase, call : String) extends MyAsyncTask[Unit, String] {
 		val filename = "aprsdroid-%s.log".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
-		val file = new File(Environment.getExternalStorageDirectory(), filename)
+		val directory = UIHelper.getExportDirectory(UIHelper.this)
+		val file = new File(directory, filename)
 
 		override def doInBackground1(params : Array[String]) : String = {
 			import StorageDatabase.Post._
@@ -443,6 +489,7 @@ trait UIHelper extends Activity
 				return getString(R.string.export_empty)
 			}
 			try {
+				directory.mkdirs()
 				val fo = new PrintWriter(file)
 				while (c.moveToNext()) {
 					val ts = c.getString(COLUMN_TSS)
@@ -467,19 +514,26 @@ trait UIHelper extends Activity
 			onStopLoading()
 			if (error != null)
 				Toast.makeText(UIHelper.this, error, Toast.LENGTH_SHORT).show()
-			else startActivity(Intent.createChooser(new Intent(Intent.ACTION_SEND)
-					.setType("text/plain")
-					.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file))
-					.putExtra(Intent.EXTRA_SUBJECT, filename),
-				file.toString()))
+			else 
+				UIHelper.shareFile(UIHelper.this, file, filename)
+		}
+	}
+}
+
+object UrlOpener {
+	def open(ctx: Context, url : String) {
+		try {
+			ctx.startActivity(new Intent(Intent.ACTION_VIEW,
+				Uri.parse(url)))
+		} catch {
+		case e : Exception => Toast.makeText(ctx, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show()
 		}
 	}
 }
 
 class UrlOpener(ctx : Context, url : String) extends DialogInterface.OnClickListener {
 	override def onClick(d : DialogInterface, which : Int) {
-		ctx.startActivity(new Intent(Intent.ACTION_VIEW,
-			Uri.parse(url)))
+		UrlOpener.open(ctx, url)
 	}
 }
 

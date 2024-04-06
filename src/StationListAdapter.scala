@@ -81,7 +81,7 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		view.findViewById(R.id.station_call).asInstanceOf[TextView].setTextColor(color)
 		view.findViewById(R.id.station_qrg).asInstanceOf[TextView].setTextColor(color)
 		val qrg_visible = if (qrg != null && qrg != "") View.VISIBLE else View.GONE
-		view.findViewById(R.id.station_qrg).setVisibility(qrg_visible)
+		view.findViewById(R.id.station_qrg).asInstanceOf[View].setVisibility(qrg_visible)
 		val MCD = 1000000.0
 		android.location.Location.distanceBetween(my_lat/MCD, my_lon/MCD,
 			lat/MCD, lon/MCD, dist)

@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Ti nessessiti de cunfigurarte  l \'APRSdroid , u tu numminativu e a parolla segreta assegnà !</string>
 <string name="wrongpasscode">A parolla segreta assegnà nu coinsidde con u nominativu!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Sensa a parolla segreta assegnà u tu pacchettu u nu pè esse mandou!</string>
 <string name="mininterval">Aggiornamentu minimu u l\'è 1 minuto!</string>
 <string name="singlelog">Send Position</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">Benveniu in APRSdroid!</string>
 <string name="fr_text">Stu pragramma pé esse uso\' solou da operatui radio autorisée!</string>
 <string name="fr_text2">Ti devvi entree u te nominativu pé usà stu programma.Pé trasmette i tè pacchetti,un-a parolla segreta assegnà a lé anche dovua.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Informasuin de APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Viduia  da cartin-a</string>
-<string name="map_satellite">Satellite</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Oggetti APRS</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">Latitudine</string>
 <string name="p_source_lon">Longitudine</string>
 <string name="p_source_coord">Coordina-te</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Usà l\'ultima posisiun GPS</string>
 <string name="p_source_auto">Enviu Automatico</string>
 <string name="p_source_auto_summary">Posisiun Periodica</string>
@@ -331,7 +340,17 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   SILVIO BARLETTA https://launchpad.net/~ik1bqd</string>
 
 <!-- Bluetooth TNC settings -->
@@ -359,6 +378,14 @@
 <string name="bt_error_disabled">Pe piascié autorizza u Bluetooth</string>
 <string name="bt_error_no_tnc">Pe piascié metti au puntu u TNC du Bluetooth</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Ciamandu u collegamentu au Bluetooth SCO</string>
 <string name="afsk_info_sco_est">collegamentu au Bluetooth SCO  stabiliu</string>
@@ -388,4 +415,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

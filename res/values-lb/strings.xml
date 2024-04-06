@@ -11,7 +11,8 @@
 <string name="app_messages_clear">Noriichten leschen</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">Du muss APRSdroid mat dengem Rufzeechen an Passcode konfiguréieren!</string>
-<string name="wrongpasscode">Den Passcode passt net zum Rufzeechen!</string>
+<string name="wrongpasscode">De Passcode passt net zum Rufzeechen!</string>
+<string name="e_toolong_callsign">Däi Rufzeechen ass ze laang fir Packet Radio!</string>
 <string name="anon_warning">Ouni Passcode ginn deng Infoe net viru geschéckt!</string>
 <string name="mininterval">Klengst  Updatezäit ass 1 Minutt!</string>
 <string name="singlelog">Positioun schécken</string>
@@ -67,10 +68,11 @@
 <string name="fr_title">Wëllkomm bei APRSdroid!</string>
 <string name="fr_text">Des Software dierf nëmmen vun lizenséierten Funkamateuren benotzt ginn!</string>
 <string name="fr_text2">Du muss däin Rufzeechen aginn fir des Software benotzen ze kënnen. Fir deng Päck ze verschécken brauchs ze zudeem en APRS-IS passcode.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Iwwer APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n http://aprsdroid.org \n\n APRS® ass eng registréiert Handelsmark vum Bob Bruninga (WB4APR)</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® ass eng registréiert Handelsmark vum Bob Bruninga (WB4APR)</string>
 <string name="ad_gpl">Dëst ass eng fräi Software; du kanns se ënnert den Konditiounen vun der GNU General Public License wéi se vun der Free Software Foundation publizéiert ginn ass virun verdeelen an/oder modifizéieren; entweder ënnert der Versioun 2 vun der Lizenz, oder (als deng Optioun) ënnert enger méi spéiderer Versioun. \n\n Dësen Programm gëtt an der Hoffnung verdeelt, dass en nëtzlech ass, mee OUNI IRGENDENG GARANTIE; och ouni di implizéiert Garantie fir MARKTGÄNGEGKEET oder FITNESS FIR EN BESONNESCHEN ZWECK. Kuck an der GNU General Public License fir weider Detailer. \n\n Du miss eng Kopie vun der GNU General Public License mat dësem Programm kritt hunn; wann net, dann schreif un d\'Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">E Merci un:</string>
 <string name="ad_thanks_0">Meng YL ♥♥♥</string>
@@ -85,7 +87,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Ablendung</string>
-<string name="map_satellite">Satellit</string>
+<string name="map_google">Google: Kaart</string>
+<string name="map_satellite">Google: Satellit</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline">%s (Offline)</string>
 <string name="map_objects">APRS Objet\'en</string>
 
 <!-- map view -->
@@ -187,6 +193,9 @@
 <string name="p_source_lat">Breetegrad</string>
 <string name="p_source_lon">Längegrad</string>
 <string name="p_source_coord">Koordinaten</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Benotz déi läscht GPS Positioun</string>
 <string name="p_source_auto">Automatescht Verschecken</string>
 <string name="p_source_auto_summary">Maach periodesch Positionsaussendungen</string>
@@ -327,7 +336,17 @@
 <string name="p_themefile_choose">Wiel Themendatei</string>
 <string name="themefile_error">Fehler beim Themendatei %s lueden!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   heedge https://launchpad.net/~heedge</string>
 
 <!-- Bluetooth TNC settings -->
@@ -355,6 +374,14 @@
 <string name="bt_error_disabled">Schalt Bluetooth w.e.g un</string>
 <string name="bt_error_no_tnc">Konfiguréier w.e.g. en Bluetooth TNC!</string>
 <string name="bt_error_connect">Konnt net zu %s connectéiren! Schalt d\'Gerät un a mach aaner Bluetooth Connexiounen zou.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Sichen no enger Bluetooth SCO Verbindung...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO Verbindung ass hiergestallt.</string>
@@ -384,4 +411,6 @@
 <string name="p_serial_unsupported">Deen serielle Port gëtt net ënnerstëtzt!</string>
 <string name="p_serial_noperm">Keng Erlaabnis fir USB Gerät!</string>
 <string name="p_serial_notfound">Keen USB Gerät fond!</string>
+
+<string name="no_perm_text">Folgend Berechtegungen gi verlangt:</string>
 </resources>

@@ -13,8 +13,14 @@
 			<group android:checkableBehavior="all">
 				<item android:id="@+id/objects"
 					android:title="@string/map_objects" />
+			</group>
+			<group android:id="@+id/mapmodes" android:checkableBehavior="single">
+				<item android:id="@+id/normal"
+					android:title="@string/map_google" />
 				<item android:id="@+id/satellite"
 					android:title="@string/map_satellite" />
+				<item android:id="@+id/mapsforge"
+					android:title="@string/map_osm" />
 			</group>
 		</menu>
 	</item>

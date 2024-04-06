@@ -5,13 +5,14 @@
 <string name="app_prefs">APRSdroid Asetukset</string>
 <string name="app_map">APRSdroid Kartta</string>
 <string name="app_hub">APRSdroid Läheiset</string>
-<string name="app_log">APRSdroid Log</string>
+<string name="app_log">APRSdroidin loki</string>
 <string name="app_sta">Aseman tiedot</string>
 <string name="app_messages">Viestit</string>
 <string name="app_messages_clear">Tyhjennä viestit</string>
 <!-- APRSdroid activity -->
 <string name="firstrun">APRSdroid:n asetuksista puuttuvat kutsu sekä passcode!</string>
 <string name="wrongpasscode">Passcode ei vastaa kutsumerkkiäsi!</string>
+<string name="e_toolong_callsign">Kutsumerkkisi on liian pitkä pakettiradiolle!</string>
 <string name="anon_warning">Paikkatietoraporttejasi ei välitetä edelleen mikäli passcode ei ole asetettu!</string>
 <string name="mininterval">Pienin päivitysväli on 1 minuutti!</string>
 <string name="singlelog">Lähetä sijainti</string>
@@ -67,14 +68,11 @@
 <string name="fr_title">Tervetuloa APRSdroid:iin!</string>
 <string name="fr_text">Ohjelman käyttö on sallittua vain pätevyystodistuksen omaaville radioamatööreille!</string>
 <string name="fr_text2">Ohjelman käyttäminen edellyttää oman kutsumerkkisi asettamista. Jotta paikkatietosi välitettäisiin edelleen, myös oikea APRS-IS passcode on asetettava.</string>
+<string name="fr_text3">Tarvitaan vain APRS-yhteyteen Internetin kautta:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Tietoja APRSdroid v%s:sta</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® on Bob Bruningan (WB4APR) rekisteröity tavaramerkki.</string>
 <string name="ad_gpl">Tämä ohjelmisto on vapaa; voit jakaa sitä ja/tai muokata sitä Free Software Foundationin julkaiseman GNU General Public License ehtojen mukaisesti; joko Lisenssin 2-version tai myöhemmän version mukaisesti. \n\n Tätä ohjelmaa jaetaan siten, että siitä olisi jotain hyötyä, mutta EHDOTTOMASTI ILMAN MITÄÄN TAKUUTA; ilman vähäisintäkään takuuta KAUPALLISUUDESTA tai SOPIVUUDESTA ERITYISIIN TARKOITUKSIIN. Katso GNU General Public License tarkemista yksityiskohdista. \n\n Olet saanut kopion GNU General Public License:stä tämän ohjelman mukana; jos et, niin otayhteyttä Free Software Foundation:iin , Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Kiitokset:</string>
 <string name="ad_thanks_0">Oma YL:ni ♥♥♥</string>
@@ -89,7 +87,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Kartan peitteet</string>
-<string name="map_satellite">Satelliitti</string>
+<string name="map_google">Google: Kartta</string>
+<string name="map_satellite">Google: Satelliitti</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline">%s (Paikallisesti tallennettu)</string>
 <string name="map_objects">APRS-objektit</string>
 
 <!-- map view -->
@@ -106,14 +108,14 @@
 <string name="show_hub">Näytä Läheiset</string>
 <string name="show_map">Näytä Kartta</string>
 <string name="show_log">Näytä loki</string>
-<string name="export_log">Export Log</string>
-<string name="export_empty">Nothing to export</string>
+<string name="export_log">Vie loki</string>
+<string name="export_empty">Ei vietävää lokitietoa</string>
 <string name="clear_log">Tyhjennä loki</string>
 <string name="quit">Poistu</string>
 <string name="preferences">Asetukset</string>
 <!-- preferences -->
-<string name="profile_load">Load profile...</string>
-<string name="profile_export">Export profile...</string>
+<string name="profile_load">Lataa profiili...</string>
+<string name="profile_export">Vie profiili...</string>
 <string name="p__ham">Amatööriradio</string>
 <string name="p_callsign">Kutsumerkki</string>
 <string name="p_callsign_nossid">Kutsumerkki (ilman SSID:tä)</string>
@@ -168,13 +170,13 @@
 <string name="p_conn_aprsis">Internet (APRS-IS)</string>
 <string name="p_conn_afsk">Audiomodeemi (AFSK)</string>
 <string name="p_conn_kiss">TNC (KISS)</string>
-<string name="p_conn_tnc2">TNC (plaintext TNC2)</string>
+<string name="p_conn_tnc2">TNC (tekstimuotoinen TNC2)</string>
 <string name="p_conn_kwd">Kenwood (NMEA waypoint)</string>
 <string name="p_conn_kwd_info">Kenwood-asetusten ohje</string>
-<string name="p_conn_kwd_gps">Use Android GPS</string>
-<string name="p_conn_kwd_gps_summary">Forward NMEA sentences to radio</string>
-<string name="p_conn_kwd_gps_debug">Display GPS in log</string>
-<string name="p_conn_kwd_gps_debug_summary">Show raw NMEA in APRSdroid</string>
+<string name="p_conn_kwd_gps">Käytä Androidin GPS:ää</string>
+<string name="p_conn_kwd_gps_summary">Lähetä NMEA-lauseet radiolle</string>
+<string name="p_conn_kwd_gps_debug">Näytä GPS lokissa</string>
+<string name="p_conn_kwd_gps_debug_summary">Näytä NMEA-lauseet APRSdroidissa</string>
 <!-- array of APRS-IS protocols -->
 <string name="p_aprsis_tcp">TCP-yhteys</string>
 <string name="p_aprsis_http">HTTP POST (vain lähetys)</string>
@@ -191,6 +193,9 @@
 <string name="p_source_lat">Leveyspiiri</string>
 <string name="p_source_lon">Pituuspiiri</string>
 <string name="p_source_coord">Koordinaatit</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Käytä viimeisintä GPS-sijaintia</string>
 <string name="p_source_auto">Automaattinen lähetys</string>
 <string name="p_source_auto_summary">Jaksottainen sijainnin lähetys</string>
@@ -224,7 +229,7 @@
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ ohje</string>
 <string name="p_sb_fast_speed">Fast Speed [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_speed_summary">Minimum speed for fast position updates</string>
 <string name="p_sb_fast_rate">Fast Rate [s]</string>
 <string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
 <string name="p_sb_slow_speed">Slow Speed [km/h]</string>
@@ -281,8 +286,8 @@
 <string name="p_dgp_ring_summary">Toistimilta kuultujen omien pakettien ääni</string>
 
 <string name="got_digipeated">%1$s:n toistama paketti: %2$s</string>
-<string name="status_linkoff">Error: %s</string>
-<string name="status_linkon">Connected: %s</string>
+<string name="status_linkoff">Virhe: %s</string>
+<string name="status_linkon">Yhdistetty: %s</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS-toistinpolku</string>
@@ -321,15 +326,24 @@
 <string name="p_sotimeout_summary">Hyytyneen yhteyden katkaisuviive</string>
 <string name="p_sotimeout_entry">Aikakatkaisu sekunneissa (0 = ei käytössä)</string>
 
-<string name="p_mapfile">Map file name</string>
-<string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>
-<string name="p_mapfile_choose">Choose map file</string>
-<string name="mapfile_error">Error loading map file %s!</string>
+<string name="p_mapfile">Karttatiedoston nimi</string>
+<string name="p_mapfile_summary">MapsForge-karttatiedosto APRSdroidille</string>
+<string name="p_mapfile_choose">Valitse karttatiedosto</string>
+<string name="mapfile_error">Virhe ladattaessa karttatiedostoa %s!</string>
 
-<string name="p_themefile">Theme file name</string>
-<string name="p_themefile_summary">MapsForge rendering theme (XML)</string>
-<string name="p_themefile_choose">Choose theme file</string>
-<string name="themefile_error">Error loading theme file %s!</string>
+<string name="p_themefile">Teematiedoston nimi</string>
+<string name="p_themefile_summary">MapsForge piirtoteema (XML)</string>
+<string name="p_themefile_choose">Valitse teematiedosto</string>
+<string name="themefile_error">Virhe ladattaessa teematiedostoa %s!</string>
+
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
 
 <string name="translator_credits">Launchpad Contributions:
   Georg Lukas https://launchpad.net/~ge0rg
@@ -365,7 +379,15 @@
 <string name="bt_error_unsupported">Laite ei tue Bluetoothia!</string>
 <string name="bt_error_disabled">Ole hyvä ja kytke Bluetooth päälle!</string>
 <string name="bt_error_no_tnc">Ole hyvä ja määritä Bluetooth-TNC:n asetukset!</string>
-<string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_error_connect">Yhteydenmuodostus %s:ään epäonnistui! Ole ystävällinen ja kytke laite päälle sekä sulje muut Bluetooth-yhteydet.</string>
+<string name="bt_awaiting">Odottaa yhteyttä...</string>
+<string name="bt_client_connected">Laite %s yhdistynyt.</string>
+<string name="bt_connecting_to_spp">Yhdistää SPP-palveluun %s...</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Yhdistää %s kanavaan %d...</string>
+<string name="bt_connected">TNC yhdistetty.</string>
+<string name="bt_reconnecting">Yhdistää uudelleen 3s jälkeen...</string>
+
 
 <string name="afsk_info_sco_req">Pyydän Bluetooth SCO-yhteyttä...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO-yhteys muodostettu.</string>
@@ -384,9 +406,9 @@
 <string name="ssl_expire_in">Sertifikaattisi vanhenee %d päivän kuluttua!</string>
 
 <!-- Config import -->
-<string name="profile_import_activity">Profile import</string>
-<string name="profile_import_done">Imported profile: %s</string>
-<string name="profile_import_error">Error importing profile: %s!</string>
+<string name="profile_import_activity">Profiilin tuonti</string>
+<string name="profile_import_done">Profiili tuotu: %s</string>
+<string name="profile_import_error">Virhe tuotaessa profiilia: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
 <string name="p_serial_baudrate">Nopeus (baud)</string>
@@ -395,4 +417,6 @@
 <string name="p_serial_unsupported">Sarjaportti ei tuettu</string>
 <string name="p_serial_noperm">Ei käyttöoikeuksia USB-laitteelle!</string>
 <string name="p_serial_notfound">USB-laitetta ei löydy!</string>
+
+<string name="no_perm_text">Seuraavat oikeudet vaaditaan:</string>
 </resources>

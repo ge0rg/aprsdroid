@@ -1,63 +1,69 @@
 package org.aprsdroid.app
 
+import _root_.android.Manifest
 import _root_.android.app.AlertDialog
-import _root_.android.content.{BroadcastReceiver, Context, DialogInterface, Intent, IntentFilter}
+import _root_.android.content.{DialogInterface, Intent, IntentFilter}
+import _root_.android.content.pm.PackageManager
 import _root_.android.content.res.Configuration
 import _root_.android.database.Cursor
-import _root_.android.graphics.drawable.{Drawable, BitmapDrawable}
+import _root_.android.graphics.drawable.{BitmapDrawable, Drawable}
 import _root_.android.graphics.{Canvas, Paint, Path, Point, Rect, Typeface}
-import _root_.android.os.{Bundle, Handler}
+import _root_.android.os.{Build, Bundle}
 import _root_.android.util.Log
 import _root_.android.view.{KeyEvent, Menu, MenuItem, View}
-import _root_.android.widget.SimpleCursorAdapter
-import _root_.android.widget.Spinner
-import _root_.android.widget.TextView
-import _root_.com.google.android.maps._
+import _root_.android.widget.Toast
+import _root_.org.mapsforge.v3.android.maps._
+import _root_.org.mapsforge.v3.core.{GeoPoint, Tile}
+import _root_.org.mapsforge.v3.android.maps.overlay.{ItemizedOverlay, OverlayItem}
+
 import _root_.scala.collection.mutable.ArrayBuffer
+import _root_.java.io.File
 import _root_.java.util.ArrayList
+import java.lang.UnsupportedOperationException
+
+import org.mapsforge.v3.android.maps.mapgenerator.{MapGeneratorFactory, MapGeneratorInternal}
+import org.mapsforge.v3.map.reader.header.FileOpenResult
 
 // to make scala-style iterating over arraylist possible
 import scala.collection.JavaConversions._
 
-class MapAct extends MapActivity with UIHelper {
-	val TAG = "APRSdroid.Map"
+class MapAct extends MapActivity with MapMenuHelper {
+	override val TAG = "APRSdroid.Map"
 
 	menu_id = R.id.map
+
 	lazy val mapview = findViewById(R.id.mapview).asInstanceOf[MapView]
 	lazy val allicons = this.getResources().getDrawable(R.drawable.allicons)
 	lazy val db = StorageDatabase.open(this)
 	lazy val staoverlay = new StationOverlay(allicons, this, db)
-	lazy val loading = findViewById(R.id.loading)
-	lazy val targetcall = getTargetCall()
-
-	var showObjects = false
-
-	lazy val locReceiver = new LocationReceiver2[ArrayList[Station]](staoverlay.load_stations,
+	lazy val loading = findViewById(R.id.loading).asInstanceOf[View]
+	lazy val locReceiver = new LocationReceiver2[ArrayList[OSMStation]](staoverlay.load_stations,
 			staoverlay.replace_stations, staoverlay.cancel_stations)
 
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.mapview)
 		mapview.setBuiltInZoomControls(true)
-
-		locReceiver.startTask(null)
-		showObjects = prefs.getShowObjects()
-		mapview.setSatellite(prefs.getShowSatellite())
 		mapview.getOverlays().add(staoverlay)
+		mapview.setTextScale(getResources().getDisplayMetrics().density)
 
-		// listen for new positions
-		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
-
+		startLoading()
 	}
+
 	override def onResume() {
 		super.onResume()
 		// only make it default if not tracking
-		if (targetcall == "")
+		if (isCoordinateChooser)
+			setTitle(R.string.p_source_from_map)
+		else if (targetcall == "")
 			makeLaunchActivity("map")
 		else
 			setLongTitle(R.string.app_map, targetcall)
 		setKeepScreenOn()
 		setVolumeControls()
+		//checkPermissions(Array(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE), RELOAD_MAP)
+		reloadMapAndTheme()
+		mapview.requestFocus()
 	}
 
 	override def onConfigurationChanged(c : Configuration) = {
@@ -66,55 +72,82 @@ class MapAct extends MapActivity with UIHelper {
 			setLongTitle(R.string.app_map, targetcall)
 	}
 
+	override def onPause() {
+		super.onPause()
+		val pos = mapview.getMapPosition().getMapPosition()
+		if (pos == null || pos.geoPoint == null)
+			return
+		saveMapViewPosition(pos.geoPoint.latitudeE6/1000000.0f, pos.geoPoint.longitudeE6/1000000.0f, pos.zoomLevel)
+	}
+
 	override def onDestroy() {
 		super.onDestroy()
 		unregisterReceiver(locReceiver)
 	}
-	override def isRouteDisplayed() = false
 
-	override def onCreateOptionsMenu(menu : Menu) : Boolean = {
-		getMenuInflater().inflate(R.menu.options_map, menu);
-		if (targetcall != "")
-			getMenuInflater().inflate(R.menu.context_call, menu);
-		else {
-			getMenuInflater().inflate(R.menu.options_activities, menu);
-			getMenuInflater().inflate(R.menu.options, menu);
-		}
-		menu.findItem(R.id.map).setVisible(false)
-		true
+        override def loadMapViewPosition(lat : Float, lon : Float, zoom : Float) {
+		mapview.getController().setCenter(new GeoPoint(lat, lon))
+		mapview.getController().setZoom(zoom.asInstanceOf[Int])
+        }
+
+	def startLoading() {
+		registerReceiver(locReceiver, new IntentFilter(AprsService.UPDATE))
+		locReceiver.startTask(null)
 	}
 
-	// override this to only call UIHelper on "bare" map
-	override def onPrepareOptionsMenu(menu : Menu) : Boolean = {
-		if (targetcall == "")
-			super.onPrepareOptionsMenu(menu)
-		else {
-			menu.findItem(R.id.objects).setChecked(prefs.getShowObjects())
-			menu.findItem(R.id.satellite).setChecked(prefs.getShowSatellite())
-			true
+	val RELOAD_MAP = 1010
+
+	override def getActionName(action : Int): Int = {
+		action match {
+		case RELOAD_MAP => R.string.show_map
+		case _ => super.getActionName(action)
+		}
+	}
+	override def onAllPermissionsGranted(action: Int): Unit = {
+		action match {
+		case RELOAD_MAP => reloadMapAndTheme()
+		case _ => super.onAllPermissionsGranted(action)
 		}
 	}
 
-	override def onOptionsItemSelected(mi : MenuItem) : Boolean = {
-		mi.getItemId match {
-		case R.id.objects =>
-			val newState = prefs.toggleBoolean("show_objects", true)
-			mi.setChecked(newState)
-			showObjects = newState
-			onStartLoading()
-			locReceiver.startTask(null)
-			true
-		case R.id.satellite =>
-			val newState = prefs.toggleBoolean("show_satellite", false)
-			mi.setChecked(newState)
-			mapview.setSatellite(newState)
-			true
-		case _ =>
-			if (targetcall != "" && callsignAction(mi.getItemId, targetcall))
-				true
-			else
-				super.onOptionsItemSelected(mi)
+	override def onPermissionsFailed(action : Int, permissions : Set[String]): Unit = {
+		// fail to online OSM map
+        }
+
+	override def onPermissionsFailedCancel(action: Int): Unit = {
+		// should never be called
+        }
+
+	def reloadMapAndTheme() {
+		val mapfile = new File(prefs.getString("mapfile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.map"))
+		var error = if (mapfile.exists() && mapfile.canRead()) {
+			val result = mapview.setMapFile(mapfile)
+			// output map loader's error if loading failed
+			if (result.isSuccess) null else result.getErrorMessage
+		} else if (prefs.getString("mapfile", null) != null) {
+			// output generic error if file was configured but is not loadable
+			getString(R.string.mapfile_error, mapfile)
+		} else {
+			// do not output error if no map file was configured, silently load online osm
+			null
 		}
+		if (error != null)
+			Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+		// all map file attempts failed, fall back to online
+		try {
+			if (mapview.getMapFile == null) {
+				val map_source = MapGeneratorInternal.MAPNIK
+				val map_gen = new OsmTileDownloader()
+				map_gen.setUserAgent(getString(R.string.build_version))
+				mapview.setMapGenerator(map_gen)
+			}
+		} catch {
+		case _ : UnsupportedOperationException =>  /* ignore, this is thrown by online map generator */
+		}
+		val themefile = new File(prefs.getString("themefile", android.os.Environment.getExternalStorageDirectory() + "/aprsdroid.xml"))
+		if (themefile.exists())
+			mapview.setRenderTheme(themefile)
+		loadMapViewPosition()
 	}
 
 	override def onKeyDown(keyCode : Int, event : KeyEvent) : Boolean = {
@@ -127,26 +160,43 @@ class MapAct extends MapActivity with UIHelper {
 		     KeyEvent.KEYCODE_MEDIA_PREVIOUS =>
 			changeZoom(-1)
 			true
+		case KeyEvent.KEYCODE_MEDIA_PLAY |
+		     KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE =>
+			if (mapview.hasFocus())
+				mapview.focusSearch(View.FOCUS_FORWARD).requestFocus()
+			else
+				mapview.requestFocus()
+			true
+		case KeyEvent.KEYCODE_DPAD_CENTER |
+		     KeyEvent.KEYCODE_ENTER =>
+			// TODO: return coordinates
+			if (isCoordinateChooser) {
+				setResult(android.app.Activity.RESULT_OK, resultIntent)
+				finish()
+			}
+			true
 		case _ => super.onKeyDown(keyCode, event)
 		}
 	}
 
-	def getTargetCall() : String = {
-		val i = getIntent()
-		if (i != null && i.getDataString() != null) {
-			i.getDataString()
-		} else ""
+	def updateCoordinateInfo(): Unit = {
+		if (!isCoordinateChooser)
+			return
+		val pos = mapview.getMapPosition().getMapPosition()
+		if (pos == null || pos.geoPoint == null)
+			return
+		updateCoordinateInfo(pos.geoPoint.latitudeE6/1000000.0f, pos.geoPoint.longitudeE6/1000000.0f)
 	}
 
-	def changeZoom(delta : Int) {
-		mapview.getController().setZoom(mapview.getZoomLevel() + delta)
+	override def changeZoom(delta : Int) {
+		mapview.getController().setZoom(mapview.getMapPosition().getZoomLevel() + delta)
 	}
 
 	def animateToCall() {
 		if (targetcall != "") {
 			val (found, lat, lon) = getStaPosition(db, targetcall)
 			if (found)
-				mapview.getController().animateTo(new GeoPoint(lat, lon))
+				mapview.getController().setCenter(new GeoPoint(lat, lon))
 		}
 	}
 
@@ -154,6 +204,11 @@ class MapAct extends MapActivity with UIHelper {
 		mapview.invalidate()
 		onStopLoading()
 		animateToCall()
+	}
+
+	override def reloadMap() {
+		onStartLoading()
+		locReceiver.startTask(null)
 	}
 
 	override def onStartLoading() {
@@ -165,25 +220,25 @@ class MapAct extends MapActivity with UIHelper {
 	}
 }
 
-class Station(val movelog : ArrayBuffer[GeoPoint], val pt : GeoPoint,
+class OSMStation(val movelog : ArrayBuffer[GeoPoint], val pt : GeoPoint,
 	val call : String, val origin : String, val symbol : String)
 	extends OverlayItem(pt, call, origin) {
 
 	def inArea(bl : GeoPoint, tr : GeoPoint) = {
-		val lat_ok = (bl.getLatitudeE6 <= pt.getLatitudeE6 && pt.getLatitudeE6 <= tr.getLatitudeE6)
-		val lon_ok = if (bl.getLongitudeE6 <= tr.getLongitudeE6)
-				     (bl.getLongitudeE6 <= pt.getLongitudeE6 && pt.getLongitudeE6 <= tr.getLongitudeE6)
+		val lat_ok = (bl.latitudeE6 <= pt.latitudeE6 && pt.latitudeE6 <= tr.latitudeE6)
+		val lon_ok = if (bl.longitudeE6 <= tr.longitudeE6)
+				     (bl.longitudeE6 <= pt.longitudeE6 && pt.longitudeE6 <= tr.longitudeE6)
 			     else
-				     (bl.getLongitudeE6 <= pt.getLongitudeE6 || pt.getLongitudeE6 <= tr.getLongitudeE6)
+				     (bl.longitudeE6 <= pt.longitudeE6 || pt.longitudeE6 <= tr.longitudeE6)
 		lat_ok && lon_ok
 	}
 }
 
-class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) extends ItemizedOverlay[Station](icons) {
+class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) extends ItemizedOverlay[OSMStation](icons) {
 	val TAG = "APRSdroid.StaOverlay"
 
 	//lazy val calls = new scala.collection.mutable.HashMap[String, Boolean]()
-	var stations = new java.util.ArrayList[Station]()
+	var stations = new java.util.ArrayList[OSMStation]()
 
 	// prevent android bug #11666
 	populate()
@@ -192,8 +247,10 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 	val symbolSize = iconbitmap.getWidth()/16
 	lazy val drawSize = (context.getResources().getDisplayMetrics().density * 24).toInt
 
+	icons.setBounds(0, 0, symbolSize, symbolSize)
+
 	override def size() = stations.size()
-	override def createItem(idx : Int) : Station = stations.get(idx)
+	override def createItem(idx : Int) : OSMStation = stations.get(idx)
 
 	def symbol2rect(index : Int, page : Int) : Rect = {
 		// check for overflow
@@ -212,7 +269,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		(symbol(0) != '/' && symbol(0) != '\\')
 	}
 
-	def drawTrace(c : Canvas, proj : Projection, s : Station) : Unit = {
+	def drawTrace(c : Canvas, proj : Projection, s : OSMStation) : Unit = {
 		//Log.d(TAG, "drawing trace of %s".format(call))
 
 		val tracePaint = new Paint()
@@ -248,9 +305,10 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		c.drawPath(path, tracePaint)
 	}
 
-	override def draw(c : Canvas, m : MapView, shadow : Boolean) : Unit = {
-		if (shadow) return;
+	override def drawOverlayBitmap(c : Canvas, dp : Point, proj : Projection, zoom : Byte) : Unit = {
 
+		if (!context.mapview.getMapPosition.isValid)
+			return
 		Log.d(TAG, "draw: symbolSize=" + symbolSize + " drawSize=" + drawSize)
 		val fontSize = drawSize*7/8
 		val textPaint = new Paint()
@@ -273,8 +331,6 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 
 
 		val p = new Point()
-		val proj = m.getProjection()
-		val zoom = m.getZoomLevel()
 		val (width, height) = (c.getWidth(), c.getHeight())
 		val ss = drawSize/2
 		for (s <- stations) {
@@ -298,9 +354,11 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 				}
 			}
 		}
+		import AprsService.block2runnable
+		context.handler.post { context.updateCoordinateInfo() }
 	}
 
-	def addStation(sta : Station) {
+	def addStation(sta : OSMStation) {
 		//if (calls.contains(sta.getTitle()))
 		//	return
 		//calls.add(sta.getTitle(), true)
@@ -368,10 +426,10 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		m
 	}
 
-	def load_stations(i : Intent) : ArrayList[Station] = {
+	def load_stations(i : Intent) : ArrayList[OSMStation] = {
 		import StorageDatabase.Station._
 
-		val s = new ArrayList[Station]()
+		val s = new ArrayList[OSMStation]()
 		val age_ts = (System.currentTimeMillis - context.prefs.getShowAge()).toString
 		val filter = if (context.showObjects) "TS > ? OR CALL=?" else "(ORIGIN IS NULL AND TS > ?) OR CALL=?"
 		val c = db.getStations(filter, Array(age_ts, context.targetcall), null)
@@ -386,7 +444,7 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 			val origin = c.getString(COLUMN_MAP_ORIGIN)
 			val p = new GeoPoint(lat, lon)
 			val m = fetchStaPositions(call, pos_c)
-			s.add(new Station(m, p, call, origin, symbol))
+			s.add(new OSMStation(m, p, call, origin, symbol))
 			c.moveToNext()
 		}
 		c.close()
@@ -395,15 +453,12 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		s
 	}
 
-	def replace_stations(s : ArrayList[Station]) {
+	def replace_stations(s : ArrayList[OSMStation]) {
 		stations = s
-		// work around NullPointerException in ItemizedOverlay
-		// http://groups.google.com/group/android-developers/browse_thread/thread/38b11314e34714c3
-		setLastFocusedIndex(-1)
 		Benchmark("populate") { populate() }
 		context.onPostLoad()
 	}
-	def cancel_stations(s : ArrayList[Station]) {
+	def cancel_stations(s : ArrayList[OSMStation]) {
 	}
 
 }

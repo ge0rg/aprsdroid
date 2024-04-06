@@ -70,12 +70,12 @@ class PrefsWrapper(val context : Context) {
 			R.array.p_locsource_ev, R.array.p_locsource_e)
 	}
 	def getBackendName() = {
-		val proto = getListItemName("proto", AprsBackend.DEFAULT_CONNTYPE,
+		val proto = getListItemName("proto", AprsBackend.DEFAULT_PROTO,
 			R.array.p_conntype_ev, R.array.p_conntype_e)
 		val link = AprsBackend.defaultProtoInfo(this).link
 		link match {
-		case "aprsis" => "%s, %s".format(proto, getListItemName(link, "tcp", R.array.p_aprsis_ev, R.array.p_aprsis_e))
-		case "link" => "%s, %s".format(proto, getListItemName(link, "tcp", R.array.p_link_ev, R.array.p_link_e))
+		case "aprsis" => "%s, %s".format(proto, getListItemName(link, AprsBackend.DEFAULT_CONNTYPE, R.array.p_aprsis_ev, R.array.p_aprsis_e))
+		case "link" => "%s, %s".format(proto, getListItemName(link, AprsBackend.DEFAULT_CONNTYPE, R.array.p_link_ev, R.array.p_link_e))
 		case _ => proto
 		}
 	}

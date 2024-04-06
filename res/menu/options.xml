@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:id="@+id/menu_options">
 	<item android:id="@+id/startstopbtn"
 		android:title="@string/startlog"
 		android:alphabeticShortcut="t"
@@ -23,5 +24,6 @@
 		android:title="@string/about"
 		android:alphabeticShortcut="a"
 		android:icon="@android:drawable/ic_menu_info_details" />
+</group>
 </menu>
 

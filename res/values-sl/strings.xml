@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Potrebno je nastaviti APRSdroid z pozivnim znakom in geslom</string>
 <string name="wrongpasscode">Vaše geslo se ne ujema z pozivnim znakom</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Brez gesla vaša sporočila ne bodo vidna</string>
 <string name="mininterval">Najmanjši čas posodobitve</string>
 <string name="singlelog">Pošlji lokacijo</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">Dobrodošli v APRSdroid!</string>
 <string name="fr_text">To aplikacijo smejo uporabljati le registrirani radioamaterji!</string>
 <string name="fr_text2">Vnesite vaš klicni znak za uporabo aplikacije. Za pošiljanje paketkov, je potrebno tudi APRS geslo.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">APRSdroid vizitka v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Prekrivanja</string>
-<string name="map_satellite">Satelit</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">APRS objekti</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">Zemljepisna širina</string>
 <string name="p_source_lon">Zemljepisna dolžina</string>
 <string name="p_source_coord">Koordinata</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Uporabi zadnjo GPS lokacijo</string>
 <string name="p_source_auto">Avtomatsko lociranje</string>
 <string name="p_source_auto_summary">Izvedi periodično pošiljanje lokacije</string>
@@ -224,7 +233,7 @@
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ pomoč</string>
 <string name="p_sb_fast_speed">Visoka hitrost [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_speed_summary">Minimum speed for fast position updates</string>
 <string name="p_sb_fast_rate">Minimalna hitrost za hitre posodobitve lokacije</string>
 <string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
 <string name="p_sb_slow_speed">Nizka hitrost [km/h]</string>
@@ -331,7 +340,17 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   Joško Horvat https://launchpad.net/~joze-horvat
   Matic Gradišer https://launchpad.net/~0micky</string>
 
@@ -360,6 +379,14 @@
 <string name="bt_error_disabled">Please enable Bluetooth!</string>
 <string name="bt_error_no_tnc">Please configure a Bluetooth TNC!</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Requesting bluetooth SCO link...</string>
 <string name="afsk_info_sco_est">Bluetooth SCO link established.</string>
@@ -389,4 +416,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

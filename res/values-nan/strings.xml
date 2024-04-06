@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">您需要在APRSdroid中配置您的呼号和验证码！</string>
 <string name="wrongpasscode">您的呼号验证码不正确！</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">没有验证码，您的数据包将不会被发出！</string>
 <string name="mininterval">最小的更新时间是1分钟！</string>
 <string name="singlelog">Send Position</string>
@@ -21,8 +22,8 @@
 <string name="empty_logview">您还没有发送或接收任何数据包。\n\n 按​​ \“菜单\”按钮发送一个报告或开始记录你的位置。\n\n 您也可以从菜单更改应用程序首选项。</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">近期报告</string>
-<string name="map_track_call">记录中</string>
+<string name="sta_lastreport">近期报告%s</string>
+<string name="map_track_call">记录中%s</string>
 <string name="map_track_unknown">Position for %s unknown!</string>
 <string name="map_select">选择台站</string>
 
@@ -67,11 +68,12 @@
 <string name="fr_title">歡迎使用 APRSdroid！</string>
 <string name="fr_text">此軟件僅提供給擁有業餘無線電執照的愛好者使用。</string>
 <string name="fr_text2">你需要在软件中输入呼号以及APRS-IS呼号验证码才能转发您的数据包。</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">关于 APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">图层</string>
-<string name="map_satellite">卫星图</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">APRS 对象</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">纬度</string>
 <string name="p_source_lon">经度</string>
 <string name="p_source_coord">座標點</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">使用最后一次GPS位置</string>
 <string name="p_source_auto">自动报告</string>
 <string name="p_source_auto_summary">执行周期位置报告</string>
@@ -224,7 +233,7 @@
 <string name="p_smartbeaconing">SmartBeaconing™(智能信標™)</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>
 <string name="p_sb_fast_speed">Fast Speed [km/h]</string>
-<string name="p_sb_fast_speed_summary">Minium speed for fast position updates</string>
+<string name="p_sb_fast_speed_summary">Minimum speed for fast position updates</string>
 <string name="p_sb_fast_rate">Fast Rate [s]</string>
 <string name="p_sb_fast_rate_summary">Beacon rate at fast speed</string>
 <string name="p_sb_slow_speed">Slow Speed [km/h]</string>
@@ -331,7 +340,17 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   bg2xvp https://launchpad.net/~louisxcn</string>
 
 <!-- Bluetooth TNC settings -->
@@ -359,6 +378,14 @@
 <string name="bt_error_disabled">请启用蓝牙!</string>
 <string name="bt_error_no_tnc">请配置蓝牙TNC设备!</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">正在请求蓝牙SCO连接...</string>
 <string name="afsk_info_sco_est">蓝牙SCO链路已建立。</string>
@@ -388,4 +415,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

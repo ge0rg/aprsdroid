@@ -50,7 +50,7 @@ class KissProto(service : AprsService, is : InputStream, os : OutputStream) exte
 					try {
 						return Parser.parseAX25(buf.toArray).toString().trim()
 					} catch {
-						case e => buf.clear()
+						case e : Exception => buf.clear()
 					}
 				}
 			case FESC => is.read() match {

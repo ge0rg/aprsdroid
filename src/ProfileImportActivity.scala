@@ -44,7 +44,8 @@ class ProfileImportActivity extends Activity {
 				value.getClass().getSimpleName() match {
 				case "String" => prefsedit.putString(item, config.getString(item))
 				case "Boolean" => prefsedit.putBoolean(item, config.getBoolean(item))
-				case "Int" => prefsedit.putInt(item, config.getInt(item))
+				case "Int" | "Integer" => prefsedit.putInt(item, config.getInt(item))
+				case "Double" => prefsedit.putFloat(item, config.getDouble(item).asInstanceOf[Float])
 				}
 			}
 			prefsedit.commit()

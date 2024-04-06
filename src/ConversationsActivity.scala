@@ -5,6 +5,7 @@ import _root_.android.app.ListActivity
 import _root_.android.content._
 import _root_.android.database.Cursor
 import _root_.android.os.{Bundle, Handler}
+import _root_.android.text.InputFilter
 import _root_.android.util.Log
 import _root_.android.view.{ContextMenu, LayoutInflater, Menu, MenuItem, View}
 import _root_.android.view.View.OnClickListener
@@ -61,6 +62,7 @@ class ConversationsActivity extends LoadingListActivity
 			val nm_view = inflater.inflate(R.layout.new_message_view, null, false)
 			val nm_call = nm_view.findViewById(R.id.callsign).asInstanceOf[EditText]
 			val nm_text = nm_view.findViewById(R.id.message).asInstanceOf[EditText]
+			nm_call.setFilters(Array(new InputFilter.AllCaps()))
 			new AlertDialog.Builder(this).setTitle(getString(R.string.msg_send_new))
 				.setView(nm_view)
 				//.setIcon(android.R.drawable.ic_dialog_info)

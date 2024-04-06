@@ -1,0 +1,173 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+	repositories {
+		jcenter()
+		maven { url 'https://jitpack.io' }
+		mavenCentral()
+		google()
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:3.5.1'
+		// NOTE: Do not place your application dependencies here; they belong
+		// in the individual module build.gradle files
+
+		// grgit for version tags
+		classpath 'org.ajoberstar:grgit:1.1.0'
+
+		// https://github.com/Triple-T/gradle-play-publisher#usage
+		classpath 'com.github.triplet.gradle:play-publisher:2.4.1'
+
+		// scala build
+		classpath 'com.github.AllBus:gradle-android-scala-plugin:3.5.1'
+	}
+}
+
+plugins {
+	// obtain revision from git
+	id 'org.ajoberstar.grgit' version '1.6.0'
+	// gradle-amazon-app-store-publisher
+	id "app.brant.amazonappstorepublisher" version "0.1.0"
+}
+
+allprojects {
+	repositories {
+		google()
+		jcenter()
+	}
+}
+
+/////////////// APRSdroid specific build rules ///////////////
+apply plugin: 'com.android.application'
+apply plugin: 'jp.leafytree.android-scala'
+apply plugin: 'com.github.triplet.play'
+
+ext {
+	build_date = "${new Date().format('yyyy-MM-dd')}"
+	build_revision = "${grgit.describe()}"
+	build_version = "APRSdroid ${build_revision} ${build_date}"
+}
+
+tasks.withType(ScalaCompile) {
+	// Suppress deprecation warnings
+	scalaCompileOptions.deprecation = false
+}
+
+def versionCodeDate() {
+	if (project.hasProperty("RELEASE_MINOR")) {
+		return new Date().format("yyyyMMdd" + RELEASE_MINOR).toInteger()
+	} else {
+		return new Date().format("yyyyMMdd00").toInteger()
+	}
+}
+
+def mapsApiKey() {
+	Properties properties = new Properties()
+	try {
+		properties.load(project.rootProject.file('local.properties').newDataInputStream())
+	} catch(Exception ex) {}
+	// the default google_maps_key is restricted to ge0rg's signing keys and can't be used by other builds!
+	properties.getProperty('mapsApiKey', "AIzaSyA12R_iI_upYQ33FWnPU_8GlMKrEmjDxiQ")
+}
+
+amazon {
+	securityProfile = file("amazon-publish-credentials.json")
+	applicationId = "amzn1.devportal.mobileapp.90ffde1571a347f8a100e1083c64812e"
+	pathToApks = [ file("build/outputs/apk/release/aprsdroid-release.apk") ]
+	replaceEdit = true
+}
+
+android {
+	compileSdkVersion 33
+	buildToolsVersion "33.0.2"
+	defaultConfig {
+		minSdkVersion 14
+		targetSdkVersion 33
+		versionName "$build_revision"
+		versionCode versionCodeDate()
+		resValue "string", "build_revision", "$build_revision"
+		resValue "string", "build_date", "$build_date"
+		resValue "string", "build_version", "$build_version"
+
+		resValue "string", "google_maps_key", mapsApiKey()
+
+		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+	}
+	useLibrary 'org.apache.http.legacy'
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_1_8
+		targetCompatibility JavaVersion.VERSION_1_8
+	}
+
+	buildTypes {
+		debug {
+			minifyEnabled true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+		}
+		release {
+			minifyEnabled true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.cfg'
+		}
+	}
+
+	if (project.hasProperty("RELEASE_KEY_ALIAS")) {
+		signingConfigs {
+			release {
+				storeFile file(RELEASE_STORE_FILE)
+				storePassword RELEASE_STORE_PASSWORD
+				keyAlias RELEASE_KEY_ALIAS
+				keyPassword RELEASE_KEY_PASSWORD
+			}
+		}
+		buildTypes {
+			release {
+				signingConfig signingConfigs.release
+			}
+		}
+	}
+	sourceSets {
+		main {
+			manifest.srcFile 'AndroidManifest.xml'
+			java.srcDirs = ['src']
+			// some gradle-android-scala-plugin versions don't know scala.* properties
+			// if it breaks, just remove the following two lines:
+			//scala.srcDirs = ['src']
+			//scala.excludes = ["*.sw?"]
+			resources.srcDirs = ['src']
+			aidl.srcDirs = ['src']
+			renderscript.srcDirs = ['src']
+			res.srcDirs = ['res']
+			assets.srcDirs = ['assets']
+			jniLibs.srcDirs = ['libs']
+		}
+		androidTest {
+			java.srcDirs = ['androidTest/java']
+		}
+		test {
+			java.srcDirs = ['test/java']
+		}
+	}
+	lintOptions {
+		disable 'MissingTranslation'
+		disable 'InvalidPackage'
+	}
+}
+
+play {
+	serviceAccountCredentials = file('play-publish-credentials.json')
+	track = 'beta'
+}
+
+dependencies {
+	implementation "org.scala-lang:scala-library:2.11.12"
+	//compile 'com.google.android.gms:play-services-maps:6.5.87'
+	implementation fileTree(include: ['*.jar'], dir: 'libs')
+	implementation 'com.google.android.gms:play-services-maps:17.0.0'
+	implementation 'com.google.maps.android:android-maps-utils:0.5'
+	implementation 'androidx.core:core:1.6.0'
+
+
+	implementation 'com.squareup.okio:okio:2.1.0'
+	androidTestImplementation 'com.android.support.test:runner:1.0.2'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+	testImplementation 'junit:junit:4.12'
+}

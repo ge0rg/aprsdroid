@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Deve configurar o APRSdroid com o seu indicativo e password!</string>
 <string name="wrongpasscode">A palavra-passe está incorrecta.</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Sem a password as suas transmissões não serão divulgadas!</string>
 <string name="mininterval">Tempo mínimo de actualização - 1 minuto!</string>
 <string name="singlelog">Envio de posição</string>
@@ -21,7 +22,7 @@
 <string name="empty_logview">Você ainda não enviou ou recebeu nenhum pacote. \ N \ n Pressione o \ "Menu \" botão para enviar um único pacote ou para começar a seguir a sua posição. \ N \ n Você também pode alterar as sua preferências a partir do menu.</string>
 
 <!-- Maps activity -->
-<string name="sta_lastreport">Última transmissão</string>
+<string name="sta_lastreport">Última transmissão %s</string>
 <string name="map_track_call">Seguindo %s...</string>
 <string name="map_track_unknown">Posição para %s desconhecida</string>
 <string name="map_select">Seleccionar estação</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">Bem-vindo ao APRSdroid!</string>
 <string name="fr_text">Este software é exclusivo para radioamadores licenciados!</string>
 <string name="fr_text2">Tem de colocar o seu indicativo para uso deste software, para enviar pacotes precisa de uma password de APRS-IS.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Sobre o APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Sobreposições</string>
-<string name="map_satellite">Satélite</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Objectos APRS</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
 <string name="p_source_coord">Coordenada</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Use a última posição GPS</string>
 <string name="p_source_auto">Endereço automático</string>
 <string name="p_source_auto_summary">Realiza endereço periódico de posição</string>
@@ -331,9 +340,19 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   David Quental https://launchpad.net/~ct1drb
   David Quental https://launchpad.net/~ct1drb-1
+  Georg Lukas https://launchpad.net/~ge0rg
   Henrique Martins https://launchpad.net/~ct2kea
   Jon Amil https://launchpad.net/~amilgz
   Jorge Santos https://launchpad.net/~ct1jib
@@ -366,6 +385,14 @@
 <string name="bt_error_disabled">Por favor active o bluetooth</string>
 <string name="bt_error_no_tnc">Por favor configure o TNC bluetooth</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">A pedir ligação do SCO bluetooth...</string>
 <string name="afsk_info_sco_est">Ligação do SCO bluetooth estabelecida.</string>
@@ -395,4 +422,6 @@
 <string name="p_serial_unsupported">Porta série não suportada!</string>
 <string name="p_serial_noperm">Não há permissão para a porta USB!</string>
 <string name="p_serial_notfound">Nenhuma porta USB encontrada!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Tu necessita configurar APRSdroid con tu firma de appello e tu codice de accesso!</string>
 <string name="wrongpasscode">Tu codice de accesso non concorda con tu firma de appello</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Sin un codice de accesso, tu reportos non essera propagate!</string>
 <string name="mininterval">Tempore minime de actualisation 1 minuta!</string>
 <string name="singlelog">Inviar le position</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">Benvenite a APRSdroid!</string>
 <string name="fr_text">Iste software pote esser usate solmente per operatores con licentia de radio amatores!</string>
 <string name="fr_text2">Tu necessita inserer tu signo de appello pro usar iste software. Pro transmitter tu pacchettos, assi un codice contrasigno APRS-IS es requirite.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Re APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Coperturas</string>
-<string name="map_satellite">Satellite</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Objectos APRS</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
 <string name="p_source_coord">Coordinatas</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Usar le ultime position GPS</string>
 <string name="p_source_auto">Posting automatic</string>
 <string name="p_source_auto_summary">Facer le posta del position  periodic</string>
@@ -280,7 +289,7 @@
 <string name="p_dgp_ring">Tono del soneria</string>
 <string name="p_dgp_ring_summary">Tono pro le pacchettos repetite digitalmente</string>
 
-<string name="got_digipeated">Repetite digitalmente per1$s: %2$s</string>
+<string name="got_digipeated">Repetite digitalmente per %1$s: %2$s</string>
 <string name="status_linkoff">Error: %s</string>
 <string name="status_linkon">Connected: %s</string>
 
@@ -331,7 +340,17 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   karm https://launchpad.net/~melo-o</string>
 
 <!-- Bluetooth TNC settings -->
@@ -359,6 +378,14 @@
 <string name="bt_error_disabled">Per favor activa Bluetooth!</string>
 <string name="bt_error_no_tnc">Per favor configura un TNC bluetooth!</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Requesta de ligamine SCO de bluetooth</string>
 <string name="afsk_info_sco_est">Ligamine SCO de bluetooth stabilite</string>
@@ -388,4 +415,6 @@
 <string name="p_serial_unsupported">Porta serial non supportate</string>
 <string name="p_serial_noperm">Nulle permission pro le dispositivo USB!</string>
 <string name="p_serial_notfound">Nulle dispositivo USB trovate!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

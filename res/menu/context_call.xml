@@ -1,4 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:id="@+id/menu_context_call">
 	<item android:id="@+id/details"
 	      android:title="@string/app_sta"
 	      android:showAsAction="ifRoom"
@@ -30,4 +31,5 @@
 	<item android:id="@+id/sta_export"
 	      android:title="@string/export_log"
 	      />
+</group>
 </menu>

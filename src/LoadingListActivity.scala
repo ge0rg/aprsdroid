@@ -20,4 +20,10 @@ class LoadingListActivity extends ListActivity
 	override def onStopLoading() {
 		setProgressBarIndeterminateVisibility(false)
 	}
+
+	override def onResume() {
+		super.onResume()
+		setKeepScreenOn()
+		setVolumeControls()
+        }
 }

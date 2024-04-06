@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Необходимо настроить APRSdroid с вашим позывным и паролем</string>
 <string name="wrongpasscode">Ваш пароль не соответствует вашему позывному</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Ваши рапорты не будут распространяться без пароля!</string>
 <string name="mininterval">Минимальное время обновления 1 минута!</string>
 <string name="singlelog">Отправить местоположение</string>
@@ -67,14 +68,11 @@
 <string name="fr_title">Добро пожаловать в APRSdroid!</string>
 <string name="fr_text">Это приложение только для пользователей имеющих радиолюбительский позывной</string>
 <string name="fr_text2">Необходимо ввести свой позывной, чтобы использовать эту программу. Также для пересылки ваших данных, требуется пароль сервера APRS-IS для вашего позывного.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">Об APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Георг Лукас (DO1GL)\n http://arpsdroid.org \n\n APRS® является зарегистрированным товарным знаком Боба Брунинга (WB4APR)</string>
 <string name="ad_gpl">Эта программа является свободным программным обеспечением, вы можете распространять и/или модифицировать его на условиях GNU General Public License, опубликованной Free Software Foundation; либо 2-ой версией лицензии, либо (по вашему выбору) любой более поздней версией.  \n\n Эта программа распространяется в надежде, что она будет полезной, но БЕЗ ВСЯКИХ ГАРАНТИЙ. Совершенно не подразумевается гарантия КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ КОНКРЕТНЫХ ЦЕЛЕЙ. Смотрите общественную лицензию GNU General для получения более подробной информации.\n\n Вы должны были получить копию GNU General Public License вместе с этой программой. Если в не получили копии, напишите письмо по адресу Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Благодарности:</string>
 <string name="ad_thanks_0">Моей YL ♥♥♥</string>
@@ -89,7 +87,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Слои данных карты</string>
-<string name="map_satellite">Космосники</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Объекты APRS</string>
 
 <!-- map view -->
@@ -112,8 +114,8 @@
 <string name="quit">Выход</string>
 <string name="preferences">Параметры</string>
 <!-- preferences -->
-<string name="profile_load">Load profile...</string>
-<string name="profile_export">Export profile...</string>
+<string name="profile_load">Загрузить профиль...</string>
+<string name="profile_export">Экспортировать профиль...</string>
 <string name="p__ham">Любительское радио</string>
 <string name="p_callsign">Позывной</string>
 <string name="p_callsign_nossid">Позывной (без SSID)</string>
@@ -191,6 +193,9 @@
 <string name="p_source_lat">Широта</string>
 <string name="p_source_lon">Долгота</string>
 <string name="p_source_coord">Координата</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Использовать последнюю позицию, полученную от GPS</string>
 <string name="p_source_auto">Автоматическая отправка</string>
 <string name="p_source_auto_summary">Периодически отправлять позицию</string>
@@ -324,16 +329,28 @@
 <string name="p_mapfile">Имя файла карты</string>
 <string name="p_mapfile_summary">MapsForge файл карты для APRSdroid</string>
 <string name="p_mapfile_choose">Выбор файла карты</string>
-<string name="mapfile_error">Ошибка загрузки файла карты</string>
+<string name="mapfile_error">Ошибка загрузки файла карты %s!</string>
 
 <string name="p_themefile">Имя файла темы</string>
 <string name="p_themefile_summary">Тема рендера MapsForge (XML)</string>
 <string name="p_themefile_choose">Выбор файла темы</string>
 <string name="themefile_error">Ошибка загрузки файла темы %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   Aleksey Kabanov https://launchpad.net/~ak099
   Andriy Tymchenko https://launchpad.net/~silpol
+  Dmitrij Kiryanov https://launchpad.net/~kagaminep
+  Georg Lukas https://launchpad.net/~ge0rg
+  Mikhail Mikhaylov https://launchpad.net/~mimiknn
   R1AIT https://launchpad.net/~l-keo-d
   RN3DLL https://launchpad.net/~rn3dll
   Sergey N. Belinsky https://launchpad.net/~sergeybe
@@ -365,6 +382,14 @@
 <string name="bt_error_disabled">Пожалуйста включите Bluetooth!</string>
 <string name="bt_error_no_tnc">Пожалуйста настройте Bluetooth TNC!</string>
 <string name="bt_error_connect">Не могу связаться с %s! Пожалуйста включите устройство и закройте все другие соединения Bluetooth.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Запрос соединения Bluetooth...</string>
 <string name="afsk_info_sco_est">Соединение Bluetooth установлено.</string>
@@ -384,7 +409,7 @@
 
 <!-- Config import -->
 <string name="profile_import_activity">Настройки импорта</string>
-<string name="profile_import_done">Imported profile: %s</string>
+<string name="profile_import_done">Импортированный профиль: %s</string>
 <string name="profile_import_error">Ошибка при импорте профиля: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
@@ -394,4 +419,6 @@
 <string name="p_serial_unsupported">Последовательный порт не поддерживается!</string>
 <string name="p_serial_noperm">Нет прав доступа к USB устройству!</string>
 <string name="p_serial_notfound">Не найдено USB устройство!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>

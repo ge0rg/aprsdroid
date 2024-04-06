@@ -16,7 +16,7 @@ class FixedPosition(service : AprsService, prefs : PrefsWrapper) extends Locatio
 
 	val intent = new Intent(ALARM_ACTION)
 	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent,
-			PendingIntent.FLAG_UPDATE_CURRENT)
+			PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE)
 
 	// get called on alarm
 	val receiver = new BroadcastReceiver() {

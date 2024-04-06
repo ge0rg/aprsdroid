@@ -10,9 +10,10 @@
 <string name="app_messages">Wiadomości</string>
 <string name="app_messages_clear">Usuń wiadomości</string>
 <!-- APRSdroid activity -->
-<string name="firstrun">Należy skonfigurować APRSdroid swoim znakiem i hasłem!</string>
-<string name="wrongpasscode">Hasło nie pasuje do znaku!</string>
-<string name="anon_warning">Bez hasła, twoje raporty nie będą wysyłane!</string>
+<string name="firstrun">Musisz skonfigurować APRSdroid z własnym znakiem wywoławczym i kodem dostępu!</string>
+<string name="wrongpasscode">Twój kod dostępu nie pasuje do Twojego znaku wywoławczego!</string>
+<string name="e_toolong_callsign">Twój znak jest za długi dla Packet Radio!</string>
+<string name="anon_warning">Bez kodu dostępu, twoje raporty nie będą propagowane!</string>
 <string name="mininterval">Minimalny czas aktualizacji to 1 minuta!</string>
 <string name="singlelog">Wyślij pozycję</string>
 <string name="startlog">Rozpocznij raportowanie</string>
@@ -67,14 +68,11 @@
 <string name="fr_title">Witamy w APRSdroid!</string>
 <string name="fr_text">To oprogramowanie może być używane tylko przez licencjonowanych radiooperatorów!</string>
 <string name="fr_text2">Musisz wpisać swój znak by używać tego oprogramowania. Do przesyłania swoich pakietów, kod APRS-IS jest również wymagany.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">O APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
-	\n\n
-	APRS® is a registered trademark of Bob Bruninga (WB4APR)
-</string>
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n https://aprsdroid.org \n\n APRS® jest zarejestrowanym znakiem towarowym Bob \'a Bruninga (WB4APR)</string>
 <string name="ad_gpl">Niniejszy program jest wolnym oprogramowaniem; możesz go rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU, wydanej przez Fundację Wolnego Oprogramowania - według wersji 2-giej tej Licencji lub którejś
 z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ. W celu uzyskania bliższych informacji - Powszechna Licencja Publiczna GNU. \n\n Z pewnością wraz z niniejszym programem otrzymałeś też egzemplarz Powszechnej Licencji Publicznej GNU (GNU General Public License); jeśli nie - napisz do Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. \n\n http://www.gnu.org/licenses/old-licenses/gpl-2.0.html</string>
 <string name="ad_thanks">Podziękowania dla:</string>
@@ -90,7 +88,11 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 
 <!-- map view -->
 <string name="map_overlays">Wykładniki</string>
-<string name="map_satellite">Satelita</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Obiekty APRS</string>
 
 <!-- map view -->
@@ -192,6 +194,9 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_source_lat">Szerokość geograficzna</string>
 <string name="p_source_lon">Długość geograficzna</string>
 <string name="p_source_coord">Współrzędna</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Użyj ostatniej pozycji z GPS</string>
 <string name="p_source_auto">Automatyczne wysyłanie</string>
 <string name="p_source_auto_summary">Przeprowadzaj okresowe pozycjonowanie</string>
@@ -332,8 +337,18 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_themefile_choose">Wybierz plik motywu</string>
 <string name="themefile_error">Błąd ładowania pliku motywu %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
   Adam Czabara https://launchpad.net/~adam-czabara
+  Andrzej Konopka https://launchpad.net/~sq7oiv
   Georg Lukas https://launchpad.net/~ge0rg
   Michal SQ2MO https://launchpad.net/~sq2mo
   Michał Czarniecki https://launchpad.net/~sq9mcs
@@ -370,6 +385,14 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="bt_error_disabled">Proszę uaktywnić Bluetooth!</string>
 <string name="bt_error_no_tnc">Proszę skonfigurować Bluetooth TNC!</string>
 <string name="bt_error_connect">Nie można połączyć z %s! Proszę włączyć urządzenie i zamknąć inne połączenia Bluetooth.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Nawiązywanie połączenia Bluetooth SCO...</string>
 <string name="afsk_info_sco_est">Połączenie Bluetooth SCO nawiązane.</string>
@@ -389,7 +412,7 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 
 <!-- Config import -->
 <string name="profile_import_activity">Importowanie profilu</string>
-<string name="profile_import_done">Imported profile: %s</string>
+<string name="profile_import_done">Importowany profil: %s</string>
 <string name="profile_import_error">Błąd przy importowaniu profilu: %s!</string>
 
 <!-- (USB) Serial TNC settings -->
@@ -399,4 +422,6 @@ z późniejszych wersji. \n\n Niniejszy program rozpowszechniany jest z nadziej�
 <string name="p_serial_unsupported">Nie wspierany port szeregowy!</string>
 <string name="p_serial_noperm">Brak zezwolenia dla urządzenia USB!</string>
 <string name="p_serial_notfound">Nie znaleziono urządzenia USB!</string>
+
+<string name="no_perm_text">Wymagane uprawnienia:</string>
 </resources>

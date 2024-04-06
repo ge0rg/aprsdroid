@@ -15,7 +15,7 @@
 		android:descendantFocusability="blocksDescendants"
 		/>
 	<TextView
-		android:id="@+id/android:empty"
+		android:id="@android:id/empty"
 		android:layout_width="fill_parent" 
 		android:layout_height="100sp"
 		android:layout_weight="2"

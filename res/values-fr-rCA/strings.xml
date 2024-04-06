@@ -12,6 +12,7 @@
 <!-- APRSdroid activity -->
 <string name="firstrun">Vous devez configurer APRSdroid avec votre indicatif d\'appel et votre code!</string>
 <string name="wrongpasscode">Votre code ne correspond pas à votre indicatif d\'appel!</string>
+<string name="e_toolong_callsign">Your callsign is too long for Packet Radio!</string>
 <string name="anon_warning">Sans votre code, vos rapports ne seront pas diffusés!</string>
 <string name="mininterval">Le délai minimum d\'actualisation est d\'une minute!</string>
 <string name="singlelog">Send Position</string>
@@ -67,11 +68,12 @@
 <string name="fr_title">Bienvenue dans APRSdroid!</string>
 <string name="fr_text">Ce logiciel ne peut être utilisé que par un radioamateur  licencié!</string>
 <string name="fr_text2">Vous devez entrer votre indicatif d\'appel pour utiliser ce logiciel. Pour transférer vos paquets, un code d\'accès au réseau APRS-IS est également nécessaire.</string>
+<string name="fr_text3">Only needed for APRS over the Internet:</string>
 
 <!-- about dialog -->
 <string name="ad_title">À propos d\'APRSdroid v%s</string>
-<string name="ad_copyright">Copyright © 2009-2018 Georg Lukas (DO1GL)\n
-	http://aprsdroid.org
+<string name="ad_copyright">Copyright © 2009-2021 Georg Lukas (DO1GL)\n
+	https://aprsdroid.org
 	\n\n
 	APRS® is a registered trademark of Bob Bruninga (WB4APR)
 </string>
@@ -89,7 +91,11 @@
 
 <!-- map view -->
 <string name="map_overlays">Couches cartographiques</string>
-<string name="map_satellite">Satellite</string>
+<string name="map_google">Google: Map</string>
+<string name="map_satellite">Google: Satellite</string>
+<string name="map_osm">OpenStreetMap.org</string>
+<!-- intended use is in map style menu: "file name of offline map (Offline)" -->
+<string name="map_offline"> %s (Offline)</string>
 <string name="map_objects">Objets APRS</string>
 
 <!-- map view -->
@@ -191,6 +197,9 @@
 <string name="p_source_lat">Latitude</string>
 <string name="p_source_lon">Longitude</string>
 <string name="p_source_coord">Coordonnées</string>
+<!-- select your position from a map -->
+<string name="p_source_from_map">Choose on map</string>
+<string name="p_source_from_map_save">Save position</string>
 <string name="p_source_get_last">Utiliser la dernière position GPS connue</string>
 <string name="p_source_auto">Envoi automatique</string>
 <string name="p_source_auto_summary">Envoi périodique de la position</string>
@@ -224,7 +233,7 @@
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">Assistant SmartBeaconing™</string>
 <string name="p_sb_fast_speed">Vitesse Rapide [km/h]</string>
-<string name="p_sb_fast_speed_summary">Vitesse minimale pour m.à.j. position Rapide</string>
+<string name="p_sb_fast_speed_summary">Vitesse mini pour m.à.j. position rapide</string>
 <string name="p_sb_fast_rate">Rafraîchissement [s] Rapide</string>
 <string name="p_sb_fast_rate_summary">Taux de balises à vitesse Rapide</string>
 <string name="p_sb_slow_speed">Vitesse Lente [km/h]</string>
@@ -331,7 +340,17 @@
 <string name="p_themefile_choose">Choose theme file</string>
 <string name="themefile_error">Error loading theme file %s!</string>
 
+<string name="kbdnav_title">Keyboard Navigation</string>
+<!-- keyboard navigation info -->
+<string-array name="kbdnav_lines">
+	<item>move map</item>
+	<item>zoom</item>
+	<item>menu</item>
+	<item>select</item>
+</string-array>
+
 <string name="translator_credits">Launchpad Contributions:
+  Georg Lukas https://launchpad.net/~ge0rg
   Michel Robichaud https://launchpad.net/~mike-1103</string>
 
 <!-- Bluetooth TNC settings -->
@@ -359,6 +378,14 @@
 <string name="bt_error_disabled">Activez Bluetooth SVP!</string>
 <string name="bt_error_no_tnc">SVP paramétrez un TNC Bluetooth</string>
 <string name="bt_error_connect">Could not connect to %s! Please turn on the device and close other Bluetooth connections.</string>
+<string name="bt_awaiting">Awaiting client…</string>
+<string name="bt_client_connected">Client %s connected.</string>
+<string name="bt_connecting_to_spp">Connecting to SPP service on %s…</string>
+<!-- connecting to [device name] channel [bluetooth channel id] -->
+<string name="bt_connecting_to_channel">Connecting to %s channel %d…</string>
+<string name="bt_connected">Connected to TNC.</string>
+<string name="bt_reconnecting">Reconnecting in 3s…</string>
+
 
 <string name="afsk_info_sco_req">Requête d\'un lien bluetooth SCO...</string>
 <string name="afsk_info_sco_est">Lien bluetooth SCO établi.</string>
@@ -388,4 +415,6 @@
 <string name="p_serial_unsupported">Unsupported serial port!</string>
 <string name="p_serial_noperm">No permission for USB device!</string>
 <string name="p_serial_notfound">No USB device found!</string>
+
+<string name="no_perm_text">The following permissions are required:</string>
 </resources>
