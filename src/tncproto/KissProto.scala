@@ -82,10 +82,8 @@ class KissProto(service : AprsService, is : InputStream, os : OutputStream) exte
 
 	def writePacket(p : APRSPacket) {
 		Log.d(TAG, "writePacket: " + p)
-		os.write(Kiss.FEND)
-		os.write(Kiss.CMD_DATA)
-		os.write(p.toAX25Frame())
-		os.write(Kiss.FEND)
+		val combinedData = Array[Byte](Kiss.FEND.toByte, Kiss.CMD_DATA.toByte) ++ p.toAX25Frame() ++ Array[Byte](Kiss.FEND.toByte)
+		os.write(combinedData)
 		os.flush()
 	}
 }
