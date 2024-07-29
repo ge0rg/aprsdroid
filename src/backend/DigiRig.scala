@@ -25,6 +25,7 @@ object DigiRig {
 	def deviceHandle(dev : UsbDevice) = {
 		"usb_%04x_%04x_%s".format(dev.getVendorId(), dev.getProductId(), dev.getDeviceName())
 	}
+
 	def checkDeviceHandle(prefs : SharedPreferences, dev_p : android.os.Parcelable) : Boolean = {
 		if (dev_p == null)
 			return false
@@ -40,26 +41,24 @@ object DigiRig {
 
 class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AfskUploader(service, prefs)
 	with PacketHandler with PacketCallback {
+	override val TAG = "APRSdroid.Digirig"
 
-		override val TAG = "APRSdroid.Digirig"
-
+	// USB stuff
 	val USB_PERM_ACTION = "org.aprsdroid.app.DigiRig.PERM"
 	val ACTION_USB_ATTACHED = "android.hardware.usb.action.USB_DEVICE_ATTACHED"
 	val ACTION_USB_DETACHED = "android.hardware.usb.action.USB_DEVICE_DETACHED"
 
-        // USB stuff
-
-        val usbManager = service.getSystemService(Context.USB_SERVICE).asInstanceOf[UsbManager];
-        var thread : UsbThread = null
-        var dev : UsbDevice = null
-        var con : UsbDeviceConnection = null
-        var ser : UsbSerialInterface = null
-        var alreadyRunning = false
+	val usbManager = service.getSystemService(Context.USB_SERVICE).asInstanceOf[UsbManager];
+	var thread : UsbThread = null
+	var dev : UsbDevice = null
+	var con : UsbDeviceConnection = null
+	var ser : UsbSerialInterface = null
+	var alreadyRunning = false
 
 	val intent = new Intent(USB_PERM_ACTION)
 	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent, 0)
 
-        // Audio stuff
+	// Audio stuff
 	output.setVolume(AudioTrack.getMaxVolume())
 
 	val receiver = new BroadcastReceiver() {
@@ -200,7 +199,6 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AfskUploader(
 		thread.synchronized {
 			thread.running = false
 		}
-		//thread.shutdown()
 		thread.interrupt()
 		thread.join(50)
 
@@ -217,8 +215,7 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AfskUploader(
 		}
 	}
 
-	class UsbThread()
-			extends Thread("APRSdroid USB connection") {
+	class UsbThread() extends Thread("APRSdroid USB connection") {
 		val TAG = "UsbThread"
 		var running = true
 
@@ -250,8 +247,5 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AfskUploader(
 			while (running) { /* do nothing */ }
 			Log.d(TAG, "terminate()")
 		}
-
-
 	}
-
 }
