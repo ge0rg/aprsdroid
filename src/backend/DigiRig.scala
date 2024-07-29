@@ -12,6 +12,7 @@ import android.content.SharedPreferences
 import android.hardware.usb.UsbManager
 import android.hardware.usb.UsbDevice
 import android.hardware.usb.UsbDeviceConnection
+import android.media.AudioTrack.OnPlaybackPositionUpdateListener
 import android.util.Log
 import java.io.{InputStream, OutputStream}
 
@@ -59,7 +60,15 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AfskUploader(
 	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent, 0)
 
 	// Audio stuff
+	var audioPlaying = false
 	output.setVolume(AudioTrack.getMaxVolume())
+	output.setPlaybackPositionUpdateListener(new OnPlaybackPositionUpdateListener {
+		override def onMarkerReached(audioTrack: AudioTrack): Unit = {
+			DigiRig.this.audioPlaying = false
+		}
+
+		override def onPeriodicNotification(audioTrack: AudioTrack): Unit = {}
+	})
 
 	val receiver = new BroadcastReceiver() {
 		override def onReceive(ctx: Context, i: Intent) {
@@ -167,14 +176,11 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AfskUploader(
 		Log.d(TAG, "update(): From: " + from + " To: " + to + " Via: " + Digis + " telling " + data)
 
 		ser.setRTS(true)
-		val bits_per_byte = 8
-		val bits_in_frame = packet.toAX25Frame().length / bits_per_byte
-		val ms_per_s = 1000
-		val sleep_ms = bits_in_frame * ms_per_s / 1200 // aprs is 1200 baud
-		val sleep_pad_ms = 1500
-		Thread.sleep(sleep_ms + sleep_pad_ms)
+		audioPlaying = true
 		val result = sendMessage(msg)
-		Thread.sleep(sleep_ms + sleep_pad_ms)
+		while (audioPlaying) {
+			Thread.sleep(10)
+		}
 		ser.setRTS(false)
 
 		if (result)
