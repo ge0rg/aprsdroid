@@ -57,7 +57,7 @@ class DigiRig(service : AprsService, prefs : PrefsWrapper) extends AfskUploader(
 	var alreadyRunning = false
 
 	val intent = new Intent(USB_PERM_ACTION)
-	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent, 0)
+	val pendingIntent = PendingIntent.getBroadcast(service, 0, intent, PendingIntent.FLAG_MUTABLE)
 
 	// Audio stuff
 	var audioPlaying = false
