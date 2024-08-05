@@ -9,7 +9,7 @@ on:
 
 jobs:
   compile:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     name: "Compile all sources"
 
     steps:
@@ -47,7 +47,7 @@ jobs:
   unit-test:
     name: "Run all unit tests"
     needs: compile
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout project
@@ -87,7 +87,8 @@ jobs:
     name: "Testing on API ${{ matrix.api-level }} for ${{ matrix.target }}"
     needs: compile
     # macOS provided hardware-accelerated emulator
-    runs-on: macos-latest
+    # but now so does Linux
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
@@ -103,6 +104,12 @@ jobs:
       with:
         fetch-depth: 0
         submodules: recursive
+
+    - name: Enable KVM
+      run: |
+        echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+        sudo udevadm control --reload-rules
+        sudo udevadm trigger --name-match=kvm
 
     - name: Set up JDK 11
       uses: actions/setup-java@v4
