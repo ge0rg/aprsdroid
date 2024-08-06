@@ -94,7 +94,7 @@ jobs:
         api-level: [ 15, 21, 24, 31 ]
         target: [ default, google_apis ]
         exclude:
-          - api-level: 30
+          - api-level: 31  # Was 30, is it needed for 31?
             target: default
 
     steps:
