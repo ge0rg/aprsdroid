@@ -470,8 +470,6 @@ class AprsService extends Service {
 
 		// Try to parse the incoming post to an APRSPacket
 		try {
-			logReceivedPacket(packet)          // Log the received packet
-
 			// Now you can access the source call from the packet
 			val callssid = prefs.getCallSsid()			
 			val sourceCall = packet.getSourceCall()
