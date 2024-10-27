@@ -108,6 +108,21 @@
 <string name="ad_trans">\n\nTranslation:</string>
 <string name="ad_homepage">Home Page</string>
 
+<string name="p_regenerate">Regenerate Packets</string>
+<string name="p_regenerate_summary">Dangerously regenerates heard packets with NO filter!!</string>
+
+<string name="p_digipeating">Digipeating Functions</string>
+<string name="p_digipeating_entry">Digipeater</string>
+<string name="p_digipeating_summary">Enable Digipeater</string>
+
+<string name="p_dedupe">Dedupe Timeout</string>
+<string name="p_dedupe_entry">Timeout in seconds</string>
+<string name="p_dedupe_summary">Digipeat timeout for duplicate packets</string>
+
+<string name="p_digipeaterpath">Digipeater Path</string>
+<string name="p_digipeaterpath_entry">Set Digi Path</string>
+<string name="p_digipeaterpath_summary">Path to digipeat</string>
+
 <!-- map view -->
 <string name="map_overlays">Overlays</string>
 <string name="map_google">Google: Map</string>
@@ -312,6 +327,15 @@
 <string name="status_linkoff">Error: %s</string>
 <string name="status_linkon">Connected: %s</string>
 
+<string name="p_messaging">Messaging</string>
+<string name="p_message_retry">Message Retries</string>
+<string name="p_message_retry_entry">Number of messages to retry</string>
+<string name="p_message_retry_summary">Message retry limit</string>
+
+<string name="p_retry_interval">Retry Interval</string>
+<string name="p_retry_interval_entry">Retry interval start rate</string>
+<string name="p_retry_interval_summary">Rate doubles each retry</string>
+
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
 <string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
@@ -348,6 +372,10 @@
 <string name="p_sotimeout">TCP socket timeout</string>
 <string name="p_sotimeout_summary">Time before resetting the connection</string>
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+
+<string name="p_reconnect">TCP reconnect timeout</string>
+<string name="p_reconnect_summary">Time before reconnecting</string>
+<string name="p_reconnect_entry">Timeout value in seconds</string>
 
 <string name="p_mapfile">Map file name</string>
 <string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>

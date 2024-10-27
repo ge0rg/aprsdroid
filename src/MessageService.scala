@@ -9,7 +9,11 @@ import _root_.net.ab0oo.aprs.parser._
 class MessageService(s : AprsService) {
 	val TAG = "APRSdroid.MsgService"
 
-	val NUM_OF_RETRIES = 7
+	val NUM_OF_RETRIES = s.prefs.getStringInt("p.messaging", 7)
+
+	val RETRY_INTERVAL = s.prefs.getStringInt("p.retry", 30)
+
+
 	val pendingSender = new Runnable() { override def run() { sendPendingMessages() } }
 
 	def createMessageNotifier() = new BroadcastReceiver() {
@@ -59,7 +63,8 @@ class MessageService(s : AprsService) {
 	}
 
 	// return 2^n * 30s, at most 32min
-	def getRetryDelayMS(retrycnt : Int) = 30000 * (1 << math.min(retrycnt - 1, 6))
+	def getRetryDelayMS(retrycnt : Int) = (RETRY_INTERVAL * 1000) * (1 << math.min(retrycnt - 1, NUM_OF_RETRIES))
+
 
 	def scheduleNextSend(delay : Long) {
 		// add some time to prevent fast looping

@@ -14,7 +14,6 @@ object MessageListAdapter {
 	val LIST_FROM = Array("TSS", CALL, TEXT)
 	val LIST_TO = Array(R.id.listts, R.id.liststatus, R.id.listmessage)
 
-	val NUM_OF_RETRIES = 7
 	// null, incoming, out-new, out-acked, out-rejected, out-aborted
 	val COLORS = Array(0, 0xff8080b0, 0xff80a080, 0xff30b030, 0xffb03030, 0xffa08080)
 }
@@ -24,6 +23,9 @@ class MessageListAdapter(context : Context, prefs : PrefsWrapper,
 		extends SimpleCursorAdapter(context, R.layout.listitem, null, MessageListAdapter.LIST_FROM, MessageListAdapter.LIST_TO) {
 
 	lazy val storage = StorageDatabase.open(context)
+
+	lazy val NUM_OF_RETRIES = prefs.getStringInt("p.messaging", 7) // Fetch NUM_OF_RETRIES from prefs, defaulting to 7 if not found
+
 
 	reload()
 
@@ -45,7 +47,7 @@ class MessageListAdapter(context : Context, prefs : PrefsWrapper,
 		case TYPE_INCOMING =>
 			targetcall
 		case TYPE_OUT_NEW =>
-			"%s %d/%d".format(mycall, retrycnt, MessageListAdapter.NUM_OF_RETRIES)
+			"%s %d/%d".format(mycall, retrycnt, NUM_OF_RETRIES)
 		case TYPE_OUT_ACKED =>
 			mycall
 		case TYPE_OUT_REJECTED =>

@@ -45,6 +45,14 @@
 		android:defaultValue="120"
 		android:dialogTitle="@string/p_sotimeout_entry" />
 
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="tcp.reconnect"
+		android:inputType="number"
+		android:title="@string/p_reconnect"
+		android:summary="@string/p_reconnect"
+		android:defaultValue="30"
+		android:dialogTitle="@string/p_reconnect_entry" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
