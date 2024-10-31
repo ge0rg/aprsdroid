@@ -341,7 +341,7 @@
 <string name="p_ackdupe_interval_summary">Dupe timeout</string>
 
 <string name="p_ackdupetoggle">Ack Dupe Timeout</string>
-<string name="p_ackdupetoggle_summary">Enable Ack Dupe</string>
+<string name="p_ackdupetoggle_summary">Enable</string>
 
 
 <!-- AFSK settings -->
