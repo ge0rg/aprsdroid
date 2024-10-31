@@ -336,6 +336,14 @@
 <string name="p_retry_interval_entry">Retry interval start rate</string>
 <string name="p_retry_interval_summary">Rate doubles each retry</string>
 
+<string name="p_ackdupe_interval">Ack Dupe Timeout</string>
+<string name="p_ackdupe_interval_entry">Ack dupe timeout in seconds</string>
+<string name="p_ackdupe_interval_summary">Dupe timeout</string>
+
+<string name="p_ackdupetoggle">Ack Dupe Timeout</string>
+<string name="p_ackdupetoggle_summary">Enable Ack Dupe</string>
+
+
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
 <string name="p_aprs_path_hint">hop 1, hop 2, ...</string>

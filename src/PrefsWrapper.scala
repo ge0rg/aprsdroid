@@ -18,6 +18,9 @@ class PrefsWrapper(val context : Context) {
 	def isRegenerateEnabled(): Boolean = {
 		prefs.getBoolean("p.regenerate", false)
 	}
+	def isAckDupeEnabled(): Boolean = {
+		prefs.getBoolean("p.ackdupetoggle", false)
+	}
 
 	// safely read integers
 	def getStringInt(key : String, defValue : Int) = {

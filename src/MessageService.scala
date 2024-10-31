@@ -5,6 +5,7 @@ import _root_.android.util.Log
 import _root_.android.os.Handler
 
 import _root_.net.ab0oo.aprs.parser._
+import scala.collection.mutable
 
 class MessageService(s : AprsService) {
 	val TAG = "APRSdroid.MsgService"
@@ -12,6 +13,9 @@ class MessageService(s : AprsService) {
 	val NUM_OF_RETRIES = s.prefs.getStringInt("p.messaging", 7)
 
 	val RETRY_INTERVAL = s.prefs.getStringInt("p.retry", 30)
+	
+	// Map to store the last ACK timestamps
+	private val lastAckTimestamps = mutable.Map[(String, String), Long]()
 
 
 	val pendingSender = new Runnable() { override def run() { sendPendingMessages() } }
@@ -36,20 +40,44 @@ class MessageService(s : AprsService) {
 
 	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
 		val callssid = s.prefs.getCallSsid()
+		
+		// Retrieve the ACK duplicate time setting from preferences (default is 0 seconds)
+		val lastAckDupeTime = s.prefs.getStringInt("p.ackdupe", 0) * 1000 // Convert seconds to milliseconds
+
 		if (msg.getTargetCallsign().equalsIgnoreCase(callssid)) {
 			if (msg.isAck() || msg.isRej()) {
 				val new_type = if (msg.isAck())
 					StorageDatabase.Message.TYPE_OUT_ACKED
 				else
 					StorageDatabase.Message.TYPE_OUT_REJECTED
+				
 				s.db.updateMessageAcked(ap.getSourceCall(), msg.getMessageNumber(), new_type)
 				s.sendBroadcast(AprsService.MSG_PRIV_INTENT)
 			} else {
 				storeNotifyMessage(ts, ap.getSourceCall(), msg)
-				if (msg.getMessageNumber() != "") {
-					// we need to send an ack
+
+				// Only check for duplicate ACKs if the feature is enabled
+				if (s.prefs.isAckDupeEnabled) {
+					// Check if we have sent an ACK for the same source call and message number in the last `lastAckDupeTime` milliseconds
+					val currentTime = System.currentTimeMillis()
+					val messageNumber = msg.getMessageNumber() // Get the message number
+					val lastAckTime = lastAckTimestamps.get((ap.getSourceCall(), messageNumber))
+
+					if (lastAckTime.exists(time => (currentTime - time) < lastAckDupeTime)) {
+						Log.d(TAG, s"Duplicate msg, skipping ack for ${ap.getSourceCall()} messageNumber: $messageNumber")
+						// Recent ACK exists, skip sending a new ACK
+						return
+					}
+				}
+				
+				// Proceed to send ACK if messageNumber is not empty
+				if (msg.getMessageNumber() != "") { 
+					// No recent ACK, we need to send an ACK
 					val ack = s.newPacket(new MessagePacket(ap.getSourceCall(), "ack", msg.getMessageNumber()))
 					s.sendPacket(ack)
+
+					// Update the last ACK timestamp for this source call and message number
+					lastAckTimestamps((ap.getSourceCall(), msg.getMessageNumber())) = System.currentTimeMillis()
 				}
 			}
 		} else if (msg.getTargetCallsign().split("-")(0).equalsIgnoreCase(

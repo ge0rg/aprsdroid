@@ -282,6 +282,20 @@
 			android:title="@string/p_retry_interval"
 			android:summary="@string/p_retry_interval_summary"
 			android:dialogTitle="@string/p_retry_interval_entry" />
+		
+		<CheckBoxPreference
+			android:key="p.ackdupetoggle"
+			android:title="@string/p_ackdupetoggle"
+			android:summary="@string/p_ackdupetoggle_summary"
+			android:defaultValue="false" />
+
+		<de.duenndns.EditTextPreferenceWithValue
+			android:key="p.ackdupe"
+			android:defaultValue="0"
+			android:inputType="number"
+			android:title="@string/p_ackdupe_interval"
+			android:summary="@string/p_ackdupe_interval_summary"
+			android:dialogTitle="@string/p_ackdupe_interval_entry" />
 
     </PreferenceCategory>
 
