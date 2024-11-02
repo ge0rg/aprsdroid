@@ -51,6 +51,20 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+	    android:title="@string/p_units_title">
+            
+        <de.duenndns.ListPreferenceWithValue
+		android:key="p.units"
+		android:title="@string/p_units"
+		android:entries="@array/p_units_e"
+		android:entryValues="@array/p_units_ev"
+		android:defaultValue="1"
+		android:dialogTitle="@string/p_units_entry" />
+			
+			
+    </PreferenceCategory>
+
+    <PreferenceCategory
 	android:title="@string/p__position">
     <PreferenceScreen
 	    android:key="p_symbol"
