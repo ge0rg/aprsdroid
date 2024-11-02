@@ -295,9 +295,12 @@ class AprsService extends Service {
 		try {
 			val testPacket = Parser.parse(packetString)
 
-			// Send the packet with an empty status postfix
-			sendPacket(testPacket)
-			
+			// Define additional information to be passed as status postfix
+			val digistatus = " - Digipeated"
+
+			// Send the packet with the additional status postfix
+			sendPacket(testPacket, digistatus)
+
 			Log.d("APRSdroid.Service", s"Successfully sent packet: $packetString")
 		} catch {
 			case e: Exception =>
