@@ -111,9 +111,10 @@
 <string name="p_regenerate">Regenerate Packets</string>
 <string name="p_regenerate_summary">Dangerously regenerates heard packets with NO filter!!</string>
 
-<string name="p_digipeating">Digipeating Functions</string>
+<string name="p_digipeating">Digipeating Preferences</string>
 <string name="p_digipeating_entry">Digipeater</string>
 <string name="p_digipeating_summary">Enable Digipeater</string>
+<string name="p_digipeating_preferences">Digi &amp; Regen Functions</string>
 
 <string name="p_dedupe">Dedupe Timeout</string>
 <string name="p_dedupe_entry">Timeout in seconds</string>
@@ -206,6 +207,9 @@
 <string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
+<string name="p__digipeating">Digipeating Preferences</string>
+<string name="p__messaging">Messaging Preferences</string>
+
 <string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
 <string name="p_link">Connection Type</string>
@@ -336,7 +340,8 @@
 <string name="status_linkoff">Error: %s</string>
 <string name="status_linkon">Connected: %s</string>
 
-<string name="p_messaging">Messaging</string>
+<string name="p_messaging">Messaging Preferences</string>
+<string name="p_messaging_preferences">Set Messaging Retry &amp; Ack Options</string>
 <string name="p_message_retry">Message Retries</string>
 <string name="p_message_retry_entry">Number of messages to retry</string>
 <string name="p_message_retry_summary">Message retry limit</string>

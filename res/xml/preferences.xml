@@ -65,6 +65,36 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+	android:title="@string/p__digipeating">
+
+        <PreferenceScreen
+		android:key="p_digipeating"
+		android:title="@string/p_digipeating"
+		android:summary="@string/p_digipeating_preferences">
+
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.DigiPrefs" />
+
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+	android:title="@string/p__messaging">
+
+        <PreferenceScreen
+		android:key="p_messaging"
+		android:title="@string/p_messaging"
+		android:summary="@string/p_messaging_preferences">
+
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.MessagingPrefs" />
+
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
 	android:title="@string/p__position">
     <PreferenceScreen
 	    android:key="p_symbol"
@@ -237,79 +267,6 @@
 	    android:key="themefile"
 	    android:title="@string/p_themefile"
 	    android:summary="@string/p_themefile_summary" />
-
-    </PreferenceCategory>
-
-	    <!-- sub-screen "digipeating" -->
-    <PreferenceCategory
-	android:title="@string/p_digipeating">
-	
-		<CheckBoxPreference
-			android:key="p.digipeating"
-			android:title="@string/p_digipeating_entry"
-			android:summary="@string/p_digipeating_summary"
-			android:defaultValue="false" />
-
-        <de.duenndns.EditTextPreferenceWithValue
-			android:key="digipeater_path"
-			android:hint="WIDE, TEMP, MTN"
-			android:defaultValue="WIDE"
-			android:inputType="textCapCharacters"
-			android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ,-"
-			android:title="@string/p_digipeaterpath"
-			android:summary="@string/p_digipeaterpath_summary"
-			android:dialogTitle="@string/p_digipeaterpath_entry" />
-
-
-		<de.duenndns.EditTextPreferenceWithValue
-			android:key="p.dedupe"
-			android:defaultValue="30"
-			android:inputType="number"
-			android:title="@string/p_dedupe"
-			android:summary="@string/p_dedupe_summary"
-			android:dialogTitle="@string/p_dedupe_entry" />
-
-		<CheckBoxPreference
-			android:key="p.regenerate"
-			android:title="@string/p_regenerate"
-			android:summary="@string/p_regenerate_summary"
-			android:defaultValue="false" />
-
-    </PreferenceCategory>
-
-	    <!-- sub-screen "messaging" -->
-    <PreferenceCategory
-	android:title="@string/p_messaging">
-	
-		<de.duenndns.EditTextPreferenceWithValue
-			android:key="p.messaging"
-			android:defaultValue="7"
-			android:inputType="number"
-			android:title="@string/p_message_retry"
-			android:summary="@string/p_message_retry_summary"
-			android:dialogTitle="@string/p_message_retry_entry" />
-
-		<de.duenndns.EditTextPreferenceWithValue
-			android:key="p.retry"
-			android:defaultValue="30"
-			android:inputType="number"
-			android:title="@string/p_retry_interval"
-			android:summary="@string/p_retry_interval_summary"
-			android:dialogTitle="@string/p_retry_interval_entry" />
-		
-		<CheckBoxPreference
-			android:key="p.ackdupetoggle"
-			android:title="@string/p_ackdupetoggle"
-			android:summary="@string/p_ackdupetoggle_summary"
-			android:defaultValue="false" />
-
-		<de.duenndns.EditTextPreferenceWithValue
-			android:key="p.ackdupe"
-			android:defaultValue="0"
-			android:inputType="number"
-			android:title="@string/p_ackdupe_interval"
-			android:summary="@string/p_ackdupe_interval_summary"
-			android:dialogTitle="@string/p_ackdupe_interval_entry" />
 
     </PreferenceCategory>
 
