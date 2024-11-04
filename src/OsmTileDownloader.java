@@ -48,9 +48,6 @@ public class OsmTileDownloader extends TileDownloader {
     @Override
     public String getTilePath(Tile tile) {
         this.stringBuilder.setLength(0);
-        
-        // Prepend a '0' if the zoom level is a single digit
-        String zoomLevel = tile.zoomLevel < 10 ? "0" + tile.zoomLevel : String.valueOf(tile.zoomLevel);
 		this.stringBuilder.append('/');
         this.stringBuilder.append(tile.zoomLevel);
         this.stringBuilder.append('/');
