@@ -49,6 +49,18 @@
 
         </PreferenceScreen>
     </PreferenceCategory>
+    
+	<PreferenceCategory
+	    android:title="@string/p_offlinemap">        
+
+	<CheckBoxPreference
+		android:key="p.offlinemap"
+		android:title="@string/p_offlinemap_entry"
+		android:summary="@string/p_offlinemap_summary"
+		android:defaultValue="false" />
+		
+    </PreferenceCategory>
+
 
     <PreferenceCategory
 	    android:title="@string/p_units_title">

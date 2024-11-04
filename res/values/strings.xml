@@ -116,6 +116,10 @@
 <string name="p_digipeating_summary">Enable Digipeater</string>
 <string name="p_digipeating_preferences">Digi &amp; Regen Functions</string>
 
+<string name="p_offlinemap">OSM Maps</string>
+<string name="p_offlinemap_entry">Enable offline mapping</string>
+<string name="p_offlinemap_summary">Uses locally hosted tile server</string>
+
 <string name="p_dedupe">Dedupe Timeout</string>
 <string name="p_dedupe_entry">Timeout in seconds</string>
 <string name="p_dedupe_summary">Digipeat timeout for duplicate packets</string>

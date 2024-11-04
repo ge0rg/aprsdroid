@@ -24,7 +24,9 @@ class PrefsWrapper(val context : Context) {
 	def isMetric(): Boolean = {
 		prefs.getString("p.units", "1") == "1" // "1" for metric, "2" for imperial
 	}
-	
+	def isOfflineMap(): Boolean = {
+		prefs.getBoolean("p.offlinemap", false)
+	}	
 	// safely read integers
 	def getStringInt(key : String, defValue : Int) = {
 		try { prefs.getString(key, null).trim.toInt } catch { case _ : Throwable => defValue }
