@@ -137,7 +137,7 @@ class MapAct extends MapActivity with MapMenuHelper {
 		try {
 			if (mapview.getMapFile == null) {
 				val map_source = MapGeneratorInternal.MAPNIK
-				val map_gen = new OsmTileDownloader()
+				val map_gen = OsmTileDownloader.create(this)
 				map_gen.setUserAgent(getString(R.string.build_version))
 				mapview.setMapGenerator(map_gen)
 			}

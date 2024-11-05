@@ -58,7 +58,6 @@
 		android:title="@string/p_offlinemap_entry"
 		android:summary="@string/p_offlinemap_summary"
 		android:defaultValue="false" />
-		
     </PreferenceCategory>
 
 
@@ -270,15 +269,6 @@
     </PreferenceCategory>
     </PreferenceScreen>
 
-    <de.duenndns.PreferenceWithValue
-	    android:key="mapfile"
-	    android:title="@string/p_mapfile"
-	    android:summary="@string/p_mapfile_summary" />
-
-    <de.duenndns.PreferenceWithValue
-	    android:key="themefile"
-	    android:title="@string/p_themefile"
-	    android:summary="@string/p_themefile_summary" />
 
     </PreferenceCategory>
 
