@@ -437,8 +437,8 @@ class AprsService extends Service {
 	}
 
 	def processIncomingPost(post: String) {
-	
-		val packet = Parser.parse(post)  // Parse the incoming post to an APRSPacket
+	    Log.d(TAG, "POST STRING TEST: " + post)  // Log the incoming post for debugging
+
 		// Check if backendName contains "KISS" or "AFSK"
 		if (prefs.getBackendName().contains("KISS") || prefs.getBackendName().contains("AFSK")) {
 			android.util.Log.d("PrefsAct", "Backend contains KISS or AFSK")
@@ -446,7 +446,15 @@ class AprsService extends Service {
 			android.util.Log.d("PrefsAct", "Backend does not contain KISS or AFSK")
 			return
 		}	
-	
+		//TODO, Add workaround for unsupported formats.
+		// Attempt to parse the incoming post to an APRSPacket.
+		val packet = try {
+			Parser.parse(post) // Attempt to parse
+		} catch {
+			case e: Exception =>
+				Log.e("Parsing FAILED!", s"Failed to parse packet: $post", e)
+				return // Exit the function if parsing fails
+		}
 
 		// Check if both digipeating and regeneration are enabled. Temp fix until re-implementation. Remove later on.
 		if (prefs.isDigipeaterEnabled() && prefs.isRegenerateEnabled()) {
@@ -469,7 +477,6 @@ class AprsService extends Service {
 		}	
 
 		cleanupOldDigipeats() // Clean up old digipeats before processing
-
 
 		// Try to parse the incoming post to an APRSPacket
 		try {
