@@ -50,8 +50,8 @@ class PrefsAct extends PreferenceActivity {
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		addPreferencesFromResource(R.xml.preferences)
-		fileChooserPreference("mapfile", 123456, R.string.p_mapfile_choose)
-		fileChooserPreference("themefile", 123457, R.string.p_themefile_choose)
+		//fileChooserPreference("mapfile", 123456, R.string.p_mapfile_choose)
+		//fileChooserPreference("themefile", 123457, R.string.p_themefile_choose)
 	}
 	override def onResume() {
 		super.onResume()
@@ -114,7 +114,7 @@ class PrefsAct extends PreferenceActivity {
 			val takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
 			getContentResolver.takePersistableUriPermission(data.getData(), takeFlags)
 			PreferenceManager.getDefaultSharedPreferences(this)
-				.edit().putString("mapfile", data.getDataString()).commit()
+				//.edit().putString("mapfile", data.getDataString()).commit()
 			finish()
 			startActivity(getIntent())
 		} else

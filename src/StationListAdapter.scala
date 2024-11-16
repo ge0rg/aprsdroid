@@ -83,9 +83,20 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		val qrg_visible = if (qrg != null && qrg != "") View.VISIBLE else View.GONE
 		view.findViewById(R.id.station_qrg).asInstanceOf[View].setVisibility(qrg_visible)
 		val MCD = 1000000.0
-		android.location.Location.distanceBetween(my_lat/MCD, my_lon/MCD,
-			lat/MCD, lon/MCD, dist)
-		distage.setText("%1.1f km %s\n%s".format(dist(0)/1000.0, getBearing(dist(1)), age))
+		android.location.Location.distanceBetween(my_lat/MCD, my_lon/MCD, lat/MCD, lon/MCD, dist)
+		
+		// Determine whether to use metric or imperial based on user preference
+		val isMetric = prefs.isMetric() // Assuming isMetric() returns true for metric, false for imperial
+		val distanceText: String = if (isMetric) {
+			val distanceInKm = dist(0) / 1000.0
+			"%1.1f km %s\n%s".format(distanceInKm, getBearing(dist(1)), age)
+		} else {
+			val distanceInMiles = dist(0) / 1000.0 * 0.621371
+			"%1.1f mi %s\n%s".format(distanceInMiles, getBearing(dist(1)), age)
+		}
+
+		distage.setText(distanceText)
+		
 		view.findViewById(R.id.station_symbol).asInstanceOf[SymbolView].setSymbol(symbol)
 		super.bindView(view, context, cursor)
 	}

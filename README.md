@@ -35,9 +35,9 @@ git submodule update --init --recursive
 # replace AI... with your API key:
 echo "mapsApiKey=AI..." > local.properties
 # for a debug build:
-./gradlew installDebug
+./gradlew assembleDebug
 # for a release build:
-./gradlew installRelease
+./gradlew assembleRelease
 ```
 
 

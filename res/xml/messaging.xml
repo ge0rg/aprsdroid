@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.messaging"
+		android:defaultValue="7"
+		android:inputType="number"
+		android:title="@string/p_message_retry"
+		android:summary="@string/p_message_retry_summary"
+		android:dialogTitle="@string/p_message_retry_entry" />
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.retry"
+		android:defaultValue="30"
+		android:inputType="number"
+		android:title="@string/p_retry_interval"
+		android:summary="@string/p_retry_interval_summary"
+		android:dialogTitle="@string/p_retry_interval_entry" />
+	
+	<CheckBoxPreference
+		android:key="p.ackdupetoggle"
+		android:title="@string/p_ackdupetoggle"
+		android:summary="@string/p_ackdupetoggle_summary"
+		android:defaultValue="false" />
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.ackdupe"
+		android:defaultValue="0"
+		android:inputType="number"
+		android:title="@string/p_ackdupe_interval"
+		android:summary="@string/p_ackdupe_interval_summary"
+		android:dialogTitle="@string/p_ackdupe_interval_entry" />
+
+
+</PreferenceScreen>

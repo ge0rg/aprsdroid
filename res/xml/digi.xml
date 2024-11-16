@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+	<CheckBoxPreference
+		android:key="p.digipeating"
+		android:title="@string/p_digipeating_entry"
+		android:summary="@string/p_digipeating_summary"
+		android:defaultValue="false" />
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="digipeater_path"
+		android:hint="WIDE, TEMP, MTN"
+		android:defaultValue="WIDE"
+		android:inputType="textCapCharacters"
+		android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ,-"
+		android:title="@string/p_digipeaterpath"
+		android:summary="@string/p_digipeaterpath_summary"
+		android:dialogTitle="@string/p_digipeaterpath_entry" />
+
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.dedupe"
+		android:defaultValue="30"
+		android:inputType="number"
+		android:title="@string/p_dedupe"
+		android:summary="@string/p_dedupe_summary"
+		android:dialogTitle="@string/p_dedupe_entry" />
+
+	<CheckBoxPreference
+		android:key="p.regenerate"
+		android:title="@string/p_regenerate"
+		android:summary="@string/p_regenerate_summary"
+		android:defaultValue="false" />
+
+</PreferenceScreen>

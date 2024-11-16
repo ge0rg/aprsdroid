@@ -137,7 +137,7 @@ class MapAct extends MapActivity with MapMenuHelper {
 		try {
 			if (mapview.getMapFile == null) {
 				val map_source = MapGeneratorInternal.MAPNIK
-				val map_gen = new OsmTileDownloader()
+				val map_gen = OsmTileDownloader.create(this)
 				map_gen.setUserAgent(getString(R.string.build_version))
 				mapview.setMapGenerator(map_gen)
 			}
@@ -373,8 +373,8 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		val p = proj.toPixels(gp, null)
 		// ... to pixel area ... to geo area
 		//Log.d(TAG, "coords: " + p)
-		val botleft = proj.fromPixels(p.x - 16, p.y + 16)
-		val topright = proj.fromPixels(p.x + 16, p.y - 16)
+		val botleft = proj.fromPixels(p.x - 50, p.y + 50)
+		val topright = proj.fromPixels(p.x + 50, p.y - 50)
 		Log.d(TAG, "from " + botleft + " to " + topright)
 		// fetch stations in the tap
 		val list = stations.filter(_.inArea(botleft, topright)).map(_.call)

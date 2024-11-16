@@ -108,6 +108,26 @@
 <string name="ad_trans">\n\nTranslation:</string>
 <string name="ad_homepage">Home Page</string>
 
+<string name="p_regenerate">Regenerate Packets</string>
+<string name="p_regenerate_summary">Dangerously regenerates heard packets with NO filter!!</string>
+
+<string name="p_digipeating">Digipeating Preferences</string>
+<string name="p_digipeating_entry">Digipeater</string>
+<string name="p_digipeating_summary">Enable Digipeater</string>
+<string name="p_digipeating_preferences">Digi &amp; Regen Functions</string>
+
+<string name="p_offlinemap">OSM Maps</string>
+<string name="p_offlinemap_entry">Enable offline mapping</string>
+<string name="p_offlinemap_summary">Uses locally hosted tile server</string>
+
+<string name="p_dedupe">Dedupe Timeout</string>
+<string name="p_dedupe_entry">Timeout in seconds</string>
+<string name="p_dedupe_summary">Digipeat timeout for duplicate packets</string>
+
+<string name="p_digipeaterpath">Digipeater Path</string>
+<string name="p_digipeaterpath_entry">Set Digi Path</string>
+<string name="p_digipeaterpath_summary">Path to digipeat</string>
+
 <!-- map view -->
 <string name="map_overlays">Overlays</string>
 <string name="map_google">Google: Map</string>
@@ -153,6 +173,9 @@
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
 <string name="p_ssid_entry">Enter the SSID for your station</string>
+<string name="p_units_title">Distance Units</string>
+<string name="p_units">Unit Preference</string>
+<string name="p_units_entry">Select Distance Unit</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
 	<item>(none) Primary Station</item>
@@ -172,6 +195,12 @@
 	<item>14: Freight vehicle</item>
 	<item>15: Generic additional station</item>
 </string-array>
+
+<string-array name="p_units_e">
+	<item>Metric</item>
+	<item>Imperial</item>
+</string-array>
+
 <string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Your symbol for map display</string>
 <string name="p_symbol_overlay">Overlay:</string>
@@ -182,6 +211,9 @@
 <string name="p_status_summary">The text after your coordinates</string>
 <string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
+<string name="p__digipeating">Digipeating Preferences</string>
+<string name="p__messaging">Messaging Preferences</string>
+
 <string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
 <string name="p_link">Connection Type</string>
@@ -312,6 +344,24 @@
 <string name="status_linkoff">Error: %s</string>
 <string name="status_linkon">Connected: %s</string>
 
+<string name="p_messaging">Messaging Preferences</string>
+<string name="p_messaging_preferences">Set Messaging Retry &amp; Ack Options</string>
+<string name="p_message_retry">Message Retries</string>
+<string name="p_message_retry_entry">Number of messages to retry</string>
+<string name="p_message_retry_summary">Message retry limit</string>
+
+<string name="p_retry_interval">Retry Interval</string>
+<string name="p_retry_interval_entry">Retry interval start rate</string>
+<string name="p_retry_interval_summary">Rate doubles each retry</string>
+
+<string name="p_ackdupe_interval">Ack Dupe Timeout</string>
+<string name="p_ackdupe_interval_entry">Ack dupe timeout in seconds</string>
+<string name="p_ackdupe_interval_summary">Dupe timeout</string>
+
+<string name="p_ackdupetoggle">Ack Dupe Timeout</string>
+<string name="p_ackdupetoggle_summary">Enable</string>
+
+
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
 <string name="p_aprs_path_hint">hop 1, hop 2, ...</string>
@@ -348,6 +398,10 @@
 <string name="p_sotimeout">TCP socket timeout</string>
 <string name="p_sotimeout_summary">Time before resetting the connection</string>
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+
+<string name="p_reconnect">TCP reconnect timeout</string>
+<string name="p_reconnect_summary">Time before reconnecting</string>
+<string name="p_reconnect_entry">Timeout value in seconds</string>
 
 <string name="p_mapfile">Map file name</string>
 <string name="p_mapfile_summary">MapsForge map file for APRSdroid</string>

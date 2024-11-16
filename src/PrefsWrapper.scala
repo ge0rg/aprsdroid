@@ -12,6 +12,21 @@ class PrefsWrapper(val context : Context) {
 	def getString(key : String, defValue : String) = prefs.getString(key, defValue)
 	def getBoolean(key : String, defValue : Boolean) = prefs.getBoolean(key, defValue)
 
+	def isDigipeaterEnabled(): Boolean = {
+		prefs.getBoolean("p.digipeating", false)
+	}
+	def isRegenerateEnabled(): Boolean = {
+		prefs.getBoolean("p.regenerate", false)
+	}
+	def isAckDupeEnabled(): Boolean = {
+		prefs.getBoolean("p.ackdupetoggle", false)
+	}
+	def isMetric(): Boolean = {
+		prefs.getString("p.units", "1") == "1" // "1" for metric, "2" for imperial
+	}
+	def isOfflineMap(): Boolean = {
+		prefs.getBoolean("p.offlinemap", false)
+	}	
 	// safely read integers
 	def getStringInt(key : String, defValue : Int) = {
 		try { prefs.getString(key, null).trim.toInt } catch { case _ : Throwable => defValue }

@@ -49,6 +49,61 @@
 
         </PreferenceScreen>
     </PreferenceCategory>
+    
+	<PreferenceCategory
+	    android:title="@string/p_offlinemap">        
+
+	<CheckBoxPreference
+		android:key="p.offlinemap"
+		android:title="@string/p_offlinemap_entry"
+		android:summary="@string/p_offlinemap_summary"
+		android:defaultValue="false" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+	    android:title="@string/p_units_title">
+            
+        <de.duenndns.ListPreferenceWithValue
+		android:key="p.units"
+		android:title="@string/p_units"
+		android:entries="@array/p_units_e"
+		android:entryValues="@array/p_units_ev"
+		android:defaultValue="1"
+		android:dialogTitle="@string/p_units_entry" />
+			
+			
+    </PreferenceCategory>
+
+    <PreferenceCategory
+	android:title="@string/p__digipeating">
+
+        <PreferenceScreen
+		android:key="p_digipeating"
+		android:title="@string/p_digipeating"
+		android:summary="@string/p_digipeating_preferences">
+
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.DigiPrefs" />
+
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+	android:title="@string/p__messaging">
+
+        <PreferenceScreen
+		android:key="p_messaging"
+		android:title="@string/p_messaging"
+		android:summary="@string/p_messaging_preferences">
+
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.MessagingPrefs" />
+
+        </PreferenceScreen>
+    </PreferenceCategory>
 
     <PreferenceCategory
 	android:title="@string/p__position">
@@ -214,15 +269,6 @@
     </PreferenceCategory>
     </PreferenceScreen>
 
-    <de.duenndns.PreferenceWithValue
-	    android:key="mapfile"
-	    android:title="@string/p_mapfile"
-	    android:summary="@string/p_mapfile_summary" />
-
-    <de.duenndns.PreferenceWithValue
-	    android:key="themefile"
-	    android:title="@string/p_themefile"
-	    android:summary="@string/p_themefile_summary" />
 
     </PreferenceCategory>
 
