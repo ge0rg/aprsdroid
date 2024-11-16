@@ -29,7 +29,23 @@ for your signing key, or the map view will remain blank.
 Having the Maps API key, do the following to compile and install an APK:
 
 ```bash
-git clone https://github.com/ge0rg/aprsdroid/
+sudo apt-get install -y git openjdk-8-jdk vim-nox wget unzip
+
+cmdline_tool_file="commandlinetools-linux-6609375_latest.zip"
+export ANDROID_SDK_ROOT="$(pwd)/android"
+mkdir -p "${ANDROID_SDK_ROOT}"
+wget "https://dl.google.com/android/repository/${cmdline_tool_file}"
+unzip "${cmdline_tool_file}" -d "${ANDROID_SDK_ROOT}/cmdline-tools"
+rm -f "${cmdline_tool_file}"
+export PATH="${ANDROID_SDK_ROOT}/cmdline-tools/tools/bin:${PATH}"
+export PATH="${ANDROID_SDK_ROOT}/platform-tools:${PATH}"
+export PATH="${ANDROID_SDK_ROOT}/emulator:${PATH}"
+mkdir "${ANDROID_SDK_ROOT}/licenses"
+echo 24333f8a63b6825ea9c5514f83c2829b004d1fee > "${ANDROID_SDK_ROOT}/licenses/android-sdk-license"
+echo 84831b9409646a918e30573bab4c9c91346d8abd > "${ANDROID_SDK_ROOT}/licenses/android-sdk-preview-license"
+sdkmanager --install emulator 'system-images;android-24;default;armeabi-v7a'
+
+git clone https://github.com/na7q/aprsdroid/
 cd aprsdroid
 git submodule update --init --recursive
 # replace AI... with your API key:
