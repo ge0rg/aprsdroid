@@ -333,6 +333,22 @@ class StationOverlay(icons : Drawable, context : MapAct, db : StorageDatabase) e
 		val p = new Point()
 		val (width, height) = (c.getWidth(), c.getHeight())
 		val ss = drawSize/2
+		
+		// Draw the zoom level text in the bottom-left corner
+		val zoomText = s"Zoom: $zoom"
+		val zoomFontSize = fontSize / 1  // Make the zoom text size
+		textPaint.setTextSize(zoomFontSize)
+
+		// Measure the width of the zoom text
+		val textWidth = textPaint.measureText(zoomText)
+
+		// Get the canvas dimensions
+		val xPos = 20 + (textWidth / 2)
+		val yPos = height - 20
+
+		// Draw the zoom level text
+		c.drawText(zoomText, xPos, yPos, textPaint)
+		
 		for (s <- stations) {
 			proj.toPixels(s.pt, p)
 			if (p.x >= 0 && p.y >= 0 && p.x < width && p.y < height) {
