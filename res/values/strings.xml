@@ -281,6 +281,10 @@
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Location Settings</string>
 
+<string name="p__location_compressed_beacons">Compressed Beacons</string>
+<string name="p__location_compressed_beacons_on">Send Compressed Beacons</string>
+<string name="p__location_compressed_beacons_off">Send Uncompressed Beacons</string>
+
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>
 <string name="p_sb_fast_speed">Fast Speed [km/h]</string>
