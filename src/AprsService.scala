@@ -77,7 +77,7 @@ class AprsService extends Service {
 
 	lazy val dedupeTime = prefs.getStringInt("p.dedupe", 30) // Fetch NUM_OF_RETRIES from prefs, defaulting to 7 if not found
 
-	lazy val digipeaterpath = prefs.getString("digipeater_path", "WIDE")
+	lazy val digipeaterpath = prefs.getString("digipeater_path", "WIDE1,WIDE2")
 
 	val handler = new Handler()
 
@@ -591,6 +591,7 @@ class AprsService extends Service {
 
 		// Split the path into components, avoiding empty strings
 		val pathComponents = trimmedPath.split(",").toList.filter(_.nonEmpty)
+		val digipeaterPaths = digipeaterpath.split(",").toList.filter(_.nonEmpty)
 
 		// Create a new list of components with modifications
 		val (modifiedPath, modified) = pathComponents.foldLeft((List.empty[String], false)) {
@@ -599,34 +600,45 @@ class AprsService extends Service {
 				if (component == s"$callssid*") {
 					// Skip digipeating if callssid* is found
 					return (lastUsedDigi, false) // Return the original path, do not modify
-				} else if (!hasModified && component.startsWith(digipeaterpath)) {
+				} else if (!hasModified && (digipeaterPaths.exists(path => component.split("-")(0) == path) || digipeaterPaths.contains(component)) || component == callssid) {
 					// We need to check if the first unused component matches digipeaterpath
 					if (acc.isEmpty || acc.last.endsWith("*")) {
 						// This is the first unused component
 						component match {
-							case w if w.endsWith("-2") =>
-								// Change -2 to -1 and insert callssid* before it
-								(acc :+ s"$callssid*" :+ w.stripSuffix("-2") + "-1", true)
-							case w if w.endsWith("-1") =>
-								// Remove the WIDE component entirely and insert callssid*
-								(acc :+ s"$callssid*", true)
-							case _ =>
-								// Leave unchanged if there's no -1 or -2
-								(acc :+ component, hasModified)
+
+						 case w if w == callssid =>
+						 	 // If `callssid` is found (without *), replace with `callssid*`
+							if (!hasModified) {
+								(acc :+ s"$callssid*", true)							
+							} else {
+								(acc :+ w, hasModified) // If already modified, keep `callssid` as-is
+							}				
+							
+						  case w if w.matches(".*-(\\d+)$") =>
+							// Extract the number from the suffix
+							val number = w.split("-").last.toInt
+							// Decrement the number
+							val newNumber = number - 1
+							
+							if (newNumber == 0) {
+							  // If the number is decremented to 0, remove the component and insert callssid*
+							  (acc :+ s"$callssid*", true)
+							} else {
+							  // Otherwise, decrement the number and keep the component
+							  val newComponent = w.stripSuffix(s"-$number") + s"-$newNumber"
+							  (acc :+ s"$callssid*" :+ newComponent, true)
+							}
+
+						  case _ =>
+							// Leave unchanged if there's no -N suffix
+							(acc :+ component, hasModified)
 						}
+
 					} else {
 						// If the first unused component doesn't match digipeaterpath, keep unchanged
 						(acc :+ component, hasModified)
 					}
-				} else if (component == callssid) {
-					// Check if it's the first unused component without *
-					if (!hasModified) {
-						// Replace callssid with callssid* only if it hasn't been modified
-						(acc :+ s"$callssid*", true)
-					} else {
-						// Keep the component as it is
-						(acc :+ component, hasModified)
-					}
+				
 				} else {
 					// Keep the component as it is
 					(acc :+ component, hasModified)
