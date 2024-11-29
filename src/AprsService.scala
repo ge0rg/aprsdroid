@@ -354,6 +354,8 @@ class AprsService extends Service {
 	def parsePacket(ts : Long, message : String, source : Int) {
 		try {
 			var fap = Parser.parse(message)
+			var digiPathCheck = fap.getDigiString()
+
 			if (fap.getType() == APRSTypes.T_THIRDPARTY) {
 				Log.d(TAG, "parsePacket: third-party packet from " + fap.getSourceCall())
 				val inner = fap.getAprsInformation().toString()
@@ -381,7 +383,8 @@ class AprsService extends Service {
 			fap.getAprsInformation() match {
 				case pp : PositionPacket => addPosition(ts, fap, pp, pp.getPosition(), null)
 				case op : ObjectPacket => addPosition(ts, fap, op, op.getPosition(), op.getObjectName())
-				case msg : MessagePacket => msgService.handleMessage(ts, fap, msg)
+				case msg : MessagePacket => msgService.handleMessage(ts, fap, msg, digiPathCheck)
+
 			}
 		} catch {
 		case e : Exception =>

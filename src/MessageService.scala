@@ -38,11 +38,16 @@ class MessageService(s : AprsService) {
 			)
 	}
 
-	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket) {
+	def handleMessage(ts : Long, ap : APRSPacket, msg : MessagePacket, LastUsedDigi : String) {
 		val callssid = s.prefs.getCallSsid()
 		
 		// Retrieve the ACK duplicate time setting from preferences (default is 0 seconds)
 		val lastAckDupeTime = s.prefs.getStringInt("p.ackdupe", 0) * 1000 // Convert seconds to milliseconds
+
+		// Check if we have sent an ACK for the same source call and message number in the last `lastAckDupeTime` milliseconds
+		val currentTime = System.currentTimeMillis()
+		val messageNumber = msg.getMessageNumber() // Get the message number
+		val lastAckTime = lastAckTimestamps.get((ap.getSourceCall(), messageNumber))
 
 		if (msg.getTargetCallsign().equalsIgnoreCase(callssid)) {
 			if (msg.isAck() || msg.isRej()) {
@@ -58,10 +63,6 @@ class MessageService(s : AprsService) {
 
 				// Only check for duplicate ACKs if the feature is enabled
 				if (s.prefs.isAckDupeEnabled) {
-					// Check if we have sent an ACK for the same source call and message number in the last `lastAckDupeTime` milliseconds
-					val currentTime = System.currentTimeMillis()
-					val messageNumber = msg.getMessageNumber() // Get the message number
-					val lastAckTime = lastAckTimestamps.get((ap.getSourceCall(), messageNumber))
 
 					if (lastAckTime.exists(time => (currentTime - time) < lastAckDupeTime)) {
 						Log.d(TAG, s"Duplicate msg, skipping ack for ${ap.getSourceCall()} messageNumber: $messageNumber")
@@ -71,7 +72,8 @@ class MessageService(s : AprsService) {
 				}
 				
 				// Proceed to send ACK if messageNumber is not empty
-				if (msg.getMessageNumber() != "" && !ap.getDigiString().contains(s.prefs.getCallSsid() + "*")) {					
+				if (msg.getMessageNumber() != "" && (!LastUsedDigi.split(",").contains(s.prefs.getCallSsid() + "*")  && !ap.getDigiString().split(",").contains(s.prefs.getCallSsid() + "*"))) {
+					Log.d(TAG, s"DigiString: ${ap.getDigiString()}, LastUsedDigi: ${LastUsedDigi}, CallSSID: ${s.prefs.getCallSsid()}")
 					Log.d(TAG, s"Sending ACK: msgNumber = ${msg.getMessageNumber()}, digiString = ${ap.getDigiString()}, callsign = ${s.prefs.getCallSsid()}")
 
 					// No recent ACK, we need to send an ACK
