@@ -71,7 +71,9 @@ class MessageService(s : AprsService) {
 				}
 				
 				// Proceed to send ACK if messageNumber is not empty
-				if (msg.getMessageNumber() != "") { 
+				if (msg.getMessageNumber() != "" && !ap.getDigiString().contains(s.prefs.getCallSsid() + "*")) {					
+					Log.d(TAG, s"Sending ACK: msgNumber = ${msg.getMessageNumber()}, digiString = ${ap.getDigiString()}, callsign = ${s.prefs.getCallSsid()}")
+
 					// No recent ACK, we need to send an ACK
 					val ack = s.newPacket(new MessagePacket(ap.getSourceCall(), "ack", msg.getMessageNumber()))
 					s.sendPacket(ack)
