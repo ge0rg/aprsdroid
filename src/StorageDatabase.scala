@@ -36,6 +36,7 @@ object StorageDatabase {
 		val TYPE_ERROR	= 2
 		val TYPE_INCMG	= 3
 		val TYPE_TX	= 4
+		val TYPE_DIGI = 5
 
 		val COLUMN_TS		= 1
 		val COLUMN_TSS		= 2

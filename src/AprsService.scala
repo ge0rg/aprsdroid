@@ -294,20 +294,30 @@ class AprsService extends Service {
 	}
 
 	def sendPacket(packet : APRSPacket, status_postfix : String) {
-                implicit val ec = scala.concurrent.ExecutionContext.global
+		implicit val ec = scala.concurrent.ExecutionContext.global
 		scala.concurrent.Future {
-		val status = try {
-			val status = poster.update(packet)
-			val full_status = status + status_postfix
-			addPost(StorageDatabase.Post.TYPE_POST, full_status, packet.toString)
-			full_status
-		} catch {
-			case e : Exception =>
-				addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.toString())
-				e.printStackTrace()
-				e.toString()
-		}
-		handler.post { sendPacketFinished(status) }
+			val status = try {
+				val status = poster.update(packet)
+				
+				// Check if the status_postfix is "Digipeated"
+				val full_status = if (status_postfix == "Digipeated") {
+					addPost(StorageDatabase.Post.TYPE_DIGI, status_postfix, packet.toString)
+					status_postfix
+				} else {
+					val fullStatus = status + status_postfix
+					addPost(StorageDatabase.Post.TYPE_POST, fullStatus, packet.toString)
+					fullStatus
+				}
+
+				full_status
+			} catch {
+				case e: Exception =>
+					addPost(StorageDatabase.Post.TYPE_ERROR, "Error", e.toString())
+					e.printStackTrace()
+					e.toString()
+			}
+
+			handler.post { sendPacketFinished(status) }
 		}
 	}
 	def sendPacket(packet : APRSPacket) { sendPacket(packet, "") }
