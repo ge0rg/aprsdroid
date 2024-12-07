@@ -23,6 +23,7 @@
 	<de.duenndns.EditTextPreferenceWithValue
 		android:key="p.dedupe"
 		android:defaultValue="30"
+		android:hint="30"
 		android:inputType="number"
 		android:title="@string/p_dedupe"
 		android:summary="@string/p_dedupe_summary"

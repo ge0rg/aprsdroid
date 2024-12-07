@@ -359,7 +359,7 @@
 <string name="p_retry_interval_summary">Rate doubles each retry</string>
 
 <string name="p_ackdupe_interval">Ack Dupe Timeout</string>
-<string name="p_ackdupe_interval_entry">Ack dupe timeout in seconds</string>
+<string name="p_ackdupe_interval_entry">Ack dupe timeout (0 = ack disabled)</string>
 <string name="p_ackdupe_interval_summary">Dupe timeout</string>
 
 <string name="p_ackdupetoggle">Ack Dupe Timeout</string>

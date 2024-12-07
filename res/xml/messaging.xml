@@ -13,6 +13,7 @@
 	<de.duenndns.EditTextPreferenceWithValue
 		android:key="p.retry"
 		android:defaultValue="30"
+		android:hint="30"
 		android:inputType="number"
 		android:title="@string/p_retry_interval"
 		android:summary="@string/p_retry_interval_summary"
@@ -26,7 +27,8 @@
 
 	<de.duenndns.EditTextPreferenceWithValue
 		android:key="p.ackdupe"
-		android:defaultValue="0"
+		android:defaultValue="30"
+		android:hint="30"		
 		android:inputType="number"
 		android:title="@string/p_ackdupe_interval"
 		android:summary="@string/p_ackdupe_interval_summary"
