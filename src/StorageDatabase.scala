@@ -376,12 +376,12 @@ class StorageDatabase(context : Context) extends
 	def getExportPosts(call : String) : Cursor = {
                 if (call != null)
                         getWritableDatabase().query(Post.TABLE, Post.COLUMNS,
-                                "type in (0, 3) and message LIKE ?",
+                                "type in (0, 3, 5) and message LIKE ?",
                                 Array("%s%%".format(call)),
                                 null, null, null, null)
                 else
                         getWritableDatabase().query(Post.TABLE, Post.COLUMNS,
-                                "type in (0, 3)", null,
+                                "type in (0, 3, 5)", null,
                                 null, null, null, null)
 	}
 
