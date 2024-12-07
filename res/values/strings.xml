@@ -61,7 +61,7 @@
 <string name="service_sm_no_gps">SmartBeaconing™ requires GPS!</string>
 <!-- service result codes -->
 <string name="post_error">Error</string>
-<string name="post_incmg">received</string>
+<string name="post_incmg">Received</string>
 <string name="post_info"></string>
 <string name="post_connecting">Connecting to %1$s:%2$d...</string>
 <string name="post_reconnect">Connection lost. Reconnect in %d seconds...</string>

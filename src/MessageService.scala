@@ -64,8 +64,8 @@ class MessageService(s : AprsService) {
 				// Only check for duplicate ACKs if the feature is enabled
 				if (s.prefs.isAckDupeEnabled) {
 
-					if (lastAckTime.exists(time => (currentTime - time) < lastAckDupeTime)) {
-						Log.d(TAG, s"Duplicate msg, skipping ack for ${ap.getSourceCall()} messageNumber: $messageNumber")
+					if (lastAckTime.exists(time => (currentTime - time) < lastAckDupeTime) || lastAckDupeTime == 0) {		
+						Log.d(TAG, s"Duplicate msg or ack disabled, skipping ack for ${ap.getSourceCall()} messageNumber: $messageNumber")
 						// Recent ACK exists, skip sending a new ACK
 						return
 					}
