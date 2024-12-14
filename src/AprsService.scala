@@ -359,14 +359,17 @@ class AprsService extends Service {
 		val (a, b, c) = AprsPacket.statusToBits(miceStatus)
 
 		val status_freq = AprsPacket.formatFreqMice(prefs.getStringFloat("frequency", 0.0f))
-		val altitudeValue = AprsPacket.formatAltitudeMice(location)
 		val (status_spd, course) = AprsPacket.formatCourseSpeedMice(location)
 
 		// Encoding process
 		val (infoString, west, longOffset) = AprsPacket.encodeInfo(location.getLongitude, status_spd, course, symbol)
 		val destString = AprsPacket.encodeDest(location.getLatitude, longOffset, west, a, b, c)
 		
-		//val altString = AprsPacket.altitude(altitudeValue)
+		val altitudeValue = if (prefs.getBoolean("priv_altitude", true)) {
+		  AprsPacket.formatAltitudeMice(location)
+		} else {
+		  None
+		}
 		val altString = altitudeValue.map(alt => AprsPacket.altitude(alt.toInt)).getOrElse("")
 
 		val formatPayload = infoString + 
