@@ -446,6 +446,10 @@ class StorageDatabase(context : Context) extends
 			Array(call))
 	}
 
+	def deleteAllMessages() {
+		getWritableDatabase().execSQL("DELETE FROM %s".format(Message.TABLE))
+	}
+
 	def getConversations() = {
 		getReadableDatabase().query("(SELECT * FROM messages ORDER BY _id DESC)", Message.COLUMNS,
 			null, null,

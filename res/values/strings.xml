@@ -154,6 +154,8 @@
 <string name="export_log">Export Log</string>
 <string name="export_empty">Nothing to export</string>
 <string name="clear_log">Clear Log</string>
+<string name="clearallmessages">Clear Messages</string>
+
 <string name="quit">Quit</string>
 <string name="preferences">Preferences</string>
 <!-- preferences -->

@@ -67,6 +67,10 @@ trait UIHelper extends Activity
 		new MessageCleaner(StorageDatabase.open(this), call).execute()
 	}
 
+	def clearAllMessages(call : String) {
+		new AllMessageCleaner(StorageDatabase.open(this)).execute()
+	}
+
 	def openMessageSend(call : String, message : String) {
 		startActivity(new Intent(this, classOf[MessageActivity]).setData(Uri.parse(call)).putExtra("message", message))
 	}
@@ -330,6 +334,10 @@ trait UIHelper extends Activity
 			onStartLoading()
 			new StorageCleaner(StorageDatabase.open(this)).execute()
 			true
+		case R.id.clearallmessages =>
+			onStartLoading()
+			new AllMessageCleaner(StorageDatabase.open(this)).execute()
+			true			
 		case R.id.about =>
 			aboutDialog()
 			true
@@ -476,6 +484,16 @@ trait UIHelper extends Activity
 			sendBroadcast(AprsService.MSG_PRIV_INTENT)
 		}
 	}
+	class AllMessageCleaner(storage : StorageDatabase) extends MyAsyncTask[Unit, Unit] {
+		override def doInBackground1(params : Array[String]) {
+			Log.d("MessageCleaner", "deleting all messages...")
+			storage.deleteAllMessages()
+		}
+		override def onPostExecute(x : Unit) {
+			Log.d("MessageCleaner", "broadcasting...")
+			sendBroadcast(AprsService.MSG_PRIV_INTENT)
+		}
+	}	
 	class LogExporter(storage : StorageDatabase, call : String) extends MyAsyncTask[Unit, String] {
 		val filename = "aprsdroid-%s.log".format(new SimpleDateFormat("yyyyMMdd-HHmm").format(new Date()))
 		val directory = UIHelper.getExportDirectory(UIHelper.this)

@@ -16,6 +16,10 @@
 		android:title="@string/clear_log"
 		android:alphabeticShortcut="c"
 		android:icon="@android:drawable/ic_menu_delete" />
+	<item android:id="@+id/clearallmessages"
+		android:title="@string/clearallmessages"
+		android:alphabeticShortcut="d"
+		android:icon="@android:drawable/ic_menu_delete" />		
 	<item android:id="@+id/preferences"
 		android:title="@string/preferences"
 		android:alphabeticShortcut="p"
