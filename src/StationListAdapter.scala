@@ -116,7 +116,7 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
     view.findViewById(R.id.station_symbol).asInstanceOf[SymbolView].setSymbol(symbol)
 
     val reportText = if (isWeatherMessage(comment)) parseWXReport(comment) else comment
-    view.findViewById(R.id.station_report).asInstanceOf[TextView].setText(reportText)
+    view.findViewById(R.id.listmessage).asInstanceOf[TextView].setText(reportText)
 
     super.bindView(view, context, cursor)
   }
