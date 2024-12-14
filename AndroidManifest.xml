@@ -95,6 +95,12 @@
 		android:launchMode="singleTop"
 		android:configChanges="orientation|keyboardHidden|screenSize" />
 		
+	<activity android:name=".CompressedPrefs"
+		android:label="@string/p__location_compressed_settings"
+		android:parentActivityName=".PrefsAct"
+		android:launchMode="singleTop"
+		android:configChanges="orientation|keyboardHidden|screenSize" />
+						
 	<activity android:name=".MessagingPrefs"
 		android:label="@string/p__messaging"
 		android:parentActivityName=".PrefsAct"

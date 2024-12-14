@@ -281,9 +281,18 @@
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
 <string name="p__location">Location Settings</string>
 
-<string name="p__location_compressed_beacons">Compressed Beacons</string>
+<string name="p__location_compressed_beacons">Normal Compressed Beacons</string>
 <string name="p__location_compressed_beacons_on">Send Compressed Beacons</string>
 <string name="p__location_compressed_beacons_off">Send Uncompressed Beacons</string>
+
+<string name="p__location_mice_beacons">Mic-E Compressed Beacons</string>
+<string name="p__location_mice_beacons_on">Send Mic-E Beacons</string>
+<string name="p__location_mice_beacons_off">Send Uncompressed Beacons</string>
+
+<string name="p__location_compressed_settings">Compressed Beacon Settings</string>
+<string name="p__location_compressed_summary">Normal &amp; Mic-E Compression</string>
+
+<string name="p__location_mice_status">Mic-E Status</string>
 
 <string name="p_smartbeaconing">SmartBeaconing™</string>
 <string name="p_sb_help">SmartBeaconing™ help</string>

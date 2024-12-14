@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android">
+		
+		<CheckBoxPreference
+			android:defaultValue="false"
+			android:key="compressed_location"
+			android:summaryOff="@string/p__location_compressed_beacons_off"
+			android:summaryOn="@string/p__location_compressed_beacons_on"
+			android:title="@string/p__location_compressed_beacons" />		
+		
+		<CheckBoxPreference
+			android:defaultValue="false"
+			android:key="compressed_mice"
+			android:summaryOff="@string/p__location_mice_beacons_off"
+			android:summaryOn="@string/p__location_mice_beacons_on"
+			android:title="@string/p__location_mice_beacons" />		
+			
+        <de.duenndns.ListPreferenceWithValue
+			android:key="p__location_mice_status"
+			android:title="@string/p__location_mice_status"
+			android:entries="@array/compressed_mice_status"
+			android:entryValues="@array/compressed_mice_status"
+			android:defaultValue="0"
+			android:dialogTitle="@string/p__location_mice_status" />					
+			
+</PreferenceScreen>
