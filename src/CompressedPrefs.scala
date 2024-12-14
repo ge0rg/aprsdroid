@@ -41,24 +41,29 @@ class CompressedPrefs extends PreferenceActivity with SharedPreferences.OnShared
     }
   }
 
-  // This method will enable/disable the checkboxes based on their current state
-  private def updateCheckBoxState(): Unit = {
-    val compressedLocationPref = findPreference("compressed_location").asInstanceOf[CheckBoxPreference]
-    val compressedMicePref = findPreference("compressed_mice").asInstanceOf[CheckBoxPreference]
+	// This method will enable/disable the checkboxes based on their current state
+	private def updateCheckBoxState(): Unit = {
+	  val compressedLocationPref = findPreference("compressed_location").asInstanceOf[CheckBoxPreference]
+	  val compressedMicePref = findPreference("compressed_mice").asInstanceOf[CheckBoxPreference]
+	  val locationMiceStatusPref = findPreference("p__location_mice_status").asInstanceOf[ListPreference]
 
-    // If one is checked, disable the other
-    if (compressedLocationPref.isChecked) {
-      compressedMicePref.setEnabled(false)
-    } else {
-      compressedMicePref.setEnabled(true)
-    }
+	  // If "compressed_location" is checked, disable "p__location_mice_status"
+	  if (compressedLocationPref.isChecked) {
+		locationMiceStatusPref.setEnabled(false)
+		compressedMicePref.setEnabled(false)  // Also disable "compressed_mice" when "compressed_location" is checked
+	  } else {
+		locationMiceStatusPref.setEnabled(true)  // Enable "p__location_mice_status" when "compressed_location" is not checked
+		compressedMicePref.setEnabled(true)  // Re-enable "compressed_mice" if "compressed_location" is unchecked
+	  }
 
-    if (compressedMicePref.isChecked) {
-      compressedLocationPref.setEnabled(false)
-    } else {
-      compressedLocationPref.setEnabled(true)
-    }
-  }
+	  // If "compressed_mice" is checked, disable "compressed_location"
+	  if (compressedMicePref.isChecked) {
+		compressedLocationPref.setEnabled(false)
+	  } else {
+		compressedLocationPref.setEnabled(true)
+	  }
+	}
+
 
   // Method to handle updates related to p__location_mice_status
   private def updateStatus(): Unit = {
