@@ -123,15 +123,5 @@
         <item>Special</item>
         <item>Priority</item>
         <item>EMERGENCY!</item>
-	</string-array>		
-    <string-array name="compressed_mice_status_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-    </string-array>		
+	</string-array>			
 </resources>

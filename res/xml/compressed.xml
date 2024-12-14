@@ -21,7 +21,7 @@
 			android:title="@string/p__location_mice_status"
 			android:entries="@array/compressed_mice_status"
 			android:entryValues="@array/compressed_mice_status"
-			android:defaultValue="0"
+			android:defaultValue="Off Duty"
 			android:dialogTitle="@string/p__location_mice_status" />					
 			
 </PreferenceScreen>
