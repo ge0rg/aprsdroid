@@ -12,7 +12,7 @@
 	<de.duenndns.EditTextPreferenceWithValue
 		android:key="digipeater_path"
 		android:hint="WIDE1,WIDE2,TEMP1,MTN1"
-		android:defaultValue="WIDE"
+		android:defaultValue="WIDE1,WIDE2"
 		android:inputType="textCapCharacters"
 		android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ,-"
 		android:title="@string/p_digipeaterpath"
