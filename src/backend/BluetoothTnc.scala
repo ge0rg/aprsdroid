@@ -70,6 +70,20 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		var socket : BluetoothSocket = null
 		var proto : TncProto = null
 
+		def returnFreq() {
+			try {
+				val backendName = service.prefs.getBackendName()
+				// Check if the conditions for frequency control are met
+				if (service.prefs != null && backendName != null &&
+					service.prefs.getBoolean("freq_control", false) && backendName.contains("Bluetooth SPP")) {					
+					proto.writeReturn() // Send return command
+					}
+			} catch {
+				case e: Exception =>
+					Log.e(TAG, "Error while sending return frequency command.", e)
+			}
+		}			
+
 		def log(s : String) {
 			service.postAddPost(StorageDatabase.Post.TYPE_INFO, R.string.post_info, s)
 		}
@@ -176,11 +190,7 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		def shutdown() {
 			Log.d(TAG, "shutdown()")
 			if (proto != null) {
-				val backendName = service.prefs.getBackendName()
-				if (service.prefs != null && backendName != null &&
-					service.prefs.getBoolean("freq_control", false) && backendName.contains("Bluetooth SPP")) {
-					proto.writeReturn()
-				}
+				returnFreq()
 				proto.stop()
 			}
 			this.synchronized {
