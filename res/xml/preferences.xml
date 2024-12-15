@@ -292,6 +292,7 @@
 
             <de.duenndns.EditTextPreferenceWithValue
                 android:key="frequency_control_value"
+		android:defaultValue="144.390"				
                 android:inputType="number|numberDecimal"
                 android:title="@string/freq_control_title"
                 android:hint="@string/freq_control_hint"				

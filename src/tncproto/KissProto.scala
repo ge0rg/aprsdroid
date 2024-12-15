@@ -41,7 +41,7 @@ class KissProto(service : AprsService, is : InputStream, os : OutputStream) exte
 	  Log.d(TAG, "Frequency control is enabled.")
 
 	  // Fetch the frequency control value as a float (default to 0.0f if not found)
-	  val freqMHZ = service.prefs.getStringFloat("frequency_control_value", 0.0f)
+	  val freqMHZ = service.prefs.getStringFloat("frequency_control_value", 144.390f)
 	  Log.d(TAG, s"Frequency control value fetched: $freqMHZ MHz")
 
 	  // Use the freqConvert function to convert the frequency to a byte array
