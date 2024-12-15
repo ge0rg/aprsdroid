@@ -176,6 +176,9 @@ class BluetoothTnc(service : AprsService, prefs : PrefsWrapper) extends AprsBack
 		def shutdown() {
 			Log.d(TAG, "shutdown()")
 			if (proto != null)
+				if (service.prefs.getBoolean("freq_control", false) && service.prefs.getBackendName().contains("Bluetooth SPP")) {
+					proto.writeReturn()
+				}
 				proto.stop()
 			this.synchronized {
 				catchLog("socket.close", socket.close)

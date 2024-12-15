@@ -503,4 +503,13 @@
 <string name="p_serial_notfound">No USB device found!</string>
 
 <string name="no_perm_text">The following permissions are required:</string>
+
+<!-- UV-PRO Control -->
+<string name="freq_control">Radio Freq Control (Experimental)</string>
+<string name="freq_control_summary">Freq</string>
+<string name="freq_control_options_summary">Sets Freq at Start</string>
+<string name="freq_control_options">Enable Radio Frequency Control</string>
+<string name="freq_control_title">Set Frequency</string>
+<string name="freq_control_hint">144.390</string>
+
 </resources>

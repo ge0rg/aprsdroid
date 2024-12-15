@@ -14,9 +14,11 @@ class KissProto(service : AprsService, is : InputStream, os : OutputStream) exte
 		val FESC  = 0xDB
 		val TFEND = 0xDC
 		val TFESC = 0xDD
-
 		// commands
 		val CMD_DATA = 0x00
+		val CONTROL_COMMAND = 0x06
+		val FREQ = 0xEA
+		val RETURN = 0xEB
 	}
 
 	val initstring = java.net.URLDecoder.decode(service.prefs.getString("kiss.init", ""), "UTF-8")
@@ -32,8 +34,48 @@ class KissProto(service : AprsService, is : InputStream, os : OutputStream) exte
 		}
 	}
 
+	val checkprefs = service.prefs.getBackendName()
+	Log.d(TAG, s"Backend Name1: $checkprefs")
+
+	if (service.prefs.getBoolean("freq_control", false) && service.prefs.getBackendName().contains("Bluetooth SPP")) {
+	  Log.d(TAG, "Frequency control is enabled.")
+
+	  // Fetch the frequency control value as a float (default to 0.0f if not found)
+	  val freqMHZ = service.prefs.getStringFloat("frequency_control_value", 0.0f)
+	  Log.d(TAG, s"Frequency control value fetched: $freqMHZ MHz")
+
+	  // Use the freqConvert function to convert the frequency to a byte array
+	  val freqBytes = freqConvert(freqMHZ)	
+	  writeFreq(freqBytes)  // Send the entire array of bytes at once
+	  
+	  Log.d(TAG, s"Frequency in bytes (MSB first): ${freqBytes.map(b => f"0x$b%02X").mkString(" ")}")
+
+	}
+
 	if (service.prefs.getCallsign().length() > 6) {
 		throw new IllegalArgumentException(service.getString(R.string.e_toolong_callsign))
+	}
+
+	def freqConvert(freqMHz: Float): Array[Byte] = {
+	  // Convert frequency from MHz to Hz (float to integer)
+	  val freqHz = (freqMHz * 1000000).toLong
+
+	  // Convert the frequency to 32-bit (big-endian)
+	  val bytes = Array[Byte](
+		(freqHz >> 24).toByte,   // MSB
+		(freqHz >> 16).toByte,
+		(freqHz >> 8).toByte,
+		freqHz.toByte            // LSB
+	  )
+
+	  val escapedBytes = bytes.flatMap { byte =>
+		if (byte == Kiss.FEND.toByte) {
+		  Array[Byte](Kiss.FESC.toByte, Kiss.TFEND.toByte)
+		} else {
+		  Array[Byte](byte)
+		}
+	  }
+	  escapedBytes
 	}
 
 	def readPacket() : String = {
@@ -85,5 +127,16 @@ class KissProto(service : AprsService, is : InputStream, os : OutputStream) exte
 		val combinedData = Array[Byte](Kiss.FEND.toByte, Kiss.CMD_DATA.toByte) ++ p.toAX25Frame() ++ Array[Byte](Kiss.FEND.toByte)
 		os.write(combinedData)
 		os.flush()
+	}
+
+	def writeFreq(freqBytes: Array[Byte]): Unit = {
+	  val frame = Array[Byte](
+		Kiss.FEND.toByte,
+		Kiss.CONTROL_COMMAND.toByte,
+		Kiss.FREQ.toByte      // Frequency byte
+	  ) ++ freqBytes ++ Array[Byte](Kiss.FEND.toByte)
+	  
+	  os.write(frame)
+	  os.flush()
 	}
 }

@@ -279,7 +279,24 @@
 		/>
     </PreferenceCategory>
     </PreferenceScreen>
+    </PreferenceCategory>
+	
+	    <PreferenceCategory 
+			android:title="@string/freq_control">
 
+            <CheckBoxPreference
+                android:key="freq_control"
+                android:title="@string/freq_control_options"
+                android:summary="@string/freq_control_options_summary"
+                android:defaultValue="false" />
+
+            <de.duenndns.EditTextPreferenceWithValue
+                android:key="frequency_control_value"
+                android:inputType="number|numberDecimal"
+                android:title="@string/freq_control_title"
+                android:hint="@string/freq_control_hint"				
+                android:summary="@string/freq_control_summary"
+                android:dialogTitle="@string/freq_control_title" />
 
     </PreferenceCategory>
 
