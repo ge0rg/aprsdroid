@@ -37,7 +37,7 @@ class KissProto(service : AprsService, is : InputStream, os : OutputStream) exte
 	val checkprefs = service.prefs.getBackendName()
 	Log.d(TAG, s"Backend Name1: $checkprefs")
 
-	if (service.prefs.getBoolean("freq_control", false) && service.prefs.getBackendName().contains("Bluetooth SPP")) {
+	if (service.prefs.getBoolean("freq_control", false) && service.prefs.getBackendName().contains("Bluetooth")) {
 	  Log.d(TAG, "Frequency control is enabled.")
 
 	  // Fetch the frequency control value as a float (default to 0.0f if not found)

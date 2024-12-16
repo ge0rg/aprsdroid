@@ -240,6 +240,7 @@
 <string name="p_aprsis_udp">UDP (send only)</string>
 <!-- array of TNC link types -->
 <string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_ble">Bluetooth Low Energy</string>
 <string name="p_link_tcpip">TCP/IP</string>
 <string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
