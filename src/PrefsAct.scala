@@ -26,7 +26,9 @@ class PrefsAct extends PreferenceActivity {
 		try {
 			directory.mkdirs()
 			val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-			val json = new JSONObject(prefs.getAll)
+			val allPrefs = prefs.getAll
+			allPrefs.remove("map_zoom")
+			val json = new JSONObject(allPrefs)
 			val fo = new PrintWriter(file)
 			fo.println(json.toString(2))
 			fo.close()
