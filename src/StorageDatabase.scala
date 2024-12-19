@@ -7,6 +7,7 @@ import _root_.android.database.sqlite.SQLiteDatabase
 import _root_.android.database.Cursor
 import _root_.android.util.Log
 import _root_.android.widget.FilterQueryProvider
+import _root_.android.preference.PreferenceManager
 
 import _root_.net.ab0oo.aprs.parser._
 
@@ -183,6 +184,8 @@ class StorageDatabase(context : Context) extends
 			null, StorageDatabase.DB_VERSION) {
 	import StorageDatabase._
 
+    lazy val prefs = new PrefsWrapper(context)
+
 	override def onCreate(db: SQLiteDatabase) {
 		Log.d(TAG, "onCreate(): creating new database " + DB_NAME);
 		db.execSQL(Post.TABLE_CREATE);
@@ -259,21 +262,47 @@ class StorageDatabase(context : Context) extends
 		getWritableDatabase().replaceOrThrow(TABLE, CALL, cv)
 	}
 
-	def isMessageDuplicate(call : String, msgid : String, text : String) : Boolean = {
-		val c = getReadableDatabase().query(Message.TABLE, Message.COLUMNS,
-			"type = 1 AND call = ? AND msgid = ? AND text = ?",
-			Array(call, msgid, text),
-			null, null,
-			null, null)
-		val result = (c.getCount() > 0)
-		c.close()
-		result
+	def isMessageDuplicate(call: String, msgid: String, text: String, currentTs: Long): Boolean = {
+	  // Prepare the base query conditions
+	  val selection = "type = 1 AND call = ? AND msgid = ? AND text = ?"
+	  val selectionArgs = Array(call, msgid, text)
+	  var query: String = selection
+	  var args: Array[String] = selectionArgs
+	  
+	  // If message duplication is enabled, add the time threshold condition
+	  if (prefs.isMsgDupeEnabled) {
+		val msgDupetime = prefs.getStringInt("p.msgdupetime", 30)
+		val timeThreshold = currentTs - (msgDupetime * 1000)
+	   // If msgDupetime is 0, return false immediately (no duplication check)
+		if (msgDupetime == 0) {
+		  return false
+		}		
+		query += " AND ts >= ?"
+		args = args :+ timeThreshold.toString
+	  }
+
+	  // Perform the database query with the constructed query and args
+	  val cursor = getReadableDatabase().query(
+		Message.TABLE,
+		Message.COLUMNS,
+		query,
+		args,
+		null, null, null, null
+	  )
+
+	  // Check if there are any results (cursor.getCount() could be replaced with cursor.moveToFirst())
+	  val result = cursor.moveToFirst()  // Checks if at least one record is found
+	  cursor.close()
+
+	  result
 	}
 
-	// add an incoming message, returns false if duplicate
-	def addMessage(ts : Long, srccall : String, msg : MessagePacket) : Boolean = {
+
+	// Add an incoming message, returns false if duplicate
+	def addMessage(ts: Long, srccall: String, msg: MessagePacket): Boolean = {
 		import Message._
-		if (isMessageDuplicate(srccall, msg.getMessageNumber(), msg.getMessageBody())) {
+		// Check if the message is a duplicate considering timestamp
+		if (isMessageDuplicate(srccall, msg.getMessageNumber(), msg.getMessageBody(), ts)) {
 			Log.i(TAG, "received duplicate message from %s: %s".format(srccall, msg))
 			return false
 		}

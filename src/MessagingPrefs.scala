@@ -30,7 +30,7 @@ class MessagingPrefs extends PreferenceActivity with OnSharedPreferenceChangeLis
   // Called when a shared preference is changed
   override def onSharedPreferenceChanged(sp: SharedPreferences, key: String): Unit = {
     key match {
-      case "p.messaging" | "p.retry" | "p.ackdupetoggle" | "p.ackdupe" =>
+      case "p.messaging" | "p.retry" | "p.ackdupetoggle" | "p.ackdupe" | "p.msgdupetoggle" | "p.msgdupetime" =>
         setPreferenceScreen(null) // Clear the current preference screen
         loadXml() // Reload the preferences to reflect any changes
       case _ => // Ignore other keys

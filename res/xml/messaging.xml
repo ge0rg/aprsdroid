@@ -34,5 +34,20 @@
 		android:summary="@string/p_ackdupe_interval_summary"
 		android:dialogTitle="@string/p_ackdupe_interval_entry" />
 
+	<CheckBoxPreference
+		android:key="p.msgdupetoggle"
+		android:title="@string/p_msgdupetoggle"
+		android:summary="@string/p_msgdupetoggle_summary"
+		android:defaultValue="false" />
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.msgdupetime"
+		android:defaultValue="30"
+		android:hint="30"		
+		android:inputType="number"
+		android:title="@string/p_msgdupetime_title"
+		android:summary="@string/p_msgdupetime_summary"
+		android:dialogTitle="@string/p_msgdupetime_entry" />
+
 
 </PreferenceScreen>

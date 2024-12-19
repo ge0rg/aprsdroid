@@ -240,6 +240,7 @@
 <string name="p_aprsis_udp">UDP (send only)</string>
 <!-- array of TNC link types -->
 <string name="p_link_bt">Bluetooth SPP</string>
+<string name="p_link_ble">Bluetooth Low Energy</string>
 <string name="p_link_tcpip">TCP/IP</string>
 <string name="p_link_usb">USB Serial</string>
 <!-- array of location sources -->
@@ -360,7 +361,7 @@
 <string name="status_linkon">Connected: %s</string>
 
 <string name="p_messaging">Messaging Preferences</string>
-<string name="p_messaging_preferences">Set Messaging Retry &amp; Ack Options</string>
+<string name="p_messaging_preferences">Advanced Messaging Options</string>
 <string name="p_message_retry">Message Retries</string>
 <string name="p_message_retry_entry">Number of messages to retry</string>
 <string name="p_message_retry_summary">Message retry limit</string>
@@ -369,13 +370,19 @@
 <string name="p_retry_interval_entry">Retry interval start rate</string>
 <string name="p_retry_interval_summary">Rate doubles each retry</string>
 
-<string name="p_ackdupe_interval">Ack Dupe Timeout</string>
+<string name="p_ackdupe_interval">Ack Dupe Timeout or Disable</string>
 <string name="p_ackdupe_interval_entry">Ack dupe timeout (0 = ack disabled)</string>
-<string name="p_ackdupe_interval_summary">Dupe timeout</string>
+<string name="p_ackdupe_interval_summary">Dupe acks allowed after timeout</string>
 
 <string name="p_ackdupetoggle">Ack Dupe Timeout</string>
-<string name="p_ackdupetoggle_summary">Enable</string>
+<string name="p_ackdupetoggle_summary">Sends dupe acks after the timeout period</string>
 
+<string name="p_msgdupetoggle">Duplicate Messages</string>
+<string name="p_msgdupetoggle_summary">Allows dupe messages after timeout period</string>
+
+<string name="p_msgdupetime_summary">Duplicate messages allowed after timeout</string>
+<string name="p_msgdupetime_entry">Dupe message timeout (0 = disabled)</string>
+<string name="p_msgdupetime_title">Dupe Message Timeout</string>
 
 <!-- AFSK settings -->
 <string name="p_aprs_path">APRS digi path</string>
