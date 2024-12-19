@@ -21,6 +21,9 @@ class PrefsWrapper(val context : Context) {
 	def isAckDupeEnabled(): Boolean = {
 		prefs.getBoolean("p.ackdupetoggle", false)
 	}
+	def isMsgDupeEnabled(): Boolean = {
+		prefs.getBoolean("p.msgdupetoggle", false)
+	}
 	def isMetric(): Boolean = {
 		prefs.getString("p.units", "1") == "1" // "1" for metric, "2" for imperial
 	}
