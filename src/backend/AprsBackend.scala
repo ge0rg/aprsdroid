@@ -1,11 +1,15 @@
+
 package org.aprsdroid.app
 
 import android.Manifest
 import android.os.Build
+import _root_.android.util.Log
 import _root_.net.ab0oo.aprs.parser.APRSPacket
+
 import _root_.java.io.{InputStream, OutputStream}
 
 object AprsBackend {
+	val TAG = "AprsBackend"
         /** "Modular" system to connect to an APRS backend.
         * The backend config consists of three items backed by prefs values:
         *   - *proto* inside the connection ("aprsis", "afsk", "kiss", "tnc2", "kenwood") - ProtoInfo class
@@ -65,7 +69,7 @@ object AprsBackend {
 			Set(),
 			CAN_XMIT,
 			PASSCODE_REQUIRED),
-		"afsk" -> new BackendInfo(
+		"vox" -> new BackendInfo(
 			(s, p) => new AfskUploader(s, p),
 			0,
 			Set(Manifest.permission.RECORD_AUDIO),
@@ -83,12 +87,6 @@ object AprsBackend {
 			Set(BLUETOOTH_PERMISSION),
 			CAN_DUPLEX,
 			PASSCODE_NONE),
-		"ble" -> new BackendInfo(
-			(s, p) => new BluetoothLETnc(s, p),
-			R.xml.backend_ble,
-			Set(BLUETOOTH_PERMISSION),
-			CAN_DUPLEX,
-			PASSCODE_NONE),
 		"tcpip" -> new BackendInfo(
 			(s, p) => new TcpUploader(s, p),
 			R.xml.backend_tcptnc,
@@ -100,7 +98,14 @@ object AprsBackend {
 			R.xml.backend_usb,
 			Set(),
 			CAN_DUPLEX,
-			PASSCODE_NONE)
+			PASSCODE_NONE),
+		"digirig" -> new BackendInfo(
+			(s, p) => new DigiRig(s, p),
+			R.xml.backend_digirig,
+                        Set(Manifest.permission.RECORD_AUDIO),
+			CAN_DUPLEX,
+			PASSCODE_NONE
+		)
 		)
 
 	class ProtoInfo(
@@ -114,8 +119,8 @@ object AprsBackend {
 			(s, is, os) => new AprsIsProto(s, is, os),
 			R.xml.proto_aprsis, "aprsis"),
 		"afsk" -> new ProtoInfo(
-			null,
-			R.xml.proto_afsk, null),
+			(s, is, os) => new AfskProto(s, is, os),
+			R.xml.proto_afsk, "afsk"),
 		"kiss" -> new ProtoInfo(
 			(s, is, os) => new KissProto(s, is, os),
 			R.xml.proto_kiss, "link"),
@@ -136,7 +141,15 @@ object AprsBackend {
 
 	def defaultBackendInfo(prefs : PrefsWrapper) : BackendInfo = {
 		val pi = defaultProtoInfo(prefs)
-		val link = if (pi.link != null) { prefs.getString(pi.link, DEFAULT_LINK) } else { prefs.getProto() }
+		var link = ""
+		if (pi.link != null) {
+			link = prefs.getString(pi.link, DEFAULT_LINK)
+			Log.d(TAG, "DEBUG: pi.link (" + pi.link + ") != null : " + link)
+		} else {
+			link = prefs.getProto()
+			Log.d(TAG, "DEBUG: pi.link == null : " + link)
+		}
+
 		backend_collection.get(link) match {
 		case Some(bi) => bi
 		case None => backend_collection(DEFAULT_CONNTYPE)

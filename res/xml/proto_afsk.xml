@@ -38,7 +38,14 @@
 		android:summary="@string/p_afsk_prefix_summary"
 		android:dialogTitle="@string/p_afsk_prefix_entry" />
 
-    </PreferenceCategory>
-
+        <de.duenndns.ListPreferenceWithValue
+                android:defaultValue="vox"
+                android:dialogTitle="@string/p_link_entry"
+                android:entries="@array/p_afsk_e"
+                android:entryValues="@array/p_afsk_ev"
+                android:key="afsk"
+                android:title="@string/p_link" />
+	</PreferenceCategory>
+	
 </PreferenceScreen>
 

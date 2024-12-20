@@ -92,6 +92,7 @@ class PrefsWrapper(val context : Context) {
 			R.array.p_conntype_ev, R.array.p_conntype_e)
 		val link = AprsBackend.defaultProtoInfo(this).link
 		link match {
+		case "afsk" => "%s, %s".format(proto, getListItemName(link, AprsBackend.DEFAULT_CONNTYPE, R.array.p_afsk_ev, R.array.p_afsk_e))
 		case "aprsis" => "%s, %s".format(proto, getListItemName(link, AprsBackend.DEFAULT_CONNTYPE, R.array.p_aprsis_ev, R.array.p_aprsis_e))
 		case "link" => "%s, %s".format(proto, getListItemName(link, AprsBackend.DEFAULT_CONNTYPE, R.array.p_link_ev, R.array.p_link_e))
 		case _ => proto
@@ -120,6 +121,8 @@ class PrefsWrapper(val context : Context) {
 	
 	def getProto() = getString("proto", "aprsis")
 	def getAfskHQ() = getBoolean("afsk.hqdemod", true)
+	def getAfskRTS() = getBoolean("afsk.ptt", false)
+	def getPTTPort() = getString("afsk.pttport", "")
 	def getAfskBluetooth() = getBoolean("afsk.btsco", false) && getAfskHQ()
 	def getAfskOutput() = if (getAfskBluetooth()) AudioManager.STREAM_VOICE_CALL else getStringInt("afsk.output", 0)
 }
