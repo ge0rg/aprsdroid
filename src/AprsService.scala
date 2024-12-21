@@ -83,6 +83,7 @@ class AprsService extends Service {
 	lazy val locSource = LocationSource.instanciateLocation(this, prefs)
 	lazy val msgNotifier = msgService.createMessageNotifier()
 	lazy val digipeaterService = new DigipeaterService(prefs, TAG, sendDigipeatedPacket)
+	lazy val igateService = new IgateService(this, prefs)
 
 	var poster : AprsBackend = null
 
@@ -178,6 +179,7 @@ class AprsService extends Service {
 		poster = AprsBackend.instanciateUploader(this, prefs)
 		if (poster.start())
 			onPosterStarted()
+			igateService.start()
 	}
 
 	def onPosterStarted() {
@@ -215,6 +217,7 @@ class AprsService extends Service {
 		// catch FC when service is killed from outside
 		if (poster != null) {
 			poster.stop()
+			igateService.stop()
 			showToast(getString(R.string.service_stop))
 
 			sendBroadcast(new Intent(SERVICE_STOPPED))
@@ -527,7 +530,9 @@ class AprsService extends Service {
 		postAddPost(StorageDatabase.Post.TYPE_INCMG, R.string.post_incmg, post)
 		
 		// Process the incoming post
-		digipeaterService.processIncomingPost(post)		
+		digipeaterService.processIncomingPost(post)
+		igateService.handlePostSubmitData(post)
+
 	}
 
 	def postAbort(post : String) {
