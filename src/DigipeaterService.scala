@@ -5,7 +5,7 @@ import _root_.net.ab0oo.aprs.parser._
 import java.util.Date
 
 class DigipeaterService(prefs: PrefsWrapper, TAG: String, sendDigipeatedPacket: String => Unit) {
-  private val recentDigipeats: mutable.Map[String, Instant] = mutable.Map()
+  private val recentDigipeats: mutable.Map[String, Date] = mutable.Map()
 
 	def dedupeTime: Int = prefs.getStringInt("p.dedupe", 30)  // Fetch the latest dedupe time from preferences
 	def digipeaterpath: String = prefs.getString("digipeater_path", "WIDE1,WIDE2")  // Fetch digipeater path from preferences
@@ -14,7 +14,7 @@ class DigipeaterService(prefs: PrefsWrapper, TAG: String, sendDigipeatedPacket: 
 	def storeDigipeat(sourceCall: String, destinationCall: String, payload: String): Unit = {
 	  // Unique identifier using source call, destination call, and payload
 	  val key = s"$sourceCall>$destinationCall:$payload"
-	  recentDigipeats(key) = new.Date() // Store the current timestamp
+	  recentDigipeats(key) = new Date() // Store the current timestamp
 	}
 
 	// Function to filter digipeats that are older than dedupeTime seconds
