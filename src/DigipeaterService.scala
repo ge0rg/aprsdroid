@@ -59,13 +59,6 @@ class DigipeaterService(prefs: PrefsWrapper, TAG: String, sendDigipeatedPacket: 
 				return // Exit the function if parsing fails
 		}
 
-		// Check if both digipeating and regeneration are enabled. Temp fix until re-implementation. Remove later on.
-		if (prefs.isDigipeaterEnabled() && prefs.isRegenerateEnabled()) {
-			Log.d("APRSdroid.Service", "Both Digipeating and Regeneration are enabled; Set Regen to false.")
-			prefs.setBoolean("p.regenerate", false) // Disable regeneration
-			
-		}	
-
 		// New regen
 		if (!prefs.isDigipeaterEnabled() && prefs.isRegenerateEnabled()) {
 			Log.d("APRSdroid.Service", "Regen enabled")

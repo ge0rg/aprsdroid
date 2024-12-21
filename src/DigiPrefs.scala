@@ -2,7 +2,7 @@ package org.aprsdroid.app
 
 import _root_.android.content.SharedPreferences
 import _root_.android.os.Bundle
-import _root_.android.preference.{PreferenceActivity, PreferenceManager}
+import _root_.android.preference.{PreferenceActivity, CheckBoxPreference}
 
 class DigiPrefs extends PreferenceActivity with SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -17,6 +17,9 @@ class DigiPrefs extends PreferenceActivity with SharedPreferences.OnSharedPrefer
     super.onCreate(savedInstanceState)
     loadXml()
     getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this)
+
+    // Update preferences state on activity creation
+    updateCheckBoxState()
   }
 
   override def onDestroy() {
@@ -25,11 +28,31 @@ class DigiPrefs extends PreferenceActivity with SharedPreferences.OnSharedPrefer
   }
 
   override def onSharedPreferenceChanged(sp: SharedPreferences, key: String) {
-    // Handle preference changes for specific keys
-    if (key == "p.digipeating" || key == "digipeater_path" || key == "p.dedupe" || key == "p.regenerate") {
-      // Re-load preferences if critical preferences change
-      setPreferenceScreen(null)
-      loadXml()
+    key match {
+      case "p.digipeating" | "p.regenerate" =>
+        // Update checkbox states when either preference changes
+        updateCheckBoxState()
+      case _ => // No action for other preferences
+    }
+  }
+
+  // This method will enable/disable the checkboxes based on their current state
+  private def updateCheckBoxState(): Unit = {
+    val digipeatingPref = findPreference("p.digipeating").asInstanceOf[CheckBoxPreference]
+    val regeneratePref = findPreference("p.regenerate").asInstanceOf[CheckBoxPreference]
+
+    // If "p.digipeating" is checked, disable "p.regenerate"
+    if (digipeatingPref.isChecked) {
+      regeneratePref.setEnabled(false)
+    } else {
+      regeneratePref.setEnabled(true)
+    }
+
+    // If "p.regenerate" is checked, disable "p.digipeating"
+    if (regeneratePref.isChecked) {
+      digipeatingPref.setEnabled(false)
+    } else {
+      digipeatingPref.setEnabled(true)
     }
   }
 }
