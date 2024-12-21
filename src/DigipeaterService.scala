@@ -2,7 +2,7 @@ package org.aprsdroid.app
 import _root_.android.util.Log
 import scala.collection.mutable
 import _root_.net.ab0oo.aprs.parser._
-import java.time.Instant
+import java.util.Date
 
 class DigipeaterService(prefs: PrefsWrapper, TAG: String, sendDigipeatedPacket: String => Unit) {
   private val recentDigipeats: mutable.Map[String, Instant] = mutable.Map()
@@ -14,7 +14,7 @@ class DigipeaterService(prefs: PrefsWrapper, TAG: String, sendDigipeatedPacket: 
 	def storeDigipeat(sourceCall: String, destinationCall: String, payload: String): Unit = {
 	  // Unique identifier using source call, destination call, and payload
 	  val key = s"$sourceCall>$destinationCall:$payload"
-	  recentDigipeats(key) = Instant.now() // Store the current timestamp
+	  recentDigipeats(key) = new.Date() // Store the current timestamp
 	}
 
 	// Function to filter digipeats that are older than dedupeTime seconds
@@ -23,8 +23,9 @@ class DigipeaterService(prefs: PrefsWrapper, TAG: String, sendDigipeatedPacket: 
 	  val key = s"$sourceCall>$destinationCall:$payload"
 	  recentDigipeats.get(key) match {
 		case Some(timestamp) =>
-		  // Check if the packet was heard within the last 30 seconds
-		  Instant.now().isBefore(timestamp.plusSeconds(dedupeTime))
+		  // Check if the packet was heard within the last dedupeTime seconds
+		  val now = new Date()
+		  now.getTime - timestamp.getTime < (dedupeTime * 1000)
 		case None =>
 		  false // Not found in recent digipeats
 	  }
@@ -32,10 +33,10 @@ class DigipeaterService(prefs: PrefsWrapper, TAG: String, sendDigipeatedPacket: 
 
 	// Function to clean up old entries
 	def cleanupOldDigipeats(): Unit = {
-	  val now = Instant.now()
-	  // Retain only those digipeats that are within the last 30 seconds
+	  val now = new Date()
+	  // Retain only those digipeats that are within the last dedupeTime seconds
 	  recentDigipeats.retain { case (_, timestamp) =>
-		now.isBefore(timestamp.plusSeconds(dedupeTime))
+		now.getTime - timestamp.getTime < (dedupeTime * 1000)
 	  }
 	}
 

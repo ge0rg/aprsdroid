@@ -10,7 +10,6 @@ import _root_.android.widget.Toast
 
 import _root_.net.ab0oo.aprs.parser._
 import scala.collection.mutable
-import java.time.Instant
 
 object AprsService {
 	val PACKAGE = "org.aprsdroid.app"
