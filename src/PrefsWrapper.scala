@@ -12,6 +12,9 @@ class PrefsWrapper(val context : Context) {
 	def getString(key : String, defValue : String) = prefs.getString(key, defValue)
 	def getBoolean(key : String, defValue : Boolean) = prefs.getBoolean(key, defValue)
 
+	def isIgateEnabled(): Boolean = {
+		prefs.getBoolean("p.igating", false)
+	}
 	def isDigipeaterEnabled(): Boolean = {
 		prefs.getBoolean("p.digipeating", false)
 	}

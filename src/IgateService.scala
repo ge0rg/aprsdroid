@@ -8,7 +8,7 @@ import _root_.android.util.Log
 class IgateService(service : AprsService, prefs: PrefsWrapper) {
 
   val TAG = "IgateService"
-  val hostport = prefs.getString("tcp.server", "theconnectdesk.com")
+  val hostport = prefs.getString("tcp.server", "rotate.aprs2.net")
   val so_timeout = prefs.getStringInt("tcp.sotimeout", 30)
   var conn: TcpSocketThread = _
 
@@ -50,6 +50,8 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 	def init_socket(): Unit = {
 	  val (host, port) = parseHostPort(hostport)
 	  Log.d(TAG, s"init_socket() - Connecting to $host on port $port")
+	  service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS", s"Connecting to $host:$port")
+
 
 	  var attempts = 0
 	  while (running) {
@@ -65,6 +67,7 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 		  sendLogin()
 
 		  Log.d(TAG, "init_socket() - Connection established")
+		  service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS", "Connection Established")
 		  return  // If connection is successful, exit the loop
 		} catch {
 		  case e: java.net.UnknownHostException =>
@@ -98,16 +101,16 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 	  }
 	}
 
-
     // Send login information to the APRS-IS server
     def sendLogin(): Unit = {
       val callsign = prefs.getCallSsid()
       val passcode = prefs.getPasscode()  // Retrieve passcode from preferences
       val version = "APRSdroid iGate"     // Version information (as in Python example)
+	  val filter = ""
 
       // Format the login message as per the Python example
       val loginMessage = s"user $callsign pass $passcode vers $version\r\n"
-      val filterMessage = s"#filter ${prefs.getString("tcp.filter", "")}\r\n"  // Retrieve filter from preferences
+      val filterMessage = s"#filter $filter\r\n"  // Retrieve filter from preferences
 
       Log.d(TAG, s"sendLogin() - Sending login: $loginMessage")
       Log.d(TAG, s"sendLogin() - Sending filter: $filterMessage")
@@ -259,6 +262,12 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 			val receivedData = bufferedReader.readLine()
 			if (receivedData != null) {
 			  Log.d(TAG, s"run() - Received data from server: $receivedData")
+			  
+			  if (!receivedData.startsWith("#")) {
+				// If it does not start with "# aprsc", call addPost
+				service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS Received", receivedData)
+			  }
+				
 			} else {
 			  Log.e(TAG, "run() - No data received, server might have closed the connection")
 			  running = false  // Stop the thread if no data is received
@@ -316,13 +325,28 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
     }
   }
 
+	def checkAprsisService(data: String): Unit = {
+	  // Check if the digipeating setting is enabled
+	  if (!prefs.isIgateEnabled()) {
+		Log.d("APRSdroid.Service", "IGating is disabled")
+		return
+	  }
+	  handlePostSubmitData(data)
+	}
+
 	def modifyData(data: String): String = {
+	  // Check if data contains "RFONLY" or "TCPIP"
+	  if (data.contains("RFONLY") || data.contains("TCPIP")) {
+		Log.d(TAG, s"modifyData() - RFONLY or TCPIP found: $data")		  
+		return null // Return the data as is if it contains "RFONLY" or "TCPIP"
+	  }
+			
 	  // Find the index of the first colon
 	  val colonIndex = data.indexOf(":")
 
 	  if (colonIndex != -1) {
 		// Insert ",qAR" before the first colon
-		data.substring(0, colonIndex) + ",qAR" + data.substring(colonIndex)
+		data.substring(0, colonIndex) + ",qAR," + prefs.getCallSsid + data.substring(colonIndex)
 	  } else {
 		// If there's no colon, return the data as is (or handle this case as needed)
 		data
@@ -336,12 +360,20 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 	  // Modify the data before sending it to the server
 	  val modifiedData = modifyData(data)
 
+	  // If the modified data is null, skip further processing
+	  if (modifiedData == null) {
+		Log.d(TAG, "handlePostSubmitData() - Skipping data processing due to RFONLY/TCPIP in packet")
+		return  // Stop further processing if the packet contains RFONLY or TCPIP
+	  }
+
 	  // Log the modified data to confirm the change
 	  Log.d(TAG, s"handlePostSubmitData() - Modified data: $modifiedData")
 
 	  // Send the modified data to the APRS-IS server (or other logic as necessary)
 	  if (conn != null) {
 		conn.sendData(modifiedData)  // Send it to the server
+		service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS Sent", modifiedData)
+		
 	  } else {
 		Log.d(TAG, "handlePostSubmitData() - No active connection to send data.")
 	  }

@@ -530,7 +530,7 @@ class AprsService extends Service {
 		
 		// Process the incoming post
 		digipeaterService.processIncomingPost(post)
-		igateService.handlePostSubmitData(post)
+		igateService.checkAprsisService(post)
 
 	}
 
