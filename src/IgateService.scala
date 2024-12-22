@@ -50,8 +50,7 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 	def init_socket(): Unit = {
 	  val (host, port) = parseHostPort(hostport)
 	  Log.d(TAG, s"init_socket() - Connecting to $host on port $port")
-	  service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS", s"Connecting to $host:$port")
-
+	  service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", s"Connecting to $host:$port")
 
 	  var attempts = 0
 	  while (running) {
@@ -67,15 +66,17 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 		  sendLogin()
 
 		  Log.d(TAG, "init_socket() - Connection established to APRS-IS")
-		  service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS", "Connection Established")
+		  service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", "Connection Established to APRS-IS")
+		  
+		  // Start the keep-alive thread once the connection is established
+		  startKeepAliveThread()
+
 		  return  // If connection is successful, exit the loop
 		} catch {
 		  case e: java.net.UnknownHostException =>
-			// DNS resolution failed, will retry
 			attempts += 1
 			Log.e(TAG, s"init_socket() - Unable to resolve host: ${e.getMessage} (Attempt $attempts)")
 		  case e: Exception =>
-			// Other connection errors
 			Log.e(TAG, s"init_socket() - Error establishing connection: ${e.getMessage}")
 		}
 
@@ -169,6 +170,23 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
         reconnect()
       }
     }
+
+	// Start the keep-alive thread
+	def startKeepAliveThread(): Unit = {
+	  val keepAliveThread = new Thread(new Runnable {
+		override def run(): Unit = {
+		  while (running) {
+			try {
+			  Thread.sleep(30000)  // Sleep for 30 seconds between keep-alive packets
+			  sendKeepAlive()
+			} catch {
+			  case ie: InterruptedException => Log.e(TAG, "keepAliveThread() - Interrupted while sleeping", ie)
+			}
+		  }
+		}
+	  })
+	  keepAliveThread.start()
+	}
 
     // Send keep-alive packet to the APRS-IS server
     def sendKeepAlive(): Unit = {
@@ -285,22 +303,8 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 			  Log.d(TAG, "run() - Thread was interrupted during reading/sleep.")
 			  running = false  // Stop the thread if it's interrupted
 			case e: Exception =>
-			  Log.e(TAG, s"run() - Unexpected error: ${e.getMessage}", e)
 			  running = false
-		  }
-
-		  if (running) {
-			// Sleep for a brief period before the next iteration
-			try {
-			  Thread.sleep(10000)  // Sleep for 10 seconds before sending keep-alive packet
-			} catch {
-			  case e: InterruptedException =>
-				Log.d(TAG, "run() - Thread was interrupted during sleep.")
-				running = false  // Stop the thread if it's interrupted during sleep
-			}
-
-			// Send the keep-alive packet
-			sendKeepAlive()
+			  Log.e(TAG, s"run() - Unexpected error: ${e.getMessage}", e)
 		  }
 		}
 	  } catch {
