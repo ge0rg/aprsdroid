@@ -178,7 +178,9 @@ class AprsService extends Service {
 		poster = AprsBackend.instanciateUploader(this, prefs)
 		if (poster.start())
 			onPosterStarted()
-			igateService.start()
+			if (prefs.isIgateEnabled() && (prefs.getBackendName().contains("KISS") || prefs.getBackendName().contains("AFSK"))) {
+				igateService.start()
+			}
 	}
 
 	def onPosterStarted() {
@@ -216,7 +218,9 @@ class AprsService extends Service {
 		// catch FC when service is killed from outside
 		if (poster != null) {
 			poster.stop()
-			igateService.stop()
+			if (prefs.isIgateEnabled() && (prefs.getBackendName().contains("KISS") || prefs.getBackendName().contains("AFSK"))) {			
+				igateService.stop()
+			}
 			showToast(getString(R.string.service_stop))
 
 			sendBroadcast(new Intent(SERVICE_STOPPED))
@@ -530,7 +534,10 @@ class AprsService extends Service {
 		
 		// Process the incoming post
 		digipeaterService.processIncomingPost(post)
-		igateService.checkAprsisService(post)
+
+		if (prefs.isIgateEnabled() && (prefs.getBackendName().contains("KISS") || prefs.getBackendName().contains("AFSK"))) {			
+			igateService.handlePostSubmitData(post)
+		}
 
 	}
 

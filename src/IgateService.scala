@@ -66,7 +66,7 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 		  // Send login information to the server
 		  sendLogin()
 
-		  Log.d(TAG, "init_socket() - Connection established")
+		  Log.d(TAG, "init_socket() - Connection established to APRS-IS")
 		  service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS", "Connection Established")
 		  return  // If connection is successful, exit the loop
 		} catch {
@@ -324,22 +324,6 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
       }
     }
   }
-
-	def checkAprsisService(data: String): Unit = {
-	  // Check if IGating is enabled
-	  if (!prefs.isIgateEnabled()) {
-		Log.d("IgateService", "IGating is disabled")
-		return
-	  }
-
-	  // Check if one of the backend names is active ("KISS" or "AFSK")
-	  if (prefs.getBackendName().contains("KISS") || prefs.getBackendName().contains("AFSK")) {
-		handlePostSubmitData(data)
-	  } else {
-		Log.d("IgateService", "Not KISS or AFSK for IGating")
-		return
-	  }
-	}
 
 	def modifyData(data: String): String = {
 	  // Check if data contains "RFONLY" or "TCPIP"

@@ -3,31 +3,32 @@ package org.aprsdroid.app
 import _root_.android.content.SharedPreferences
 import _root_.android.os.Bundle
 import _root_.android.preference.{PreferenceActivity, CheckBoxPreference}
+import android.util.Log
 
 class IgatePrefs extends PreferenceActivity with SharedPreferences.OnSharedPreferenceChangeListener {
 
   lazy val prefs = new PrefsWrapper(this)
 
-  def loadXml() {
+  def loadXml(): Unit = {
     // Load only the p.igating preference
-    addPreferencesFromResource(R.xml.igate)  // Ensure this XML only contains p.igating
+    addPreferencesFromResource(R.xml.igate) // Ensure this XML only contains p.igating
   }
 
-  override def onCreate(savedInstanceState: Bundle) {
+  override def onCreate(savedInstanceState: Bundle): Unit = {
     super.onCreate(savedInstanceState)
     loadXml()
-    getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this)
+    getPreferenceScreen().getSharedPreferences.registerOnSharedPreferenceChangeListener(this)
 
     // Update preferences state on activity creation
     updateCheckBoxState()
   }
 
-  override def onDestroy() {
+  override def onDestroy(): Unit = {
     super.onDestroy()
-    getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this)
+    getPreferenceScreen().getSharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
   }
 
-  override def onSharedPreferenceChanged(sp: SharedPreferences, key: String) {
+  override def onSharedPreferenceChanged(sp: SharedPreferences, key: String): Unit = {
     key match {
       case "p.igating" =>
         // Handle changes to "p.igating" preference (if necessary)
@@ -37,10 +38,19 @@ class IgatePrefs extends PreferenceActivity with SharedPreferences.OnSharedPrefe
   }
 
   // This method will enable/disable the checkboxes based on their current state
-  private def updateCheckBoxState(): Unit = {
-    val igatingPref = findPreference("p.igating").asInstanceOf[CheckBoxPreference]
-    
-    // Add logic if needed to handle the "p.igating" preference state
-    // For example, enabling or disabling other preferences based on this preference.
-  }
+	private def updateCheckBoxState(): Unit = {
+	  val igatingPref = findPreference("p.igating").asInstanceOf[CheckBoxPreference]
+
+	  // Check if the service is running using your logic
+	  val isServiceRunning = prefs.getBoolean("service_running", false)
+
+	  if (isServiceRunning) {
+		// Disable the checkbox and update the summary
+		igatingPref.setEnabled(false)
+		igatingPref.setSummary("Setting disabled while the service is running.")
+	  } else {
+		// Enable the checkbox and restore the default summary
+		igatingPref.setEnabled(true)
+	  }
+	}
 }
