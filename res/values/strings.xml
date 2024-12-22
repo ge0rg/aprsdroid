@@ -285,9 +285,12 @@
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>
+<string name="p_igserver">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>
+<string name="p_igserver_entry">Enter the APRS-IS server hostname</string>
 <string name="p_host_hint">host:port</string>
+<string name="p_igserver_hint">host:port</string>
 <string name="p__position">Position Reports</string>
 <string name="p_locsource">Location Source</string>
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
@@ -417,13 +420,19 @@
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_igserver_summary">APRS-IS TCP server (port 14580) to contact</string>
 <string name="p_filterdist">Neighbor radius</string>
 <string name="p_filterdist_summary">Receive packets from stations in this radius</string>
 <string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
 <string name="p_filter">Packet filter</string>
+<string name="p_igfilter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Filter for incoming packets</string>
 <string name="p_filter_entry">Enter a filter for incoming packets</string>
+
+<string name="p_igfilter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_igfilter_summary">Filter for incoming packets</string>
+<string name="p_igfilter_entry">Enter a filter for incoming packets</string>
 
 <string name="p_filterhelp">Message filter help</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
@@ -431,6 +440,10 @@
 <string name="p_sotimeout">TCP socket timeout</string>
 <string name="p_sotimeout_summary">Time before resetting the connection</string>
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+
+<string name="p_igsotimeout">TCP socket timeout</string>
+<string name="p_igsotimeout_summary">Time before resetting the connection</string>
+<string name="p_igsotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
 <string name="p_reconnect">TCP reconnect timeout</string>
 <string name="p_reconnect_summary">Time before reconnecting</string>

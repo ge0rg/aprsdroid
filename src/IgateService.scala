@@ -8,8 +8,8 @@ import _root_.android.util.Log
 class IgateService(service : AprsService, prefs: PrefsWrapper) {
 
   val TAG = "IgateService"
-  val hostport = prefs.getString("tcp.server", "rotate.aprs2.net")
-  val so_timeout = prefs.getStringInt("tcp.sotimeout", 30)
+  val hostport = prefs.getString("p.igserver", "rotate.aprs2.net")
+  val so_timeout = prefs.getStringInt("p.igsotimeout", 30)
   var conn: TcpSocketThread = _
 
   // Start the connection
@@ -106,7 +106,7 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
       val callsign = prefs.getCallSsid()
       val passcode = prefs.getPasscode()  // Retrieve passcode from preferences
       val version = "APRSdroid iGate"     // Version information (as in Python example)
-	  val filter = ""
+	  val filter = prefs.getString("p.igfilter", "")
 
       // Format the login message as per the Python example
       val loginMessage = s"user $callsign pass $passcode vers $version\r\n"
@@ -271,6 +271,7 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
 			} else {
 			  Log.e(TAG, "run() - No data received, server might have closed the connection")
 			  running = false  // Stop the thread if no data is received
+			  reconnect()  // Reconnect if the connection is lost
 			}
 		  } catch {
 			case e: IOException =>

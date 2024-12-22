@@ -9,4 +9,30 @@
 		android:summary="@string/p_igating_summary"
 		android:defaultValue="false" />
 
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.igserver"
+		android:inputType="textUri"
+		android:title="@string/p_igserver"
+		android:summary="@string/p_igserver_summary"
+		android:hint="@string/p_igserver_hint"
+		android:defaultValue="rotate.aprs2.net"
+		android:dialogTitle="@string/p_igserver_entry" />
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.igfilter"
+		android:singleLine="true"
+		android:title="@string/p_igfilter"
+		android:summary="@string/p_igfilter_summary"
+		android:hint="@string/p_igfilter_hint"
+		android:dialogTitle="@string/p_igfilter_entry" />
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.igsotimeout"
+		android:defaultValue="30"
+		android:hint="30"
+		android:inputType="number"
+		android:title="@string/p_igsotimeout"
+		android:summary="@string/p_igsotimeout_summary"
+		android:dialogTitle="@string/p_igsotimeout_entry" />
+
 </PreferenceScreen>
