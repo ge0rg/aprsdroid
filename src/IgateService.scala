@@ -326,12 +326,19 @@ class IgateService(service : AprsService, prefs: PrefsWrapper) {
   }
 
 	def checkAprsisService(data: String): Unit = {
-	  // Check if the digipeating setting is enabled
+	  // Check if IGating is enabled
 	  if (!prefs.isIgateEnabled()) {
-		Log.d("APRSdroid.Service", "IGating is disabled")
+		Log.d("IgateService", "IGating is disabled")
 		return
 	  }
-	  handlePostSubmitData(data)
+
+	  // Check if one of the backend names is active ("KISS" or "AFSK")
+	  if (prefs.getBackendName().contains("KISS") || prefs.getBackendName().contains("AFSK")) {
+		handlePostSubmitData(data)
+	  } else {
+		Log.d("IgateService", "Not KISS or AFSK for IGating")
+		return
+	  }
 	}
 
 	def modifyData(data: String): String = {
