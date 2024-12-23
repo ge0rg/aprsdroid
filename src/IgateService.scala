@@ -5,373 +5,269 @@ import _root_.java.io.{BufferedReader, InputStreamReader, OutputStream, PrintWri
 import _root_.java.net.{Socket, SocketException}
 import _root_.android.util.Log
 
-class IgateService(service : AprsService, prefs: PrefsWrapper) {
+// Define a callback interface for connection events
+trait ConnectionListener {
+  def onConnectionLost(): Unit
+}
+
+class IgateService(service: AprsService, prefs: PrefsWrapper) extends ConnectionListener {
 
   val TAG = "IgateService"
   val hostport = prefs.getString("p.igserver", "rotate.aprs2.net")
+  val (host, port) = parseHostPort(hostport)  
   val so_timeout = prefs.getStringInt("p.igsotimeout", 30)
   var conn: TcpSocketThread = _
+  var reconnecting = false  // Track if we're reconnecting
+
+  // Parse host and port from the hostport string
+  def parseHostPort(hostport: String): (String, Int) = {
+  val parts = hostport.split(":")
+    if (parts.length == 2) {
+   	  (parts(0), parts(1).toInt)
+	} else {
+  	  (hostport, 14580)  // default port
+    }
+  }
 
   // Start the connection
   def start(): Unit = {
-    Log.d(TAG, "start() - Starting connection to $hostport")
-    if (conn == null)
+    Log.d(TAG, s"start() - Starting connection to $host:$port")
+    if (conn == null) {
+      Log.d(TAG, "start() - No existing connection, creating new connection.")
       createConnection()
+    } else {
+      Log.d(TAG, "start() - Connection already exists.")
+    }
   }
 
-  // Create the TCP connection
+  // Create the TCP connection and pass 'this' as listener
   def createConnection(): Unit = {
-    Log.d(TAG, s"createConnection() - Connecting to $hostport")
-    conn = new TcpSocketThread(hostport)
+    Log.d(TAG, s"createConnection() - Connecting to $host:$port")
+    conn = new TcpSocketThread(host, port, so_timeout, service, prefs, this)  // Pass host and port
+    Log.d(TAG, "createConnection() - TcpSocketThread created, starting thread.")
     conn.start()
   }
 
   // Stop the connection
   def stop(): Unit = {
+    Log.d(TAG, "stop() - Stopping connection")
     if (conn != null) {
-      Log.d(TAG, "stop() - Stopping connection")
       conn.synchronized {
         conn.running = false
       }
-      conn.interrupt()
+      Log.d(TAG, "stop() - Waiting for connection thread to join.")
       conn.join(50)
+      conn.shutdown()  // Make sure the socket is cleanly closed
+      Log.d(TAG, "stop() - Connection shutdown.")
+    } else {
+      Log.d(TAG, "stop() - No connection to stop.")
     }
   }
 
-  // Thread responsible for managing the TCP connection
-  class TcpSocketThread(hostport: String) extends Thread("IgateService TCP connection") {
-    var running = true
-    var socket: Socket = _
-    var outputStream: OutputStream = _
-    var printWriter: PrintWriter = _
-    var bufferedReader: BufferedReader = _
-
-	// Initialize the socket
-	def init_socket(): Unit = {
-	  val (host, port) = parseHostPort(hostport)
-	  Log.d(TAG, s"init_socket() - Connecting to $host on port $port")
-	  service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", s"Connecting to $host:$port")
-
-	  var attempts = 0
-	  while (running) {
-		try {
-		  socket = new Socket(host, port)
-		  socket.setKeepAlive(true)
-		  socket.setSoTimeout(so_timeout * 1000)
-		  outputStream = socket.getOutputStream
-		  printWriter = new PrintWriter(outputStream, true)
-		  bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream))
-
-		  // Send login information to the server
-		  sendLogin()
-
-		  Log.d(TAG, "init_socket() - Connection established to APRS-IS")
-		  service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", "Connection Established to APRS-IS")
-		  
-		  // Start the keep-alive thread once the connection is established
-		  startKeepAliveThread()
-
-		  return  // If connection is successful, exit the loop
-		} catch {
-		  case e: java.net.UnknownHostException =>
-			attempts += 1
-			Log.e(TAG, s"init_socket() - Unable to resolve host: ${e.getMessage} (Attempt $attempts)")
-		  case e: Exception =>
-			Log.e(TAG, s"init_socket() - Error establishing connection: ${e.getMessage}")
-		}
-
-		// Retry connection after a delay
-		if (running) {
-		  try {
-			Log.d(TAG, "init_socket() - Retrying connection...")
-			Thread.sleep(5000)  // Wait for 5 seconds before retrying
-		  } catch {
-			case ie: InterruptedException => Log.e(TAG, "init_socket() - Interrupted while sleeping", ie)
-		  }
-		}
-	  }
-	}
-
-	// Parse host and port from the hostport string
-	def parseHostPort(hostport: String): (String, Int) = {
-	  val parts = hostport.split(":")
-	  if (parts.length == 2) {
-		(parts(0), parts(1).toInt)
-	  } else {
-		(hostport, 14580)  // default port
-	  }
-	}
-
-    // Send login information to the APRS-IS server
-    def sendLogin(): Unit = {
-      val callsign = prefs.getCallSsid()
-      val passcode = prefs.getPasscode()  // Retrieve passcode from preferences
-      val version = "APRSdroid iGate"     // Version information (as in Python example)
-	  val filter = prefs.getString("p.igfilter", "")
-
-      // Format the login message as per the Python example
-      val loginMessage = s"user $callsign pass $passcode vers $version\r\n"
-      val filterMessage = s"#filter $filter\r\n"  // Retrieve filter from preferences
-
-      Log.d(TAG, s"sendLogin() - Sending login: $loginMessage")
-      Log.d(TAG, s"sendLogin() - Sending filter: $filterMessage")
-
-      // Send the login message to the server
-      printWriter.println(loginMessage)
-      printWriter.flush()
-      Log.d(TAG, "sendLogin() - Login sent.")
-
-      // Send the filter command
-      printWriter.println(filterMessage)
-      printWriter.flush()
-      Log.d(TAG, "sendLogin() - Filter sent.")
-
-      // Read server's response
-      val response = bufferedReader.readLine()
-      if (response != null) {
-        Log.d(TAG, s"sendLogin() - Server response: $response")
-
-        // Handle server response to determine success or failure
-        if (response.contains("USER") || response.contains("OK")) {
-          Log.d(TAG, "sendLogin() - Login successful!")
-        } else if (response.contains("FAIL") || response.contains("ERROR")) {
-          Log.d(TAG, s"sendLogin() - Login failed: $response")
-          running = false
-        } else {
-          Log.d(TAG, s"sendLogin() - Unexpected server response: $response")
-        }
-      } else {
-        Log.d(TAG, "sendLogin() - No response received from server")
-        running = false
-      }
+  // Handle and submit data to the server via TcpSocketThread
+  def handlePostSubmitData(data: String): Unit = {
+    Log.d(TAG, s"handlePostSubmitData() - Received data: $data")
+    if (conn != null) {
+      Log.d(TAG, "handlePostSubmitData() - Delegating data to TcpSocketThread.")
+      conn.handlePostSubmitData(data)
+    } else {
+      Log.d(TAG, "handlePostSubmitData() - No active connection to send data.")
     }
+  }
 
-    // Send data (APRS packet) to the APRS-IS server
-    def sendData(data: String): Unit = {
-      if (socket != null && socket.isConnected && printWriter != null) {
-        Log.d(TAG, s"sendData() - Sending data to APRS-IS server: $data")
-        try {
-          printWriter.println(data)  // Send the data
-          printWriter.flush()
-        } catch {
-          case e: SocketException =>
-            Log.e(TAG, s"sendData() - Socket error: ${e.getMessage}")
-            reconnect()  // Attempt reconnection if socket error occurs
-          case e: IOException =>
-            Log.e(TAG, s"sendData() - I/O error: ${e.getMessage}")
-            reconnect()  // Attempt reconnection if I/O error occurs
-          case e: Exception =>
-            Log.e(TAG, s"sendData() - Unexpected error: ${e.getMessage}")
-            reconnect()  // Attempt reconnection for any other errors
-        }
-      } else {
-        Log.d(TAG, "sendData() - Connection not available or not connected.")
-        // Attempt reconnection if socket is not connected
-        reconnect()
-      }
-    }
-
-	// Start the keep-alive thread
-	def startKeepAliveThread(): Unit = {
-	  val keepAliveThread = new Thread(new Runnable {
-		override def run(): Unit = {
-		  while (running) {
-			try {
-			  Thread.sleep(30000)  // Sleep for 30 seconds between keep-alive packets
-			  sendKeepAlive()
-			} catch {
-			  case ie: InterruptedException => Log.e(TAG, "keepAliveThread() - Interrupted while sleeping", ie)
-			}
-		  }
-		}
-	  })
-	  keepAliveThread.start()
+  // External reconnect logic
+  def reconnect(): Unit = {
+    Log.d(TAG, "reconnect() - Initiating reconnect.")
+    
+	// Check if the service is already running (get the value of the "service_running" preference)
+	val service_running = prefs.getBoolean("service_running", false) // Default to false if not set
+	  
+	// If the service is already running, don't proceed
+	if (!service_running) {
+	  Log.d(TAG, "start() - Service is already running, skipping connection.")
+	  reconnecting = false
+	  return
 	}
-
-    // Send keep-alive packet to the APRS-IS server
-    def sendKeepAlive(): Unit = {
-      if (socket != null && socket.isConnected && printWriter != null) {
-        Log.d(TAG, "sendKeepAlive() - Sending keep-alive packet: #\r\n")
-        try {
-          printWriter.println("#\r\n")
-          printWriter.flush()
-        } catch {
-          case e: SocketException =>
-            Log.e(TAG, s"sendKeepAlive() - Socket error: ${e.getMessage}")
-            reconnect()  // Attempt reconnection if socket error occurs
-          case e: IOException =>
-            Log.e(TAG, s"sendKeepAlive() - I/O error: ${e.getMessage}")
-            reconnect()  // Attempt reconnection if I/O error occurs
-          case e: Exception =>
-            Log.e(TAG, s"sendKeepAlive() - Unexpected error: ${e.getMessage}")
-            reconnect()  // Attempt reconnection for any other errors
-        }
-      } else {
-        Log.d(TAG, "sendKeepAlive() - Connection not available or not connected.")
-        // Attempt reconnection if socket is not connected
-        reconnect()
-      }
+	
+    if (reconnecting) {
+      Log.d(TAG, "reconnect() - Already in reconnecting process, skipping.")
+      return
     }
+    
+    reconnecting = true
+    
+    // Step 1: Stop the current connection
+    stop()
+    
+    // Step 2: Wait for a while before reconnecting
+    Thread.sleep(5000) // Wait for 5 seconds before reconnect attempt (can be adjusted)
+    
+    // Step 3: Create a new connection
+    Log.d(TAG, "reconnect() - Attempting to create a new connection.")
+    createConnection()
+    
+    reconnecting = false
+  }
 
-    // Attempt to detect disconnection by reading from the socket
-    def checkSocketConnection(): Boolean = {
+  // Callback implementation when the connection is lost
+  override def onConnectionLost(): Unit = {
+    Log.d(TAG, "onConnectionLost() - Connection lost, attempting to reconnect.")
+    reconnect() // Automatically reconnect
+  }
+}
+
+class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsService, prefs: PrefsWrapper, listener: ConnectionListener) extends Thread {
+  @volatile var running = true
+  private var socket: Socket = _
+  private var reader: BufferedReader = _
+  private var writer: PrintWriter = _
+
+  override def run(): Unit = {
+    Log.d("IgateService", s"run() - Starting TCP connection to $host with timeout $timeout")
+	service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", s"Connecting to $host:$port")
+
+    while (running) {
       try {
-        // Attempt to read a small byte or line (this is a lightweight check)
-        val response = bufferedReader.readLine()
-        if (response == null) {
-          Log.e(TAG, "checkSocketConnection() - No response, socket might be disconnected.")
-          return false
+        // Establish the connection
+        socket = new Socket(host, port)
+        socket.setSoTimeout(timeout * 1000)
+        Log.d("IgateService", s"run() - Connected to $host")
+
+        reader = new BufferedReader(new InputStreamReader(socket.getInputStream))
+        writer = new PrintWriter(socket.getOutputStream, true)
+        sendLogin()
+		service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", "Connected to APRS-IS")
+
+
+        while (running) {
+          val message = reader.readLine()
+          if (message != null) {
+            Log.d("IgateService", s"run() - Received message: $message")
+            handleMessage(message)
+          } else {
+            Log.d("IgateService", "run() - Server disconnected. Attempting to reconnect.")
+            running = false
+            listener.onConnectionLost() // Notify listener (IgateService) of failure
+          }
         }
-        // If we get a response, the connection is still alive
-        return true
+
       } catch {
         case e: SocketException =>
-          Log.e(TAG, s"checkSocketConnection() - Socket exception: ${e.getMessage}")
-          return false
+          Log.e("IgateService", s"run() - SocketException: ${e.getMessage}")
+          running = false
+          listener.onConnectionLost() // Notify listener (IgateService) of failure
         case e: IOException =>
-          Log.e(TAG, s"checkSocketConnection() - I/O exception: ${e.getMessage}")
-          return false
-        case e: Exception =>
-          Log.e(TAG, s"checkSocketConnection() - Unexpected exception: ${e.getMessage}")
-          return false
-      }
-    }
-
-	// Attempt to detect disconnection and reconnect
-	def reconnect(): Unit = {
-	  Log.d(TAG, "reconnect() - Attempting to reconnect...")
-
-	  // Properly shutdown the current connection
-	  shutdown()
-
-	  // Wait for a short period before trying to reconnect
-	  try {
-		Thread.sleep(5000)  // Wait for 5 seconds before reconnecting
-	  } catch {
-		case e: InterruptedException => 
-		  Log.e(TAG, "reconnect() - Interrupted while sleeping. Exiting reconnect attempt.")
-		  return  // Exit if interrupted during sleep
-	  }
-
-	  // Reinitialize the socket and restart the connection
-	  init_socket()  // Reinitialize the socket
-	  Log.d(TAG, "reconnect() - Reconnection attempt finished")
-	}
-
-	override def run(): Unit = {
-	  try {
-		Log.d(TAG, "run() - Starting connection thread")
-		init_socket()
-
-		while (running) {
-		  // Check if the thread has been interrupted
-		  if (Thread.interrupted()) {
-			Log.d(TAG, "run() - Thread interrupted, shutting down gracefully.")
-			running = false
-		  }
-
-		  if (!checkSocketConnection()) {
-			Log.d(TAG, "run() - Connection lost. Attempting to reconnect...")
-			reconnect()  // Reconnect if the connection is lost
-		  }
-
-		  try {
-			// Attempt to read data, this might throw an exception if the socket is closed
-			val receivedData = bufferedReader.readLine()
-			if (receivedData != null) {
-			  Log.d(TAG, s"run() - Received data from server: $receivedData")
-			  
-			  if (!receivedData.startsWith("#")) {
-				// If it does not start with "# aprsc", call addPost
-				service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS Received", receivedData)
-			  }
-				
-			} else {
-			  Log.e(TAG, "run() - No data received, server might have closed the connection")
-			  running = false  // Stop the thread if no data is received
-			  reconnect()  // Reconnect if the connection is lost
-			}
-		  } catch {
-			case e: IOException =>
-			  Log.e(TAG, s"run() - Error reading from server: ${e.getMessage}", e)
-			  running = false  // Stop the thread if there's a read error
-			case e: SocketException =>
-			  Log.e(TAG, s"run() - SocketException: ${e.getMessage}", e)
-			  shutdown()  // Clean up the connection
-			  reconnect()  // Reattempt connection			  
-			case e: InterruptedException =>
-			  Log.d(TAG, "run() - Thread was interrupted during reading/sleep.")
-			  running = false  // Stop the thread if it's interrupted
-			case e: Exception =>
-			  running = false
-			  Log.e(TAG, s"run() - Unexpected error: ${e.getMessage}", e)
-		  }
-		}
-	  } catch {
-		case e: Exception =>
-		  Log.e(TAG, s"run() - Error: ${e.getMessage}", e)
-		  running = false
-	  } finally {
-		shutdown()
-	  }
-	}
-
-    // Shutdown the connection
-    def shutdown(): Unit = {
-      Log.d(TAG, "shutdown() - Shutting down connection")
-      if (socket != null && !socket.isClosed) {
-        try {
-          socket.close()
-          Log.d(TAG, "shutdown() - Socket closed successfully")
-        } catch {
-          case e: Exception => Log.e(TAG, s"shutdown() - Error closing socket: ${e.getMessage}")
-        }
+          Log.e("IgateService", s"run() - IOException: ${e.getMessage}")
+          running = false
+          listener.onConnectionLost() // Notify listener (IgateService) of failure
+      } finally {
+        shutdown() // Ensure resources are cleaned up
       }
     }
   }
 
-	def modifyData(data: String): String = {
-	  // Check if data contains "RFONLY" or "TCPIP"
-	  if (data.contains("RFONLY") || data.contains("TCPIP")) {
-		Log.d(TAG, s"modifyData() - RFONLY or TCPIP found: $data")		  
-		return null // Return the data as is if it contains "RFONLY" or "TCPIP"
-	  }
-			
-	  // Find the index of the first colon
-	  val colonIndex = data.indexOf(":")
+  // Send login information to the APRS-IS server
+  def sendLogin(): Unit = {
+    Log.d("IgateService", "sendLogin() - Sending login information to server.")
+    val callsign = prefs.getCallSsid()
+    val passcode = prefs.getPasscode()  // Retrieve passcode from preferences
+    val version = service.APP_VERSION   // Version information (as in Python example)
+    val filter = prefs.getString("p.igfilter", "")
 
-	  if (colonIndex != -1) {
-		// Insert ",qAR" before the first colon
-		data.substring(0, colonIndex) + ",qAR," + prefs.getCallSsid + data.substring(colonIndex)
-	  } else {
-		// If there's no colon, return the data as is (or handle this case as needed)
-		data
-	  }
-	}
+    // Format the login message as per the Python example
+    val loginMessage = s"user $callsign pass $passcode vers $version\r\n"
+    val filterMessage = s"#filter $filter\r\n"  // Retrieve filter from preferences
 
-	// Modify the data string before passing it to handlePostSubmitData
-	def handlePostSubmitData(data: String): Unit = {
-	  Log.d(TAG, s"handlePostSubmitData() - Received data: $data")
+    Log.d("IgateService", s"sendLogin() - Sending login: $loginMessage")
+    Log.d("IgateService", s"sendLogin() - Sending filter: $filterMessage")
 
-	  // Modify the data before sending it to the server
-	  val modifiedData = modifyData(data)
+    // Send the login message to the server
+    writer.println(loginMessage)
+    writer.flush()
+    Log.d("IgateService", "sendLogin() - Login sent.")
 
-	  // If the modified data is null, skip further processing
-	  if (modifiedData == null) {
-		Log.d(TAG, "handlePostSubmitData() - Skipping data processing due to RFONLY/TCPIP in packet")
-		return  // Stop further processing if the packet contains RFONLY or TCPIP
-	  }
+    // Send the filter command
+    writer.println(filterMessage)
+    writer.flush()
+    Log.d("IgateService", "sendLogin() - Filter sent.")
+  }
 
-	  // Log the modified data to confirm the change
-	  Log.d(TAG, s"handlePostSubmitData() - Modified data: $modifiedData")
+  // Modify data string before sending it
+  def modifyData(data: String): String = {
+    Log.d("IgateService", s"modifyData() - Received data: $data")
+    // Check if data contains "RFONLY" or "TCPIP"
+    if (data.contains("RFONLY") || data.contains("TCPIP")) {
+      Log.d("IgateService", s"modifyData() - RFONLY or TCPIP found: $data")
+      return null // Return null if the packet contains "RFONLY" or "TCPIP"
+    }
+    
+    // Find the index of the first colon
+    val colonIndex = data.indexOf(":")
+    Log.d("IgateService", s"modifyData() - Colon index: $colonIndex")
 
-	  // Send the modified data to the APRS-IS server (or other logic as necessary)
-	  if (conn != null) {
-		conn.sendData(modifiedData)  // Send it to the server
-		service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS Sent", modifiedData)
-		
-	  } else {
-		Log.d(TAG, "handlePostSubmitData() - No active connection to send data.")
-	  }
-	}
+    if (colonIndex != -1) {
+      // Insert ",qAR" before the first colon
+      val modifiedData = data.substring(0, colonIndex) + ",qAR," + prefs.getCallSsid + data.substring(colonIndex)
+      Log.d("IgateService", s"modifyData() - Modified data: $modifiedData")
+      return modifiedData
+    } else {
+      // If there's no colon, return the data as is (or handle this case as needed)
+      Log.d("IgateService", "modifyData() - No colon found, returning data as is.")
+      return data
+    }
+  }
+
+  // Handle modified data before submitting it to the server
+  def handlePostSubmitData(data: String): Unit = {
+    Log.d("IgateService", s"handlePostSubmitData() - Received data: $data")
+
+    // Modify the data before sending it to the server
+    val modifiedData = modifyData(data)
+
+    // If the modified data is null, skip further processing
+    if (modifiedData == null) {
+      Log.d("IgateService", "handlePostSubmitData() - Skipping data processing due to RFONLY/TCPIP in packet")
+      return  // Stop further processing if the packet contains RFONLY or TCPIP
+    }
+
+    // Log the modified data to confirm the change
+    Log.d("IgateService", s"handlePostSubmitData() - Modified data: $modifiedData")
+
+    // Send the modified data to the APRS-IS server (or other logic as necessary)
+    if (socket != null && socket.isConnected) {
+      sendData(modifiedData)  // Send it to the server
+      Log.d("IgateService", "handlePostSubmitData() - Data sent to server.")
+      service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS Sent", modifiedData)
+    } else {
+      Log.e("IgateService", "handlePostSubmitData() - No active connection to send data.")
+    }
+  }
+
+  // Send data to the server
+  def sendData(data: String): Unit = {
+    Log.d("IgateService", s"sendData() - Sending data: $data")
+    if (writer != null) {
+      writer.println(data)
+      writer.flush()
+    } else {
+      Log.e("IgateService", "sendData() - Writer is null, cannot send data.")
+    }
+  }
+
+  // Handle incoming messages from the server
+  def handleMessage(message: String): Unit = {
+    Log.d("IgateService", s"handleMessage() - Handling incoming message: $message")
+    // Add message handling logic
+  }
+
+  // Clean up resources
+  def shutdown(): Unit = {
+    if (socket != null) {
+      try {
+        socket.close()
+      } catch {
+        case e: IOException => Log.e("IgateService", s"shutdown() - Error closing socket: ${e.getMessage}")
+      }
+    }
+  }
 }
