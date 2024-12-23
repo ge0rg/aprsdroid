@@ -16,6 +16,7 @@ class IgateService(service: AprsService, prefs: PrefsWrapper) extends Connection
   val hostport = prefs.getString("p.igserver", "rotate.aprs2.net")
   val (host, port) = parseHostPort(hostport)  
   val so_timeout = prefs.getStringInt("p.igsotimeout", 30)
+  val connectretryinterval = prefs.getStringInt("p.igconnectretry", 30)
   var conn: TcpSocketThread = _
   var reconnecting = false  // Track if we're reconnecting
 
@@ -100,7 +101,7 @@ class IgateService(service: AprsService, prefs: PrefsWrapper) extends Connection
     stop()
     
     // Step 2: Wait for a while before reconnecting
-    Thread.sleep(5000) // Wait for 5 seconds before reconnect attempt (can be adjusted)
+    Thread.sleep(connectretryinterval * 1000) // Wait for 5 seconds before reconnect attempt (can be adjusted)
     
     // Step 3: Create a new connection
     Log.d(TAG, "reconnect() - Attempting to create a new connection.")
@@ -112,6 +113,7 @@ class IgateService(service: AprsService, prefs: PrefsWrapper) extends Connection
   // Callback implementation when the connection is lost
   override def onConnectionLost(): Unit = {
     Log.d(TAG, "onConnectionLost() - Connection lost, attempting to reconnect.")
+	service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", s"Connection lost... Reconnecting in $connectretryinterval seconds")
     reconnect() // Automatically reconnect
   }
 }

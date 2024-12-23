@@ -35,4 +35,13 @@
 		android:summary="@string/p_igsotimeout_summary"
 		android:dialogTitle="@string/p_igsotimeout_entry" />
 
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.igconnectretry"
+		android:defaultValue="30"
+		android:hint="30"
+		android:inputType="number"
+		android:title="@string/p_igconnectretry"
+		android:summary="@string/p_igconnectretry_summary"
+		android:dialogTitle="@string/p_igconnectretry_entry" />
 </PreferenceScreen>
