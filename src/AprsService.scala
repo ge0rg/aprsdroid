@@ -341,6 +341,9 @@ class AprsService extends Service {
 				val full_status = if (status_postfix == "Digipeated") {
 					addPost(StorageDatabase.Post.TYPE_DIGI, status_postfix, packet.toString)
 					status_postfix
+				} else if (status_postfix == "APRS-IS > RF") {
+				    addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS > RF", packet.toString)
+				    status_postfix					
 				} else {
 					val fullStatus = status + status_postfix
 					addPost(StorageDatabase.Post.TYPE_POST, fullStatus, packet.toString)
@@ -436,6 +439,25 @@ class AprsService extends Service {
 				Log.e("APRSdroid.Service", s"Failed to send packet: $packetString", e)
 		}
 	}
+
+	def sendThirdPartyPacket(packetString: String): Unit = {
+		// Parse the incoming string to an APRSPacket object
+		try {
+			val igatedPacket = Parser.parse(packetString)
+
+			// Define additional information to be passed as status postfix
+			val igstatus = "APRS-IS > RF"
+
+			// Send the packet with the additional status postfix
+			sendPacket(igatedPacket, igstatus)
+
+			Log.d("APRSdroid.Service", s"Successfully sent packet: $packetString")
+		} catch {
+			case e: Exception =>
+				Log.e("APRSdroid.Service", s"Failed to send packet: $packetString", e)
+		}
+	}
+
 
 	def parsePacket(ts : Long, message : String, source : Int) {
 		try {

@@ -121,6 +121,12 @@
 <string name="p_igating_summary">Enable IGate</string>
 <string name="p_igating_preferences">IGate Settings</string>
 
+<string name="p_aprsistraffic_entry">Supress APRS-IS Traffic Log</string>
+<string name="p_aprsistraffic_summary">Suppresse all APRS-IS serverside traffic in the log</string>
+
+<string name="p_aprsistorf_entry">Enable Bidirectional IGate</string>
+<string name="p_aprsistorf_summary">Allows messages to pass to RF</string>
+
 <string name="p_offlinemap">OSM Maps</string>
 <string name="p_offlinemap_entry">Enable offline mapping</string>
 <string name="p_offlinemap_summary">Uses locally hosted tile server</string>
@@ -437,6 +443,10 @@
 <string name="p_igconnectretry">Connection Retry Interval</string>
 <string name="p_igconnectretry_summary">Enter a filter for incoming packets</string>
 <string name="p_igconnectretry_entry">Retry interval in seconds</string>
+
+<string name="p_timelastheard">Recently heard station timeout</string>
+<string name="p_timelastheard_summary">Timeout to pass messages to recently heard stations to RF</string>
+<string name="p_timelastheard_entry">Timeout in minutes</string>
 
 <string name="p_filterhelp">Message filter help</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>

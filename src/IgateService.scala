@@ -4,6 +4,9 @@ import _root_.android.content.Context
 import _root_.java.io.{BufferedReader, InputStreamReader, OutputStream, PrintWriter, IOException}
 import _root_.java.net.{Socket, SocketException}
 import _root_.android.util.Log
+import _root_.net.ab0oo.aprs.parser._
+import scala.collection.mutable
+import java.util.Date
 
 // Define a callback interface for connection events
 trait ConnectionListener {
@@ -15,7 +18,7 @@ class IgateService(service: AprsService, prefs: PrefsWrapper) extends Connection
   val TAG = "IgateService"
   val hostport = prefs.getString("p.igserver", "rotate.aprs2.net")
   val (host, port) = parseHostPort(hostport)  
-  val so_timeout = prefs.getStringInt("p.igsotimeout", 30)
+  val so_timeout = prefs.getStringInt("p.igsotimeout", 120)
   val connectretryinterval = prefs.getStringInt("p.igconnectretry", 30)
   var conn: TcpSocketThread = _
   var reconnecting = false  // Track if we're reconnecting
@@ -85,7 +88,7 @@ class IgateService(service: AprsService, prefs: PrefsWrapper) extends Connection
 	  
 	// If the service is already running, don't proceed
 	if (!service_running) {
-	  Log.d(TAG, "start() - Service is already running, skipping connection.")
+	  Log.d(TAG, "start() - Service is not running, skipping connection.")
 	  reconnecting = false
 	  return
 	}
@@ -124,6 +127,9 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
   private var reader: BufferedReader = _
   private var writer: PrintWriter = _
 
+  // Assuming we have a Map to store the source calls and their last heard timestamps
+  val lastHeardCalls: mutable.Map[String, Long] = mutable.Map()
+
   override def run(): Unit = {
     Log.d("IgateService", s"run() - Starting TCP connection to $host with timeout $timeout")
 	service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", s"Connecting to $host:$port")
@@ -145,8 +151,11 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
           val message = reader.readLine()
           if (message != null) {
             Log.d("IgateService", s"run() - Received message: $message")
-            handleMessage(message)
-          } else {
+            
+		    handleMessage(message)
+			handleAprsTrafficPost(message)
+						 
+		  } else {
             Log.d("IgateService", "run() - Server disconnected. Attempting to reconnect.")
             running = false
             listener.onConnectionLost() // Notify listener (IgateService) of failure
@@ -221,7 +230,7 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
 
   // Handle modified data before submitting it to the server
   def handlePostSubmitData(data: String): Unit = {
-    Log.d("IgateService", s"handlePostSubmitData() - Received data: $data")
+    //Log.d("IgateService", s"handlePostSubmitData() - Received data: $data")
 
     // Modify the data before sending it to the server
     val modifiedData = modifyData(data)
@@ -231,6 +240,13 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
       Log.d("IgateService", "handlePostSubmitData() - Skipping data processing due to RFONLY/TCPIP in packet")
       return  // Stop further processing if the packet contains RFONLY or TCPIP
     }
+
+    // Extract the callsign from the modified data (before the '>' symbol)
+    val callSign = modifiedData.split(">")(0).trim  // Split the string and take the part before '>'
+
+    // Update lastHeardCalls map with the current timestamp for that callsign
+    lastHeardCalls(callSign) = System.currentTimeMillis()  // Use current time in milliseconds
+    Log.d("IgateService", s"handlePostSubmitData() - Extracted callsign: $callSign, updating last heard time to ${System.currentTimeMillis()} for that callsign.")
 
     // Log the modified data to confirm the change
     Log.d("IgateService", s"handlePostSubmitData() - Modified data: $modifiedData")
@@ -256,12 +272,6 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
     }
   }
 
-  // Handle incoming messages from the server
-  def handleMessage(message: String): Unit = {
-    Log.d("IgateService", s"handleMessage() - Handling incoming message: $message")
-    // Add message handling logic
-  }
-
   // Clean up resources
   def shutdown(): Unit = {
     if (socket != null) {
@@ -272,4 +282,95 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
       }
     }
   }
+  
+	def handleAprsTrafficPost(message: String): Unit = {
+	  val aprsIstrafficEnabled = prefs.getBoolean("p.aprsistraffic", false)
+		
+	  if (!aprsIstrafficEnabled) {
+		// If the checkbox is enabled, perform the action
+		service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS Received", message)
+		Log.d("IgateService", s"APRS-IS traffic enabled, post added: $message")
+	  } else {
+		// If the checkbox is not enabled, skip the action
+		Log.d("IgateService", "APRS-IS traffic disabled, skipping the post.")
+		return
+	  }
+	}
+	  
+  
+	def handleMessage(message: String): Unit = {
+	  // Early return if message starts with '#'
+	  if (message.startsWith("#")) {
+		Log.d("IgateService", "Message starts with '#', skipping processing.")
+		return
+	  }		
+	  Log.d("IgateService", s"handleMessage() - Handling incoming message: $message")
+      val bidirectionalGate = prefs.getBoolean("p.aprsistorf", false)
+	  val timelastheard = prefs.getStringInt("p.timelastheard", 30)  
+
+	  if (!bidirectionalGate) {
+	    Log.d("IgateService", "Bidirectional IGate disabled.")		
+	    return
+	  }	
+
+	  // Attempt to parse the message
+	  val packetOpt = try {
+		val fap = Parser.parse(message) // Attempt initial parsing
+
+		// Check if it's a MessagePacket (i.e., a message type)
+		fap.getAprsInformation() match {
+		  case msg: MessagePacket =>
+			// Only proceed with further processing if it's a MessagePacket
+			try {
+			  val callssid = prefs.getCallSsid() // Get the local call sign from preferences
+			  val sourceCall = fap.getSourceCall()  // Use fap (parsed packet)
+			  val destinationCall = fap.getDestinationCall()  // Use fap
+			  val lastUsedDigi = fap.getDigiString()  // Use fap
+			  val payload = fap.getAprsInformation()
+			  val payloadString = if (payload != null) payload.toString else ""
+			  val digipath = prefs.getString("digi_path", "WIDE1-1")
+			  val formattedDigipath = if (digipath.nonEmpty) s",$digipath" else ""
+			  // Extract the targeted callsign by stripping leading and trailing colons and removing spaces
+			  val targetedCallsign = payloadString
+			    .stripPrefix(":")               // Remove any leading colon
+			    .takeWhile(_ != ':')            // Take everything up to the first colon
+			    .replaceAll("\\s", "")          // Remove any spaces
+
+			  Log.d("IgateService", s"Targeted Callsign: $targetedCallsign")
+							
+			  Log.d("IgateService", s"handleMessage() - Parsed Packet Info:")
+			  Log.d("IgateService", s"Source Call: $sourceCall")
+			  Log.d("IgateService", s"Destination Call: $destinationCall")
+			  Log.d("IgateService", s"Last Used Digi: $lastUsedDigi")
+			  Log.d("IgateService", s"Payload: $payloadString")
+
+			  // Check if we have seen this source call in the last 30 minutes
+			  val currentTime = System.currentTimeMillis()
+			  val lastHeardTime = lastHeardCalls.getOrElse(targetedCallsign, 0L)
+			  val timeElapsed = currentTime - lastHeardTime
+			  Log.d("IgateService", s"handleMessage() - $targetedCallsign, " + s"last heard at $lastHeardTime, time elapsed: $timeElapsed ms.")
+
+			  if (timeElapsed <= timelastheard * 60 * 1000) { // If it was heard within 30 minutes
+				// Process and send the packet
+				val igatedPacket = s"$callssid>APDR17$formattedDigipath:}$sourceCall>$destinationCall,TCPIP,$callssid*:$payload"
+				Log.d("IgateService", igatedPacket)
+				service.sendThirdPartyPacket(igatedPacket) // Send the packet
+			  } else {
+				Log.d("IgateService", s"handleMessage() - Source call $sourceCall has not been heard in the last 30 minutes, skipping processing.")
+			  }
+
+			} catch {
+			  case e: Exception =>
+				Log.e("IgateService", s"handleMessage() - Error processing parsed packet: $message", e)
+			}
+		  case _ =>
+			// If it's not a MessagePacket, don't process further
+			Log.d("IgateService", s"handleMessage() - Not a MessagePacket, skipping processing.")
+		}
+	  } catch {
+		case e: Exception =>
+		  Log.e("IgateService", s"handleMessage() - Failed to parse packet: $message", e)
+	  }
+	}
+
 }
