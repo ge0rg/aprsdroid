@@ -115,6 +115,8 @@
 <string name="p_digipeating_entry">Digipeater</string>
 <string name="p_digipeating_summary">Enable Digipeater</string>
 <string name="p_digipeating_preferences">Digi &amp; Regen Functions</string>
+<string name="p_directonly_entry">Direct Only</string>
+<string name="p_directonly_summary">Only digipeats stations directly heard</string>
 
 <string name="p_igating">IGating Preferences</string>
 <string name="p_igating_entry">IGate</string>
@@ -137,7 +139,7 @@
 
 <string name="p_digipeaterpath">Digipeater Path</string>
 <string name="p_digipeaterpath_entry">Set Digi Path</string>
-<string name="p_digipeaterpath_summary">Path to digipeat</string>
+<string name="p_digipeaterpath_summary">Paths to digipeat</string>
 
 <string name="p_igpath">Digi Path</string>
 <string name="p_igpath_entry">Set RF Digi Path</string>
