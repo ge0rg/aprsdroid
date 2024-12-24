@@ -183,7 +183,7 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
     Log.d("IgateService", "sendLogin() - Sending login information to server.")
     val callsign = prefs.getCallSsid()
     val passcode = prefs.getPasscode()  // Retrieve passcode from preferences
-    val version = service.APP_VERSION   // Version information (as in Python example)
+    val version = s"APRSdroid ${service.APP_VERSION.filter(_.isDigit).takeRight(2).mkString.split("").mkString(".")}"
     val filter = prefs.getString("p.igfilter", "")
 
     // Format the login message as per the Python example
