@@ -122,7 +122,7 @@
 <string name="p_igating_preferences">IGate Settings</string>
 
 <string name="p_aprsistraffic_entry">Suppress APRS-IS Traffic Log</string>
-<string name="p_aprsistraffic_summary">Suppresse all APRS-IS serverside traffic in the log</string>
+<string name="p_aprsistraffic_summary">Suppresses all APRS-IS serverside traffic in the log</string>
 
 <string name="p_aprsistorf_entry">Enable Bidirectional IGate</string>
 <string name="p_aprsistorf_summary">Allows messages to pass to RF</string>

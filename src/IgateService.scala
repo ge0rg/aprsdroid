@@ -100,6 +100,8 @@ class IgateService(service: AprsService, prefs: PrefsWrapper) extends Connection
     
     reconnecting = true
     
+	service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", s"Connection lost... Reconnecting in $connectretryinterval seconds")
+
     // Step 1: Stop the current connection
     stop()
     
@@ -116,7 +118,6 @@ class IgateService(service: AprsService, prefs: PrefsWrapper) extends Connection
   // Callback implementation when the connection is lost
   override def onConnectionLost(): Unit = {
     Log.d(TAG, "onConnectionLost() - Connection lost, attempting to reconnect.")
-	service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", s"Connection lost... Reconnecting in $connectretryinterval seconds")
     reconnect() // Automatically reconnect
   }
 }
@@ -330,6 +331,8 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
 			  val payloadString = if (payload != null) payload.toString else ""
 			  val digipath = prefs.getString("igpath", "WIDE1-1")	
 			  val formattedDigipath = if (digipath.nonEmpty) s",$digipath" else ""
+			  val version = service.APP_VERSION   // Version information (as in Python example)
+
 			  // Extract the targeted callsign by stripping leading and trailing colons and removing spaces
 			  val targetedCallsign = payloadString
 			    .stripPrefix(":")               // Remove any leading colon
@@ -352,7 +355,7 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
 
 			  if (timeElapsed <= timelastheard * 60 * 1000) { // If it was heard within 30 minutes
 				// Process and send the packet
-				val igatedPacket = s"$callssid>APDR17$formattedDigipath:}$sourceCall>$destinationCall,TCPIP,$callssid*:$payload"
+				val igatedPacket = s"$callssid>$version$formattedDigipath:}$sourceCall>$destinationCall,TCPIP,$callssid*:$payload"
 				Log.d("IgateService", igatedPacket)
 				service.sendThirdPartyPacket(igatedPacket) // Send the packet
 			  } else {
