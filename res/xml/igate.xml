@@ -9,6 +9,15 @@
 		android:summary="@string/p_igating_summary"
 		android:defaultValue="false" />
 
+	<CheckBoxPreference
+		android:key="p.aprsistraffic"
+		android:title="@string/p_aprsistraffic_entry"
+		android:summary="@string/p_aprsistraffic_summary"
+		android:defaultValue="false" />	
+
+    <PreferenceCategory
+	    android:title="@string/p__igateserver">
+            	
 	<de.duenndns.EditTextPreferenceWithValue
 		android:key="p.igserver"
 		android:inputType="textUri"
@@ -35,7 +44,6 @@
 		android:summary="@string/p_igsotimeout_summary"
 		android:dialogTitle="@string/p_igsotimeout_entry" />
 
-
 	<de.duenndns.EditTextPreferenceWithValue
 		android:key="p.igconnectretry"
 		android:defaultValue="30"
@@ -44,7 +52,17 @@
 		android:title="@string/p_igconnectretry"
 		android:summary="@string/p_igconnectretry_summary"
 		android:dialogTitle="@string/p_igconnectretry_entry" />
-		
+	</PreferenceCategory>
+
+    <PreferenceCategory
+	    android:title="@string/p__igaterf">
+            		
+	<CheckBoxPreference
+		android:key="p.aprsistorf"
+		android:title="@string/p_aprsistorf_entry"
+		android:summary="@string/p_aprsistorf_summary"
+		android:defaultValue="false" />						
+					
 	<de.duenndns.EditTextPreferenceWithValue
 		android:key="p.timelastheard"
 		android:defaultValue="30"
@@ -54,15 +72,15 @@
 		android:summary="@string/p_timelastheard_summary"
 		android:dialogTitle="@string/p_timelastheard_entry" />	
 
-	<CheckBoxPreference
-		android:key="p.aprsistraffic"
-		android:title="@string/p_aprsistraffic_entry"
-		android:summary="@string/p_aprsistraffic_summary"
-		android:defaultValue="false" />		
-		
-	<CheckBoxPreference
-		android:key="p.aprsistorf"
-		android:title="@string/p_aprsistorf_entry"
-		android:summary="@string/p_aprsistorf_summary"
-		android:defaultValue="false" />				
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="igpath"
+		android:hint="WIDE1-1,WIDE2-1"
+		android:defaultValue="WIDE1-1,WIDE2-1"
+		android:inputType="textCapCharacters"
+		android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ,-"
+		android:title="@string/p_igpath"
+		android:summary="@string/p_igpath_summary"
+		android:dialogTitle="@string/p_igpath_entry" />
+	</PreferenceCategory>
+	
 </PreferenceScreen>

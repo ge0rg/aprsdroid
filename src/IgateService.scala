@@ -328,7 +328,7 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
 			  val lastUsedDigi = fap.getDigiString()  // Use fap
 			  val payload = fap.getAprsInformation()
 			  val payloadString = if (payload != null) payload.toString else ""
-			  val digipath = prefs.getString("digi_path", "WIDE1-1")
+			  val digipath = prefs.getString("igpath", "WIDE1-1")	
 			  val formattedDigipath = if (digipath.nonEmpty) s",$digipath" else ""
 			  // Extract the targeted callsign by stripping leading and trailing colons and removing spaces
 			  val targetedCallsign = payloadString

@@ -121,7 +121,7 @@
 <string name="p_igating_summary">Enable IGate</string>
 <string name="p_igating_preferences">IGate Settings</string>
 
-<string name="p_aprsistraffic_entry">Supress APRS-IS Traffic Log</string>
+<string name="p_aprsistraffic_entry">Suppress APRS-IS Traffic Log</string>
 <string name="p_aprsistraffic_summary">Suppresse all APRS-IS serverside traffic in the log</string>
 
 <string name="p_aprsistorf_entry">Enable Bidirectional IGate</string>
@@ -138,6 +138,10 @@
 <string name="p_digipeaterpath">Digipeater Path</string>
 <string name="p_digipeaterpath_entry">Set Digi Path</string>
 <string name="p_digipeaterpath_summary">Path to digipeat</string>
+
+<string name="p_igpath">Digi Path</string>
+<string name="p_igpath_entry">Set RF Digi Path</string>
+<string name="p_igpath_summary">APRS-IS to RF Digi Path</string>
 
 <!-- map view -->
 <string name="map_overlays">Overlays</string>
@@ -227,6 +231,8 @@
 <string name="p__digipeating">Digipeating Preferences</string>
 <string name="p__igating">IGating Preferences</string>
 <string name="p__messaging">Messaging Preferences</string>
+<string name="p__igaterf">Bidirectional Settings</string>
+<string name="p__igateserver">Server Settings</string>
 
 <string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
