@@ -364,6 +364,11 @@ class AprsService extends Service {
 	def sendPacket(packet : APRSPacket) { sendPacket(packet, "") }
 
 	def formatLocMice(symbol : String, status : String, location : Location) = {
+		val privambiguity = 5 - prefs.getStringInt("priv_ambiguity", 0)
+		val ambiguity = if (privambiguity == 5) 0 else privambiguity
+
+		Log.d("MICE", s"Set Ambiguity $ambiguity")
+		
 		val miceStatus = prefs.getString("p__location_mice_status", "Off Duty")
 		val (a, b, c) = AprsPacket.statusToBits(miceStatus)
 
@@ -372,7 +377,7 @@ class AprsService extends Service {
 
 		// Encoding process
 		val (infoString, west, longOffset) = AprsPacket.encodeInfo(location.getLongitude, status_spd, course, symbol)
-		val destString = AprsPacket.encodeDest(location.getLatitude, longOffset, west, a, b, c)
+		val destString = AprsPacket.encodeDest(location.getLatitude, longOffset, west, a, b, c, ambiguity)
 		
 		val altitudeValue = if (prefs.getBoolean("priv_altitude", true)) {
 		  AprsPacket.formatAltitudeMice(location)

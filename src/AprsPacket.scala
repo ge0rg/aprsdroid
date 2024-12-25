@@ -38,8 +38,7 @@ object AprsPacket {
 		(degrees, minutesInt, minutesHundreths)
 	  }
 
-	  def encodeDest(dd: Double, longOffset: Int, west: Int, messageA: Int, messageB: Int, messageC: Int): String = {
-
+	  def encodeDest(dd: Double, longOffset: Int, west: Int, messageA: Int, messageB: Int, messageC: Int, ambiguity: Int): String = {
 		val north = if (dd < 0) 0 else 1
 		val (degrees, minutes, minutesHundreths) = miceLong(dd)
 
@@ -62,7 +61,11 @@ object AprsPacket {
 		if (longOffset == 1) sb.append(characters(minutesHundreths10 + 22)) else sb.append(characters(minutesHundreths10))
 		if (west == 1) sb.append(characters(minutesHundreths1 + 22)) else sb.append(characters(minutesHundreths1))
 
-		sb.toString()
+		val encoded = sb.toString()
+
+		// Replace the last characters with 'Z', ensuring ambiguity is set
+		val validAmbiguity = ambiguity.max(0).min(4)
+		encoded.take(6 - validAmbiguity) + "Z" * validAmbiguity
 	  }
 
 	  def encodeInfo(dd: Double, speed: Double, heading: Double, symbol: String): (String, Int, Int) = {
