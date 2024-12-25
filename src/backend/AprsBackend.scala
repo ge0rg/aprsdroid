@@ -5,7 +5,6 @@ import android.Manifest
 import android.os.Build
 import _root_.android.util.Log
 import _root_.net.ab0oo.aprs.parser.APRSPacket
-
 import _root_.java.io.{InputStream, OutputStream}
 
 object AprsBackend {
@@ -87,6 +86,12 @@ object AprsBackend {
 			Set(BLUETOOTH_PERMISSION),
 			CAN_DUPLEX,
 			PASSCODE_NONE),
+		"ble" -> new BackendInfo(
+			(s, p) => new BluetoothLETnc(s, p),
+			R.xml.backend_ble,
+			Set(BLUETOOTH_PERMISSION),
+			CAN_DUPLEX,
+			PASSCODE_NONE),			
 		"tcpip" -> new BackendInfo(
 			(s, p) => new TcpUploader(s, p),
 			R.xml.backend_tcptnc,
