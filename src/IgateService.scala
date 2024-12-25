@@ -217,9 +217,12 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
     val colonIndex = data.indexOf(":")
     Log.d("IgateService", s"modifyData() - Colon index: $colonIndex")
 
+	// Set qconstruct based on whether bidirectional gate is enabled in preferences
+	val qconstruct = if (prefs.getBoolean("p.aprsistorf", false)) "qAR" else "qAS"
+
     if (colonIndex != -1) {
-      // Insert ",qAR" before the first colon
-      val modifiedData = data.substring(0, colonIndex) + ",qAR," + prefs.getCallSsid + data.substring(colonIndex)
+      // Insert ",qAR, or ,qAS," before the first colon
+      val modifiedData = data.substring(0, colonIndex) + ",$qconstruct," + prefs.getCallSsid + data.substring(colonIndex)
       Log.d("IgateService", s"modifyData() - Modified data: $modifiedData")
       return modifiedData
     } else {
