@@ -67,7 +67,7 @@ class BackendPrefs extends PreferenceActivity
 	}
 
 	override def onSharedPreferenceChanged(sp: SharedPreferences, key : String) {
-		if (key == "proto" || key == "link" || key == "aprsis") {
+		if (key == "proto" || key == "link" || key == "aprsis" || key == "afsk") {
 			setPreferenceScreen(null)
 			loadXml()
 		}

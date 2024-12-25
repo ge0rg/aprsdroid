@@ -26,14 +26,24 @@
 	</string-array>
 	<string-array name="p_link_e">
 		<item>@string/p_link_bt</item>
+		<item>@string/p_link_ble</item>
 		<item>@string/p_link_usb</item>
 		<item>@string/p_link_tcpip</item>
 	</string-array>
 	<string-array name="p_link_ev">
 		<item>bluetooth</item>
+		<item>ble</item>
 		<item>usb</item>
 		<item>tcpip</item>
 	</string-array>
+	<string-array name="p_afsk_e">
+		<item>@string/p_afsk_vox</item>
+		<item>@string/p_afsk_digirig</item>
+	</string-array>
+	<string-array name="p_afsk_ev">
+		<item>vox</item>
+		<item>digirig</item>
+	</string-array>	
 	<string-array name="p_afsk_out_ev">
 		<item>0</item>
 		<item>2</item>

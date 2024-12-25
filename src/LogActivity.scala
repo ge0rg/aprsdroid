@@ -66,7 +66,7 @@ class LogActivity extends MainListActivity("log", R.id.log) {
 		//super.onListItemClick(l, v, position, id)
 		val c = getListView().getItemAtPosition(position).asInstanceOf[Cursor]
 		val t = c.getInt(COLUMN_TYPE)
-		if (t != TYPE_POST && t != TYPE_INCMG)
+		if (t != TYPE_POST && t != TYPE_INCMG && t != TYPE_DIGI && t != TYPE_IG)
 			return
 		val call = c.getString(COLUMN_MESSAGE).split(">")(0)
 		Log.d(TAG, "onListItemClick: %s".format(call))

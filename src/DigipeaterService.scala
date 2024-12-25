@@ -151,11 +151,17 @@ class DigipeaterService(prefs: PrefsWrapper, TAG: String, sendDigipeatedPacket: 
 		val (modifiedPath, modified) = pathComponents.foldLeft((List.empty[String], false)) {
 			case ((acc, hasModified), component) =>
 			
+				// First check prefs, then check if component contains '*'
+				if (prefs.getBoolean("p.directonly", false) && component.contains("*")) {
+				  // Skip digipeating if 'p.directlyonly' is true and '*' is found in the component
+				  return (lastUsedDigi, false) // Return the original path, do not modify
+				}
+							
 				// Check if callssid* is in the path and skip if found
 				if (component == s"$callssid*") {
 					// Skip digipeating if callssid* is found
 					return (lastUsedDigi, false) // Return the original path, do not modify
-									
+													
 				} else if (!hasModified && (digipeaterPaths.exists(path => component.split("-")(0) == path) || digipeaterPaths.contains(component) || component == callssid)) {
 					// We need to check if the first unused component matches digipeaterpath
 					if (acc.isEmpty || acc.last.endsWith("*")) {

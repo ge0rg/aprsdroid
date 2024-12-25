@@ -9,6 +9,12 @@
 		android:summary="@string/p_digipeating_summary"
 		android:defaultValue="false" />
 
+	<CheckBoxPreference
+		android:key="p.directonly"
+		android:title="@string/p_directonly_entry"
+		android:summary="@string/p_directonly_summary"
+		android:defaultValue="false" />
+
 	<de.duenndns.EditTextPreferenceWithValue
 		android:key="digipeater_path"
 		android:hint="WIDE1,WIDE2,TEMP1,MTN1"
@@ -18,7 +24,6 @@
 		android:title="@string/p_digipeaterpath"
 		android:summary="@string/p_digipeaterpath_summary"
 		android:dialogTitle="@string/p_digipeaterpath_entry" />
-
 
 	<de.duenndns.EditTextPreferenceWithValue
 		android:key="p.dedupe"

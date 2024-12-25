@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+	    android:title="@string/p_link_ble">
+
+        <de.duenndns.BluetoothDevicePreference
+            android:key="ble.mac"
+            android:title="@string/p_bt_tnc_device"
+            android:summary="@string/p_bt_tnc_device_summary"
+            android:dialogTitle="@string/p_bt_tnc_device_entry" />
+
+        <Preference
+            android:title="@string/p_bt_prefs"
+            android:summary="@string/p_bt_prefs_summary" >
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.settings"
+                android:targetClass="com.android.settings.bluetooth.BluetoothSettings" />
+        </Preference>
+
+    </PreferenceCategory>
+</PreferenceScreen>

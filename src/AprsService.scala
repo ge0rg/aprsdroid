@@ -82,6 +82,7 @@ class AprsService extends Service {
 	lazy val locSource = LocationSource.instanciateLocation(this, prefs)
 	lazy val msgNotifier = msgService.createMessageNotifier()
 	lazy val digipeaterService = new DigipeaterService(prefs, TAG, sendDigipeatedPacket)
+	lazy val igateService = new IgateService(this, prefs)
 
 	var poster : AprsBackend = null
 
@@ -177,6 +178,9 @@ class AprsService extends Service {
 		poster = AprsBackend.instanciateUploader(this, prefs)
 		if (poster.start())
 			onPosterStarted()
+			if (prefs.isIgateEnabled() && (prefs.getBackendName().contains("KISS") || prefs.getBackendName().contains("AFSK"))) {
+				igateService.start()
+			}
 	}
 
 	def onPosterStarted() {
@@ -214,6 +218,9 @@ class AprsService extends Service {
 		// catch FC when service is killed from outside
 		if (poster != null) {
 			poster.stop()
+			if (prefs.isIgateEnabled() && (prefs.getBackendName().contains("KISS") || prefs.getBackendName().contains("AFSK"))) {			
+				igateService.stop()
+			}
 			showToast(getString(R.string.service_stop))
 
 			sendBroadcast(new Intent(SERVICE_STOPPED))
@@ -334,6 +341,9 @@ class AprsService extends Service {
 				val full_status = if (status_postfix == "Digipeated") {
 					addPost(StorageDatabase.Post.TYPE_DIGI, status_postfix, packet.toString)
 					status_postfix
+				} else if (status_postfix == "APRS-IS > RF") {
+				    addPost(StorageDatabase.Post.TYPE_IG, "APRS-IS > RF", packet.toString)
+				    status_postfix					
 				} else {
 					val fullStatus = status + status_postfix
 					addPost(StorageDatabase.Post.TYPE_POST, fullStatus, packet.toString)
@@ -429,6 +439,25 @@ class AprsService extends Service {
 				Log.e("APRSdroid.Service", s"Failed to send packet: $packetString", e)
 		}
 	}
+
+	def sendThirdPartyPacket(packetString: String): Unit = {
+		// Parse the incoming string to an APRSPacket object
+		try {
+			val igatedPacket = Parser.parse(packetString)
+
+			// Define additional information to be passed as status postfix
+			val igstatus = "APRS-IS > RF"
+
+			// Send the packet with the additional status postfix
+			sendPacket(igatedPacket, igstatus)
+
+			Log.d("APRSdroid.Service", s"Successfully sent packet: $packetString")
+		} catch {
+			case e: Exception =>
+				Log.e("APRSdroid.Service", s"Failed to send packet: $packetString", e)
+		}
+	}
+
 
 	def parsePacket(ts : Long, message : String, source : Int) {
 		try {
@@ -526,7 +555,12 @@ class AprsService extends Service {
 		postAddPost(StorageDatabase.Post.TYPE_INCMG, R.string.post_incmg, post)
 		
 		// Process the incoming post
-		digipeaterService.processIncomingPost(post)		
+		digipeaterService.processIncomingPost(post)
+
+		if (prefs.isIgateEnabled() && (prefs.getBackendName().contains("KISS") || prefs.getBackendName().contains("AFSK"))) {			
+			igateService.handlePostSubmitData(post)
+		}
+
 	}
 
 	def postAbort(post : String) {

@@ -115,6 +115,19 @@
 <string name="p_digipeating_entry">Digipeater</string>
 <string name="p_digipeating_summary">Enable Digipeater</string>
 <string name="p_digipeating_preferences">Digi &amp; Regen Functions</string>
+<string name="p_directonly_entry">Direct Only</string>
+<string name="p_directonly_summary">Only digipeats stations directly heard</string>
+
+<string name="p_igating">IGating Preferences</string>
+<string name="p_igating_entry">IGate</string>
+<string name="p_igating_summary">Enable IGate</string>
+<string name="p_igating_preferences">IGate Settings</string>
+
+<string name="p_aprsistraffic_entry">Suppress APRS-IS Traffic Log</string>
+<string name="p_aprsistraffic_summary">Suppresses all APRS-IS serverside traffic in the log</string>
+
+<string name="p_aprsistorf_entry">Enable Bidirectional IGate</string>
+<string name="p_aprsistorf_summary">Allows messages to pass to RF</string>
 
 <string name="p_offlinemap">OSM Maps</string>
 <string name="p_offlinemap_entry">Enable offline mapping</string>
@@ -126,7 +139,11 @@
 
 <string name="p_digipeaterpath">Digipeater Path</string>
 <string name="p_digipeaterpath_entry">Set Digi Path</string>
-<string name="p_digipeaterpath_summary">Path to digipeat</string>
+<string name="p_digipeaterpath_summary">Paths to digipeat</string>
+
+<string name="p_igpath">Digi Path</string>
+<string name="p_igpath_entry">Set RF Digi Path</string>
+<string name="p_igpath_summary">APRS-IS to RF Digi Path</string>
 
 <!-- map view -->
 <string name="map_overlays">Overlays</string>
@@ -214,7 +231,10 @@
 <string name="p_status_entry">Enter your beacon comment</string>
 <string name="p__connection">APRS Connection</string>
 <string name="p__digipeating">Digipeating Preferences</string>
+<string name="p__igating">IGating Preferences</string>
 <string name="p__messaging">Messaging Preferences</string>
+<string name="p__igaterf">Bidirectional Settings</string>
+<string name="p__igateserver">Server Settings</string>
 
 <string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
@@ -243,6 +263,9 @@
 <string name="p_link_ble">Bluetooth Low Energy</string>
 <string name="p_link_tcpip">TCP/IP</string>
 <string name="p_link_usb">USB Serial</string>
+<!-- array of AFSK modes -->
+<string name="p_afsk_vox">VOX</string>
+<string name="p_afsk_digirig">Digirig</string>
 <!-- array of location sources -->
 <string name="p_source_manual">Manual Position</string>
 <string name="p_source_periodic">Periodic GPS/Network Position</string>
@@ -276,9 +299,12 @@
 
 <!-- connection type properties -->
 <string name="p_host">Server</string>
+<string name="p_igserver">Server</string>
 <string name="p_host_summary">APRS-IS server (port 8080) to send beacons</string>
 <string name="p_host_entry">Enter the APRS-IS server hostname</string>
+<string name="p_igserver_entry">Enter the APRS-IS server hostname</string>
 <string name="p_host_hint">host:port</string>
+<string name="p_igserver_hint">host:port</string>
 <string name="p__position">Position Reports</string>
 <string name="p_locsource">Location Source</string>
 <string name="p_locsource_summary">Manual, Periodic or SmartBeaconing™</string>
@@ -397,6 +423,8 @@
 <string name="p_afsk_btsco">Bluetooth Headset</string>
 <string name="p_afsk_btsco_summary">Use Bluetooth (SCO) headset for AFSK</string>
 <string name="p_afsk_output">Audio Output</string>
+<string name="p_afsk_ptt">Use Push-to-Talk</string>
+<string name="p_afsk_pttport">Push-to-Talk Port</string>
 <string-array name="p_afsk_out_e">
 	<item>Voice Call</item>
 	<item>Ringtone</item>
@@ -406,13 +434,27 @@
 
 <!-- TCP server settings -->
 <string name="p_tcp_server_summary">APRS-IS TCP server (port 14580) to contact</string>
+<string name="p_igserver_summary">APRS-IS TCP server (port 14580) to contact</string>
 <string name="p_filterdist">Neighbor radius</string>
 <string name="p_filterdist_summary">Receive packets from stations in this radius</string>
 <string name="p_filterdist_entry">Radius around you to monitor for packets [km]</string>
 <string name="p_filter">Packet filter</string>
+<string name="p_igfilter">Packet filter</string>
 <string name="p_filter_hint">b/BUDDY o/OBJECT ...</string>
 <string name="p_filter_summary">Filter for incoming packets</string>
 <string name="p_filter_entry">Enter a filter for incoming packets</string>
+
+<string name="p_igfilter_hint">b/BUDDY o/OBJECT ...</string>
+<string name="p_igfilter_summary">Filter for incoming packets</string>
+<string name="p_igfilter_entry">Enter a filter for incoming packets</string>
+
+<string name="p_igconnectretry">Connection Retry Interval</string>
+<string name="p_igconnectretry_summary">Enter a filter for incoming packets</string>
+<string name="p_igconnectretry_entry">Retry interval in seconds</string>
+
+<string name="p_timelastheard">Recently heard station timeout</string>
+<string name="p_timelastheard_summary">Timeout to pass messages to recently heard stations to RF</string>
+<string name="p_timelastheard_entry">Timeout in minutes</string>
 
 <string name="p_filterhelp">Message filter help</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>
@@ -420,6 +462,10 @@
 <string name="p_sotimeout">TCP socket timeout</string>
 <string name="p_sotimeout_summary">Time before resetting the connection</string>
 <string name="p_sotimeout_entry">Timeout value in seconds (0 = disable)</string>
+
+<string name="p_igsotimeout">TCP socket timeout</string>
+<string name="p_igsotimeout_summary">Time before resetting the connection</string>
+<string name="p_igsotimeout_entry">Timeout value in seconds (0 = disable)</string>
 
 <string name="p_reconnect">TCP reconnect timeout</string>
 <string name="p_reconnect_summary">Time before reconnecting</string>

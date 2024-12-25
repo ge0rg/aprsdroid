@@ -94,7 +94,12 @@
 		android:parentActivityName=".PrefsAct"
 		android:launchMode="singleTop"
 		android:configChanges="orientation|keyboardHidden|screenSize" />
-		
+	<activity android:name=".IgatePrefs"
+		android:label="@string/p__igating"
+		android:parentActivityName=".PrefsAct"
+		android:launchMode="singleTop"
+		android:configChanges="orientation|keyboardHidden|screenSize" />
+				
 	<activity android:name=".CompressedPrefs"
 		android:label="@string/p__location_compressed_settings"
 		android:parentActivityName=".PrefsAct"

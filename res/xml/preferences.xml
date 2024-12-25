@@ -91,6 +91,22 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+	android:title="@string/p__igating">
+
+        <PreferenceScreen
+		android:key="p_igating"
+		android:title="@string/p_igating"
+		android:summary="@string/p_igating_preferences">
+
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="org.aprsdroid.app"
+                    android:targetClass="org.aprsdroid.app.IgatePrefs" />
+
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
 	android:title="@string/p__messaging">
 
         <PreferenceScreen
