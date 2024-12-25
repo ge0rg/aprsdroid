@@ -515,7 +515,7 @@ trait UIHelper extends Activity
 					val packet = c.getString(COLUMN_MESSAGE)
 					fo.print(ts)
 					fo.print("\t")
-					fo.print(if (tpe == TYPE_INCMG) "RX" else if (tpe == TYPE_DIGI) "DP" else "TX" )
+					fo.print(if (tpe == TYPE_INCMG) "RX" else if (tpe == TYPE_DIGI) "DP" else if (tpe == TYPE_IG) "IG" else "TX" )
 					fo.print("\t")
 					fo.println(packet)
 				}

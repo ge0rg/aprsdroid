@@ -256,7 +256,7 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
     if (socket != null && socket.isConnected) {
       sendData(modifiedData)  // Send it to the server
       Log.d("IgateService", "handlePostSubmitData() - Data sent to server.")
-      service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS Sent", modifiedData)
+      service.addPost(StorageDatabase.Post.TYPE_IG, "APRS-IS Sent", modifiedData)
     } else {
       Log.e("IgateService", "handlePostSubmitData() - No active connection to send data.")
     }
@@ -289,7 +289,7 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
 		
 	  if (!aprsIstrafficEnabled) {
 		// If the checkbox is enabled, perform the action
-		service.addPost(StorageDatabase.Post.TYPE_DIGI, "APRS-IS Received", message)
+		service.addPost(StorageDatabase.Post.TYPE_IG, "APRS-IS Received", message)
 		Log.d("IgateService", s"APRS-IS traffic enabled, post added: $message")
 	  } else {
 		// If the checkbox is not enabled, skip the action
