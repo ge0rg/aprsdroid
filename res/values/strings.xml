@@ -449,7 +449,7 @@
 <string name="p_igfilter_entry">Enter a filter for incoming packets</string>
 
 <string name="p_igconnectretry">Connection Retry Interval</string>
-<string name="p_igconnectretry_summary">Enter a filter for incoming packets</string>
+<string name="p_igconnectretry_summary">Reconnect to server in seconds</string>
 <string name="p_igconnectretry_entry">Retry interval in seconds</string>
 
 <string name="p_timelastheard">Recently heard station timeout</string>
