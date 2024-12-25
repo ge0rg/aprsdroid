@@ -289,8 +289,13 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
 		
 	  if (!aprsIstrafficEnabled) {
 		// If the checkbox is enabled, perform the action
-		service.addPost(StorageDatabase.Post.TYPE_IG, "APRS-IS Received", message)
-		Log.d("IgateService", s"APRS-IS traffic enabled, post added: $message")
+		if (message.startsWith("#")) {
+			service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", message)
+			Log.d("IgateService", s"APRS-IS traffic enabled, post added: $message")
+		} else {
+			service.addPost(StorageDatabase.Post.TYPE_IG, "APRS-IS", message)
+			Log.d("IgateService", s"APRS-IS traffic enabled, post added: $message")	
+		}
 	  } else {
 		// If the checkbox is not enabled, skip the action
 		Log.d("IgateService", "APRS-IS traffic disabled, skipping the post.")
