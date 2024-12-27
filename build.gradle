@@ -6,7 +6,7 @@ buildscript {
 		google()
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.5.1'
+		classpath 'com.android.tools.build:gradle:8.1.1'
 		// NOTE: Do not place your application dependencies here; they belong
 		// in the individual module build.gradle files
 
@@ -68,11 +68,11 @@ def mapsApiKey() {
 
 
 android {
-	compileSdkVersion 33
-	buildToolsVersion "33.0.2"
+	compileSdkVersion 34
+	buildToolsVersion "34.0.0"
 	defaultConfig {
 		minSdkVersion 14
-		targetSdkVersion 33
+		targetSdkVersion 34
 		versionName "$build_revision"
 		versionCode versionCodeDate()
 		resValue "string", "build_revision", "$build_revision"
