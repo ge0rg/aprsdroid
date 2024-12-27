@@ -342,7 +342,7 @@ class AprsService extends Service {
 					addPost(StorageDatabase.Post.TYPE_DIGI, status_postfix, packet.toString)
 					status_postfix
 				} else if (status_postfix == "APRS-IS > RF") {
-				    addPost(StorageDatabase.Post.TYPE_IG, "APRS-IS > RF", packet.toString)
+				    addPost(StorageDatabase.Post.TYPE_TX, "APRS-IS > RF", packet.toString)
 				    status_postfix					
 				} else {
 					val fullStatus = status + status_postfix

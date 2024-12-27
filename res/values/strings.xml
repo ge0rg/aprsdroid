@@ -124,7 +124,7 @@
 <string name="p_igating_preferences">IGate Settings</string>
 
 <string name="p_aprsistraffic_entry">Suppress APRS-IS Traffic Log</string>
-<string name="p_aprsistraffic_summary">Suppresses all APRS-IS serverside traffic in the log</string>
+<string name="p_aprsistraffic_summary">Suppresses all APRS-IS traffic in the log</string>
 
 <string name="p_aprsistorf_entry">Enable Bidirectional IGate</string>
 <string name="p_aprsistorf_summary">Allows messages to pass to RF</string>
@@ -235,6 +235,7 @@
 <string name="p__messaging">Messaging Preferences</string>
 <string name="p__igaterf">Bidirectional Settings</string>
 <string name="p__igateserver">Server Settings</string>
+<string name="p__ratelimit">Transmit Rate Limiting</string>
 
 <string name="p_conntype">Connection Protocol</string>
 <string name="p_conntype_entry">Choose the connection protocol</string>
@@ -452,9 +453,18 @@
 <string name="p_igconnectretry_summary">Reconnect to server in seconds</string>
 <string name="p_igconnectretry_entry">Retry interval in seconds</string>
 
+<string name="p_ratelimit1">TX Rate Limit 1 Min</string>
+<string name="p_ratelimit1_summary">Limit Number of TX Packets in 1 Min Interval</string>
+<string name="p_ratelimit1_entry">Packet Limit at 1 Min Interval</string>
+
+<string name="p_ratelimit5">TX Rate Limit 5 Min</string>
+<string name="p_ratelimit5_summary">Limit Number of TX Packets in 5 Min Interval</string>
+<string name="p_ratelimit5_entry">Packet Limit at 5 Min Interval</string>
+
 <string name="p_timelastheard">Recently heard station timeout</string>
 <string name="p_timelastheard_summary">Timeout to pass messages to recently heard stations to RF</string>
 <string name="p_timelastheard_entry">Timeout in minutes</string>
+
 
 <string name="p_filterhelp">Message filter help</string>
 <string name="p_filterhelp_summary">Online reference for APRS-IS filters</string>

@@ -83,4 +83,27 @@
 		android:dialogTitle="@string/p_igpath_entry" />
 	</PreferenceCategory>
 	
+    <PreferenceCategory
+	    android:title="@string/p__ratelimit">
+            				
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.ratelimit1"
+		android:defaultValue="6"
+		android:hint="6"
+		android:inputType="number"
+		android:title="@string/p_ratelimit1"
+		android:summary="@string/p_ratelimit1_summary"
+		android:dialogTitle="@string/p_ratelimit1_entry" />	
+
+	<de.duenndns.EditTextPreferenceWithValue
+		android:key="p.ratelimit5"
+		android:defaultValue="10"
+		android:hint="10"
+		android:inputType="number"
+		android:title="@string/p_ratelimit5"
+		android:summary="@string/p_ratelimit5_summary"
+		android:dialogTitle="@string/p_ratelimit5_entry" />	
+		
+	</PreferenceCategory>
+	
 </PreferenceScreen>

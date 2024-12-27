@@ -127,6 +127,11 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
   private var socket: Socket = _
   private var reader: BufferedReader = _
   private var writer: PrintWriter = _
+  
+  // Track the time of the last sent packets
+  private val sentPackets1Min: mutable.Queue[Long] = mutable.Queue()
+  private val sentPackets5Min: mutable.Queue[Long] = mutable.Queue()
+  private val mspMap: mutable.HashMap[String, Int] = mutable.HashMap[String, Int]() 
 
   // Assuming we have a Map to store the source calls and their last heard timestamps
   val lastHeardCalls: mutable.Map[String, Long] = mutable.Map()
@@ -218,7 +223,7 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
     Log.d("IgateService", s"modifyData() - Colon index: $colonIndex")
 
 	// Set qconstruct based on whether bidirectional gate is enabled in preferences
-	val qconstruct = if (prefs.getBoolean("p.aprsistorf", false)) "qAR" else "qAS"
+	val qconstruct = if (prefs.getBoolean("p.aprsistorf", false)) "qAR" else "qAO"
 
     if (colonIndex != -1) {
       // Insert ",qAR, or ,qAS," before the first colon
@@ -296,7 +301,7 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
   		service.addPost(StorageDatabase.Post.TYPE_INFO, "APRS-IS", message)
   		Log.d("IgateService", s"APRS-IS traffic enabled, post added: $message")
   	} else {
-  		service.addPost(StorageDatabase.Post.TYPE_IG, "APRS-IS", message)
+  		service.addPost(StorageDatabase.Post.TYPE_IG, "APRS-IS Received", message)
   		Log.d("IgateService", s"APRS-IS traffic enabled, post added: $message")	
   	}
     } else {
@@ -306,86 +311,214 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
     }
   }	 
   
-  def processPacket(fap: APRSPacket): String = {
-    
-    val timelastheard = prefs.getStringInt("p.timelastheard", 30)	 
-  	
+  def processMessage(payloadString: String): String = {
+	//Check if payload is actually a message and not telemetry
+	if (payloadString.startsWith(":")) {
+	  if (payloadString.length < 11 || 
+	  	payloadString.length >= 16 && 
+	  	(payloadString.substring(10).startsWith(":PARM.") ||
+	  	 payloadString.substring(10).startsWith(":UNIT.") ||
+	  	 payloadString.substring(10).startsWith(":EQNS.") ||
+	  	 payloadString.substring(10).startsWith(":BITS."))) {
+		return null // Ignore this payload
+	  }
+	  if (payloadString.length >= 4 && 
+	  	(payloadString.substring(1, 4) == "BLN" ||
+	  	 payloadString.substring(1, 4) == "NWS" ||
+	  	 payloadString.substring(1, 4) == "SKY" ||
+	  	 payloadString.substring(1, 4) == "CWA" ||
+	  	 payloadString.substring(1, 4) == "BOM")) {
+	  return null // Ignore unwanted prefixes
+	  }
+	  payloadString.stripPrefix(":").takeWhile(_ != ':').replaceAll("\\s", "")
+	} else {
+	  null // No targeted callsign if it doesn't start with ":". Not a message.
+	}
+  }
+
+  def processPacketPosition(fap: APRSPacket): String = {
+    //Process APRS-IS Packet for RF destination
     try {
-  	val callssid = prefs.getCallSsid() // Get local call sign from preferences
-  	val sourceCall = fap.getSourceCall()  // Source callsign from fap
-  	val destinationCall = fap.getDestinationCall()	// Destination callsign
-  	val lastUsedDigi = fap.getDigiString()	// Last used digipeater
-  	val payload = fap.getAprsInformation()	// Payload of the message
-  	val payloadString = if (payload != null) payload.toString else ""
-  	val digipath = prefs.getString("igpath", "WIDE1-1")	 
-  	val formattedDigipath = if (digipath.nonEmpty) s",$digipath" else ""
-  	val version = service.APP_VERSION	// Version information
-  
-  	// Extract the targeted callsign from the payload string
-  	val targetedCallsign =
-  	  if (payloadString.startsWith(":")) {
-  		// First, check if the payload is too short or if it matches the unwanted patterns
-  		if (payloadString.length < 11) {
-  		  // If the payload is too short, return null
-  		  null
-  		} else if (payloadString.length >= 16) {
-  		  // Check for specific patterns and ignore the payload if it matches any of them
-  		  if (payloadString.substring(10).startsWith(":PARM.") ||
-  			  payloadString.substring(10).startsWith(":UNIT.") ||
-  			  payloadString.substring(10).startsWith(":EQNS.") ||
-  			  payloadString.substring(10).startsWith(":BITS.")) {				
-  			return null // Ignore these payloads
-  		  }
-  		}
-  
-  		// Check for specific prefixes like "BLN", "NWS", etc., and ignore them
-  		if (payloadString.length >= 4) {
-  		  if (payloadString.substring(1, 4) == "BLN" ||
-  			  payloadString.substring(1, 4) == "NWS" ||
-  			  payloadString.substring(1, 4) == "SKY" ||
-  			  payloadString.substring(1, 4) == "CWA" ||
-  			  payloadString.substring(1, 4) == "BOM") {
-  			return null // Ignore these payloads
-  		  }
-  		}
-  
-  		// If none of the above conditions matched, proceed to extract the targeted callsign
-  		payloadString
-  		  .stripPrefix(":")				  // Remove any leading colon
-  		  .takeWhile(_ != ':')			  // Get everything before the first colon
-  		  .replaceAll("\\s", "")		  // Remove any spaces
-  	  } else {
-  		// If the payload doesn't start with ":", the targeted callsign is "none"
-  		null
-  	  }
-  	
-  
-  	Log.d("IgateService", s"Targeted Callsign: $targetedCallsign")
-  
-  	// Check if we have seen this source call in the last 30 minutes
-  	val currentTime = System.currentTimeMillis()
-  	val lastHeardTime = lastHeardCalls.getOrElse(Option(targetedCallsign).getOrElse(sourceCall), 0L)
-  	val timeElapsed = currentTime - lastHeardTime
-  	Log.d("IgateService", s"handleMessage() - $targetedCallsign, last heard at $lastHeardTime, time elapsed: $timeElapsed ms.")
-  
-  	if (timeElapsed <= timelastheard * 60 * 1000) { // If it was heard within the last 30 minutes
-  	  lastHeardCalls(sourceCall) = System.currentTimeMillis()  // Use current time in milliseconds
-  
-  	  // Process and create the packet
-  	  val igatedPacket = s"$callssid>$version$formattedDigipath:}$sourceCall>$destinationCall,TCPIP,$callssid*:$payload"
-  	  Log.d("IgateService", s"Processed packet: $igatedPacket")
-  	  return igatedPacket
-  	} else {
-  	  Log.d("IgateService", s"Targeted call $targetedCallsign has not been heard in the last $timelastheard minutes, skipping processing.")
-  	  return null
-  	}
+	  val callssid = prefs.getCallSsid() // Get local call sign from preferences
+	  val sourceCall = fap.getSourceCall()  // Source callsign from fap
+	  val destinationCall = fap.getDestinationCall()	// Destination callsign
+	  val lastUsedDigi = fap.getDigiString()	// Last used digipeater
+	  val payload = fap.getAprsInformation()	// Payload of the message
+	  val payloadString = if (payload != null) payload.toString else ""
+	  val digipath = prefs.getString("igpath", "WIDE1-1")	 
+	  val formattedDigipath = if (digipath.nonEmpty) s",$digipath" else ""
+	  val version = service.APP_VERSION	// Version information
+
+	  // If targetedCallsign is null, check MSP for sourceCall
+	  if (mspMap.getOrElse(sourceCall, 0) == 1) { 
+	    Log.d("IgateService", s"MSP entry found and is 1 for $sourceCall, pass packet")
+	
+	    // If MSP for sourceCall is 1, process the packet and remove the entry
+	    mspMap.remove(sourceCall) 
+	  
+	    // Process and create the packet
+	    val igatedPacket = s"$callssid>$version$formattedDigipath:}$sourceCall>$destinationCall,TCPIP,$callssid*:$payload"
+	    Log.d("IgateService", s"Processed packet: $igatedPacket")
+
+	    // Call checkRateLimit and return null if rate limit exceeded
+	    if (checkRateLimit()) {
+	      // Log when the rate limit is exceeded and the packet is skipped
+	      Log.d("IgateService", "Rate limit exceeded, skipping this packet.")
+	      return null // Skip sending this packet if rate limit exceeded
+		}
+	    
+	    // Handle rate limiting to update the queues
+	    handleRateLimiting()
+    
+	    return igatedPacket
+	  
+	  } else {
+	    Log.d("IgateService", s"Station not MSP, skipping processing.")
+	    return null
+	  }
+		
     } catch {
   	case e: Exception =>
-  	  Log.e("IgateService", s"processPacket() - Error processing packet", e)
+  	  Log.e("IgateService", s"processPacketPostion() - Error processing packet", e)
   	  return null
-    }
+	}
   }		
+
+  def processPacketMessage(fap: APRSPacket): String = {
+    //Process APRS-IS Packet for RF destination
+    val timelastheard = prefs.getStringInt("p.timelastheard", 30)
+    try {
+	  val callssid = prefs.getCallSsid() // Get local call sign from preferences
+	  val sourceCall = fap.getSourceCall()  // Source callsign from fap
+	  val destinationCall = fap.getDestinationCall()	// Destination callsign
+	  val lastUsedDigi = fap.getDigiString()	// Last used digipeater
+	  val payload = fap.getAprsInformation()	// Payload of the message
+	  val payloadString = if (payload != null) payload.toString else ""
+	  val digipath = prefs.getString("igpath", "WIDE1-1")	 
+	  val formattedDigipath = if (digipath.nonEmpty) s",$digipath" else ""
+	  val version = service.APP_VERSION	// Version information
+	  
+	  val targetedCallsign = processMessage(payloadString)
+	  Log.d("IgateService", s"Targeted Callsign: $targetedCallsign")
+	  
+	  // If the targetedCallsign is null, return immediately and skip further processing
+      if (targetedCallsign == null) {
+        Log.d("IgateService", "Target station not found or not a message packet, skipping packet processing.")
+        return null
+      }
+
+	  // Check if we have seen this source call in the last 30 minutes
+	  val currentTime = System.currentTimeMillis()
+	  //val lastHeardTime = lastHeardCalls.getOrElse(Option(targetedCallsign).getOrElse(sourceCall), 0L) //Checks RF station first, then checks APRS-IS station
+	  val lastHeardTime = lastHeardCalls.getOrElse(targetedCallsign, 0L)
+	  val timeElapsed = currentTime - lastHeardTime
+	  
+	  Log.d("IgateService", s"processPacketMessage() - $targetedCallsign, last heard at $lastHeardTime, time elapsed: $timeElapsed ms.")
+	  
+	  if (timeElapsed <= timelastheard * 60 * 1000) { // If it was heard within the last 30 minutes
+		//Set MSP for originating sourceCall that is messaging the targetedCallsign
+		mspMap.getOrElseUpdate(sourceCall, 1)
+	    Log.d("IgateService", s"MSP set to 1 for $sourceCall")
+	    
+		// Process and create the packet
+	    val igatedPacket = s"$callssid>$version$formattedDigipath:}$sourceCall>$destinationCall,TCPIP,$callssid*:$payload"
+	    Log.d("IgateService", s"Processed packet: $igatedPacket")
+
+	    // Call checkRateLimit and return null if rate limit exceeded
+	    if (checkRateLimit()) {
+	      // Log when the rate limit is exceeded and the packet is skipped
+	      Log.d("IgateService", "Rate limit exceeded, skipping this packet.")
+	      return null // Skip sending this packet if rate limit exceeded
+		}
+	    
+	    // Handle rate limiting to update the queues
+	    handleRateLimiting()
+    
+	    return igatedPacket
+	  
+	  } else {
+	    Log.d("IgateService", s"Station not heard recently, skipping processing.")
+	    return null
+	  }
+		
+    } catch {
+  	case e: Exception =>
+  	  Log.e("IgateService", s"processPacketMessage() - Error processing packet", e)
+  	  return null
+	}
+  }		
+
+	// Function to handle adding time to the queues and enforcing rate limits
+  def handleRateLimiting(): Unit = {
+	val currentTime = System.currentTimeMillis()
+		
+	// Log before adding the current time to the queues
+	Log.d("IgateService", s"Adding current time to queues: $currentTime")
+
+	// Add the current time to both 1-minute and 5-minute queues
+	sentPackets1Min.enqueue(currentTime)
+	sentPackets5Min.enqueue(currentTime)
+
+	// Get the rate limit values from preferences for 1 minute and 5 minutes
+	val limit1Min = prefs.getStringInt("p.ratelimit1", 6)
+	val limit5Min = prefs.getStringInt("p.ratelimit5", 10)
+
+	// If the queues exceed the limit, remove the oldest timestamp
+	if (sentPackets1Min.size > limit1Min) {
+		sentPackets1Min.dequeue()
+	}
+	if (sentPackets5Min.size > limit5Min) {
+		sentPackets5Min.dequeue()
+	}
+
+	// Log the sizes of the queues after the new time is added
+	Log.d("IgateService", s"sentPackets1Min size after enqueue: ${sentPackets1Min.size}")
+	Log.d("IgateService", s"sentPackets5Min size after enqueue: ${sentPackets5Min.size}")
+  }
   
+  def checkRateLimit(): Boolean = {
+	val currentTime = System.currentTimeMillis() // Get the current time in milliseconds
+
+	// Log the current time for debugging purposes
+	Log.d("IgateService", s"Current time: $currentTime")
+
+    // Remove packets older than 1 minute (60,000 ms)
+    sentPackets1Min.dequeueAll(packetTime => currentTime - packetTime > 60000)
+    // Log the size of the queue after dequeuing old packets
+    Log.d("IgateService", s"sentPackets1Min size after cleanup: ${sentPackets1Min.size}")
+
+    // Remove packets older than 5 minutes (300,000 ms)
+    sentPackets5Min.dequeueAll(packetTime => currentTime - packetTime > 300000)	  
+    // Log the size of the queue after dequeuing old packets
+    Log.d("IgateService", s"sentPackets5Min size after cleanup: ${sentPackets5Min.size}")
+
+    // Get the rate limit value from preferences for 1 minute (default is 6 if not set)
+    val limit1Min = prefs.getStringInt("p.ratelimit1", 6)
+    // Get the rate limit value from preferences for 5 minutes (default is 10 if not set)
+    val limit5Min = prefs.getStringInt("p.ratelimit5", 10)
+
+    // Check if the packet limits for 1 minute and 5 minutes are exceeded
+    if (sentPackets1Min.size >= limit1Min) {
+	  Log.w("IgateService", "Packet limit exceeded for 1 minute interval. Dropping packet.")
+	  service.addPost(StorageDatabase.Post.TYPE_ERROR, "APRS-IS > RF", "Packet limit exceeded for 1 minute. Packet dropped.")
+	  // Log the state when rate limit is exceeded
+	  Log.d("IgateService", "Rate limit exceeded for 1 minute. Returning true.")
+	  return true // Return true to indicate rate limit exceeded
+    }
+
+    if (sentPackets5Min.size >= limit5Min) {
+	  Log.w("IgateService", "Packet limit exceeded for 5 minute interval. Dropping packet.")
+	  service.addPost(StorageDatabase.Post.TYPE_ERROR, "APRS-IS > RF", "Packet limit exceeded for 5 minutes. Packet dropped.")
+	  // Log the state when rate limit is exceeded
+	  Log.d("IgateService", "Rate limit exceeded for 5 minutes. Returning true.")
+	  return true // Return true to indicate rate limit exceeded
+    }
+
+    // Log when no rate limit is exceeded
+    Log.d("IgateService", "No rate limit exceeded. Returning false.")
+    return false // Return false to indicate no rate limit exceeded
+  }
+
   def handleMessage(message: String): Unit = {
     // Early return if message starts with '#'
     if (message.startsWith("#")) {
@@ -406,14 +539,14 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
     try {
   	// Attempt to parse the incoming message using the Parser
   	val fap = Parser.parse(message) 
-  	Log.d("IgateService", s"Packet type: ${fap.getAprsInformation.getClass.getSimpleName}, skipping processing.")
+  	Log.d("IgateService", s"Packet type: ${fap.getAprsInformation.getClass.getSimpleName}")
   
   	// Check the type of the parsed packet
   	fap.getAprsInformation() match {
   	  case msg: MessagePacket =>
   		// Process MessagePacket
   		try {
-  		  val igatedPacket = processPacket(fap) // Process and create the igated packet
+  		  val igatedPacket = processPacketMessage(fap) // Process and create the igated packet
   		  
   		  if (igatedPacket != null) {
   			Log.d("IgateService", s"Sending igated packet: $igatedPacket")
@@ -429,7 +562,7 @@ class TcpSocketThread(host: String, port: Int, timeout: Int, service: AprsServic
   	  case msg: PositionPacket =>
   		// Process PositionPacket
   		try {
-  		  val igatedPacket = processPacket(fap) // Process and create the igated packet
+  		  val igatedPacket = processPacketPosition(fap) // Process and create the igated packet
   		  
   		  if (igatedPacket != null) {
   			Log.d("IgateService", s"Sending igated packet: $igatedPacket")
