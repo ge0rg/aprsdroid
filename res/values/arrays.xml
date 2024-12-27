@@ -85,6 +85,9 @@
 		<item>12</item> <item>13</item> <item>14</item> <item>15</item>
 	</string-array>
 
+	<string-array name="p_units_ev">
+		<item>1</item> <item>2</item>
+	</string-array>
 	<string-array name="ages">
 		<item>@string/age_30</item>
 		<item>@string/age_2h</item>
