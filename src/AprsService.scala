@@ -10,6 +10,7 @@ import _root_.android.widget.Toast
 
 import _root_.net.ab0oo.aprs.parser._
 
+
 object AprsService {
 	val PACKAGE = "org.aprsdroid.app"
 	// action intents
@@ -230,18 +231,89 @@ class AprsService extends Service {
 			Digipeater.parseList(digipath, true), payload)
 	}
 
+	def newPacketMice(payload: String, destString: String) = {
+		val digipath = prefs.getString("digi_path", "WIDE1-1")
+		val parsedDigipath = Digipeater.parseList(digipath, true)
+		val callsign_ssid = prefs.getCallSsid()
+		Log.d("newPacketMice", s"digipath retrieved: $digipath")
+		
+		// Construct the micePacket string
+		val micePacketString = s"$callsign_ssid>$destString${if (digipath.nonEmpty) s",$digipath" else ""}:$payload"
+		
+		// Log or return the constructed packet
+		Log.d("newPacketMice", s"Constructed MICE Packet: $micePacketString")
+
+		val micePacketParsed = Parser.parse(micePacketString)
+		
+		micePacketParsed
+	}
 	def formatLoc(symbol : String, status : String, location : Location) = {
 		val pos = new Position(location.getLatitude, location.getLongitude, 0,
 				     symbol(0), symbol(1))
 		pos.setPositionAmbiguity(prefs.getStringInt("priv_ambiguity", 0))
-		val status_spd = if (prefs.getBoolean("priv_spdbear", true))
-			AprsPacket.formatCourseSpeed(location) else ""
+
+		// Calculate status_spd
+		val status_spd = if (prefs.getBoolean("priv_spdbear", true)) {
+			if(prefs.getBoolean("compressed_location", false)) {
+				// Compressed format
+				AprsPacket.formatCourseSpeedCompressed(location)
+			} else {
+				AprsPacket.formatCourseSpeed(location)
+			}
+		} else ""
+		// Log status_spd
+		Log.d("formatLoc", s"Status Speed: $status_spd")
+
+		// Calculate status_freq
 		val status_freq = AprsPacket.formatFreq(status_spd, prefs.getStringFloat("frequency", 0.0f))
-		val status_alt = if (prefs.getBoolean("priv_altitude", true))
-			AprsPacket.formatAltitude(location) else ""
-		val comment = status_spd + status_freq + status_alt + " " + status;
+
+		// Calculate status_alt
+		val status_alt = if (prefs.getBoolean("priv_altitude", true)) {
+			// if speed is empty then use compressed altitude, otherwise use full length altitude
+			if(prefs.getBoolean("compressed_location", false) && status_spd == "") {
+				// Compressed format
+				AprsPacket.formatAltitudeCompressed(location)
+			} else {
+				AprsPacket.formatAltitude(location)
+			}
+		} else ""
+		// Log status_alt
+		Log.d("formatLoc", s"Status Altitude: $status_alt")
+
+		if(prefs.getBoolean("compressed_location", false)) {
+			if(status_spd == "") {
+				// Speed is empty, so we can use a compressed altitude
+				if(status_alt == "") {
+					// Altitude is empty, so don't send any altitude data
+					pos.setCsTField(" sT")
+				} else {
+					// 3 signifies current GPS fix, GGA altitude, software compressed.
+					pos.setCsTField(status_alt + "3")
+				}
+				val packet = new PositionPacket(
+					pos, status_freq + " " + status, /* messaging = */ true)
+				packet.setCompressedFormat(true)
+				newPacket(packet)
+			} else {
+				// Speed is present, so we need to append the altitude to the end of the packet using the
+				// uncompressed method
+				// Apply the csT field with speed and course
+				// [ signifies current GPS fix, RMC speed, software compressed.
+				pos.setCsTField(status_spd + "[")
+				val packet = new PositionPacket(
+					pos, status_freq + status_alt + " " + status, /* messaging = */ true)
+				packet.setCompressedFormat(true)
+				newPacket(packet)
+			}
+		} else {
+			val packet = new PositionPacket(
+				pos, status_spd + status_freq + status_alt + " " + status, /* messaging = */ true)
+			newPacket(packet)
+		}
+		
+		//val comment = status_spd + status_freq + status_alt + " " + status;
 		// TODO: slice after 43 bytes, not after 43 UTF-8 codepoints
-		newPacket(new PositionPacket(pos, comment.slice(0, 43), /* messaging = */ true))
+		//newPacket(new PositionPacket(pos, comment.slice(0, 43), /* messaging = */ true))
 	}
 
 	def sendPacket(packet : APRSPacket, status_postfix : String) {
@@ -263,13 +335,56 @@ class AprsService extends Service {
 	}
 	def sendPacket(packet : APRSPacket) { sendPacket(packet, "") }
 
+	def formatLocMice(symbol : String, status : String, location : Location) = {
+		val privambiguity = 5 - prefs.getStringInt("priv_ambiguity", 0)
+		val ambiguity = if (privambiguity == 5) 0 else privambiguity
+
+		Log.d("MICE", s"Set Ambiguity $ambiguity")
+		
+		val miceStatus = prefs.getString("p__location_mice_status", "Off Duty")
+		val (a, b, c) = AprsPacket.statusToBits(miceStatus)
+
+		val status_freq = AprsPacket.formatFreqMice(prefs.getStringFloat("frequency", 0.0f))
+		val (status_spd, course) = AprsPacket.formatCourseSpeedMice(location)
+
+		// Encoding process
+		val (infoString, west, longOffset) = AprsPacket.encodeInfo(location.getLongitude, status_spd, course, symbol)
+		val destString = AprsPacket.encodeDest(location.getLatitude, longOffset, west, a, b, c, ambiguity)
+		
+		val altitudeValue = if (prefs.getBoolean("priv_altitude", true)) {
+		  AprsPacket.formatAltitudeMice(location)
+		} else {
+		  None
+		}
+		val altString = altitudeValue.map(alt => AprsPacket.altitude(alt.toInt)).getOrElse("")
+
+		val formatPayload = infoString + 
+		  (if (altString.isEmpty) "" else altString) + 
+		  (if (status.isEmpty) "" else status) +
+		  (if (status.nonEmpty && status_freq.nonEmpty) " " else "") + 
+		  (if (status_freq.isEmpty) "" else status_freq) + "[1"
+
+		Log.d("formatLoc", s"MICE: $infoString $destString $altString")
+
+		val packet = newPacketMice(formatPayload, destString)
+
+		packet
+							
+	}
+
 	def postLocation(location : Location) {
 		var symbol = prefs.getString("symbol", "")
 		if (symbol.length != 2)
 			symbol = getString(R.string.default_symbol)
 		val status = prefs.getString("status", getString(R.string.default_status))
-		val packet = formatLoc(symbol, status, location)
-
+		
+	   // Use inline prefs.getBoolean to decide the packet format
+	   val packet = if (prefs.getBoolean("compressed_mice", false)) {
+		 formatLocMice(symbol, status, location)
+	   } else {
+		 formatLoc(symbol, status, location)
+	   }
+		  
 		Log.d(TAG, "packet: " + packet)
 		sendPacket(packet, " (±%dm)".format(location.getAccuracy.asInstanceOf[Int]))
 	}

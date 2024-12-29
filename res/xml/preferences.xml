@@ -52,6 +52,15 @@
 
     <PreferenceCategory
 	android:title="@string/p__position">
+	<PreferenceScreen
+	android:key="compressed_location"
+	android:title="@string/p__location_compressed_settings"
+	android:summary="@string/p__location_compressed_summary">
+
+		<intent android:action="android.intent.action.MAIN"
+			android:targetPackage="org.aprsdroid.app"
+			android:targetClass="org.aprsdroid.app.CompressedPrefs" />
+    </PreferenceScreen>
     <PreferenceScreen
 	    android:key="p_symbol"
 	    android:title="@string/p_symbol"
