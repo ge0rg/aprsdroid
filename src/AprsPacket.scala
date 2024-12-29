@@ -38,34 +38,59 @@ object AprsPacket {
 		(degrees, minutesInt, minutesHundreths)
 	  }
 
+
 	  def encodeDest(dd: Double, longOffset: Int, west: Int, messageA: Int, messageB: Int, messageC: Int, ambiguity: Int): String = {
-		val north = if (dd < 0) 0 else 1
-		val (degrees, minutes, minutesHundreths) = miceLong(dd)
-
-		val degrees10 = Math.floor(degrees / 10.0).toInt
-		val degrees1 = degrees - (degrees10 * 10)
-
-		val minutes10 = Math.floor(minutes / 10.0).toInt
-		val minutes1 = minutes - (minutes10 * 10)
-
-		val minutesHundreths10 = Math.floor(minutesHundreths / 10.0).toInt
-		val minutesHundreths1 = minutesHundreths - (minutesHundreths10 * 10)
-
-		val sb = new StringBuilder
-
-		if (messageA == 1) sb.append(characters(degrees10 + 22)) else sb.append(characters(degrees10))
-		if (messageB == 1) sb.append(characters(degrees1 + 22)) else sb.append(characters(degrees1))
-		if (messageC == 1) sb.append(characters(minutes10 + 22)) else sb.append(characters(minutes10))
-
-		if (north == 1) sb.append(characters(minutes1 + 22)) else sb.append(characters(minutes1))
-		if (longOffset == 1) sb.append(characters(minutesHundreths10 + 22)) else sb.append(characters(minutesHundreths10))
-		if (west == 1) sb.append(characters(minutesHundreths1 + 22)) else sb.append(characters(minutesHundreths1))
-
-		val encoded = sb.toString()
-
-		// Replace the last characters with 'Z', ensuring ambiguity is set
-		val validAmbiguity = ambiguity.max(0).min(4)
-		encoded.take(6 - validAmbiguity) + "Z" * validAmbiguity
+	    val north = if (dd < 0) 0 else 1
+	  
+	    val (degrees, minutes, minutesHundreths) = miceLong(dd)
+	  
+	    val degrees10 = Math.floor(degrees / 10.0).toInt
+	    val degrees1 = degrees - (degrees10 * 10)
+	  
+	    val minutes10 = Math.floor(minutes / 10.0).toInt
+	    val minutes1 = minutes - (minutes10 * 10)
+	  
+	    val minutesHundreths10 = Math.floor(minutesHundreths / 10.0).toInt
+	    val minutesHundreths1 = minutesHundreths - (minutesHundreths10 * 10)
+	  
+	    val sb = new StringBuilder
+	  	
+	    if (messageA == 1) sb.append(characters(degrees10 + 22)) else sb.append(characters(degrees10))
+	    if (messageB == 1) sb.append(characters(degrees1 + 22)) else sb.append(characters(degrees1))
+	    if (messageC == 1) sb.append(characters(minutes10 + 22)) else sb.append(characters(minutes10))
+	  	  
+	    if (north == 1) sb.append(characters(minutes1 + 22)) else sb.append(characters(minutes1))
+	    if (longOffset == 1) sb.append(characters(minutesHundreths10 + 22)) else sb.append(characters(minutesHundreths10))
+	    if (west == 1) sb.append(characters(minutesHundreths1 + 22)) else sb.append(characters(minutesHundreths1))
+	  
+	    val encoded = sb.toString()
+	  
+	    // Replace indices 4 and 5 with 'Z' or 'L', depending on 'west'
+	    val validAmbiguity = ambiguity.max(0).min(4)
+	    val encodedArray = encoded.toCharArray // Convert the encoded string to a char array
+	  
+	    // A map that specifies the modification rules for each index based on ambiguity
+	    val modifyRules = Map(
+	  	2 -> (messageC, 'Z', 'L'),
+	  	3 -> (north, 'Z', 'L'),
+	  	4 -> (longOffset, 'Z', 'L'),
+	  	5 -> (west, 'Z', 'L')
+	    )
+	  
+	    // Loop over the indices based on validAmbiguity
+	    for (i <- (6 - validAmbiguity) until 6) {
+	  	modifyRules.get(i) match {
+	  	  case Some((condition, trueChar, falseChar)) =>
+	  		val charToUse = if (condition == 1) trueChar else falseChar
+	  		encodedArray(i) = charToUse
+	  	  case None => // No modification if the index is not in modifyRules
+	  	}
+	    }
+	  
+	    // Return the modified string
+	    val finalEncoded = new String(encodedArray)
+	  
+	    finalEncoded
 	  }
 
 	  def encodeInfo(dd: Double, speed: Double, heading: Double, symbol: String): (String, Int, Int) = {
