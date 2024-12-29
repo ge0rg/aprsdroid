@@ -1,0 +1,182 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ '**' ]
+  workflow_dispatch:
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    name: "Compile all sources"
+
+    steps:
+    - name: Checkout project
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: gradle
+
+    - name: Load build outputs
+      uses: actions/cache@v4
+      with:
+        path: build
+        key: build-${{ github.sha }}
+
+    - name: Create properties file with empty API key
+      run: echo mapsApiKey="\"${{ secrets.mapsApiKey }}\"" >> local.properties
+
+    - name: Build App
+      run: ./gradlew assemble --stacktrace
+
+    - name: Build unit tests
+      run: ./gradlew assembleDebugUnitTest assembleReleaseUnitTest --stacktrace
+
+    - name: Build instrumentation tests
+      run: ./gradlew assembleAndroidTest --stacktrace
+
+  unit-test:
+    name: "Run all unit tests"
+    needs: compile
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout project
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: gradle
+
+    - name: Load build outputs
+      uses: actions/cache@v4
+      with:
+        path: build
+        key: build-${{ github.sha }}
+
+    - name: Run Unit Tests
+      run: ./gradlew test --stacktrace
+
+    - name: Run Linter
+      run: ./gradlew lint --stacktrace
+      continue-on-error: true
+
+    - name: Upload reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: Unit Test Reports
+        path: build/reports
+      if: failure()
+
+  instrumentation:
+    name: "Testing on API ${{ matrix.api-level }} for ${{ matrix.target }}"
+    needs: compile
+    # macOS provided hardware-accelerated emulator
+    # but now so does Linux
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level: [ 15, 21, 24, 31 ]
+        target: [ default, google_apis ]
+        exclude:
+          - api-level: 31  # Was 30, is it needed for 31?
+            target: default
+
+    steps:
+    - name: Checkout project
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        submodules: recursive
+
+    - name: Enable KVM
+      run: |
+        echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+        sudo udevadm control --reload-rules
+        sudo udevadm trigger --name-match=kvm
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: gradle
+
+    - name: Load build outputs
+      uses: actions/cache@v4
+      with:
+        path: build
+        key: build-${{ github.sha }}
+
+    - name: AVD cache
+      uses: actions/cache@v4
+      id: avd-cache
+      with:
+        path: |
+          ~/.android/avd/*
+          ~/.android/adb*
+        key: avd-${{ matrix.api-level }}-${{ matrix.target }}-sd
+
+    - name: Set up JRE 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        java-package: 'jre'
+        #cache: gradle
+
+    - name: Create AVD and generate snapshot for caching
+      if: steps.avd-cache.outputs.cache-hit != 'true'
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: ${{ matrix.api-level }}
+        target: ${{ matrix.target }}
+        arch: ${{ matrix.api-level >= 30 && 'x86_64' || 'x86' }}
+        force-avd-creation: false
+        sdcard-path-or-size: '64M'
+        emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+        disable-animations: false
+        script: echo "Generated AVD snapshot for caching."
+
+    - name: Run Instrumented Tests
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: ${{ matrix.api-level }}
+        target: ${{ matrix.target }}
+        arch: ${{ matrix.api-level >= 30 && 'x86_64' || 'x86' }}
+        profile: Nexus 6
+        force-avd-creation: false
+        sdcard-path-or-size: '64M'
+        emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+        disable-animations: true
+        script: adb logcat -c && adb logcat -f /sdcard/logcat.txt & JAVA_HOME="${JAVA_HOME_11_X64}" ./gradlew connectedCheck --stacktrace || ( adb pull /sdcard/logcat.txt build/reports/; exit 1 )
+
+    - name: Upload reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: Instrument Test Reports API ${{ matrix.api-level }} ${{ matrix.target }}
+        path: build/reports
+      if: failure()
+
+    - name: Save successful debug APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: Debug APK
+        path: build/outputs/apk/debug/aprsdroid-debug.apk
+      if: matrix.api-level == 31 && matrix.target == 'google_apis'
