@@ -5,9 +5,9 @@ import _root_.android.util.Log
 import _root_.java.net.{InetAddress, DatagramSocket, DatagramPacket}
 import _root_.net.ab0oo.aprs.parser.APRSPacket
 
-class UdpUploader(prefs : PrefsWrapper) extends AprsBackend(prefs) {
+class UdpUploader(service : AprsService, prefs : PrefsWrapper) extends AprsBackend(prefs) {
 	val TAG = "APRSdroid.Udp"
-	lazy val socket = new DatagramSocket()
+	lazy val socket = service.serviceLocator.provideDatagramSocket()
 	val host = prefs.getString("udp.server", "srvr.aprs-is.net")
 
 	def start() = true
