@@ -113,8 +113,19 @@ class PrefsAct extends PreferenceActivity {
 			//parseFilePickerResult(data, "mapfile", R.string.mapfile_error)
 			val takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
 			getContentResolver.takePersistableUriPermission(data.getData(), takeFlags)
+            val resolvedPath = data.getData().getScheme match {
+                case "file" => data.getData().getPath
+                case "content" => resolveContentUri(data.getData())
+                case _ => null
+            }
+
+            if (resolvedPath != null) {
 			PreferenceManager.getDefaultSharedPreferences(this)
-				.edit().putString("mapfile", data.getDataString()).commit()
+                    .edit().putString("mapfile", resolvedPath).commit()
+                Toast.makeText(this, resolvedPath, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, R.string.mapfile_error, Toast.LENGTH_SHORT).show()
+            }
 			finish()
 			startActivity(getIntent())
 		} else
