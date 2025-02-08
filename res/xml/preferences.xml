@@ -224,6 +224,11 @@
 	    android:title="@string/p_themefile"
 	    android:summary="@string/p_themefile_summary" />
 
+	<Preference
+		android:key="all_files_access"
+		android:title="@string/p_all_files_access_title"
+		android:summary="@string/p_all_files_access_summary" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

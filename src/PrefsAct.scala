@@ -12,6 +12,7 @@ import _root_.android.widget.Toast
 import java.text.SimpleDateFormat
 import java.io.{File, PrintWriter}
 import java.util.Date
+import android.provider.Settings
 
 import org.json.JSONObject
 
@@ -50,6 +51,16 @@ class PrefsAct extends PreferenceActivity {
 	override def onCreate(savedInstanceState: Bundle) {
 		super.onCreate(savedInstanceState)
 		addPreferencesFromResource(R.xml.preferences)
+        // Set the click listener for the "Manage All Files Access" preference
+        val allFilesAccessPref = findPreference("all_files_access")
+        if (allFilesAccessPref != null) {
+            allFilesAccessPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                def onPreferenceClick(preference: Preference) = {
+                    openAllFilesAccessSettings()  // Call the method to handle the access settings
+                    true  // Return true to indicate the click was handled
+                }
+            })
+        }		
 		fileChooserPreference("mapfile", 123456, R.string.p_mapfile_choose)
 		fileChooserPreference("themefile", 123457, R.string.p_themefile_choose)
 	}
@@ -113,8 +124,19 @@ class PrefsAct extends PreferenceActivity {
 			//parseFilePickerResult(data, "mapfile", R.string.mapfile_error)
 			val takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
 			getContentResolver.takePersistableUriPermission(data.getData(), takeFlags)
+            val resolvedPath = data.getData().getScheme match {
+                case "file" => data.getData().getPath
+                case "content" => resolveContentUri(data.getData())
+                case _ => null
+            }
+
+            if (resolvedPath != null) {
 			PreferenceManager.getDefaultSharedPreferences(this)
-				.edit().putString("mapfile", data.getDataString()).commit()
+                    .edit().putString("mapfile", resolvedPath).commit()
+                Toast.makeText(this, resolvedPath, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, R.string.mapfile_error, Toast.LENGTH_SHORT).show()
+            }
 			finish()
 			startActivity(getIntent())
 		} else
@@ -146,4 +168,23 @@ class PrefsAct extends PreferenceActivity {
 		case _ => super.onOptionsItemSelected(mi)
 		}
 	}
+
+    def openAllFilesAccessSettings(): Unit = {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            // For Android 13+ (API 33 and above): open All Files Access settings
+            val intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+            intent.setData(Uri.parse("package:" + getPackageName()))
+            startActivity(intent)
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            // For Android 11 (API 30) and above but below Android 13, open App Info page directly
+            val intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.setData(Uri.parse("package:" + getPackageName()))
+            startActivity(intent)
+        } else {
+            // For older versions (Android 10 and below), open the App Info page
+            val intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            intent.setData(Uri.parse("package:" + getPackageName()))
+            startActivity(intent)
+        }
+    }
 }
