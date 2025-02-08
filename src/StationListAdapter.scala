@@ -66,6 +66,7 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 		val age = DateUtils.getRelativeTimeSpanString(context, ts)
 		val lat = cursor.getInt(COLUMN_LAT)
 		val lon = cursor.getInt(COLUMN_LON)
+		val comment = cursor.getString(COLUMN_COMMENT)	
 		val qrg = cursor.getString(COLUMN_QRG)
 		val symbol = cursor.getString(COLUMN_SYMBOL)
 		val dist = Array[Float](0, 0)
@@ -87,6 +88,13 @@ class StationListAdapter(context : Context, prefs : PrefsWrapper,
 			lat/MCD, lon/MCD, dist)
 		distage.setText("%1.1f km %s\n%s".format(dist(0)/1000.0, getBearing(dist(1)), age))
 		view.findViewById(R.id.station_symbol).asInstanceOf[SymbolView].setSymbol(symbol)
+		val listMessageTextView = view.findViewById(R.id.listmessage).asInstanceOf[TextView]		
+		if (comment != null && comment.trim.nonEmpty) {
+			listMessageTextView.setText(comment)
+			listMessageTextView.setVisibility(View.VISIBLE) // Make it visible if comment is not empty
+		} else {
+			listMessageTextView.setVisibility(View.GONE)  // Hide it if comment is empty or null
+		}		
 		super.bindView(view, context, cursor)
 	}
 
