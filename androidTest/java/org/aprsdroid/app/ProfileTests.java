@@ -1,0 +1,55 @@
+package org.aprsdroid.app;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.Matchers.allOf;
+import static org.junit.Assume.assumeTrue;
+
+import android.Manifest;
+import android.app.Instrumentation;
+import android.content.Intent;
+import android.os.Environment;
+
+import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.intent.Intents;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.rule.GrantPermissionRule;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+@RunWith(AndroidJUnit4.class)
+public class ProfileTests {
+    @Rule
+    public final GrantPermissionRule permissionRule = GrantPermissionRule.grant(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+    @Before
+    public void setUp() {
+        Intents.init();
+    }
+
+    @After
+    public void tearDown() {
+        Intents.release();
+    }
+
+    @Test
+    public void testThatExportProfileOpensTheChooser() {
+        assumeTrue(Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()));
+        ActivityScenario scenario = ActivityScenario.launch(PrefsAct.class);
+        Intents.intending(hasAction(Intent.ACTION_CHOOSER)).respondWith(new Instrumentation.ActivityResult(0, null));
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        onView(withText(R.string.profile_export))
+                .perform(click());
+        Intents.intended(hasAction(Intent.ACTION_MAIN));  // Validate the activity launch
+        Intents.intended(allOf(hasAction(Intent.ACTION_CHOOSER)));
+        Intents.assertNoUnverifiedIntents();
+    }
+}
