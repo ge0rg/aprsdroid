@@ -54,7 +54,7 @@ object AprsBackend {
 	// add your own BackendInfo here
 	val backend_collection = Map(
 		"udp" -> new BackendInfo(
-			(s, p) => new UdpUploader(p),
+			(s, p) => new UdpUploader(s, p),
 			R.xml.backend_udp,
 			Set(),
 			CAN_XMIT,

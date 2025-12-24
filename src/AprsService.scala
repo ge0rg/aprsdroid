@@ -81,6 +81,7 @@ class AprsService extends Service {
 	lazy val msgService = new MessageService(this)
 	lazy val locSource = LocationSource.instanciateLocation(this, prefs)
 	lazy val msgNotifier = msgService.createMessageNotifier()
+	lazy val serviceLocator: ServiceLocator = getApplicationContext().asInstanceOf[APRSdroidApplication].serviceLocator
 
 	var poster : AprsBackend = null
 
