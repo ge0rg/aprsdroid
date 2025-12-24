@@ -5,6 +5,7 @@ import _root_.android.os.Bundle
 import _root_.android.content.{Context, Intent, SharedPreferences}
 import _root_.android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import _root_.android.preference.{CheckBoxPreference, Preference, PreferenceActivity, PreferenceManager}
+import _root_.android.util.Log
 import android.location.LocationManager
 import android.preference.Preference.OnPreferenceClickListener
 import android.widget.Toast
@@ -20,6 +21,7 @@ class BackendPrefs extends PreferenceActivity
 		addPreferencesFromResource(R.xml.backend)
 		addPreferencesFromResource(AprsBackend.prefxml_proto(prefs))
 		val additional_xml = AprsBackend.prefxml_backend(prefs)
+		Log.d("BackendPrefs", "DEBUG: prefs add xml " + additional_xml)
 		if (additional_xml != 0) {
 			addPreferencesFromResource(additional_xml)
 			hookPasscode()
@@ -67,7 +69,7 @@ class BackendPrefs extends PreferenceActivity
 	}
 
 	override def onSharedPreferenceChanged(sp: SharedPreferences, key : String) {
-		if (key == "proto" || key == "link" || key == "aprsis") {
+		if (key == "proto" || key == "link" || key == "aprsis" || key == "afsk") {
 			setPreferenceScreen(null)
 			loadXml()
 		}
