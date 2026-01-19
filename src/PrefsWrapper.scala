@@ -11,6 +11,10 @@ class PrefsWrapper(val context : Context) {
 	// wrap the "dumb" methods
 	def getString(key : String, defValue : String) = prefs.getString(key, defValue)
 	def getBoolean(key : String, defValue : Boolean) = prefs.getBoolean(key, defValue)
+	
+	def isMetric(): Boolean = {
+		prefs.getString("p.units", "1") == "1" // "1" for metric, "2" for imperial
+	}
 
 	// safely read integers
 	def getStringInt(key : String, defValue : Int) = {

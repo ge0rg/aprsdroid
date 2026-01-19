@@ -153,6 +153,9 @@
 <string name="p_ssid">SSID</string>
 <string name="p_ssid_summary">Station type (1..15; 9=Mobile, 10=APRS-IS)</string>
 <string name="p_ssid_entry">Enter the SSID for your station</string>
+<string name="p_units_title">Distance Units</string>
+<string name="p_units">Unit Preference</string>
+<string name="p_units_entry">Select Distance Unit</string>
 <!-- array of station types (SSID) -->
 <string-array name="p_ssid_e">
 	<item>(none) Primary Station</item>
@@ -171,6 +174,10 @@
 	<item>13: Weather station</item>
 	<item>14: Freight vehicle</item>
 	<item>15: Generic additional station</item>
+</string-array>
+<string-array name="p_units_e">
+	<item>Metric</item>
+	<item>Imperial</item>
 </string-array>
 <string name="p_symbol">APRS symbol</string>
 <string name="p_symbol_summary">Your symbol for map display</string>
