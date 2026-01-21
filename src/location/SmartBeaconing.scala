@@ -78,8 +78,8 @@ class SmartBeaconing(service : AprsService, prefs : PrefsWrapper) extends Locati
 		if (!lastLoc.hasBearing)
 			return (t_diff/1000 >= SB_TURN_TIME)
 
-		// threshold depends on slope/speed [mph]
-		val threshold = SB_TURN_MIN + SB_TURN_SLOPE/(speed*2.23693629)
+		// threshold depends on slope/speed [kmh]
+		val threshold = SB_TURN_MIN + SB_TURN_SLOPE/(speed*3.6)
 
 		Log.d(TAG, "smartBeaconCornerPeg: %1.0f < %1.0f %d/%d".format(turn, threshold,
 			t_diff/1000, SB_TURN_TIME))
