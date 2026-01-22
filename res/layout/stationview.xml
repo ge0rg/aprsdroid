@@ -55,6 +55,7 @@
 	android:textSize="17sp"
 	android:typeface="monospace"
 	android:focusable="false"
+	android:visibility="gone"	
 	/>
 </LinearLayout>
 
